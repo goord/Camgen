@@ -1,0 +1,56 @@
+\hypertarget{a00017}{\section{Camgen\-:\-:ascii\-\_\-file$<$ model\-\_\-t $>$ Class Template Reference}
+\label{a00017}\index{Camgen\-::ascii\-\_\-file$<$ model\-\_\-t $>$@{Camgen\-::ascii\-\_\-file$<$ model\-\_\-t $>$}}
+}
+
+
+A\-C\-I\-I-\/file output interface class.  
+
+
+
+
+{\ttfamily \#include $<$ascii\-\_\-if.\-h$>$}
+
+Inheritance diagram for Camgen\-:\-:ascii\-\_\-file$<$ model\-\_\-t $>$\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{a00017}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00017_af57ec7a3a2bda096ef2d53f51e05bb65}{\hyperlink{a00315}{interface\-\_\-output}$<$ model\-\_\-t $>$ $\ast$ \hyperlink{a00017_af57ec7a3a2bda096ef2d53f51e05bb65}{create} (const std\-::string \&file\-\_\-name\-\_\-) const }\label{a00017_af57ec7a3a2bda096ef2d53f51e05bb65}
+
+\begin{DoxyCompactList}\small\item\em Creation method, no data copying expected. \end{DoxyCompactList}\item 
+\hypertarget{a00017_aa2e585f2d6fcecdb532fa4465474a4a0}{bool \hyperlink{a00017_aa2e585f2d6fcecdb532fa4465474a4a0}{open\-\_\-file} ()}\label{a00017_aa2e585f2d6fcecdb532fa4465474a4a0}
+
+\begin{DoxyCompactList}\small\item\em Abstract method opening the file. \end{DoxyCompactList}\item 
+\hypertarget{a00017_abf39e5b9a7ca84fda5756c8e9b61ce2f}{bool \hyperlink{a00017_abf39e5b9a7ca84fda5756c8e9b61ce2f}{close\-\_\-file} ()}\label{a00017_abf39e5b9a7ca84fda5756c8e9b61ce2f}
+
+\begin{DoxyCompactList}\small\item\em Abstract method closing the file. \end{DoxyCompactList}\item 
+\hypertarget{a00017_a2267177d35239d603fcfb31fbd1a24d9}{bool \hyperlink{a00017_a2267177d35239d603fcfb31fbd1a24d9}{branch} (const \hyperlink{a00559}{momentum\-\_\-type} $\ast$p, const std\-::string \&varname)}\label{a00017_a2267177d35239d603fcfb31fbd1a24d9}
+
+\begin{DoxyCompactList}\small\item\em Virtual method adding a branch holding a Lorentz vector. \end{DoxyCompactList}\item 
+\hypertarget{a00017_a5ab7a2bbc80638b1f507329af52b6c6c}{bool \hyperlink{a00017_a5ab7a2bbc80638b1f507329af52b6c6c}{branch} (const value\-\_\-type $\ast$x, const std\-::string \&varname)}\label{a00017_a5ab7a2bbc80638b1f507329af52b6c6c}
+
+\begin{DoxyCompactList}\small\item\em Virtual method adding a branch holding a floating-\/point number. \end{DoxyCompactList}\item 
+\hypertarget{a00017_a56c0f4e40901571c0e01a50df6ec08c6}{bool \hyperlink{a00017_a56c0f4e40901571c0e01a50df6ec08c6}{branch} (const int $\ast$n, const std\-::string \&varname)}\label{a00017_a56c0f4e40901571c0e01a50df6ec08c6}
+
+\begin{DoxyCompactList}\small\item\em Virtual method adding a branch holding an integer. \end{DoxyCompactList}\item 
+\hypertarget{a00017_ad1e9cff1329e77c9fcbc3f584a654f06}{bool \hyperlink{a00017_ad1e9cff1329e77c9fcbc3f584a654f06}{branch} (const bool $\ast$b, const std\-::string \&varname)}\label{a00017_ad1e9cff1329e77c9fcbc3f584a654f06}
+
+\begin{DoxyCompactList}\small\item\em Virtual method adding a branch holding a boolean. \end{DoxyCompactList}\item 
+\hypertarget{a00017_a54212a1c88acb99828bc4187ae7f781c}{bool \hyperlink{a00017_a54212a1c88acb99828bc4187ae7f781c}{write\-\_\-event} ()}\label{a00017_a54212a1c88acb99828bc4187ae7f781c}
+
+\begin{DoxyCompactList}\small\item\em Virtual method writing the event to the output file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class model\-\_\-t$>$class Camgen\-::ascii\-\_\-file$<$ model\-\_\-t $>$}
+
+A\-C\-I\-I-\/file output interface class. 
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+include/\-Camgen/\hyperlink{a00582}{ascii\-\_\-if.\-h}\end{DoxyCompactItemize}

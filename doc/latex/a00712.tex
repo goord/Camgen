@@ -1,0 +1,58 @@
+\hypertarget{a00712}{\section{include/\-Camgen/ps\-\_\-copy.h File Reference}
+\label{a00712}\index{include/\-Camgen/ps\-\_\-copy.\-h@{include/\-Camgen/ps\-\_\-copy.\-h}}
+}
+
+
+Classes to copy phase space variables between different C\-M\-\_\-algorithm instances.  
+
+
+{\ttfamily \#include $<$Camgen/\-C\-M\-\_\-algo.\-h$>$}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{a00412}{Camgen\-::phase\-\_\-space\-\_\-copy$<$ model\-\_\-t1, model\-\_\-t2 $>$}
+\item 
+class \hyperlink{a00374}{Camgen\-::momentum\-\_\-copy$<$ model\-\_\-t1, model\-\_\-t2, D1, D2 $>$}
+\item 
+class \hyperlink{a00375}{Camgen\-::momentum\-\_\-copy$<$ model\-\_\-t1, model\-\_\-t2, D, D $>$}
+\item 
+class \hyperlink{a00262}{Camgen\-::helicity\-\_\-copy$<$ model\-\_\-t1, model\-\_\-t2, q1, q2 $>$}
+\item 
+class \hyperlink{a00263}{Camgen\-::helicity\-\_\-copy$<$ model\-\_\-t1, model\-\_\-t2, false, false $>$}
+\item 
+class \hyperlink{a00264}{Camgen\-::helicity\-\_\-copy$<$ model\-\_\-t1, model\-\_\-t2, false, true $>$}
+\item 
+class \hyperlink{a00265}{Camgen\-::helicity\-\_\-copy$<$ model\-\_\-t1, model\-\_\-t2, true, true $>$}
+\item 
+class \hyperlink{a00071}{Camgen\-::colour\-\_\-copy$<$ model\-\_\-t1, model\-\_\-t2, q $>$}
+\item 
+class \hyperlink{a00074}{Camgen\-::colour\-\_\-copy\-\_\-helper$<$ model\-\_\-t1, model\-\_\-t2, q1, q2 $>$}
+\item 
+class \hyperlink{a00075}{Camgen\-::colour\-\_\-copy\-\_\-helper$<$ model\-\_\-t1, model\-\_\-t2, false, false $>$}
+\item 
+class \hyperlink{a00077}{Camgen\-::colour\-\_\-copy\-\_\-helper$<$ model\-\_\-t1, model\-\_\-t2, true, true $>$}
+\item 
+class \hyperlink{a00076}{Camgen\-::colour\-\_\-copy\-\_\-helper$<$ model\-\_\-t1, model\-\_\-t2, false, true $>$}
+\item 
+class \hyperlink{a00072}{Camgen\-::colour\-\_\-copy$<$ model\-\_\-t1, model\-\_\-t2, false $>$}
+\item 
+class \hyperlink{a00073}{Camgen\-::colour\-\_\-copy$<$ model\-\_\-t1, model\-\_\-t2, true $>$}
+\item 
+class \hyperlink{a00412}{Camgen\-::phase\-\_\-space\-\_\-copy$<$ model\-\_\-t1, model\-\_\-t2 $>$}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00849_a522b510143ac9bb66e5753230cc4d3dc}{{\footnotesize template$<$class model\-\_\-t1 , class model\-\_\-t2 , std\-::size\-\_\-t N\-\_\-in, std\-::size\-\_\-t N\-\_\-out$>$ }\\void {\bfseries Camgen\-::copy\-\_\-momenta} (typename C\-M\-\_\-algorithm$<$ model\-\_\-t1, N\-\_\-in, N\-\_\-out $>$\-::const\-\_\-tree\-\_\-iterator it1, typename C\-M\-\_\-algorithm$<$ model\-\_\-t2, N\-\_\-in, N\-\_\-out $>$\-::tree\-\_\-iterator it2)}\label{a00849_a522b510143ac9bb66e5753230cc4d3dc}
+
+\begin{DoxyCompactList}\small\item\em Function copying momenta from C\-M tree iterator it1 to it2. \end{DoxyCompactList}\item 
+\hypertarget{a00849_aa43e4ace819645b13d07004eb48d5dca}{{\footnotesize template$<$class model\-\_\-t1 , class model\-\_\-t2 , std\-::size\-\_\-t N\-\_\-in, std\-::size\-\_\-t N\-\_\-out$>$ }\\void {\bfseries Camgen\-::copy\-\_\-helicities} (typename C\-M\-\_\-algorithm$<$ model\-\_\-t1, N\-\_\-in, N\-\_\-out $>$\-::const\-\_\-tree\-\_\-iterator it1, typename C\-M\-\_\-algorithm$<$ model\-\_\-t2, N\-\_\-in, N\-\_\-out $>$\-::tree\-\_\-iterator it2)}\label{a00849_aa43e4ace819645b13d07004eb48d5dca}
+
+\begin{DoxyCompactList}\small\item\em Function copying helicities from C\-M tree iterator it1 to it2. \end{DoxyCompactList}\item 
+\hypertarget{a00849_a0417f9f7f76609cfe09278c293269270}{{\footnotesize template$<$class model\-\_\-t1 , class model\-\_\-t2 , std\-::size\-\_\-t N\-\_\-in, std\-::size\-\_\-t N\-\_\-out$>$ }\\void {\bfseries Camgen\-::copy\-\_\-colours} (typename C\-M\-\_\-algorithm$<$ model\-\_\-t1, N\-\_\-in, N\-\_\-out $>$\-::const\-\_\-tree\-\_\-iterator it1, typename C\-M\-\_\-algorithm$<$ model\-\_\-t2, N\-\_\-in, N\-\_\-out $>$\-::tree\-\_\-iterator it2)}\label{a00849_a0417f9f7f76609cfe09278c293269270}
+
+\begin{DoxyCompactList}\small\item\em Function copying colours from C\-M tree iterator it1 to it2. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Classes to copy phase space variables between different C\-M\-\_\-algorithm instances. 

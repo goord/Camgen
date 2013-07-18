@@ -1,0 +1,376 @@
+\hypertarget{a00598}{
+\section{include/Camgen/static\_\-conf.h File Reference}
+\label{a00598}\index{include/Camgen/static\_\-conf.h@{include/Camgen/static\_\-conf.h}}
+}
+
+
+Static configuration data for Camgen modules.  
+
+
+{\ttfamily \#include $<$config.h$>$}\par
+{\ttfamily \#include $<$map$>$}\par
+{\ttfamily \#include $<$cstddef$>$}\par
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{a00249}{Camorra::helicity\_\-generators}
+\begin{DoxyCompactList}\small\item\em Helicity generator types namespace. \end{DoxyCompactList}\item 
+struct \hyperlink{a00079}{Camorra::colour\_\-generators}
+\begin{DoxyCompactList}\small\item\em Colour generator types namespace. \end{DoxyCompactList}\item 
+struct \hyperlink{a00285}{Camorra::initial\_\-states}
+\begin{DoxyCompactList}\small\item\em Initial state generator types namespace. \end{DoxyCompactList}\item 
+struct \hyperlink{a00384}{Camorra::phase\_\-space\_\-generators}
+\begin{DoxyCompactList}\small\item\em Momentum generator types namespace. \end{DoxyCompactList}\item 
+class \hyperlink{a00091}{Camorra::configuration}
+\begin{DoxyCompactList}\small\item\em Class containing static data used by Camgen routines. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries grid\_\-modes} 
+\begin{DoxyCompactList}\small\item\em Adaptive grid modes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00798_a434afc4df475b015efdcf5a266c2698e}{
+void \hyperlink{a00798_a434afc4df475b015efdcf5a266c2698e}{Camorra::set\_\-helicity\_\-generator\_\-type} (helicity\_\-generators::type)}
+\label{a00798_a434afc4df475b015efdcf5a266c2698e}
+
+\begin{DoxyCompactList}\small\item\em Sets the default helicity generator. \end{DoxyCompactList}\item 
+\hypertarget{a00798_ad71a6538e255e41a537f0e34740f51ac}{
+void \hyperlink{a00798_ad71a6538e255e41a537f0e34740f51ac}{Camorra::set\_\-colour\_\-generator\_\-type} (colour\_\-generators::type)}
+\label{a00798_ad71a6538e255e41a537f0e34740f51ac}
+
+\begin{DoxyCompactList}\small\item\em Sets the default colour generator. \end{DoxyCompactList}\item 
+\hypertarget{a00798_ae4e428854913f1ce28404e339ba590e8}{
+void \hyperlink{a00798_ae4e428854913f1ce28404e339ba590e8}{Camorra::set\_\-initial\_\-state\_\-type} (initial\_\-states::type)}
+\label{a00798_ae4e428854913f1ce28404e339ba590e8}
+
+\begin{DoxyCompactList}\small\item\em Sets the default initial state. \end{DoxyCompactList}\item 
+\hypertarget{a00798_ad8899b9b08426e00640888dffbcefbb1}{
+void \hyperlink{a00798_ad8899b9b08426e00640888dffbcefbb1}{Camorra::set\_\-phase\_\-space\_\-generator\_\-type} (phase\_\-space\_\-generators::type)}
+\label{a00798_ad8899b9b08426e00640888dffbcefbb1}
+
+\begin{DoxyCompactList}\small\item\em Sets the default phase space generator. \end{DoxyCompactList}\item 
+\hypertarget{a00798_ae560fbf687bfc8cf484439ccccaaeffb}{
+bool \hyperlink{a00798_ae560fbf687bfc8cf484439ccccaaeffb}{Camorra::set\_\-beam\_\-energy} (int, double)}
+\label{a00798_ae560fbf687bfc8cf484439ccccaaeffb}
+
+\begin{DoxyCompactList}\small\item\em Sets the i-\/th beam energy, where label starts from 1,... \end{DoxyCompactList}\item 
+\hypertarget{a00798_a6de95ee5984e0f2180101b7f76b90dd1}{
+bool \hyperlink{a00798_a6de95ee5984e0f2180101b7f76b90dd1}{Camorra::set\_\-first\_\-beam\_\-energy} (double)}
+\label{a00798_a6de95ee5984e0f2180101b7f76b90dd1}
+
+\begin{DoxyCompactList}\small\item\em Sets the first beam energy. Returns false at failure (negative argument). \end{DoxyCompactList}\item 
+bool \hyperlink{a00798_a1f6331ed932b7900c6a4e89d59526d60}{Camorra::set\_\-second\_\-beam\_\-energy} (double)
+\begin{DoxyCompactList}\small\item\em Sets the second beam energy. \end{DoxyCompactList}\item 
+bool \hyperlink{a00798_a70cde83b3ea17f67590455791aa2ae34}{Camorra::set\_\-pT\_\-min} (double)
+\begin{DoxyCompactList}\small\item\em Sets the minimal transverse momentum. \end{DoxyCompactList}\item 
+bool \hyperlink{a00798_a28cef035343874fc7bc8685ae3536c7c}{Camorra::set\_\-m\_\-min} (int i, int j, double)
+\begin{DoxyCompactList}\small\item\em Sets the minimal invariant mass for particles (i,j). \end{DoxyCompactList}\item 
+\hypertarget{a00798_a7806d9dd46348bf9e97a288184f8f5c3}{
+void \hyperlink{a00798_a7806d9dd46348bf9e97a288184f8f5c3}{Camorra::set\_\-channel\_\-init} (std::size\_\-t, std::size\_\-t)}
+\label{a00798_a7806d9dd46348bf9e97a288184f8f5c3}
+
+\begin{DoxyCompactList}\small\item\em Sets the number of channel iterations and batch size at initialisation. \end{DoxyCompactList}\item 
+\hypertarget{a00798_ac158f04335b253127295e4a594f70a5c}{
+void \hyperlink{a00798_ac158f04335b253127295e4a594f70a5c}{Camorra::set\_\-grid\_\-init} (std::size\_\-t, std::size\_\-t)}
+\label{a00798_ac158f04335b253127295e4a594f70a5c}
+
+\begin{DoxyCompactList}\small\item\em Sets the number of grid iterations and batch size at initialisation. \end{DoxyCompactList}\item 
+\hypertarget{a00798_acf2bf549282ae12be161d55d81660323}{
+void \hyperlink{a00798_acf2bf549282ae12be161d55d81660323}{Camorra::set\_\-subprocess\_\-events} (std::size\_\-t)}
+\label{a00798_acf2bf549282ae12be161d55d81660323}
+
+\begin{DoxyCompactList}\small\item\em Sets the number of events for subprocess cross section estimation. \end{DoxyCompactList}\item 
+void \hyperlink{a00798_a085972c55b81c3f66a21c49159d55bdb}{Camorra::set\_\-auto\_\-channel\_\-adapt} (std::size\_\-t)
+\begin{DoxyCompactList}\small\item\em Sets the automatic channel adaptation batch size. \end{DoxyCompactList}\item 
+void \hyperlink{a00798_aa604d43264c987f31c73ee58e14515c7}{Camorra::set\_\-auto\_\-grid\_\-adapt} (std::size\_\-t)
+\begin{DoxyCompactList}\small\item\em Sets the automatic grid adaptation batch size. \end{DoxyCompactList}\item 
+void \hyperlink{a00798_ab141793189f1ee99319706c726ab4baf}{Camorra::set\_\-auto\_\-subprocess\_\-adapt} (std::size\_\-t)
+\begin{DoxyCompactList}\small\item\em Sets the automatic subprocess weight adaptation batch size. \end{DoxyCompactList}\item 
+bool \hyperlink{a00798_a79b6d2c379b9d68735afe6c7de9b5fc6}{Camorra::set\_\-max\_\-s\_\-pairs} (std::size\_\-t)
+\begin{DoxyCompactList}\small\item\em Sets the maximal number of MC throws in s-\/pair generation. \end{DoxyCompactList}\item 
+bool \hyperlink{a00798_a2b4a540a4ebed9423bb614d79922b502}{Camorra::set\_\-max\_\-init\_\-rejects} (std::size\_\-t)
+\begin{DoxyCompactList}\small\item\em Sets the maximal number of events thrown not passing cuts before moving on at initialisation of channels and grids. \end{DoxyCompactList}\item 
+void \hyperlink{a00798_a16e7c2807faba2f7b35546de5cae0c1f}{Camorra::set\_\-adaptive\_\-s\_\-sampling} (bool)
+\begin{DoxyCompactList}\small\item\em Controls whether adaptive grids should optimise the s-\/sampling algorithms. \end{DoxyCompactList}\item 
+void \hyperlink{a00798_ad5867bcc4ef7653a624ca13b33d1c691}{Camorra::set\_\-adaptive\_\-t\_\-sampling} (bool)
+\begin{DoxyCompactList}\small\item\em Controls whether adaptive grids should optimise the t-\/sampling algorithms. \end{DoxyCompactList}\item 
+void \hyperlink{a00798_a866e5cc645680018fab0fdcf72207c75}{Camorra::set\_\-adaptive\_\-angles} (bool)
+\begin{DoxyCompactList}\small\item\em Controls whether adaptive grids should optimise the angle sampling in s-\/branchings. \end{DoxyCompactList}\item 
+bool \hyperlink{a00798_a6d2bc8b8821a29006938082d6b6bef2d}{Camorra::set\_\-grid\_\-bins} (std::size\_\-t)
+\begin{DoxyCompactList}\small\item\em Sets the maximal number of bins used by parni instances. \end{DoxyCompactList}\item 
+\hypertarget{a00798_a7e1437ec1a247b7c32bd4923efabf6b6}{
+void \hyperlink{a00798_a7e1437ec1a247b7c32bd4923efabf6b6}{Camorra::set\_\-grid\_\-mode} (grid\_\-modes)}
+\label{a00798_a7e1437ec1a247b7c32bd4923efabf6b6}
+
+\begin{DoxyCompactList}\small\item\em Sets the grid bin splitting criterium. \end{DoxyCompactList}\item 
+bool \hyperlink{a00798_ac368b117d85d0b8799272b483b14c791}{Camorra::set\_\-pdfs} (const char $\ast$, int)
+\begin{DoxyCompactList}\small\item\em Sets the pdf set name and number. \end{DoxyCompactList}\item 
+bool \hyperlink{a00798_a3d412d1902455f35c2fbd020ed8651f5}{Camorra::set\_\-multichannel\_\-threshold} (double)
+\begin{DoxyCompactList}\small\item\em Sets the multichannel threshold. \end{DoxyCompactList}\item 
+bool \hyperlink{a00798_a2142e469e0d4ae0c098ecc1c5c18ed9e}{Camorra::set\_\-subprocess\_\-threshold} (double)
+\begin{DoxyCompactList}\small\item\em Sets the subprocess cross section threshold. \end{DoxyCompactList}\item 
+\hypertarget{a00798_a2615bb2dd06f477c200bbc06bd0afc66}{
+void \hyperlink{a00798_a2615bb2dd06f477c200bbc06bd0afc66}{Camorra::set\_\-multichannel\_\-adaptivity} (double)}
+\label{a00798_a2615bb2dd06f477c200bbc06bd0afc66}
+
+\begin{DoxyCompactList}\small\item\em Sets the multichannel adaptivity. \end{DoxyCompactList}\item 
+\hypertarget{a00798_ab925ee281e5dcc7918b910d9bf4776a1}{
+void \hyperlink{a00798_ab925ee281e5dcc7918b910d9bf4776a1}{Camorra::set\_\-subprocess\_\-adaptivity} (double)}
+\label{a00798_ab925ee281e5dcc7918b910d9bf4776a1}
+
+\begin{DoxyCompactList}\small\item\em Sets the subprocess weight adaptivity. \end{DoxyCompactList}\item 
+\hypertarget{a00798_a96dd98282eadc82c686136675e018496}{
+void \hyperlink{a00798_a96dd98282eadc82c686136675e018496}{Camorra::set\_\-shat\_\-exponent} (double)}
+\label{a00798_a96dd98282eadc82c686136675e018496}
+
+\begin{DoxyCompactList}\small\item\em Sets the partonic invariant mass sampling exponent. \end{DoxyCompactList}\item 
+\hypertarget{a00798_ad3d0d6efe216f895b234d2837d05aa2b}{
+void \hyperlink{a00798_ad3d0d6efe216f895b234d2837d05aa2b}{Camorra::set\_\-timelike\_\-exponent} (double)}
+\label{a00798_ad3d0d6efe216f895b234d2837d05aa2b}
+
+\begin{DoxyCompactList}\small\item\em Sets the massless s-\/channel propagator sampling exponent. \end{DoxyCompactList}\item 
+\hypertarget{a00798_a74a73247c6a606042f46091e82e67750}{
+void \hyperlink{a00798_a74a73247c6a606042f46091e82e67750}{Camorra::set\_\-spacelike\_\-exponent} (double)}
+\label{a00798_a74a73247c6a606042f46091e82e67750}
+
+\begin{DoxyCompactList}\small\item\em Sets the massless t-\/channel propagator sampling exponent. \end{DoxyCompactList}\item 
+\hypertarget{a00798_a42056a2964334e7944ad4d1d5b66f8f7}{
+void \hyperlink{a00798_a42056a2964334e7944ad4d1d5b66f8f7}{Camorra::set\_\-auxiliary\_\-exponent} (double)}
+\label{a00798_a42056a2964334e7944ad4d1d5b66f8f7}
+
+\begin{DoxyCompactList}\small\item\em Sets the auxilary multi-\/particle invariant mass sampling exponent. \end{DoxyCompactList}\item 
+bool \hyperlink{a00798_ab55cbcca2356be776dcae96786804880}{Camorra::discard\_\-weight\_\-fraction} (double)
+\begin{DoxyCompactList}\small\item\em Sets the maximal weight stabiliser. \end{DoxyCompactList}\item 
+\hypertarget{a00798_ae75318104c70ca42f203445aa86eda17}{
+void \hyperlink{a00798_ae75318104c70ca42f203445aa86eda17}{Camorra::set\_\-weight\_\-bins} (std::size\_\-t)}
+\label{a00798_ae75318104c70ca42f203445aa86eda17}
+
+\begin{DoxyCompactList}\small\item\em Sets the number of bins used to histogram event weights. \end{DoxyCompactList}\item 
+bool \hyperlink{a00798_a3710f88bf2e06b4efacb54c3b6617e97}{Camorra::set\_\-NR\_\-iterations} (std::size\_\-t)
+\begin{DoxyCompactList}\small\item\em Sets the number of Newton-\/Raphson iterations in massive RAMBO. \end{DoxyCompactList}\item 
+\hypertarget{a00798_ab077058c21d2081be27e3ccce8cb6a4b}{
+void \hyperlink{a00798_ab077058c21d2081be27e3ccce8cb6a4b}{Camorra::set\_\-pdf\_\-alpha\_\-s} (bool)}
+\label{a00798_ab077058c21d2081be27e3ccce8cb6a4b}
+
+\begin{DoxyCompactList}\small\item\em Sets whether to adopt the alpha-\/s defined by the PDF's. \end{DoxyCompactList}\item 
+\hypertarget{a00798_a22549e2e8a44116fa7de76c01f8f1516}{
+void \hyperlink{a00798_a22549e2e8a44116fa7de76c01f8f1516}{Camorra::set\_\-pre\_\-init\_\-events} (std::size\_\-t)}
+\label{a00798_a22549e2e8a44116fa7de76c01f8f1516}
+
+\begin{DoxyCompactList}\small\item\em Sets the pre-\/initialisation precision. \end{DoxyCompactList}\item 
+\hypertarget{a00798_a930109bdfb48e147a55e1b694cef846f}{
+helicity\_\-generators::type \hyperlink{a00798_a930109bdfb48e147a55e1b694cef846f}{Camorra::helicity\_\-generator\_\-type} ()}
+\label{a00798_a930109bdfb48e147a55e1b694cef846f}
+
+\begin{DoxyCompactList}\small\item\em Returns the helicity generator type. \end{DoxyCompactList}\item 
+\hypertarget{a00798_a7b12504bda851b5f9add6655ca64e29d}{
+colour\_\-generators::type \hyperlink{a00798_a7b12504bda851b5f9add6655ca64e29d}{Camorra::colour\_\-generator\_\-type} ()}
+\label{a00798_a7b12504bda851b5f9add6655ca64e29d}
+
+\begin{DoxyCompactList}\small\item\em Returns the colour generator type. \end{DoxyCompactList}\item 
+\hypertarget{a00798_ad604036da940bd8df34f20218cf90ae7}{
+initial\_\-states::type \hyperlink{a00798_ad604036da940bd8df34f20218cf90ae7}{Camorra::initial\_\-state\_\-type} ()}
+\label{a00798_ad604036da940bd8df34f20218cf90ae7}
+
+\begin{DoxyCompactList}\small\item\em Returns the initial state type. \end{DoxyCompactList}\item 
+\hypertarget{a00798_aa183252f5e018fdfdaf227b5885fb835}{
+phase\_\-space\_\-generators::type \hyperlink{a00798_aa183252f5e018fdfdaf227b5885fb835}{Camorra::phase\_\-space\_\-generator\_\-type} ()}
+\label{a00798_aa183252f5e018fdfdaf227b5885fb835}
+
+\begin{DoxyCompactList}\small\item\em Returns the phase space generator type. \end{DoxyCompactList}\item 
+\hypertarget{a00798_a10d06d9eeb886cc2282993cf798acd48}{
+bool \hyperlink{a00798_a10d06d9eeb886cc2282993cf798acd48}{Camorra::backward\_\-s\_\-sampling} ()}
+\label{a00798_a10d06d9eeb886cc2282993cf798acd48}
+
+\begin{DoxyCompactList}\small\item\em Returns whether the invariant masses are sampled backward. \end{DoxyCompactList}\item 
+\hypertarget{a00798_afaf1ceb8d83f39ae2599190e77311ddd}{
+bool \hyperlink{a00798_afaf1ceb8d83f39ae2599190e77311ddd}{Camorra::backward\_\-shat\_\-sampling} ()}
+\label{a00798_afaf1ceb8d83f39ae2599190e77311ddd}
+
+\begin{DoxyCompactList}\small\item\em Returns whether the partonic invariant mass is sampled backward. \end{DoxyCompactList}\item 
+\hypertarget{a00798_a8428a1dc1126b5c64d4c2b3eac982a08}{
+double \hyperlink{a00798_a8428a1dc1126b5c64d4c2b3eac982a08}{Camorra::beam\_\-energy} (std::size\_\-t)}
+\label{a00798_a8428a1dc1126b5c64d4c2b3eac982a08}
+
+\begin{DoxyCompactList}\small\item\em Returns the beam energy. \end{DoxyCompactList}\item 
+\hypertarget{a00798_ae37732a0d7d978fed452febc85956ba6}{
+double \hyperlink{a00798_ae37732a0d7d978fed452febc85956ba6}{Camorra::first\_\-beam\_\-energy} ()}
+\label{a00798_ae37732a0d7d978fed452febc85956ba6}
+
+\begin{DoxyCompactList}\small\item\em Returns the first beam energy. \end{DoxyCompactList}\item 
+\hypertarget{a00798_a2a0730cc45130987f9f09f378e63fc8d}{
+double \hyperlink{a00798_a2a0730cc45130987f9f09f378e63fc8d}{Camorra::second\_\-beam\_\-energy} ()}
+\label{a00798_a2a0730cc45130987f9f09f378e63fc8d}
+
+\begin{DoxyCompactList}\small\item\em Returns the second beam energy. \end{DoxyCompactList}\item 
+\hypertarget{a00798_aa3d1630b235e757af1d3aafe0df9eb6e}{
+double \hyperlink{a00798_aa3d1630b235e757af1d3aafe0df9eb6e}{Camorra::pT\_\-min} ()}
+\label{a00798_aa3d1630b235e757af1d3aafe0df9eb6e}
+
+\begin{DoxyCompactList}\small\item\em Returns the minimal transverse momentum. \end{DoxyCompactList}\item 
+\hypertarget{a00798_ae0a0c42e993901a0a08f231fd1b42d40}{
+double \hyperlink{a00798_ae0a0c42e993901a0a08f231fd1b42d40}{Camorra::m\_\-min} (int i, int j)}
+\label{a00798_ae0a0c42e993901a0a08f231fd1b42d40}
+
+\begin{DoxyCompactList}\small\item\em Returns the minimal (i,j)-\/dimass. \end{DoxyCompactList}\item 
+\hypertarget{a00798_a1ea95549577a97313b586b08daf9d6e1}{
+std::size\_\-t \hyperlink{a00798_a1ea95549577a97313b586b08daf9d6e1}{Camorra::init\_\-channel\_\-iterations} ()}
+\label{a00798_a1ea95549577a97313b586b08daf9d6e1}
+
+\begin{DoxyCompactList}\small\item\em Returns the number of channel initialisation iterations. \end{DoxyCompactList}\item 
+\hypertarget{a00798_a55c0fe1561bc9cf86d32b2e0619af248}{
+std::size\_\-t \hyperlink{a00798_a55c0fe1561bc9cf86d32b2e0619af248}{Camorra::init\_\-channel\_\-batch} ()}
+\label{a00798_a55c0fe1561bc9cf86d32b2e0619af248}
+
+\begin{DoxyCompactList}\small\item\em Returns the channel initialisation iteration batch size. \end{DoxyCompactList}\item 
+\hypertarget{a00798_a7099f4be7379b50523119d1ecbe1e48e}{
+std::size\_\-t \hyperlink{a00798_a7099f4be7379b50523119d1ecbe1e48e}{Camorra::init\_\-grid\_\-iterations} ()}
+\label{a00798_a7099f4be7379b50523119d1ecbe1e48e}
+
+\begin{DoxyCompactList}\small\item\em Returns the number of grid initialisation iterations. \end{DoxyCompactList}\item 
+\hypertarget{a00798_a488455fe84957f9249d705f5914da34a}{
+std::size\_\-t \hyperlink{a00798_a488455fe84957f9249d705f5914da34a}{Camorra::init\_\-grid\_\-batch} ()}
+\label{a00798_a488455fe84957f9249d705f5914da34a}
+
+\begin{DoxyCompactList}\small\item\em Returns the grid initialisation batch size. \end{DoxyCompactList}\item 
+\hypertarget{a00798_ac4c5254a693a8917059b098648f56ccd}{
+std::size\_\-t \hyperlink{a00798_ac4c5254a693a8917059b098648f56ccd}{Camorra::subprocess\_\-events} ()}
+\label{a00798_ac4c5254a693a8917059b098648f56ccd}
+
+\begin{DoxyCompactList}\small\item\em Returns the number of subprocess cross section estimation events. \end{DoxyCompactList}\item 
+\hypertarget{a00798_a9f20e2a090436db910851c6b4b37bed4}{
+bool \hyperlink{a00798_a9f20e2a090436db910851c6b4b37bed4}{Camorra::auto\_\-channel\_\-adapt} ()}
+\label{a00798_a9f20e2a090436db910851c6b4b37bed4}
+
+\begin{DoxyCompactList}\small\item\em Returns whether the channels are automatically adapted. \end{DoxyCompactList}\item 
+\hypertarget{a00798_a1d0ec0f5dcd474956fb1e545c277329f}{
+std::size\_\-t \hyperlink{a00798_a1d0ec0f5dcd474956fb1e545c277329f}{Camorra::auto\_\-channel\_\-batch} ()}
+\label{a00798_a1d0ec0f5dcd474956fb1e545c277329f}
+
+\begin{DoxyCompactList}\small\item\em Returns the automatic channel adaptation batch size. \end{DoxyCompactList}\item 
+\hypertarget{a00798_a3eb8fdc33ee9ad8abe5a6d34f618d728}{
+bool \hyperlink{a00798_a3eb8fdc33ee9ad8abe5a6d34f618d728}{Camorra::auto\_\-grid\_\-adapt} ()}
+\label{a00798_a3eb8fdc33ee9ad8abe5a6d34f618d728}
+
+\begin{DoxyCompactList}\small\item\em Returns whether the grids are automatically adapted. \end{DoxyCompactList}\item 
+\hypertarget{a00798_a05dbff54114523243a557bbb5926318c}{
+std::size\_\-t \hyperlink{a00798_a05dbff54114523243a557bbb5926318c}{Camorra::auto\_\-grid\_\-batch} ()}
+\label{a00798_a05dbff54114523243a557bbb5926318c}
+
+\begin{DoxyCompactList}\small\item\em Returns the automatic grid adaptation batch size. \end{DoxyCompactList}\item 
+\hypertarget{a00798_a7bdb9a311256e2eccd7226388eb134b9}{
+bool \hyperlink{a00798_a7bdb9a311256e2eccd7226388eb134b9}{Camorra::auto\_\-subprocess\_\-adapt} ()}
+\label{a00798_a7bdb9a311256e2eccd7226388eb134b9}
+
+\begin{DoxyCompactList}\small\item\em Returns whether the subprocess weights are automatically adapted. \end{DoxyCompactList}\item 
+\hypertarget{a00798_a2a61f1f6ed9e6d02037901d43011778f}{
+std::size\_\-t \hyperlink{a00798_a2a61f1f6ed9e6d02037901d43011778f}{Camorra::auto\_\-subprocess\_\-batch} ()}
+\label{a00798_a2a61f1f6ed9e6d02037901d43011778f}
+
+\begin{DoxyCompactList}\small\item\em Returns the automatic subprocess weights adaptation batch size. \end{DoxyCompactList}\item 
+\hypertarget{a00798_ac97f5f2467de9e46507d5f01081375cf}{
+std::size\_\-t \hyperlink{a00798_ac97f5f2467de9e46507d5f01081375cf}{Camorra::max\_\-s\_\-pairs} ()}
+\label{a00798_ac97f5f2467de9e46507d5f01081375cf}
+
+\begin{DoxyCompactList}\small\item\em Returns the maximal number of s-\/pair generations per s-\/branching. \end{DoxyCompactList}\item 
+std::size\_\-t \hyperlink{a00798_ae431c1ee83b717ad5ee259ea0b29e46d}{Camorra::max\_\-init\_\-rejects} ()
+\begin{DoxyCompactList}\small\item\em Returns the maximal number of thrown points at grid/channel initialisation not passing the cuts before moving on. \end{DoxyCompactList}\item 
+bool \hyperlink{a00798_a54293db384f71be66101216d13cd5b13}{Camorra::adaptive\_\-s\_\-sampling} ()
+\begin{DoxyCompactList}\small\item\em Returns whether the s-\/type propagators should be optimised with an adaptive grid. \end{DoxyCompactList}\item 
+bool \hyperlink{a00798_a249c2403f0350fffedf4785f6348924e}{Camorra::adaptive\_\-t\_\-sampling} ()
+\begin{DoxyCompactList}\small\item\em Returns whether the t-\/type propagators should be optimised with an adaptive grid. \end{DoxyCompactList}\item 
+bool \hyperlink{a00798_af43bdefe26b0a357ead80b081285b99f}{Camorra::adaptive\_\-angles} ()
+\begin{DoxyCompactList}\small\item\em Returns whether the s-\/braching angles should be optimised with an adaptive grid. \end{DoxyCompactList}\item 
+\hypertarget{a00798_a5febf7380bc1a76257efddb93a86f603}{
+std::size\_\-t \hyperlink{a00798_a5febf7380bc1a76257efddb93a86f603}{Camorra::grid\_\-bins} ()}
+\label{a00798_a5febf7380bc1a76257efddb93a86f603}
+
+\begin{DoxyCompactList}\small\item\em Returns the maximal number of bins per 1-\/d grid. \end{DoxyCompactList}\item 
+\hypertarget{a00798_a73aef909f3351e47a5947caaaa248c96}{
+grid\_\-modes \hyperlink{a00798_a73aef909f3351e47a5947caaaa248c96}{Camorra::grid\_\-mode} ()}
+\label{a00798_a73aef909f3351e47a5947caaaa248c96}
+
+\begin{DoxyCompactList}\small\item\em Returns the grid bin-\/splitting mode. \end{DoxyCompactList}\item 
+\hypertarget{a00798_a2f7c6820df8813be79a94788715db133}{
+const char $\ast$ \hyperlink{a00798_a2f7c6820df8813be79a94788715db133}{Camorra::pdf\_\-name} ()}
+\label{a00798_a2f7c6820df8813be79a94788715db133}
+
+\begin{DoxyCompactList}\small\item\em Returns the current pdf name. \end{DoxyCompactList}\item 
+\hypertarget{a00798_a50db3e81e876becba1a5a0c20cef098e}{
+int \hyperlink{a00798_a50db3e81e876becba1a5a0c20cef098e}{Camorra::pdf\_\-number} ()}
+\label{a00798_a50db3e81e876becba1a5a0c20cef098e}
+
+\begin{DoxyCompactList}\small\item\em Returns the current pdf number. \end{DoxyCompactList}\item 
+\hypertarget{a00798_ac61ace3ceae1851c72e6e97d16cfdeb9}{
+double \hyperlink{a00798_ac61ace3ceae1851c72e6e97d16cfdeb9}{Camorra::multichannel\_\-threshold} ()}
+\label{a00798_ac61ace3ceae1851c72e6e97d16cfdeb9}
+
+\begin{DoxyCompactList}\small\item\em Returns the multichannel threshold. \end{DoxyCompactList}\item 
+\hypertarget{a00798_af1e467f7e98b5a4ec87e321916e43712}{
+double \hyperlink{a00798_af1e467f7e98b5a4ec87e321916e43712}{Camorra::subprocess\_\-threshold} ()}
+\label{a00798_af1e467f7e98b5a4ec87e321916e43712}
+
+\begin{DoxyCompactList}\small\item\em Returns the subprocess threshold. \end{DoxyCompactList}\item 
+\hypertarget{a00798_a8a3cd9f4acc73ceff9a10603cf104557}{
+double \hyperlink{a00798_a8a3cd9f4acc73ceff9a10603cf104557}{Camorra::multichannel\_\-adaptivity} ()}
+\label{a00798_a8a3cd9f4acc73ceff9a10603cf104557}
+
+\begin{DoxyCompactList}\small\item\em Returns the multichannel adaptivity. \end{DoxyCompactList}\item 
+\hypertarget{a00798_a8965d38dd51a83eeeb0c1217e462589a}{
+double \hyperlink{a00798_a8965d38dd51a83eeeb0c1217e462589a}{Camorra::subprocess\_\-adaptivity} ()}
+\label{a00798_a8965d38dd51a83eeeb0c1217e462589a}
+
+\begin{DoxyCompactList}\small\item\em Returns the subprocess weight adaptivity. \end{DoxyCompactList}\item 
+\hypertarget{a00798_aa340a7a07cd22c94638bcce39532a92b}{
+double \hyperlink{a00798_aa340a7a07cd22c94638bcce39532a92b}{Camorra::shat\_\-exponent} ()}
+\label{a00798_aa340a7a07cd22c94638bcce39532a92b}
+
+\begin{DoxyCompactList}\small\item\em Returns the partonic invariant mass sampling exponent. \end{DoxyCompactList}\item 
+\hypertarget{a00798_a35d1bbad2438b461f5db90b09f6346bf}{
+double \hyperlink{a00798_a35d1bbad2438b461f5db90b09f6346bf}{Camorra::timelike\_\-exponent} ()}
+\label{a00798_a35d1bbad2438b461f5db90b09f6346bf}
+
+\begin{DoxyCompactList}\small\item\em Returns the timelike propagator sampling exponent. \end{DoxyCompactList}\item 
+\hypertarget{a00798_a287ab4732362246bdd4b763bd22e957f}{
+double \hyperlink{a00798_a287ab4732362246bdd4b763bd22e957f}{Camorra::spacelike\_\-exponent} ()}
+\label{a00798_a287ab4732362246bdd4b763bd22e957f}
+
+\begin{DoxyCompactList}\small\item\em Returns the spacelike propagator sampling exponent. \end{DoxyCompactList}\item 
+\hypertarget{a00798_ae2574c2de709f48846ef66865357b28c}{
+double \hyperlink{a00798_ae2574c2de709f48846ef66865357b28c}{Camorra::auxiliary\_\-exponent} ()}
+\label{a00798_ae2574c2de709f48846ef66865357b28c}
+
+\begin{DoxyCompactList}\small\item\em Returns the multi-\/particle invariant mass sampling exponent. \end{DoxyCompactList}\item 
+\hypertarget{a00798_a10796df96abe25ecff8b7e25ff14a21b}{
+double \hyperlink{a00798_a10796df96abe25ecff8b7e25ff14a21b}{Camorra::discarded\_\-weight\_\-fraction} ()}
+\label{a00798_a10796df96abe25ecff8b7e25ff14a21b}
+
+\begin{DoxyCompactList}\small\item\em Returns the ignored fraction of highest-\/weight events. \end{DoxyCompactList}\item 
+\hypertarget{a00798_a412ab190d3943e5c209049473462388c}{
+std::size\_\-t \hyperlink{a00798_a412ab190d3943e5c209049473462388c}{Camorra::weight\_\-bins} ()}
+\label{a00798_a412ab190d3943e5c209049473462388c}
+
+\begin{DoxyCompactList}\small\item\em Returns the number of bins for weights-\/histogramming. \end{DoxyCompactList}\item 
+\hypertarget{a00798_a26ad4e0b5a59c164e61f5abfec49b85f}{
+std::size\_\-t \hyperlink{a00798_a26ad4e0b5a59c164e61f5abfec49b85f}{Camorra::NR\_\-iterations} ()}
+\label{a00798_a26ad4e0b5a59c164e61f5abfec49b85f}
+
+\begin{DoxyCompactList}\small\item\em Returns the nr of Newton-\/Raphson iterations in massive RAMBO. \end{DoxyCompactList}\item 
+\hypertarget{a00798_a48798cc08aaebcd575365d42bf1a8dc6}{
+bool \hyperlink{a00798_a48798cc08aaebcd575365d42bf1a8dc6}{Camorra::use\_\-pdf\_\-alpha\_\-s} ()}
+\label{a00798_a48798cc08aaebcd575365d42bf1a8dc6}
+
+\begin{DoxyCompactList}\small\item\em Returns whether to use the pdf's alpha\_\-s. \end{DoxyCompactList}\item 
+\hypertarget{a00798_acb5e5f827904dec106266f7d2d1b1fba}{
+std::size\_\-t \hyperlink{a00798_acb5e5f827904dec106266f7d2d1b1fba}{Camorra::pre\_\-init\_\-events} ()}
+\label{a00798_acb5e5f827904dec106266f7d2d1b1fba}
+
+\begin{DoxyCompactList}\small\item\em Returns the pre-\/initialisation precision. \end{DoxyCompactList}\item 
+bool \hyperlink{a00798_a10faaa355725620453fd5aa6cf7e2832}{Camorra::initialise\_\-pdfs} ()
+\begin{DoxyCompactList}\small\item\em Initialises the pdf set. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Static configuration data for Camgen modules. 

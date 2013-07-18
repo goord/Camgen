@@ -1,0 +1,82 @@
+\hypertarget{a00319}{\section{Camgen\-:\-:Legendre$<$ value\-\_\-t, N $>$ Class Template Reference}
+\label{a00319}\index{Camgen\-::\-Legendre$<$ value\-\_\-t, N $>$@{Camgen\-::\-Legendre$<$ value\-\_\-t, N $>$}}
+}
+
+
+Rank-\/\-N \hyperlink{a00319}{Legendre} polynomials with argument type value\-\_\-t.  
+
+
+
+
+{\ttfamily \#include $<$Legendre.\-h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00319_a6eb9a63823f5074b09c8c916818d94e7}{typedef value\-\_\-t \hyperlink{a00319_a6eb9a63823f5074b09c8c916818d94e7}{value\-\_\-type}}\label{a00319_a6eb9a63823f5074b09c8c916818d94e7}
+
+\begin{DoxyCompactList}\small\item\em Value type definition. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{a00319_a6e64948b240f9bf2a13a815e5e813d91}{initialise} (std\-::size\-\_\-t N\-R\-\_\-iterations=10)
+\begin{DoxyCompactList}\small\item\em Initialisation method. \end{DoxyCompactList}\item 
+\hypertarget{a00319_aa6108158ad3067ce30d29013f1a69d63}{static \hyperlink{a00319_a6eb9a63823f5074b09c8c916818d94e7}{value\-\_\-type} \hyperlink{a00319_aa6108158ad3067ce30d29013f1a69d63}{value} (const \hyperlink{a00319_a6eb9a63823f5074b09c8c916818d94e7}{value\-\_\-type} \&x)}\label{a00319_aa6108158ad3067ce30d29013f1a69d63}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{a00319}{Legendre} polynomial evaluation in point x. \end{DoxyCompactList}\item 
+\hypertarget{a00319_af34d5658c1c955157d2a82f2ff3a9d00}{static \hyperlink{a00319_a6eb9a63823f5074b09c8c916818d94e7}{value\-\_\-type} \hyperlink{a00319_af34d5658c1c955157d2a82f2ff3a9d00}{derivative} (const \hyperlink{a00319_a6eb9a63823f5074b09c8c916818d94e7}{value\-\_\-type} \&x)}\label{a00319_af34d5658c1c955157d2a82f2ff3a9d00}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{a00319}{Legendre} polynomial derivative evaluation in point x. \end{DoxyCompactList}\item 
+\hypertarget{a00319_a15d6ba871e96f4b44f9063d5240b8e7c}{static \hyperlink{a00319_a6eb9a63823f5074b09c8c916818d94e7}{value\-\_\-type} \hyperlink{a00319_a15d6ba871e96f4b44f9063d5240b8e7c}{root} (std\-::size\-\_\-t n)}\label{a00319_a15d6ba871e96f4b44f9063d5240b8e7c}
+
+\begin{DoxyCompactList}\small\item\em Returns the n-\/th root. \end{DoxyCompactList}\item 
+\hypertarget{a00319_ae15e195f92889818dcd965c0b98648d7}{static \hyperlink{a00319_a6eb9a63823f5074b09c8c916818d94e7}{value\-\_\-type} \hyperlink{a00319_ae15e195f92889818dcd965c0b98648d7}{weight} (std\-::size\-\_\-t n)}\label{a00319_ae15e195f92889818dcd965c0b98648d7}
+
+\begin{DoxyCompactList}\small\item\em Returns the n-\/th Gauss quadrature integration weight. \end{DoxyCompactList}\item 
+{\footnotesize template$<$value\-\_\-type  f$>$ }\\static \hyperlink{a00319_a6eb9a63823f5074b09c8c916818d94e7}{value\-\_\-type} \hyperlink{a00319_a065a10559bc657e1e00b20a6394d35b1}{Gauss\-\_\-integrate} (const \hyperlink{a00319_a6eb9a63823f5074b09c8c916818d94e7}{value\-\_\-type} \&a, const \hyperlink{a00319_a6eb9a63823f5074b09c8c916818d94e7}{value\-\_\-type} \&b)
+\begin{DoxyCompactList}\small\item\em Integrates the template argument function on the interval \mbox{[}a,b\mbox{]} by Gauss quadrature. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00319_a42d6b56dc79967ab2a8e8996a8c3161c}{static const std\-::size\-\_\-t \hyperlink{a00319_a42d6b56dc79967ab2a8e8996a8c3161c}{rank} =N}\label{a00319_a42d6b56dc79967ab2a8e8996a8c3161c}
+
+\begin{DoxyCompactList}\small\item\em Polynomial rank definition. \end{DoxyCompactList}\item 
+\hypertarget{a00319_a43fe30b8944276252e2545ac464e1fe6}{static const bool \hyperlink{a00319_a43fe30b8944276252e2545ac464e1fe6}{symmetric} =(N\%2==0)}\label{a00319_a43fe30b8944276252e2545ac464e1fe6}
+
+\begin{DoxyCompactList}\small\item\em Symmetry tag definition. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class value\-\_\-t, std\-::size\-\_\-t N$>$class Camgen\-::\-Legendre$<$ value\-\_\-t, N $>$}
+
+Rank-\/\-N \hyperlink{a00319}{Legendre} polynomials with argument type value\-\_\-t. 
+
+\subsection{Member Function Documentation}
+\hypertarget{a00319_a065a10559bc657e1e00b20a6394d35b1}{\index{Camgen\-::\-Legendre@{Camgen\-::\-Legendre}!Gauss\-\_\-integrate@{Gauss\-\_\-integrate}}
+\index{Gauss\-\_\-integrate@{Gauss\-\_\-integrate}!Camgen::Legendre@{Camgen\-::\-Legendre}}
+\subsubsection[{Gauss\-\_\-integrate}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\-\_\-t , std\-::size\-\_\-t N$>$ template$<$value\-\_\-type  f$>$ static {\bf value\-\_\-type} {\bf Camgen\-::\-Legendre}$<$ value\-\_\-t, N $>$\-::Gauss\-\_\-integrate (
+\begin{DoxyParamCaption}
+\item[{const {\bf value\-\_\-type} \&}]{a, }
+\item[{const {\bf value\-\_\-type} \&}]{b}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{a00319_a065a10559bc657e1e00b20a6394d35b1}
+
+
+Integrates the template argument function on the interval \mbox{[}a,b\mbox{]} by Gauss quadrature. 
+
+\hypertarget{a00319_a6e64948b240f9bf2a13a815e5e813d91}{\index{Camgen\-::\-Legendre@{Camgen\-::\-Legendre}!initialise@{initialise}}
+\index{initialise@{initialise}!Camgen::Legendre@{Camgen\-::\-Legendre}}
+\subsubsection[{initialise}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\-\_\-t , std\-::size\-\_\-t N$>$ static void {\bf Camgen\-::\-Legendre}$<$ value\-\_\-t, N $>$\-::initialise (
+\begin{DoxyParamCaption}
+\item[{std\-::size\-\_\-t}]{N\-R\-\_\-iterations = {\ttfamily 10}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{a00319_a6e64948b240f9bf2a13a815e5e813d91}
+
+
+Initialisation method. 
+
+Computes the roots with Newton-\/\-Raphson and the corresponding Gauss quadrature weights. 
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+include/\-Camgen/\hyperlink{a00657}{Legendre.\-h}\end{DoxyCompactItemize}

@@ -1,0 +1,863 @@
+\section{Class Hierarchy}
+This inheritance list is sorted roughly, but not completely, alphabetically\-:\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:adjoint}{\pageref{a00002}}{}
+\item \contentsline{section}{Camgen\-:\-:adjoint\-\_\-\-Q\-C\-D$<$ value\-\_\-t, N\-\_\-in, N\-\_\-out, N\-\_\-c, rng\-\_\-t, cont\-\_\-colours $>$}{\pageref{a00003}}{}
+\item \contentsline{section}{Camgen\-:\-:adjoint\-\_\-rep$<$ group\-\_\-t $>$}{\pageref{a00006}}{}
+\item \contentsline{section}{Camgen\-:\-:anti\-\_\-fermion$<$ model\-\_\-t, spacetime\-\_\-t, dim $>$}{\pageref{a00007}}{}
+\item \contentsline{section}{Camgen\-:\-:anti\-\_\-fermion$<$ model\-\_\-t, Minkowski\-\_\-type, 4 $>$}{\pageref{a00008}}{}
+\item \contentsline{section}{Camgen\-:\-:anti\-\_\-fermion\-\_\-wave\-\_\-function$<$ model\-\_\-t $>$}{\pageref{a00010}}{}
+\item \contentsline{section}{Camgen\-:\-:adjoint\-:\-:apply$<$ rep\-\_\-t $>$}{\pageref{a00011}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-flow\-:\-:apply$<$ rep\-\_\-t $>$}{\pageref{a00012}}{}
+\item \contentsline{section}{Camgen\-:\-:get\-\_\-recursive\-\_\-relation$<$ model\-\_\-t, false $>$\-:\-:apply$<$ Feynrule\-\_\-t $>$}{\pageref{a00013}}{}
+\item \contentsline{section}{Camgen\-:\-:get\-\_\-recursive\-\_\-relation$<$ model\-\_\-t, true $>$\-:\-:apply$<$ Feynrule\-\_\-t $>$}{\pageref{a00014}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-flow\-:\-:apply$<$ adjoint\-\_\-rep$<$ S\-U$<$ N $>$ $>$ $>$}{\pageref{a00015}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-flow\-:\-:apply$<$ fundamental\-\_\-rep$<$ S\-U$<$ N $>$ $>$ $>$}{\pageref{a00016}}{}
+\item \contentsline{section}{Camgen\-:\-:asymtvv$<$ model\-\_\-t $>$}{\pageref{a00018}}{}
+\item \contentsline{section}{Camgen\-:\-:backward\-\_\-s\-\_\-branching$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t, spacetime\-\_\-t $>$}{\pageref{a00019}}{}
+\item \contentsline{section}{Camgen\-:\-:backward\-\_\-sum\-\_\-branching$<$ spacetime\-\_\-t, 1, N\-\_\-out, rng\-\_\-t $>$}{\pageref{a00023}}{}
+\item \contentsline{section}{Camgen\-:\-:backward\-\_\-t\-\_\-branching$<$ model\-\_\-t, N\-\_\-out, rng\-\_\-t, spacetime\-\_\-t $>$}{\pageref{a00024}}{}
+\item \contentsline{section}{Camgen\-:\-:base\-\_\-ps$<$ model\-\_\-t $>$}{\pageref{a00026}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:particle\-\_\-ps$<$ model\-\_\-t, 0, false $>$}{\pageref{a00401}}{}
+\item \contentsline{section}{Camgen\-:\-:particle\-\_\-ps$<$ model\-\_\-t, 0, true $>$}{\pageref{a00402}}{}
+\item \contentsline{section}{Camgen\-:\-:particle\-\_\-ps$<$ model\-\_\-t, dim, false $>$}{\pageref{a00403}}{}
+\item \contentsline{section}{Camgen\-:\-:particle\-\_\-ps$<$ model\-\_\-t, dim, true $>$}{\pageref{a00404}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:histogram$<$ T, comp\-\_\-type $>$\-:\-:bin}{\pageref{a00028}}{}
+\item \contentsline{section}{Camgen\-:\-:bit\-\_\-string\-\_\-partition$<$ N $>$}{\pageref{a00030}}{}
+\item std\-:\-:bitset$<$ Bits $>$\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:bit\-\_\-string$<$ N\-\_\-bits $>$}{\pageref{a00029}}{}
+\item \contentsline{section}{Camgen\-:\-:bit\-\_\-string$<$ N $>$}{\pageref{a00029}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:ps\-\_\-tree$<$ model\-\_\-t, 2, N\-\_\-out, rng\-\_\-t $>$\-:\-:bitstring\-\_\-eq}{\pageref{a00031}}{}
+\item \contentsline{section}{Camgen\-:\-:ps\-\_\-tree$<$ model\-\_\-t, 1, N\-\_\-out, rng\-\_\-t $>$\-:\-:bitstring\-\_\-eq}{\pageref{a00032}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:C\-F\-\_\-d$<$ N, I, J $>$}{\pageref{a00034}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:C\-F\-\_\-dd$<$ N, I, J, K, L $>$}{\pageref{a00035}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:C\-F\-\_\-dd\-\_\-min$<$ N, I, J, K, L $>$}{\pageref{a00036}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:C\-F\-\_\-dd\-\_\-plus$<$ N, I, J, K, L $>$}{\pageref{a00037}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:C\-F\-\_\-f$<$ N, I, J, K $>$}{\pageref{a00038}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:C\-F\-\_\-ff\-\_\-contr$<$ N, I, J, K, L $>$}{\pageref{a00039}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:C\-F\-\_\-\-T$<$ N, I, J, K $>$}{\pageref{a00040}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:C\-F\-\_\-\-T\-T$<$ N, I, J, K, L $>$}{\pageref{a00041}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:C\-F\-\_\-\-T\-T\-\_\-min$<$ N, I, J, K, L $>$}{\pageref{a00042}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:C\-F\-\_\-\-T\-T\-\_\-plus$<$ N, I, J, K, L $>$}{\pageref{a00043}}{}
+\item \contentsline{section}{Camgen\-:\-:cfd\-\_\-evaluate$<$ Feynrule\-\_\-t $>$}{\pageref{a00044}}{}
+\item \contentsline{section}{Camgen\-:\-:cfd\-\_\-evaluate$<$ charge\-\_\-conj\-\_\-left$<$ compose\-\_\-vertices$<$ Feynrule\-\_\-t1, Feynrule\-\_\-t2 $>$, true $>$ $>$}{\pageref{a00045}}{}
+\item \contentsline{section}{Camgen\-:\-:cfd\-\_\-evaluate$<$ charge\-\_\-conj\-\_\-right$<$ compose\-\_\-vertices$<$ Feynrule\-\_\-t1, Feynrule\-\_\-t2 $>$, true $>$ $>$}{\pageref{a00046}}{}
+\item \contentsline{section}{Camgen\-:\-:cfd\-\_\-evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:C\-F\-\_\-d$<$ N, I, J $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00047}}{}
+\item \contentsline{section}{Camgen\-:\-:cfd\-\_\-evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:C\-F\-\_\-dd$<$ N, I, J, K, L $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00048}}{}
+\item \contentsline{section}{Camgen\-:\-:cfd\-\_\-evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:C\-F\-\_\-dd\-\_\-min$<$ N, I, J, K, L $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00049}}{}
+\item \contentsline{section}{Camgen\-:\-:cfd\-\_\-evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:C\-F\-\_\-dd\-\_\-plus$<$ N, I, J, K, L $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00050}}{}
+\item \contentsline{section}{Camgen\-:\-:cfd\-\_\-evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:C\-F\-\_\-f$<$ N, I, J, K $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00051}}{}
+\item \contentsline{section}{Camgen\-:\-:cfd\-\_\-evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:C\-F\-\_\-ff\-\_\-contr$<$ N, 0, 1, 2, 3 $>$, vvvv$<$ model\-\_\-t $>$ $>$ $>$}{\pageref{a00052}}{}
+\item \contentsline{section}{Camgen\-:\-:cfd\-\_\-evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:C\-F\-\_\-ff\-\_\-contr$<$ N, I, J, K, L $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00053}}{}
+\item \contentsline{section}{Camgen\-:\-:cfd\-\_\-evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:C\-F\-\_\-\-T$<$ N, I, J, K $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00054}}{}
+\item \contentsline{section}{Camgen\-:\-:cfd\-\_\-evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:C\-F\-\_\-\-T\-T$<$ N, I, J, K, L $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00055}}{}
+\item \contentsline{section}{Camgen\-:\-:cfd\-\_\-evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:C\-F\-\_\-\-T\-T\-\_\-min$<$ N, I, J, K, L $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00056}}{}
+\item \contentsline{section}{Camgen\-:\-:cfd\-\_\-evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:C\-F\-\_\-\-T\-T\-\_\-plus$<$ N, I, J, K, L $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00057}}{}
+\item \contentsline{section}{Camgen\-:\-:cfd\-\_\-evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:d$<$ fundamental\-\_\-rep$<$ S\-U$<$ N $>$ $>$, I, J $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00058}}{}
+\item \contentsline{section}{Camgen\-:\-:cfd\-\_\-evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:dd$<$ fundamental\-\_\-rep$<$ S\-U$<$ N $>$ $>$, I, J, K, L $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00059}}{}
+\item \contentsline{section}{Camgen\-:\-:cfd\-\_\-evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:dd\-\_\-min$<$ fundamental\-\_\-rep$<$ S\-U$<$ N $>$ $>$, I, J, K, L $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00060}}{}
+\item \contentsline{section}{Camgen\-:\-:cfd\-\_\-evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:dd\-\_\-plus$<$ fundamental\-\_\-rep$<$ S\-U$<$ N $>$ $>$, I, J, K, L $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00061}}{}
+\item \contentsline{section}{Camgen\-:\-:cfd\-\_\-evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:T\-T\-\_\-contr$<$ fundamental\-\_\-rep$<$ S\-U$<$ N $>$ $>$, I, J, K, L $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00062}}{}
+\item \contentsline{section}{Camgen\-:\-:cfd\-\_\-evaluate$<$ reverse$<$ compose\-\_\-vertices$<$ Feynrule\-\_\-t1, Feynrule\-\_\-t2 $>$, true $>$ $>$}{\pageref{a00063}}{}
+\item \contentsline{section}{Camgen\-:\-:cfd\-\_\-evaluate$<$ reverse\-\_\-conj\-\_\-left$<$ compose\-\_\-vertices$<$ Feynrule\-\_\-t1, Feynrule\-\_\-t2 $>$, true $>$ $>$}{\pageref{a00064}}{}
+\item \contentsline{section}{Camgen\-:\-:cfd\-\_\-evaluate$<$ reverse\-\_\-conj\-\_\-right$<$ compose\-\_\-vertices$<$ Feynrule\-\_\-t1, Feynrule\-\_\-t2 $>$, true $>$ $>$}{\pageref{a00065}}{}
+\item \contentsline{section}{Camgen\-:\-:charge\-\_\-conj\-\_\-contr$<$ contr\-\_\-t, ferm $>$}{\pageref{a00067}}{}
+\item \contentsline{section}{Camgen\-:\-:charge\-\_\-conj\-\_\-left$<$ Feynrule\-\_\-t, ferm $>$}{\pageref{a00068}}{}
+\item \contentsline{section}{Camgen\-:\-:charge\-\_\-conj\-\_\-right$<$ Feynrule\-\_\-t, ferm $>$}{\pageref{a00069}}{}
+\item \contentsline{section}{Camgen\-:\-:C\-M\-\_\-algorithm$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out $>$}{\pageref{a00070}}{}
+\item \contentsline{section}{Camgen\-:\-:C\-M\-\_\-algorithm$<$ model\-\_\-t, 2, N\-\_\-out $>$}{\pageref{a00070}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:L\-H\-\_\-interface$<$ model\-\_\-t, N\-\_\-out $>$}{\pageref{a00322}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-copy$<$ model\-\_\-t1, model\-\_\-t2, q $>$}{\pageref{a00071}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-copy$<$ model\-\_\-t1, model\-\_\-t2, false $>$}{\pageref{a00072}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-copy$<$ model\-\_\-t1, model\-\_\-t2, true $>$}{\pageref{a00073}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-copy\-\_\-helper$<$ model\-\_\-t1, model\-\_\-t2, q1, q2 $>$}{\pageref{a00074}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-copy\-\_\-helper$<$ model\-\_\-t1, model\-\_\-t2, false, false $>$}{\pageref{a00075}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-copy\-\_\-helper$<$ model\-\_\-t1, model\-\_\-t2, false, true $>$}{\pageref{a00076}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-copy\-\_\-helper$<$ model\-\_\-t1, model\-\_\-t2, true, true $>$}{\pageref{a00077}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-flow}{\pageref{a00078}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-flow\-\_\-\-Q\-C\-D$<$ value\-\_\-t, N\-\_\-in, N\-\_\-out, N\-\_\-c, rng\-\_\-t, continuous\-\_\-colours $>$}{\pageref{a00079}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-generator$<$ value\-\_\-t, N\-\_\-in, N\-\_\-out, continuous\-\_\-colours $>$}{\pageref{a00082}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-generator\-\_\-factory$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t, q $>$}{\pageref{a00085}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-generator\-\_\-factory$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t, false $>$}{\pageref{a00086}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-generator\-\_\-factory$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t, true $>$}{\pageref{a00087}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-generators}{\pageref{a00088}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-ps$<$ model\-\_\-t, cont\-\_\-colours $>$}{\pageref{a00089}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-ps$<$ model\-\_\-t, false $>$}{\pageref{a00090}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-ps$<$ model\-\_\-t, model\-\_\-t\-:\-:continuous\-\_\-colours $>$}{\pageref{a00089}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:particle\-\_\-ps$<$ model\-\_\-t, 0, true $>$}{\pageref{a00402}}{}
+\item \contentsline{section}{Camgen\-:\-:particle\-\_\-ps$<$ model\-\_\-t, dim, true $>$}{\pageref{a00404}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-ps$<$ model\-\_\-t, true $>$}{\pageref{a00091}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-summer$<$ value\-\_\-t, N\-\_\-in, N\-\_\-out, cont\-\_\-cols $>$}{\pageref{a00092}}{}
+\item \contentsline{section}{Camgen\-:\-:compose$<$ T1, T2, T3 $>$}{\pageref{a00095}}{}
+\item \contentsline{section}{Camgen\-:\-:compose$<$ T1, T2, void $>$}{\pageref{a00096}}{}
+\item \contentsline{section}{Camgen\-:\-:compose$<$ T1, void, void $>$}{\pageref{a00097}}{}
+\item \contentsline{section}{Camgen\-:\-:compose\-\_\-contraction$<$ contr\-\_\-t1, contr\-\_\-t2 $>$}{\pageref{a00098}}{}
+\item \contentsline{section}{Camgen\-:\-:compose\-\_\-vertices$<$ Feynrule\-\_\-t1, Feynrule\-\_\-t2 $>$}{\pageref{a00099}}{}
+\item \contentsline{section}{Camgen\-:\-:compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:C\-F\-\_\-ff\-\_\-contr$<$ N, 0, 1, 2, 3 $>$, vvvv$<$ model\-\_\-t $>$ $>$}{\pageref{a00100}}{}
+\item \contentsline{section}{Camgen\-:\-:compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:ff\-\_\-contr$<$ S\-U$<$ N $>$, 0, 1, 2, 3 $>$, vvvv$<$ model\-\_\-t $>$ $>$}{\pageref{a00101}}{}
+\item \contentsline{section}{Camgen\-:\-:const\-\_\-parni\-\_\-bin\-\_\-iterator$<$ value\-\_\-t, D, rng\-\_\-t, key\-\_\-t $>$}{\pageref{a00102}}{}
+\item \contentsline{section}{Camgen\-:\-:const\-\_\-parni\-\_\-leaf\-\_\-iterator$<$ value\-\_\-t, D, rng\-\_\-t, key\-\_\-t $>$}{\pageref{a00103}}{}
+\item \contentsline{section}{Camgen\-:\-:const\-\_\-reverse\-\_\-parni\-\_\-bin\-\_\-iterator$<$ value\-\_\-t, D, rng\-\_\-t, key\-\_\-t $>$}{\pageref{a00104}}{}
+\item \contentsline{section}{Camgen\-:\-:const\-\_\-reverse\-\_\-parni\-\_\-leaf\-\_\-iterator$<$ value\-\_\-t, D, rng\-\_\-t, key\-\_\-t $>$}{\pageref{a00105}}{}
+\item \contentsline{section}{Camgen\-:\-:const\-\_\-reverse\-\_\-tensor\-\_\-iter$<$ T $>$}{\pageref{a00106}}{}
+\item \contentsline{section}{Camgen\-:\-:const\-\_\-tensor\-\_\-iter$<$ T $>$}{\pageref{a00107}}{}
+\item \contentsline{section}{Camgen\-:\-:current$<$ model\-\_\-t, N, decomp $>$}{\pageref{a00108}}{}
+\item \contentsline{section}{Camgen\-:\-:current\-\_\-base$<$ model\-\_\-t, N $>$}{\pageref{a00111}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:current$<$ model\-\_\-t, N, false $>$}{\pageref{a00109}}{}
+\item \contentsline{section}{Camgen\-:\-:current$<$ model\-\_\-t, N, true $>$}{\pageref{a00110}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:current\-\_\-iter\-\_\-comp$<$ model\-\_\-t, N\-\_\-bits $>$}{\pageref{a00112}}{}
+\item \contentsline{section}{Camgen\-:\-:current\-\_\-iter\-\_\-comp$<$ model\-\_\-t, N $>$}{\pageref{a00112}}{}
+\item \contentsline{section}{Camgen\-:\-:current\-\_\-tree$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out $>$}{\pageref{a00113}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:d$<$ rep\-\_\-t, I, J $>$}{\pageref{a00114}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:d$<$ adjoint\-\_\-rep$<$ S\-U$<$ N $>$ $>$, I, J $>$}{\pageref{a00115}}{}
+\item \contentsline{section}{Camgen\-:\-:histogram$<$ T, comp\-\_\-type $>$\-:\-:data\-\_\-point}{\pageref{a00116}}{}
+\item \contentsline{section}{Camgen\-:\-:data\-\_\-wrapper}{\pageref{a00118}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:dd$<$ rep\-\_\-t, I, J, K, L $>$}{\pageref{a00119}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:dd$<$ adjoint\-\_\-rep$<$ S\-U$<$ N $>$ $>$, I, J, K, L $>$}{\pageref{a00120}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:dd\-\_\-min$<$ rep\-\_\-t, I, J, K, L $>$}{\pageref{a00121}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:dd\-\_\-min$<$ adjoint\-\_\-rep$<$ S\-U$<$ N $>$ $>$, I, J, K, L $>$}{\pageref{a00122}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:dd\-\_\-plus$<$ rep\-\_\-t, I, J, K, L $>$}{\pageref{a00123}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:dd\-\_\-plus$<$ adjoint\-\_\-rep$<$ S\-U$<$ N $>$ $>$, I, J, K, L $>$}{\pageref{a00124}}{}
+\item \contentsline{section}{Camgen\-:\-:adjoint\-:\-:decomposes$<$ cont\-\_\-cols $>$}{\pageref{a00126}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-flow\-:\-:decomposes$<$ cont\-\_\-cols $>$}{\pageref{a00127}}{}
+\item \contentsline{section}{Camgen\-:\-:Dirac\-\_\-algebra$<$ value\-\_\-t, type, dim, q $>$}{\pageref{a00128}}{}
+\item \contentsline{section}{Camgen\-:\-:Dirac\-\_\-algebra$<$ value\-\_\-t, implementation$<$ value\-\_\-t, 4, true $>$, 4, true $>$}{\pageref{a00128}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:Euclidean\-\_\-\-Majorana\-\_\-basis\-:\-:implementation$<$ value\-\_\-t, 4, true $>$}{\pageref{a00299}}{}
+\item \contentsline{section}{Camgen\-:\-:Euclidean\-\_\-\-Pauli\-\_\-basis\-:\-:implementation$<$ value\-\_\-t, 4, true $>$}{\pageref{a00298}}{}
+\item \contentsline{section}{Camgen\-:\-:Euclidean\-\_\-\-Weyl\-\_\-basis\-:\-:implementation$<$ value\-\_\-t, 4, true $>$}{\pageref{a00300}}{}
+\item \contentsline{section}{Camgen\-:\-:Majorana\-\_\-basis\-:\-:implementation$<$ value\-\_\-t, 4, true $>$}{\pageref{a00302}}{}
+\item \contentsline{section}{Camgen\-:\-:Pauli\-\_\-basis\-:\-:implementation$<$ value\-\_\-t, 4, true $>$}{\pageref{a00303}}{}
+\item \contentsline{section}{Camgen\-:\-:Weyl\-\_\-basis\-:\-:implementation$<$ value\-\_\-t, 4, true $>$}{\pageref{a00301}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:Dirac\-\_\-algebra$<$ value\-\_\-t, implementation$<$ value\-\_\-t, dim $>$, dim, q $>$}{\pageref{a00128}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:Euclidean\-\_\-\-Majorana\-\_\-basis\-:\-:implementation$<$ value\-\_\-t, dim, q $>$}{\pageref{a00282}}{}
+\item \contentsline{section}{Camgen\-:\-:Euclidean\-\_\-\-Pauli\-\_\-basis\-:\-:implementation$<$ value\-\_\-t, dim, q $>$}{\pageref{a00283}}{}
+\item \contentsline{section}{Camgen\-:\-:Euclidean\-\_\-\-Weyl\-\_\-basis\-:\-:implementation$<$ value\-\_\-t, dim, q $>$}{\pageref{a00284}}{}
+\item \contentsline{section}{Camgen\-:\-:Majorana\-\_\-basis\-:\-:implementation$<$ value\-\_\-t, dim, q $>$}{\pageref{a00291}}{}
+\item \contentsline{section}{Camgen\-:\-:Pauli\-\_\-basis\-:\-:implementation$<$ value\-\_\-t, dim, q $>$}{\pageref{a00293}}{}
+\item \contentsline{section}{Camgen\-:\-:Weyl\-\_\-basis\-:\-:implementation$<$ value\-\_\-t, dim, q $>$}{\pageref{a00289}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:Dirac\-\_\-algebra$<$ value\-\_\-t, type, dim, false $>$}{\pageref{a00129}}{}
+\item \contentsline{section}{Camgen\-:\-:Dirac\-\_\-algebra$<$ value\-\_\-t, type, dim, true $>$}{\pageref{a00130}}{}
+\item \contentsline{section}{Camgen\-:\-:Dirac\-\_\-dim$<$ dim $>$}{\pageref{a00131}}{}
+\item \contentsline{section}{Camgen\-:\-:Dirac\-\_\-dim$<$ 0 $>$}{\pageref{a00132}}{}
+\item \contentsline{section}{Camgen\-:\-:Dirac\-\_\-dim$<$ 1 $>$}{\pageref{a00133}}{}
+\item \contentsline{section}{Camgen\-:\-:end\-\_\-msg}{\pageref{a00134}}{}
+\item \contentsline{section}{Camgen\-:\-:Euclidean\-\_\-\-Majorana\-\_\-basis}{\pageref{a00135}}{}
+\item \contentsline{section}{Camgen\-:\-:Euclidean\-\_\-\-Pauli\-\_\-basis}{\pageref{a00136}}{}
+\item \contentsline{section}{Camgen\-:\-:Euclidean\-\_\-type}{\pageref{a00137}}{}
+\item \contentsline{section}{Camgen\-:\-:Euclidean\-\_\-\-Weyl\-\_\-basis}{\pageref{a00138}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ Feynrule\-\_\-t $>$}{\pageref{a00139}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ asymtvv$<$ model\-\_\-t $>$ $>$}{\pageref{a00140}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ charge\-\_\-conj\-\_\-contr$<$ compose\-\_\-contraction$<$ contr\-\_\-t1, contr\-\_\-t2 $>$, true $>$ $>$}{\pageref{a00141}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ charge\-\_\-conj\-\_\-contr$<$ contr\-\_\-t, false $>$ $>$}{\pageref{a00142}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ charge\-\_\-conj\-\_\-contr$<$ contr\-\_\-t, true $>$ $>$}{\pageref{a00143}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ charge\-\_\-conj\-\_\-left$<$ compose\-\_\-vertices$<$ Feynrule\-\_\-t1, Feynrule\-\_\-t2 $>$, true $>$ $>$}{\pageref{a00144}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ charge\-\_\-conj\-\_\-left$<$ Feynrule\-\_\-t, false $>$ $>$}{\pageref{a00145}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ charge\-\_\-conj\-\_\-left$<$ Feynrule\-\_\-t, true $>$ $>$}{\pageref{a00146}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ charge\-\_\-conj\-\_\-right$<$ compose\-\_\-vertices$<$ Feynrule\-\_\-t1, Feynrule\-\_\-t2 $>$, true $>$ $>$}{\pageref{a00147}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ charge\-\_\-conj\-\_\-right$<$ Feynrule\-\_\-t, false $>$ $>$}{\pageref{a00148}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ charge\-\_\-conj\-\_\-right$<$ Feynrule\-\_\-t, true $>$ $>$}{\pageref{a00149}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ compose\-\_\-contraction$<$ colour\-\_\-tensor\-:\-:C\-F\-\_\-d$<$ N, 0, 1 $>$, contr\-\_\-t $>$ $>$}{\pageref{a00150}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ compose\-\_\-contraction$<$ colour\-\_\-tensor\-:\-:d$<$ rep\-\_\-t, 0, 1 $>$, contr\-\_\-t $>$ $>$}{\pageref{a00151}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:C\-F\-\_\-d$<$ N, I, J $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00152}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:C\-F\-\_\-dd$<$ N, I, J, K, L $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00153}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:C\-F\-\_\-dd\-\_\-min$<$ N, I, J, K, L $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00154}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:C\-F\-\_\-dd\-\_\-plus$<$ N, I, J, K, L $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00155}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:C\-F\-\_\-f$<$ N, 0, 1, 2 $>$, vvv$<$ model\-\_\-t $>$ $>$ $>$}{\pageref{a00156}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:C\-F\-\_\-f$<$ N, I, J, K $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00157}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:C\-F\-\_\-ff\-\_\-contr$<$ N, 0, 1, 2, 3 $>$, vvvv$<$ model\-\_\-t $>$ $>$ $>$}{\pageref{a00158}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:C\-F\-\_\-ff\-\_\-contr$<$ N, I, J, K, L $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00159}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:C\-F\-\_\-\-T$<$ N, I, J, K $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00160}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:C\-F\-\_\-\-T\-T$<$ N, I, J, K, L $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00161}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:C\-F\-\_\-\-T\-T\-\_\-min$<$ N, I, J, K, L $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00162}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:C\-F\-\_\-\-T\-T\-\_\-plus$<$ N, I, J, K, L $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00163}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:d$<$ rep\-\_\-t, I, J $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00164}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:dd$<$ rep\-\_\-t, I, J, K, L $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00165}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:dd\-\_\-min$<$ rep\-\_\-t, I, J, K, L $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00166}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:dd\-\_\-plus$<$ rep\-\_\-t, I, J, K, L $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00167}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:f$<$ group\-\_\-t, I, J, K $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00168}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:f$<$ S\-U$<$ N $>$, 0, 1, 2 $>$, vvv$<$ model\-\_\-t $>$ $>$ $>$}{\pageref{a00169}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:ff\-\_\-contr$<$ group\-\_\-t, I, J, K, L $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00170}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:ff\-\_\-contr$<$ S\-U$<$ N $>$, 0, 1, 2, 3 $>$, vvvv$<$ model\-\_\-t $>$ $>$ $>$}{\pageref{a00171}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:T$<$ rep\-\_\-t, I, J, K $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00172}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:T\-T$<$ rep\-\_\-t, I, J, K, L $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00173}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:T\-T\-\_\-contr$<$ fundamental\-\_\-rep$<$ S\-U$<$ N $>$ $>$, I, J, K, L $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00174}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:T\-T\-\_\-contr$<$ rep\-\_\-t, I, J, K, L $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00175}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:T\-T\-\_\-min$<$ rep\-\_\-t, I, J, K, L $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00176}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:T\-T\-\_\-plus$<$ rep\-\_\-t, I, J, K, L $>$, Feynrule\-\_\-t $>$ $>$}{\pageref{a00177}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ reverse$<$ compose\-\_\-vertices$<$ Feynrule\-\_\-t1, Feynrule\-\_\-t2 $>$, true $>$ $>$}{\pageref{a00178}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ reverse$<$ Feynrule\-\_\-t, false $>$ $>$}{\pageref{a00179}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ reverse$<$ Feynrule\-\_\-t, true $>$ $>$}{\pageref{a00180}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ reverse\-\_\-conj\-\_\-left$<$ compose\-\_\-vertices$<$ Feynrule\-\_\-t1, Feynrule\-\_\-t2 $>$, true $>$ $>$}{\pageref{a00181}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ reverse\-\_\-conj\-\_\-left$<$ Feynrule\-\_\-t, false $>$ $>$}{\pageref{a00182}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ reverse\-\_\-conj\-\_\-left$<$ Feynrule\-\_\-t, true $>$ $>$}{\pageref{a00183}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ reverse\-\_\-conj\-\_\-right$<$ compose\-\_\-vertices$<$ Feynrule\-\_\-t1, Feynrule\-\_\-t2 $>$, true $>$ $>$}{\pageref{a00184}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ reverse\-\_\-conj\-\_\-right$<$ Feynrule\-\_\-t, false $>$ $>$}{\pageref{a00185}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ reverse\-\_\-conj\-\_\-right$<$ Feynrule\-\_\-t, true $>$ $>$}{\pageref{a00186}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ scalar\-\_\-contraction$<$ model\-\_\-t $>$ $>$}{\pageref{a00187}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ sff5$<$ model\-\_\-t $>$ $>$}{\pageref{a00188}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ sff$<$ model\-\_\-t $>$ $>$}{\pageref{a00189}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ sff\-L$<$ model\-\_\-t $>$ $>$}{\pageref{a00190}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ sff\-L\-R$<$ model\-\_\-t $>$ $>$}{\pageref{a00191}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ sff\-R$<$ model\-\_\-t $>$ $>$}{\pageref{a00192}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ sff\-V\-A$<$ model\-\_\-t $>$ $>$}{\pageref{a00193}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ spinor\-\_\-contraction$<$ model\-\_\-t $>$ $>$}{\pageref{a00194}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ sss$<$ model\-\_\-t $>$ $>$}{\pageref{a00195}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ ssss$<$ model\-\_\-t $>$ $>$}{\pageref{a00196}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ ssvv$<$ model\-\_\-t $>$ $>$}{\pageref{a00197}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ svv$<$ model\-\_\-t $>$ $>$}{\pageref{a00198}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ symtvv$<$ model\-\_\-t $>$ $>$}{\pageref{a00199}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ vector\-\_\-contraction$<$ model\-\_\-t $>$ $>$}{\pageref{a00200}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ vff5$<$ model\-\_\-t $>$ $>$}{\pageref{a00201}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ vff$<$ model\-\_\-t $>$ $>$}{\pageref{a00202}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ vff\-L$<$ model\-\_\-t $>$ $>$}{\pageref{a00203}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ vff\-L\-R$<$ model\-\_\-t $>$ $>$}{\pageref{a00204}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ vff\-R$<$ model\-\_\-t $>$ $>$}{\pageref{a00205}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ vff\-V\-A$<$ model\-\_\-t $>$ $>$}{\pageref{a00206}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ vss$<$ model\-\_\-t $>$ $>$}{\pageref{a00207}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ vvv$<$ model\-\_\-t $>$ $>$}{\pageref{a00208}}{}
+\item \contentsline{section}{Camgen\-:\-:evaluate$<$ vvvv$<$ model\-\_\-t $>$ $>$}{\pageref{a00209}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:f$<$ group\-\_\-t, I, J, K $>$}{\pageref{a00213}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:f$<$ S\-U$<$ N $>$, I, J, K $>$}{\pageref{a00214}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:f\-\_\-helper$<$ group\-\_\-t, Feynrule\-\_\-t, I, J, K $>$}{\pageref{a00215}}{}
+\item \contentsline{section}{Camgen\-:\-:fast\-\_\-\-Y\-M4v$<$ model\-\_\-t $>$}{\pageref{a00216}}{}
+\item \contentsline{section}{Camgen\-:\-:fermion$<$ model\-\_\-t, spacetime\-\_\-t, dim $>$}{\pageref{a00217}}{}
+\item \contentsline{section}{Camgen\-:\-:fermion$<$ model\-\_\-t, Minkowski\-\_\-type, 4 $>$}{\pageref{a00218}}{}
+\item \contentsline{section}{Camgen\-:\-:fermion\-\_\-wave\-\_\-function$<$ model\-\_\-t $>$}{\pageref{a00220}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:ff\-\_\-contr$<$ group\-\_\-t, I, J, K, L $>$}{\pageref{a00222}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:ff\-\_\-contr$<$ S\-U$<$ N $>$, I, J, K, L $>$}{\pageref{a00223}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:ff\-\_\-contr\-\_\-helper$<$ group\-\_\-t, Feynrule\-\_\-t, I, J, K, L $>$}{\pageref{a00224}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:ff\-\_\-contr\-\_\-helper$<$ S\-U$<$ N $>$, vvvv$<$ model\-\_\-t $>$, 0, 1, 2, 3 $>$}{\pageref{a00225}}{}
+\item \contentsline{section}{Camgen\-:\-:flavour\-\_\-comp$<$ particle\-\_\-t $>$}{\pageref{a00226}}{}
+\item \contentsline{section}{Camgen\-:\-:flavour\-\_\-comp$<$ Camgen\-:\-:particle $>$}{\pageref{a00226}}{}
+\item \contentsline{section}{Camgen\-:\-:flavour\-\_\-comp$<$ Camgen\-:\-:particle$<$ model\-\_\-t $>$ $>$}{\pageref{a00226}}{}
+\item \contentsline{section}{Camgen\-:\-:flavour\-\_\-eq$<$ particle\-\_\-t $>$}{\pageref{a00227}}{}
+\item \contentsline{section}{Camgen\-:\-:flavour\-\_\-neq$<$ particle\-\_\-t $>$}{\pageref{a00228}}{}
+\item \contentsline{section}{Camgen\-:\-:flavour\-\_\-select$<$ particle\-\_\-t $>$}{\pageref{a00229}}{}
+\item \contentsline{section}{Camgen\-:\-:flavourvec\-\_\-comp$<$ particle\-\_\-t $>$}{\pageref{a00230}}{}
+\item \contentsline{section}{Camgen\-:\-:fundamental\-\_\-rep$<$ group\-\_\-t $>$}{\pageref{a00232}}{}
+\item \contentsline{section}{Camgen\-:\-:fundamental\-\_\-rep$<$ S\-U$<$ N $>$ $>$}{\pageref{a00233}}{}
+\item \contentsline{section}{Camgen\-:\-:fusion\-\_\-class$<$ model\-\_\-t $>$}{\pageref{a00234}}{}
+\item \contentsline{section}{Camgen\-:\-:fusion\-\_\-contains\-\_\-particle$<$ model\-\_\-t $>$}{\pageref{a00235}}{}
+\item \contentsline{section}{Camgen\-:\-:fusion\-\_\-contains\-\_\-vertex$<$ model\-\_\-t $>$}{\pageref{a00236}}{}
+\item \contentsline{section}{Camgen\-:\-:get\-\_\-basic\-\_\-types$<$ model\-\_\-t $>$}{\pageref{a00239}}{}
+\item \contentsline{section}{Camgen\-:\-:get\-\_\-colour\-\_\-treatment$<$ model\-\_\-t, cols $>$}{\pageref{a00240}}{}
+\item \contentsline{section}{Camgen\-:\-:get\-\_\-colour\-\_\-treatment$<$ model\-\_\-t, false $>$}{\pageref{a00241}}{}
+\item \contentsline{section}{Camgen\-:\-:get\-\_\-colour\-\_\-treatment$<$ model\-\_\-t, true $>$}{\pageref{a00242}}{}
+\item \contentsline{section}{Camgen\-:\-:get\-\_\-\-Dirac\-\_\-algebra\-\_\-type$<$ model\-\_\-t $>$}{\pageref{a00243}}{}
+\item \contentsline{section}{Camgen\-:\-:get\-\_\-implementation$<$ model\-\_\-t, group\-\_\-t $>$}{\pageref{a00244}}{}
+\item \contentsline{section}{Camgen\-:\-:get\-\_\-ps\-\_\-type$<$ model\-\_\-t $>$}{\pageref{a00245}}{}
+\item \contentsline{section}{Camgen\-:\-:get\-\_\-recursive\-\_\-relation$<$ model\-\_\-t, decomp $>$}{\pageref{a00246}}{}
+\item \contentsline{section}{Camgen\-:\-:get\-\_\-recursive\-\_\-relation$<$ model\-\_\-t, false $>$}{\pageref{a00247}}{}
+\item \contentsline{section}{Camgen\-:\-:get\-\_\-recursive\-\_\-relation$<$ model\-\_\-t, true $>$}{\pageref{a00248}}{}
+\item \contentsline{section}{Camgen\-:\-:get\-\_\-spacetime\-\_\-type$<$ model\-\_\-t, dim $>$}{\pageref{a00249}}{}
+\item \contentsline{section}{Camgen\-:\-:get\-\_\-spacetime\-\_\-type$<$ model\-\_\-t, 0 $>$}{\pageref{a00250}}{}
+\item \contentsline{section}{Camgen\-:\-:grid\-\_\-modes}{\pageref{a00251}}{}
+\item \contentsline{section}{Camgen\-:\-:group$<$ value\-\_\-t, type, N $>$}{\pageref{a00252}}{}
+\item \contentsline{section}{Camgen\-:\-:group$<$ value\-\_\-t, implementation$<$ value\-\_\-t $>$, N $\ast$\-N-\/1 $>$}{\pageref{a00252}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:S\-U$<$ N $>$\-:\-:implementation$<$ value\-\_\-t $>$}{\pageref{a00286}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:H\-\_\-branchings$<$ value\-\_\-type $>$}{\pageref{a00253}}{}
+\item \contentsline{section}{Camgen\-:\-:hadronic\-\_\-is\-\_\-sy$<$ model\-\_\-t, rng\-\_\-t, spacetime\-\_\-t $>$}{\pageref{a00254}}{}
+\item \contentsline{section}{Camgen\-:\-:hadronic\-\_\-is\-\_\-xx$<$ model\-\_\-t, rng\-\_\-t, spacetime\-\_\-t $>$}{\pageref{a00256}}{}
+\item \contentsline{section}{Camgen\-:\-:hadronic\-\_\-is\-\_\-y$<$ model\-\_\-t, rng\-\_\-t, spacetime\-\_\-t $>$}{\pageref{a00258}}{}
+\item \contentsline{section}{Camgen\-:\-:has\-\_\-leg$<$ model\-\_\-t $>$}{\pageref{a00260}}{}
+\item \contentsline{section}{Camgen\-:\-:has\-\_\-legs$<$ model\-\_\-t $>$}{\pageref{a00261}}{}
+\item \contentsline{section}{Camgen\-:\-:helicity\-\_\-copy$<$ model\-\_\-t1, model\-\_\-t2, q1, q2 $>$}{\pageref{a00262}}{}
+\item \contentsline{section}{Camgen\-:\-:helicity\-\_\-copy$<$ model\-\_\-t1, model\-\_\-t2, false, false $>$}{\pageref{a00263}}{}
+\item \contentsline{section}{Camgen\-:\-:helicity\-\_\-copy$<$ model\-\_\-t1, model\-\_\-t2, false, true $>$}{\pageref{a00264}}{}
+\item \contentsline{section}{Camgen\-:\-:helicity\-\_\-copy$<$ model\-\_\-t1, model\-\_\-t2, true, true $>$}{\pageref{a00265}}{}
+\item \contentsline{section}{Camgen\-:\-:helicity\-\_\-generator$<$ value\-\_\-t, N\-\_\-in, N\-\_\-out, cont\-\_\-hels $>$}{\pageref{a00266}}{}
+\item \contentsline{section}{Camgen\-:\-:helicity\-\_\-generator\-\_\-factory$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$}{\pageref{a00269}}{}
+\item \contentsline{section}{Camgen\-:\-:helicity\-\_\-generators}{\pageref{a00270}}{}
+\item \contentsline{section}{Camgen\-:\-:helicity\-\_\-phases$<$ value\-\_\-t $>$}{\pageref{a00271}}{}
+\item \contentsline{section}{Camgen\-:\-:helicity\-\_\-phases$<$ r\-\_\-value\-\_\-type $>$}{\pageref{a00271}}{}
+\item \contentsline{section}{Camgen\-:\-:helicity\-\_\-ps$<$ model\-\_\-t, cont\-\_\-helicities $>$}{\pageref{a00272}}{}
+\item \contentsline{section}{Camgen\-:\-:helicity\-\_\-ps$<$ model\-\_\-t, false $>$}{\pageref{a00273}}{}
+\item \contentsline{section}{Camgen\-:\-:helicity\-\_\-ps$<$ model\-\_\-t, model\-\_\-t\-:\-:continuous\-\_\-helicities $>$}{\pageref{a00272}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:particle\-\_\-ps$<$ model\-\_\-t, dim, false $>$}{\pageref{a00403}}{}
+\item \contentsline{section}{Camgen\-:\-:particle\-\_\-ps$<$ model\-\_\-t, dim, true $>$}{\pageref{a00404}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:helicity\-\_\-ps$<$ model\-\_\-t, true $>$}{\pageref{a00274}}{}
+\item \contentsline{section}{Camgen\-:\-:helicity\-\_\-summer$<$ value\-\_\-t, N\-\_\-in, N\-\_\-out, cont\-\_\-hels $>$}{\pageref{a00275}}{}
+\item \contentsline{section}{Camgen\-:\-:helicity\-\_\-type}{\pageref{a00278}}{}
+\item \contentsline{section}{Camgen\-:\-:histogram$<$ T, comp\-\_\-type $>$}{\pageref{a00280}}{}
+\item \contentsline{section}{Camgen\-:\-:helicity\-\_\-type\-:\-:implementation$<$ spacetime\-\_\-t, beam\-\_\-dir $>$}{\pageref{a00288}}{}
+\item \contentsline{section}{Camgen\-:\-:K\-S\-\_\-type\-:\-:implementation$<$ spacetime\-\_\-t, beam\-\_\-dir $>$}{\pageref{a00290}}{}
+\item \contentsline{section}{Camgen\-:\-:polarised\-\_\-type\-:\-:implementation$<$ spacetime\-\_\-t, beam\-\_\-dir $>$}{\pageref{a00294}}{}
+\item \contentsline{section}{Camgen\-:\-:initial\-\_\-state\-\_\-factory$<$ model\-\_\-t, N, rng\-\_\-t, spacetime\-\_\-t $>$}{\pageref{a00305}}{}
+\item \contentsline{section}{Camgen\-:\-:initial\-\_\-state\-\_\-factory$<$ model\-\_\-t, 1, rng\-\_\-t, Minkowski\-\_\-type $>$}{\pageref{a00306}}{}
+\item \contentsline{section}{Camgen\-:\-:initial\-\_\-state\-\_\-factory$<$ model\-\_\-t, 2, rng\-\_\-t, Minkowski\-\_\-type $>$}{\pageref{a00307}}{}
+\item \contentsline{section}{Camgen\-:\-:initial\-\_\-states}{\pageref{a00308}}{}
+\item \contentsline{section}{Camgen\-:\-:interaction$<$ model\-\_\-t, N, decomp $>$}{\pageref{a00309}}{}
+\item \contentsline{section}{Camgen\-:\-:interaction\-\_\-base$<$ model\-\_\-t, N $>$}{\pageref{a00312}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:interaction$<$ model\-\_\-t, N, false $>$}{\pageref{a00310}}{}
+\item \contentsline{section}{Camgen\-:\-:interaction$<$ model\-\_\-t, N, true $>$}{\pageref{a00311}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:interface\-\_\-base$<$ model\-\_\-t $>$}{\pageref{a00313}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:chain\-\_\-interface$<$ model\-\_\-t $>$}{\pageref{a00066}}{}
+\item \contentsline{section}{Camgen\-:\-:generator\-\_\-interface$<$ model\-\_\-t $>$}{\pageref{a00238}}{}
+\item \contentsline{section}{Camgen\-:\-:L\-H\-E\-\_\-interface$<$ model\-\_\-t $>$}{\pageref{a00323}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:interface\-\_\-output$<$ model\-\_\-t $>$}{\pageref{a00315}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:ascii\-\_\-file$<$ model\-\_\-t $>$}{\pageref{a00017}}{}
+\item \contentsline{section}{Camgen\-:\-:root\-\_\-tree$<$ model\-\_\-t $>$}{\pageref{a00470}}{}
+\end{DoxyCompactList}
+\item std\-:\-:ios\-\_\-base\begin{DoxyCompactList}
+\item std\-:\-:basic\-\_\-ios\begin{DoxyCompactList}
+\item std\-:\-:basic\-\_\-ostream\begin{DoxyCompactList}
+\item std\-:\-:ostream\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:logstream}{\pageref{a00326}}{}
+\end{DoxyCompactList}
+\end{DoxyCompactList}
+\end{DoxyCompactList}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:K\-S\-\_\-type}{\pageref{a00318}}{}
+\item \contentsline{section}{Camgen\-:\-:Legendre$<$ value\-\_\-t, N $>$}{\pageref{a00319}}{}
+\item \contentsline{section}{Camgen\-:\-:Legendre$<$ value\-\_\-t, 0 $>$}{\pageref{a00320}}{}
+\item \contentsline{section}{Camgen\-:\-:Legendre$<$ value\-\_\-t, 1 $>$}{\pageref{a00321}}{}
+\item Les\-Houches\-Reader\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:Herwig\-\_\-interface$<$ model\-\_\-t $>$}{\pageref{a00279}}{}
+\end{DoxyCompactList}
+\item L\-H\-Aup\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:Pythia\-\_\-interface$<$ model\-\_\-t $>$}{\pageref{a00448}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:license\-\_\-print}{\pageref{a00324}}{}
+\item \contentsline{section}{Camgen\-:\-:log\-\_\-level}{\pageref{a00325}}{}
+\item \contentsline{section}{Camgen\-:\-:longitudinal\-\_\-helicities$<$ value\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t, q $>$}{\pageref{a00327}}{}
+\item \contentsline{section}{Camgen\-:\-:lower\-\_\-binomial}{\pageref{a00330}}{}
+\item \contentsline{section}{Camgen\-:\-:m\-\_\-anti\-\_\-fermion\-\_\-wave\-\_\-function$<$ model\-\_\-t $>$}{\pageref{a00331}}{}
+\item \contentsline{section}{Camgen\-:\-:m\-\_\-fermion\-\_\-wave\-\_\-function$<$ model\-\_\-t $>$}{\pageref{a00332}}{}
+\item \contentsline{section}{Camgen\-:\-:m\-\_\-vector\-\_\-wave\-\_\-function$<$ model\-\_\-t, dim, spacetime\-\_\-t, Dirac\-\_\-t $>$}{\pageref{a00333}}{}
+\item \contentsline{section}{Camgen\-:\-:m\-\_\-vector\-\_\-wave\-\_\-function$<$ model\-\_\-t, 4, Minkowski\-\_\-type, Dirac\-\_\-alg $>$}{\pageref{a00334}}{}
+\item \contentsline{section}{Camgen\-:\-:m\-\_\-vector\-\_\-wave\-\_\-function$<$ model\-\_\-t, 4, Minkowski\-\_\-type, unused $>$}{\pageref{a00335}}{}
+\item \contentsline{section}{Camgen\-:\-:Majorana\-\_\-basis}{\pageref{a00336}}{}
+\item \contentsline{section}{Camgen\-:\-:adjoint\-:\-:make\-\_\-contraction$<$ contr\-\_\-t $>$}{\pageref{a00337}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-flow\-:\-:make\-\_\-contraction$<$ contr\-\_\-t $>$}{\pageref{a00338}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-flow\-:\-:make\-\_\-contraction$<$ compose\-\_\-contraction$<$ contr\-\_\-t1, contr\-\_\-t2 $>$ $>$}{\pageref{a00339}}{}
+\item \contentsline{section}{Camgen\-:\-:adjoint\-:\-:make\-\_\-\-Feynrule$<$ Feynrule\-\_\-t $>$}{\pageref{a00340}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-flow\-:\-:make\-\_\-\-Feynrule$<$ Feynrule\-\_\-t $>$}{\pageref{a00341}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-flow\-:\-:make\-\_\-\-Feynrule$<$ compose\-\_\-vertices$<$ Feynrule\-\_\-t1, Feynrule\-\_\-t2 $>$ $>$}{\pageref{a00342}}{}
+\item \contentsline{section}{Camgen\-:\-:massless\-\_\-ps$<$ value\-\_\-t, N, D $>$}{\pageref{a00351}}{}
+\item \contentsline{section}{Camgen\-:\-:massless\-\_\-ps$<$ value\-\_\-t, N, 0 $>$}{\pageref{a00352}}{}
+\item \contentsline{section}{Camgen\-:\-:massless\-\_\-ps$<$ value\-\_\-t, N, 1 $>$}{\pageref{a00353}}{}
+\item \contentsline{section}{Camgen\-:\-:massless\-\_\-ps$<$ value\-\_\-t, N, 2 $>$}{\pageref{a00354}}{}
+\item \contentsline{section}{Camgen\-:\-:massless\-\_\-spinor\-\_\-factory$<$ Dirac\-\_\-alg\-\_\-t, beam\-\_\-dir, D $>$}{\pageref{a00355}}{}
+\item \contentsline{section}{Camgen\-:\-:massless\-\_\-spinor\-\_\-factory$<$ Dirac\-\_\-alg\-\_\-t, beam\-\_\-dir, 4 $>$}{\pageref{a00356}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:massive\-\_\-spinor\-\_\-factory$<$ Dirac\-\_\-alg\-\_\-t, spin\-\_\-vec\-\_\-t, beam\-\_\-dir, 4 $>$}{\pageref{a00344}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:massless\-\_\-spinor\-\_\-factory$<$ Dirac\-\_\-alg\-\_\-t, beam\-\_\-dir, Dim $>$}{\pageref{a00355}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:massive\-\_\-spinor\-\_\-factory$<$ Dirac\-\_\-alg\-\_\-t, spin\-\_\-vec\-\_\-t, beam\-\_\-dir, Dim $>$}{\pageref{a00343}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:massless\-\_\-spinor\-\_\-factory$<$ Pauli\-\_\-basis\-:\-:template implementation$<$ value\-\_\-t, 4, true $>$, 3, 4 $>$}{\pageref{a00355}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:massive\-\_\-spinor\-\_\-factory$<$ typename Pauli\-\_\-basis\-:\-:template implementation$<$ value\-\_\-t, 4, true $>$, helicity\-\_\-type, 3, 4 $>$}{\pageref{a00345}}{}
+\item \contentsline{section}{Camgen\-:\-:massive\-\_\-spinor\-\_\-factory$<$ typename Pauli\-\_\-basis\-:\-:template implementation$<$ value\-\_\-t, 4, true $>$, K\-S\-\_\-type, 3, 4 $>$}{\pageref{a00346}}{}
+\item \contentsline{section}{Camgen\-:\-:massive\-\_\-spinor\-\_\-factory$<$ typename Pauli\-\_\-basis\-:\-:template implementation$<$ value\-\_\-t, 4, true $>$, polarised\-\_\-type, 3, 4 $>$}{\pageref{a00347}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:massless\-\_\-spinor\-\_\-factory$<$ typename Pauli\-\_\-basis\-:\-:template implementation$<$ value\-\_\-t, 4, true $>$, 3, 4 $>$}{\pageref{a00357}}{}
+\item \contentsline{section}{Camgen\-:\-:massless\-\_\-spinor\-\_\-factory$<$ typename Weyl\-\_\-basis\-:\-:template implementation$<$ value\-\_\-t, 4, true $>$, 3, 4 $>$}{\pageref{a00358}}{}
+\item \contentsline{section}{Camgen\-:\-:massless\-\_\-spinor\-\_\-factory$<$ Weyl\-\_\-basis\-:\-:template implementation$<$ value\-\_\-t, 4, true $>$, 3, 4 $>$}{\pageref{a00355}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:massive\-\_\-spinor\-\_\-factory$<$ typename Weyl\-\_\-basis\-:\-:template implementation$<$ value\-\_\-t, 4, true $>$, helicity\-\_\-type, 3, 4 $>$}{\pageref{a00348}}{}
+\item \contentsline{section}{Camgen\-:\-:massive\-\_\-spinor\-\_\-factory$<$ typename Weyl\-\_\-basis\-:\-:template implementation$<$ value\-\_\-t, 4, true $>$, K\-S\-\_\-type, 3, 4 $>$}{\pageref{a00349}}{}
+\item \contentsline{section}{Camgen\-:\-:massive\-\_\-spinor\-\_\-factory$<$ typename Weyl\-\_\-basis\-:\-:template implementation$<$ value\-\_\-t, 4, true $>$, polarised\-\_\-type, 3, 4 $>$}{\pageref{a00350}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:M\-C\-\_\-config}{\pageref{a00361}}{}
+\item \contentsline{section}{Camgen\-:\-:M\-C\-\_\-generator$<$ value\-\_\-t $>$}{\pageref{a00362}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:M\-C\-\_\-object\-\_\-generator$<$ value\-\_\-t, object\-\_\-t, 1, false $>$}{\pageref{a00365}}{}
+\item \contentsline{section}{Camgen\-:\-:M\-C\-\_\-object\-\_\-generator$<$ value\-\_\-t, object\-\_\-t, 1, true $>$}{\pageref{a00366}}{}
+\item \contentsline{section}{Camgen\-:\-:M\-C\-\_\-object\-\_\-generator$<$ value\-\_\-t, object\-\_\-t, N, false $>$}{\pageref{a00367}}{}
+\item \contentsline{section}{Camgen\-:\-:M\-C\-\_\-object\-\_\-generator$<$ value\-\_\-t, object\-\_\-t, N, true $>$}{\pageref{a00368}}{}
+\item \contentsline{section}{Camgen\-:\-:s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t $>$}{\pageref{a00482}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:adaptive\-\_\-s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t $>$}{\pageref{a00001}}{}
+\item \contentsline{section}{Camgen\-:\-:Dd\-\_\-s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t $>$}{\pageref{a00125}}{}
+\item \contentsline{section}{Camgen\-:\-:inversion\-\_\-s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t, sub\-\_\-type $>$}{\pageref{a00317}}{}
+\item \contentsline{section}{Camgen\-:\-:uni\-\_\-s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t $>$}{\pageref{a00542}}{}
+\item \contentsline{section}{Camgen\-:\-:inversion\-\_\-s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t, B\-W\-\_\-s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t $>$ $>$}{\pageref{a00317}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:B\-W\-\_\-s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t $>$}{\pageref{a00033}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:inversion\-\_\-s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t, inv\-\_\-cosh\-\_\-y\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t $>$ $>$}{\pageref{a00317}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:inv\-\_\-cosh\-\_\-y\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t $>$}{\pageref{a00316}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:inversion\-\_\-s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t, pl\-\_\-s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t $>$ $>$}{\pageref{a00317}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:pl\-\_\-s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t $>$}{\pageref{a00420}}{}
+\end{DoxyCompactList}
+\end{DoxyCompactList}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:M\-C\-\_\-generator$<$ model\-\_\-t\-:\-:value\-\_\-type $>$}{\pageref{a00362}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:event\-\_\-generator$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$}{\pageref{a00210}}{}
+\item \contentsline{section}{Camgen\-:\-:initial\-\_\-state$<$ model\-\_\-t, N $>$}{\pageref{a00304}}{}
+\item \contentsline{section}{Camgen\-:\-:matrix\-\_\-element$<$ model\-\_\-t $>$}{\pageref{a00359}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:matrix\-\_\-element\-\_\-reweighter$<$ model\-\_\-t, model\-\_\-t2 $>$}{\pageref{a00360}}{}
+\item \contentsline{section}{Camgen\-:\-:unit\-\_\-matrix\-\_\-element$<$ model\-\_\-t $>$}{\pageref{a00553}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:particle\-\_\-channel$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$}{\pageref{a00395}}{}
+\item \contentsline{section}{Camgen\-:\-:process\-\_\-generator$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$}{\pageref{a00430}}{}
+\item \contentsline{section}{Camgen\-:\-:ps\-\_\-branching$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$}{\pageref{a00437}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:backward\-\_\-s\-\_\-branching$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t, typename Minkowski\-\_\-type\-:\-:template implementation$<$ typename model\-\_\-t\-:\-:value\-\_\-type, 4 $>$ $>$}{\pageref{a00020}}{}
+\item \contentsline{section}{Camgen\-:\-:backward\-\_\-s\-\_\-branching$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t, typename Minkowski\-\_\-type\-:\-:template implementation$<$ typename model\-\_\-t\-:\-:value\-\_\-type, D $>$ $>$}{\pageref{a00021}}{}
+\item \contentsline{section}{Camgen\-:\-:backward\-\_\-sum\-\_\-branching$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$}{\pageref{a00022}}{}
+\item \contentsline{section}{Camgen\-:\-:s\-\_\-branching$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t, typename Minkowski\-\_\-type\-:\-:template implementation$<$ typename model\-\_\-t\-:\-:value\-\_\-type, 4 $>$ $>$}{\pageref{a00480}}{}
+\item \contentsline{section}{Camgen\-:\-:s\-\_\-branching$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t, typename Minkowski\-\_\-type\-:\-:template implementation$<$ typename model\-\_\-t\-:\-:value\-\_\-type, D $>$ $>$}{\pageref{a00481}}{}
+\item \contentsline{section}{Camgen\-:\-:sum\-\_\-branching$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$}{\pageref{a00513}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:ps\-\_\-generator$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out $>$}{\pageref{a00441}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:rambo$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t, Minkowski\-\_\-type $>$}{\pageref{a00458}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:initial\-\_\-state$<$ model\-\_\-t, 1 $>$}{\pageref{a00304}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:partonic\-\_\-is$<$ model\-\_\-t, 1, Minkowski\-\_\-type $>$}{\pageref{a00407}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:initial\-\_\-state$<$ model\-\_\-t, 2 $>$}{\pageref{a00304}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:hadronic\-\_\-is\-\_\-sy$<$ model\-\_\-t, rng\-\_\-t, Minkowski\-\_\-type $>$}{\pageref{a00255}}{}
+\item \contentsline{section}{Camgen\-:\-:hadronic\-\_\-is\-\_\-xx$<$ model\-\_\-t, rng\-\_\-t, Minkowski\-\_\-type $>$}{\pageref{a00257}}{}
+\item \contentsline{section}{Camgen\-:\-:hadronic\-\_\-is\-\_\-y$<$ model\-\_\-t, rng\-\_\-t, Minkowski\-\_\-type $>$}{\pageref{a00259}}{}
+\item \contentsline{section}{Camgen\-:\-:partonic\-\_\-is$<$ model\-\_\-t, 2, Minkowski\-\_\-type $>$}{\pageref{a00408}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:ps\-\_\-branching$<$ model\-\_\-t, 2, N\-\_\-out, rng\-\_\-t $>$}{\pageref{a00437}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:backward\-\_\-t\-\_\-branching$<$ model\-\_\-t, N\-\_\-out, rng\-\_\-t, typename Minkowski\-\_\-type\-:\-:template implementation$<$ typename model\-\_\-t\-:\-:value\-\_\-type, model\-\_\-t\-:\-:dimension $>$ $>$}{\pageref{a00025}}{}
+\item \contentsline{section}{Camgen\-:\-:t\-\_\-branching$<$ model\-\_\-t, N\-\_\-out, rng\-\_\-t, typename Minkowski\-\_\-type\-:\-:template implementation$<$ typename model\-\_\-t\-:\-:value\-\_\-type, model\-\_\-t\-:\-:dimension $>$ $>$}{\pageref{a00524}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:ps\-\_\-generator$<$ model\-\_\-t, 1, N\-\_\-out $>$}{\pageref{a00441}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:ps\-\_\-tree$<$ model\-\_\-t, 1, N\-\_\-out, rng\-\_\-t $>$}{\pageref{a00446}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:ps\-\_\-generator$<$ model\-\_\-t, 2, N\-\_\-out $>$}{\pageref{a00441}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:ps\-\_\-tree$<$ model\-\_\-t, 2, N\-\_\-out, rng\-\_\-t $>$}{\pageref{a00447}}{}
+\end{DoxyCompactList}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:M\-C\-\_\-generator$<$ value\-\_\-type $>$}{\pageref{a00362}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:s\-\_\-generator$<$ value\-\_\-type, rng\-\_\-t $>$}{\pageref{a00482}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:M\-C\-\_\-integral$<$ value\-\_\-t $>$}{\pageref{a00363}}{}
+\item \contentsline{section}{Camgen\-:\-:M\-C\-\_\-integral$<$ value\-\_\-type $>$}{\pageref{a00363}}{}
+\item \contentsline{section}{Camgen\-:\-:M\-C\-\_\-object\-\_\-generator$<$ value\-\_\-t, object\-\_\-t, N, q $>$}{\pageref{a00364}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:normal\-\_\-generator$<$ value\-\_\-type, rng\-\_\-t $>$}{\pageref{a00381}}{}
+\item \contentsline{section}{Camgen\-:\-:parni$<$ value\-\_\-type, 1, rng\-\_\-t $>$}{\pageref{a00384}}{}
+\item \contentsline{section}{Camgen\-:\-:parni$<$ value\-\_\-type, 2, rng\-\_\-t $>$}{\pageref{a00384}}{}
+\item \contentsline{section}{Camgen\-:\-:uniform\-\_\-sphere$<$ value\-\_\-type, D-\/2, rng\-\_\-t $>$}{\pageref{a00549}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:M\-C\-\_\-object\-\_\-generator$<$ value\-\_\-t, helicity\-\_\-phases$<$ value\-\_\-t $>$, N\-\_\-in+\-N\-\_\-out, true $>$}{\pageref{a00364}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:helicity\-\_\-generator$<$ value\-\_\-t, N\-\_\-in, N\-\_\-out, true $>$}{\pageref{a00268}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:helicity\-\_\-summer$<$ value\-\_\-t, N\-\_\-in, N\-\_\-out, true $>$}{\pageref{a00277}}{}
+\item \contentsline{section}{Camgen\-:\-:longitudinal\-\_\-helicities$<$ value\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t, true $>$}{\pageref{a00329}}{}
+\item \contentsline{section}{Camgen\-:\-:uniform\-\_\-helicities$<$ value\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t, true $>$}{\pageref{a00548}}{}
+\end{DoxyCompactList}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:M\-C\-\_\-object\-\_\-generator$<$ value\-\_\-t, int, N\-\_\-in+\-N\-\_\-out, true $>$}{\pageref{a00364}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:helicity\-\_\-generator$<$ value\-\_\-t, N\-\_\-in, N\-\_\-out, false $>$}{\pageref{a00267}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:helicity\-\_\-summer$<$ value\-\_\-t, N\-\_\-in, N\-\_\-out, false $>$}{\pageref{a00276}}{}
+\item \contentsline{section}{Camgen\-:\-:longitudinal\-\_\-helicities$<$ value\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t, false $>$}{\pageref{a00328}}{}
+\item \contentsline{section}{Camgen\-:\-:uniform\-\_\-helicities$<$ value\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t, false $>$}{\pageref{a00547}}{}
+\end{DoxyCompactList}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:M\-C\-\_\-object\-\_\-generator$<$ value\-\_\-t, parni\-\_\-bin$<$ value\-\_\-t, 1, rng\-\_\-t, key\-\_\-t $>$\-:\-:point\-\_\-type, 1, true $>$}{\pageref{a00364}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:parni$<$ value\-\_\-t, 1, rng\-\_\-t, key\-\_\-t $>$}{\pageref{a00385}}{}
+\item \contentsline{section}{Camgen\-:\-:parni\-\_\-sub\-\_\-grid$<$ value\-\_\-t, 1, rng\-\_\-t, key\-\_\-t $>$}{\pageref{a00391}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:M\-C\-\_\-object\-\_\-generator$<$ value\-\_\-t, parni\-\_\-bin$<$ value\-\_\-t, D, rng\-\_\-t, key\-\_\-t $>$\-:\-:point\-\_\-type, 1, true $>$}{\pageref{a00364}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:parni$<$ value\-\_\-t, D, rng\-\_\-t, key\-\_\-t $>$}{\pageref{a00384}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:M\-C\-\_\-object\-\_\-generator$<$ value\-\_\-t, std\-:\-:vector$<$ std\-:\-:size\-\_\-t $>$, N\-\_\-in+\-N\-\_\-out, true $>$}{\pageref{a00364}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-generator$<$ value\-\_\-t, N\-\_\-in, N\-\_\-out, false $>$}{\pageref{a00083}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:adjoint\-\_\-\-Q\-C\-D$<$ value\-\_\-t, N\-\_\-in, N\-\_\-out, N\-\_\-c, rng\-\_\-t, false $>$}{\pageref{a00004}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-flow\-\_\-\-Q\-C\-D$<$ value\-\_\-t, N\-\_\-in, N\-\_\-out, N\-\_\-c, rng\-\_\-t, false $>$}{\pageref{a00080}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-summer$<$ value\-\_\-t, N\-\_\-in, N\-\_\-out, false $>$}{\pageref{a00093}}{}
+\item \contentsline{section}{Camgen\-:\-:uniform\-\_\-colours$<$ value\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t, false $>$}{\pageref{a00544}}{}
+\end{DoxyCompactList}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:M\-C\-\_\-object\-\_\-generator$<$ value\-\_\-t, tensor$<$ std\-:\-:complex$<$ value\-\_\-t $>$ $>$, N\-\_\-in+\-N\-\_\-out, 1 $>$}{\pageref{a00364}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-generator$<$ value\-\_\-t, N\-\_\-in, N\-\_\-out, true $>$}{\pageref{a00084}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:adjoint\-\_\-\-Q\-C\-D$<$ value\-\_\-t, N\-\_\-in, N\-\_\-out, N\-\_\-c, rng\-\_\-t, true $>$}{\pageref{a00005}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-flow\-\_\-\-Q\-C\-D$<$ value\-\_\-t, N\-\_\-in, N\-\_\-out, N\-\_\-c, rng\-\_\-t, true $>$}{\pageref{a00081}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-summer$<$ value\-\_\-t, N\-\_\-in, N\-\_\-out, true $>$}{\pageref{a00094}}{}
+\item \contentsline{section}{Camgen\-:\-:uniform\-\_\-colours$<$ value\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t, true $>$}{\pageref{a00545}}{}
+\end{DoxyCompactList}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:M\-C\-\_\-object\-\_\-generator$<$ value\-\_\-t, value\-\_\-t, 1, true $>$}{\pageref{a00364}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:normal\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t $>$}{\pageref{a00381}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:M\-C\-\_\-object\-\_\-generator$<$ value\-\_\-t, vector$<$ value\-\_\-t, 2 $>$, 1, true $>$}{\pageref{a00364}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:uniform\-\_\-sphere$<$ value\-\_\-t, 1, rng\-\_\-t $>$}{\pageref{a00550}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:M\-C\-\_\-object\-\_\-generator$<$ value\-\_\-t, vector$<$ value\-\_\-t, 3 $>$, 1, true $>$}{\pageref{a00364}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:uniform\-\_\-sphere$<$ value\-\_\-t, 2, rng\-\_\-t $>$}{\pageref{a00551}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:M\-C\-\_\-object\-\_\-generator$<$ value\-\_\-t, vector$<$ value\-\_\-t, 4 $>$, 1, true $>$}{\pageref{a00364}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:uniform\-\_\-sphere$<$ value\-\_\-t, 3, rng\-\_\-t $>$}{\pageref{a00552}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:M\-C\-\_\-object\-\_\-generator$<$ value\-\_\-t, vector$<$ value\-\_\-t, D+1 $>$, 1, true $>$}{\pageref{a00364}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:uniform\-\_\-sphere$<$ value\-\_\-t, D, rng\-\_\-t $>$}{\pageref{a00549}}{}
+\item \contentsline{section}{Camgen\-:\-:uniform\-\_\-sphere$<$ value\-\_\-t, 2 $\ast$\-N\-\_\-c-\/1, rng\-\_\-t $>$}{\pageref{a00549}}{}
+\item \contentsline{section}{Camgen\-:\-:uniform\-\_\-sphere$<$ value\-\_\-t, N\-\_\-c $\ast$\-N\-\_\-c-\/2, rng\-\_\-t $>$}{\pageref{a00549}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:M\-C\-\_\-object\-\_\-generator$<$ value\-\_\-type, value\-\_\-type, 1, true $>$}{\pageref{a00364}}{}
+\item \contentsline{section}{Camgen\-:\-:M\-C\-\_\-object\-\_\-generator$<$ value\-\_\-type, vector$<$ value\-\_\-type, D+1 $>$, 1, true $>$}{\pageref{a00364}}{}
+\item \contentsline{section}{Camgen\-:\-:Minkowski\-\_\-type}{\pageref{a00369}}{}
+\item \contentsline{section}{Camgen\-:\-:model$<$ model\-\_\-t $>$}{\pageref{a00370}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:E\-W\-S\-M\-\_\-base$<$ model\-\_\-t, value\-\_\-t $>$}{\pageref{a00212}}{}
+\item \contentsline{section}{Camgen\-:\-:Q\-C\-D\-\_\-base$<$ model\-\_\-t, value\-\_\-t $>$}{\pageref{a00450}}{}
+\item \contentsline{section}{Camgen\-:\-:Q\-E\-D\-\_\-base$<$ model\-\_\-t, value\-\_\-t $>$}{\pageref{a00452}}{}
+\item \contentsline{section}{Camgen\-:\-:S\-M\-\_\-base$<$ model\-\_\-t, value\-\_\-t $>$}{\pageref{a00499}}{}
+\item \contentsline{section}{Camgen\-:\-:susy\-\_\-\-Q\-C\-D\-\_\-base$<$ model\-\_\-t, value\-\_\-t $>$}{\pageref{a00516}}{}
+\item \contentsline{section}{Camgen\-:\-:susy\-\_\-\-Q\-E\-D\-\_\-base$<$ model\-\_\-t, value\-\_\-t $>$}{\pageref{a00518}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:model$<$ E\-W\-S\-M $>$}{\pageref{a00370}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:E\-W\-S\-M}{\pageref{a00211}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:model$<$ phi3 $>$}{\pageref{a00370}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:phi3}{\pageref{a00418}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:model$<$ phi34 $>$}{\pageref{a00370}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:phi34}{\pageref{a00419}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:model$<$ Q\-C\-D $>$}{\pageref{a00370}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:Q\-C\-D}{\pageref{a00449}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:model$<$ Q\-E\-D $>$}{\pageref{a00370}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:Q\-E\-D}{\pageref{a00451}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:model$<$ scalar\-\_\-\-Q\-E\-D $>$}{\pageref{a00370}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:scalar\-\_\-\-Q\-E\-D}{\pageref{a00487}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:model$<$ S\-M $>$}{\pageref{a00370}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:S\-M}{\pageref{a00498}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:model$<$ susy\-\_\-\-Q\-C\-D $>$}{\pageref{a00370}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:susy\-\_\-\-Q\-C\-D}{\pageref{a00515}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:model$<$ susy\-\_\-\-Q\-E\-D $>$}{\pageref{a00370}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:susy\-\_\-\-Q\-E\-D}{\pageref{a00517}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:model$<$ W\-Z\-M $>$}{\pageref{a00370}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:W\-Z\-M}{\pageref{a00579}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:model\-\_\-wrapper$<$ model\-\_\-t $>$}{\pageref{a00371}}{}
+\item \contentsline{section}{Camgen\-:\-:momentum\-\_\-channel$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$}{\pageref{a00372}}{}
+\item \contentsline{section}{Camgen\-:\-:momentum\-\_\-channel\-\_\-comp$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$}{\pageref{a00373}}{}
+\item \contentsline{section}{Camgen\-:\-:momentum\-\_\-copy$<$ model\-\_\-t1, model\-\_\-t2, D1, D2 $>$}{\pageref{a00374}}{}
+\item \contentsline{section}{Camgen\-:\-:momentum\-\_\-copy$<$ model\-\_\-t1, model\-\_\-t2, D, D $>$}{\pageref{a00375}}{}
+\item \contentsline{section}{Camgen\-:\-:multi\-\_\-plot$<$ M, N $>$}{\pageref{a00376}}{}
+\item \contentsline{section}{Camgen\-:\-:name\-\_\-comp$<$ value\-\_\-t $>$}{\pageref{a00377}}{}
+\item \contentsline{section}{Camgen\-:\-:name\-\_\-eq$<$ value\-\_\-t $>$}{\pageref{a00378}}{}
+\item \contentsline{section}{Camgen\-:\-:name\-\_\-neq$<$ value\-\_\-t $>$}{\pageref{a00379}}{}
+\item \contentsline{section}{Camgen\-:\-:name\-\_\-select$<$ value\-\_\-t $>$}{\pageref{a00380}}{}
+\item \contentsline{section}{Camgen\-:\-:numeric\-\_\-configuration$<$ T $>$}{\pageref{a00382}}{}
+\item \contentsline{section}{Camgen\-:\-:numeric\-\_\-configuration$<$ double $>$}{\pageref{a00383}}{}
+\item \contentsline{section}{Camgen\-:\-:parni\-\_\-bin$<$ value\-\_\-t, D, rng\-\_\-t, key\-\_\-t $>$}{\pageref{a00386}}{}
+\item \contentsline{section}{Camgen\-:\-:parni\-\_\-bin$<$ value\-\_\-t, 1, rng\-\_\-t $>$}{\pageref{a00386}}{}
+\item \contentsline{section}{Camgen\-:\-:parni\-\_\-bin$<$ value\-\_\-t, 1, rng\-\_\-t, key\-\_\-t $>$}{\pageref{a00387}}{}
+\item \contentsline{section}{Camgen\-:\-:parni\-\_\-bin\-\_\-iterator$<$ value\-\_\-t, D, rng\-\_\-t, key\-\_\-t $>$}{\pageref{a00388}}{}
+\item \contentsline{section}{Camgen\-:\-:parni\-\_\-leaf\-\_\-iterator$<$ value\-\_\-t, D, rng\-\_\-t, key\-\_\-t $>$}{\pageref{a00389}}{}
+\item \contentsline{section}{Camgen\-:\-:parni\-\_\-sub\-\_\-grid$<$ value\-\_\-t, D, rng\-\_\-t, key\-\_\-t $>$}{\pageref{a00390}}{}
+\item \contentsline{section}{Camgen\-:\-:parni\-\_\-sub\-\_\-grid$<$ value\-\_\-t, 1, rng\-\_\-t $>$}{\pageref{a00390}}{}
+\item \contentsline{section}{Camgen\-:\-:parni\-\_\-sub\-\_\-grid$<$ value\-\_\-type, 1, rng\-\_\-t, key\-\_\-t $>$}{\pageref{a00390}}{}
+\item \contentsline{section}{Camgen\-:\-:part\-\_\-arr\-\_\-comp$<$ model\-\_\-t, N, comp\-\_\-t $>$}{\pageref{a00392}}{}
+\item \contentsline{section}{Camgen\-:\-:part\-\_\-arr\-\_\-eq$<$ model\-\_\-t, N, comp\-\_\-t $>$}{\pageref{a00393}}{}
+\item \contentsline{section}{Camgen\-:\-:particle$<$ model\-\_\-t $>$}{\pageref{a00394}}{}
+\item \contentsline{section}{Camgen\-:\-:particle\-\_\-channel\-\_\-comp$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$}{\pageref{a00396}}{}
+\item \contentsline{section}{Camgen\-:\-:particle\-\_\-painter$<$ rep\-\_\-t, N $>$}{\pageref{a00398}}{}
+\item \contentsline{section}{Camgen\-:\-:particle\-\_\-painter$<$ rep\-\_\-t, 1 $>$}{\pageref{a00399}}{}
+\item \contentsline{section}{Camgen\-:\-:particle\-\_\-ps$<$ model\-\_\-t, dim, q $>$}{\pageref{a00400}}{}
+\item \contentsline{section}{Camgen\-:\-:partonic\-\_\-is$<$ model\-\_\-t, N, spacetime\-\_\-t $>$}{\pageref{a00406}}{}
+\item \contentsline{section}{Camgen\-:\-:Pauli\-\_\-basis}{\pageref{a00409}}{}
+\item \contentsline{section}{Camgen\-:\-:pdf\-\_\-wrapper}{\pageref{a00410}}{}
+\item \contentsline{section}{Camgen\-:\-:phase\-\_\-space\-\_\-copy$<$ model\-\_\-t1, model\-\_\-t2 $>$}{\pageref{a00412}}{}
+\item \contentsline{section}{Camgen\-:\-:phase\-\_\-space\-\_\-cut}{\pageref{a00413}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:event\-\_\-generator$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$}{\pageref{a00210}}{}
+\item \contentsline{section}{Camgen\-:\-:generator\-\_\-configuration$<$ model\-\_\-t $>$}{\pageref{a00237}}{}
+\item \contentsline{section}{Camgen\-:\-:phase\-\_\-space\-\_\-cut\-\_\-and}{\pageref{a00414}}{}
+\item \contentsline{section}{Camgen\-:\-:phase\-\_\-space\-\_\-cut\-\_\-not}{\pageref{a00415}}{}
+\item \contentsline{section}{Camgen\-:\-:phase\-\_\-space\-\_\-cut\-\_\-or}{\pageref{a00416}}{}
+\item \contentsline{section}{Camgen\-:\-:process\-\_\-generator$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$}{\pageref{a00430}}{}
+\item \contentsline{section}{Camgen\-:\-:ps\-\_\-generator$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out $>$}{\pageref{a00441}}{}
+\item \contentsline{section}{Camgen\-:\-:ps\-\_\-generator$<$ model\-\_\-t, 1, N\-\_\-out $>$}{\pageref{a00441}}{}
+\item \contentsline{section}{Camgen\-:\-:ps\-\_\-generator$<$ model\-\_\-t, 2, N\-\_\-out $>$}{\pageref{a00441}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:phase\-\_\-space\-\_\-generators}{\pageref{a00417}}{}
+\item \contentsline{section}{Camgen\-:\-:plot\-\_\-config}{\pageref{a00422}}{}
+\item \contentsline{section}{Camgen\-:\-:plot\-\_\-object}{\pageref{a00424}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:plot\-\_\-circle}{\pageref{a00421}}{}
+\item \contentsline{section}{Camgen\-:\-:plot\-\_\-ellipsis}{\pageref{a00423}}{}
+\item \contentsline{section}{Camgen\-:\-:plot\-\_\-rectangle}{\pageref{a00425}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:plot\-\_\-script}{\pageref{a00426}}{}
+\item \contentsline{section}{Camgen\-:\-:plot\-\_\-stream}{\pageref{a00427}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:data\-\_\-stream}{\pageref{a00117}}{}
+\item \contentsline{section}{Camgen\-:\-:function\-\_\-stream}{\pageref{a00231}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:polarised\-\_\-type}{\pageref{a00428}}{}
+\item \contentsline{section}{Camgen\-:\-:process$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out $>$}{\pageref{a00429}}{}
+\item \contentsline{section}{Camgen\-:\-:process\-\_\-tree$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out $>$}{\pageref{a00431}}{}
+\item \contentsline{section}{Camgen\-:\-:product\-\_\-type$<$ value\-\_\-t, type1, type2 $>$}{\pageref{a00432}}{}
+\item \contentsline{section}{Camgen\-:\-:product\-\_\-type$<$ value\-\_\-t, std\-:\-:complex$<$ value\-\_\-t $>$, std\-:\-:complex$<$ value\-\_\-t $>$ $>$}{\pageref{a00433}}{}
+\item \contentsline{section}{Camgen\-:\-:product\-\_\-type$<$ value\-\_\-t, std\-:\-:complex$<$ value\-\_\-t $>$, value\-\_\-t $>$}{\pageref{a00434}}{}
+\item \contentsline{section}{Camgen\-:\-:product\-\_\-type$<$ value\-\_\-t, value\-\_\-t, std\-:\-:complex$<$ value\-\_\-t $>$ $>$}{\pageref{a00435}}{}
+\item \contentsline{section}{Camgen\-:\-:product\-\_\-type$<$ value\-\_\-t, value\-\_\-t, value\-\_\-t $>$}{\pageref{a00436}}{}
+\item \contentsline{section}{Camgen\-:\-:ps\-\_\-factory$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t, spacetime\-\_\-t $>$}{\pageref{a00438}}{}
+\item \contentsline{section}{Camgen\-:\-:ps\-\_\-factory$<$ model\-\_\-t, 1, N\-\_\-out, rng\-\_\-t, Minkowski\-\_\-type $>$}{\pageref{a00439}}{}
+\item \contentsline{section}{Camgen\-:\-:ps\-\_\-factory$<$ model\-\_\-t, 2, N\-\_\-out, rng\-\_\-t, Minkowski\-\_\-type $>$}{\pageref{a00440}}{}
+\item \contentsline{section}{Camgen\-:\-:ps\-\_\-generator\-\_\-base$<$ model\-\_\-t $>$}{\pageref{a00442}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:event\-\_\-generator$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$}{\pageref{a00210}}{}
+\item \contentsline{section}{Camgen\-:\-:process\-\_\-generator$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$}{\pageref{a00430}}{}
+\item \contentsline{section}{Camgen\-:\-:ps\-\_\-generator$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out $>$}{\pageref{a00441}}{}
+\item \contentsline{section}{Camgen\-:\-:ps\-\_\-generator\-\_\-viewer$<$ model\-\_\-t $>$}{\pageref{a00444}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:generator\-\_\-configuration$<$ model\-\_\-t $>$}{\pageref{a00237}}{}
+\item \contentsline{section}{Camgen\-:\-:interface\-\_\-engine$<$ model\-\_\-t $>$}{\pageref{a00314}}{}
+\item \contentsline{section}{Camgen\-:\-:matrix\-\_\-element$<$ model\-\_\-t $>$}{\pageref{a00359}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:test\-\_\-generator$<$ model\-\_\-t $>$}{\pageref{a00529}}{}
+\item \contentsline{section}{Camgen\-:\-:ps\-\_\-generator$<$ model\-\_\-t, 1, N\-\_\-out $>$}{\pageref{a00441}}{}
+\item \contentsline{section}{Camgen\-:\-:ps\-\_\-generator$<$ model\-\_\-t, 2, N\-\_\-out $>$}{\pageref{a00441}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:ps\-\_\-generator\-\_\-factory$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$}{\pageref{a00443}}{}
+\item \contentsline{section}{Camgen\-:\-:ps\-\_\-tree$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$}{\pageref{a00445}}{}
+\item \contentsline{section}{Camgen\-:\-:R\-\_\-gauge$<$ model\-\_\-t $>$}{\pageref{a00453}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:R\-\_\-scalar\-\_\-gauge$<$ model\-\_\-t $>$}{\pageref{a00454}}{}
+\item \contentsline{section}{Camgen\-:\-:R\-\_\-vector\-\_\-gauge$<$ model\-\_\-t $>$}{\pageref{a00455}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:R\-\_\-xi\-\_\-gauge$<$ model\-\_\-t $>$}{\pageref{a00456}}{}
+\item \contentsline{section}{Camgen\-:\-:rambo$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t, spacetime\-\_\-t $>$}{\pageref{a00457}}{}
+\item \contentsline{section}{std\-:\-:random}{\pageref{a00459}}{}
+\item \contentsline{section}{Camgen\-:\-:random\-\_\-number\-\_\-stream$<$ value\-\_\-t, rng\-\_\-t $>$}{\pageref{a00460}}{}
+\item \contentsline{section}{Camgen\-:\-:rcarry}{\pageref{a00461}}{}
+\item \contentsline{section}{Camgen\-:\-:redundant$<$ T $>$}{\pageref{a00462}}{}
+\item \contentsline{section}{Camgen\-:\-:representation$<$ value\-\_\-t, type, dim, g\-\_\-rank $>$}{\pageref{a00463}}{}
+\item \contentsline{section}{Camgen\-:\-:representation$<$ value\-\_\-t, implementation$<$ value\-\_\-t $>$, 0, group\-\_\-t\-:\-:dimension $>$}{\pageref{a00463}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:fundamental\-\_\-rep$<$ group\-\_\-t $>$\-:\-:implementation$<$ value\-\_\-t $>$}{\pageref{a00287}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:representation$<$ value\-\_\-t, implementation$<$ value\-\_\-t $>$, dimension, dimension $>$}{\pageref{a00463}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:adjoint\-\_\-rep$<$ group\-\_\-t $>$\-:\-:implementation$<$ value\-\_\-t $>$}{\pageref{a00281}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:representation$<$ value\-\_\-t, implementation$<$ value\-\_\-t $>$, N, N $\ast$\-N-\/1 $>$}{\pageref{a00463}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:fundamental\-\_\-rep$<$ S\-U$<$ N $>$ $>$\-:\-:implementation$<$ value\-\_\-t $>$}{\pageref{a00285}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:reverse$<$ Feynrule\-\_\-t, ferm $>$}{\pageref{a00464}}{}
+\item \contentsline{section}{Camgen\-:\-:reverse\-\_\-conj\-\_\-left$<$ Feynrule\-\_\-t, ferm $>$}{\pageref{a00465}}{}
+\item \contentsline{section}{Camgen\-:\-:reverse\-\_\-conj\-\_\-right$<$ Feynrule\-\_\-t, ferm $>$}{\pageref{a00466}}{}
+\item \contentsline{section}{Camgen\-:\-:reverse\-\_\-parni\-\_\-bin\-\_\-iterator$<$ value\-\_\-t, D, rng\-\_\-t, key\-\_\-t $>$}{\pageref{a00467}}{}
+\item \contentsline{section}{Camgen\-:\-:reverse\-\_\-parni\-\_\-leaf\-\_\-iterator$<$ value\-\_\-t, D, rng\-\_\-t, key\-\_\-t $>$}{\pageref{a00468}}{}
+\item \contentsline{section}{Camgen\-:\-:reverse\-\_\-tensor\-\_\-iter$<$ T $>$}{\pageref{a00469}}{}
+\item \contentsline{section}{Camgen\-:\-:root\-\_\-type\-\_\-id$<$ value\-\_\-type, bits $>$}{\pageref{a00471}}{}
+\item \contentsline{section}{Camgen\-:\-:root\-\_\-type\-\_\-id$<$ bool, N $>$}{\pageref{a00472}}{}
+\item \contentsline{section}{Camgen\-:\-:root\-\_\-type\-\_\-id$<$ double, 64 $>$}{\pageref{a00473}}{}
+\item \contentsline{section}{Camgen\-:\-:root\-\_\-type\-\_\-id$<$ float, 32 $>$}{\pageref{a00474}}{}
+\item \contentsline{section}{Camgen\-:\-:root\-\_\-type\-\_\-id$<$ float, 64 $>$}{\pageref{a00475}}{}
+\item \contentsline{section}{Camgen\-:\-:root\-\_\-type\-\_\-id$<$ int, 16 $>$}{\pageref{a00476}}{}
+\item \contentsline{section}{Camgen\-:\-:root\-\_\-type\-\_\-id$<$ int, 32 $>$}{\pageref{a00477}}{}
+\item \contentsline{section}{Camgen\-:\-:root\-\_\-type\-\_\-id$<$ int, 64 $>$}{\pageref{a00478}}{}
+\item \contentsline{section}{Camgen\-:\-:s\-\_\-branching$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t, spacetime\-\_\-t $>$}{\pageref{a00479}}{}
+\item \contentsline{section}{Camgen\-:\-:s\-\_\-integrator$<$ value\-\_\-t, rng\-\_\-t $>$}{\pageref{a00483}}{}
+\item \contentsline{section}{Camgen\-:\-:scalar\-\_\-contraction$<$ model\-\_\-t $>$}{\pageref{a00484}}{}
+\item \contentsline{section}{Camgen\-:\-:scalar\-\_\-particle$<$ model\-\_\-t $>$}{\pageref{a00485}}{}
+\item \contentsline{section}{Camgen\-:\-:scalar\-\_\-wave\-\_\-function$<$ model\-\_\-t $>$}{\pageref{a00488}}{}
+\item \contentsline{section}{Camgen\-:\-:scale\-\_\-expression$<$ value\-\_\-t $>$}{\pageref{a00489}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:scale\-\_\-wrapper$<$ value\-\_\-t $>$}{\pageref{a00490}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:scale\-\_\-expression$<$ model\-\_\-t\-:\-:value\-\_\-type $>$}{\pageref{a00489}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:event\-\_\-generator$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$}{\pageref{a00210}}{}
+\item \contentsline{section}{Camgen\-:\-:generator\-\_\-configuration$<$ model\-\_\-t $>$}{\pageref{a00237}}{}
+\item \contentsline{section}{Camgen\-:\-:process\-\_\-generator$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$}{\pageref{a00430}}{}
+\item \contentsline{section}{Camgen\-:\-:ps\-\_\-generator$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out $>$}{\pageref{a00441}}{}
+\item \contentsline{section}{Camgen\-:\-:ps\-\_\-generator$<$ model\-\_\-t, 1, N\-\_\-out $>$}{\pageref{a00441}}{}
+\item \contentsline{section}{Camgen\-:\-:ps\-\_\-generator$<$ model\-\_\-t, 2, N\-\_\-out $>$}{\pageref{a00441}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:scale\-\_\-expression$<$ value\-\_\-type $>$}{\pageref{a00489}}{}
+\item \contentsline{section}{Camgen\-:\-:sff$<$ model\-\_\-t $>$}{\pageref{a00491}}{}
+\item \contentsline{section}{Camgen\-:\-:sff5$<$ model\-\_\-t $>$}{\pageref{a00492}}{}
+\item \contentsline{section}{Camgen\-:\-:sff\-L$<$ model\-\_\-t $>$}{\pageref{a00493}}{}
+\item \contentsline{section}{Camgen\-:\-:sff\-L\-R$<$ model\-\_\-t $>$}{\pageref{a00494}}{}
+\item \contentsline{section}{Camgen\-:\-:sff\-R$<$ model\-\_\-t $>$}{\pageref{a00495}}{}
+\item \contentsline{section}{Camgen\-:\-:sff\-V\-A$<$ model\-\_\-t $>$}{\pageref{a00496}}{}
+\item \contentsline{section}{Camgen\-:\-:singlet\-\_\-ps$<$ model\-\_\-t, cont\-\_\-hels $>$}{\pageref{a00497}}{}
+\item \contentsline{section}{Camgen\-:\-:spacetime$<$ value\-\_\-t, type, dim $>$}{\pageref{a00500}}{}
+\item \contentsline{section}{Camgen\-:\-:spacetime$<$ value\-\_\-t, implementation$<$ value\-\_\-t, 4 $>$, 4 $>$}{\pageref{a00500}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:Euclidean\-\_\-type\-:\-:implementation$<$ value\-\_\-t, 4 $>$}{\pageref{a00297}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:spacetime$<$ value\-\_\-t, implementation$<$ value\-\_\-t, dim $>$, dim $>$}{\pageref{a00500}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:Euclidean\-\_\-type\-:\-:implementation$<$ value\-\_\-t, dim $>$}{\pageref{a00295}}{}
+\item \contentsline{section}{Camgen\-:\-:Minkowski\-\_\-type\-:\-:implementation$<$ value\-\_\-t, dim $>$}{\pageref{a00292}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:spacetime$<$ value\-\_\-t, Minkowski\-\_\-type\-:\-:implementation$<$ value\-\_\-t, 4 $>$, 4 $>$}{\pageref{a00500}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:Minkowski\-\_\-type\-:\-:implementation$<$ value\-\_\-t, 4 $>$}{\pageref{a00296}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:spin}{\pageref{a00501}}{}
+\item \contentsline{section}{Camgen\-:\-:spinor\-\_\-contraction$<$ model\-\_\-t $>$}{\pageref{a00502}}{}
+\item \contentsline{section}{Camgen\-:\-:sss$<$ model\-\_\-t $>$}{\pageref{a00503}}{}
+\item \contentsline{section}{Camgen\-:\-:ssss$<$ model\-\_\-t $>$}{\pageref{a00504}}{}
+\item \contentsline{section}{Camgen\-:\-:ssvv$<$ model\-\_\-t $>$}{\pageref{a00505}}{}
+\item \contentsline{section}{Camgen\-:\-:static\-\_\-eq$<$ A, B $>$}{\pageref{a00506}}{}
+\item \contentsline{section}{Camgen\-:\-:static\-\_\-eq$<$ A, A $>$}{\pageref{a00507}}{}
+\item \contentsline{section}{Camgen\-:\-:static\-\_\-neq$<$ A, B $>$}{\pageref{a00508}}{}
+\item \contentsline{section}{Camgen\-:\-:static\-\_\-neq$<$ A, A $>$}{\pageref{a00509}}{}
+\item \contentsline{section}{Camgen\-:\-:interface\-\_\-base$<$ model\-\_\-t $>$\-:\-:stats\-\_\-entry}{\pageref{a00510}}{}
+\item \contentsline{section}{Camgen\-:\-:S\-U$<$ N $>$}{\pageref{a00511}}{}
+\item \contentsline{section}{Camgen\-:\-:chain\-\_\-interface$<$ model\-\_\-t $>$\-:\-:sub\-\_\-interface}{\pageref{a00512}}{}
+\item \contentsline{section}{Camgen\-:\-:sum\-\_\-branching$<$ spacetime\-\_\-t, 1, N\-\_\-out, rng\-\_\-t $>$}{\pageref{a00514}}{}
+\item \contentsline{section}{Camgen\-:\-:svv$<$ model\-\_\-t $>$}{\pageref{a00519}}{}
+\item \contentsline{section}{Camgen\-:\-:symtvv$<$ model\-\_\-t $>$}{\pageref{a00520}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:T$<$ rep\-\_\-t, I, J, K $>$}{\pageref{a00521}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:T$<$ fundamental\-\_\-rep$<$ S\-U$<$ N $>$ $>$, I, J, K $>$}{\pageref{a00522}}{}
+\item \contentsline{section}{Camgen\-:\-:t\-\_\-branching$<$ model\-\_\-t, N\-\_\-out, rng\-\_\-t, spacetime\-\_\-t $>$}{\pageref{a00523}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:T\-\_\-helper$<$ rep\-\_\-t, Feynrule\-\_\-t, I, J, K $>$}{\pageref{a00525}}{}
+\item \contentsline{section}{Camgen\-:\-:tensor$<$ T $>$}{\pageref{a00526}}{}
+\item \contentsline{section}{Camgen\-:\-:tensor$<$ std\-:\-:complex$<$ T $>$ $>$}{\pageref{a00527}}{}
+\item \contentsline{section}{Camgen\-:\-:tensor$<$ value\-\_\-type $>$}{\pageref{a00526}}{}
+\item \contentsline{section}{Camgen\-:\-:tensor\-\_\-iter$<$ T $>$}{\pageref{a00528}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:T\-T$<$ rep\-\_\-t, I, J, K, L $>$}{\pageref{a00530}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:T\-T$<$ fundamental\-\_\-rep$<$ S\-U$<$ N $>$ $>$, I, J, K, L $>$}{\pageref{a00531}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:T\-T\-\_\-contr$<$ rep\-\_\-t, I, J, K, L $>$}{\pageref{a00532}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:T\-T\-\_\-contr$<$ fundamental\-\_\-rep$<$ S\-U$<$ N $>$ $>$, I, J, K, L $>$}{\pageref{a00533}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:T\-T\-\_\-contr\-\_\-helper$<$ rep\-\_\-t, Feynrule\-\_\-t, I, J, K, L $>$}{\pageref{a00534}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:T\-T\-\_\-helper$<$ rep\-\_\-t, Feynrule\-\_\-t, I, J, K, L $>$}{\pageref{a00535}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:T\-T\-\_\-min$<$ rep\-\_\-t, I, J, K, L $>$}{\pageref{a00536}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:T\-T\-\_\-min$<$ fundamental\-\_\-rep$<$ S\-U$<$ N $>$ $>$, I, J, K, L $>$}{\pageref{a00537}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:T\-T\-\_\-min\-\_\-helper$<$ rep\-\_\-t, Feynrule\-\_\-t, I, J, K, L $>$}{\pageref{a00538}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:T\-T\-\_\-plus$<$ rep\-\_\-t, I, J, K, L $>$}{\pageref{a00539}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:T\-T\-\_\-plus$<$ fundamental\-\_\-rep$<$ S\-U$<$ N $>$ $>$, I, J, K, L $>$}{\pageref{a00540}}{}
+\item \contentsline{section}{Camgen\-:\-:colour\-\_\-tensor\-:\-:T\-T\-\_\-plus\-\_\-helper$<$ rep\-\_\-t, Feynrule\-\_\-t, I, J, K, L $>$}{\pageref{a00541}}{}
+\item \contentsline{section}{Camgen\-:\-:uniform\-\_\-colours$<$ value\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t, continuous\-\_\-cols $>$}{\pageref{a00543}}{}
+\item \contentsline{section}{Camgen\-:\-:uniform\-\_\-helicities$<$ value\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t, q $>$}{\pageref{a00546}}{}
+\item \contentsline{section}{Camgen\-:\-:unpack\-\_\-vertices$<$ Feynrule\-\_\-t1, Feynrule\-\_\-t2, N $>$}{\pageref{a00555}}{}
+\item \contentsline{section}{Camgen\-:\-:unpack\-\_\-vertices$<$ Feynrule\-\_\-t1, Feynrule\-\_\-t2, 1 $>$}{\pageref{a00556}}{}
+\item \contentsline{section}{Camgen\-:\-:unused}{\pageref{a00557}}{}
+\item \contentsline{section}{Camgen\-:\-:unused\-\_\-spacetime$<$ value\-\_\-t $>$}{\pageref{a00558}}{}
+\item std\-:\-:vector$<$ T $>$\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:bi\-\_\-partition}{\pageref{a00027}}{}
+\item \contentsline{section}{Camgen\-:\-:particle\-\_\-family$<$ model\-\_\-t $>$}{\pageref{a00397}}{}
+\item \contentsline{section}{Camgen\-:\-:particle\-\_\-sequence$<$ model\-\_\-t, N $>$}{\pageref{a00405}}{}
+\item \contentsline{section}{Camgen\-:\-:permutation$<$ container\-\_\-type, compare $>$}{\pageref{a00411}}{}
+\item \contentsline{section}{Camgen\-:\-:permutation$<$ std\-:\-:Camgen\-:\-:vector$<$ const Camgen\-:\-:particle $\ast$ $>$ $>$}{\pageref{a00411}}{}
+\end{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:vector$<$ T, N $>$}{\pageref{a00559}}{}
+\item \contentsline{section}{Camgen\-:\-:vector$<$ Camgen\-:\-:momentum\-\_\-channel $\ast$, 2 $>$}{\pageref{a00559}}{}
+\item \contentsline{section}{Camgen\-:\-:vector$<$ Camgen\-:\-:momentum\-\_\-channel $\ast$, N\-\_\-out $>$}{\pageref{a00559}}{}
+\item \contentsline{section}{Camgen\-:\-:vector$<$ Camgen\-:\-:particle\-\_\-channel $\ast$, 2 $>$}{\pageref{a00559}}{}
+\item \contentsline{section}{Camgen\-:\-:vector$<$ Camgen\-:\-:particle\-\_\-channel $\ast$, N\-\_\-out $>$}{\pageref{a00559}}{}
+\item \contentsline{section}{Camgen\-:\-:vector$<$ Camgen\-:\-:vector $\ast$, N $>$}{\pageref{a00559}}{}
+\item \contentsline{section}{Camgen\-:\-:vector$<$ const Camgen\-:\-:particle $\ast$, N\-\_\-in $>$}{\pageref{a00559}}{}
+\item \contentsline{section}{Camgen\-:\-:vector$<$ const Camgen\-:\-:particle $\ast$, N\-\_\-out $>$}{\pageref{a00559}}{}
+\item \contentsline{section}{Camgen\-:\-:vector$<$ const Camgen\-:\-:particle$<$ model\-\_\-t $>$ $\ast$, N $>$}{\pageref{a00559}}{}
+\item \contentsline{section}{Camgen\-:\-:vector$<$ const value\-\_\-type $\ast$, N $>$}{\pageref{a00559}}{}
+\item \contentsline{section}{Camgen\-:\-:vector$<$ int, N $>$}{\pageref{a00559}}{}
+\item \contentsline{section}{Camgen\-:\-:vector$<$ int, N\-\_\-external $>$}{\pageref{a00559}}{}
+\item \contentsline{section}{Camgen\-:\-:vector$<$ int, N\-\_\-tot $>$}{\pageref{a00559}}{}
+\item \contentsline{section}{Camgen\-:\-:vector$<$ key\-\_\-type, D $>$}{\pageref{a00559}}{}
+\item \contentsline{section}{Camgen\-:\-:vector$<$ momentum\-\_\-type, N\-\_\-external $>$}{\pageref{a00559}}{}
+\item \contentsline{section}{Camgen\-:\-:vector$<$ object\-\_\-type $\ast$, N $>$}{\pageref{a00559}}{}
+\item \contentsline{section}{Camgen\-:\-:vector$<$ r\-\_\-value\-\_\-type, model\-\_\-t\-:\-:dimension $>$}{\pageref{a00559}}{}
+\item \contentsline{section}{Camgen\-:\-:vector$<$ r\-\_\-value\-\_\-type, N\-\_\-external $>$}{\pageref{a00559}}{}
+\item \contentsline{section}{Camgen\-:\-:vector$<$ size\-\_\-type, N\-\_\-external $>$}{\pageref{a00559}}{}
+\item \contentsline{section}{Camgen\-:\-:vector$<$ std\-:\-:Camgen\-:\-:vector$<$ size\-\_\-type $>$, N\-\_\-tot $>$}{\pageref{a00559}}{}
+\item \contentsline{section}{Camgen\-:\-:vector$<$ std\-:\-:size\-\_\-t, N\-\_\-external $>$}{\pageref{a00559}}{}
+\item \contentsline{section}{Camgen\-:\-:vector$<$ T, 0 $>$}{\pageref{a00560}}{}
+\item \contentsline{section}{Camgen\-:\-:vector$<$ typename model\-\_\-t\-:\-:value\-\_\-type, model\-\_\-t\-:\-:dimension $>$}{\pageref{a00559}}{}
+\item \contentsline{section}{Camgen\-:\-:vector$<$ value\-\_\-t, 2 $\ast$\-N\-\_\-c $>$}{\pageref{a00559}}{}
+\item \contentsline{section}{Camgen\-:\-:vector$<$ value\-\_\-t, N\-\_\-c $\ast$\-N\-\_\-c-\/1 $>$}{\pageref{a00559}}{}
+\item \contentsline{section}{Camgen\-:\-:vector$<$ value\-\_\-type, 2 $>$}{\pageref{a00559}}{}
+\item \contentsline{section}{Camgen\-:\-:vector$<$ value\-\_\-type, N $>$}{\pageref{a00559}}{}
+\item \contentsline{section}{Camgen\-:\-:vector$<$ wave\-\_\-func, 0 $>$}{\pageref{a00559}}{}
+\item \contentsline{section}{Camgen\-:\-:vector$<$ wave\-\_\-func, 1 $>$}{\pageref{a00559}}{}
+\item \contentsline{section}{Camgen\-:\-:vector\-\_\-contraction$<$ model\-\_\-t $>$}{\pageref{a00561}}{}
+\item \contentsline{section}{Camgen\-:\-:vector\-\_\-particle$<$ model\-\_\-t, gauge, spacetime\-\_\-t, dim $>$}{\pageref{a00562}}{}
+\item \contentsline{section}{Camgen\-:\-:vector\-\_\-particle$<$ model\-\_\-t, gauge, Minkowski\-\_\-type, 4 $>$}{\pageref{a00563}}{}
+\item \contentsline{section}{Camgen\-:\-:vector\-\_\-wave\-\_\-function$<$ model\-\_\-t, dim, spacetime\-\_\-t, Dirac\-\_\-t $>$}{\pageref{a00564}}{}
+\item \contentsline{section}{Camgen\-:\-:vertex$<$ model\-\_\-t $>$}{\pageref{a00565}}{}
+\item \contentsline{section}{Camgen\-:\-:vertex\-\_\-comp$<$ model\-\_\-t $>$}{\pageref{a00566}}{}
+\item \contentsline{section}{Camgen\-:\-:vff$<$ model\-\_\-t $>$}{\pageref{a00567}}{}
+\item \contentsline{section}{Camgen\-:\-:vff5$<$ model\-\_\-t $>$}{\pageref{a00568}}{}
+\item \contentsline{section}{Camgen\-:\-:vff\-L$<$ model\-\_\-t $>$}{\pageref{a00569}}{}
+\item \contentsline{section}{Camgen\-:\-:vff\-L\-R$<$ model\-\_\-t $>$}{\pageref{a00570}}{}
+\item \contentsline{section}{Camgen\-:\-:vff\-R$<$ model\-\_\-t $>$}{\pageref{a00571}}{}
+\item \contentsline{section}{Camgen\-:\-:vff\-V\-A$<$ model\-\_\-t $>$}{\pageref{a00572}}{}
+\item \contentsline{section}{Camgen\-:\-:vss$<$ model\-\_\-t $>$}{\pageref{a00573}}{}
+\item \contentsline{section}{Camgen\-:\-:vvv$<$ model\-\_\-t $>$}{\pageref{a00574}}{}
+\item \contentsline{section}{Camgen\-:\-:vvvv$<$ model\-\_\-t $>$}{\pageref{a00575}}{}
+\item \contentsline{section}{Camgen\-:\-:weight\-\_\-histogrammer$<$ value\-\_\-t $>$}{\pageref{a00576}}{}
+\item \contentsline{section}{Camgen\-:\-:weight\-\_\-histogrammer$<$ model\-\_\-t\-:\-:value\-\_\-type $>$}{\pageref{a00576}}{}
+\item \contentsline{section}{Camgen\-:\-:weight\-\_\-histogrammer$<$ value\-\_\-type $>$}{\pageref{a00576}}{}
+\item \contentsline{section}{Camgen\-:\-:Weyl\-\_\-basis}{\pageref{a00577}}{}
+\item \contentsline{section}{Camgen\-:\-:width\-\_\-scheme$<$ model\-\_\-t $>$}{\pageref{a00578}}{}
+\begin{DoxyCompactList}
+\item \contentsline{section}{Camgen\-:\-:anti\-\_\-fermion\-\_\-propagator$<$ model\-\_\-t $>$}{\pageref{a00009}}{}
+\item \contentsline{section}{Camgen\-:\-:fermion\-\_\-propagator$<$ model\-\_\-t $>$}{\pageref{a00219}}{}
+\item \contentsline{section}{Camgen\-:\-:Feynman\-\_\-gauge$<$ model\-\_\-t $>$}{\pageref{a00221}}{}
+\item \contentsline{section}{Camgen\-:\-:R\-\_\-scalar\-\_\-gauge$<$ model\-\_\-t $>$}{\pageref{a00454}}{}
+\item \contentsline{section}{Camgen\-:\-:R\-\_\-vector\-\_\-gauge$<$ model\-\_\-t $>$}{\pageref{a00455}}{}
+\item \contentsline{section}{Camgen\-:\-:scalar\-\_\-propagator$<$ model\-\_\-t $>$}{\pageref{a00486}}{}
+\item \contentsline{section}{Camgen\-:\-:unitary\-\_\-gauge$<$ model\-\_\-t $>$}{\pageref{a00554}}{}
+\end{DoxyCompactList}
+\end{DoxyCompactList}

@@ -1,0 +1,156 @@
+\hypertarget{a00322}{\section{Camgen\-:\-:L\-H\-\_\-interface$<$ model\-\_\-t, N\-\_\-out $>$ Class Template Reference}
+\label{a00322}\index{Camgen\-::\-L\-H\-\_\-interface$<$ model\-\_\-t, N\-\_\-out $>$@{Camgen\-::\-L\-H\-\_\-interface$<$ model\-\_\-t, N\-\_\-out $>$}}
+}
+
+
+\hyperlink{a00070}{C\-M\-\_\-algorithm} subclass with Les Houches I\-O support.  
+
+
+
+
+{\ttfamily \#include $<$L\-H\-\_\-if.\-h$>$}
+
+Inheritance diagram for Camgen\-:\-:L\-H\-\_\-interface$<$ model\-\_\-t, N\-\_\-out $>$\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{a00322}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00322_a5cb39be90d6edeec70a0c78327b1cec8}{L\-H\-\_\-interface} (std\-::size\-\_\-t n=0)
+\begin{DoxyCompactList}\small\item\em Trivial constructor. \end{DoxyCompactList}\item 
+\hyperlink{a00322_aa0b7c09c288d4823915af9032ad92a82}{L\-H\-\_\-interface} (const std\-::string \&proc, std\-::size\-\_\-t n=0)
+\begin{DoxyCompactList}\small\item\em Constructor specifying the process. \end{DoxyCompactList}\item 
+\hypertarget{a00322_af0b374043930699a78a0dec0c77998cf}{void \hyperlink{a00322_af0b374043930699a78a0dec0c77998cf}{set\-\_\-beams\-\_\-ids} (int i1, int i2)}\label{a00322_af0b374043930699a78a0dec0c77998cf}
+
+\begin{DoxyCompactList}\small\item\em Beam P\-D\-G id input (default values\-: 0). \end{DoxyCompactList}\item 
+\hypertarget{a00322_a385a610b35ae425024a6727eef94f000}{void \hyperlink{a00322_a385a610b35ae425024a6727eef94f000}{set\-\_\-\-L\-H\-C\-\_\-beams} ()}\label{a00322_a385a610b35ae425024a6727eef94f000}
+
+\begin{DoxyCompactList}\small\item\em Proton-\/proton beam input. \end{DoxyCompactList}\item 
+\hypertarget{a00322_afaf2108e359fb46a83a5d743fb1ff36e}{void \hyperlink{a00322_afaf2108e359fb46a83a5d743fb1ff36e}{set\-\_\-tevatron\-\_\-beams} ()}\label{a00322_afaf2108e359fb46a83a5d743fb1ff36e}
+
+\begin{DoxyCompactList}\small\item\em Proton-\/antiproton beam input. \end{DoxyCompactList}\item 
+\hypertarget{a00322_a3b34726638267a141d17d464f5228740}{void \hyperlink{a00322_a3b34726638267a141d17d464f5228740}{set\-\_\-\-L\-E\-P\-\_\-beams} ()}\label{a00322_a3b34726638267a141d17d464f5228740}
+
+\begin{DoxyCompactList}\small\item\em Electron-\/positron beam input. \end{DoxyCompactList}\item 
+\hypertarget{a00322_a3e637e38356d8c83397d0301e7d98d30}{void \hyperlink{a00322_a3e637e38356d8c83397d0301e7d98d30}{set\-\_\-beam\-\_\-energies} (const r\-\_\-value\-\_\-type \&E1, const r\-\_\-value\-\_\-type \&E2)}\label{a00322_a3e637e38356d8c83397d0301e7d98d30}
+
+\begin{DoxyCompactList}\small\item\em Beam energies input (default values\-: 0). \end{DoxyCompactList}\item 
+\hypertarget{a00322_a3ea0390cb9cf9a577120a88a50487f32}{void \hyperlink{a00322_a3ea0390cb9cf9a577120a88a50487f32}{set\-\_\-pdf\-\_\-authors} (int n1, int n2)}\label{a00322_a3ea0390cb9cf9a577120a88a50487f32}
+
+\begin{DoxyCompactList}\small\item\em pdf authors input (default values\-: -\/1). \end{DoxyCompactList}\item 
+\hypertarget{a00322_a5f371b21240ffb0ea90a2d265dc15370}{void \hyperlink{a00322_a5f371b21240ffb0ea90a2d265dc15370}{set\-\_\-pdf\-\_\-cernlib\-\_\-codes} (int n1, int n2)}\label{a00322_a5f371b21240ffb0ea90a2d265dc15370}
+
+\begin{DoxyCompactList}\small\item\em pdf authors cernlib code input (default values\-: -\/1). \end{DoxyCompactList}\item 
+\hypertarget{a00322_ad54f6f0859e844f1c872def0d2ddfa1c}{\hyperlink{a00322_ad54f6f0859e844f1c872def0d2ddfa1c}{$\sim$\-L\-H\-\_\-interface} ()}\label{a00322_ad54f6f0859e844f1c872def0d2ddfa1c}
+
+\begin{DoxyCompactList}\small\item\em Destructor, closing open files. \end{DoxyCompactList}\item 
+\hypertarget{a00322_a07a634c0334ab3c2b61f212dc3f81bee}{void \hyperlink{a00322_a07a634c0334ab3c2b61f212dc3f81bee}{load} ()}\label{a00322_a07a634c0334ab3c2b61f212dc3f81bee}
+
+\begin{DoxyCompactList}\small\item\em Loads the inserted processes and sorts them by P\-D\-G-\/id. \end{DoxyCompactList}\item 
+\hypertarget{a00322_a47ab5ff8d75600e11b6117ce1da39079}{void \hyperlink{a00322_a47ab5ff8d75600e11b6117ce1da39079}{read} (const char $\ast$fname)}\label{a00322_a47ab5ff8d75600e11b6117ce1da39079}
+
+\begin{DoxyCompactList}\small\item\em Starts reading a Les-\/\-Houches event file. \end{DoxyCompactList}\item 
+\hypertarget{a00322_aabf04004e59b40bbc1df35d85dc177f4}{void \hyperlink{a00322_aabf04004e59b40bbc1df35d85dc177f4}{write} (const char $\ast$fname)}\label{a00322_aabf04004e59b40bbc1df35d85dc177f4}
+
+\begin{DoxyCompactList}\small\item\em Starts writing a Les-\/\-Houches event file. \end{DoxyCompactList}\item 
+bool \hyperlink{a00322_a5ab609c33cbbf9095f67903f84a6af96}{read\-\_\-event} ()
+\begin{DoxyCompactList}\small\item\em Reads the next event in the file. \end{DoxyCompactList}\item 
+bool \hyperlink{a00322_afa0fa10eaaae4381a48909c00cbdb767}{write\-\_\-event} ()
+\begin{DoxyCompactList}\small\item\em Writes the current event to the Les-\/\-Houches event file. \end{DoxyCompactList}\item 
+void \hyperlink{a00322_a96712f08c069ed72d2de8364fb740dee}{input\-\_\-event} ()
+\begin{DoxyCompactList}\small\item\em Inserts the event in the vertex tree. \end{DoxyCompactList}\item 
+void \hyperlink{a00322_a736d8187bd61e9136a65c6907ec0dfd1}{rescale\-\_\-phase\-\_\-space} ()
+\begin{DoxyCompactList}\small\item\em Function boosting and rescaling the inputted momenta to make them on-\/shell. \end{DoxyCompactList}\item 
+\hypertarget{a00322_a628289bd16fc63e510edea398ea97774}{void \hyperlink{a00322_a628289bd16fc63e510edea398ea97774}{set\-\_\-\-N\-R\-\_\-iterations} (size\-\_\-type n)}\label{a00322_a628289bd16fc63e510edea398ea97774}
+
+\begin{DoxyCompactList}\small\item\em Determines the number of Newton-\/\-Raphson iterations for obtaining momentum scale factor. \end{DoxyCompactList}\item 
+\hypertarget{a00322_a02877f2ccb7860e06d2caa77afec4015}{const r\-\_\-value\-\_\-type \& \hyperlink{a00322_a02877f2ccb7860e06d2caa77afec4015}{get\-\_\-scaling\-\_\-weight} () const }\label{a00322_a02877f2ccb7860e06d2caa77afec4015}
+
+\begin{DoxyCompactList}\small\item\em Returns the extra weight due the rescale\-\_\-phase\-\_\-space call. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class model\-\_\-t, std\-::size\-\_\-t N\-\_\-out$>$class Camgen\-::\-L\-H\-\_\-interface$<$ model\-\_\-t, N\-\_\-out $>$}
+
+\hyperlink{a00070}{C\-M\-\_\-algorithm} subclass with Les Houches I\-O support. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00322_a5cb39be90d6edeec70a0c78327b1cec8}{\index{Camgen\-::\-L\-H\-\_\-interface@{Camgen\-::\-L\-H\-\_\-interface}!L\-H\-\_\-interface@{L\-H\-\_\-interface}}
+\index{L\-H\-\_\-interface@{L\-H\-\_\-interface}!Camgen::LH_interface@{Camgen\-::\-L\-H\-\_\-interface}}
+\subsubsection[{L\-H\-\_\-interface}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t , std\-::size\-\_\-t N\-\_\-out$>$ {\bf Camgen\-::\-L\-H\-\_\-interface}$<$ model\-\_\-t, N\-\_\-out $>$\-::{\bf L\-H\-\_\-interface} (
+\begin{DoxyParamCaption}
+\item[{std\-::size\-\_\-t}]{n = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{a00322_a5cb39be90d6edeec70a0c78327b1cec8}
+
+
+Trivial constructor. 
+
+The optional integer argument denotes the external particle chosen by the algorithm as the final current in the recursion. The amplitudes should not depend on this choice, unless there is a bug in Camgen, or the model violates C\-P\-T invariance. \hypertarget{a00322_aa0b7c09c288d4823915af9032ad92a82}{\index{Camgen\-::\-L\-H\-\_\-interface@{Camgen\-::\-L\-H\-\_\-interface}!L\-H\-\_\-interface@{L\-H\-\_\-interface}}
+\index{L\-H\-\_\-interface@{L\-H\-\_\-interface}!Camgen::LH_interface@{Camgen\-::\-L\-H\-\_\-interface}}
+\subsubsection[{L\-H\-\_\-interface}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t , std\-::size\-\_\-t N\-\_\-out$>$ {\bf Camgen\-::\-L\-H\-\_\-interface}$<$ model\-\_\-t, N\-\_\-out $>$\-::{\bf L\-H\-\_\-interface} (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{proc, }
+\item[{std\-::size\-\_\-t}]{n = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{a00322_aa0b7c09c288d4823915af9032ad92a82}
+
+
+Constructor specifying the process. 
+
+The first argument should be of the form \char`\"{}phi1,...,phi\-N\-\_\-in $>$
+psi1,...,psi\-N\-\_\-out\char`\"{}, and the second argument is the optional final current (see trivial constructor). 
+
+\subsection{Member Function Documentation}
+\hypertarget{a00322_a96712f08c069ed72d2de8364fb740dee}{\index{Camgen\-::\-L\-H\-\_\-interface@{Camgen\-::\-L\-H\-\_\-interface}!input\-\_\-event@{input\-\_\-event}}
+\index{input\-\_\-event@{input\-\_\-event}!Camgen::LH_interface@{Camgen\-::\-L\-H\-\_\-interface}}
+\subsubsection[{input\-\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t , std\-::size\-\_\-t N\-\_\-out$>$ void {\bf Camgen\-::\-L\-H\-\_\-interface}$<$ model\-\_\-t, N\-\_\-out $>$\-::input\-\_\-event (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{a00322_a96712f08c069ed72d2de8364fb740dee}
+
+
+Inserts the event in the vertex tree. 
+
+Starts by searching the internal process list for the most recently read process from the L\-H file. If this process is not found, will automatically an entry in the process list and construct a corresponding vertex tree. Then, inserts the momenta and colours in the phase space instances of the external particles. \hypertarget{a00322_a5ab609c33cbbf9095f67903f84a6af96}{\index{Camgen\-::\-L\-H\-\_\-interface@{Camgen\-::\-L\-H\-\_\-interface}!read\-\_\-event@{read\-\_\-event}}
+\index{read\-\_\-event@{read\-\_\-event}!Camgen::LH_interface@{Camgen\-::\-L\-H\-\_\-interface}}
+\subsubsection[{read\-\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t , std\-::size\-\_\-t N\-\_\-out$>$ bool {\bf Camgen\-::\-L\-H\-\_\-interface}$<$ model\-\_\-t, N\-\_\-out $>$\-::read\-\_\-event (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{a00322_a5ab609c33cbbf9095f67903f84a6af96}
+
+
+Reads the next event in the file. 
+
+Returns a boolean denoting whether the read-\/in was succesful. \hypertarget{a00322_a736d8187bd61e9136a65c6907ec0dfd1}{\index{Camgen\-::\-L\-H\-\_\-interface@{Camgen\-::\-L\-H\-\_\-interface}!rescale\-\_\-phase\-\_\-space@{rescale\-\_\-phase\-\_\-space}}
+\index{rescale\-\_\-phase\-\_\-space@{rescale\-\_\-phase\-\_\-space}!Camgen::LH_interface@{Camgen\-::\-L\-H\-\_\-interface}}
+\subsubsection[{rescale\-\_\-phase\-\_\-space}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t , std\-::size\-\_\-t N\-\_\-out$>$ void {\bf Camgen\-::\-L\-H\-\_\-interface}$<$ model\-\_\-t, N\-\_\-out $>$\-::rescale\-\_\-phase\-\_\-space (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{a00322_a736d8187bd61e9136a65c6907ec0dfd1}
+
+
+Function boosting and rescaling the inputted momenta to make them on-\/shell. 
+
+For events with effective quark masses etc., this routine recales the input momenta to match with Camgen's internal masses while retaining momentum conservation. As a result, the event attains an extra weight, which is accessed by the get\-\_\-scaling\-\_\-weight function. \hypertarget{a00322_afa0fa10eaaae4381a48909c00cbdb767}{\index{Camgen\-::\-L\-H\-\_\-interface@{Camgen\-::\-L\-H\-\_\-interface}!write\-\_\-event@{write\-\_\-event}}
+\index{write\-\_\-event@{write\-\_\-event}!Camgen::LH_interface@{Camgen\-::\-L\-H\-\_\-interface}}
+\subsubsection[{write\-\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t , std\-::size\-\_\-t N\-\_\-out$>$ bool {\bf Camgen\-::\-L\-H\-\_\-interface}$<$ model\-\_\-t, N\-\_\-out $>$\-::write\-\_\-event (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{a00322_afa0fa10eaaae4381a48909c00cbdb767}
+
+
+Writes the current event to the Les-\/\-Houches event file. 
+
+Returns a boolean denoting whether the output was succesful. 
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+include/\-Camgen/\hyperlink{a00658}{L\-H\-\_\-if.\-h}\end{DoxyCompactItemize}

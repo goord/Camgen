@@ -1,0 +1,116 @@
+\hypertarget{a00542}{\section{Camgen\-:\-:uni\-\_\-s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t $>$ Class Template Reference}
+\label{a00542}\index{Camgen\-::uni\-\_\-s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t $>$@{Camgen\-::uni\-\_\-s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t $>$}}
+}
+
+
+Uniform invariant mass generating momentum channel class.  
+
+
+
+
+{\ttfamily \#include $<$uni\-\_\-s.\-h$>$}
+
+Inheritance diagram for Camgen\-:\-:uni\-\_\-s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t $>$\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{a00542}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00362_a3353150105036deac9bde097cbf1d8af}{value\-\_\-type} \hyperlink{a00542_a48b8945b9a0ba5e96a69e0ba911dada3}{map} (const \hyperlink{a00362_a3353150105036deac9bde097cbf1d8af}{value\-\_\-type} \&r) const 
+\begin{DoxyCompactList}\small\item\em Maps the first argument, a random number in \mbox{[}0,1\mbox{]} to an invariant mass. \end{DoxyCompactList}\item 
+\hyperlink{a00362_a3353150105036deac9bde097cbf1d8af}{value\-\_\-type} \hyperlink{a00542_ab0e3818a5a0a138d7c3f9b86faf23355}{inverse\-\_\-map} (const \hyperlink{a00362_a3353150105036deac9bde097cbf1d8af}{value\-\_\-type} \&\hyperlink{a00482_a8bf50336c0da12a27a71eb1154a7012e}{s}) const 
+\begin{DoxyCompactList}\small\item\em Maps the argument, an invariant mass-\/squared between \mbox{[}s-\/,s+\mbox{]}, to a random number in \mbox{[}0,1\mbox{]}. \end{DoxyCompactList}\item 
+\hypertarget{a00542_a17be9df73d42dd17e6b5fb5431d9d699}{\hyperlink{a00362_a3353150105036deac9bde097cbf1d8af}{value\-\_\-type} \hyperlink{a00542_a17be9df73d42dd17e6b5fb5431d9d699}{integrate\-\_\-with} (const \hyperlink{a00482}{s\-\_\-generator}$<$ value\-\_\-t, rng\-\_\-t $>$ $\ast$gen, const \hyperlink{a00362_a3353150105036deac9bde097cbf1d8af}{value\-\_\-type} \&sqrts) const }\label{a00542_a17be9df73d42dd17e6b5fb5431d9d699}
+
+\begin{DoxyCompactList}\small\item\em Double-\/dispatch integrator functions. \end{DoxyCompactList}\item 
+\hyperlink{a00542}{uni\-\_\-s\-\_\-generator}$<$ value\-\_\-t, rng\-\_\-t $>$ $\ast$ \hyperlink{a00542_a30f50dbbc324c15404d4babc66a2f7f2}{clone} () const 
+\begin{DoxyCompactList}\small\item\em Instance cloning method. \end{DoxyCompactList}\item 
+\hypertarget{a00542_a5ab8647c174e21b895715df38dc24263}{std\-::string \hyperlink{a00542_a5ab8647c174e21b895715df38dc24263}{type} () const }\label{a00542_a5ab8647c174e21b895715df38dc24263}
+
+\begin{DoxyCompactList}\small\item\em Returns a string containing the type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00542_af2368e5b136a0d4896eefddd2c3bcc5e}{void \hyperlink{a00542_af2368e5b136a0d4896eefddd2c3bcc5e}{refresh\-\_\-norm} ()}\label{a00542_af2368e5b136a0d4896eefddd2c3bcc5e}
+
+\begin{DoxyCompactList}\small\item\em Evaluates the (private) normalisation factor. \end{DoxyCompactList}\item 
+\hyperlink{a00362_a3353150105036deac9bde097cbf1d8af}{value\-\_\-type} \hyperlink{a00542_a6ffa43dc76a122ac8391e9e2d89b932e}{get\-\_\-fast\-\_\-weight} () const 
+\begin{DoxyCompactList}\small\item\em Returns the weight of the current configuration without bound-\/ or norm-\/checking. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class value\-\_\-t, class rng\-\_\-t$>$class Camgen\-::uni\-\_\-s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t $>$}
+
+Uniform invariant mass generating momentum channel class. 
+
+\subsection{Member Function Documentation}
+\hypertarget{a00542_a30f50dbbc324c15404d4babc66a2f7f2}{\index{Camgen\-::uni\-\_\-s\-\_\-generator@{Camgen\-::uni\-\_\-s\-\_\-generator}!clone@{clone}}
+\index{clone@{clone}!Camgen::uni_s_generator@{Camgen\-::uni\-\_\-s\-\_\-generator}}
+\subsubsection[{clone}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\-\_\-t , class rng\-\_\-t $>$ {\bf uni\-\_\-s\-\_\-generator}$<$value\-\_\-t,rng\-\_\-t$>$$\ast$ {\bf Camgen\-::uni\-\_\-s\-\_\-generator}$<$ value\-\_\-t, rng\-\_\-t $>$\-::clone (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00542_a30f50dbbc324c15404d4babc66a2f7f2}
+
+
+Instance cloning method. 
+
+Returns the N\-U\-L\-L pointer if not overridden. 
+
+Reimplemented from \hyperlink{a00482_afd0da9539aa5f4e672e05e146fb09258}{Camgen\-::s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t $>$}.
+
+\hypertarget{a00542_a6ffa43dc76a122ac8391e9e2d89b932e}{\index{Camgen\-::uni\-\_\-s\-\_\-generator@{Camgen\-::uni\-\_\-s\-\_\-generator}!get\-\_\-fast\-\_\-weight@{get\-\_\-fast\-\_\-weight}}
+\index{get\-\_\-fast\-\_\-weight@{get\-\_\-fast\-\_\-weight}!Camgen::uni_s_generator@{Camgen\-::uni\-\_\-s\-\_\-generator}}
+\subsubsection[{get\-\_\-fast\-\_\-weight}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\-\_\-t , class rng\-\_\-t $>$ {\bf value\-\_\-type} {\bf Camgen\-::uni\-\_\-s\-\_\-generator}$<$ value\-\_\-t, rng\-\_\-t $>$\-::get\-\_\-fast\-\_\-weight (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{a00542_a6ffa43dc76a122ac8391e9e2d89b932e}
+
+
+Returns the weight of the current configuration without bound-\/ or norm-\/checking. 
+
+
+
+Implements \hyperlink{a00482_a1c77ba845ada06f770c0b80fe03354fe}{Camgen\-::s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t $>$}.
+
+\hypertarget{a00542_ab0e3818a5a0a138d7c3f9b86faf23355}{\index{Camgen\-::uni\-\_\-s\-\_\-generator@{Camgen\-::uni\-\_\-s\-\_\-generator}!inverse\-\_\-map@{inverse\-\_\-map}}
+\index{inverse\-\_\-map@{inverse\-\_\-map}!Camgen::uni_s_generator@{Camgen\-::uni\-\_\-s\-\_\-generator}}
+\subsubsection[{inverse\-\_\-map}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\-\_\-t , class rng\-\_\-t $>$ {\bf value\-\_\-type} {\bf Camgen\-::uni\-\_\-s\-\_\-generator}$<$ value\-\_\-t, rng\-\_\-t $>$\-::inverse\-\_\-map (
+\begin{DoxyParamCaption}
+\item[{const {\bf value\-\_\-type} \&}]{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00542_ab0e3818a5a0a138d7c3f9b86faf23355}
+
+
+Maps the argument, an invariant mass-\/squared between \mbox{[}s-\/,s+\mbox{]}, to a random number in \mbox{[}0,1\mbox{]}. 
+
+
+
+Implements \hyperlink{a00482_a5853a3d32e5a0901985040914f32141c}{Camgen\-::s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t $>$}.
+
+\hypertarget{a00542_a48b8945b9a0ba5e96a69e0ba911dada3}{\index{Camgen\-::uni\-\_\-s\-\_\-generator@{Camgen\-::uni\-\_\-s\-\_\-generator}!map@{map}}
+\index{map@{map}!Camgen::uni_s_generator@{Camgen\-::uni\-\_\-s\-\_\-generator}}
+\subsubsection[{map}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\-\_\-t , class rng\-\_\-t $>$ {\bf value\-\_\-type} {\bf Camgen\-::uni\-\_\-s\-\_\-generator}$<$ value\-\_\-t, rng\-\_\-t $>$\-::map (
+\begin{DoxyParamCaption}
+\item[{const {\bf value\-\_\-type} \&}]{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00542_a48b8945b9a0ba5e96a69e0ba911dada3}
+
+
+Maps the first argument, a random number in \mbox{[}0,1\mbox{]} to an invariant mass. 
+
+
+
+Implements \hyperlink{a00482_a2b34a08ad07cf08d3d91fc6edb91eb0b}{Camgen\-::s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t $>$}.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+include/\-Camgen/\hyperlink{a00735}{s\-\_\-gen.\-h}\item 
+include/\-Camgen/uni\-\_\-s.\-h\end{DoxyCompactItemize}

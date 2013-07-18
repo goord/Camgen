@@ -1,0 +1,641 @@
+//
+// This file is part of the CAMGEN library.
+// Copyright (C) 2013 Gijs van den Oord.
+// CAMGEN is licensed under the GNU GPL, version 2,
+// see COPYING for details.
+//
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* Testing facility for momentum channel sampling algorithms.                     *
+*                                                                                *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include <iostream>
+#include <Camgen/plt_config.h>
+#include <Camgen/Minkowski.h>
+#include <Camgen/stdrand.h>
+#include <Camgen/histogram.h>
+#include <Camgen/norm_gen.h>
+#include <Camgen/uni_sphere.h>
+#include <Camgen/s_gen.h>
+
+using namespace Camgen;
+
+int main()
+{
+    std::cout<<"-------------------------------------------------------------------------"<<std::endl;
+    std::cout<<"testing channel generation algorithms...................................."<<std::endl;
+    std::cout<<"-------------------------------------------------------------------------"<<std::endl;
+    
+    typedef double value_type;
+    typedef std::size_t size_type;
+    typedef random_number_stream<value_type,std::random> rn_stream;
+
+    ///////////////////////////////////////////////////////////////
+
+    /* Initial power value for power-law generation: */
+
+    value_type nu(0.5);
+    
+    /* Initial mass value for power-law/Breit-Wigner generation: */
+    
+    value_type m(0);
+
+    /* Initial width value for Breit-Wigner generation: */
+
+    value_type w(10);
+    
+    /* Initial minimal generated invariant mass: */
+    
+    value_type smin(-5);
+    
+    /* Initial maximal generated invariant mass: */
+    
+    value_type smax(10);
+    
+    /* Initial number of Monte Carlo throws: */
+    
+    unsigned N_events=50000;
+    
+    /* Initial number of bins written to tape: */
+    
+    unsigned N_bins=500;
+    
+    ///////////////////////////////////////////////////////////////
+    
+    bool have_gp=plot_config::gnuplot_path!=NULL;
+    
+    {
+	std::cerr<<"Checking normally distributed numbers.....";
+	std::cerr.flush();
+	std::string filename="plots/Gauss";
+	normal_generator<value_type,std::random>gen;
+	value_type rho;
+	value_type p;
+	histogram<value_type>hist(&rho,&p,N_events);
+	for(size_type i=0;i<N_events;++i)
+	{
+	    rho=gen();
+	    p=gen.weight();
+	    hist.store();
+	}
+	hist.make(N_bins);
+	plot_script* plt=hist.plot(filename,"postscript color");
+	value_type norm=N_events*hist.binsize();
+	plt->add_plot(gen.pdf_plot(norm));
+	plt->plot();
+	delete plt;
+	std::string output=have_gp?(filename+".eps"):(filename+".dat/gp");
+	std::cerr<<"............done, "<<output<<" written."<<std::endl;
+    }
+
+    {
+	std::cerr<<"Checking uniform circle generation.....";
+	std::cerr.flush();
+	std::string filename="plots/circle";
+	vector<value_type,2>pt;
+	uniform_sphere<value_type,1,std::random>gen(&pt);
+	data_wrapper* data=new data_wrapper(&pt[0],&pt[1]);
+	for(size_type n=0;n<N_events/100;++n)
+	{
+	    gen();
+	    data->fill();
+	}
+	data->write();
+	data_stream* dataplt=new data_stream(data);
+	dataplt->style="points";
+	plot_script* plt=new plot_script(filename,"postscript color");
+	plt->add_plot(dataplt);
+	plt->plot();
+	delete plt;
+	std::string output=have_gp?(filename+".eps"):(filename+".dat/gp");
+	std::cerr<<"............done, "<<output<<" written."<<std::endl;
+    }
+
+    {
+	std::cerr<<"Checking uniform sphere generation..........";
+	std::cerr.flush();
+	std::string filename="plots/sphere";
+	vector<value_type,3>pt;
+	uniform_sphere<value_type,2,std::random>gen(&pt);
+	data_wrapper* data=new data_wrapper(&pt[0],&pt[1],&pt[2]);
+	for(size_type n=0;n<N_events/10;++n)
+	{
+	    gen();
+	    data->fill();
+	}
+	data->write();
+	data_stream* dataplt=new data_stream(data,"1","2","3");
+	dataplt->style="points";
+	plot_script* plt=new plot_script(filename,"postscript color");
+	plt->splot=true;
+	plt->add_plot(dataplt);
+	plt->plot();
+	delete plt;
+	std::string output=have_gp?(filename+".eps"):(filename+".dat/gp");
+	std::cerr<<"............done, "<<output<<" written."<<std::endl;
+    }
+
+    {
+	std::cerr<<"Checking uniform 3-sphere generation.....";
+	std::cerr.flush();
+	vector<value_type,4>pt;
+	uniform_sphere<value_type,3,std::random>gen(&pt);
+	for(size_type n=0;n<N_events;++n)
+	{
+	    gen();
+	    value_type radius(0);
+	    for(size_type i=0;i<pt.size();++i)
+	    {
+		radius+=(pt[i]*pt[i]);
+	    }
+	    if(!equals(radius,(value_type)1))
+	    {
+		Camgen::log(log_level::warning)<<"uniform sphere point has incorrect length "<<radius<<endlog;
+	    }
+	}
+	std::cerr<<".....done."<<std::endl;
+    }
+
+    {
+	std::cerr<<"Checking uniform 4-sphere generation.....";
+	std::cerr.flush();
+	vector<value_type,5>pt;
+	uniform_sphere<value_type,4,std::random>gen(&pt);
+	for(size_type n=0;n<N_events;++n)
+	{
+	    gen();
+	    value_type radius(0);
+	    for(size_type i=0;i<pt.size();++i)
+	    {
+		radius+=(pt[i]*pt[i]);
+	    }
+	    if(!equals(radius,(value_type)1))
+	    {
+		Camgen::log(log_level::warning)<<"uniform sphere point has incorrect length "<<radius<<endlog;
+	    }
+	}
+	std::cerr<<".....done."<<std::endl;
+    }
+
+    {
+	std::cerr<<"Checking uniform 5-sphere generation.....";
+	std::cerr.flush();
+	vector<value_type,6>pt;
+	uniform_sphere<value_type,5,std::random>gen(&pt);
+	for(size_type n=0;n<N_events;++n)
+	{
+	    gen();
+	    value_type radius(0);
+	    for(size_type i=0;i<pt.size();++i)
+	    {
+		radius+=(pt[i]*pt[i]);
+	    }
+	    if(!equals(radius,(value_type)1))
+	    {
+		Camgen::log(log_level::warning)<<"uniform sphere point has incorrect length "<<radius<<endlog;
+	    }
+	}
+	std::cerr<<".....done."<<std::endl;
+    }
+
+    {
+	std::cerr<<"Checking uniform 6-sphere generation.....";
+	std::cerr.flush();
+	vector<value_type,7>pt;
+	uniform_sphere<value_type,6,std::random>gen(&pt);
+	for(size_type n=0;n<N_events;++n)
+	{
+	    gen();
+	    value_type radius(0);
+	    for(size_type i=0;i<pt.size();++i)
+	    {
+		radius+=(pt[i]*pt[i]);
+	    }
+	    if(!equals(radius,(value_type)1))
+	    {
+		Camgen::log(log_level::warning)<<"uniform sphere point has incorrect length "<<radius<<endlog;
+	    }
+	}
+	std::cerr<<".....done."<<std::endl;
+    }
+
+    {
+	std::cerr<<"Checking uniform 7-sphere generation.....";
+	std::cerr.flush();
+	vector<value_type,8>pt;
+	uniform_sphere<value_type,7,std::random>gen(&pt);
+	for(size_type n=0;n<N_events;++n)
+	{
+	    gen();
+	    value_type radius(0);
+	    for(size_type i=0;i<pt.size();++i)
+	    {
+		radius+=(pt[i]*pt[i]);
+	    }
+	    if(!equals(radius,(value_type)1))
+	    {
+		Camgen::log(log_level::warning)<<"uniform sphere point has incorrect length "<<radius<<endlog;
+	    }
+	}
+	std::cerr<<".....done."<<std::endl;
+    }
+
+    {
+	std::cerr<<"Checking power-law generator with (m,nu) = ("<<m<<","<<nu<<") within range ["<<smin<<","<<smax<<"].....";
+	std::cerr.flush();
+	std::string filename="plots/pow_law1";
+	pl_s_generator<value_type,std::random>* channel=new pl_s_generator<value_type,std::random>(&m,&nu);
+	if(!channel->set_s_range(smin,smax))
+	{
+	    return 1;
+	}
+	histogram<value_type>hist=channel->testrun(N_events,N_bins);
+	plot_script* plt=hist.plot(filename,"postscript color");
+	plt->add_x_tic(smin,"smin");
+	plt->add_x_tic(smax,"smax");
+	plt->add_x_tic(0,"0");
+	plt->grid=true;
+	plt->add_plot(channel->pdf_plot(N_events*hist.binsize()));
+	plt->plot();
+	delete channel;
+	delete plt;
+	std::string output=have_gp?(filename+".eps"):(filename+".dat/gp");
+	std::cerr<<"............done, "<<output<<" written."<<std::endl;
+    }
+
+    ///////////////////////////////
+
+    m=3;
+    nu=1.7;
+    smin=20.;
+    smax=100.;
+    N_bins=500;
+
+    ///////////////////////////////
+
+    {
+	std::cerr<<"Checking power-law generator with (m,nu) = ("<<m<<","<<nu<<") within range ["<<smin<<","<<smax<<"].....";
+	std::cerr.flush();
+	std::string filename="plots/pow_law2";
+	pl_s_generator<value_type,std::random>* channel=new pl_s_generator<value_type,std::random>(&m,&nu);
+	if(!channel->set_s_range(smin,smax))
+	{
+	    return 1;
+	}
+	histogram<value_type>hist=channel->testrun(N_events,N_bins);
+	plot_script* plt=hist.plot(filename,"postscript color");
+	plt->add_x_tic(smin,"smin");
+	plt->add_x_tic(smax,"smax");
+	plt->add_x_tic(0,"0");
+	plt->grid=true;
+	plt->add_plot(channel->pdf_plot(N_events*hist.binsize()));
+	plt->plot();
+	delete channel;
+	delete plt;
+	std::string output=have_gp?(filename+".eps"):(filename+".dat/gp");
+	std::cerr<<"............done, "<<output<<" written."<<std::endl;
+    }
+
+    ///////////////////////////////
+
+    smin=-(value_type)4;
+    smax=-(value_type)1;
+    N_bins=100;
+    
+    ///////////////////////////////
+    
+    {
+	std::cerr<<"Checking power-law generator with (m,nu) = ("<<m<<","<<nu<<") within range ["<<smin<<","<<smax<<"].....";
+	std::cerr.flush();
+	std::string filename="plots/pow_law3";
+	pl_s_generator<value_type,std::random>* channel=new pl_s_generator<value_type,std::random>(&m,&nu);
+	if(!channel->set_s_range(smin,smax))
+	{
+	    return 1;
+	}
+	histogram<value_type>hist=channel->testrun(N_events,N_bins);
+	plot_script* plt=hist.plot(filename,"postscript color");
+	plt->add_x_tic(smin,"smin");
+	plt->add_x_tic(smax,"smax");
+	plt->add_x_tic(0,"0");
+	plt->grid=true;
+	plt->add_plot(channel->pdf_plot(N_events*hist.binsize()));
+	plt->plot();
+	delete channel;
+	delete plt;
+	std::string output=have_gp?(filename+".eps"):(filename+".dat/gp");
+	std::cerr<<"............done, "<<output<<" written."<<std::endl;
+    }
+    
+    ///////////////////////////////
+
+    nu=-2.5;
+    smin=-(value_type)4;
+    smax=(value_type)2;
+    N_bins=500;
+    
+    ///////////////////////////////
+
+    {
+	std::cerr<<"Checking power-law generator with (m,nu) = ("<<m<<","<<nu<<") within range ["<<smin<<","<<smax<<"].....";
+	std::cerr.flush();
+	std::string filename="plots/pow_law4";
+	pl_s_generator<value_type,std::random>* channel=new pl_s_generator<value_type,std::random>(&m,&nu);
+	if(!channel->set_s_range(smin,smax))
+	{
+	    return 1;
+	}
+	histogram<value_type>hist=channel->testrun(N_events,N_bins);
+	plot_script* plt=hist.plot(filename,"postscript color");
+	plt->add_x_tic(smin,"smin");
+	plt->add_x_tic(smax,"smax");
+	plt->add_x_tic(0,"0");
+	plt->grid=true;
+	plt->add_plot(channel->pdf_plot(N_events*hist.binsize()));
+	plt->plot();
+	delete channel;
+	delete plt;
+	std::string output=have_gp?(filename+".eps"):(filename+".dat/gp");
+	std::cerr<<"............done, "<<output<<" written."<<std::endl;
+    }
+    
+    ///////////////////////////////
+
+    nu=(value_type)1;
+    smin=-(value_type)4;
+    smax=-(value_type)0.5;
+    N_bins=250;
+    
+    ///////////////////////////////
+
+    {
+	std::cerr<<"Checking power-law generator with (m,nu) = ("<<m<<","<<nu<<") within range ["<<smin<<","<<smax<<"].....";
+	std::cerr.flush();
+	std::string filename="plots/pow_law5";
+	pl_s_generator<value_type,std::random>* channel=new pl_s_generator<value_type,std::random>(&m,&nu);
+	if(!channel->set_s_range(smin,smax))
+	{
+	    return 1;
+	}
+	histogram<value_type>hist=channel->testrun(N_events,N_bins);
+	plot_script* plt=hist.plot(filename,"postscript color");
+	plt->add_x_tic(smin,"smin");
+	plt->add_x_tic(smax,"smax");
+	plt->add_x_tic(0,"0");
+	plt->grid=true;
+	plt->add_plot(channel->pdf_plot(N_events*hist.binsize()));
+	plt->plot();
+	delete channel;
+	delete plt;
+	std::string output=have_gp?(filename+".eps"):(filename+".dat/gp");
+	std::cerr<<"............done, "<<output<<" written."<<std::endl;
+    }
+    
+    ///////////////////////////////
+
+    smin=(value_type)10;
+    smax=(value_type)20;
+    N_bins=500;
+    
+    ///////////////////////////////
+
+    {
+	std::cerr<<"Checking power-law generator with (m,nu) = ("<<m<<","<<nu<<") within range ["<<smin<<","<<smax<<"].....";
+	std::cerr.flush();
+	std::string filename="plots/pow_law6";
+	pl_s_generator<value_type,std::random>* channel=new pl_s_generator<value_type,std::random>(&m,&nu);
+	if(!channel->set_s_range(smin,smax))
+	{
+	    return 1;
+	}
+	histogram<value_type>hist=channel->testrun(N_events,N_bins);
+	plot_script* plt=hist.plot(filename,"postscript color");
+	plt->add_x_tic(smin,"smin");
+	plt->add_x_tic(smax,"smax");
+	plt->add_x_tic(0,"0");
+	plt->grid=true;
+	plt->add_plot(channel->pdf_plot(N_events*hist.binsize()));
+	plt->plot();
+	delete channel;
+	delete plt;
+	std::string output=have_gp?(filename+".eps"):(filename+".dat/gp");
+	std::cerr<<"............done, "<<output<<" written."<<std::endl;
+    }
+    
+    ///////////////////////////////
+
+    nu=(value_type)2.5;
+    smin=(value_type)1;
+    smax=(value_type)5;
+    N_bins=250;
+    
+    ///////////////////////////////
+
+    {
+	std::cerr<<"Checking power-law generator with (m,nu) = ("<<m<<","<<nu<<") within range ["<<smin<<","<<smax<<"].....";
+	std::cerr.flush();
+	std::string filename="plots/pow_law7";
+	pl_s_generator<value_type,std::random>* channel=new pl_s_generator<value_type,std::random>(&m,&nu);
+	if(!channel->set_s_range(smin,smax))
+	{
+	    return 1;
+	}
+	histogram<value_type>hist=channel->testrun(N_events,N_bins);
+	plot_script* plt=hist.plot(filename,"postscript color");
+	plt->add_x_tic(smin,"smin");
+	plt->add_x_tic(smax,"smax");
+	plt->add_x_tic(0,"0");
+	plt->grid=true;
+	plt->add_plot(channel->pdf_plot(N_events*hist.binsize()));
+	plt->plot();
+	delete channel;
+	delete plt;
+	std::string output=have_gp?(filename+".eps"):(filename+".dat/gp");
+	std::cerr<<"............done, "<<output<<" written."<<std::endl;
+    }
+    
+    ///////////////////////////////
+    
+    smin=-(value_type)2;
+    smax=-(value_type)0.5;
+    N_bins=100;
+    
+    ///////////////////////////////
+
+    {
+	std::cerr<<"Checking power-law generator with (m,nu) = ("<<m<<","<<nu<<") within range ["<<smin<<","<<smax<<"].....";
+	std::cerr.flush();
+	std::string filename="plots/pow_law8";
+	pl_s_generator<value_type,std::random>* channel=new pl_s_generator<value_type,std::random>(&m,&nu);
+	if(!channel->set_s_range(smin,smax))
+	{
+	    return 1;
+	}
+	histogram<value_type>hist=channel->testrun(N_events,N_bins);
+	plot_script* plt=hist.plot(filename,"postscript color");
+	plt->add_x_tic(smin,"smin");
+	plt->add_x_tic(smax,"smax");
+	plt->add_x_tic(0,"0");
+	plt->grid=true;
+	plt->add_plot(channel->pdf_plot(N_events*hist.binsize()));
+	plt->plot();
+	delete channel;
+	delete plt;
+	std::string output=have_gp?(filename+".eps"):(filename+".dat/gp");
+	std::cerr<<"............done, "<<output<<" written."<<std::endl;
+    }
+    
+    ///////////////////////////////
+
+    value_type mmin(0);
+    value_type mmax(200);
+    value_type numin(-4);
+    value_type numax(4);
+    N_bins=100;
+    
+    ///////////////////////////////
+    
+    {
+	std::cerr<<"Checking 1M random power-law generators within random bounds.....";
+	std::cerr.flush();
+	pl_s_generator<value_type,std::random>* channel=new pl_s_generator<value_type,std::random>(&m,&nu);
+	for(size_type n=0;n<10000;++n)
+	{
+	    nu=rn_stream::throw_number(numin,numax);
+	    m =rn_stream::throw_number(mmin,mmax);
+	    channel->refresh_params();
+	    value_type mmax2=mmax*mmax;
+	    if(nu>=(value_type)1)
+	    {
+		smin=rn_stream::throw_number(-mmax2,mmax2);
+		if(smin<m*m)
+		{
+		    smax=rn_stream::throw_number(smin,m*m);
+		}
+		else
+		{
+		    smax=rn_stream::throw_number(smin,mmax2);
+		}
+	    }
+	    else
+	    {
+		smin=rn_stream::throw_number(-mmax2,mmax2);
+		value_type x=rn_stream::throw_number(-mmax2,mmax2);
+		smax=std::max(smin,x);
+		smin=std::min(smin,x);
+	    }
+	    if(!channel->set_s_range(smin,smax))
+	    {
+		return 1;
+	    }
+	    if(channel->normalisable())
+	    {
+		for(size_type i=0;i<100;++i)
+		{
+		    channel->generate();
+		    if(!channel->check())
+		    {
+			Camgen::log(log_level::warning)<<"Power-law generation with mass "<<m<<" and exponent "<<nu<<" failed within ["<<smin<<","<<smax<<"]....."<<endlog;
+			return 1;
+		    }
+		}
+	    }
+	    else
+	    {
+		Camgen::log(log_level::warning)<<"Power-law generator with mass "<<m<<" and exponent "<<nu<<" is not normalizable within ["<<smin<<","<<smax<<"]....."<<endlog;
+		return 1;
+	    }
+	}
+	delete channel;
+	std::cerr<<".....done."<<std::endl;
+    }
+    
+    ///////////////////////////////
+
+    m=(value_type)7;
+    smin=(value_type)0;
+    smax=(value_type)200;
+    N_bins=250;
+    
+    ///////////////////////////////
+
+    {
+	std::cerr<<"Checking Breit-Wigner generator with (m,w) = ("<<m<<","<<w<<") within range ["<<smin<<","<<smax<<"].....";
+	std::cerr.flush();
+	std::string filename="plots/Breit_Wigner1";
+	BW_s_generator<value_type,std::random>* channel=new BW_s_generator<value_type,std::random>(&m,&w);
+	if(!channel->set_s_range(smin,smax))
+	{
+	    return 1;
+	}
+	histogram<value_type>hist=channel->testrun(N_events,N_bins);
+	plot_script* plt=hist.plot(filename,"postscript color");
+	plt->add_x_tic(smin,"smin");
+	plt->add_x_tic(smax,"smax");
+	plt->add_x_tic(m*m,"m2");
+	plt->grid=true;
+	plt->add_plot(channel->pdf_plot(N_events*hist.binsize()));
+	plt->plot();
+	delete channel;
+	delete plt;
+	std::string output=have_gp?(filename+".eps"):(filename+".dat/gp");
+	std::cerr<<"............done, "<<output<<" written."<<std::endl;
+    }
+    
+    ///////////////////////////////
+    
+    smin=-(value_type)200;
+    smax=(value_type)60;
+    N_bins=500;
+    
+    ///////////////////////////////
+    
+    {
+	std::cerr<<"Checking Breit-Wigner generator with (m,w) = ("<<m<<","<<w<<") within range ["<<smin<<","<<smax<<"].....";
+	std::cerr.flush();
+	std::string filename="plots/Breit_Wigner2";
+	BW_s_generator<value_type,std::random>* channel=new BW_s_generator<value_type,std::random>(&m,&w);
+	if(!channel->set_s_range(smin,smax))
+	{
+	    return 1;
+	}
+	histogram<value_type>hist=channel->testrun(N_events,N_bins);
+	plot_script* plt=hist.plot(filename,"postscript color");
+	plt->add_x_tic(smin,"smin");
+	plt->add_x_tic(smax,"smax");
+	plt->add_x_tic(m*m,"m2");
+	plt->grid=true;
+	plt->add_plot(channel->pdf_plot(N_events*hist.binsize()));
+	plt->plot();
+	delete channel;
+	delete plt;
+	std::string output=have_gp?(filename+".eps"):(filename+".dat/gp");
+	std::cerr<<"............done, "<<output<<" written."<<std::endl;
+    }
+    
+    ///////////////////////////////
+    
+    N_events=100000;
+    N_bins=5000;
+    
+    ///////////////////////////////
+    
+    {
+	std::cerr<<"Checking Breit-Wigner generator with (m,w) = ("<<m<<","<<w<<") within range [-inf,+inf].....";
+	std::cerr.flush();
+	std::string filename="plots/Breit_Wigner3";
+	BW_s_generator<value_type,std::random>* channel=new BW_s_generator<value_type,std::random>(&m,&w);
+	histogram<value_type>hist=channel->testrun(N_events,N_bins);
+	plot_script* plt=hist.plot(filename,"postscript color");
+	plt->add_plot(channel->pdf_plot(N_events*hist.binsize()));
+	plt->xmin=-1000;
+	plt->xmax=1000;
+	plt->plot();
+	delete channel;
+	delete plt;
+	std::string output=have_gp?(filename+".eps"):(filename+".dat/gp");
+	std::cerr<<"............done, "<<output<<" written."<<std::endl;
+    }
+}
+

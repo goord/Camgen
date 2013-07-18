@@ -1,0 +1,135 @@
+\hypertarget{a00426}{\section{Camgen\-:\-:plot\-\_\-script Class Reference}
+\label{a00426}\index{Camgen\-::plot\-\_\-script@{Camgen\-::plot\-\_\-script}}
+}
+
+
+Gnuplot-\/scripting class.  
+
+
+
+
+{\ttfamily \#include $<$plt\-\_\-script.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00426_a3321bcc881f0b6d2994d17a2bf9d605c}{\hyperlink{a00426_a3321bcc881f0b6d2994d17a2bf9d605c}{plot\-\_\-script} (const std\-::string \&, const char $\ast$term=N\-U\-L\-L)}\label{a00426_a3321bcc881f0b6d2994d17a2bf9d605c}
+
+\begin{DoxyCompactList}\small\item\em Constructor with title argument. \end{DoxyCompactList}\item 
+\hypertarget{a00426_aac537107f92eddbf96140a66fc624515}{\hyperlink{a00426_aac537107f92eddbf96140a66fc624515}{plot\-\_\-script} (const std\-::string \&, const double \&, const double \&, const char $\ast$term=N\-U\-L\-L)}\label{a00426_aac537107f92eddbf96140a66fc624515}
+
+\begin{DoxyCompactList}\small\item\em Constructor with title and x-\/ranges arguments. \end{DoxyCompactList}\item 
+\hypertarget{a00426_a9f13d5b3f88ca653b0b48ee81f03fc4a}{\hyperlink{a00426_a9f13d5b3f88ca653b0b48ee81f03fc4a}{plot\-\_\-script} (const std\-::string \&, const double \&, const double \&, const double \&, const double \&, const char $\ast$term=N\-U\-L\-L)}\label{a00426_a9f13d5b3f88ca653b0b48ee81f03fc4a}
+
+\begin{DoxyCompactList}\small\item\em Constructor with title and x-\/ and y-\/range arguments. \end{DoxyCompactList}\item 
+\hypertarget{a00426_a78bf6ba995102d763fe4ee10cd1617e0}{\hyperlink{a00426_a78bf6ba995102d763fe4ee10cd1617e0}{$\sim$plot\-\_\-script} ()}\label{a00426_a78bf6ba995102d763fe4ee10cd1617e0}
+
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\hypertarget{a00426_a9a10103f30cfc5d8db6498c5c436d515}{void \hyperlink{a00426_a9a10103f30cfc5d8db6498c5c436d515}{add\-\_\-object} (const \hyperlink{a00424}{plot\-\_\-object} $\ast$)}\label{a00426_a9a10103f30cfc5d8db6498c5c436d515}
+
+\begin{DoxyCompactList}\small\item\em Adds a plot object to the script. \end{DoxyCompactList}\item 
+\hypertarget{a00426_a399204944beeb0369c9a9e8e4c834468}{void \hyperlink{a00426_a399204944beeb0369c9a9e8e4c834468}{add\-\_\-plot} (const \hyperlink{a00427}{plot\-\_\-stream} $\ast$)}\label{a00426_a399204944beeb0369c9a9e8e4c834468}
+
+\begin{DoxyCompactList}\small\item\em Adds a plot command to the script. \end{DoxyCompactList}\item 
+\hypertarget{a00426_a6650a6549d91062dc051cf58e1bcc6f6}{void \hyperlink{a00426_a6650a6549d91062dc051cf58e1bcc6f6}{add\-\_\-x\-\_\-tic} (const double \&, const std\-::string \&)}\label{a00426_a6650a6549d91062dc051cf58e1bcc6f6}
+
+\begin{DoxyCompactList}\small\item\em Adds an x-\/tic with label. \end{DoxyCompactList}\item 
+\hypertarget{a00426_ac66b6ca9c55ce3c7bb5564d85de164f1}{void \hyperlink{a00426_ac66b6ca9c55ce3c7bb5564d85de164f1}{add\-\_\-x\-\_\-tic} (const double \&)}\label{a00426_ac66b6ca9c55ce3c7bb5564d85de164f1}
+
+\begin{DoxyCompactList}\small\item\em Adds an x-\/tic without label. \end{DoxyCompactList}\item 
+\hypertarget{a00426_ac4aad4ee5ca9db17b6fbd0f2abe19b53}{void \hyperlink{a00426_ac4aad4ee5ca9db17b6fbd0f2abe19b53}{add\-\_\-y\-\_\-tic} (const double \&, const std\-::string \&)}\label{a00426_ac4aad4ee5ca9db17b6fbd0f2abe19b53}
+
+\begin{DoxyCompactList}\small\item\em Adds a y-\/tic with label. \end{DoxyCompactList}\item 
+\hypertarget{a00426_a0e3fdc13401799092c51d813ea174fa3}{void \hyperlink{a00426_a0e3fdc13401799092c51d813ea174fa3}{add\-\_\-y\-\_\-tic} (const double \&)}\label{a00426_a0e3fdc13401799092c51d813ea174fa3}
+
+\begin{DoxyCompactList}\small\item\em Adds a y-\/tic without label. \end{DoxyCompactList}\item 
+\hypertarget{a00426_aba133bca853bbc71c1ac3e75c0448f08}{std\-::ostream \& \hyperlink{a00426_aba133bca853bbc71c1ac3e75c0448f08}{write} (std\-::ostream \&os) const }\label{a00426_aba133bca853bbc71c1ac3e75c0448f08}
+
+\begin{DoxyCompactList}\small\item\em Writes the script to the output stream. \end{DoxyCompactList}\item 
+\hypertarget{a00426_adb359e4e1124a858a0bfeeef4b7dec40}{std\-::ostream \& \hyperlink{a00426_adb359e4e1124a858a0bfeeef4b7dec40}{reset} (std\-::ostream \&) const }\label{a00426_adb359e4e1124a858a0bfeeef4b7dec40}
+
+\begin{DoxyCompactList}\small\item\em Resets settings for multiplots. \end{DoxyCompactList}\item 
+\hypertarget{a00426_a7918e8473da0f80945f03f6f2a625876}{bool \hyperlink{a00426_a7918e8473da0f80945f03f6f2a625876}{write} () const }\label{a00426_a7918e8473da0f80945f03f6f2a625876}
+
+\begin{DoxyCompactList}\small\item\em Writes the script to an output file with extension \char`\"{}.\-gp\char`\"{}. \end{DoxyCompactList}\item 
+bool \hyperlink{a00426_a93778a0558f6717d6aef3100c5f43847}{plot} () const 
+\begin{DoxyCompactList}\small\item\em Invokes gnuplot to execute the plot command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00426_a2e75aba67172c33b19cd6340b9259301}{static std\-::string \hyperlink{a00426_a2e75aba67172c33b19cd6340b9259301}{file\-\_\-extension} (const std\-::string \&)}\label{a00426_a2e75aba67172c33b19cd6340b9259301}
+
+\begin{DoxyCompactList}\small\item\em Returns the file extension for the terminal type argument. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00426_a4b4e4bd081b2f2b015397f8950a22be8}{std\-::string \hyperlink{a00426_a4b4e4bd081b2f2b015397f8950a22be8}{file}}\label{a00426_a4b4e4bd081b2f2b015397f8950a22be8}
+
+\begin{DoxyCompactList}\small\item\em Filename. \end{DoxyCompactList}\item 
+\hypertarget{a00426_abfcca98c98780c4db2691cd60ef7452d}{const char $\ast$ \hyperlink{a00426_abfcca98c98780c4db2691cd60ef7452d}{terminal}}\label{a00426_abfcca98c98780c4db2691cd60ef7452d}
+
+\begin{DoxyCompactList}\small\item\em Terminal. \end{DoxyCompactList}\item 
+\hypertarget{a00426_a2c37a761410c3f661c1450aad66a4439}{std\-::string \hyperlink{a00426_a2c37a761410c3f661c1450aad66a4439}{title}}\label{a00426_a2c37a761410c3f661c1450aad66a4439}
+
+\begin{DoxyCompactList}\small\item\em Plot title. \end{DoxyCompactList}\item 
+\hypertarget{a00426_aedab4e547a2e928c342ff40bf22a4937}{std\-::string \hyperlink{a00426_aedab4e547a2e928c342ff40bf22a4937}{xlabel}}\label{a00426_aedab4e547a2e928c342ff40bf22a4937}
+
+\begin{DoxyCompactList}\small\item\em X-\/axis label. \end{DoxyCompactList}\item 
+\hypertarget{a00426_ac43ef2605d95cd10f504dc1861d078cd}{double \hyperlink{a00426_ac43ef2605d95cd10f504dc1861d078cd}{xmin}}\label{a00426_ac43ef2605d95cd10f504dc1861d078cd}
+
+\begin{DoxyCompactList}\small\item\em X-\/range. \end{DoxyCompactList}\item 
+\hypertarget{a00426_afaaddcfa4a3d0331875c2585ab7f2fca}{bool \hyperlink{a00426_afaaddcfa4a3d0331875c2585ab7f2fca}{xlog}}\label{a00426_afaaddcfa4a3d0331875c2585ab7f2fca}
+
+\begin{DoxyCompactList}\small\item\em Logarithmic x-\/axis flag. \end{DoxyCompactList}\item 
+\hypertarget{a00426_ac969a5a107fbcf66229c2fe680413ea9}{std\-::string \hyperlink{a00426_ac969a5a107fbcf66229c2fe680413ea9}{ylabel}}\label{a00426_ac969a5a107fbcf66229c2fe680413ea9}
+
+\begin{DoxyCompactList}\small\item\em Y-\/axis label. \end{DoxyCompactList}\item 
+\hypertarget{a00426_af47eea7344b159425f23e6ca2a7db886}{double \hyperlink{a00426_af47eea7344b159425f23e6ca2a7db886}{ymin}}\label{a00426_af47eea7344b159425f23e6ca2a7db886}
+
+\begin{DoxyCompactList}\small\item\em Y-\/range. \end{DoxyCompactList}\item 
+\hypertarget{a00426_ad83b5bd831aa2962d307302ee424a312}{bool \hyperlink{a00426_ad83b5bd831aa2962d307302ee424a312}{ylog}}\label{a00426_ad83b5bd831aa2962d307302ee424a312}
+
+\begin{DoxyCompactList}\small\item\em Logarithmic y-\/axis flag. \end{DoxyCompactList}\item 
+\hypertarget{a00426_a4a18be76aaaced5fb4238b11ab8ec56e}{bool \hyperlink{a00426_a4a18be76aaaced5fb4238b11ab8ec56e}{histo}}\label{a00426_a4a18be76aaaced5fb4238b11ab8ec56e}
+
+\begin{DoxyCompactList}\small\item\em Histogram style flag. \end{DoxyCompactList}\item 
+\hypertarget{a00426_a2fbf9fa24eecf431588be7324bf637ce}{bool \hyperlink{a00426_a2fbf9fa24eecf431588be7324bf637ce}{autoscale}}\label{a00426_a2fbf9fa24eecf431588be7324bf637ce}
+
+\begin{DoxyCompactList}\small\item\em Autoscale y-\/axis flag. \end{DoxyCompactList}\item 
+\hypertarget{a00426_a40068374c389009967b58dfcfaa805b7}{std\-::vector$<$ std\-::pair$<$ double, \\*
+std\-::string $>$ $>$ \hyperlink{a00426_a40068374c389009967b58dfcfaa805b7}{xtics}}\label{a00426_a40068374c389009967b58dfcfaa805b7}
+
+\begin{DoxyCompactList}\small\item\em Tics on the x-\/axis. \end{DoxyCompactList}\item 
+\hypertarget{a00426_a7005a9053e8e55399396f4d99fbc9361}{std\-::vector$<$ std\-::pair$<$ double, \\*
+std\-::string $>$ $>$ \hyperlink{a00426_a7005a9053e8e55399396f4d99fbc9361}{ytics}}\label{a00426_a7005a9053e8e55399396f4d99fbc9361}
+
+\begin{DoxyCompactList}\small\item\em Tics on the y-\/axis. \end{DoxyCompactList}\item 
+\hypertarget{a00426_a3c4a5ceec48e49142f28f50b4fc73a80}{bool \hyperlink{a00426_a3c4a5ceec48e49142f28f50b4fc73a80}{grid}}\label{a00426_a3c4a5ceec48e49142f28f50b4fc73a80}
+
+\begin{DoxyCompactList}\small\item\em Gridline flag. \end{DoxyCompactList}\item 
+\hypertarget{a00426_a13ab41a8f89e810249aff7c85dfb0bdc}{bool \hyperlink{a00426_a13ab41a8f89e810249aff7c85dfb0bdc}{splot}}\label{a00426_a13ab41a8f89e810249aff7c85dfb0bdc}
+
+\begin{DoxyCompactList}\small\item\em Surface flag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Gnuplot-\/scripting class. 
+
+\subsection{Member Function Documentation}
+\hypertarget{a00426_a93778a0558f6717d6aef3100c5f43847}{\index{Camgen\-::plot\-\_\-script@{Camgen\-::plot\-\_\-script}!plot@{plot}}
+\index{plot@{plot}!Camgen::plot_script@{Camgen\-::plot\-\_\-script}}
+\subsubsection[{plot}]{\setlength{\rightskip}{0pt plus 5cm}bool Camgen\-::plot\-\_\-script\-::plot (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{a00426_a93778a0558f6717d6aef3100c5f43847}
+
+
+Invokes gnuplot to execute the plot command. 
+
+If gnuplot cannot be invoked, writes the plot script to disc. 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+include/\-Camgen/\hyperlink{a00699}{plt\-\_\-script.\-h}\item 
+src/plt\-\_\-script.\-cpp\end{DoxyCompactItemize}

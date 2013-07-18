@@ -1,0 +1,78 @@
+\hypertarget{a00317}{\section{Camgen\-:\-:inversion\-\_\-s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t, sub\-\_\-type $>$ Class Template Reference}
+\label{a00317}\index{Camgen\-::inversion\-\_\-s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t, sub\-\_\-type $>$@{Camgen\-::inversion\-\_\-s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t, sub\-\_\-type $>$}}
+}
+
+
+Base class template for invariant mass samplers of type sub\-\_\-type.  
+
+
+
+
+{\ttfamily \#include $<$inv\-\_\-gen.\-h$>$}
+
+Inheritance diagram for Camgen\-:\-:inversion\-\_\-s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t, sub\-\_\-type $>$\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{a00317}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00317_ab65468b455764d12f944b1b002a55bc5}{\hyperlink{a00317_ab65468b455764d12f944b1b002a55bc5}{inversion\-\_\-s\-\_\-generator} ()}\label{a00317_ab65468b455764d12f944b1b002a55bc5}
+
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\hypertarget{a00317_a5095bc02dbb3c29e2a747ad6764ec8f3}{\hyperlink{a00317_a5095bc02dbb3c29e2a747ad6764ec8f3}{inversion\-\_\-s\-\_\-generator} (value\-\_\-type $\ast$inv\-\_\-mass\-\_\-)}\label{a00317_a5095bc02dbb3c29e2a747ad6764ec8f3}
+
+\begin{DoxyCompactList}\small\item\em Constructor with invariant mass address. \end{DoxyCompactList}\item 
+\hypertarget{a00317_a79c252ec81b51110ddef4476399a34be}{\hyperlink{a00317_a79c252ec81b51110ddef4476399a34be}{inversion\-\_\-s\-\_\-generator} (const \hyperlink{a00317}{inversion\-\_\-s\-\_\-generator}$<$ value\-\_\-t, rng\-\_\-t, sub\-\_\-type $>$ \&other)}\label{a00317_a79c252ec81b51110ddef4476399a34be}
+
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\hypertarget{a00317_a4174038f562dfa6d50b2e0a595a10486}{bool \hyperlink{a00317_a4174038f562dfa6d50b2e0a595a10486}{refresh\-\_\-s\-\_\-min} ()}\label{a00317_a4174038f562dfa6d50b2e0a595a10486}
+
+\begin{DoxyCompactList}\small\item\em Re-\/evaluates all internal parameters depending on mininvmass. \end{DoxyCompactList}\item 
+\hypertarget{a00317_ae92d71747eeb57fb9d3d45dd97ea8fcf}{bool \hyperlink{a00317_ae92d71747eeb57fb9d3d45dd97ea8fcf}{refresh\-\_\-s\-\_\-max} ()}\label{a00317_ae92d71747eeb57fb9d3d45dd97ea8fcf}
+
+\begin{DoxyCompactList}\small\item\em Re-\/evaluates all internal parameters depending on maxinvmass. \end{DoxyCompactList}\item 
+\hypertarget{a00317_a305736972436ab42cc7f8faf3129e887}{virtual \hyperlink{a00317}{inversion\-\_\-s\-\_\-generator}\\*
+$<$ value\-\_\-t, rng\-\_\-t, sub\-\_\-type $>$ $\ast$ \hyperlink{a00317_a305736972436ab42cc7f8faf3129e887}{clone} () const }\label{a00317_a305736972436ab42cc7f8faf3129e887}
+
+\begin{DoxyCompactList}\small\item\em Virtual clone method implementation. \end{DoxyCompactList}\item 
+\hypertarget{a00317_a8ec01b69ab321ea6b9a4edc5264033c4}{value\-\_\-type \hyperlink{a00317_a8ec01b69ab321ea6b9a4edc5264033c4}{map} (const value\-\_\-type \&r) const }\label{a00317_a8ec01b69ab321ea6b9a4edc5264033c4}
+
+\begin{DoxyCompactList}\small\item\em Mapping implementation. \end{DoxyCompactList}\item 
+\hypertarget{a00317_af0b515a7177a81974f127366234c53fa}{value\-\_\-type \hyperlink{a00317_af0b515a7177a81974f127366234c53fa}{inverse\-\_\-map} (const value\-\_\-type \&\hyperlink{a00482_a8bf50336c0da12a27a71eb1154a7012e}{s}) const }\label{a00317_af0b515a7177a81974f127366234c53fa}
+
+\begin{DoxyCompactList}\small\item\em Inverse mapping implementation. \end{DoxyCompactList}\item 
+\hypertarget{a00317_a67c65807ebda0ffc0fa732a7b231aef3}{virtual value\-\_\-type \hyperlink{a00317_a67c65807ebda0ffc0fa732a7b231aef3}{integrate\-\_\-with} (const \hyperlink{a00482}{s\-\_\-generator}$<$ value\-\_\-t, rng\-\_\-t $>$ $\ast$gen, const value\-\_\-type \&sqrts) const }\label{a00317_a67c65807ebda0ffc0fa732a7b231aef3}
+
+\begin{DoxyCompactList}\small\item\em Double-\/dispatch integrator functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00317_aaf876bf50c4a3d4bc2ada686293bbb1f}{virtual void \hyperlink{a00317_aaf876bf50c4a3d4bc2ada686293bbb1f}{refresh\-\_\-norm} ()}\label{a00317_aaf876bf50c4a3d4bc2ada686293bbb1f}
+
+\begin{DoxyCompactList}\small\item\em Normalisation refresher. \end{DoxyCompactList}\item 
+\hypertarget{a00317_a3cb456621edb32aceb3dc48d8cf44cc3}{value\-\_\-type \hyperlink{a00317_a3cb456621edb32aceb3dc48d8cf44cc3}{get\-\_\-fast\-\_\-weight} () const }\label{a00317_a3cb456621edb32aceb3dc48d8cf44cc3}
+
+\begin{DoxyCompactList}\small\item\em Weight evaluation method. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00317_a84dd2ec873372b09661f0a741288082f}{value\-\_\-type \hyperlink{a00317_a84dd2ec873372b09661f0a741288082f}{min\-\_\-cumulant}}\label{a00317_a84dd2ec873372b09661f0a741288082f}
+
+\begin{DoxyCompactList}\small\item\em Minimal and maximal cumulants. \end{DoxyCompactList}\item 
+\hypertarget{a00317_a13fab27b5534acce013ed27576d26f45}{value\-\_\-type \hyperlink{a00317_a13fab27b5534acce013ed27576d26f45}{min\-\_\-cumulant\-\_\-lim}}\label{a00317_a13fab27b5534acce013ed27576d26f45}
+
+\begin{DoxyCompactList}\small\item\em Limiting values of the cumulants. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class value\-\_\-t, class rng\-\_\-t, class sub\-\_\-type$>$class Camgen\-::inversion\-\_\-s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t, sub\-\_\-type $>$}
+
+Base class template for invariant mass samplers of type sub\-\_\-type. 
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+include/\-Camgen/\hyperlink{a00652}{inv\-\_\-gen.\-h}\end{DoxyCompactItemize}

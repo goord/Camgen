@@ -1,0 +1,126 @@
+\hypertarget{a00529}{\section{Camgen\-:\-:test\-\_\-generator$<$ model\-\_\-t $>$ Class Template Reference}
+\label{a00529}\index{Camgen\-::test\-\_\-generator$<$ model\-\_\-t $>$@{Camgen\-::test\-\_\-generator$<$ model\-\_\-t $>$}}
+}
+Inheritance diagram for Camgen\-:\-:test\-\_\-generator$<$ model\-\_\-t $>$\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{a00529}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00529_afc3b1ccf6c6aa0aa18847cda5f9f17fa}{bool \hyperlink{a00529_afc3b1ccf6c6aa0aa18847cda5f9f17fa}{next\-\_\-event} (int strategy)}\label{a00529_afc3b1ccf6c6aa0aa18847cda5f9f17fa}
+
+\begin{DoxyCompactList}\small\item\em Generates new event according to the given strategy argument\-: \end{DoxyCompactList}\item 
+\hypertarget{a00529_ab4ab1dab3151f985f0957fce56382c2c}{size\-\_\-type \hyperlink{a00529_ab4ab1dab3151f985f0957fce56382c2c}{n\-\_\-in} () const }\label{a00529_ab4ab1dab3151f985f0957fce56382c2c}
+
+\begin{DoxyCompactList}\small\item\em Abstract method returning the number of incoming particles. \end{DoxyCompactList}\item 
+\hypertarget{a00529_ab1772344831cd5519da309cd6d7b1c99}{size\-\_\-type \hyperlink{a00529_ab1772344831cd5519da309cd6d7b1c99}{n\-\_\-out} () const }\label{a00529_ab1772344831cd5519da309cd6d7b1c99}
+
+\begin{DoxyCompactList}\small\item\em Abstract method returning the number of outgoing particles. \end{DoxyCompactList}\item 
+\hypertarget{a00529_ae7f9a6b11942ebabd0d62ea83da4d0d7}{\hyperlink{a00363}{M\-C\-\_\-integral}$<$ value\-\_\-type $>$ \hyperlink{a00529_ae7f9a6b11942ebabd0d62ea83da4d0d7}{xsec} () const }\label{a00529_ae7f9a6b11942ebabd0d62ea83da4d0d7}
+
+\begin{DoxyCompactList}\small\item\em Abstract method returning the total cross section. \end{DoxyCompactList}\item 
+\hypertarget{a00529_a318df8eae867966ec8e6b0253495fbea}{const \hyperlink{a00559}{momentum\-\_\-type} \& \hyperlink{a00529_a318df8eae867966ec8e6b0253495fbea}{p\-\_\-in} (size\-\_\-type i) const }\label{a00529_a318df8eae867966ec8e6b0253495fbea}
+
+\begin{DoxyCompactList}\small\item\em Abstract method reading out an incoming momentum. \end{DoxyCompactList}\item 
+\hypertarget{a00529_a1814975d91cf8557553b0c7837efa701}{const \hyperlink{a00559}{momentum\-\_\-type} \& \hyperlink{a00529_a1814975d91cf8557553b0c7837efa701}{p\-\_\-out} (size\-\_\-type i) const }\label{a00529_a1814975d91cf8557553b0c7837efa701}
+
+\begin{DoxyCompactList}\small\item\em Abstract method reading out an outgoing momentum. \end{DoxyCompactList}\item 
+\hypertarget{a00529_abd55d011bd1512b10f7b177dee803119}{const value\-\_\-type \& \hyperlink{a00529_abd55d011bd1512b10f7b177dee803119}{p\-\_\-in} (size\-\_\-type i, size\-\_\-type mu) const }\label{a00529_abd55d011bd1512b10f7b177dee803119}
+
+\begin{DoxyCompactList}\small\item\em Reads the i-\/th incoming momentum's mu-\/th component. \end{DoxyCompactList}\item 
+\hypertarget{a00529_a4a86879a5dafe541b12a6cd133464e41}{const value\-\_\-type \& \hyperlink{a00529_a4a86879a5dafe541b12a6cd133464e41}{p\-\_\-out} (size\-\_\-type i, size\-\_\-type mu) const }\label{a00529_a4a86879a5dafe541b12a6cd133464e41}
+
+\begin{DoxyCompactList}\small\item\em Reads the i-\/th outgoing momentum's mu-\/th component. \end{DoxyCompactList}\item 
+\hypertarget{a00529_af4ff8d535dd9b820e6937032b6f7ecff}{value\-\_\-type \hyperlink{a00529_af4ff8d535dd9b820e6937032b6f7ecff}{Ecm} () const }\label{a00529_af4ff8d535dd9b820e6937032b6f7ecff}
+
+\begin{DoxyCompactList}\small\item\em Abstract method returning the total (hadronic) invariant mass. \end{DoxyCompactList}\item 
+\hypertarget{a00529_a314adb09433282620cc5e2071f218c06}{value\-\_\-type \hyperlink{a00529_a314adb09433282620cc5e2071f218c06}{beam\-\_\-energy} (int i) const }\label{a00529_a314adb09433282620cc5e2071f218c06}
+
+\begin{DoxyCompactList}\small\item\em Abstract method returning the beam energies. \end{DoxyCompactList}\item 
+\hypertarget{a00529_a71d752a5acef264885ab6264fb98d18f}{value\-\_\-type \hyperlink{a00529_a71d752a5acef264885ab6264fb98d18f}{s\-\_\-in} (size\-\_\-type i) const }\label{a00529_a71d752a5acef264885ab6264fb98d18f}
+
+\begin{DoxyCompactList}\small\item\em Virtual method returning the i-\/th incoming invariant mass-\/squared. \end{DoxyCompactList}\item 
+\hypertarget{a00529_af3cd0ccd868f83080ba0569511acff5b}{value\-\_\-type \hyperlink{a00529_af3cd0ccd868f83080ba0569511acff5b}{s\-\_\-out} (size\-\_\-type i) const }\label{a00529_af3cd0ccd868f83080ba0569511acff5b}
+
+\begin{DoxyCompactList}\small\item\em Virtual method returning the i-\/th outgoing invariant mass-\/squared. \end{DoxyCompactList}\item 
+\hypertarget{a00529_a6dab2ba04d5b791e5cf22c988f046ade}{value\-\_\-type \hyperlink{a00529_a6dab2ba04d5b791e5cf22c988f046ade}{m\-\_\-in} (size\-\_\-type i) const }\label{a00529_a6dab2ba04d5b791e5cf22c988f046ade}
+
+\begin{DoxyCompactList}\small\item\em Virtual method returning the i-\/th incoming invariant mass. \end{DoxyCompactList}\item 
+\hypertarget{a00529_a4d195f3f1c1f7ca1558167ccc0270f10}{value\-\_\-type \hyperlink{a00529_a4d195f3f1c1f7ca1558167ccc0270f10}{m\-\_\-out} (size\-\_\-type i) const }\label{a00529_a4d195f3f1c1f7ca1558167ccc0270f10}
+
+\begin{DoxyCompactList}\small\item\em Virtual method returning the i-\/th outgoing invariant mass. \end{DoxyCompactList}\item 
+int \hyperlink{a00529_a07fed7558892782e27d85ee4fe009c83}{id\-\_\-in} (size\-\_\-type i) const 
+\begin{DoxyCompactList}\small\item\em Virtual method returning the i-\/th incoming particle id (returns zero by default). \end{DoxyCompactList}\item 
+int \hyperlink{a00529_a9670babe6e6eb25f8d13102043e7da2f}{id\-\_\-out} (size\-\_\-type i) const 
+\begin{DoxyCompactList}\small\item\em Virtual method returning the i-\/th outgoing particle id (returns zero by default). \end{DoxyCompactList}\item 
+const \hyperlink{a00559}{momentum\-\_\-type} \& \hyperlink{a00529_a1448d1b1703d189b695bc5a574f3ffd0}{p} (int i) const 
+\begin{DoxyCompactList}\small\item\em Returns the i-\/th momentum, where i$<$0 means incoming momenta and i$>$0 outgoing ones. \end{DoxyCompactList}\item 
+\hypertarget{a00529_a13b9a1c17155b45fd90e69ef4e087ce1}{const value\-\_\-type \& \hyperlink{a00529_a13b9a1c17155b45fd90e69ef4e087ce1}{p} (int i, size\-\_\-type mu) const }\label{a00529_a13b9a1c17155b45fd90e69ef4e087ce1}
+
+\begin{DoxyCompactList}\small\item\em Returns the i-\/th momentum's mu-\/th component. \end{DoxyCompactList}\item 
+\hypertarget{a00529_a7ef0a6b94591f6da82a783d41e6b7262}{value\-\_\-type \hyperlink{a00529_a7ef0a6b94591f6da82a783d41e6b7262}{s} (int i) const }\label{a00529_a7ef0a6b94591f6da82a783d41e6b7262}
+
+\begin{DoxyCompactList}\small\item\em Method returning the i-\/th invariant mass-\/squared. \end{DoxyCompactList}\item 
+\hypertarget{a00529_a17f38c3c0f5e5ba5c4e30e058473f038}{value\-\_\-type \hyperlink{a00529_a17f38c3c0f5e5ba5c4e30e058473f038}{m} (int i) const }\label{a00529_a17f38c3c0f5e5ba5c4e30e058473f038}
+
+\begin{DoxyCompactList}\small\item\em Method returning the i-\/th invariant mass. \end{DoxyCompactList}\item 
+\hypertarget{a00529_a029a949b4cf706bdb6038563bb0791cf}{int \hyperlink{a00529_a029a949b4cf706bdb6038563bb0791cf}{id} (int i) const }\label{a00529_a029a949b4cf706bdb6038563bb0791cf}
+
+\begin{DoxyCompactList}\small\item\em Method returning the i-\/th particle id. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00529_a07fed7558892782e27d85ee4fe009c83}{\index{Camgen\-::test\-\_\-generator@{Camgen\-::test\-\_\-generator}!id\-\_\-in@{id\-\_\-in}}
+\index{id\-\_\-in@{id\-\_\-in}!Camgen::test_generator@{Camgen\-::test\-\_\-generator}}
+\subsubsection[{id\-\_\-in}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t $>$ int {\bf Camgen\-::test\-\_\-generator}$<$ model\-\_\-t $>$\-::id\-\_\-in (
+\begin{DoxyParamCaption}
+\item[{size\-\_\-type}]{i}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00529_a07fed7558892782e27d85ee4fe009c83}
+
+
+Virtual method returning the i-\/th incoming particle id (returns zero by default). 
+
+
+
+Reimplemented from \hyperlink{a00442_a93226df13fcf52eb52b5b8d894885462}{Camgen\-::ps\-\_\-generator\-\_\-base$<$ model\-\_\-t $>$}.
+
+\hypertarget{a00529_a9670babe6e6eb25f8d13102043e7da2f}{\index{Camgen\-::test\-\_\-generator@{Camgen\-::test\-\_\-generator}!id\-\_\-out@{id\-\_\-out}}
+\index{id\-\_\-out@{id\-\_\-out}!Camgen::test_generator@{Camgen\-::test\-\_\-generator}}
+\subsubsection[{id\-\_\-out}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t $>$ int {\bf Camgen\-::test\-\_\-generator}$<$ model\-\_\-t $>$\-::id\-\_\-out (
+\begin{DoxyParamCaption}
+\item[{size\-\_\-type}]{i}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00529_a9670babe6e6eb25f8d13102043e7da2f}
+
+
+Virtual method returning the i-\/th outgoing particle id (returns zero by default). 
+
+
+
+Reimplemented from \hyperlink{a00442_a30cad3b16698c3d0d47d01b0a2d61df2}{Camgen\-::ps\-\_\-generator\-\_\-base$<$ model\-\_\-t $>$}.
+
+\hypertarget{a00529_a1448d1b1703d189b695bc5a574f3ffd0}{\index{Camgen\-::test\-\_\-generator@{Camgen\-::test\-\_\-generator}!p@{p}}
+\index{p@{p}!Camgen::test_generator@{Camgen\-::test\-\_\-generator}}
+\subsubsection[{p}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t $>$ const {\bf momentum\-\_\-type}\& {\bf Camgen\-::test\-\_\-generator}$<$ model\-\_\-t $>$\-::p (
+\begin{DoxyParamCaption}
+\item[{int}]{i}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00529_a1448d1b1703d189b695bc5a574f3ffd0}
+
+
+Returns the i-\/th momentum, where i$<$0 means incoming momenta and i$>$0 outgoing ones. 
+
+If i==0,i$<$-\/\-N\-\_\-in or i$>$N\-\_\-out, an error will occur. 
+
+Reimplemented from \hyperlink{a00442_a2b06ea836491c920c2eb03ca6785e453}{Camgen\-::ps\-\_\-generator\-\_\-base$<$ model\-\_\-t $>$}.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+include/\-Camgen/\hyperlink{a00717}{ps\-\_\-gen\-\_\-base.\-h}\end{DoxyCompactItemize}

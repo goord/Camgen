@@ -1,0 +1,76 @@
+\hypertarget{a00448}{\section{Camgen\-:\-:Pythia\-\_\-interface$<$ model\-\_\-t $>$ Class Template Reference}
+\label{a00448}\index{Camgen\-::\-Pythia\-\_\-interface$<$ model\-\_\-t $>$@{Camgen\-::\-Pythia\-\_\-interface$<$ model\-\_\-t $>$}}
+}
+
+
+Les-\/\-Houches event file output interface class.  
+
+
+
+
+{\ttfamily \#include $<$Pythia\-\_\-if.\-h$>$}
+
+Inheritance diagram for Camgen\-:\-:Pythia\-\_\-interface$<$ model\-\_\-t $>$\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{a00448}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00448_aa709b8e8985924f31009362fd72d6058}{\hyperlink{a00448_aa709b8e8985924f31009362fd72d6058}{Pythia\-\_\-interface} (\hyperlink{a00442}{generator\-\_\-type} $\ast$gen\-\_\-, int weight\-\_\-switch\-\_\-, unsigned proc\-\_\-id\-\_\-=1)}\label{a00448_aa709b8e8985924f31009362fd72d6058}
+
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hypertarget{a00448_a2e93c96da887e8348895c8274b4a903f}{\hyperlink{a00448_a2e93c96da887e8348895c8274b4a903f}{Pythia\-\_\-interface} (\hyperlink{a00442}{generator\-\_\-type} $\ast$gen\-\_\-, int weight\-\_\-switch\-\_\-, const std\-::string \&descr\-\_\-, unsigned proc\-\_\-id\-\_\-=1)}\label{a00448_a2e93c96da887e8348895c8274b4a903f}
+
+\begin{DoxyCompactList}\small\item\em Constructor with description. \end{DoxyCompactList}\item 
+\hypertarget{a00448_a7359fb2cc840e404123f7f9c0b2b8644}{\hyperlink{a00448_a7359fb2cc840e404123f7f9c0b2b8644}{$\sim$\-Pythia\-\_\-interface} ()}\label{a00448_a7359fb2cc840e404123f7f9c0b2b8644}
+
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\hypertarget{a00448_a6201668b13598907935b475787093d6b}{bool \hyperlink{a00448_a6201668b13598907935b475787093d6b}{set\-Init} ()}\label{a00448_a6201668b13598907935b475787093d6b}
+
+\begin{DoxyCompactList}\small\item\em Initialisation method. \end{DoxyCompactList}\item 
+\hypertarget{a00448_add10b51132c584d44b961cc45e81fa78}{bool \hyperlink{a00448_add10b51132c584d44b961cc45e81fa78}{set\-Event} (int id\-Process=0)}\label{a00448_add10b51132c584d44b961cc45e81fa78}
+
+\begin{DoxyCompactList}\small\item\em Fills the event common block. \end{DoxyCompactList}\item 
+\hypertarget{a00448_ae0a78d3cd646f974f16f1aaae74017d4}{size\-\_\-type \hyperlink{a00448_ae0a78d3cd646f974f16f1aaae74017d4}{event\-\_\-size} () const }\label{a00448_ae0a78d3cd646f974f16f1aaae74017d4}
+
+\begin{DoxyCompactList}\small\item\em Required disk space per event. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00448_a92336d3949758f6ebb7b07c44949a075}{const unsigned \hyperlink{a00448_a92336d3949758f6ebb7b07c44949a075}{proc\-\_\-id}}\label{a00448_a92336d3949758f6ebb7b07c44949a075}
+
+\begin{DoxyCompactList}\small\item\em Process id. \end{DoxyCompactList}\item 
+const int \hyperlink{a00448_a75fd3fbc4856898df3bcf66530af81e0}{weight\-\_\-switch}
+\begin{DoxyCompactList}\small\item\em Les-\/\-Houches accord weight switch\-: 1\-: weighted events to P\-S, unweighted out, no xsec provided. \end{DoxyCompactList}\item 
+bool \hyperlink{a00448_a5ecb4d493254caf2ae844b3b6a982671}{generation\-\_\-switch}
+\begin{DoxyCompactList}\small\item\em Generation switch. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class model\-\_\-t$>$class Camgen\-::\-Pythia\-\_\-interface$<$ model\-\_\-t $>$}
+
+Les-\/\-Houches event file output interface class. 
+
+\subsection{Member Data Documentation}
+\hypertarget{a00448_a5ecb4d493254caf2ae844b3b6a982671}{\index{Camgen\-::\-Pythia\-\_\-interface@{Camgen\-::\-Pythia\-\_\-interface}!generation\-\_\-switch@{generation\-\_\-switch}}
+\index{generation\-\_\-switch@{generation\-\_\-switch}!Camgen::Pythia_interface@{Camgen\-::\-Pythia\-\_\-interface}}
+\subsubsection[{generation\-\_\-switch}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t $>$ bool {\bf Camgen\-::\-Pythia\-\_\-interface}$<$ model\-\_\-t $>$\-::generation\-\_\-switch}}\label{a00448_a5ecb4d493254caf2ae844b3b6a982671}
+
+
+Generation switch. 
+
+If set true, the matrix element generation is triggered by the parton shower, otherwise, it has to be performed by the user. \hypertarget{a00448_a75fd3fbc4856898df3bcf66530af81e0}{\index{Camgen\-::\-Pythia\-\_\-interface@{Camgen\-::\-Pythia\-\_\-interface}!weight\-\_\-switch@{weight\-\_\-switch}}
+\index{weight\-\_\-switch@{weight\-\_\-switch}!Camgen::Pythia_interface@{Camgen\-::\-Pythia\-\_\-interface}}
+\subsubsection[{weight\-\_\-switch}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t $>$ const int {\bf Camgen\-::\-Pythia\-\_\-interface}$<$ model\-\_\-t $>$\-::weight\-\_\-switch}}\label{a00448_a75fd3fbc4856898df3bcf66530af81e0}
+
+
+Les-\/\-Houches accord weight switch\-: 1\-: weighted events to P\-S, unweighted out, no xsec provided. 
+
+2\-: weighted events to P\-S, unweighted out, xsecs provided. 3\-: unweighted events to P\-S, unweighted out. 4\-: weighted events to P\-S, weighted out. 
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+include/\-Camgen/\hyperlink{a00721}{Pythia\-\_\-if.\-h}\end{DoxyCompactItemize}
