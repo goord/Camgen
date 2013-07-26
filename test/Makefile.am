@@ -1,4 +1,4 @@
-AM_CPPFLAGS =		    	-pipe -Wall -I$(top_srcdir)/include -I$(top_builddir)
+AM_CPPFLAGS =		    	-pipe -Wall -O3 -I$(top_srcdir)/include -I$(top_builddir)
 
 AM_CFLAGS =			-O3
 
@@ -13,6 +13,7 @@ CLEANFILES =                	*.o *.dat *.plt *.log
 check_PROGRAMS =		bitstring_test		\
 		 	    	phi3_graphs_test	\
 		 	    	phi34_graphs_test	\
+				QCD_procs_test		\
 		 	    	Pauli_basis_test	\
 		 	    	Weyl_basis_test		\
 		 	    	Pauli_spinor_test	\
@@ -95,6 +96,7 @@ libCamtest_la_SOURCES =		QEDPbdh.cpp		\
 bitstring_test_SOURCES =	bitstring_test.cpp
 phi3_graphs_test_SOURCES = 	phi3_graphs_test.cpp
 phi34_graphs_test_SOURCES = 	phi34_graphs_test.cpp
+QCD_procs_test_SOURCES =	QCD_procs_test.cpp
 Pauli_basis_test_SOURCES = 	Pauli_basis_test.cpp
 Weyl_basis_test_SOURCES =	Weyl_basis_test.cpp
 Pauli_spinor_test_SOURCES =	Pauli_spinor_test.cpp
@@ -130,6 +132,7 @@ speed_test_SOURCES =		speed_test.cpp
 TESTS =			    	bitstring_test		\
 			    	phi3_graphs_test	\
 			    	phi34_graphs_test	\
+				QCD_procs_test		\
 			    	Pauli_basis_test	\
 			    	Weyl_basis_test		\
 			    	m_spinor_test		\

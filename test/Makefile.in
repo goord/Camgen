@@ -50,33 +50,35 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 check_PROGRAMS = bitstring_test$(EXEEXT) phi3_graphs_test$(EXEEXT) \
-	phi34_graphs_test$(EXEEXT) Pauli_basis_test$(EXEEXT) \
-	Weyl_basis_test$(EXEEXT) Pauli_spinor_test$(EXEEXT) \
-	Weyl_spinor_test$(EXEEXT) m_spinor_test$(EXEEXT) \
-	discr_cols_test$(EXEEXT) cont_cols_test$(EXEEXT) \
-	QEDch_test$(EXEEXT) QEDdh_test$(EXEEXT) QCDcc_test$(EXEEXT) \
-	QCDdc_test$(EXEEXT) Parke_Taylor_cc_test$(EXEEXT) \
-	Parke_Taylor_dc_test$(EXEEXT) SM_test$(EXEEXT) \
-	SM_params_test$(EXEEXT) susy_QED_test$(EXEEXT) \
-	susy_QCDcc_test$(EXEEXT) susy_QCDdc_test$(EXEEXT) \
-	susy_Kunszt_test$(EXEEXT) MC_hel_test$(EXEEXT) \
-	MC_col_test$(EXEEXT) MC_gen_test$(EXEEXT) s_int_test$(EXEEXT) \
-	ps_tree_test$(EXEEXT) ps_reverse_test$(EXEEXT) \
-	parni_test$(EXEEXT) LHAPDF_test$(EXEEXT) speed_test$(EXEEXT)
-TESTS = bitstring_test$(EXEEXT) phi3_graphs_test$(EXEEXT) \
-	phi34_graphs_test$(EXEEXT) Pauli_basis_test$(EXEEXT) \
-	Weyl_basis_test$(EXEEXT) m_spinor_test$(EXEEXT) \
+	phi34_graphs_test$(EXEEXT) QCD_procs_test$(EXEEXT) \
+	Pauli_basis_test$(EXEEXT) Weyl_basis_test$(EXEEXT) \
 	Pauli_spinor_test$(EXEEXT) Weyl_spinor_test$(EXEEXT) \
-	discr_cols_test$(EXEEXT) cont_cols_test$(EXEEXT) \
-	QEDch_test$(EXEEXT) QEDdh_test$(EXEEXT) QCDcc_test$(EXEEXT) \
-	QCDdc_test$(EXEEXT) Parke_Taylor_cc_test$(EXEEXT) \
-	Parke_Taylor_dc_test$(EXEEXT) SM_test$(EXEEXT) \
-	SM_params_test$(EXEEXT) susy_QED_test$(EXEEXT) \
-	susy_QCDcc_test$(EXEEXT) susy_QCDdc_test$(EXEEXT) \
-	susy_Kunszt_test$(EXEEXT) MC_hel_test$(EXEEXT) \
-	MC_col_test$(EXEEXT) MC_gen_test$(EXEEXT) s_int_test$(EXEEXT) \
-	ps_tree_test$(EXEEXT) ps_reverse_test$(EXEEXT) \
-	parni_test$(EXEEXT) LHAPDF_test$(EXEEXT) speed_test$(EXEEXT)
+	m_spinor_test$(EXEEXT) discr_cols_test$(EXEEXT) \
+	cont_cols_test$(EXEEXT) QEDch_test$(EXEEXT) \
+	QEDdh_test$(EXEEXT) QCDcc_test$(EXEEXT) QCDdc_test$(EXEEXT) \
+	Parke_Taylor_cc_test$(EXEEXT) Parke_Taylor_dc_test$(EXEEXT) \
+	SM_test$(EXEEXT) SM_params_test$(EXEEXT) \
+	susy_QED_test$(EXEEXT) susy_QCDcc_test$(EXEEXT) \
+	susy_QCDdc_test$(EXEEXT) susy_Kunszt_test$(EXEEXT) \
+	MC_hel_test$(EXEEXT) MC_col_test$(EXEEXT) MC_gen_test$(EXEEXT) \
+	s_int_test$(EXEEXT) ps_tree_test$(EXEEXT) \
+	ps_reverse_test$(EXEEXT) parni_test$(EXEEXT) \
+	LHAPDF_test$(EXEEXT) speed_test$(EXEEXT)
+TESTS = bitstring_test$(EXEEXT) phi3_graphs_test$(EXEEXT) \
+	phi34_graphs_test$(EXEEXT) QCD_procs_test$(EXEEXT) \
+	Pauli_basis_test$(EXEEXT) Weyl_basis_test$(EXEEXT) \
+	m_spinor_test$(EXEEXT) Pauli_spinor_test$(EXEEXT) \
+	Weyl_spinor_test$(EXEEXT) discr_cols_test$(EXEEXT) \
+	cont_cols_test$(EXEEXT) QEDch_test$(EXEEXT) \
+	QEDdh_test$(EXEEXT) QCDcc_test$(EXEEXT) QCDdc_test$(EXEEXT) \
+	Parke_Taylor_cc_test$(EXEEXT) Parke_Taylor_dc_test$(EXEEXT) \
+	SM_test$(EXEEXT) SM_params_test$(EXEEXT) \
+	susy_QED_test$(EXEEXT) susy_QCDcc_test$(EXEEXT) \
+	susy_QCDdc_test$(EXEEXT) susy_Kunszt_test$(EXEEXT) \
+	MC_hel_test$(EXEEXT) MC_col_test$(EXEEXT) MC_gen_test$(EXEEXT) \
+	s_int_test$(EXEEXT) ps_tree_test$(EXEEXT) \
+	ps_reverse_test$(EXEEXT) parni_test$(EXEEXT) \
+	LHAPDF_test$(EXEEXT) speed_test$(EXEEXT)
 subdir = test
 DIST_COMMON = $(check_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/build-aux/depcomp
@@ -124,6 +126,9 @@ Pauli_basis_test_LDADD = $(LDADD)
 am_Pauli_spinor_test_OBJECTS = Pauli_spinor_test.$(OBJEXT)
 Pauli_spinor_test_OBJECTS = $(am_Pauli_spinor_test_OBJECTS)
 Pauli_spinor_test_LDADD = $(LDADD)
+am_QCD_procs_test_OBJECTS = QCD_procs_test.$(OBJEXT)
+QCD_procs_test_OBJECTS = $(am_QCD_procs_test_OBJECTS)
+QCD_procs_test_LDADD = $(LDADD)
 am_QCDcc_test_OBJECTS = QCDcc_test.$(OBJEXT)
 QCDcc_test_OBJECTS = $(am_QCDcc_test_OBJECTS)
 QCDcc_test_LDADD = $(LDADD)
@@ -210,34 +215,36 @@ SOURCES = $(libCamtest_la_SOURCES) $(LHAPDF_test_SOURCES) \
 	$(MC_col_test_SOURCES) $(MC_gen_test_SOURCES) \
 	$(MC_hel_test_SOURCES) $(Parke_Taylor_cc_test_SOURCES) \
 	$(Parke_Taylor_dc_test_SOURCES) $(Pauli_basis_test_SOURCES) \
-	$(Pauli_spinor_test_SOURCES) $(QCDcc_test_SOURCES) \
-	$(QCDdc_test_SOURCES) $(QEDch_test_SOURCES) \
-	$(QEDdh_test_SOURCES) $(SM_params_test_SOURCES) \
-	$(SM_test_SOURCES) $(Weyl_basis_test_SOURCES) \
-	$(Weyl_spinor_test_SOURCES) $(bitstring_test_SOURCES) \
-	$(cont_cols_test_SOURCES) $(discr_cols_test_SOURCES) \
-	$(m_spinor_test_SOURCES) $(parni_test_SOURCES) \
-	$(phi34_graphs_test_SOURCES) $(phi3_graphs_test_SOURCES) \
-	$(ps_reverse_test_SOURCES) $(ps_tree_test_SOURCES) \
-	$(s_int_test_SOURCES) $(speed_test_SOURCES) \
-	$(susy_Kunszt_test_SOURCES) $(susy_QCDcc_test_SOURCES) \
-	$(susy_QCDdc_test_SOURCES) $(susy_QED_test_SOURCES)
+	$(Pauli_spinor_test_SOURCES) $(QCD_procs_test_SOURCES) \
+	$(QCDcc_test_SOURCES) $(QCDdc_test_SOURCES) \
+	$(QEDch_test_SOURCES) $(QEDdh_test_SOURCES) \
+	$(SM_params_test_SOURCES) $(SM_test_SOURCES) \
+	$(Weyl_basis_test_SOURCES) $(Weyl_spinor_test_SOURCES) \
+	$(bitstring_test_SOURCES) $(cont_cols_test_SOURCES) \
+	$(discr_cols_test_SOURCES) $(m_spinor_test_SOURCES) \
+	$(parni_test_SOURCES) $(phi34_graphs_test_SOURCES) \
+	$(phi3_graphs_test_SOURCES) $(ps_reverse_test_SOURCES) \
+	$(ps_tree_test_SOURCES) $(s_int_test_SOURCES) \
+	$(speed_test_SOURCES) $(susy_Kunszt_test_SOURCES) \
+	$(susy_QCDcc_test_SOURCES) $(susy_QCDdc_test_SOURCES) \
+	$(susy_QED_test_SOURCES)
 DIST_SOURCES = $(libCamtest_la_SOURCES) $(LHAPDF_test_SOURCES) \
 	$(MC_col_test_SOURCES) $(MC_gen_test_SOURCES) \
 	$(MC_hel_test_SOURCES) $(Parke_Taylor_cc_test_SOURCES) \
 	$(Parke_Taylor_dc_test_SOURCES) $(Pauli_basis_test_SOURCES) \
-	$(Pauli_spinor_test_SOURCES) $(QCDcc_test_SOURCES) \
-	$(QCDdc_test_SOURCES) $(QEDch_test_SOURCES) \
-	$(QEDdh_test_SOURCES) $(SM_params_test_SOURCES) \
-	$(SM_test_SOURCES) $(Weyl_basis_test_SOURCES) \
-	$(Weyl_spinor_test_SOURCES) $(bitstring_test_SOURCES) \
-	$(cont_cols_test_SOURCES) $(discr_cols_test_SOURCES) \
-	$(m_spinor_test_SOURCES) $(parni_test_SOURCES) \
-	$(phi34_graphs_test_SOURCES) $(phi3_graphs_test_SOURCES) \
-	$(ps_reverse_test_SOURCES) $(ps_tree_test_SOURCES) \
-	$(s_int_test_SOURCES) $(speed_test_SOURCES) \
-	$(susy_Kunszt_test_SOURCES) $(susy_QCDcc_test_SOURCES) \
-	$(susy_QCDdc_test_SOURCES) $(susy_QED_test_SOURCES)
+	$(Pauli_spinor_test_SOURCES) $(QCD_procs_test_SOURCES) \
+	$(QCDcc_test_SOURCES) $(QCDdc_test_SOURCES) \
+	$(QEDch_test_SOURCES) $(QEDdh_test_SOURCES) \
+	$(SM_params_test_SOURCES) $(SM_test_SOURCES) \
+	$(Weyl_basis_test_SOURCES) $(Weyl_spinor_test_SOURCES) \
+	$(bitstring_test_SOURCES) $(cont_cols_test_SOURCES) \
+	$(discr_cols_test_SOURCES) $(m_spinor_test_SOURCES) \
+	$(parni_test_SOURCES) $(phi34_graphs_test_SOURCES) \
+	$(phi3_graphs_test_SOURCES) $(ps_reverse_test_SOURCES) \
+	$(ps_tree_test_SOURCES) $(s_int_test_SOURCES) \
+	$(speed_test_SOURCES) $(susy_Kunszt_test_SOURCES) \
+	$(susy_QCDcc_test_SOURCES) $(susy_QCDdc_test_SOURCES) \
+	$(susy_QED_test_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -367,7 +374,7 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-AM_CPPFLAGS = -pipe -Wall -I$(top_srcdir)/include -I$(top_builddir)
+AM_CPPFLAGS = -pipe -Wall -O3 -I$(top_srcdir)/include -I$(top_builddir)
 AM_CFLAGS = -O3
 EXTRA_DIST = plots
 AM_LDFLAGS = -L$(top_srcdir)/lib -lCamgen -lCamtest
@@ -426,6 +433,7 @@ libCamtest_la_SOURCES = QEDPbdh.cpp		\
 bitstring_test_SOURCES = bitstring_test.cpp
 phi3_graphs_test_SOURCES = phi3_graphs_test.cpp
 phi34_graphs_test_SOURCES = phi34_graphs_test.cpp
+QCD_procs_test_SOURCES = QCD_procs_test.cpp
 Pauli_basis_test_SOURCES = Pauli_basis_test.cpp
 Weyl_basis_test_SOURCES = Weyl_basis_test.cpp
 Pauli_spinor_test_SOURCES = Pauli_spinor_test.cpp
@@ -535,6 +543,9 @@ Pauli_basis_test$(EXEEXT): $(Pauli_basis_test_OBJECTS) $(Pauli_basis_test_DEPEND
 Pauli_spinor_test$(EXEEXT): $(Pauli_spinor_test_OBJECTS) $(Pauli_spinor_test_DEPENDENCIES) $(EXTRA_Pauli_spinor_test_DEPENDENCIES) 
 	@rm -f Pauli_spinor_test$(EXEEXT)
 	$(CXXLINK) $(Pauli_spinor_test_OBJECTS) $(Pauli_spinor_test_LDADD) $(LIBS)
+QCD_procs_test$(EXEEXT): $(QCD_procs_test_OBJECTS) $(QCD_procs_test_DEPENDENCIES) $(EXTRA_QCD_procs_test_DEPENDENCIES) 
+	@rm -f QCD_procs_test$(EXEEXT)
+	$(CXXLINK) $(QCD_procs_test_OBJECTS) $(QCD_procs_test_LDADD) $(LIBS)
 QCDcc_test$(EXEEXT): $(QCDcc_test_OBJECTS) $(QCDcc_test_DEPENDENCIES) $(EXTRA_QCDcc_test_DEPENDENCIES) 
 	@rm -f QCDcc_test$(EXEEXT)
 	$(CXXLINK) $(QCDcc_test_OBJECTS) $(QCDcc_test_LDADD) $(LIBS)
@@ -628,6 +639,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/QCDPbchcfdc_clone.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/QCDPbdhcfcc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/QCDPbdhcfdc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/QCD_procs_test.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/QCDcc_test.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/QCDdc_test.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/QEDPbKsdh.Plo@am__quote@
