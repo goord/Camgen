@@ -533,31 +533,17 @@ namespace Camgen
 	    {
 		return *(pout[i]);
 	    }
-
-	    /// Returns the i-th incoming mass-squared (no range checking on i).
-
-	    value_type s_in(size_type i) const
-	    {
-		return (min[i]==NULL)?((value_type)0):std::pow(*(min[i]),(int)2);
-	    }
-
-	    /// Returns the i-th outgoing mass-squared (no range checking on i).
-
-	    value_type s_out(size_type i) const
-	    {
-		return (mout[i]==NULL)?((value_type)0):std::pow(*(mout[i]),(int)2);
-	    }
 	    
 	    /// Returns the i-th incoming mass (no range checking on i).
 
-	    value_type m_in(size_type i) const
+	    const value_type& M_in(size_type i) const
 	    {
 		return (min[i]==NULL)?((value_type)0):(*(min[i]));
 	    }
 
 	    /// Returns the i-th outgoing mass (no range checking on i).
 
-	    value_type m_out(size_type i) const
+	    const value_type& M_out(size_type i) const
 	    {
 		return (mout[i]==NULL)?((value_type)0):(*(mout[i]));
 	    }

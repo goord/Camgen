@@ -308,6 +308,14 @@ namespace Camgen
 
 	    virtual value_type Ecm() const=0;
 
+	    /// Abstract method reading out an incoming mass.
+
+	    virtual const value_type& M_in(size_type) const=0;
+
+	    /// Abstract method reading out an outgoing mass.
+	    
+	    virtual const value_type& M_out(size_type) const=0;
+
 	    /// Virtual method returning the i-th incoming invariant mass-squared.
 
 	    virtual value_type s_in(size_type i) const
@@ -510,6 +518,16 @@ namespace Camgen
 	    {
 		return (i<0)?p_in(-i-1):p_out(i-1);
 	    }
+
+	    /// Returns the i-th mass, where i<0 means incoming masses and
+	    /// i>0 outgoing ones. If i==0,i<-N_in or i>N_out, an error will
+	    /// occur.
+
+	    virtual const value_type& M(int i) const
+	    {
+		return (i<0)?M_in(-i-1):M_out(i-1);
+	    }
+	   
 
 	    /// Reads the i-th incoming momentum's mu-th component.
 	    
@@ -1128,6 +1146,30 @@ namespace Camgen
 		return dummy_p;
 	    }
 
+	    /* Returns the i-th incoming mass. */
+
+	    const value_type& M_in(size_type i) const
+	    {
+		if(i>=N_in)
+		{
+		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"requested incoming mass "<<i<<" out of range for "<<N_in<<" incoming particles"<<endlog;
+		    validity_flag=false;
+		}
+		return dummy_s;
+	    }
+
+	    /* Returns the i-th outgoing momentum. */
+	    
+	    const value_type& M_out(size_type i) const
+	    {
+		if(i>=N_out)
+		{
+		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"requested outgoing mass "<<i<<" out of range for "<<N_out<<" outgoing particles"<<endlog;
+		    validity_flag=false;
+		}
+		return dummy_s;
+	    }
+
 	    /* Returns the i-th incoming momentum's mu-th component. */
 	    
 	    const value_type& p_in(size_type i,size_type mu) const
@@ -1250,6 +1292,18 @@ namespace Camgen
 		    validity_flag=false;
 		}
 		return dummy_p;
+	    }
+
+	    /* Returns the i-th mass */
+
+	    const momentum_type& M(int i) const
+	    {
+		if(i<-(int)N_in or i==0 or i<N_out)
+		{
+		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"requested mass "<<i<<" out of range for "<<N_in<<" incoming and "<<N_out<<" outgoing particles"<<endlog;
+		    validity_flag=false;
+		}
+		return dummy_s;
 	    }
 
 	    /* Returns the i-th momentum's mu-th component. */
