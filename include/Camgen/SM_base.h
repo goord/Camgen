@@ -16,8 +16,11 @@
 #include <Camgen/vffVA.h>
 #include <Camgen/vffR.h>
 #include <Camgen/svv.h>
+#include <Camgen/svv3.h>
 #include <Camgen/vss.h>
 #include <Camgen/ssvv.h>
+#include <Camgen/ssvv3.h>
+#include <Camgen/svvv3.h>
 #include <Camgen/sss.h>
 #include <Camgen/ssss.h>
 #include <Camgen/sffL.h>
