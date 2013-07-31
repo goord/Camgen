@@ -310,11 +310,11 @@ namespace Camgen
 
 	    /// Abstract method reading out an incoming mass.
 
-	    virtual const value_type& M_in(size_type) const=0;
+	    virtual value_type M_in(size_type) const=0;
 
 	    /// Abstract method reading out an outgoing mass.
 	    
-	    virtual const value_type& M_out(size_type) const=0;
+	    virtual value_type M_out(size_type) const=0;
 
 	    /// Virtual method returning the i-th incoming invariant mass-squared.
 
@@ -523,7 +523,7 @@ namespace Camgen
 	    /// i>0 outgoing ones. If i==0,i<-N_in or i>N_out, an error will
 	    /// occur.
 
-	    virtual const value_type& M(int i) const
+	    virtual value_type M(int i) const
 	    {
 		return (i<0)?M_in(-i-1):M_out(i-1);
 	    }
@@ -916,6 +916,20 @@ namespace Camgen
 		return gen->p_out(i);
 	    }
 
+	    /* Reads out an incoming momentum. */
+
+	    value_type M_in(size_type i) const
+	    {
+		return gen->M_in(i);
+	    }
+
+	    /* Reads out an outgoing momentum. */
+	    
+	    value_type M_out(size_type i) const
+	    {
+		return gen->M_out(i);
+	    }
+
 	    /* Abstract method returning the beam energies. */
 
 	    value_type beam_energy(int i) const
@@ -1148,7 +1162,7 @@ namespace Camgen
 
 	    /* Returns the i-th incoming mass. */
 
-	    const value_type& M_in(size_type i) const
+	    value_type M_in(size_type i) const
 	    {
 		if(i>=N_in)
 		{
@@ -1160,7 +1174,7 @@ namespace Camgen
 
 	    /* Returns the i-th outgoing momentum. */
 	    
-	    const value_type& M_out(size_type i) const
+	    value_type M_out(size_type i) const
 	    {
 		if(i>=N_out)
 		{
@@ -1296,14 +1310,14 @@ namespace Camgen
 
 	    /* Returns the i-th mass */
 
-	    const momentum_type& M(int i) const
+	    value_type M(int i) const
 	    {
 		if(i<-(int)N_in or i==0 or i<N_out)
 		{
 		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"requested mass "<<i<<" out of range for "<<N_in<<" incoming and "<<N_out<<" outgoing particles"<<endlog;
 		    validity_flag=false;
 		}
-		return dummy_s;
+		return 0;
 	    }
 
 	    /* Returns the i-th momentum's mu-th component. */

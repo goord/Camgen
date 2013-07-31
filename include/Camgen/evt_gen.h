@@ -834,7 +834,7 @@ namespace Camgen
 	    /// Returns the const reference to the i-th incoming mass (no
 	    /// range checking on i).
 
-	    const value_type& M_in(size_type i) const
+	    value_type M_in(size_type i) const
 	    {
 		return (*sub_proc)->M_in(i);
 	    }
@@ -842,7 +842,7 @@ namespace Camgen
 	    /// Returns the const reference to the i-th incoming mass (no
 	    /// range checking on i).
 
-	    const value_type& M_out(size_type i) const
+	    value_type M_out(size_type i) const
 	    {
 		return (*sub_proc)->M_out(i);
 	    }

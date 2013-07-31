@@ -107,9 +107,9 @@ namespace Camgen
 		    return false;
 		}
 		value_type Etot=std::sqrt(stot);
-		if(Etot<this->M_out())
+		if(Etot<this->ps_generator_base<model_type>::M_out())
 		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"total energy "<<Etot<<" too small to create final state with M = "<<this->M_out()<<endlog;
+		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"total energy "<<Etot<<" too small to create final state with M = "<<this->ps_generator_base<model_type>::M_out()<<endlog;
 		    this->fsw=(value_type)0;
 		    return false;
 		}
@@ -226,7 +226,7 @@ namespace Camgen
 		    return false;
 		}
 		value_type Etot=std::sqrt(stot);
-		if(Etot<this->M_out())
+		if(Etot<this->ps_generator_base<model_type>::M_out())
 		{
 		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"total energy too small to create final state"<<endlog;
 		    this->fsw=(value_type)0;
