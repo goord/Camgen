@@ -20,7 +20,7 @@
 #include <Camgen/vss.h>
 #include <Camgen/ssvv.h>
 #include <Camgen/ssvv3.h>
-#include <Camgen/svvv3.h>
+#include <Camgen/svvv2.h>
 #include <Camgen/sss.h>
 #include <Camgen/ssss.h>
 #include <Camgen/sffL.h>

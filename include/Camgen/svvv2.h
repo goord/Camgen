@@ -184,14 +184,6 @@ namespace Camgen
     };
 }
 
-/* If the structure constant colour structure is included by the user, we include the
- * specialisation of the Feynman rule composition of the Yang-Mills 3-vertex with a
- * structure constants tensor: */
-
-#ifdef CAMGEN_F_H_
-#include <Camgen/ggg.h>
-#endif /*CAMGEN_F_H_*/
-
 #include <Camgen/undef_args.h>
 
 #endif /*CAMGEN_SVVV2_H_*/
