@@ -1,6 +1,6 @@
 #include "SMseesaw.h"
 
-using namespace Camorra;
+using namespace Camgen;
 
 const unsigned SMseesaw::dimension;
 const unsigned SMseesaw::N_c;

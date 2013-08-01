@@ -536,14 +536,14 @@ namespace Camgen
 	    
 	    /// Returns the i-th incoming mass (no range checking on i).
 
-	    const value_type& M_in(size_type i) const
+	    value_type M_in(size_type i) const
 	    {
 		return (min[i]==NULL)?((value_type)0):(*(min[i]));
 	    }
 
 	    /// Returns the i-th outgoing mass (no range checking on i).
 
-	    const value_type& M_out(size_type i) const
+	    value_type M_out(size_type i) const
 	    {
 		return (mout[i]==NULL)?((value_type)0):(*(mout[i]));
 	    }

@@ -1077,7 +1077,7 @@ namespace Camgen
 	    /// Returns the const reference to the i-th incoming mass (no
 	    /// range checking on i).
 
-	    const value_type& M_in(size_type i) const
+	    value_type M_in(size_type i) const
 	    {
 		return ps_gen->M_in(i);
 	    }
@@ -1085,7 +1085,7 @@ namespace Camgen
 	    /// Returns the const reference to the i-th incoming mass (no
 	    /// range checking on i).
 
-	    const momentum_type& M_out(size_type i) const
+	    value_type M_out(size_type i) const
 	    {
 		return ps_gen->M_out(i);
 	    }

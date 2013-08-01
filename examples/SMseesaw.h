@@ -1,13 +1,13 @@
 #ifndef SMSEESAW_H_
 #define SMSEESAW_H_
 
-#include <Camorra/SM_base.h>
-#include <Camorra/Minkowski.h>
-#include <Camorra/Pauli_basis.h>
-#include <Camorra/helicity_type.h>
-#include <Camorra/col_flow.h>
+#include <Camgen/SM_base.h>
+#include <Camgen/Minkowski.h>
+#include <Camgen/Pauli_basis.h>
+#include <Camgen/hel_type.h>
+#include <Camgen/col_flow.h>
 
-using namespace Camorra;
+using namespace Camgen;
 
 class SMseesaw: public SM_base<SMseesaw,double>
 {

@@ -106,6 +106,7 @@ AC_CONFIG_FILES([Makefile
                  include/Makefile
                  lib/Makefile
                  src/Makefile
+		 examples/Makefile
                  test/Makefile])
 AC_OUTPUT
 

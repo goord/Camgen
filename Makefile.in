@@ -256,8 +256,8 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 ACLOCAL_AMFLAGS = -I m4
-SUBDIRS = include lib src test
-EXTRA_DIST = doc examples
+SUBDIRS = include lib src test examples
+EXTRA_DIST = doc
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 

@@ -1,6 +1,4 @@
-AM_CPPFLAGS =		    	-pipe -Wall -O3 -I$(top_srcdir)/include -I$(top_builddir)
-
-AM_CFLAGS =			-O3
+AM_CPPFLAGS =		    	-O3 -pipe -I$(top_srcdir)/include
 
 EXTRA_DIST =		    	plots
 
