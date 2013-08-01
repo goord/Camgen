@@ -184,6 +184,8 @@ Camgen_HEADERS = Camgen/adj_rep.h		\
 		 Camgen/sss.h			\
 		 Camgen/ssss.h			\
 		 Camgen/ssvv.h			\
+		 Camgen/ssvv3.h			\
+		 Camgen/svvv2.h			\
 		 Camgen/static_comp.h		\
 		 Camgen/stdrand.h		\
 		 Camgen/su(n).h			\
@@ -196,6 +198,7 @@ Camgen_HEADERS = Camgen/adj_rep.h		\
 		 Camgen/susy_QED.h		\
 		 Camgen/susy_QED_base.h		\
 		 Camgen/svv.h			\
+		 Camgen/svv3.h			\
 		 Camgen/symtvv.h		\
 		 Camgen/T.h			\
 		 Camgen/t_branch.h		\
