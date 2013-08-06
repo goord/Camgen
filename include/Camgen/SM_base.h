@@ -1153,13 +1153,13 @@ namespace Camgen
     
     /* Real input parameters: */
 
-    template<class model_t,class value_t>value_t SM_base<model_t,value_t>::M_e=(value_t)0;
-    template<class model_t,class value_t>value_t SM_base<model_t,value_t>::M_mu=(value_t)0;
+    template<class model_t,class value_t>value_t SM_base<model_t,value_t>::M_e=(value_t)SM_params::M_e;
+    template<class model_t,class value_t>value_t SM_base<model_t,value_t>::M_mu=(value_t)SM_params::M_mu;
     template<class model_t,class value_t>value_t SM_base<model_t,value_t>::M_tau=(value_t)SM_params::M_tau;
-    template<class model_t,class value_t>value_t SM_base<model_t,value_t>::M_u=(value_t)0;
-    template<class model_t,class value_t>value_t SM_base<model_t,value_t>::M_d=(value_t)0;
+    template<class model_t,class value_t>value_t SM_base<model_t,value_t>::M_u=(value_t)SM_params::M_u;
+    template<class model_t,class value_t>value_t SM_base<model_t,value_t>::M_d=(value_t)SM_params::M_d;
     template<class model_t,class value_t>value_t SM_base<model_t,value_t>::M_c=(value_t)SM_params::M_c;
-    template<class model_t,class value_t>value_t SM_base<model_t,value_t>::M_s=(value_t)0;
+    template<class model_t,class value_t>value_t SM_base<model_t,value_t>::M_s=(value_t)SM_params::M_s;
     template<class model_t,class value_t>value_t SM_base<model_t,value_t>::M_t=(value_t)SM_params::M_t;
     template<class model_t,class value_t>value_t SM_base<model_t,value_t>::M_b=(value_t)SM_params::M_b;
     template<class model_t,class value_t>value_t SM_base<model_t,value_t>::M_Z=(value_t)SM_params::M_Z;
