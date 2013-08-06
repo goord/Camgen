@@ -1083,13 +1083,13 @@ namespace Camgen
 
 	    static void set_default_params()
 	    {
-		M_e=(value_type)0;
-		M_mu=(value_type)0;
+	        M_e=(value_type)SM_params::M_e;
+		M_mu=(value_type)SM_params::M_mu;
 		M_tau=(value_type)SM_params::M_tau;
-		M_u=(value_type)0;
-		M_d=(value_type)0;
+		M_u=(value_type)SM_params::M_u;
+		M_d=(value_type)SM_params::M_d;
 		M_c=(value_type)SM_params::M_c;
-		M_s=(value_type)0;
+		M_s=(value_type)SM_params::M_s;
 		M_t=(value_type)SM_params::M_t;
 		M_b=(value_type)SM_params::M_b;
 		M_Z=(value_type)SM_params::M_Z;

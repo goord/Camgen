@@ -40,7 +40,7 @@ namespace Camgen
 
 	/* Fine-structure constant: */
 
-	const double alpha=(double)1/127.9;
+	const double alpha=(double)1/132.50698;
 
 	/* Fermi's constant: */
 
@@ -49,7 +49,7 @@ namespace Camgen
 	/* Strong coupling constant, evaluated at scale: */
 
 	const double QCD_scale=M_Z;
-	const double alpha_s=0.1172;
+	const double alpha_s=0.118;
 
 	/* Cabibbo angle: */
 
