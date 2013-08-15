@@ -71,15 +71,18 @@ namespace Camgen
     }
     bool MC_config::set_beam_energy(int i,double e)
     {
-	if(i==1 and e>(double)0)
+	if(e>(double)0)
 	{
-	    MC_config::E1=e;
-	    return true;
-	}
-	if(i==2 and e>(double)0)
-	{
-	    MC_config::E2=e;
-	    return true;
+	    if(i==1 or i==-1)
+	    {
+		MC_config::E1=e;
+		return true;
+	    }
+	    if(i==2 or i==-2)
+	    {
+		MC_config::E2=e;
+		return true;
+	    }
 	}
 	return false;
     }
