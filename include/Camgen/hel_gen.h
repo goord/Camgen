@@ -79,7 +79,7 @@ namespace Camgen
 		vector<int,N_tot>result;
 		for(size_type i=0;i<N_tot;++i)
 		{
-		    result[i]=it->get_phase_space(i)->maximal_helicity();
+		    result[i]=it->get_phase_space(i)->max_helicity();
 		}
 		return result;
 	    }
@@ -88,7 +88,7 @@ namespace Camgen
 		std::bitset<N_tot>result;
 		for(size_type i=0;i<N_tot;++i)
 		{
-		    result[i]=it->get_phase_space(i)->has_zero_helicity();
+		    result[i]=it->get_phase_space(i)->zero_helicity();
 		}
 		return result;
 	    }
@@ -378,7 +378,7 @@ namespace Camgen
 
 	    bool has_zero_helicity(size_type i) const
 	    {
-		return this->get_object(i)->zero_helicity_state;
+		return this->get_object(i)->zero_helicity();
 	    }
 
 	    /// Returns the initial-state helicity averaging factor for cross sections.
@@ -510,8 +510,10 @@ namespace Camgen
 	    {
 		for(size_type i=0;i<N_in;++i)
 		{
-		    prefactor/=(this->get_object(i)->n_helicities());
+		    std::cerr<<"dividing the factor by "<<this->get_object(i)->helicities()<<std::endl;
+		    prefactor/=(this->get_object(i)->helicities());
 		}
+		std::cerr<<"the prefactor is "<<prefactor<<std::endl;
 	    }
     };
     template<class value_t,std::size_t N_in,std::size_t N_out>const std::size_t helicity_generator<value_t,N_in,N_out,true>::N_tot;

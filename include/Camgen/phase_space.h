@@ -32,6 +32,184 @@
 
 namespace Camgen
 {
+    /// Continuous helicity data holder type.
+
+    template<class value_t>class helicity_phases
+    {
+	public:
+
+	    /* Useful type definition: */
+
+	    typedef value_t r_value_type;
+	    typedef std::complex<value_t> value_type;
+	    typedef typename std::vector<value_type>::size_type size_type;
+
+	    const size_type n_helicities;
+
+	    /// Default constructor (constructs scalar state).
+	    
+	    helicity_phases():n_helicities(1),zero_hel(1,0){}
+
+	    /// Constructor with maximal helicity max_hel.
+
+	    helicity_phases(size_type n_helicities_):n_helicities(n_helicities_)
+	    {
+		if(n_helicities==1)
+		{
+		    zero_hel=value_type(1,0);
+		}
+		else
+		{
+		    size_type size=n_helicities>>1;
+		    pos_hels.assign(size,value_type(1,0));
+		    neg_hels.assign(size,value_type(1,0));
+
+		    bool zero_helicity=(n_helicities&1==1);
+		    zero_hel=zero_helicity?value_type(1,0):value_type(0,0);
+		}
+	    }
+	    
+	    /// Helicity phase access.
+	    
+	    value_type& helicity_phase(int i)
+	    {
+		if(i>0)
+		{
+		    return pos_hels[i-1];
+		}
+		if(i<0)
+		{
+		    return neg_hels[-i-1];
+		}
+		return zero_hel;
+	    }
+	    
+	    /// Positive helicity phase access.
+	    
+	    value_type& positive_helicity_phase(int i)
+	    {
+		return pos_hels[i];
+	    }
+	    
+	    /// Negative helicity phase access.
+	    
+	    value_type& negative_helicity_phase(int i)
+	    {
+		return neg_hels[i];
+	    }
+	    
+	    /// Zero helicity phase access.
+	    
+	    value_type& zero_helicity_phase()
+	    {
+		return zero_hel;
+	    }
+
+	    /// Const helicity phase access.
+	    
+	    const value_type& helicity_phase(int i) const
+	    {
+		if(i>0)
+		{
+		    return pos_hels[i-1];
+		}
+		if(i<0)
+		{
+		    return neg_hels[-i-1];
+		}
+		return zero_hel;
+	    }
+	    
+	    /// Const positive helicity phase access.
+	    
+	    const value_type& positive_helicity_phase(int i) const
+	    {
+		return pos_hels[i];
+	    }
+	    
+	    /// Const negative helicity phase access.
+	    
+	    const value_type& negative_helicity_phase(int i) const
+	    {
+		return neg_hels[i];
+	    }
+	    
+	    /// Const zero helicity phase access.
+	    
+	    const value_type& zero_helicity_phase() const
+	    {
+		return zero_hel;
+	    }
+
+	    /// Sets the superposition to a pure helicity-n state.
+
+	    helicity_phases<value_t>& set_pure_state(int n)
+	    {
+		pos_hels.assign(pos_hels.size(),value_type(0,0));
+		neg_hels.assign(neg_hels.size(),value_type(0,0));
+		if(n>0)
+		{
+		    zero_hel=value_type(0,0);
+		    pos_hels[n-1].real()=(r_value_type)1;
+		}
+		else if(n==0)
+		{
+		    zero_hel=value_type(1,0);
+		}
+		else
+		{
+		    zero_hel=value_type(0,0);
+		    neg_hels[-n-1].real()=(r_value_type)1;
+		}
+		return *this;
+	    }
+
+	    /* Printing method: */
+
+	    std::ostream& print(std::ostream& os) const
+	    {
+		for(typename std::vector<value_type>::size_type i=0;i<neg_hels.size();++i)
+		{
+		    os<<neg_hels[i];
+		}
+		if(n_helicities&1==1)
+		{
+		    os<<zero_hel;
+		}
+		for(typename std::vector<value_type>::size_type i=0;i<pos_hels.size();++i)
+		{
+		    os<<pos_hels[i];
+		}
+		return os;
+	    }
+
+	    size_type helicities() const
+	    {
+		return n_helicities;
+	    }
+
+	    int max_helicity() const
+	    {
+		return n_helicities>>1;
+	    }
+
+	    int min_helicity() const
+	    {
+		return -max_helicity();
+	    }
+
+	    bool zero_helicity() const
+	    {
+		return n_helicities&1==1;
+	    }
+
+	private:
+
+	    std::vector<value_type>pos_hels;
+	    value_type zero_hel;
+	    std::vector<value_type>neg_hels;
+    };
+
     /// Phase space base class template. The template
     /// parameter denotes the model type. The data stored in this class are a
     /// momentum and a particle pointer.
@@ -56,9 +234,9 @@ namespace Camgen
 
 	    const particle<model_t>* const particle_type; 
 	    
-	    /* Maximum helicity integer: */
+	    /* Number of helicities: */
 	    
-	    const int max_helicity;
+	    const size_type n_helicities;
 
 	    /* Spacetime tensor size: */
 
@@ -75,7 +253,7 @@ namespace Camgen
 	    /* Constructor taking the particle type and momentum direction s
 	     * arguments: */
 
-	    base_ps(const particle<model_t>* phi,bool out=false):particle_type(phi),max_helicity(phi->is_boson()?((phi->get_spin().twice())/2):(phi->get_spin().twice())),spacetime_tensor_size(phi->get_spacetime_tensor_size()),colour_tensor_size(phi->get_colour_tensor_size()),tensor_size(spacetime_tensor_size*colour_tensor_size),outgoing(out),handlebar(false){}
+	    base_ps(const particle<model_t>* phi,bool out=false):particle_type(phi),n_helicities(phi->helicities()),spacetime_tensor_size(phi->get_spacetime_tensor_size()),colour_tensor_size(phi->get_colour_tensor_size()),tensor_size(spacetime_tensor_size*colour_tensor_size),outgoing(out),handlebar(false){}
 
 	    /* Destructor: */
 
@@ -177,35 +355,38 @@ namespace Camgen
 
 	    size_type helicities() const
 	    {
-		return particle_type->spin_dof();
+		return n_helicities;
 	    }
 
 	    /// Returns the maximal helicity of the particle.
 
-	    int maximal_helicity() const
+	    int max_helicity() const
 	    {
-		return max_helicity;
+		return n_helicities>>1;
+	    }
+
+	    /// Returns the minimal helicity of the particle.
+	    
+	    int min_helicity() const
+	    {
+		return -max_helicity();
+	    }
+
+	    /// Returns whether the particle has a zero helicity state.
+
+	    bool zero_helicity() const
+	    {
+		return (n_helicities&1==1);
 	    }
 
 	    bool massive() const
 	    {
-		return (particle_type->mass!=NULL);
+		return (particle_type->mass!=NULL && particle_type->get_mass()>0);
 	    }
 
 	    bool massless() const
 	    {
-		return (particle_type->mass==NULL);
-	    }
-
-	    /// Returns true if the particle allows a zero-helicity state.
-
-	    bool has_zero_helicity() const
-	    {
-		if(particle_type->mass==NULL)
-		{
-		    return (particle_type->zero_hel_outgoing_massless_state!=NULL);
-		}
-		return (particle_type->zero_hel_outgoing_massive_state!=NULL);
+		return !massive();
 	    }
 
 	    /// Returns whether the state is incoming.
@@ -309,7 +490,7 @@ namespace Camgen
 
 	    /* Constructor taking a ps base instance as argument: */
 	    
-	    helicity_ps(const base_ps<model_t>* ps_):ps(ps_),hel(-(ps->max_helicity)){}
+	    helicity_ps(const base_ps<model_t>* ps_):ps(ps_),hel(-(ps->max_helicity())){}
 	    
 	    /// Returns a reference to the helicity integer member.
 	    
@@ -435,7 +616,7 @@ namespace Camgen
 
 	    iterator init_sum_wave_function(iterator it)
 	    {
-		hel=-ps->max_helicity;
+		hel=-ps->max_helicity();
 		iterator itend=it+ps->spacetime_tensor_size;
 		for(iterator it2=it;it2!=itend;++it2)
 		{
@@ -449,11 +630,11 @@ namespace Camgen
 	    iterator sum_wave_function(iterator it)
 	    {
 		++hel;
-		if(hel==0 and !ps->particle_type->has_zero_helicity_state())
+		if(hel==0 and !ps->zero_helicity())
 		{
 		    hel=1;
 		}
-		if(hel>ps->max_helicity)
+		if(hel>ps->max_helicity())
 		{
 		    hel=-hel+1;
 		}
@@ -468,7 +649,7 @@ namespace Camgen
 
 	    bool minimal_helicity() const
 	    {
-		return (hel==-(ps->max_helicity));
+		return (hel==-(ps->max_helicity()));
 	    }
 
 	    /* Subamplitude contraction caller: */
@@ -499,201 +680,6 @@ namespace Camgen
 
 	    int hel;
     };
-
-    /// Continuous helicity data holder type.
-
-    template<class value_t>class helicity_phases
-    {
-	public:
-
-	    /* Useful type definition: */
-
-	    typedef value_t r_value_type;
-	    typedef std::complex<value_t> value_type;
-	    typedef typename std::vector<value_type>::size_type size_type;
-
-	    /// Returns a scalar helicity holder.
-
-	    static helicity_phases<value_t> create_scalar()
-	    {
-		helicity_phases result;
-		return result;
-	    }
-
-	    /// Returns a massless spin-s helicity holder.
-
-	    static helicity_phases<value_t> create_massless(int s)
-	    {
-		helicity_phases result(s,false);
-		return result;
-	    }
-
-	    /// Returns a massive spin-s helicity holder.
-
-	    static helicity_phases<value_t> create_massive(int s)
-	    {
-		helicity_phases result(s,true);
-		return result;
-	    }
-
-	    /// Flag denoting whether we have a zero helicity phase.
-
-	    const bool zero_helicity_state;
-
-	    /// Default constructor (constructs scalar state).
-	    
-	    helicity_phases():zero_hel(1,0),zero_helicity_state(true){}
-
-	    /// Constructor with maximal helicity max_hel.
-
-	    helicity_phases(int max_hel,bool massive=false):zero_helicity_state(massive)
-	    {
-		if(max_hel==0)
-		{
-		    zero_hel=value_type(1,0);
-		}
-		else
-		{
-		    pos_hels.assign(std::abs(max_hel),value_type(1,0));
-		    neg_hels.assign(std::abs(max_hel),value_type(1,0));
-		    zero_hel=massive?value_type(1,0):value_type(0,0);
-		}
-	    }
-	    
-	    /// Helicity phase access.
-	    
-	    value_type& helicity_phase(int i)
-	    {
-		if(i>0)
-		{
-		    return pos_hels[i-1];
-		}
-		if(i<0)
-		{
-		    return neg_hels[-i-1];
-		}
-		return zero_hel;
-	    }
-	    
-	    /// Positive helicity phase access.
-	    
-	    value_type& positive_helicity_phase(int i)
-	    {
-		return pos_hels[i];
-	    }
-	    
-	    /// Negative helicity phase access.
-	    
-	    value_type& negative_helicity_phase(int i)
-	    {
-		return neg_hels[i];
-	    }
-	    
-	    /// Zero helicity phase access.
-	    
-	    value_type& zero_helicity_phase()
-	    {
-		return zero_hel;
-	    }
-
-	    /// Const helicity phase access.
-	    
-	    const value_type& helicity_phase(int i) const
-	    {
-		if(i>0)
-		{
-		    return pos_hels[i-1];
-		}
-		if(i<0)
-		{
-		    return neg_hels[-i-1];
-		}
-		return zero_hel;
-	    }
-	    
-	    /// Const positive helicity phase access.
-	    
-	    const value_type& positive_helicity_phase(int i) const
-	    {
-		return pos_hels[i];
-	    }
-	    
-	    /// Const negative helicity phase access.
-	    
-	    const value_type& negative_helicity_phase(int i) const
-	    {
-		return neg_hels[i];
-	    }
-	    
-	    /// Const zero helicity phase access.
-	    
-	    const value_type& zero_helicity_phase() const
-	    {
-		return zero_hel;
-	    }
-
-	    /// Maximal helicity readout.
-
-	    int max_helicity() const
-	    {
-		return pos_hels.size();
-	    }
-
-	    /// Nr. of helicity states.
-	    
-	    size_type n_helicities() const
-	    {
-		return zero_helicity_state?(2*pos_hels.size()+1):(2*pos_hels.size());
-	    }
-
-	    /// Sets the superposition to a pure helicity-n state.
-
-	    helicity_phases<value_t>& set_pure_state(int n)
-	    {
-		pos_hels.assign(pos_hels.size(),value_type(0,0));
-		neg_hels.assign(neg_hels.size(),value_type(0,0));
-		if(n>0)
-		{
-		    zero_hel=value_type(0,0);
-		    pos_hels[n-1].real()=(r_value_type)1;
-		}
-		else if(n==0)
-		{
-		    zero_hel=value_type(1,0);
-		}
-		else
-		{
-		    zero_hel=value_type(0,0);
-		    neg_hels[-n-1].real()=(r_value_type)1;
-		}
-		return *this;
-	    }
-
-	    /* Printing method: */
-
-	    std::ostream& print(std::ostream& os) const
-	    {
-		for(typename std::vector<value_type>::size_type i=0;i<neg_hels.size();++i)
-		{
-		    os<<neg_hels[i];
-		}
-		if(zero_helicity_state)
-		{
-		    os<<zero_hel;
-		}
-		for(typename std::vector<value_type>::size_type i=0;i<pos_hels.size();++i)
-		{
-		    os<<pos_hels[i];
-		}
-		return os;
-	    }
-
-	private:
-
-	    std::vector<value_type>pos_hels;
-	    value_type zero_hel;
-	    std::vector<value_type>neg_hels;
-    };
     
     /// Helicity phase space template specialisation for continuous-helicity
     ///  model types.
@@ -722,7 +708,7 @@ namespace Camgen
 
 	    /* Constructor taking a base ps instance as argument: */
 	    
-	    helicity_ps(const base_ps<model_t>* ps_):ps(ps_),hel(ps->max_helicity,ps->massive()),n(-(ps->max_helicity)){}
+	    helicity_ps(const base_ps<model_t>* ps_):ps(ps_),hel(ps->helicities()),n(-(ps->max_helicity())){}
 
 	    /// Returns a reference to the (complex) coefficient that multiplies the i-th helicity wave function.
 
@@ -755,12 +741,12 @@ namespace Camgen
 		{
 		    if(ps->is_outgoing())
 		    {
-			for(int i=0;i<ps->max_helicity;++i)
+			for(int i=0;i<ps->max_helicity();++i)
 			{
 			    (phi->pos_hel_outgoing_massless_states)[i](hel.positive_helicity_phase(i),it,&(ps->momentum()),NULL);
 			    (phi->neg_hel_outgoing_massless_states)[i](hel.negative_helicity_phase(i),it,&(ps->momentum()),NULL);
 			}
-			if(phi->zero_hel_outgoing_massless_state!=NULL)
+			if(ps->zero_helicity())
 			{
 			    phi->zero_hel_outgoing_massless_state(hel.zero_helicity_phase(),it,&(ps->momentum()),NULL);
 			}
@@ -768,12 +754,12 @@ namespace Camgen
 		    }
 		    else
 		    {
-			for(int i=0;i<ps->max_helicity;++i)
+			for(int i=0;i<ps->max_helicity();++i)
 			{
 			    (phi->pos_hel_incoming_massless_states)[i](hel.positive_helicity_phase(i),it,&(ps->momentum()),NULL);
 			    (phi->neg_hel_incoming_massless_states)[i](hel.negative_helicity_phase(i),it,&(ps->momentum()),NULL);
 			}
-			if(phi->zero_hel_incoming_massless_state!=NULL)
+			if(ps->zero_helicity())
 			{
 			    phi->zero_hel_incoming_massless_state(hel.zero_helicity_phase(),it,&(ps->momentum()),NULL);
 			}
@@ -784,12 +770,12 @@ namespace Camgen
 		{
 		    if(ps->is_outgoing())
 		    {
-			for(int i=0;i<ps->max_helicity;++i)
+			for(int i=0;i<ps->max_helicity();++i)
 			{
 			    (phi->pos_hel_outgoing_massive_states)[i](hel.positive_helicity_phase(i),it,&(ps->momentum()),phi->mass);
 			    (phi->neg_hel_outgoing_massive_states)[i](hel.negative_helicity_phase(i),it,&(ps->momentum()),phi->mass);
 			}
-			if(phi->zero_hel_outgoing_massive_state!=NULL)
+			if(ps->zero_helicity())
 			{
 			    phi->zero_hel_outgoing_massive_state(hel.zero_helicity_phase(),it,&(ps->momentum()),phi->mass);
 			}
@@ -797,12 +783,12 @@ namespace Camgen
 		    }
 		    else
 		    {
-			for(int i=0;i<ps->max_helicity;++i)
+			for(int i=0;i<ps->max_helicity();++i)
 			{
 			    (phi->pos_hel_incoming_massive_states)[i](hel.positive_helicity_phase(i),it,&(ps->momentum()),phi->mass);
 			    (phi->neg_hel_incoming_massive_states)[i](hel.negative_helicity_phase(i),it,&(ps->momentum()),phi->mass);
 			}
-			if(phi->zero_hel_incoming_massive_state!=NULL)
+			if(ps->zero_helicity())
 			{
 			    phi->zero_hel_incoming_massive_state(hel.zero_helicity_phase(),it,&(ps->momentum()),phi->mass);
 			}
@@ -816,7 +802,7 @@ namespace Camgen
 
 	    iterator init_sum_wave_function(iterator it)
 	    {
-		n=-ps->max_helicity;
+		n=-ps->max_helicity();
 		hel.set_pure_state(n);
 		if(ps->is_handlebar())
 		{
@@ -889,11 +875,11 @@ namespace Camgen
 	    iterator sum_wave_function(iterator it)
 	    {
 		++n;
-		if(n==0 and !ps->particle_type->has_zero_helicity_state())
+		if(n==0 and !ps->zero_helicity())
 		{
 		    n=1;
 		}
-		if(n>ps->max_helicity)
+		if(n>ps->max_helicity())
 		{
 		    n=-n+1;
 		}
@@ -984,7 +970,7 @@ namespace Camgen
 
 	    bool minimal_helicity() const
 	    {
-		return (n==-(ps->max_helicity));
+		return (n==ps->min_helicity());
 	    }
 
 	    /* Sub-amplitude contraction caller: */

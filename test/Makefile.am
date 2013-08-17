@@ -16,7 +16,7 @@ check_PROGRAMS =		bitstring_test		\
 		 	    	Weyl_basis_test		\
 		 	    	Pauli_spinor_test	\
 		 	    	Weyl_spinor_test	\
-		 	    	m_spinor_test		\
+				m_spinor_test		\
 		 	    	discr_cols_test		\
 		 	    	cont_cols_test		\
 		 	    	QEDch_test		\
@@ -39,7 +39,7 @@ check_PROGRAMS =		bitstring_test		\
 		 		ps_reverse_test		\
 		 		parni_test		\
 		 		LHAPDF_test		\
-		 		speed_test		
+				speed_test
 
 check_HEADERS =	    	    	QEDPbdh.h		\
 			    	QEDPbch.h		\
@@ -133,7 +133,6 @@ TESTS =			    	bitstring_test		\
 				QCD_procs_test		\
 			    	Pauli_basis_test	\
 			    	Weyl_basis_test		\
-			    	m_spinor_test		\
 			    	Pauli_spinor_test	\
 			    	Weyl_spinor_test	\
 			    	discr_cols_test		\
