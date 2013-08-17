@@ -471,13 +471,6 @@ namespace Camgen
 		}
 	    }
 
-	    /* Renamed spin_dof: */
-
-	    size_type helicities() const
-	    {
-		return spin_dof();
-	    }
-
 	    /* Returns the physical colour degrees of freedom: */
 
 	    size_type colour_dof() const
