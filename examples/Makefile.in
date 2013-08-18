@@ -182,7 +182,8 @@ target_alias = @target_alias@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AM_CPPFLAGS = -O3 -pipe -I$(top_srcdir)/include
-AM_LDFLAGS = -L$(top_srcdir)/lib -lCamgen
+@USE_LHAPDF_FALSE@AM_LDFLAGS = -L$(top_srcdir)/lib -lCamgen -L$(LHAPDF_DIR)/lib -lLHAPDF
+@USE_LHAPDF_TRUE@AM_LDFLAGS = -L$(top_srcdir)/lib -lCamgen
 example1_SOURCES = example1.cpp
 example2_SOURCES = example2.cpp	\
 				SMseesaw.cpp

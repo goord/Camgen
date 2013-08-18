@@ -82,7 +82,7 @@ am_libCamtest_la_OBJECTS = QEDPbdh.lo QEDPbch.lo QEDWbdh.lo QEDWbch.lo \
 libCamtest_la_OBJECTS = $(am_libCamtest_la_OBJECTS)
 am_LHAPDF_test_OBJECTS = LHAPDF_test.$(OBJEXT)
 LHAPDF_test_OBJECTS = $(am_LHAPDF_test_OBJECTS)
-LHAPDF_test_DEPENDENCIES =
+LHAPDF_test_LDADD = $(LDADD)
 am_MC_col_test_OBJECTS = MC_col_test.$(OBJEXT)
 MC_col_test_OBJECTS = $(am_MC_col_test_OBJECTS)
 MC_col_test_LDADD = $(LDADD)
@@ -342,7 +342,8 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AM_CPPFLAGS = -O3 -pipe -I$(top_srcdir)/include
 EXTRA_DIST = plots
-AM_LDFLAGS = -L$(top_srcdir)/lib -lCamgen -lCamtest
+@USE_LHAPDF_FALSE@AM_LDFLAGS = -L$(top_srcdir)/lib -lCamgen -lCamtest -L$(LHAPDF_DIR)/lib -lLHAPDF
+@USE_LHAPDF_TRUE@AM_LDFLAGS = -L$(top_srcdir)/lib -lCamgen -lCamtest
 check_LTLIBRARIES = libCamtest.la
 CLEANFILES = *.o *.dat *.plt *.log
 check_HEADERS = QEDPbdh.h		\
@@ -426,7 +427,6 @@ ps_tree_test_SOURCES = ps_tree_test.cpp
 ps_reverse_test_SOURCES = ps_reverse_test.cpp
 parni_test_SOURCES = parni_test.cpp
 LHAPDF_test_SOURCES = LHAPDF_test.cpp
-@USE_LHAPDF_TRUE@LHAPDF_test_LDADD = -L$(LHAPDF_DIR)/lib -lLHAPDF
 speed_test_SOURCES = speed_test.cpp
 all: all-am
 

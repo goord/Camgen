@@ -2,7 +2,11 @@ AM_CPPFLAGS =		    	-O3 -pipe -I$(top_srcdir)/include
 
 EXTRA_DIST =		    	plots
 
+if USE_LHAPDF
 AM_LDFLAGS =		    	-L$(top_srcdir)/lib -lCamgen -lCamtest
+else
+AM_LDFLAGS =			-L$(top_srcdir)/lib -lCamgen -lCamtest -L$(LHAPDF_DIR)/lib -lLHAPDF
+endif
 
 check_LTLIBRARIES =	    	libCamtest.la
 
@@ -122,9 +126,6 @@ ps_tree_test_SOURCES =	    	ps_tree_test.cpp
 ps_reverse_test_SOURCES =	ps_reverse_test.cpp
 parni_test_SOURCES =		parni_test.cpp
 LHAPDF_test_SOURCES =		LHAPDF_test.cpp
-if USE_LHAPDF
-LHAPDF_test_LDADD =		-L$(LHAPDF_DIR)/lib -lLHAPDF
-endif
 speed_test_SOURCES =		speed_test.cpp
 
 TESTS =			    	bitstring_test		\
