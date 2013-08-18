@@ -113,7 +113,6 @@
 <li>s_in()
 : <a class="el" href="a00210.html#a6ae7fa6415e21a7cffc3dfc4dcbabeeb">Camgen::event_generator&lt; model_t, N_in, N_out, rng_t &gt;</a>
 , <a class="el" href="a00430.html#a16d207fe275c80737368224ac03b0284">Camgen::process_generator&lt; model_t, N_in, N_out, rng_t &gt;</a>
-, <a class="el" href="a00441.html#a5aab945c0b53817ad79dac03f7a27631">Camgen::ps_generator&lt; model_t, N_in, N_out &gt;</a>
 , <a class="el" href="a00442.html#aeb270d6a68cd7d9157848609250c652c">Camgen::ps_generator_base&lt; model_t &gt;</a>
 , <a class="el" href="a00529.html#a71d752a5acef264885ab6264fb98d18f">Camgen::test_generator&lt; model_t &gt;</a>
 </li>
@@ -126,16 +125,15 @@
 <li>s_out()
 : <a class="el" href="a00210.html#a856af7863609bb4d14dafe1ee7024ce0">Camgen::event_generator&lt; model_t, N_in, N_out, rng_t &gt;</a>
 , <a class="el" href="a00430.html#a2ed990d63db381ee1b2bedbe00dd56bf">Camgen::process_generator&lt; model_t, N_in, N_out, rng_t &gt;</a>
-, <a class="el" href="a00441.html#abd4ef01e821135a6e82ac6489effd53c">Camgen::ps_generator&lt; model_t, N_in, N_out &gt;</a>
 , <a class="el" href="a00442.html#ade1e4b8ea51198e20b2c987c8865a649">Camgen::ps_generator_base&lt; model_t &gt;</a>
 , <a class="el" href="a00529.html#af3cd0ccd868f83080ba0569511acff5b">Camgen::test_generator&lt; model_t &gt;</a>
 </li>
 <li>s_tot()
-: <a class="el" href="a00210.html#a2a483bce8138485806cf5ef7d8d9ab44">Camgen::event_generator&lt; model_t, N_in, N_out, rng_t &gt;</a>
-, <a class="el" href="a00430.html#ac6e6f23d9fce776fe68c6e186053e4f2">Camgen::process_generator&lt; model_t, N_in, N_out, rng_t &gt;</a>
-, <a class="el" href="a00441.html#a537a3b843c6f344767b390af3c3d2c2e">Camgen::ps_generator&lt; model_t, N_in, N_out &gt;</a>
+: <a class="el" href="a00441.html#a537a3b843c6f344767b390af3c3d2c2e">Camgen::ps_generator&lt; model_t, N_in, N_out &gt;</a>
 , <a class="el" href="a00442.html#a23b8eb4a43103ad601f6e46c6f6c6736">Camgen::ps_generator_base&lt; model_t &gt;</a>
 , <a class="el" href="a00444.html#ac3dcfe284b1069885658f83e77cadec5">Camgen::ps_generator_viewer&lt; model_t &gt;</a>
+, <a class="el" href="a00210.html#a2a483bce8138485806cf5ef7d8d9ab44">Camgen::event_generator&lt; model_t, N_in, N_out, rng_t &gt;</a>
+, <a class="el" href="a00430.html#ac6e6f23d9fce776fe68c6e186053e4f2">Camgen::process_generator&lt; model_t, N_in, N_out, rng_t &gt;</a>
 </li>
 <li>save()
 : <a class="el" href="a00437.html#ab36d39593ef09e2d0f597339cab95d03">Camgen::ps_branching&lt; model_t, N_in, N_out, rng_t &gt;</a>
@@ -261,10 +259,10 @@
 : <a class="el" href="a00482.html#a5df44d35199be994a86c11ba77e98977">Camgen::s_generator&lt; value_t, rng_t &gt;</a>
 </li>
 <li>set_m_min()
-: <a class="el" href="a00430.html#a055a05d4ac50c5c220ada4d04ce41710">Camgen::process_generator&lt; model_t, N_in, N_out, rng_t &gt;</a>
+: <a class="el" href="a00482.html#ac09ca9edd308332b33f297c053ef4a4a">Camgen::s_generator&lt; value_t, rng_t &gt;</a>
 , <a class="el" href="a00210.html#a0f8223d6906129931762662e2cd94bab">Camgen::event_generator&lt; model_t, N_in, N_out, rng_t &gt;</a>
+, <a class="el" href="a00430.html#a055a05d4ac50c5c220ada4d04ce41710">Camgen::process_generator&lt; model_t, N_in, N_out, rng_t &gt;</a>
 , <a class="el" href="a00441.html#af0547a26ceb1704830b86164e6d69f0e">Camgen::ps_generator&lt; model_t, N_in, N_out &gt;</a>
-, <a class="el" href="a00482.html#ac09ca9edd308332b33f297c053ef4a4a">Camgen::s_generator&lt; value_t, rng_t &gt;</a>
 </li>
 <li>set_m_out()
 : <a class="el" href="a00441.html#ae04f7eebaa9e1423f234ee12aeef49bd">Camgen::ps_generator&lt; model_t, N_in, N_out &gt;</a>
@@ -282,9 +280,9 @@
 : <a class="el" href="a00322.html#a628289bd16fc63e510edea398ea97774">Camgen::LH_interface&lt; model_t, N_out &gt;</a>
 </li>
 <li>set_object()
-: <a class="el" href="a00368.html#ab49eeb4159740c6c3c93d79eaff87b32">Camgen::MC_object_generator&lt; value_t, object_t, N, true &gt;</a>
+: <a class="el" href="a00366.html#a2c40f91da976ad719b3e921fc7bef4ec">Camgen::MC_object_generator&lt; value_t, object_t, 1, true &gt;</a>
+, <a class="el" href="a00368.html#ab49eeb4159740c6c3c93d79eaff87b32">Camgen::MC_object_generator&lt; value_t, object_t, N, true &gt;</a>
 , <a class="el" href="a00367.html#a5ccedce10a1eac070db1f182e295836d">Camgen::MC_object_generator&lt; value_t, object_t, N, false &gt;</a>
-, <a class="el" href="a00366.html#a2c40f91da976ad719b3e921fc7bef4ec">Camgen::MC_object_generator&lt; value_t, object_t, 1, true &gt;</a>
 , <a class="el" href="a00365.html#a0a6a7b646a32759b475b67b4eb8ba400">Camgen::MC_object_generator&lt; value_t, object_t, 1, false &gt;</a>
 </li>
 <li>set_optimal_multichannel()
@@ -323,7 +321,7 @@
 : <a class="el" href="a00430.html#ae528aa2b51557bd056bc9fb4f7f0c45a">Camgen::process_generator&lt; model_t, N_in, N_out, rng_t &gt;</a>
 </li>
 <li>set_process()
-: <a class="el" href="a00070.html#ae36c07e3ce35f8093575b71de905117d">Camgen::CM_algorithm&lt; model_t, N_in, N_out &gt;</a>
+: <a class="el" href="a00070.html#af627000c0a9297d08d1c619cebed3094">Camgen::CM_algorithm&lt; model_t, N_in, N_out &gt;</a>
 </li>
 <li>set_process_flavours()
 : <a class="el" href="a00070.html#a566045f554f719276a3e0f1b98f6aae4">Camgen::CM_algorithm&lt; model_t, N_in, N_out &gt;</a>
@@ -352,22 +350,22 @@
 : <a class="el" href="a00304.html#a2f27a98319a0ffe3e77ddb5166a99ed8">Camgen::initial_state&lt; model_t, N &gt;</a>
 </li>
 <li>set_s_hat_min()
-: <a class="el" href="a00255.html#a5980930205dfaaeddb34719541a2018c">Camgen::hadronic_is_sy&lt; model_t, rng_t, Minkowski_type &gt;</a>
-, <a class="el" href="a00304.html#a267936bf3ad30578dd484ed9f6330edc">Camgen::initial_state&lt; model_t, N &gt;</a>
+: <a class="el" href="a00304.html#a267936bf3ad30578dd484ed9f6330edc">Camgen::initial_state&lt; model_t, N &gt;</a>
+, <a class="el" href="a00255.html#a5980930205dfaaeddb34719541a2018c">Camgen::hadronic_is_sy&lt; model_t, rng_t, Minkowski_type &gt;</a>
 </li>
 <li>set_s_max()
 : <a class="el" href="a00482.html#a73f22a357774a5a341597a016700c349">Camgen::s_generator&lt; value_t, rng_t &gt;</a>
 </li>
 <li>set_s_max_max()
-: <a class="el" href="a00482.html#a6c1a254c4a0d824baee1d67e72fc9605">Camgen::s_generator&lt; value_t, rng_t &gt;</a>
-, <a class="el" href="a00001.html#a6b7d84fb28397191ebbdb0b8a72be83a">Camgen::adaptive_s_generator&lt; value_t, rng_t &gt;</a>
+: <a class="el" href="a00001.html#a6b7d84fb28397191ebbdb0b8a72be83a">Camgen::adaptive_s_generator&lt; value_t, rng_t &gt;</a>
+, <a class="el" href="a00482.html#a6c1a254c4a0d824baee1d67e72fc9605">Camgen::s_generator&lt; value_t, rng_t &gt;</a>
 </li>
 <li>set_s_min()
 : <a class="el" href="a00482.html#af3f51c6dbcc89ec9a1a4381dd4ff1738">Camgen::s_generator&lt; value_t, rng_t &gt;</a>
 </li>
 <li>set_s_min_min()
-: <a class="el" href="a00001.html#a0c3524e9265bc0c1f09d7471a8e1ccb6">Camgen::adaptive_s_generator&lt; value_t, rng_t &gt;</a>
-, <a class="el" href="a00482.html#a070c73f60e899493bd1aa6aa289633f7">Camgen::s_generator&lt; value_t, rng_t &gt;</a>
+: <a class="el" href="a00482.html#a070c73f60e899493bd1aa6aa289633f7">Camgen::s_generator&lt; value_t, rng_t &gt;</a>
+, <a class="el" href="a00001.html#a0c3524e9265bc0c1f09d7471a8e1ccb6">Camgen::adaptive_s_generator&lt; value_t, rng_t &gt;</a>
 </li>
 <li>set_s_range()
 : <a class="el" href="a00482.html#ab9bb55b8341dffa5373ef0fb663a4b1b">Camgen::s_generator&lt; value_t, rng_t &gt;</a>
@@ -400,9 +398,9 @@
 <li>setInit()
 : <a class="el" href="a00448.html#a6201668b13598907935b475787093d6b">Camgen::Pythia_interface&lt; model_t &gt;</a>
 </li>
-<li>sigma
-: <a class="el" href="a00381.html#abf64e0c0479116b3ffce47d39ad43df2">Camgen::normal_generator&lt; value_t, rng_t &gt;</a>
-, <a class="el" href="a00280.html#ac3cba0f0df4b82262ce92381895c8879">Camgen::histogram&lt; T, comp_type &gt;</a>
+<li>sigma()
+: <a class="el" href="a00280.html#ac3cba0f0df4b82262ce92381895c8879">Camgen::histogram&lt; T, comp_type &gt;</a>
+, <a class="el" href="a00381.html#abf64e0c0479116b3ffce47d39ad43df2">Camgen::normal_generator&lt; value_t, rng_t &gt;</a>
 </li>
 <li>size()
 : <a class="el" href="a00559.html#a922fc7f84c5f4fc54a7dea44197771fb">Camgen::vector&lt; T, N &gt;</a>
@@ -420,13 +418,13 @@
 : <a class="el" href="a00070.html#abd8c0a5f195b9637e308ba6cbaa57f7f">Camgen::CM_algorithm&lt; model_t, N_in, N_out &gt;</a>
 </li>
 <li>space_dot()
-: <a class="el" href="a00442.html#ab5e639edbafd4b4d3e57e935d9b0bd5e">Camgen::ps_generator_base&lt; model_t &gt;</a>
+: <a class="el" href="a00442.html#aaf3de6e8effefc030367eaa67a15c0dd">Camgen::ps_generator_base&lt; model_t &gt;</a>
 </li>
 <li>spacelike_widths
 : <a class="el" href="a00578.html#ade2afe8bfe82478e458c4949597f9f1a">Camgen::width_scheme&lt; model_t &gt;</a>
 </li>
 <li>spin()
-: <a class="el" href="a00501.html#a422237930fd513ffb06a1b00abd5b401">Camgen::spin</a>
+: <a class="el" href="a00501.html#a8fbfc2cbe5b80c415dfc6768032155c6">Camgen::spin</a>
 </li>
 <li>spin_cast
 : <a class="el" href="a00501.html#a53097258d49559d28f326539ead5dbf8">Camgen::spin</a>
@@ -444,26 +442,26 @@
 : <a class="el" href="a00326.html#a27e6b54cae2e0c36403e0002bbcd1b2c">Camgen::logstream</a>
 </li>
 <li>style
-: <a class="el" href="a00231.html#af4af167b5b94933151562b3bacef443a">Camgen::function_stream</a>
-, <a class="el" href="a00117.html#a879cb4f17927d1fe3fa384b9ce878237">Camgen::data_stream</a>
+: <a class="el" href="a00117.html#a879cb4f17927d1fe3fa384b9ce878237">Camgen::data_stream</a>
+, <a class="el" href="a00231.html#af4af167b5b94933151562b3bacef443a">Camgen::function_stream</a>
 </li>
 <li>sub_xsec()
-: <a class="el" href="a00210.html#a11b1d4533738f78407dcddf13dee14b2">Camgen::event_generator&lt; model_t, N_in, N_out, rng_t &gt;</a>
-, <a class="el" href="a00442.html#ae971360f5465b09ca100b995722a7f48">Camgen::ps_generator_base&lt; model_t &gt;</a>
+: <a class="el" href="a00442.html#ae971360f5465b09ca100b995722a7f48">Camgen::ps_generator_base&lt; model_t &gt;</a>
+, <a class="el" href="a00210.html#a11b1d4533738f78407dcddf13dee14b2">Camgen::event_generator&lt; model_t, N_in, N_out, rng_t &gt;</a>
 </li>
 <li>sum_colour()
 : <a class="el" href="a00084.html#afdc838af727810436248bc8e015910c1">Camgen::colour_generator&lt; value_t, N_in, N_out, true &gt;</a>
+, <a class="el" href="a00083.html#ab7feac6ce81715acc83ac60b3d992129">Camgen::colour_generator&lt; value_t, N_in, N_out, false &gt;</a>
 , <a class="el" href="a00070.html#a72f1698fd071be001fd331ac711f4e91">Camgen::CM_algorithm&lt; model_t, N_in, N_out &gt;</a>
 , <a class="el" href="a00093.html#a1ab8045a6f4f9254f00de85c7d6e6e46">Camgen::colour_summer&lt; value_t, N_in, N_out, false &gt;</a>
-, <a class="el" href="a00083.html#ab7feac6ce81715acc83ac60b3d992129">Camgen::colour_generator&lt; value_t, N_in, N_out, false &gt;</a>
 </li>
 <li>sum_colours()
 : <a class="el" href="a00070.html#a132587c9138299ae7e2e96de48f0a076">Camgen::CM_algorithm&lt; model_t, N_in, N_out &gt;</a>
 </li>
 <li>sum_helicity()
 : <a class="el" href="a00276.html#a919700d1b7e3d0fb241ec68ce89c234f">Camgen::helicity_summer&lt; value_t, N_in, N_out, false &gt;</a>
-, <a class="el" href="a00268.html#a5f9ad2e7ec5147c174578f659434cefa">Camgen::helicity_generator&lt; value_t, N_in, N_out, true &gt;</a>
 , <a class="el" href="a00267.html#ab8d236622fd171df60d0b733d1ae1720">Camgen::helicity_generator&lt; value_t, N_in, N_out, false &gt;</a>
+, <a class="el" href="a00268.html#a5f9ad2e7ec5147c174578f659434cefa">Camgen::helicity_generator&lt; value_t, N_in, N_out, true &gt;</a>
 , <a class="el" href="a00277.html#a4575189a6a7b4c223b76753639dec319">Camgen::helicity_summer&lt; value_t, N_in, N_out, true &gt;</a>
 </li>
 <li>sum_spin()
@@ -494,7 +492,7 @@
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 10 2013 23:45:36 for Camorra by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Aug 18 2013 17:37:45 for Camorra by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

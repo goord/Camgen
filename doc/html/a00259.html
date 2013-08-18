@@ -89,10 +89,12 @@ value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00259.html#aaa5b14203b9dc64944b3968efacb0842">adapt_grids</a> ()</td></tr>
 <tr class="memdesc:aaa5b14203b9dc64944b3968efacb0842"><td class="mdescLeft">&#160;</td><td class="mdescRight">VEGAS-grid adaptation method. <br/></td></tr>
 <tr class="separator:aaa5b14203b9dc64944b3968efacb0842"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b504d75eb09425456b2d27af5f2c71b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0b504d75eb09425456b2d27af5f2c71b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00259.html#a0b504d75eb09425456b2d27af5f2c71b">reset</a> ()</td></tr>
-<tr class="memdesc:a0b504d75eb09425456b2d27af5f2c71b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the weight sums and n_calls to 0. Sets the weight to 1. <br/></td></tr>
+<tr class="memitem:a0b504d75eb09425456b2d27af5f2c71b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00259.html#a0b504d75eb09425456b2d27af5f2c71b">reset</a> ()</td></tr>
+<tr class="memdesc:a0b504d75eb09425456b2d27af5f2c71b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the the state of the MC generator.  <a href="#a0b504d75eb09425456b2d27af5f2c71b">More...</a><br/></td></tr>
 <tr class="separator:a0b504d75eb09425456b2d27af5f2c71b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a297a807339f2752c8cedaadf07a197d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00259.html#a297a807339f2752c8cedaadf07a197d2">reset_cross_section</a> ()</td></tr>
+<tr class="memdesc:a297a807339f2752c8cedaadf07a197d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets cross section and weight sums of the generator, but keeps channel weights and grids intact.  <a href="#a297a807339f2752c8cedaadf07a197d2">More...</a><br/></td></tr>
+<tr class="separator:a297a807339f2752c8cedaadf07a197d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2aa3b526cc526742df0ac5159788e1a1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2aa3b526cc526742df0ac5159788e1a1"></a>
 <a class="el" href="a00258.html">hadronic_is_y</a>&lt; model_t, rng_t, <br class="typebreak"/>
 <a class="el" href="a00369.html">Minkowski_type</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00259.html#a2aa3b526cc526742df0ac5159788e1a1">clone</a> () const </td></tr>
@@ -431,6 +433,65 @@ template&lt;class model_t , class rng_t &gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="a0b504d75eb09425456b2d27af5f2c71b"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class model_t , class rng_t &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="a00258.html">Camgen::hadronic_is_y</a>&lt; model_t, rng_t, <a class="el" href="a00369.html">Minkowski_type</a> &gt;::reset </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Resets the the state of the MC generator. </p>
+<p>Resets adaptive channels weights and grids as well. </p>
+
+<p>Reimplemented from <a class="el" href="a00362.html#a96247247800b9db50ddf7fafb28aca42">Camgen::MC_generator&lt; model_t::value_type &gt;</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a297a807339f2752c8cedaadf07a197d2"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class model_t , class rng_t &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="a00258.html">Camgen::hadronic_is_y</a>&lt; model_t, rng_t, <a class="el" href="a00369.html">Minkowski_type</a> &gt;::reset_cross_section </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Resets cross section and weight sums of the generator, but keeps channel weights and grids intact. </p>
+
+<p>Reimplemented from <a class="el" href="a00362.html#a1ec9818cc8260e1be5c568d319cb722b">Camgen::MC_generator&lt; model_t::value_type &gt;</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a0ac611745ab0778bac2b3d895d5fdee9"></a>
 <div class="memitem">
 <div class="memproto">
@@ -467,7 +528,7 @@ template&lt;class model_t , class rng_t &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 10 2013 23:45:09 for Camorra by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Aug 18 2013 17:37:19 for Camorra by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

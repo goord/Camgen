@@ -197,6 +197,14 @@ virtual const <a class="el" href="a00559.html">momentum_type</a> &amp;&#160;</td
 virtual const <a class="el" href="a00559.html">momentum_type</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00442.html#aecdc8567f2e5cd0f2e7a7660f2a06722">p_out</a> (size_type) const =0</td></tr>
 <tr class="memdesc:aecdc8567f2e5cd0f2e7a7660f2a06722 inherit pub_methods_a00442"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract method reading out an outgoing momentum. <br/></td></tr>
 <tr class="separator:aecdc8567f2e5cd0f2e7a7660f2a06722 inherit pub_methods_a00442"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a303558afdb7b6b704399fa5dd8bc9f30 inherit pub_methods_a00442"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a303558afdb7b6b704399fa5dd8bc9f30"></a>
+virtual value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00442.html#a303558afdb7b6b704399fa5dd8bc9f30">M_in</a> (size_type) const =0</td></tr>
+<tr class="memdesc:a303558afdb7b6b704399fa5dd8bc9f30 inherit pub_methods_a00442"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract method reading out an incoming mass. <br/></td></tr>
+<tr class="separator:a303558afdb7b6b704399fa5dd8bc9f30 inherit pub_methods_a00442"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f39b8a4fceb86b5cb3e669c77ccf62d inherit pub_methods_a00442"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9f39b8a4fceb86b5cb3e669c77ccf62d"></a>
+virtual value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00442.html#a9f39b8a4fceb86b5cb3e669c77ccf62d">M_out</a> (size_type) const =0</td></tr>
+<tr class="memdesc:a9f39b8a4fceb86b5cb3e669c77ccf62d inherit pub_methods_a00442"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract method reading out an outgoing mass. <br/></td></tr>
+<tr class="separator:a9f39b8a4fceb86b5cb3e669c77ccf62d inherit pub_methods_a00442"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb270d6a68cd7d9157848609250c652c inherit pub_methods_a00442"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeb270d6a68cd7d9157848609250c652c"></a>
 virtual value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00442.html#aeb270d6a68cd7d9157848609250c652c">s_in</a> (size_type i) const </td></tr>
 <tr class="memdesc:aeb270d6a68cd7d9157848609250c652c inherit pub_methods_a00442"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual method returning the i-th incoming invariant mass-squared. <br/></td></tr>
@@ -254,6 +262,9 @@ virtual value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="
 <tr class="memitem:a2b06ea836491c920c2eb03ca6785e453 inherit pub_methods_a00442"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="a00559.html">momentum_type</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00442.html#a2b06ea836491c920c2eb03ca6785e453">p</a> (int i) const </td></tr>
 <tr class="memdesc:a2b06ea836491c920c2eb03ca6785e453 inherit pub_methods_a00442"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the i-th momentum, where i&lt;0 means incoming momenta and i&gt;0 outgoing ones.  <a href="#a2b06ea836491c920c2eb03ca6785e453">More...</a><br/></td></tr>
 <tr class="separator:a2b06ea836491c920c2eb03ca6785e453 inherit pub_methods_a00442"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8165335a5beea72aaa9c97a224d43313 inherit pub_methods_a00442"><td class="memItemLeft" align="right" valign="top">virtual value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00442.html#a8165335a5beea72aaa9c97a224d43313">M</a> (int i) const </td></tr>
+<tr class="memdesc:a8165335a5beea72aaa9c97a224d43313 inherit pub_methods_a00442"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the i-th mass, where i&lt;0 means incoming masses and i&gt;0 outgoing ones.  <a href="#a8165335a5beea72aaa9c97a224d43313">More...</a><br/></td></tr>
+<tr class="separator:a8165335a5beea72aaa9c97a224d43313 inherit pub_methods_a00442"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a93e2650607db42a9cc3581e5ac937e6c inherit pub_methods_a00442"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a93e2650607db42a9cc3581e5ac937e6c"></a>
 virtual const value_type &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00442.html#a93e2650607db42a9cc3581e5ac937e6c">p_in</a> (size_type i, size_type mu) const </td></tr>
 <tr class="memdesc:a93e2650607db42a9cc3581e5ac937e6c inherit pub_methods_a00442"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the i-th incoming momentum's mu-th component. <br/></td></tr>
@@ -514,7 +525,7 @@ template&lt;class model_t&gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 10 2013 23:45:11 for Camorra by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Aug 18 2013 17:37:21 for Camorra by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

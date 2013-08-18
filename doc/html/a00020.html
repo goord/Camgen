@@ -78,9 +78,8 @@ Public Member Functions</h2></td></tr>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00437.html#a91db958bf7e0933a35fbf2cb8b539065">evaluate_weight</a> ()</td></tr>
 <tr class="memdesc:a91db958bf7e0933a35fbf2cb8b539065 inherit pub_methods_a00437"><td class="mdescLeft">&#160;</td><td class="mdescRight">Event weight calculation method. Trivial by default. <br/></td></tr>
 <tr class="separator:a91db958bf7e0933a35fbf2cb8b539065 inherit pub_methods_a00437"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0fbd3a7065f08ca4b25e6e60c18141e3 inherit pub_methods_a00437"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0fbd3a7065f08ca4b25e6e60c18141e3"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00437.html#a0fbd3a7065f08ca4b25e6e60c18141e3">reset</a> ()</td></tr>
-<tr class="memdesc:a0fbd3a7065f08ca4b25e6e60c18141e3 inherit pub_methods_a00437"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the weight sums and n_calls to 0. Sets the weight to 1. <br/></td></tr>
+<tr class="memitem:a0fbd3a7065f08ca4b25e6e60c18141e3 inherit pub_methods_a00437"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00437.html#a0fbd3a7065f08ca4b25e6e60c18141e3">reset</a> ()</td></tr>
+<tr class="memdesc:a0fbd3a7065f08ca4b25e6e60c18141e3 inherit pub_methods_a00437"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the the state of the MC generator.  <a href="#a0fbd3a7065f08ca4b25e6e60c18141e3">More...</a><br/></td></tr>
 <tr class="separator:a0fbd3a7065f08ca4b25e6e60c18141e3 inherit pub_methods_a00437"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ab4ae7501d4ded1b484846b20d19e1c inherit pub_methods_a00437"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6ab4ae7501d4ded1b484846b20d19e1c"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00437.html#a6ab4ae7501d4ded1b484846b20d19e1c">adapt</a> ()</td></tr>
@@ -109,6 +108,9 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a
 <tr class="memitem:a5d92f7676d21574ed14d82da458d7452 inherit pub_methods_a00362"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00362.html#a5d92f7676d21574ed14d82da458d7452">refresh_cross_section</a> (bool with_integrand=true)</td></tr>
 <tr class="memdesc:a5d92f7676d21574ed14d82da458d7452 inherit pub_methods_a00362"><td class="mdescLeft">&#160;</td><td class="mdescRight">Raises the number of calls by 1 and the weight sums by the current weight, without calling the generation method.  <a href="#a5d92f7676d21574ed14d82da458d7452">More...</a><br/></td></tr>
 <tr class="separator:a5d92f7676d21574ed14d82da458d7452 inherit pub_methods_a00362"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ec9818cc8260e1be5c568d319cb722b inherit pub_methods_a00362"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00362.html#a1ec9818cc8260e1be5c568d319cb722b">reset_cross_section</a> ()</td></tr>
+<tr class="memdesc:a1ec9818cc8260e1be5c568d319cb722b inherit pub_methods_a00362"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets cross section and weight sums of the generator, but keeps channel weights and grids intact.  <a href="#a1ec9818cc8260e1be5c568d319cb722b">More...</a><br/></td></tr>
+<tr class="separator:a1ec9818cc8260e1be5c568d319cb722b inherit pub_methods_a00362"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a61c3ff75a7477c80680c1be16f03e8ca inherit pub_methods_a00362"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a61c3ff75a7477c80680c1be16f03e8ca"></a>
 virtual const <br class="typebreak"/>
 <a class="el" href="a00576.html">weight_histogrammer</a><br class="typebreak"/>
@@ -269,7 +271,7 @@ template&lt;class model_t , std::size_t N_in, std::size_t N_out, class rng_t &gt
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 10 2013 23:45:28 for Camorra by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Aug 18 2013 17:37:37 for Camorra by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

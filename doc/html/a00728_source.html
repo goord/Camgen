@@ -154,9 +154,9 @@
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                }</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                value_type Etot=std::sqrt(stot);</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                <span class="keywordflow">if</span>(Etot&lt;this-&gt;M_out())</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                <span class="keywordflow">if</span>(Etot&lt;this-&gt;<a class="code" href="a00442.html" title="Abstract interface for phase space generators, used by output interfaces and cut objects.">ps_generator_base&lt;model_type&gt;::M_out</a>())</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                {</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                    log(log_level::warning)&lt;&lt;CAMGEN_STREAMLOC&lt;&lt;<span class="stringliteral">&quot;total energy &quot;</span>&lt;&lt;Etot&lt;&lt;<span class="stringliteral">&quot; too small to create final state with M = &quot;</span>&lt;&lt;this-&gt;M_out()&lt;&lt;endlog;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                    log(log_level::warning)&lt;&lt;CAMGEN_STREAMLOC&lt;&lt;<span class="stringliteral">&quot;total energy &quot;</span>&lt;&lt;Etot&lt;&lt;<span class="stringliteral">&quot; too small to create final state with M = &quot;</span>&lt;&lt;this-&gt;<a class="code" href="a00442.html#ac22c85f2216760d8b616bb2b36578b14" title="Returns the sum of masses of outgoing particles.">ps_generator_base&lt;model_type&gt;::M_out</a>()&lt;&lt;endlog;</div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                    this-&gt;fsw=(value_type)0;</div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                }</div>
@@ -273,7 +273,7 @@
 <div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;                }</div>
 <div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;                value_type Etot=std::sqrt(stot);</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;                <span class="keywordflow">if</span>(Etot&lt;this-&gt;M_out())</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;                <span class="keywordflow">if</span>(Etot&lt;this-&gt;<a class="code" href="a00442.html" title="Abstract interface for phase space generators, used by output interfaces and cut objects.">ps_generator_base&lt;model_type&gt;::M_out</a>())</div>
 <div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;                {</div>
 <div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;                    log(log_level::warning)&lt;&lt;CAMGEN_STREAMLOC&lt;&lt;<span class="stringliteral">&quot;total energy too small to create final state&quot;</span>&lt;&lt;endlog;</div>
 <div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;                    this-&gt;fsw=(value_type)0;</div>
@@ -348,7 +348,7 @@
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 10 2013 23:44:48 for Camorra by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Aug 18 2013 17:36:59 for Camorra by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

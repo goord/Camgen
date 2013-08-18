@@ -26,9 +26,10 @@ void \hyperlink{a00259_a0ac611745ab0778bac2b3d895d5fdee9}{update} ()
 \hypertarget{a00259_aaa5b14203b9dc64944b3968efacb0842}{void \hyperlink{a00259_aaa5b14203b9dc64944b3968efacb0842}{adapt\-\_\-grids} ()}\label{a00259_aaa5b14203b9dc64944b3968efacb0842}
 
 \begin{DoxyCompactList}\small\item\em V\-E\-G\-A\-S-\/grid adaptation method. \end{DoxyCompactList}\item 
-\hypertarget{a00259_a0b504d75eb09425456b2d27af5f2c71b}{void \hyperlink{a00259_a0b504d75eb09425456b2d27af5f2c71b}{reset} ()}\label{a00259_a0b504d75eb09425456b2d27af5f2c71b}
-
-\begin{DoxyCompactList}\small\item\em Resets the weight sums and n\-\_\-calls to 0. Sets the weight to 1. \end{DoxyCompactList}\item 
+void \hyperlink{a00259_a0b504d75eb09425456b2d27af5f2c71b}{reset} ()
+\begin{DoxyCompactList}\small\item\em Resets the the state of the M\-C generator. \end{DoxyCompactList}\item 
+void \hyperlink{a00259_a297a807339f2752c8cedaadf07a197d2}{reset\-\_\-cross\-\_\-section} ()
+\begin{DoxyCompactList}\small\item\em Resets cross section and weight sums of the generator, but keeps channel weights and grids intact. \end{DoxyCompactList}\item 
 \hypertarget{a00259_a2aa3b526cc526742df0ac5159788e1a1}{\hyperlink{a00258}{hadronic\-\_\-is\-\_\-y}$<$ model\-\_\-t, rng\-\_\-t, \\*
 \hyperlink{a00369}{Minkowski\-\_\-type} $>$ $\ast$ \hyperlink{a00259_a2aa3b526cc526742df0ac5159788e1a1}{clone} () const }\label{a00259_a2aa3b526cc526742df0ac5159788e1a1}
 
@@ -75,6 +76,36 @@ void \hyperlink{a00259_a0ac611745ab0778bac2b3d895d5fdee9}{update} ()
 Should update the weight data member. 
 
 Implements \hyperlink{a00362_a197b7bb66d8de5f6de401f81bea71e6c}{Camgen\-::\-M\-C\-\_\-generator$<$ model\-\_\-t\-::value\-\_\-type $>$}.
+
+\hypertarget{a00259_a0b504d75eb09425456b2d27af5f2c71b}{\index{Camgen\-::hadronic\-\_\-is\-\_\-y$<$ model\-\_\-t, rng\-\_\-t, Minkowski\-\_\-type $>$@{Camgen\-::hadronic\-\_\-is\-\_\-y$<$ model\-\_\-t, rng\-\_\-t, Minkowski\-\_\-type $>$}!reset@{reset}}
+\index{reset@{reset}!Camgen::hadronic_is_y< model_t, rng_t, Minkowski_type >@{Camgen\-::hadronic\-\_\-is\-\_\-y$<$ model\-\_\-t, rng\-\_\-t, Minkowski\-\_\-type $>$}}
+\subsubsection[{reset}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t , class rng\-\_\-t $>$ void {\bf Camgen\-::hadronic\-\_\-is\-\_\-y}$<$ model\-\_\-t, rng\-\_\-t, {\bf Minkowski\-\_\-type} $>$\-::reset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00259_a0b504d75eb09425456b2d27af5f2c71b}
+
+
+Resets the the state of the M\-C generator. 
+
+Resets adaptive channels weights and grids as well. 
+
+Reimplemented from \hyperlink{a00362_a96247247800b9db50ddf7fafb28aca42}{Camgen\-::\-M\-C\-\_\-generator$<$ model\-\_\-t\-::value\-\_\-type $>$}.
+
+\hypertarget{a00259_a297a807339f2752c8cedaadf07a197d2}{\index{Camgen\-::hadronic\-\_\-is\-\_\-y$<$ model\-\_\-t, rng\-\_\-t, Minkowski\-\_\-type $>$@{Camgen\-::hadronic\-\_\-is\-\_\-y$<$ model\-\_\-t, rng\-\_\-t, Minkowski\-\_\-type $>$}!reset\-\_\-cross\-\_\-section@{reset\-\_\-cross\-\_\-section}}
+\index{reset\-\_\-cross\-\_\-section@{reset\-\_\-cross\-\_\-section}!Camgen::hadronic_is_y< model_t, rng_t, Minkowski_type >@{Camgen\-::hadronic\-\_\-is\-\_\-y$<$ model\-\_\-t, rng\-\_\-t, Minkowski\-\_\-type $>$}}
+\subsubsection[{reset\-\_\-cross\-\_\-section}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t , class rng\-\_\-t $>$ void {\bf Camgen\-::hadronic\-\_\-is\-\_\-y}$<$ model\-\_\-t, rng\-\_\-t, {\bf Minkowski\-\_\-type} $>$\-::reset\-\_\-cross\-\_\-section (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00259_a297a807339f2752c8cedaadf07a197d2}
+
+
+Resets cross section and weight sums of the generator, but keeps channel weights and grids intact. 
+
+
+
+Reimplemented from \hyperlink{a00362_a1ec9818cc8260e1be5c568d319cb722b}{Camgen\-::\-M\-C\-\_\-generator$<$ model\-\_\-t\-::value\-\_\-type $>$}.
 
 \hypertarget{a00259_a0ac611745ab0778bac2b3d895d5fdee9}{\index{Camgen\-::hadronic\-\_\-is\-\_\-y$<$ model\-\_\-t, rng\-\_\-t, Minkowski\-\_\-type $>$@{Camgen\-::hadronic\-\_\-is\-\_\-y$<$ model\-\_\-t, rng\-\_\-t, Minkowski\-\_\-type $>$}!update@{update}}
 \index{update@{update}!Camgen::hadronic_is_y< model_t, rng_t, Minkowski_type >@{Camgen\-::hadronic\-\_\-is\-\_\-y$<$ model\-\_\-t, rng\-\_\-t, Minkowski\-\_\-type $>$}}

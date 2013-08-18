@@ -20,9 +20,10 @@ void \hyperlink{a00395_a40cc397db66b0451b6135c80645e50b9}{update} ()
 \hypertarget{a00395_a02d5211d206546de42ec20bbfbf6ecef}{void \hyperlink{a00395_a02d5211d206546de42ec20bbfbf6ecef}{adapt} ()}\label{a00395_a02d5211d206546de42ec20bbfbf6ecef}
 
 \begin{DoxyCompactList}\small\item\em Adaptation method. Trivial by default. \end{DoxyCompactList}\item 
-\hypertarget{a00395_acc228746623bfc5c6f3f1d62f3a841e6}{void \hyperlink{a00395_acc228746623bfc5c6f3f1d62f3a841e6}{reset} ()}\label{a00395_acc228746623bfc5c6f3f1d62f3a841e6}
-
-\begin{DoxyCompactList}\small\item\em Resets the weight sums and n\-\_\-calls to 0. Sets the weight to 1. \end{DoxyCompactList}\item 
+void \hyperlink{a00395_acc228746623bfc5c6f3f1d62f3a841e6}{reset} ()
+\begin{DoxyCompactList}\small\item\em Resets the the state of the M\-C generator. \end{DoxyCompactList}\item 
+void \hyperlink{a00395_afde27e92b24ade585d066329f1181089}{reset\-\_\-cross\-\_\-section} ()
+\begin{DoxyCompactList}\small\item\em Resets cross section and weight sums of the generator, but keeps channel weights and grids intact. \end{DoxyCompactList}\item 
 \hypertarget{a00395_a55efdbc227d118580d2e4d02db4d7cc3}{std\-::istream \& \hyperlink{a00395_a55efdbc227d118580d2e4d02db4d7cc3}{load} (std\-::istream \&is)}\label{a00395_a55efdbc227d118580d2e4d02db4d7cc3}
 
 \begin{DoxyCompactList}\small\item\em Loads cross section data from input stream. \end{DoxyCompactList}\item 
@@ -47,6 +48,36 @@ void \hyperlink{a00395_a40cc397db66b0451b6135c80645e50b9}{update} ()
 Should update the weight data member. 
 
 Implements \hyperlink{a00362_a197b7bb66d8de5f6de401f81bea71e6c}{Camgen\-::\-M\-C\-\_\-generator$<$ model\-\_\-t\-::value\-\_\-type $>$}.
+
+\hypertarget{a00395_acc228746623bfc5c6f3f1d62f3a841e6}{\index{Camgen\-::particle\-\_\-channel@{Camgen\-::particle\-\_\-channel}!reset@{reset}}
+\index{reset@{reset}!Camgen::particle_channel@{Camgen\-::particle\-\_\-channel}}
+\subsubsection[{reset}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t, std\-::size\-\_\-t N\-\_\-in, std\-::size\-\_\-t N\-\_\-out, class rng\-\_\-t$>$ void {\bf Camgen\-::particle\-\_\-channel}$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$\-::reset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00395_acc228746623bfc5c6f3f1d62f3a841e6}
+
+
+Resets the the state of the M\-C generator. 
+
+Resets adaptive channels weights and grids as well. 
+
+Reimplemented from \hyperlink{a00362_a96247247800b9db50ddf7fafb28aca42}{Camgen\-::\-M\-C\-\_\-generator$<$ model\-\_\-t\-::value\-\_\-type $>$}.
+
+\hypertarget{a00395_afde27e92b24ade585d066329f1181089}{\index{Camgen\-::particle\-\_\-channel@{Camgen\-::particle\-\_\-channel}!reset\-\_\-cross\-\_\-section@{reset\-\_\-cross\-\_\-section}}
+\index{reset\-\_\-cross\-\_\-section@{reset\-\_\-cross\-\_\-section}!Camgen::particle_channel@{Camgen\-::particle\-\_\-channel}}
+\subsubsection[{reset\-\_\-cross\-\_\-section}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t, std\-::size\-\_\-t N\-\_\-in, std\-::size\-\_\-t N\-\_\-out, class rng\-\_\-t$>$ void {\bf Camgen\-::particle\-\_\-channel}$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$\-::reset\-\_\-cross\-\_\-section (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00395_afde27e92b24ade585d066329f1181089}
+
+
+Resets cross section and weight sums of the generator, but keeps channel weights and grids intact. 
+
+
+
+Reimplemented from \hyperlink{a00362_a1ec9818cc8260e1be5c568d319cb722b}{Camgen\-::\-M\-C\-\_\-generator$<$ model\-\_\-t\-::value\-\_\-type $>$}.
 
 \hypertarget{a00395_a40cc397db66b0451b6135c80645e50b9}{\index{Camgen\-::particle\-\_\-channel@{Camgen\-::particle\-\_\-channel}!update@{update}}
 \index{update@{update}!Camgen::particle_channel@{Camgen\-::particle\-\_\-channel}}

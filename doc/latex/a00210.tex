@@ -72,7 +72,10 @@ void \hyperlink{a00210_a5fe8988e5090b3b70aff590c1b0b2fbb}{unset\-\_\-auto\-\_\-g
 \begin{DoxyCompactList}\small\item\em Returns whether the current event passes the cuts. \end{DoxyCompactList}\item 
 \hypertarget{a00210_a513578e30af093a93581b3cd3667786f}{void \hyperlink{a00210_a513578e30af093a93581b3cd3667786f}{reset} ()}\label{a00210_a513578e30af093a93581b3cd3667786f}
 
-\begin{DoxyCompactList}\small\item\em Resets all cross sections. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Resets all subprocess generators. \end{DoxyCompactList}\item 
+\hypertarget{a00210_ac012b825829f4a734f7667bb8c6b0bb8}{void \hyperlink{a00210_ac012b825829f4a734f7667bb8c6b0bb8}{reset\-\_\-cross\-\_\-section} ()}\label{a00210_ac012b825829f4a734f7667bb8c6b0bb8}
+
+\begin{DoxyCompactList}\small\item\em Resets all subprocess cross sections. \end{DoxyCompactList}\item 
 \hypertarget{a00210_ac48b7d17637cfbaa3fde4379415621b0}{void \hyperlink{a00210_ac48b7d17637cfbaa3fde4379415621b0}{refresh\-\_\-cross\-\_\-section} (bool with\-\_\-integrand=true)}\label{a00210_ac48b7d17637cfbaa3fde4379415621b0}
 
 \begin{DoxyCompactList}\small\item\em Total cross section refresher method. \end{DoxyCompactList}\item 
@@ -139,6 +142,10 @@ const \hyperlink{a00559}{momentum\-\_\-type} \& \hyperlink{a00210_a4c3a6383c0445
 \begin{DoxyCompactList}\small\item\em Returns the const reference to the i-\/th incoming momentum (no range checking on i). \end{DoxyCompactList}\item 
 const \hyperlink{a00559}{momentum\-\_\-type} \& \hyperlink{a00210_affd056f9744793eef4d9cefec5d3ffb5}{p\-\_\-out} (size\-\_\-type i) const 
 \begin{DoxyCompactList}\small\item\em Returns the const reference to the i-\/th incoming momentum (no range checking on i). \end{DoxyCompactList}\item 
+value\-\_\-type \hyperlink{a00210_ae0e389444b66a76c7b22fd996cf16bd8}{M\-\_\-in} (size\-\_\-type i) const 
+\begin{DoxyCompactList}\small\item\em Returns the const reference to the i-\/th incoming mass (no range checking on i). \end{DoxyCompactList}\item 
+value\-\_\-type \hyperlink{a00210_a1aed7b697e6158749701f4fecaca42ee}{M\-\_\-out} (size\-\_\-type i) const 
+\begin{DoxyCompactList}\small\item\em Returns the const reference to the i-\/th incoming mass (no range checking on i). \end{DoxyCompactList}\item 
 \hypertarget{a00210_a6ae7fa6415e21a7cffc3dfc4dcbabeeb}{value\-\_\-type \hyperlink{a00210_a6ae7fa6415e21a7cffc3dfc4dcbabeeb}{s\-\_\-in} (size\-\_\-type i) const }\label{a00210_a6ae7fa6415e21a7cffc3dfc4dcbabeeb}
 
 \begin{DoxyCompactList}\small\item\em Returns the i-\/th incoming mass-\/squared (no range checking on i). \end{DoxyCompactList}\item 
@@ -302,7 +309,37 @@ N\-\_\-out $>$ \& \hyperlink{a00210_a049c1020985cc0b50fc83fa719f4608d}{algorithm
 
 Adapts the process multichannel parameters to the variances of the subprocesses. 
 
-Removes processes with cross section + error smaller than the process threshold times the total cross section. \hypertarget{a00210_a4c3a6383c0445188ee515615b536f41d}{\index{Camgen\-::event\-\_\-generator@{Camgen\-::event\-\_\-generator}!p\-\_\-in@{p\-\_\-in}}
+Removes processes with cross section + error smaller than the process threshold times the total cross section. \hypertarget{a00210_ae0e389444b66a76c7b22fd996cf16bd8}{\index{Camgen\-::event\-\_\-generator@{Camgen\-::event\-\_\-generator}!M\-\_\-in@{M\-\_\-in}}
+\index{M\-\_\-in@{M\-\_\-in}!Camgen::event_generator@{Camgen\-::event\-\_\-generator}}
+\subsubsection[{M\-\_\-in}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t, std\-::size\-\_\-t N\-\_\-in, std\-::size\-\_\-t N\-\_\-out, class rng\-\_\-t$>$ value\-\_\-type {\bf Camgen\-::event\-\_\-generator}$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$\-::M\-\_\-in (
+\begin{DoxyParamCaption}
+\item[{size\-\_\-type}]{i}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00210_ae0e389444b66a76c7b22fd996cf16bd8}
+
+
+Returns the const reference to the i-\/th incoming mass (no range checking on i). 
+
+
+
+Implements \hyperlink{a00442_a303558afdb7b6b704399fa5dd8bc9f30}{Camgen\-::ps\-\_\-generator\-\_\-base$<$ model\-\_\-t $>$}.
+
+\hypertarget{a00210_a1aed7b697e6158749701f4fecaca42ee}{\index{Camgen\-::event\-\_\-generator@{Camgen\-::event\-\_\-generator}!M\-\_\-out@{M\-\_\-out}}
+\index{M\-\_\-out@{M\-\_\-out}!Camgen::event_generator@{Camgen\-::event\-\_\-generator}}
+\subsubsection[{M\-\_\-out}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t, std\-::size\-\_\-t N\-\_\-in, std\-::size\-\_\-t N\-\_\-out, class rng\-\_\-t$>$ value\-\_\-type {\bf Camgen\-::event\-\_\-generator}$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$\-::M\-\_\-out (
+\begin{DoxyParamCaption}
+\item[{size\-\_\-type}]{i}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00210_a1aed7b697e6158749701f4fecaca42ee}
+
+
+Returns the const reference to the i-\/th incoming mass (no range checking on i). 
+
+
+
+Implements \hyperlink{a00442_a9f39b8a4fceb86b5cb3e669c77ccf62d}{Camgen\-::ps\-\_\-generator\-\_\-base$<$ model\-\_\-t $>$}.
+
+\hypertarget{a00210_a4c3a6383c0445188ee515615b536f41d}{\index{Camgen\-::event\-\_\-generator@{Camgen\-::event\-\_\-generator}!p\-\_\-in@{p\-\_\-in}}
 \index{p\-\_\-in@{p\-\_\-in}!Camgen::event_generator@{Camgen\-::event\-\_\-generator}}
 \subsubsection[{p\-\_\-in}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t, std\-::size\-\_\-t N\-\_\-in, std\-::size\-\_\-t N\-\_\-out, class rng\-\_\-t$>$ const {\bf momentum\-\_\-type}\& {\bf Camgen\-::event\-\_\-generator}$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$\-::p\-\_\-in (
 \begin{DoxyParamCaption}

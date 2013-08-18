@@ -117,9 +117,11 @@ bool \hyperlink{a00430_a17ee544f823a680a9ab5966faf42e96a}{generate} ()
 \hypertarget{a00430_a7f97f414b5f3d689efb551aa4f6b1d1c}{void \hyperlink{a00430_a7f97f414b5f3d689efb551aa4f6b1d1c}{adapt} ()}\label{a00430_a7f97f414b5f3d689efb551aa4f6b1d1c}
 
 \begin{DoxyCompactList}\small\item\em Adapts the generators. \end{DoxyCompactList}\item 
-\hypertarget{a00430_aa2cd6b9887022d49cd48497b8061c54d}{void \hyperlink{a00430_aa2cd6b9887022d49cd48497b8061c54d}{reset} ()}\label{a00430_aa2cd6b9887022d49cd48497b8061c54d}
+void \hyperlink{a00430_aa2cd6b9887022d49cd48497b8061c54d}{reset} ()
+\begin{DoxyCompactList}\small\item\em Resets cross section, multichannel weights and adaptive grids of phase space, helicity and colour generators. \end{DoxyCompactList}\item 
+\hypertarget{a00430_a7291d00338eceaefb5b5608625b2bec6}{void \hyperlink{a00430_a7291d00338eceaefb5b5608625b2bec6}{reset\-\_\-cross\-\_\-section} ()}\label{a00430_a7291d00338eceaefb5b5608625b2bec6}
 
-\begin{DoxyCompactList}\small\item\em Resets cross section, multichannel weights and adaptive grids. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Resets cross sections of phase space, helicity and colour generators. \end{DoxyCompactList}\item 
 \hypertarget{a00430_a097bfddf2a2231b766b93649075372b3}{bool \hyperlink{a00430_a097bfddf2a2231b766b93649075372b3}{refresh\-\_\-params} ()}\label{a00430_a097bfddf2a2231b766b93649075372b3}
 
 \begin{DoxyCompactList}\small\item\em Refreshes phase space generator's internal parameters. \end{DoxyCompactList}\item 
@@ -163,6 +165,10 @@ const \hyperlink{a00559}{momentum\-\_\-type} \& \hyperlink{a00430_a0f2d060d8fcaf
 \begin{DoxyCompactList}\small\item\em Returns the const reference to the i-\/th incoming momentum (no range checking on i). \end{DoxyCompactList}\item 
 const \hyperlink{a00559}{momentum\-\_\-type} \& \hyperlink{a00430_ac83c742399331e972df1be65c587940e}{p\-\_\-out} (size\-\_\-type i) const 
 \begin{DoxyCompactList}\small\item\em Returns the const reference to the i-\/th incoming momentum (no range checking on i). \end{DoxyCompactList}\item 
+value\-\_\-type \hyperlink{a00430_a49db45a3fa01af92dab21cecce0934e7}{M\-\_\-in} (size\-\_\-type i) const 
+\begin{DoxyCompactList}\small\item\em Returns the const reference to the i-\/th incoming mass (no range checking on i). \end{DoxyCompactList}\item 
+value\-\_\-type \hyperlink{a00430_ac7725a8b3a39b0313e117613e9716337}{M\-\_\-out} (size\-\_\-type i) const 
+\begin{DoxyCompactList}\small\item\em Returns the const reference to the i-\/th incoming mass (no range checking on i). \end{DoxyCompactList}\item 
 \hypertarget{a00430_a16d207fe275c80737368224ac03b0284}{value\-\_\-type \hyperlink{a00430_a16d207fe275c80737368224ac03b0284}{s\-\_\-in} (size\-\_\-type i) const }\label{a00430_a16d207fe275c80737368224ac03b0284}
 
 \begin{DoxyCompactList}\small\item\em Returns the i-\/th incoming mass-\/squared (no range checking on i). \end{DoxyCompactList}\item 
@@ -460,6 +466,36 @@ Initialises with the number of channel and grid iterations/batch sizes defined i
 
 Initialises with channel\-\_\-iter multichannel iterations of batch size channel\-\_\-batch and subsequently with grid\-\_\-iters grid adaptations of batch size grid\-\_\-batch. 
 
+\hypertarget{a00430_a49db45a3fa01af92dab21cecce0934e7}{\index{Camgen\-::process\-\_\-generator@{Camgen\-::process\-\_\-generator}!M\-\_\-in@{M\-\_\-in}}
+\index{M\-\_\-in@{M\-\_\-in}!Camgen::process_generator@{Camgen\-::process\-\_\-generator}}
+\subsubsection[{M\-\_\-in}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t, std\-::size\-\_\-t N\-\_\-in, std\-::size\-\_\-t N\-\_\-out, class rng\-\_\-t$>$ value\-\_\-type {\bf Camgen\-::process\-\_\-generator}$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$\-::M\-\_\-in (
+\begin{DoxyParamCaption}
+\item[{size\-\_\-type}]{i}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00430_a49db45a3fa01af92dab21cecce0934e7}
+
+
+Returns the const reference to the i-\/th incoming mass (no range checking on i). 
+
+
+
+Implements \hyperlink{a00442_a303558afdb7b6b704399fa5dd8bc9f30}{Camgen\-::ps\-\_\-generator\-\_\-base$<$ model\-\_\-t $>$}.
+
+\hypertarget{a00430_ac7725a8b3a39b0313e117613e9716337}{\index{Camgen\-::process\-\_\-generator@{Camgen\-::process\-\_\-generator}!M\-\_\-out@{M\-\_\-out}}
+\index{M\-\_\-out@{M\-\_\-out}!Camgen::process_generator@{Camgen\-::process\-\_\-generator}}
+\subsubsection[{M\-\_\-out}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t, std\-::size\-\_\-t N\-\_\-in, std\-::size\-\_\-t N\-\_\-out, class rng\-\_\-t$>$ value\-\_\-type {\bf Camgen\-::process\-\_\-generator}$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$\-::M\-\_\-out (
+\begin{DoxyParamCaption}
+\item[{size\-\_\-type}]{i}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00430_ac7725a8b3a39b0313e117613e9716337}
+
+
+Returns the const reference to the i-\/th incoming mass (no range checking on i). 
+
+
+
+Implements \hyperlink{a00442_a9f39b8a4fceb86b5cb3e669c77ccf62d}{Camgen\-::ps\-\_\-generator\-\_\-base$<$ model\-\_\-t $>$}.
+
 \hypertarget{a00430_a0f2d060d8fcaf550dc549107de16a117}{\index{Camgen\-::process\-\_\-generator@{Camgen\-::process\-\_\-generator}!p\-\_\-in@{p\-\_\-in}}
 \index{p\-\_\-in@{p\-\_\-in}!Camgen::process_generator@{Camgen\-::process\-\_\-generator}}
 \subsubsection[{p\-\_\-in}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t, std\-::size\-\_\-t N\-\_\-in, std\-::size\-\_\-t N\-\_\-out, class rng\-\_\-t$>$ const {\bf momentum\-\_\-type}\& {\bf Camgen\-::process\-\_\-generator}$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$\-::p\-\_\-in (
@@ -593,6 +629,21 @@ Factory method reading a generator instance from the input stream and copying th
 
 
 Factory method reading a generator instance from the input stream and copying the cuts and scale expression from the settings. 
+
+\hypertarget{a00430_aa2cd6b9887022d49cd48497b8061c54d}{\index{Camgen\-::process\-\_\-generator@{Camgen\-::process\-\_\-generator}!reset@{reset}}
+\index{reset@{reset}!Camgen::process_generator@{Camgen\-::process\-\_\-generator}}
+\subsubsection[{reset}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t, std\-::size\-\_\-t N\-\_\-in, std\-::size\-\_\-t N\-\_\-out, class rng\-\_\-t$>$ void {\bf Camgen\-::process\-\_\-generator}$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$\-::reset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00430_aa2cd6b9887022d49cd48497b8061c54d}
+
+
+Resets cross section, multichannel weights and adaptive grids of phase space, helicity and colour generators. 
+
+
+
+Reimplemented from \hyperlink{a00362_a96247247800b9db50ddf7fafb28aca42}{Camgen\-::\-M\-C\-\_\-generator$<$ model\-\_\-t\-::value\-\_\-type $>$}.
 
 \hypertarget{a00430_aeb0b6fdf895af500c99f58638b6811be}{\index{Camgen\-::process\-\_\-generator@{Camgen\-::process\-\_\-generator}!set\-\_\-auto\-\_\-channel\-\_\-adapt@{set\-\_\-auto\-\_\-channel\-\_\-adapt}}
 \index{set\-\_\-auto\-\_\-channel\-\_\-adapt@{set\-\_\-auto\-\_\-channel\-\_\-adapt}!Camgen::process_generator@{Camgen\-::process\-\_\-generator}}

@@ -144,6 +144,14 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00482.html#a81ef54bd4a9621ccd88f7536d72bba59">evaluate_weight</a> ()</td></tr>
 <tr class="memdesc:a81ef54bd4a9621ccd88f7536d72bba59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Weight evaluation method. <br/></td></tr>
 <tr class="separator:a81ef54bd4a9621ccd88f7536d72bba59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a194df3bdb8474f652490e49a94d00bff"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a194df3bdb8474f652490e49a94d00bff"></a>
+virtual value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00482.html#a194df3bdb8474f652490e49a94d00bff">mapping_weight</a> () const </td></tr>
+<tr class="memdesc:a194df3bdb8474f652490e49a94d00bff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mapping weight factor. <br/></td></tr>
+<tr class="separator:a194df3bdb8474f652490e49a94d00bff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15753b42cb7ab108c3c6468dca24ed01"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a15753b42cb7ab108c3c6468dca24ed01"></a>
+virtual value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00482.html#a15753b42cb7ab108c3c6468dca24ed01">grid_weight</a> () const </td></tr>
+<tr class="memdesc:a15753b42cb7ab108c3c6468dca24ed01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adaptive grid weight factor. <br/></td></tr>
+<tr class="separator:a15753b42cb7ab108c3c6468dca24ed01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6cb5ca85a519544d1e2c2cdd86e3590"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00482.html#af6cb5ca85a519544d1e2c2cdd86e3590">refresh_params</a> ()</td></tr>
 <tr class="memdesc:af6cb5ca85a519544d1e2c2cdd86e3590"><td class="mdescLeft">&#160;</td><td class="mdescRight">Re-evaluates internal parameters from external pointer values.  <a href="#af6cb5ca85a519544d1e2c2cdd86e3590">More...</a><br/></td></tr>
 <tr class="separator:af6cb5ca85a519544d1e2c2cdd86e3590"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -278,10 +286,12 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:a5d92f7676d21574ed14d82da458d7452 inherit pub_methods_a00362"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00362.html#a5d92f7676d21574ed14d82da458d7452">refresh_cross_section</a> (bool with_integrand=true)</td></tr>
 <tr class="memdesc:a5d92f7676d21574ed14d82da458d7452 inherit pub_methods_a00362"><td class="mdescLeft">&#160;</td><td class="mdescRight">Raises the number of calls by 1 and the weight sums by the current weight, without calling the generation method.  <a href="#a5d92f7676d21574ed14d82da458d7452">More...</a><br/></td></tr>
 <tr class="separator:a5d92f7676d21574ed14d82da458d7452 inherit pub_methods_a00362"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a96247247800b9db50ddf7fafb28aca42 inherit pub_methods_a00362"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a96247247800b9db50ddf7fafb28aca42"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00362.html#a96247247800b9db50ddf7fafb28aca42">reset</a> ()</td></tr>
-<tr class="memdesc:a96247247800b9db50ddf7fafb28aca42 inherit pub_methods_a00362"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the weight sums and n_calls to 0. Sets the weight to 1. <br/></td></tr>
+<tr class="memitem:a96247247800b9db50ddf7fafb28aca42 inherit pub_methods_a00362"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00362.html#a96247247800b9db50ddf7fafb28aca42">reset</a> ()</td></tr>
+<tr class="memdesc:a96247247800b9db50ddf7fafb28aca42 inherit pub_methods_a00362"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the the state of the MC generator.  <a href="#a96247247800b9db50ddf7fafb28aca42">More...</a><br/></td></tr>
 <tr class="separator:a96247247800b9db50ddf7fafb28aca42 inherit pub_methods_a00362"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ec9818cc8260e1be5c568d319cb722b inherit pub_methods_a00362"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00362.html#a1ec9818cc8260e1be5c568d319cb722b">reset_cross_section</a> ()</td></tr>
+<tr class="memdesc:a1ec9818cc8260e1be5c568d319cb722b inherit pub_methods_a00362"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets cross section and weight sums of the generator, but keeps channel weights and grids intact.  <a href="#a1ec9818cc8260e1be5c568d319cb722b">More...</a><br/></td></tr>
+<tr class="separator:a1ec9818cc8260e1be5c568d319cb722b inherit pub_methods_a00362"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a61c3ff75a7477c80680c1be16f03e8ca inherit pub_methods_a00362"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a61c3ff75a7477c80680c1be16f03e8ca"></a>
 virtual const <br class="typebreak"/>
 <a class="el" href="a00576.html">weight_histogrammer</a>&lt; value_t &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00362.html#a61c3ff75a7477c80680c1be16f03e8ca">bin_weights</a> (size_type bins)</td></tr>
@@ -758,7 +768,7 @@ template&lt;class value_t, class rng_t&gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 10 2013 23:45:28 for Camorra by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Aug 18 2013 17:37:38 for Camorra by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>
