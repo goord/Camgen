@@ -246,186 +246,208 @@
 <div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;            }</div>
 <div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;            <span class="comment">/* Grid update method: */</span></div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;            <span class="comment">/* Mapping weight factor: */</span></div>
 <div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;</div>
-<div class="line"><a name="l00204"></a><span class="lineno"><a class="code" href="a00001.html#aaf21d07ea43dcc7556ba3fc1c6703160">  204</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="a00001.html#aaf21d07ea43dcc7556ba3fc1c6703160" title="Update method.">update</a>()</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;            {</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;                grid-&gt;integrand()=this-&gt;<a class="code" href="a00362.html#a78a6d652735c5dc763df158d96a4b21f" title="Returns the reference to the integrand (1 by default).">integrand</a>()*mapping-&gt;<a class="code" href="a00362.html#a0d7267239ddb11ae5c4eb5df1282c163" title="Returns the Monte Carlo weight reference.">weight</a>();</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;                grid-&gt;<a class="code" href="a00384.html#af822f4f960486248dca03ad88f540490" title="Overridden updating method.">update</a>();</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;            }</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;            <span class="comment">/* Total update method: */</span></div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;</div>
-<div class="line"><a name="l00212"></a><span class="lineno"><a class="code" href="a00001.html#af2ce45f4b873b79942d479ed49787103">  212</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="a00001.html#af2ce45f4b873b79942d479ed49787103" title="Updates adaptive grids given the total event weight.">update_weight</a>()</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;            {</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;                <span class="keywordflow">if</span>(grid-&gt;weight()!=(<a class="code" href="a00362.html#a3353150105036deac9bde097cbf1d8af" title="Value type definition.">value_type</a>)0)</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;                {</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;                    grid-&gt;integrand()=this-&gt;<a class="code" href="a00362.html#a78a6d652735c5dc763df158d96a4b21f" title="Returns the reference to the integrand (1 by default).">integrand</a>()/grid-&gt;weight();</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;                    grid-&gt;<a class="code" href="a00384.html#af822f4f960486248dca03ad88f540490" title="Overridden updating method.">update</a>();</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;                }</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;            }</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;            <span class="comment">/* Adaptive method: */</span></div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;</div>
-<div class="line"><a name="l00223"></a><span class="lineno"><a class="code" href="a00001.html#aad3d86a84f3fc66657500fa5bfeaf4c7">  223</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="a00001.html#aad3d86a84f3fc66657500fa5bfeaf4c7" title="Adaptation method. Trivial by default.">adapt</a>()</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;            {</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;                subgrid-&gt;adapt();</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;            }</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;            <span class="comment">/* Overridden resetting method */</span></div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;</div>
-<div class="line"><a name="l00230"></a><span class="lineno"><a class="code" href="a00001.html#a8083f3252ded95b8f48e0d5746b34a40">  230</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="a00001.html#a8083f3252ded95b8f48e0d5746b34a40" title="Resets the weight sums and n_calls to 0. Sets the weight to 1.">reset</a>()</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;            {</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;                this-&gt;<a class="code" href="a00362.html#a96247247800b9db50ddf7fafb28aca42" title="Resets the weight sums and n_calls to 0. Sets the weight to 1.">MC_generator&lt;value_t&gt;::reset</a>();</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;                grid-&gt;<a class="code" href="a00384.html#a20085d35f326d5b467678943aea0988b" title="Resets the cross section and re-initialises the grid to a single bin.">reset</a>();</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                <span class="keyword">delete</span> subgrid;</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                subgrid=<span class="keyword">new</span> <a class="code" href="a00390.html">sub_grid_type</a>(grid,rmin,rmax);</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;            }</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;            <span class="comment">/* Public const methods: */</span></div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;            <span class="comment">/*-----------------------*/</span></div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;            <span class="comment">/* Double-dispatch integrator functions. Unknown and should not be</span></div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;<span class="comment">             * used. */</span></div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;            </div>
-<div class="line"><a name="l00244"></a><span class="lineno"><a class="code" href="a00001.html#abbfd2f35259aae8afd97c9da8131a602">  244</a></span>&#160;            <a class="code" href="a00362.html#a3353150105036deac9bde097cbf1d8af" title="Value type definition.">value_type</a> <a class="code" href="a00001.html#abbfd2f35259aae8afd97c9da8131a602" title="Double-dispatch integrator functions.">integrate_with</a>(<span class="keyword">const</span> <a class="code" href="a00482.html" title="Momentum channel base class for phase space generators.">s_generator&lt;value_t,rng_t&gt;</a>* other,<span class="keyword">const</span> <a class="code" href="a00362.html#a3353150105036deac9bde097cbf1d8af" title="Value type definition.">value_type</a>&amp; sqrts)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;<span class="keyword">            </span>{</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;                log(log_level::warning)&lt;&lt;CAMGEN_STREAMLOC&lt;&lt;<span class="stringliteral">&quot;constrained integral with adaptive grid map requested--returning 0&quot;</span>&lt;&lt;endlog;</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;                <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;            }</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;            value_type <a class="code" href="a00001.html#abbfd2f35259aae8afd97c9da8131a602" title="Double-dispatch integrator functions.">integrate_with</a>(<span class="keyword">const</span> <a class="code" href="a00033.html">BW_s_generator&lt;value_t,rng_t&gt;</a>* other,<span class="keyword">const</span> value_type&amp; sqrts)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;<span class="keyword">            </span>{</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;                log(log_level::warning)&lt;&lt;CAMGEN_STREAMLOC&lt;&lt;<span class="stringliteral">&quot;constrained integral with adaptive grid map requested--returning 0&quot;</span>&lt;&lt;endlog;</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;                <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;            }</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;            value_type <a class="code" href="a00001.html#abbfd2f35259aae8afd97c9da8131a602" title="Double-dispatch integrator functions.">integrate_with</a>(<span class="keyword">const</span> pl_s_generator&lt;value_t,rng_t&gt;* other,<span class="keyword">const</span> value_type&amp; sqrts)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;<span class="keyword">            </span>{</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;                log(log_level::warning)&lt;&lt;CAMGEN_STREAMLOC&lt;&lt;<span class="stringliteral">&quot;Constrained integral with adaptive grid map requested--returning 0&quot;</span>&lt;&lt;endlog;</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;                <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00204"></a><span class="lineno"><a class="code" href="a00001.html#a0398fc3f8f98c02e7ecacd139da77ade">  204</a></span>&#160;            <a class="code" href="a00362.html#a3353150105036deac9bde097cbf1d8af" title="Value type definition.">value_type</a> <a class="code" href="a00001.html#a0398fc3f8f98c02e7ecacd139da77ade" title="Mapping weight factor.">mapping_weight</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="keyword">            </span>{</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;                <span class="keywordflow">return</span> mapping-&gt;<a class="code" href="a00362.html#a0d7267239ddb11ae5c4eb5df1282c163" title="Returns the Monte Carlo weight reference.">weight</a>();</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;            }</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;            <span class="comment">/* Adaptive grid weight factor: */</span></div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;</div>
+<div class="line"><a name="l00211"></a><span class="lineno"><a class="code" href="a00001.html#aef58f02dd2a50d1d63da6a3f6bb84c2c">  211</a></span>&#160;            <a class="code" href="a00362.html#a3353150105036deac9bde097cbf1d8af" title="Value type definition.">value_type</a> <a class="code" href="a00001.html#aef58f02dd2a50d1d63da6a3f6bb84c2c" title="Adaptive grid weight factor.">grid_weight</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;<span class="keyword">            </span>{</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;                <span class="keywordflow">return</span> subgrid-&gt;weight();</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;            }</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;            <span class="comment">/* Grid update method: */</span></div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;</div>
+<div class="line"><a name="l00218"></a><span class="lineno"><a class="code" href="a00001.html#aaf21d07ea43dcc7556ba3fc1c6703160">  218</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="a00001.html#aaf21d07ea43dcc7556ba3fc1c6703160" title="Update method.">update</a>()</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;            {</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;                grid-&gt;integrand()=this-&gt;<a class="code" href="a00362.html#a78a6d652735c5dc763df158d96a4b21f" title="Returns the reference to the integrand (1 by default).">integrand</a>()*mapping-&gt;<a class="code" href="a00362.html#a0d7267239ddb11ae5c4eb5df1282c163" title="Returns the Monte Carlo weight reference.">weight</a>();</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;                grid-&gt;<a class="code" href="a00384.html#af822f4f960486248dca03ad88f540490" title="Overridden updating method.">update</a>();</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;            }</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;            <span class="comment">/* Total update method: */</span></div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;</div>
+<div class="line"><a name="l00226"></a><span class="lineno"><a class="code" href="a00001.html#af2ce45f4b873b79942d479ed49787103">  226</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="a00001.html#af2ce45f4b873b79942d479ed49787103" title="Updates adaptive grids given the total event weight.">update_weight</a>()</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;            {</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;                <span class="keywordflow">if</span>(grid-&gt;weight()!=(<a class="code" href="a00362.html#a3353150105036deac9bde097cbf1d8af" title="Value type definition.">value_type</a>)0)</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;                {</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;                    grid-&gt;integrand()=this-&gt;<a class="code" href="a00362.html#a78a6d652735c5dc763df158d96a4b21f" title="Returns the reference to the integrand (1 by default).">integrand</a>()/grid-&gt;weight();</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;                    grid-&gt;<a class="code" href="a00384.html#af822f4f960486248dca03ad88f540490" title="Overridden updating method.">update</a>();</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;                }</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;            }</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;            <span class="comment">/* Adaptive method: */</span></div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;</div>
+<div class="line"><a name="l00237"></a><span class="lineno"><a class="code" href="a00001.html#aad3d86a84f3fc66657500fa5bfeaf4c7">  237</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="a00001.html#aad3d86a84f3fc66657500fa5bfeaf4c7" title="Adaptation method. Trivial by default.">adapt</a>()</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;            {</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;                subgrid-&gt;adapt();</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;            }</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;            <span class="comment">/* Overridden resetting method */</span></div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;</div>
+<div class="line"><a name="l00244"></a><span class="lineno"><a class="code" href="a00001.html#a8083f3252ded95b8f48e0d5746b34a40">  244</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="a00001.html#a8083f3252ded95b8f48e0d5746b34a40" title="Resets the the state of the MC generator.">reset</a>()</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;            {</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;                this-&gt;<a class="code" href="a00362.html#a96247247800b9db50ddf7fafb28aca42" title="Resets the the state of the MC generator.">MC_generator&lt;value_t&gt;::reset</a>();</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;                grid-&gt;<a class="code" href="a00384.html#a20085d35f326d5b467678943aea0988b" title="Resets the cross section and re-initialises the grid to a single bin.">reset</a>();</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;                subgrid-&gt;reset();</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;            }</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;            <span class="comment">/* Overridden cross section resetting method */</span></div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;</div>
+<div class="line"><a name="l00253"></a><span class="lineno"><a class="code" href="a00001.html#a58424d0ff97bded5d1f43f9314122570">  253</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="a00001.html#a58424d0ff97bded5d1f43f9314122570" title="Resets cross section and weight sums of the generator, but keeps channel weights and grids intact...">reset_cross_section</a>()</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;            {</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;                this-&gt;<a class="code" href="a00362.html#a1ec9818cc8260e1be5c568d319cb722b" title="Resets cross section and weight sums of the generator, but keeps channel weights and grids intact...">MC_generator&lt;value_t&gt;::reset_cross_section</a>();</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;                grid-&gt;reset_cross_section();</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;                subgrid-&gt;reset_cross_section();</div>
 <div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;            }</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;            value_type <a class="code" href="a00001.html#abbfd2f35259aae8afd97c9da8131a602" title="Double-dispatch integrator functions.">integrate_with</a>(<span class="keyword">const</span> uni_s_generator&lt;value_t,rng_t&gt;* other,<span class="keyword">const</span> value_type&amp; sqrts)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;<span class="keyword">            </span>{</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;                log(log_level::warning)&lt;&lt;CAMGEN_STREAMLOC&lt;&lt;<span class="stringliteral">&quot;Constrained integral with adaptive grid map requested--returning 0&quot;</span>&lt;&lt;endlog;</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;                <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;            }</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;            value_type <a class="code" href="a00001.html#abbfd2f35259aae8afd97c9da8131a602" title="Double-dispatch integrator functions.">integrate_with</a>(<span class="keyword">const</span> Dd_s_generator&lt;value_t,rng_t&gt;* other,<span class="keyword">const</span> value_type&amp; sqrts)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="keyword">            </span>{</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;                log(log_level::warning)&lt;&lt;CAMGEN_STREAMLOC&lt;&lt;<span class="stringliteral">&quot;Constrained integral with adaptive grid map requested--returning 0&quot;</span>&lt;&lt;endlog;</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;                <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;            }</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;            <span class="comment">/* Serialization: */</span></div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;            <span class="comment">/*----------------*/</span></div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;            <span class="comment">/* Type output: */</span></div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;</div>
-<div class="line"><a name="l00275"></a><span class="lineno"><a class="code" href="a00001.html#a732addc9e3db0cef6f0fa49c98ebdae3">  275</a></span>&#160;            std::string <a class="code" href="a00001.html#a732addc9e3db0cef6f0fa49c98ebdae3" title="Returns a string containing the type.">type</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;<span class="keyword">            </span>{</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;                <span class="keywordflow">return</span> mapping-&gt;<a class="code" href="a00482.html#a037d19ce9dba1dc7ef8ca18e817b4eb4" title="Returns a string containing the type.">type</a>()+<span class="stringliteral">&quot;*&quot;</span>;</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;            }</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;            <span class="comment">/* Type output: */</span></div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;</div>
-<div class="line"><a name="l00282"></a><span class="lineno"><a class="code" href="a00001.html#ab94b86df443a389e480c5d7f845e6523">  282</a></span>&#160;            std::string <a class="code" href="a00001.html#ab94b86df443a389e480c5d7f845e6523" title="Returns the detailed type of the generator.">detailed_type</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;<span class="keyword">            </span>{</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;                <span class="keywordflow">return</span> mapping-&gt;<a class="code" href="a00482.html#a4ef2375483e129d59da62fc92a4b327b" title="Returns the detailed type of the generator.">detailed_type</a>()+<span class="stringliteral">&quot;*&quot;</span>;</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;            <span class="comment">/* Public const methods: */</span></div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;            <span class="comment">/*-----------------------*/</span></div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;            <span class="comment">/* Double-dispatch integrator functions. Unknown and should not be</span></div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;<span class="comment">             * used. */</span></div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;            </div>
+<div class="line"><a name="l00266"></a><span class="lineno"><a class="code" href="a00001.html#abbfd2f35259aae8afd97c9da8131a602">  266</a></span>&#160;            <a class="code" href="a00362.html#a3353150105036deac9bde097cbf1d8af" title="Value type definition.">value_type</a> <a class="code" href="a00001.html#abbfd2f35259aae8afd97c9da8131a602" title="Double-dispatch integrator functions.">integrate_with</a>(<span class="keyword">const</span> <a class="code" href="a00482.html" title="Momentum channel base class for phase space generators.">s_generator&lt;value_t,rng_t&gt;</a>* other,<span class="keyword">const</span> <a class="code" href="a00362.html#a3353150105036deac9bde097cbf1d8af" title="Value type definition.">value_type</a>&amp; sqrts)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;<span class="keyword">            </span>{</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;                log(log_level::warning)&lt;&lt;CAMGEN_STREAMLOC&lt;&lt;<span class="stringliteral">&quot;constrained integral with adaptive grid map requested--returning 0&quot;</span>&lt;&lt;endlog;</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;                <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;            }</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;            value_type <a class="code" href="a00001.html#abbfd2f35259aae8afd97c9da8131a602" title="Double-dispatch integrator functions.">integrate_with</a>(<span class="keyword">const</span> <a class="code" href="a00033.html">BW_s_generator&lt;value_t,rng_t&gt;</a>* other,<span class="keyword">const</span> value_type&amp; sqrts)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;<span class="keyword">            </span>{</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;                log(log_level::warning)&lt;&lt;CAMGEN_STREAMLOC&lt;&lt;<span class="stringliteral">&quot;constrained integral with adaptive grid map requested--returning 0&quot;</span>&lt;&lt;endlog;</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;                <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;            }</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;            value_type <a class="code" href="a00001.html#abbfd2f35259aae8afd97c9da8131a602" title="Double-dispatch integrator functions.">integrate_with</a>(<span class="keyword">const</span> pl_s_generator&lt;value_t,rng_t&gt;* other,<span class="keyword">const</span> value_type&amp; sqrts)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;<span class="keyword">            </span>{</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;                log(log_level::warning)&lt;&lt;CAMGEN_STREAMLOC&lt;&lt;<span class="stringliteral">&quot;Constrained integral with adaptive grid map requested--returning 0&quot;</span>&lt;&lt;endlog;</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;                <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;            }</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;            value_type <a class="code" href="a00001.html#abbfd2f35259aae8afd97c9da8131a602" title="Double-dispatch integrator functions.">integrate_with</a>(<span class="keyword">const</span> uni_s_generator&lt;value_t,rng_t&gt;* other,<span class="keyword">const</span> value_type&amp; sqrts)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;<span class="keyword">            </span>{</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;                log(log_level::warning)&lt;&lt;CAMGEN_STREAMLOC&lt;&lt;<span class="stringliteral">&quot;Constrained integral with adaptive grid map requested--returning 0&quot;</span>&lt;&lt;endlog;</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;                <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;            }</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;            <span class="comment">/* Adds the rectangles to the plotscript pointer: */</span></div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;            <a class="code" href="a00426.html" title="Gnuplot-scripting class.">plot_script</a>* print_rectangles(<a class="code" href="a00426.html" title="Gnuplot-scripting class.">plot_script</a>* ps)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;<span class="keyword">            </span>{</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;                <span class="keywordflow">return</span> grid-&gt;<a class="code" href="a00384.html#a452b310723bfd4580c2698a0ef614d93" title="Adds the rectangles to the plotscript pointer.">print_rectangles</a>(ps);</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;            }</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;            <span class="comment">/* Overridden printing method: */</span></div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;</div>
-<div class="line"><a name="l00296"></a><span class="lineno"><a class="code" href="a00001.html#a7d4a9a3ad7c7f1e076a890201a963e5f">  296</a></span>&#160;            std::ostream&amp; <a class="code" href="a00001.html#a7d4a9a3ad7c7f1e076a890201a963e5f" title="Printing method:">print</a>(std::ostream&amp; os)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;<span class="keyword">            </span>{</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;                mapping-&gt;<a class="code" href="a00482.html#a559a6751fcb3a4ab2a6add0e3c63f6ce" title="Printing method:">print</a>(os);</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;                os&lt;&lt;<span class="stringliteral">&quot;*&quot;</span>;</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;                <span class="keywordflow">return</span> os;</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;            }</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;            <span class="comment">/* Overridden loading method. */</span></div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;</div>
-<div class="line"><a name="l00305"></a><span class="lineno"><a class="code" href="a00001.html#a109612e2e98a9ad3ee9dbd6d3a87c994">  305</a></span>&#160;            std::istream&amp; <a class="code" href="a00001.html#a109612e2e98a9ad3ee9dbd6d3a87c994" title="Loads derived class data (empty by default).">load_data</a>(std::istream&amp; is)</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;            {</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;                mapping-&gt;<a class="code" href="a00482.html#a0943542e515d2c4bdfd647c722948924" title="Overridden loading method.">load</a>(is);</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;                <span class="keywordflow">if</span>(grid!=NULL)</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;                {</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;                    <span class="keyword">delete</span> grid;</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;                }</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;                grid=<a class="code" href="a00384.html#aa3f691d874fc14db7b726c6e5dd0e90e" title="Creates a parni instance from the input stream.">grid_type::create_instance</a>(&amp;r,is);</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;                <span class="keywordflow">if</span>(subgrid!=NULL)</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;                {</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;                    <span class="keyword">delete</span> subgrid;</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;                }</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;                subgrid=<span class="keyword">new</span> <a class="code" href="a00390.html">parni_sub_grid&lt;value_t,1,rng_t&gt;</a>(grid);</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;                subgrid-&gt;load(is);</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;                <span class="keywordflow">return</span> is;</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;            }</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;            <span class="comment">/* Overridden saving method. */</span></div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;</div>
-<div class="line"><a name="l00324"></a><span class="lineno"><a class="code" href="a00001.html#a2ee0363b66b4a867bd5afc8b0a692fc0">  324</a></span>&#160;            std::ostream&amp; <a class="code" href="a00001.html#a2ee0363b66b4a867bd5afc8b0a692fc0" title="Saves derived class data (empty by default).">save_data</a>(std::ostream&amp; os)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;<span class="keyword">            </span>{</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;                mapping-&gt;<a class="code" href="a00482.html#a5bebd6a0894d3fc34c4f87ba9da21073" title="Overridden saving method.">save</a>(os);</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;                grid-&gt;<a class="code" href="a00384.html#ae759d8f20aa1a24355b2fa42d9545eff" title="Overridden saving method.">save</a>(os);</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;                subgrid-&gt;save(os);</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;                <span class="keywordflow">return</span> os;</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;            }</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;</div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;        <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;            <span class="comment">/* Normalisation refreshing method: */</span></div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;</div>
-<div class="line"><a name="l00336"></a><span class="lineno"><a class="code" href="a00001.html#a35687e41f6569b3e20e614a7662c3bc5">  336</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="a00001.html#a35687e41f6569b3e20e614a7662c3bc5" title="Evaluates the (private) normalisation factor.">refresh_norm</a>()</div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;            {</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;                <span class="keywordflow">if</span>((!mapping-&gt;<a class="code" href="a00482.html#af86cec8337971720b78497bbdaf05564" title="Returns whether the requested density is nomalisable within current interval.">normalisable</a>()) or rmin&lt;(<a class="code" href="a00362.html#a3353150105036deac9bde097cbf1d8af" title="Value type definition.">value_type</a>)0 or rmax&gt;(<a class="code" href="a00362.html#a3353150105036deac9bde097cbf1d8af" title="Value type definition.">value_type</a>)1 or rmin&gt;rmax)</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;                {</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;                    this-&gt;<a class="code" href="a00482.html#a058384fae92fe2b322f7298adcc3c05a" title="Normalisation constant.">norm</a>=(<a class="code" href="a00362.html#a3353150105036deac9bde097cbf1d8af" title="Value type definition.">value_type</a>)0;</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;                }</div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;                <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;                {</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;                    this-&gt;<a class="code" href="a00482.html#a058384fae92fe2b322f7298adcc3c05a" title="Normalisation constant.">norm</a>=(<a class="code" href="a00362.html#a3353150105036deac9bde097cbf1d8af" title="Value type definition.">value_type</a>)1;</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;                }</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;            }</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;            <span class="comment">/* Returns the weight without bound-checking: */</span></div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;</div>
-<div class="line"><a name="l00350"></a><span class="lineno"><a class="code" href="a00001.html#ad6ffaf02a5104ed5c403811f75092be2">  350</a></span>&#160;            <a class="code" href="a00362.html#a3353150105036deac9bde097cbf1d8af" title="Value type definition.">value_type</a> <a class="code" href="a00001.html#ad6ffaf02a5104ed5c403811f75092be2" title="Returns the weight of the current configuration without bound- or norm-checking.">get_fast_weight</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;<span class="keyword">            </span>{</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;                subgrid-&gt;evaluate_weight();</div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;                <span class="keywordflow">return</span> subgrid-&gt;weight()*mapping-&gt;<a class="code" href="a00482.html#a1c77ba845ada06f770c0b80fe03354fe" title="Returns the weight of the current configuration without bound- or norm-checking.">get_fast_weight</a>();</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;            }</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;            value_type <a class="code" href="a00001.html#abbfd2f35259aae8afd97c9da8131a602" title="Double-dispatch integrator functions.">integrate_with</a>(<span class="keyword">const</span> Dd_s_generator&lt;value_t,rng_t&gt;* other,<span class="keyword">const</span> value_type&amp; sqrts)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;<span class="keyword">            </span>{</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;                log(log_level::warning)&lt;&lt;CAMGEN_STREAMLOC&lt;&lt;<span class="stringliteral">&quot;Constrained integral with adaptive grid map requested--returning 0&quot;</span>&lt;&lt;endlog;</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;                <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;            }</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;            <span class="comment">/* Serialization: */</span></div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;            <span class="comment">/*----------------*/</span></div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;            <span class="comment">/* Type output: */</span></div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;</div>
+<div class="line"><a name="l00297"></a><span class="lineno"><a class="code" href="a00001.html#a732addc9e3db0cef6f0fa49c98ebdae3">  297</a></span>&#160;            std::string <a class="code" href="a00001.html#a732addc9e3db0cef6f0fa49c98ebdae3" title="Returns a string containing the type.">type</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;<span class="keyword">            </span>{</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;                <span class="keywordflow">return</span> mapping-&gt;<a class="code" href="a00482.html#a037d19ce9dba1dc7ef8ca18e817b4eb4" title="Returns a string containing the type.">type</a>()+<span class="stringliteral">&quot;*&quot;</span>;</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;            }</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;            <span class="comment">/* Type output: */</span></div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;</div>
+<div class="line"><a name="l00304"></a><span class="lineno"><a class="code" href="a00001.html#ab94b86df443a389e480c5d7f845e6523">  304</a></span>&#160;            std::string <a class="code" href="a00001.html#ab94b86df443a389e480c5d7f845e6523" title="Returns the detailed type of the generator.">detailed_type</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;<span class="keyword">            </span>{</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;                <span class="keywordflow">return</span> mapping-&gt;<a class="code" href="a00482.html#a4ef2375483e129d59da62fc92a4b327b" title="Returns the detailed type of the generator.">detailed_type</a>()+<span class="stringliteral">&quot;*&quot;</span>;</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;            }</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;            <span class="comment">/* Adds the rectangles to the plotscript pointer: */</span></div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;            <a class="code" href="a00426.html" title="Gnuplot-scripting class.">plot_script</a>* print_rectangles(<a class="code" href="a00426.html" title="Gnuplot-scripting class.">plot_script</a>* ps)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;<span class="keyword">            </span>{</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;                <span class="keywordflow">return</span> grid-&gt;<a class="code" href="a00384.html#a452b310723bfd4580c2698a0ef614d93" title="Adds the rectangles to the plotscript pointer.">print_rectangles</a>(ps);</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;            }</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;            <span class="comment">/* Overridden printing method: */</span></div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;</div>
+<div class="line"><a name="l00318"></a><span class="lineno"><a class="code" href="a00001.html#a7d4a9a3ad7c7f1e076a890201a963e5f">  318</a></span>&#160;            std::ostream&amp; <a class="code" href="a00001.html#a7d4a9a3ad7c7f1e076a890201a963e5f" title="Printing method:">print</a>(std::ostream&amp; os)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;<span class="keyword">            </span>{</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;                mapping-&gt;<a class="code" href="a00482.html#a559a6751fcb3a4ab2a6add0e3c63f6ce" title="Printing method:">print</a>(os);</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;                os&lt;&lt;<span class="stringliteral">&quot;*&quot;</span>;</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;                <span class="keywordflow">return</span> os;</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;            }</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;            <span class="comment">/* Overridden loading method. */</span></div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;</div>
+<div class="line"><a name="l00327"></a><span class="lineno"><a class="code" href="a00001.html#a109612e2e98a9ad3ee9dbd6d3a87c994">  327</a></span>&#160;            std::istream&amp; <a class="code" href="a00001.html#a109612e2e98a9ad3ee9dbd6d3a87c994" title="Loads derived class data (empty by default).">load_data</a>(std::istream&amp; is)</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;            {</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;                mapping-&gt;<a class="code" href="a00482.html#a0943542e515d2c4bdfd647c722948924" title="Overridden loading method.">load</a>(is);</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;                <span class="keywordflow">if</span>(grid!=NULL)</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;                {</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;                    <span class="keyword">delete</span> grid;</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;                }</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;                grid=<a class="code" href="a00384.html#aa3f691d874fc14db7b726c6e5dd0e90e" title="Creates a parni instance from the input stream.">grid_type::create_instance</a>(&amp;r,is);</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;                <span class="keywordflow">if</span>(subgrid!=NULL)</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;                {</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;                    <span class="keyword">delete</span> subgrid;</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;                }</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;                subgrid=<span class="keyword">new</span> <a class="code" href="a00390.html">parni_sub_grid&lt;value_t,1,rng_t&gt;</a>(grid);</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;                subgrid-&gt;load(is);</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;                <span class="keywordflow">return</span> is;</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;            }</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;            <span class="comment">/* Overridden saving method. */</span></div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;</div>
+<div class="line"><a name="l00346"></a><span class="lineno"><a class="code" href="a00001.html#a2ee0363b66b4a867bd5afc8b0a692fc0">  346</a></span>&#160;            std::ostream&amp; <a class="code" href="a00001.html#a2ee0363b66b4a867bd5afc8b0a692fc0" title="Saves derived class data (empty by default).">save_data</a>(std::ostream&amp; os)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;<span class="keyword">            </span>{</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;                mapping-&gt;<a class="code" href="a00482.html#a5bebd6a0894d3fc34c4f87ba9da21073" title="Overridden saving method.">save</a>(os);</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;                grid-&gt;<a class="code" href="a00384.html#ae759d8f20aa1a24355b2fa42d9545eff" title="Overridden saving method.">save</a>(os);</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;                subgrid-&gt;save(os);</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;                <span class="keywordflow">return</span> os;</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;            }</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;        <span class="keyword">protected</span>:</div>
 <div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;</div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;        <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;            <span class="comment">/* Normalisation refreshing method: */</span></div>
 <div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;</div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;            <span class="comment">/* Transformation: */</span></div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;</div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;            map_type* <span class="keyword">const</span> mapping;</div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;</div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;            <span class="comment">/* Adaptive grid: */</span></div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;</div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;            grid_type* grid;</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;            </div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;            <span class="comment">/* Grid veriables: */</span></div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;            </div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;            value_type r,rmin,rmax;</div>
+<div class="line"><a name="l00358"></a><span class="lineno"><a class="code" href="a00001.html#a35687e41f6569b3e20e614a7662c3bc5">  358</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="a00001.html#a35687e41f6569b3e20e614a7662c3bc5" title="Evaluates the (private) normalisation factor.">refresh_norm</a>()</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;            {</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;                <span class="keywordflow">if</span>((!mapping-&gt;<a class="code" href="a00482.html#af86cec8337971720b78497bbdaf05564" title="Returns whether the requested density is nomalisable within current interval.">normalisable</a>()) or rmin&lt;(<a class="code" href="a00362.html#a3353150105036deac9bde097cbf1d8af" title="Value type definition.">value_type</a>)0 or rmax&gt;(<a class="code" href="a00362.html#a3353150105036deac9bde097cbf1d8af" title="Value type definition.">value_type</a>)1 or rmin&gt;rmax)</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;                {</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;                    this-&gt;<a class="code" href="a00482.html#a058384fae92fe2b322f7298adcc3c05a" title="Normalisation constant.">norm</a>=(<a class="code" href="a00362.html#a3353150105036deac9bde097cbf1d8af" title="Value type definition.">value_type</a>)0;</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;                }</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;                <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;                {</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;                    this-&gt;<a class="code" href="a00482.html#a058384fae92fe2b322f7298adcc3c05a" title="Normalisation constant.">norm</a>=(<a class="code" href="a00362.html#a3353150105036deac9bde097cbf1d8af" title="Value type definition.">value_type</a>)1;</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;                }</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;            }</div>
 <div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;</div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;            <span class="comment">/* Subinterval grid instance: */</span></div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;            <span class="comment">/* Returns the weight without bound-checking: */</span></div>
 <div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;</div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;            <a class="code" href="a00390.html">parni_sub_grid&lt;value_t,1,rng_t&gt;</a>* subgrid;</div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    };</div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;}</div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;</div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/*CAMGEN_S_GEN_GRID_H_*/</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00372"></a><span class="lineno"><a class="code" href="a00001.html#ad6ffaf02a5104ed5c403811f75092be2">  372</a></span>&#160;            <a class="code" href="a00362.html#a3353150105036deac9bde097cbf1d8af" title="Value type definition.">value_type</a> <a class="code" href="a00001.html#ad6ffaf02a5104ed5c403811f75092be2" title="Returns the weight of the current configuration without bound- or norm-checking.">get_fast_weight</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;<span class="keyword">            </span>{</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;                subgrid-&gt;evaluate_weight();</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;                <span class="keywordflow">return</span> subgrid-&gt;weight()*mapping-&gt;<a class="code" href="a00482.html#a1c77ba845ada06f770c0b80fe03354fe" title="Returns the weight of the current configuration without bound- or norm-checking.">get_fast_weight</a>();</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;            }</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;        <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;            <span class="comment">/* Transformation: */</span></div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;            map_type* <span class="keyword">const</span> mapping;</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;            <span class="comment">/* Adaptive grid: */</span></div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;            grid_type* grid;</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;            </div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;            <span class="comment">/* Grid veriables: */</span></div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;            </div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;            value_type r,rmin,rmax;</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;            <span class="comment">/* Subinterval grid instance: */</span></div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;            <a class="code" href="a00390.html">parni_sub_grid&lt;value_t,1,rng_t&gt;</a>* subgrid;</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;    };</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;}</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/*CAMGEN_S_GEN_GRID_H_*/</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;<span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 10 2013 23:44:49 for Camorra by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Aug 18 2013 17:37:00 for Camorra by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

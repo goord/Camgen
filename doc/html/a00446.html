@@ -108,10 +108,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a004
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00446.html#a33c57e0755699c912dde1bebf87e2dcc">adapt_channels</a> ()</td></tr>
 <tr class="memdesc:a33c57e0755699c912dde1bebf87e2dcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multichannel weight adaptation method. <br/></td></tr>
 <tr class="separator:a33c57e0755699c912dde1bebf87e2dcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90bbb01bed864774aca7f08af0a33982"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a90bbb01bed864774aca7f08af0a33982"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00446.html#a90bbb01bed864774aca7f08af0a33982">reset</a> ()</td></tr>
-<tr class="memdesc:a90bbb01bed864774aca7f08af0a33982"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets cross section, multichannel weights and adaptive grids. <br/></td></tr>
+<tr class="memitem:a90bbb01bed864774aca7f08af0a33982"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00446.html#a90bbb01bed864774aca7f08af0a33982">reset</a> ()</td></tr>
+<tr class="memdesc:a90bbb01bed864774aca7f08af0a33982"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets cross section, multichannel weights and adaptive grids of initial and final state generators.  <a href="#a90bbb01bed864774aca7f08af0a33982">More...</a><br/></td></tr>
 <tr class="separator:a90bbb01bed864774aca7f08af0a33982"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91b224ef9d41bbc7b08f1d2a405d4860"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a91b224ef9d41bbc7b08f1d2a405d4860"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00446.html#a91b224ef9d41bbc7b08f1d2a405d4860">reset_cross_section</a> ()</td></tr>
+<tr class="memdesc:a91b224ef9d41bbc7b08f1d2a405d4860"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets cross section of initial and final state generators. <br/></td></tr>
+<tr class="separator:a91b224ef9d41bbc7b08f1d2a405d4860"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad12e96c4671fa9f80e02b583a0a809a0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad12e96c4671fa9f80e02b583a0a809a0"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00446.html#ad12e96c4671fa9f80e02b583a0a809a0">type</a> () const </td></tr>
 <tr class="memdesc:ad12e96c4671fa9f80e02b583a0a809a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Polymorphic type identifier. <br/></td></tr>
@@ -244,22 +247,14 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a0044
 <tr class="memitem:a13237d14de63e18b80517e1b1c88e7cb inherit pub_methods_a00441"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00559.html">momentum_type</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00441.html#a13237d14de63e18b80517e1b1c88e7cb">p_out</a> (size_type i) const</td></tr>
 <tr class="memdesc:a13237d14de63e18b80517e1b1c88e7cb inherit pub_methods_a00441"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the const reference to the i-th incoming momentum (no range checking on i).  <a href="#a13237d14de63e18b80517e1b1c88e7cb">More...</a><br/></td></tr>
 <tr class="separator:a13237d14de63e18b80517e1b1c88e7cb inherit pub_methods_a00441"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5aab945c0b53817ad79dac03f7a27631 inherit pub_methods_a00441"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5aab945c0b53817ad79dac03f7a27631"></a>
-value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00441.html#a5aab945c0b53817ad79dac03f7a27631">s_in</a> (size_type i) const</td></tr>
-<tr class="memdesc:a5aab945c0b53817ad79dac03f7a27631 inherit pub_methods_a00441"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the i-th incoming mass-squared (no range checking on i). <br/></td></tr>
-<tr class="separator:a5aab945c0b53817ad79dac03f7a27631 inherit pub_methods_a00441"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd4ef01e821135a6e82ac6489effd53c inherit pub_methods_a00441"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abd4ef01e821135a6e82ac6489effd53c"></a>
-value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00441.html#abd4ef01e821135a6e82ac6489effd53c">s_out</a> (size_type i) const</td></tr>
-<tr class="memdesc:abd4ef01e821135a6e82ac6489effd53c inherit pub_methods_a00441"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the i-th outgoing mass-squared (no range checking on i). <br/></td></tr>
-<tr class="separator:abd4ef01e821135a6e82ac6489effd53c inherit pub_methods_a00441"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e21b759d8125520edc89e2508962302 inherit pub_methods_a00441"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6e21b759d8125520edc89e2508962302"></a>
-value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00441.html#a6e21b759d8125520edc89e2508962302">m_in</a> (size_type i) const</td></tr>
-<tr class="memdesc:a6e21b759d8125520edc89e2508962302 inherit pub_methods_a00441"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the i-th incoming mass (no range checking on i). <br/></td></tr>
-<tr class="separator:a6e21b759d8125520edc89e2508962302 inherit pub_methods_a00441"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae5e72051c8b9d0a06e1a47e2f5cf48e4 inherit pub_methods_a00441"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae5e72051c8b9d0a06e1a47e2f5cf48e4"></a>
-value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00441.html#ae5e72051c8b9d0a06e1a47e2f5cf48e4">m_out</a> (size_type i) const</td></tr>
-<tr class="memdesc:ae5e72051c8b9d0a06e1a47e2f5cf48e4 inherit pub_methods_a00441"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the i-th outgoing mass (no range checking on i). <br/></td></tr>
-<tr class="separator:ae5e72051c8b9d0a06e1a47e2f5cf48e4 inherit pub_methods_a00441"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9293b92caee4fa9035e89dcfbbbcae5 inherit pub_methods_a00441"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af9293b92caee4fa9035e89dcfbbbcae5"></a>
+value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00441.html#af9293b92caee4fa9035e89dcfbbbcae5">M_in</a> (size_type i) const</td></tr>
+<tr class="memdesc:af9293b92caee4fa9035e89dcfbbbcae5 inherit pub_methods_a00441"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the i-th incoming mass (no range checking on i). <br/></td></tr>
+<tr class="separator:af9293b92caee4fa9035e89dcfbbbcae5 inherit pub_methods_a00441"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a959183c12a67b2e4428b5257b7c13ebf inherit pub_methods_a00441"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a959183c12a67b2e4428b5257b7c13ebf"></a>
+value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00441.html#a959183c12a67b2e4428b5257b7c13ebf">M_out</a> (size_type i) const</td></tr>
+<tr class="memdesc:a959183c12a67b2e4428b5257b7c13ebf inherit pub_methods_a00441"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the i-th outgoing mass (no range checking on i). <br/></td></tr>
+<tr class="separator:a959183c12a67b2e4428b5257b7c13ebf inherit pub_methods_a00441"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2cd771c9367fc65df19d5b2ecdc408b inherit pub_methods_a00441"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad2cd771c9367fc65df19d5b2ecdc408b"></a>
 value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00441.html#ad2cd771c9367fc65df19d5b2ecdc408b">Ecm</a> () const</td></tr>
 <tr class="memdesc:ad2cd771c9367fc65df19d5b2ecdc408b inherit pub_methods_a00441"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the total hadronic CM-frame energy. <br/></td></tr>
@@ -483,6 +478,22 @@ virtual <a class="el" href="a00363.html">MC_integral</a>&lt; value_type &gt;&#16
 virtual <a class="el" href="a00363.html">MC_integral</a>&lt; value_type &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00442.html#ae971360f5465b09ca100b995722a7f48">sub_xsec</a> () const </td></tr>
 <tr class="memdesc:ae971360f5465b09ca100b995722a7f48 inherit pub_methods_a00442"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual method returning the current subprocess cross section. <br/></td></tr>
 <tr class="separator:ae971360f5465b09ca100b995722a7f48 inherit pub_methods_a00442"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb270d6a68cd7d9157848609250c652c inherit pub_methods_a00442"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeb270d6a68cd7d9157848609250c652c"></a>
+virtual value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00442.html#aeb270d6a68cd7d9157848609250c652c">s_in</a> (size_type i) const </td></tr>
+<tr class="memdesc:aeb270d6a68cd7d9157848609250c652c inherit pub_methods_a00442"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual method returning the i-th incoming invariant mass-squared. <br/></td></tr>
+<tr class="separator:aeb270d6a68cd7d9157848609250c652c inherit pub_methods_a00442"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade1e4b8ea51198e20b2c987c8865a649 inherit pub_methods_a00442"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ade1e4b8ea51198e20b2c987c8865a649"></a>
+virtual value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00442.html#ade1e4b8ea51198e20b2c987c8865a649">s_out</a> (size_type i) const </td></tr>
+<tr class="memdesc:ade1e4b8ea51198e20b2c987c8865a649 inherit pub_methods_a00442"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual method returning the i-th outgoing invariant mass-squared. <br/></td></tr>
+<tr class="separator:ade1e4b8ea51198e20b2c987c8865a649 inherit pub_methods_a00442"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a422a6b7a79690e7bae81713bd8eb3b15 inherit pub_methods_a00442"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a422a6b7a79690e7bae81713bd8eb3b15"></a>
+virtual value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00442.html#a422a6b7a79690e7bae81713bd8eb3b15">m_in</a> (size_type i) const </td></tr>
+<tr class="memdesc:a422a6b7a79690e7bae81713bd8eb3b15 inherit pub_methods_a00442"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual method returning the i-th incoming invariant mass. <br/></td></tr>
+<tr class="separator:a422a6b7a79690e7bae81713bd8eb3b15 inherit pub_methods_a00442"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72ab870e1cdff092a9102b346783f268 inherit pub_methods_a00442"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a72ab870e1cdff092a9102b346783f268"></a>
+virtual value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00442.html#a72ab870e1cdff092a9102b346783f268">m_out</a> (size_type i) const </td></tr>
+<tr class="memdesc:a72ab870e1cdff092a9102b346783f268 inherit pub_methods_a00442"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual method returning the i-th outgoing invariant mass. <br/></td></tr>
+<tr class="separator:a72ab870e1cdff092a9102b346783f268 inherit pub_methods_a00442"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a93226df13fcf52eb52b5b8d894885462 inherit pub_methods_a00442"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00442.html#a93226df13fcf52eb52b5b8d894885462">id_in</a> (size_type i) const </td></tr>
 <tr class="memdesc:a93226df13fcf52eb52b5b8d894885462 inherit pub_methods_a00442"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual method returning the i-th incoming particle id (returns zero by default).  <a href="#a93226df13fcf52eb52b5b8d894885462">More...</a><br/></td></tr>
 <tr class="separator:a93226df13fcf52eb52b5b8d894885462 inherit pub_methods_a00442"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -524,6 +535,9 @@ virtual value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="
 <tr class="memitem:a2b06ea836491c920c2eb03ca6785e453 inherit pub_methods_a00442"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="a00559.html">momentum_type</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00442.html#a2b06ea836491c920c2eb03ca6785e453">p</a> (int i) const </td></tr>
 <tr class="memdesc:a2b06ea836491c920c2eb03ca6785e453 inherit pub_methods_a00442"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the i-th momentum, where i&lt;0 means incoming momenta and i&gt;0 outgoing ones.  <a href="#a2b06ea836491c920c2eb03ca6785e453">More...</a><br/></td></tr>
 <tr class="separator:a2b06ea836491c920c2eb03ca6785e453 inherit pub_methods_a00442"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8165335a5beea72aaa9c97a224d43313 inherit pub_methods_a00442"><td class="memItemLeft" align="right" valign="top">virtual value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00442.html#a8165335a5beea72aaa9c97a224d43313">M</a> (int i) const </td></tr>
+<tr class="memdesc:a8165335a5beea72aaa9c97a224d43313 inherit pub_methods_a00442"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the i-th mass, where i&lt;0 means incoming masses and i&gt;0 outgoing ones.  <a href="#a8165335a5beea72aaa9c97a224d43313">More...</a><br/></td></tr>
+<tr class="separator:a8165335a5beea72aaa9c97a224d43313 inherit pub_methods_a00442"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a93e2650607db42a9cc3581e5ac937e6c inherit pub_methods_a00442"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a93e2650607db42a9cc3581e5ac937e6c"></a>
 virtual const value_type &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00442.html#a93e2650607db42a9cc3581e5ac937e6c">p_in</a> (size_type i, size_type mu) const </td></tr>
 <tr class="memdesc:a93e2650607db42a9cc3581e5ac937e6c inherit pub_methods_a00442"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the i-th incoming momentum's mu-th component. <br/></td></tr>
@@ -799,13 +813,43 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a003
 <tr class="memdesc:ac09c414988a3b0904112f86a5cc23148 inherit pro_attribs_a00362"><td class="mdescLeft">&#160;</td><td class="mdescRight">Weight histogramming instance. <br/></td></tr>
 <tr class="separator:ac09c414988a3b0904112f86a5cc23148 inherit pro_attribs_a00362"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a90bbb01bed864774aca7f08af0a33982"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class model_t , std::size_t N_out, class rng_t &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="a00445.html">Camgen::ps_tree</a>&lt; model_t, 1, N_out, rng_t &gt;::reset </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Resets cross section, multichannel weights and adaptive grids of initial and final state generators. </p>
+
+<p>Reimplemented from <a class="el" href="a00441.html#a205f3c5d763897f3d031ded8e0b99dc0">Camgen::ps_generator&lt; model_t, 1, N_out &gt;</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/Camgen/<a class="el" href="a00718_source.html">ps_tree.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 10 2013 23:45:24 for Camorra by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Aug 18 2013 17:37:34 for Camorra by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

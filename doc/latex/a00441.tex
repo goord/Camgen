@@ -96,9 +96,11 @@ virtual bool \hyperlink{a00441_af0547a26ceb1704830b86164e6d69f0e}{set\-\_\-m\-\_
 \begin{DoxyCompactList}\small\item\em Overridden adaption method. \end{DoxyCompactList}\item 
 virtual void \hyperlink{a00441_a1cf371f098235bf3735048b78ee3bb09}{set\-\_\-optimal\-\_\-multichannel} ()
 \begin{DoxyCompactList}\small\item\em Replaces current multichannel weights by there optimal values, collected over several adaptations. \end{DoxyCompactList}\item 
-\hypertarget{a00441_a205f3c5d763897f3d031ded8e0b99dc0}{virtual void \hyperlink{a00441_a205f3c5d763897f3d031ded8e0b99dc0}{reset} ()}\label{a00441_a205f3c5d763897f3d031ded8e0b99dc0}
+virtual void \hyperlink{a00441_a205f3c5d763897f3d031ded8e0b99dc0}{reset} ()
+\begin{DoxyCompactList}\small\item\em Resets cross section, multichannel weights and adaptive grids of initial and final state generators. \end{DoxyCompactList}\item 
+\hypertarget{a00441_afb4972f1613f2f5055347190eba6ebf3}{virtual void \hyperlink{a00441_afb4972f1613f2f5055347190eba6ebf3}{reset\-\_\-cross\-\_\-section} ()}\label{a00441_afb4972f1613f2f5055347190eba6ebf3}
 
-\begin{DoxyCompactList}\small\item\em Resets cross section, multichannel weights and adaptive grids. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Resets cross section of initial and final state generators. \end{DoxyCompactList}\item 
 bool \hyperlink{a00441_af3e00200b661698bf1e36495a816a3b6}{set\-\_\-tree} (typename \hyperlink{a00070}{C\-M\-\_\-algorithm}$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out $>$\-::tree\-\_\-iterator it)
 \begin{DoxyCompactList}\small\item\em Sets all momentum and mass addresses to the current tree's external legs momenta and masses. \end{DoxyCompactList}\item 
 \hypertarget{a00441_a65d6bc1d66794e4681960e19706d17c3}{size\-\_\-type \hyperlink{a00441_a65d6bc1d66794e4681960e19706d17c3}{n\-\_\-in} () const }\label{a00441_a65d6bc1d66794e4681960e19706d17c3}
@@ -127,16 +129,10 @@ const \hyperlink{a00559}{momentum\-\_\-type} \& \hyperlink{a00441_a8a5e9271352f7
 \begin{DoxyCompactList}\small\item\em Returns the reference to the i-\/th outgoing momentum (no range checking on i). \end{DoxyCompactList}\item 
 const \hyperlink{a00559}{momentum\-\_\-type} \& \hyperlink{a00441_a13237d14de63e18b80517e1b1c88e7cb}{p\-\_\-out} (size\-\_\-type i) const 
 \begin{DoxyCompactList}\small\item\em Returns the const reference to the i-\/th incoming momentum (no range checking on i). \end{DoxyCompactList}\item 
-\hypertarget{a00441_a5aab945c0b53817ad79dac03f7a27631}{value\-\_\-type \hyperlink{a00441_a5aab945c0b53817ad79dac03f7a27631}{s\-\_\-in} (size\-\_\-type i) const }\label{a00441_a5aab945c0b53817ad79dac03f7a27631}
-
-\begin{DoxyCompactList}\small\item\em Returns the i-\/th incoming mass-\/squared (no range checking on i). \end{DoxyCompactList}\item 
-\hypertarget{a00441_abd4ef01e821135a6e82ac6489effd53c}{value\-\_\-type \hyperlink{a00441_abd4ef01e821135a6e82ac6489effd53c}{s\-\_\-out} (size\-\_\-type i) const }\label{a00441_abd4ef01e821135a6e82ac6489effd53c}
-
-\begin{DoxyCompactList}\small\item\em Returns the i-\/th outgoing mass-\/squared (no range checking on i). \end{DoxyCompactList}\item 
-\hypertarget{a00441_a6e21b759d8125520edc89e2508962302}{value\-\_\-type \hyperlink{a00441_a6e21b759d8125520edc89e2508962302}{m\-\_\-in} (size\-\_\-type i) const }\label{a00441_a6e21b759d8125520edc89e2508962302}
+\hypertarget{a00441_af9293b92caee4fa9035e89dcfbbbcae5}{value\-\_\-type \hyperlink{a00441_af9293b92caee4fa9035e89dcfbbbcae5}{M\-\_\-in} (size\-\_\-type i) const }\label{a00441_af9293b92caee4fa9035e89dcfbbbcae5}
 
 \begin{DoxyCompactList}\small\item\em Returns the i-\/th incoming mass (no range checking on i). \end{DoxyCompactList}\item 
-\hypertarget{a00441_ae5e72051c8b9d0a06e1a47e2f5cf48e4}{value\-\_\-type \hyperlink{a00441_ae5e72051c8b9d0a06e1a47e2f5cf48e4}{m\-\_\-out} (size\-\_\-type i) const }\label{a00441_ae5e72051c8b9d0a06e1a47e2f5cf48e4}
+\hypertarget{a00441_a959183c12a67b2e4428b5257b7c13ebf}{value\-\_\-type \hyperlink{a00441_a959183c12a67b2e4428b5257b7c13ebf}{M\-\_\-out} (size\-\_\-type i) const }\label{a00441_a959183c12a67b2e4428b5257b7c13ebf}
 
 \begin{DoxyCompactList}\small\item\em Returns the i-\/th outgoing mass (no range checking on i). \end{DoxyCompactList}\item 
 \hypertarget{a00441_ad2cd771c9367fc65df19d5b2ecdc408b}{value\-\_\-type \hyperlink{a00441_ad2cd771c9367fc65df19d5b2ecdc408b}{Ecm} () const }\label{a00441_ad2cd771c9367fc65df19d5b2ecdc408b}
@@ -376,6 +372,25 @@ Returns the event weight without flux and symmetry factors etc.
 The first argument denotes whether helicities are included, the second whether colours are. 
 
 Reimplemented from \hyperlink{a00442_a258fb687d61e5a0d9d12d5e1d45db8aa}{Camgen\-::ps\-\_\-generator\-\_\-base$<$ model\-\_\-t $>$}.
+
+\hypertarget{a00441_a205f3c5d763897f3d031ded8e0b99dc0}{\index{Camgen\-::ps\-\_\-generator@{Camgen\-::ps\-\_\-generator}!reset@{reset}}
+\index{reset@{reset}!Camgen::ps_generator@{Camgen\-::ps\-\_\-generator}}
+\subsubsection[{reset}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t, std\-::size\-\_\-t N\-\_\-in, std\-::size\-\_\-t N\-\_\-out$>$ virtual void {\bf Camgen\-::ps\-\_\-generator}$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out $>$\-::reset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00441_a205f3c5d763897f3d031ded8e0b99dc0}
+
+
+Resets cross section, multichannel weights and adaptive grids of initial and final state generators. 
+
+
+
+Reimplemented from \hyperlink{a00362_a96247247800b9db50ddf7fafb28aca42}{Camgen\-::\-M\-C\-\_\-generator$<$ model\-\_\-t\-::value\-\_\-type $>$}.
+
+
+
+Reimplemented in \hyperlink{a00447_a3abc78349f929f2cb7be411d9851a7d1}{Camgen\-::ps\-\_\-tree$<$ model\-\_\-t, 2, N\-\_\-out, rng\-\_\-t $>$}, and \hyperlink{a00446_a90bbb01bed864774aca7f08af0a33982}{Camgen\-::ps\-\_\-tree$<$ model\-\_\-t, 1, N\-\_\-out, rng\-\_\-t $>$}.
 
 \hypertarget{a00441_a35eff1ece24702ed67b4fbc30e703283}{\index{Camgen\-::ps\-\_\-generator@{Camgen\-::ps\-\_\-generator}!set\-\_\-m@{set\-\_\-m}}
 \index{set\-\_\-m@{set\-\_\-m}!Camgen::ps_generator@{Camgen\-::ps\-\_\-generator}}

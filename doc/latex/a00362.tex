@@ -39,9 +39,10 @@ virtual void \hyperlink{a00362_ae5e70cee65aacbb6a556057de02ef3dd}{update} ()
 \begin{DoxyCompactList}\small\item\em Operator combining the generation cross section refreshing and updating methods. \end{DoxyCompactList}\item 
 virtual void \hyperlink{a00362_a5d92f7676d21574ed14d82da458d7452}{refresh\-\_\-cross\-\_\-section} (bool with\-\_\-integrand=true)
 \begin{DoxyCompactList}\small\item\em Raises the number of calls by 1 and the weight sums by the current weight, without calling the generation method. \end{DoxyCompactList}\item 
-\hypertarget{a00362_a96247247800b9db50ddf7fafb28aca42}{virtual void \hyperlink{a00362_a96247247800b9db50ddf7fafb28aca42}{reset} ()}\label{a00362_a96247247800b9db50ddf7fafb28aca42}
-
-\begin{DoxyCompactList}\small\item\em Resets the weight sums and n\-\_\-calls to 0. Sets the weight to 1. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00362_a96247247800b9db50ddf7fafb28aca42}{reset} ()
+\begin{DoxyCompactList}\small\item\em Resets the the state of the M\-C generator. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00362_a1ec9818cc8260e1be5c568d319cb722b}{reset\-\_\-cross\-\_\-section} ()
+\begin{DoxyCompactList}\small\item\em Resets cross section and weight sums of the generator, but keeps channel weights and grids intact. \end{DoxyCompactList}\item 
 \hypertarget{a00362_a61c3ff75a7477c80680c1be16f03e8ca}{virtual const \\*
 \hyperlink{a00576}{weight\-\_\-histogrammer}$<$ value\-\_\-t $>$ $\ast$ \hyperlink{a00362_a61c3ff75a7477c80680c1be16f03e8ca}{bin\-\_\-weights} (size\-\_\-type bins)}\label{a00362_a61c3ff75a7477c80680c1be16f03e8ca}
 
@@ -226,6 +227,36 @@ Raises the number of calls by 1 and the weight sums by the current weight, witho
 
 
 Reimplemented in \hyperlink{a00210_ac48b7d17637cfbaa3fde4379415621b0}{Camgen\-::event\-\_\-generator$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$}.
+
+\hypertarget{a00362_a96247247800b9db50ddf7fafb28aca42}{\index{Camgen\-::\-M\-C\-\_\-generator@{Camgen\-::\-M\-C\-\_\-generator}!reset@{reset}}
+\index{reset@{reset}!Camgen::MC_generator@{Camgen\-::\-M\-C\-\_\-generator}}
+\subsubsection[{reset}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\-\_\-t$>$ virtual void {\bf Camgen\-::\-M\-C\-\_\-generator}$<$ value\-\_\-t $>$\-::reset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00362_a96247247800b9db50ddf7fafb28aca42}
+
+
+Resets the the state of the M\-C generator. 
+
+Resets adaptive channels weights and grids as well. 
+
+Reimplemented in \hyperlink{a00447_a3abc78349f929f2cb7be411d9851a7d1}{Camgen\-::ps\-\_\-tree$<$ model\-\_\-t, 2, N\-\_\-out, rng\-\_\-t $>$}, \hyperlink{a00259_a0b504d75eb09425456b2d27af5f2c71b}{Camgen\-::hadronic\-\_\-is\-\_\-y$<$ model\-\_\-t, rng\-\_\-t, Minkowski\-\_\-type $>$}, \hyperlink{a00430_aa2cd6b9887022d49cd48497b8061c54d}{Camgen\-::process\-\_\-generator$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$}, \hyperlink{a00255_a413a2200c7a02cdf6468b705b624a2e1}{Camgen\-::hadronic\-\_\-is\-\_\-sy$<$ model\-\_\-t, rng\-\_\-t, Minkowski\-\_\-type $>$}, \hyperlink{a00210_a513578e30af093a93581b3cd3667786f}{Camgen\-::event\-\_\-generator$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$}, \hyperlink{a00446_a90bbb01bed864774aca7f08af0a33982}{Camgen\-::ps\-\_\-tree$<$ model\-\_\-t, 1, N\-\_\-out, rng\-\_\-t $>$}, \hyperlink{a00395_acc228746623bfc5c6f3f1d62f3a841e6}{Camgen\-::particle\-\_\-channel$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$}, \hyperlink{a00441_a205f3c5d763897f3d031ded8e0b99dc0}{Camgen\-::ps\-\_\-generator$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out $>$}, \hyperlink{a00441_a205f3c5d763897f3d031ded8e0b99dc0}{Camgen\-::ps\-\_\-generator$<$ model\-\_\-t, 2, N\-\_\-out $>$}, \hyperlink{a00441_a205f3c5d763897f3d031ded8e0b99dc0}{Camgen\-::ps\-\_\-generator$<$ model\-\_\-t, 1, N\-\_\-out $>$}, \hyperlink{a00001_a8083f3252ded95b8f48e0d5746b34a40}{Camgen\-::adaptive\-\_\-s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t $>$}, \hyperlink{a00257_ac4a595e2cdbea918c39193f46b87fb25}{Camgen\-::hadronic\-\_\-is\-\_\-xx$<$ model\-\_\-t, rng\-\_\-t, Minkowski\-\_\-type $>$}, \hyperlink{a00437_a0fbd3a7065f08ca4b25e6e60c18141e3}{Camgen\-::ps\-\_\-branching$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$}, and \hyperlink{a00437_a0fbd3a7065f08ca4b25e6e60c18141e3}{Camgen\-::ps\-\_\-branching$<$ model\-\_\-t, 2, N\-\_\-out, rng\-\_\-t $>$}.
+
+\hypertarget{a00362_a1ec9818cc8260e1be5c568d319cb722b}{\index{Camgen\-::\-M\-C\-\_\-generator@{Camgen\-::\-M\-C\-\_\-generator}!reset\-\_\-cross\-\_\-section@{reset\-\_\-cross\-\_\-section}}
+\index{reset\-\_\-cross\-\_\-section@{reset\-\_\-cross\-\_\-section}!Camgen::MC_generator@{Camgen\-::\-M\-C\-\_\-generator}}
+\subsubsection[{reset\-\_\-cross\-\_\-section}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\-\_\-t$>$ virtual void {\bf Camgen\-::\-M\-C\-\_\-generator}$<$ value\-\_\-t $>$\-::reset\-\_\-cross\-\_\-section (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00362_a1ec9818cc8260e1be5c568d319cb722b}
+
+
+Resets cross section and weight sums of the generator, but keeps channel weights and grids intact. 
+
+
+
+Reimplemented in \hyperlink{a00259_a297a807339f2752c8cedaadf07a197d2}{Camgen\-::hadronic\-\_\-is\-\_\-y$<$ model\-\_\-t, rng\-\_\-t, Minkowski\-\_\-type $>$}, \hyperlink{a00430_a7291d00338eceaefb5b5608625b2bec6}{Camgen\-::process\-\_\-generator$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$}, \hyperlink{a00255_ad6b7a3a115e2b7af31b1bcc98577dfff}{Camgen\-::hadronic\-\_\-is\-\_\-sy$<$ model\-\_\-t, rng\-\_\-t, Minkowski\-\_\-type $>$}, \hyperlink{a00210_ac012b825829f4a734f7667bb8c6b0bb8}{Camgen\-::event\-\_\-generator$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$}, \hyperlink{a00446_a91b224ef9d41bbc7b08f1d2a405d4860}{Camgen\-::ps\-\_\-tree$<$ model\-\_\-t, 1, N\-\_\-out, rng\-\_\-t $>$}, \hyperlink{a00395_afde27e92b24ade585d066329f1181089}{Camgen\-::particle\-\_\-channel$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$}, \hyperlink{a00441_afb4972f1613f2f5055347190eba6ebf3}{Camgen\-::ps\-\_\-generator$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out $>$}, \hyperlink{a00441_afb4972f1613f2f5055347190eba6ebf3}{Camgen\-::ps\-\_\-generator$<$ model\-\_\-t, 2, N\-\_\-out $>$}, \hyperlink{a00441_afb4972f1613f2f5055347190eba6ebf3}{Camgen\-::ps\-\_\-generator$<$ model\-\_\-t, 1, N\-\_\-out $>$}, \hyperlink{a00001_a58424d0ff97bded5d1f43f9314122570}{Camgen\-::adaptive\-\_\-s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t $>$}, and \hyperlink{a00257_a87377873b0ff5cfee8e65e94844e3267}{Camgen\-::hadronic\-\_\-is\-\_\-xx$<$ model\-\_\-t, rng\-\_\-t, Minkowski\-\_\-type $>$}.
 
 \hypertarget{a00362_ae5e70cee65aacbb6a556057de02ef3dd}{\index{Camgen\-::\-M\-C\-\_\-generator@{Camgen\-::\-M\-C\-\_\-generator}!update@{update}}
 \index{update@{update}!Camgen::MC_generator@{Camgen\-::\-M\-C\-\_\-generator}}

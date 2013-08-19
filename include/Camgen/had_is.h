@@ -337,7 +337,7 @@ namespace Camgen
 	    {
 		os<<std::setw(30)<<std::left<<"beam energy -1:"<<this->beam_energy(0)<<std::endl;
 		os<<std::setw(30)<<std::left<<"hadron -1:"<<hadron1<<std::endl;
-		os<<std::setw(30)<<std::left<<"beam energy -2:"<<this->beam_energy(0)<<std::endl;
+		os<<std::setw(30)<<std::left<<"beam energy -2:"<<this->beam_energy(1)<<std::endl;
 		os<<std::setw(30)<<std::left<<"hadron -2:"<<hadron2<<std::endl;
 		os<<std::setw(30)<<std::left<<"Ecm:"<<this->Ecm()<<std::endl;
 		os<<std::setw(30)<<std::left<<"PDF set:"<<pdf_name()<<std::endl;
@@ -792,7 +792,7 @@ namespace Camgen
 	    {
 		os<<std::setw(30)<<std::left<<"beam energy -1:"<<this->beam_energy(0)<<std::endl;
 		os<<std::setw(30)<<std::left<<"hadron -1:"<<hadron1<<std::endl;
-		os<<std::setw(30)<<std::left<<"beam energy -2:"<<this->beam_energy(0)<<std::endl;
+		os<<std::setw(30)<<std::left<<"beam energy -2:"<<this->beam_energy(1)<<std::endl;
 		os<<std::setw(30)<<std::left<<"hadron -2:"<<hadron2<<std::endl;
 		os<<std::setw(30)<<std::left<<"Ecm:"<<this->Ecm()<<std::endl;
 		os<<std::setw(30)<<std::left<<"PDF set:"<<pdf_name()<<std::endl;
@@ -1204,7 +1204,7 @@ namespace Camgen
 	    {
 		os<<std::setw(30)<<std::left<<"beam energy -1:"<<this->beam_energy(0)<<std::endl;
 		os<<std::setw(30)<<std::left<<"hadron -1:"<<hadron1<<std::endl;
-		os<<std::setw(30)<<std::left<<"beam energy -2:"<<this->beam_energy(0)<<std::endl;
+		os<<std::setw(30)<<std::left<<"beam energy -2:"<<this->beam_energy(1)<<std::endl;
 		os<<std::setw(30)<<std::left<<"hadron -2:"<<hadron2<<std::endl;
 		os<<std::setw(30)<<std::left<<"Ecm:"<<this->Ecm()<<std::endl;
 		os<<std::setw(30)<<std::left<<"PDF set:"<<pdf_name()<<std::endl;

@@ -28,6 +28,12 @@ Inheritance diagram for Camgen\-:\-:test\-\_\-generator$<$ model\-\_\-t $>$\-:\b
 \hypertarget{a00529_a1814975d91cf8557553b0c7837efa701}{const \hyperlink{a00559}{momentum\-\_\-type} \& \hyperlink{a00529_a1814975d91cf8557553b0c7837efa701}{p\-\_\-out} (size\-\_\-type i) const }\label{a00529_a1814975d91cf8557553b0c7837efa701}
 
 \begin{DoxyCompactList}\small\item\em Abstract method reading out an outgoing momentum. \end{DoxyCompactList}\item 
+\hypertarget{a00529_a012809a8d53889ddfde2366a96dad270}{value\-\_\-type \hyperlink{a00529_a012809a8d53889ddfde2366a96dad270}{M\-\_\-in} (size\-\_\-type i) const }\label{a00529_a012809a8d53889ddfde2366a96dad270}
+
+\begin{DoxyCompactList}\small\item\em Abstract method reading out an incoming mass. \end{DoxyCompactList}\item 
+\hypertarget{a00529_a4dcd463da5393779dcf6f325f4ed4c2d}{value\-\_\-type \hyperlink{a00529_a4dcd463da5393779dcf6f325f4ed4c2d}{M\-\_\-out} (size\-\_\-type i) const }\label{a00529_a4dcd463da5393779dcf6f325f4ed4c2d}
+
+\begin{DoxyCompactList}\small\item\em Abstract method reading out an outgoing mass. \end{DoxyCompactList}\item 
 \hypertarget{a00529_abd55d011bd1512b10f7b177dee803119}{const value\-\_\-type \& \hyperlink{a00529_abd55d011bd1512b10f7b177dee803119}{p\-\_\-in} (size\-\_\-type i, size\-\_\-type mu) const }\label{a00529_abd55d011bd1512b10f7b177dee803119}
 
 \begin{DoxyCompactList}\small\item\em Reads the i-\/th incoming momentum's mu-\/th component. \end{DoxyCompactList}\item 
@@ -58,6 +64,8 @@ int \hyperlink{a00529_a9670babe6e6eb25f8d13102043e7da2f}{id\-\_\-out} (size\-\_\
 \begin{DoxyCompactList}\small\item\em Virtual method returning the i-\/th outgoing particle id (returns zero by default). \end{DoxyCompactList}\item 
 const \hyperlink{a00559}{momentum\-\_\-type} \& \hyperlink{a00529_a1448d1b1703d189b695bc5a574f3ffd0}{p} (int i) const 
 \begin{DoxyCompactList}\small\item\em Returns the i-\/th momentum, where i$<$0 means incoming momenta and i$>$0 outgoing ones. \end{DoxyCompactList}\item 
+value\-\_\-type \hyperlink{a00529_a758913b3b8feb0f048f815e468c2f2b8}{M} (int i) const 
+\begin{DoxyCompactList}\small\item\em Returns the i-\/th mass, where i$<$0 means incoming masses and i$>$0 outgoing ones. \end{DoxyCompactList}\item 
 \hypertarget{a00529_a13b9a1c17155b45fd90e69ef4e087ce1}{const value\-\_\-type \& \hyperlink{a00529_a13b9a1c17155b45fd90e69ef4e087ce1}{p} (int i, size\-\_\-type mu) const }\label{a00529_a13b9a1c17155b45fd90e69ef4e087ce1}
 
 \begin{DoxyCompactList}\small\item\em Returns the i-\/th momentum's mu-\/th component. \end{DoxyCompactList}\item 
@@ -103,6 +111,21 @@ Virtual method returning the i-\/th outgoing particle id (returns zero by defaul
 
 
 Reimplemented from \hyperlink{a00442_a30cad3b16698c3d0d47d01b0a2d61df2}{Camgen\-::ps\-\_\-generator\-\_\-base$<$ model\-\_\-t $>$}.
+
+\hypertarget{a00529_a758913b3b8feb0f048f815e468c2f2b8}{\index{Camgen\-::test\-\_\-generator@{Camgen\-::test\-\_\-generator}!M@{M}}
+\index{M@{M}!Camgen::test_generator@{Camgen\-::test\-\_\-generator}}
+\subsubsection[{M}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t $>$ value\-\_\-type {\bf Camgen\-::test\-\_\-generator}$<$ model\-\_\-t $>$\-::M (
+\begin{DoxyParamCaption}
+\item[{int}]{i}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00529_a758913b3b8feb0f048f815e468c2f2b8}
+
+
+Returns the i-\/th mass, where i$<$0 means incoming masses and i$>$0 outgoing ones. 
+
+If i==0,i$<$-\/\-N\-\_\-in or i$>$N\-\_\-out, an error will occur. 
+
+Reimplemented from \hyperlink{a00442_a8165335a5beea72aaa9c97a224d43313}{Camgen\-::ps\-\_\-generator\-\_\-base$<$ model\-\_\-t $>$}.
 
 \hypertarget{a00529_a1448d1b1703d189b695bc5a574f3ffd0}{\index{Camgen\-::test\-\_\-generator@{Camgen\-::test\-\_\-generator}!p@{p}}
 \index{p@{p}!Camgen::test_generator@{Camgen\-::test\-\_\-generator}}

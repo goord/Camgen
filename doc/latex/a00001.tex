@@ -34,6 +34,12 @@ bool \hyperlink{a00001_acccaf0f50a38cb1121bc4159e8a23ced}{refresh\-\_\-s\-\_\-bo
 \hypertarget{a00001_aa297a5927d2601b0aa2b2553c609e7ec}{bool \hyperlink{a00001_aa297a5927d2601b0aa2b2553c609e7ec}{evaluate\-\_\-weight} ()}\label{a00001_aa297a5927d2601b0aa2b2553c609e7ec}
 
 \begin{DoxyCompactList}\small\item\em Weight evaluation method. \end{DoxyCompactList}\item 
+\hypertarget{a00001_a0398fc3f8f98c02e7ecacd139da77ade}{\hyperlink{a00362_a3353150105036deac9bde097cbf1d8af}{value\-\_\-type} \hyperlink{a00001_a0398fc3f8f98c02e7ecacd139da77ade}{mapping\-\_\-weight} () const }\label{a00001_a0398fc3f8f98c02e7ecacd139da77ade}
+
+\begin{DoxyCompactList}\small\item\em Mapping weight factor. \end{DoxyCompactList}\item 
+\hypertarget{a00001_aef58f02dd2a50d1d63da6a3f6bb84c2c}{\hyperlink{a00362_a3353150105036deac9bde097cbf1d8af}{value\-\_\-type} \hyperlink{a00001_aef58f02dd2a50d1d63da6a3f6bb84c2c}{grid\-\_\-weight} () const }\label{a00001_aef58f02dd2a50d1d63da6a3f6bb84c2c}
+
+\begin{DoxyCompactList}\small\item\em Adaptive grid weight factor. \end{DoxyCompactList}\item 
 void \hyperlink{a00001_aaf21d07ea43dcc7556ba3fc1c6703160}{update} ()
 \begin{DoxyCompactList}\small\item\em Update method. \end{DoxyCompactList}\item 
 \hypertarget{a00001_af2ce45f4b873b79942d479ed49787103}{void \hyperlink{a00001_af2ce45f4b873b79942d479ed49787103}{update\-\_\-weight} ()}\label{a00001_af2ce45f4b873b79942d479ed49787103}
@@ -42,9 +48,10 @@ void \hyperlink{a00001_aaf21d07ea43dcc7556ba3fc1c6703160}{update} ()
 \hypertarget{a00001_aad3d86a84f3fc66657500fa5bfeaf4c7}{void \hyperlink{a00001_aad3d86a84f3fc66657500fa5bfeaf4c7}{adapt} ()}\label{a00001_aad3d86a84f3fc66657500fa5bfeaf4c7}
 
 \begin{DoxyCompactList}\small\item\em Adaptation method. Trivial by default. \end{DoxyCompactList}\item 
-\hypertarget{a00001_a8083f3252ded95b8f48e0d5746b34a40}{void \hyperlink{a00001_a8083f3252ded95b8f48e0d5746b34a40}{reset} ()}\label{a00001_a8083f3252ded95b8f48e0d5746b34a40}
-
-\begin{DoxyCompactList}\small\item\em Resets the weight sums and n\-\_\-calls to 0. Sets the weight to 1. \end{DoxyCompactList}\item 
+void \hyperlink{a00001_a8083f3252ded95b8f48e0d5746b34a40}{reset} ()
+\begin{DoxyCompactList}\small\item\em Resets the the state of the M\-C generator. \end{DoxyCompactList}\item 
+void \hyperlink{a00001_a58424d0ff97bded5d1f43f9314122570}{reset\-\_\-cross\-\_\-section} ()
+\begin{DoxyCompactList}\small\item\em Resets cross section and weight sums of the generator, but keeps channel weights and grids intact. \end{DoxyCompactList}\item 
 \hypertarget{a00001_abbfd2f35259aae8afd97c9da8131a602}{\hyperlink{a00362_a3353150105036deac9bde097cbf1d8af}{value\-\_\-type} \hyperlink{a00001_abbfd2f35259aae8afd97c9da8131a602}{integrate\-\_\-with} (const \hyperlink{a00482}{s\-\_\-generator}$<$ value\-\_\-t, rng\-\_\-t $>$ $\ast$other, const \hyperlink{a00362_a3353150105036deac9bde097cbf1d8af}{value\-\_\-type} \&sqrts) const }\label{a00001_abbfd2f35259aae8afd97c9da8131a602}
 
 \begin{DoxyCompactList}\small\item\em Double-\/dispatch integrator functions. \end{DoxyCompactList}\item 
@@ -179,6 +186,36 @@ Re-\/evaluates all internal parameters depending on smin.
 Returns false if the input parameters are invalid. 
 
 Reimplemented from \hyperlink{a00482_a8abba1aaf5b92db4408c3d73d288e3b2}{Camgen\-::s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t $>$}.
+
+\hypertarget{a00001_a8083f3252ded95b8f48e0d5746b34a40}{\index{Camgen\-::adaptive\-\_\-s\-\_\-generator@{Camgen\-::adaptive\-\_\-s\-\_\-generator}!reset@{reset}}
+\index{reset@{reset}!Camgen::adaptive_s_generator@{Camgen\-::adaptive\-\_\-s\-\_\-generator}}
+\subsubsection[{reset}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\-\_\-t, class rng\-\_\-t$>$ void {\bf Camgen\-::adaptive\-\_\-s\-\_\-generator}$<$ value\-\_\-t, rng\-\_\-t $>$\-::reset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00001_a8083f3252ded95b8f48e0d5746b34a40}
+
+
+Resets the the state of the M\-C generator. 
+
+Resets adaptive channels weights and grids as well. 
+
+Reimplemented from \hyperlink{a00362_a96247247800b9db50ddf7fafb28aca42}{Camgen\-::\-M\-C\-\_\-generator$<$ value\-\_\-t $>$}.
+
+\hypertarget{a00001_a58424d0ff97bded5d1f43f9314122570}{\index{Camgen\-::adaptive\-\_\-s\-\_\-generator@{Camgen\-::adaptive\-\_\-s\-\_\-generator}!reset\-\_\-cross\-\_\-section@{reset\-\_\-cross\-\_\-section}}
+\index{reset\-\_\-cross\-\_\-section@{reset\-\_\-cross\-\_\-section}!Camgen::adaptive_s_generator@{Camgen\-::adaptive\-\_\-s\-\_\-generator}}
+\subsubsection[{reset\-\_\-cross\-\_\-section}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\-\_\-t, class rng\-\_\-t$>$ void {\bf Camgen\-::adaptive\-\_\-s\-\_\-generator}$<$ value\-\_\-t, rng\-\_\-t $>$\-::reset\-\_\-cross\-\_\-section (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00001_a58424d0ff97bded5d1f43f9314122570}
+
+
+Resets cross section and weight sums of the generator, but keeps channel weights and grids intact. 
+
+
+
+Reimplemented from \hyperlink{a00362_a1ec9818cc8260e1be5c568d319cb722b}{Camgen\-::\-M\-C\-\_\-generator$<$ value\-\_\-t $>$}.
 
 \hypertarget{a00001_aaf21d07ea43dcc7556ba3fc1c6703160}{\index{Camgen\-::adaptive\-\_\-s\-\_\-generator@{Camgen\-::adaptive\-\_\-s\-\_\-generator}!update@{update}}
 \index{update@{update}!Camgen::adaptive_s_generator@{Camgen\-::adaptive\-\_\-s\-\_\-generator}}

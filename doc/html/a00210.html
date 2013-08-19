@@ -155,8 +155,12 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a002
 <tr class="separator:a0d3e8d948540d57655b7d310cb70d8ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a513578e30af093a93581b3cd3667786f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a513578e30af093a93581b3cd3667786f"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00210.html#a513578e30af093a93581b3cd3667786f">reset</a> ()</td></tr>
-<tr class="memdesc:a513578e30af093a93581b3cd3667786f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets all cross sections. <br/></td></tr>
+<tr class="memdesc:a513578e30af093a93581b3cd3667786f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets all subprocess generators. <br/></td></tr>
 <tr class="separator:a513578e30af093a93581b3cd3667786f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac012b825829f4a734f7667bb8c6b0bb8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac012b825829f4a734f7667bb8c6b0bb8"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00210.html#ac012b825829f4a734f7667bb8c6b0bb8">reset_cross_section</a> ()</td></tr>
+<tr class="memdesc:ac012b825829f4a734f7667bb8c6b0bb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets all subprocess cross sections. <br/></td></tr>
+<tr class="separator:ac012b825829f4a734f7667bb8c6b0bb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac48b7d17637cfbaa3fde4379415621b0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac48b7d17637cfbaa3fde4379415621b0"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00210.html#ac48b7d17637cfbaa3fde4379415621b0">refresh_cross_section</a> (bool with_integrand=true)</td></tr>
 <tr class="memdesc:ac48b7d17637cfbaa3fde4379415621b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total cross section refresher method. <br/></td></tr>
@@ -246,6 +250,12 @@ size_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href=
 <tr class="memitem:affd056f9744793eef4d9cefec5d3ffb5"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00559.html">momentum_type</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00210.html#affd056f9744793eef4d9cefec5d3ffb5">p_out</a> (size_type i) const </td></tr>
 <tr class="memdesc:affd056f9744793eef4d9cefec5d3ffb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the const reference to the i-th incoming momentum (no range checking on i).  <a href="#affd056f9744793eef4d9cefec5d3ffb5">More...</a><br/></td></tr>
 <tr class="separator:affd056f9744793eef4d9cefec5d3ffb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0e389444b66a76c7b22fd996cf16bd8"><td class="memItemLeft" align="right" valign="top">value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00210.html#ae0e389444b66a76c7b22fd996cf16bd8">M_in</a> (size_type i) const </td></tr>
+<tr class="memdesc:ae0e389444b66a76c7b22fd996cf16bd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the const reference to the i-th incoming mass (no range checking on i).  <a href="#ae0e389444b66a76c7b22fd996cf16bd8">More...</a><br/></td></tr>
+<tr class="separator:ae0e389444b66a76c7b22fd996cf16bd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1aed7b697e6158749701f4fecaca42ee"><td class="memItemLeft" align="right" valign="top">value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00210.html#a1aed7b697e6158749701f4fecaca42ee">M_out</a> (size_type i) const </td></tr>
+<tr class="memdesc:a1aed7b697e6158749701f4fecaca42ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the const reference to the i-th incoming mass (no range checking on i).  <a href="#a1aed7b697e6158749701f4fecaca42ee">More...</a><br/></td></tr>
+<tr class="separator:a1aed7b697e6158749701f4fecaca42ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ae7fa6415e21a7cffc3dfc4dcbabeeb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6ae7fa6415e21a7cffc3dfc4dcbabeeb"></a>
 value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00210.html#a6ae7fa6415e21a7cffc3dfc4dcbabeeb">s_in</a> (size_type i) const </td></tr>
 <tr class="memdesc:a6ae7fa6415e21a7cffc3dfc4dcbabeeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the i-th incoming mass-squared (no range checking on i). <br/></td></tr>
@@ -512,6 +522,9 @@ virtual value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="
 <tr class="memitem:a2b06ea836491c920c2eb03ca6785e453 inherit pub_methods_a00442"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="a00559.html">momentum_type</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00442.html#a2b06ea836491c920c2eb03ca6785e453">p</a> (int i) const </td></tr>
 <tr class="memdesc:a2b06ea836491c920c2eb03ca6785e453 inherit pub_methods_a00442"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the i-th momentum, where i&lt;0 means incoming momenta and i&gt;0 outgoing ones.  <a href="#a2b06ea836491c920c2eb03ca6785e453">More...</a><br/></td></tr>
 <tr class="separator:a2b06ea836491c920c2eb03ca6785e453 inherit pub_methods_a00442"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8165335a5beea72aaa9c97a224d43313 inherit pub_methods_a00442"><td class="memItemLeft" align="right" valign="top">virtual value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00442.html#a8165335a5beea72aaa9c97a224d43313">M</a> (int i) const </td></tr>
+<tr class="memdesc:a8165335a5beea72aaa9c97a224d43313 inherit pub_methods_a00442"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the i-th mass, where i&lt;0 means incoming masses and i&gt;0 outgoing ones.  <a href="#a8165335a5beea72aaa9c97a224d43313">More...</a><br/></td></tr>
+<tr class="separator:a8165335a5beea72aaa9c97a224d43313 inherit pub_methods_a00442"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a93e2650607db42a9cc3581e5ac937e6c inherit pub_methods_a00442"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a93e2650607db42a9cc3581e5ac937e6c"></a>
 virtual const value_type &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00442.html#a93e2650607db42a9cc3581e5ac937e6c">p_in</a> (size_type i, size_type mu) const </td></tr>
 <tr class="memdesc:a93e2650607db42a9cc3581e5ac937e6c inherit pub_methods_a00442"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the i-th incoming momentum's mu-th component. <br/></td></tr>
@@ -836,6 +849,66 @@ template&lt;class model_t, std::size_t N_in, std::size_t N_out, class rng_t&gt; 
 
 <p>Adapts the process multichannel parameters to the variances of the subprocesses. </p>
 <p>Removes processes with cross section + error smaller than the process threshold times the total cross section. </p>
+
+</div>
+</div>
+<a class="anchor" id="ae0e389444b66a76c7b22fd996cf16bd8"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class model_t, std::size_t N_in, std::size_t N_out, class rng_t&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">value_type <a class="el" href="a00210.html">Camgen::event_generator</a>&lt; model_t, N_in, N_out, rng_t &gt;::M_in </td>
+          <td>(</td>
+          <td class="paramtype">size_type&#160;</td>
+          <td class="paramname"><em>i</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the const reference to the i-th incoming mass (no range checking on i). </p>
+
+<p>Implements <a class="el" href="a00442.html#a303558afdb7b6b704399fa5dd8bc9f30">Camgen::ps_generator_base&lt; model_t &gt;</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1aed7b697e6158749701f4fecaca42ee"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class model_t, std::size_t N_in, std::size_t N_out, class rng_t&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">value_type <a class="el" href="a00210.html">Camgen::event_generator</a>&lt; model_t, N_in, N_out, rng_t &gt;::M_out </td>
+          <td>(</td>
+          <td class="paramtype">size_type&#160;</td>
+          <td class="paramname"><em>i</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the const reference to the i-th incoming mass (no range checking on i). </p>
+
+<p>Implements <a class="el" href="a00442.html#a9f39b8a4fceb86b5cb3e669c77ccf62d">Camgen::ps_generator_base&lt; model_t &gt;</a>.</p>
 
 </div>
 </div>
@@ -1373,7 +1446,7 @@ template&lt;class model_t, std::size_t N_in, std::size_t N_out, class rng_t&gt; 
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 10 2013 23:45:05 for Camorra by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Aug 18 2013 17:37:16 for Camorra by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

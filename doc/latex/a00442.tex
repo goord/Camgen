@@ -58,6 +58,12 @@ Inheritance diagram for Camgen\-:\-:ps\-\_\-generator\-\_\-base$<$ model\-\_\-t 
 \hypertarget{a00442_ac7c94ec848706882d18ee5983ee6c205}{virtual value\-\_\-type \hyperlink{a00442_ac7c94ec848706882d18ee5983ee6c205}{Ecm} () const =0}\label{a00442_ac7c94ec848706882d18ee5983ee6c205}
 
 \begin{DoxyCompactList}\small\item\em Abstract method returning the total (hadronic) invariant mass. \end{DoxyCompactList}\item 
+\hypertarget{a00442_a303558afdb7b6b704399fa5dd8bc9f30}{virtual value\-\_\-type \hyperlink{a00442_a303558afdb7b6b704399fa5dd8bc9f30}{M\-\_\-in} (size\-\_\-type) const =0}\label{a00442_a303558afdb7b6b704399fa5dd8bc9f30}
+
+\begin{DoxyCompactList}\small\item\em Abstract method reading out an incoming mass. \end{DoxyCompactList}\item 
+\hypertarget{a00442_a9f39b8a4fceb86b5cb3e669c77ccf62d}{virtual value\-\_\-type \hyperlink{a00442_a9f39b8a4fceb86b5cb3e669c77ccf62d}{M\-\_\-out} (size\-\_\-type) const =0}\label{a00442_a9f39b8a4fceb86b5cb3e669c77ccf62d}
+
+\begin{DoxyCompactList}\small\item\em Abstract method reading out an outgoing mass. \end{DoxyCompactList}\item 
 \hypertarget{a00442_aeb270d6a68cd7d9157848609250c652c}{virtual value\-\_\-type \hyperlink{a00442_aeb270d6a68cd7d9157848609250c652c}{s\-\_\-in} (size\-\_\-type i) const }\label{a00442_aeb270d6a68cd7d9157848609250c652c}
 
 \begin{DoxyCompactList}\small\item\em Virtual method returning the i-\/th incoming invariant mass-\/squared. \end{DoxyCompactList}\item 
@@ -118,6 +124,8 @@ virtual value\-\_\-type \hyperlink{a00442_aea34ea1dada7a4cece83b42c7d50db55}{ps\
 \begin{DoxyCompactList}\small\item\em Returns the sum of masses of outgoing particles. \end{DoxyCompactList}\item 
 virtual const \hyperlink{a00559}{momentum\-\_\-type} \& \hyperlink{a00442_a2b06ea836491c920c2eb03ca6785e453}{p} (int i) const 
 \begin{DoxyCompactList}\small\item\em Returns the i-\/th momentum, where i$<$0 means incoming momenta and i$>$0 outgoing ones. \end{DoxyCompactList}\item 
+virtual value\-\_\-type \hyperlink{a00442_a8165335a5beea72aaa9c97a224d43313}{M} (int i) const 
+\begin{DoxyCompactList}\small\item\em Returns the i-\/th mass, where i$<$0 means incoming masses and i$>$0 outgoing ones. \end{DoxyCompactList}\item 
 \hypertarget{a00442_a93e2650607db42a9cc3581e5ac937e6c}{virtual const value\-\_\-type \& \hyperlink{a00442_a93e2650607db42a9cc3581e5ac937e6c}{p\-\_\-in} (size\-\_\-type i, size\-\_\-type mu) const }\label{a00442_a93e2650607db42a9cc3581e5ac937e6c}
 
 \begin{DoxyCompactList}\small\item\em Reads the i-\/th incoming momentum's mu-\/th component. \end{DoxyCompactList}\item 
@@ -355,6 +363,21 @@ Virtual method returning the i-\/th outgoing particle id (returns zero by defaul
 
 
 Reimplemented in \hyperlink{a00529_a9670babe6e6eb25f8d13102043e7da2f}{Camgen\-::test\-\_\-generator$<$ model\-\_\-t $>$}, \hyperlink{a00430_a299283bf13ddd94d965b46b97da53453}{Camgen\-::process\-\_\-generator$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$}, and \hyperlink{a00210_aaa6968384f596478f21840491ceabad4}{Camgen\-::event\-\_\-generator$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$}.
+
+\hypertarget{a00442_a8165335a5beea72aaa9c97a224d43313}{\index{Camgen\-::ps\-\_\-generator\-\_\-base@{Camgen\-::ps\-\_\-generator\-\_\-base}!M@{M}}
+\index{M@{M}!Camgen::ps_generator_base@{Camgen\-::ps\-\_\-generator\-\_\-base}}
+\subsubsection[{M}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t$>$ virtual value\-\_\-type {\bf Camgen\-::ps\-\_\-generator\-\_\-base}$<$ model\-\_\-t $>$\-::M (
+\begin{DoxyParamCaption}
+\item[{int}]{i}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00442_a8165335a5beea72aaa9c97a224d43313}
+
+
+Returns the i-\/th mass, where i$<$0 means incoming masses and i$>$0 outgoing ones. 
+
+If i==0,i$<$-\/\-N\-\_\-in or i$>$N\-\_\-out, an error will occur. 
+
+Reimplemented in \hyperlink{a00529_a758913b3b8feb0f048f815e468c2f2b8}{Camgen\-::test\-\_\-generator$<$ model\-\_\-t $>$}.
 
 \hypertarget{a00442_ae7b1f38ebb163dcb4dc0b7f2928698a4}{\index{Camgen\-::ps\-\_\-generator\-\_\-base@{Camgen\-::ps\-\_\-generator\-\_\-base}!m@{m}}
 \index{m@{m}!Camgen::ps_generator_base@{Camgen\-::ps\-\_\-generator\-\_\-base}}

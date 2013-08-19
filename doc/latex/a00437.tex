@@ -15,9 +15,8 @@ bool \hyperlink{a00437_afd6381ce5a2d653a8389c305460a6ecb}{generate} ()
 \hypertarget{a00437_a91db958bf7e0933a35fbf2cb8b539065}{bool \hyperlink{a00437_a91db958bf7e0933a35fbf2cb8b539065}{evaluate\-\_\-weight} ()}\label{a00437_a91db958bf7e0933a35fbf2cb8b539065}
 
 \begin{DoxyCompactList}\small\item\em Event weight calculation method. Trivial by default. \end{DoxyCompactList}\item 
-\hypertarget{a00437_a0fbd3a7065f08ca4b25e6e60c18141e3}{virtual void \hyperlink{a00437_a0fbd3a7065f08ca4b25e6e60c18141e3}{reset} ()}\label{a00437_a0fbd3a7065f08ca4b25e6e60c18141e3}
-
-\begin{DoxyCompactList}\small\item\em Resets the weight sums and n\-\_\-calls to 0. Sets the weight to 1. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00437_a0fbd3a7065f08ca4b25e6e60c18141e3}{reset} ()
+\begin{DoxyCompactList}\small\item\em Resets the the state of the M\-C generator. \end{DoxyCompactList}\item 
 \hypertarget{a00437_a6ab4ae7501d4ded1b484846b20d19e1c}{void \hyperlink{a00437_a6ab4ae7501d4ded1b484846b20d19e1c}{adapt} ()}\label{a00437_a6ab4ae7501d4ded1b484846b20d19e1c}
 
 \begin{DoxyCompactList}\small\item\em Adaptation method. Trivial by default. \end{DoxyCompactList}\item 
@@ -45,6 +44,21 @@ bool \hyperlink{a00437_afd6381ce5a2d653a8389c305460a6ecb}{generate} ()
 Should update the weight data member. 
 
 Implements \hyperlink{a00362_a197b7bb66d8de5f6de401f81bea71e6c}{Camgen\-::\-M\-C\-\_\-generator$<$ model\-\_\-t\-::value\-\_\-type $>$}.
+
+\hypertarget{a00437_a0fbd3a7065f08ca4b25e6e60c18141e3}{\index{Camgen\-::ps\-\_\-branching@{Camgen\-::ps\-\_\-branching}!reset@{reset}}
+\index{reset@{reset}!Camgen::ps_branching@{Camgen\-::ps\-\_\-branching}}
+\subsubsection[{reset}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t, std\-::size\-\_\-t N\-\_\-in, std\-::size\-\_\-t N\-\_\-out, class rng\-\_\-t$>$ virtual void {\bf Camgen\-::ps\-\_\-branching}$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$\-::reset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00437_a0fbd3a7065f08ca4b25e6e60c18141e3}
+
+
+Resets the the state of the M\-C generator. 
+
+Resets adaptive channels weights and grids as well. 
+
+Reimplemented from \hyperlink{a00362_a96247247800b9db50ddf7fafb28aca42}{Camgen\-::\-M\-C\-\_\-generator$<$ model\-\_\-t\-::value\-\_\-type $>$}.
 
 
 

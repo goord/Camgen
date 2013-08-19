@@ -90,6 +90,14 @@ const <a class="el" href="a00559.html">momentum_type</a> &amp;&#160;</td><td cla
 const <a class="el" href="a00559.html">momentum_type</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00529.html#a1814975d91cf8557553b0c7837efa701">p_out</a> (size_type i) const </td></tr>
 <tr class="memdesc:a1814975d91cf8557553b0c7837efa701"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract method reading out an outgoing momentum. <br/></td></tr>
 <tr class="separator:a1814975d91cf8557553b0c7837efa701"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a012809a8d53889ddfde2366a96dad270"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a012809a8d53889ddfde2366a96dad270"></a>
+value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00529.html#a012809a8d53889ddfde2366a96dad270">M_in</a> (size_type i) const </td></tr>
+<tr class="memdesc:a012809a8d53889ddfde2366a96dad270"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract method reading out an incoming mass. <br/></td></tr>
+<tr class="separator:a012809a8d53889ddfde2366a96dad270"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4dcd463da5393779dcf6f325f4ed4c2d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4dcd463da5393779dcf6f325f4ed4c2d"></a>
+value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00529.html#a4dcd463da5393779dcf6f325f4ed4c2d">M_out</a> (size_type i) const </td></tr>
+<tr class="memdesc:a4dcd463da5393779dcf6f325f4ed4c2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract method reading out an outgoing mass. <br/></td></tr>
+<tr class="separator:a4dcd463da5393779dcf6f325f4ed4c2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd55d011bd1512b10f7b177dee803119"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abd55d011bd1512b10f7b177dee803119"></a>
 const value_type &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00529.html#abd55d011bd1512b10f7b177dee803119">p_in</a> (size_type i, size_type mu) const </td></tr>
 <tr class="memdesc:abd55d011bd1512b10f7b177dee803119"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the i-th incoming momentum's mu-th component. <br/></td></tr>
@@ -131,6 +139,9 @@ value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <tr class="memitem:a1448d1b1703d189b695bc5a574f3ffd0"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00559.html">momentum_type</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00529.html#a1448d1b1703d189b695bc5a574f3ffd0">p</a> (int i) const </td></tr>
 <tr class="memdesc:a1448d1b1703d189b695bc5a574f3ffd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the i-th momentum, where i&lt;0 means incoming momenta and i&gt;0 outgoing ones.  <a href="#a1448d1b1703d189b695bc5a574f3ffd0">More...</a><br/></td></tr>
 <tr class="separator:a1448d1b1703d189b695bc5a574f3ffd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a758913b3b8feb0f048f815e468c2f2b8"><td class="memItemLeft" align="right" valign="top">value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00529.html#a758913b3b8feb0f048f815e468c2f2b8">M</a> (int i) const </td></tr>
+<tr class="memdesc:a758913b3b8feb0f048f815e468c2f2b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the i-th mass, where i&lt;0 means incoming masses and i&gt;0 outgoing ones.  <a href="#a758913b3b8feb0f048f815e468c2f2b8">More...</a><br/></td></tr>
+<tr class="separator:a758913b3b8feb0f048f815e468c2f2b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a13b9a1c17155b45fd90e69ef4e087ce1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a13b9a1c17155b45fd90e69ef4e087ce1"></a>
 const value_type &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00529.html#a13b9a1c17155b45fd90e69ef4e087ce1">p</a> (int i, size_type mu) const </td></tr>
 <tr class="memdesc:a13b9a1c17155b45fd90e69ef4e087ce1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the i-th momentum's mu-th component. <br/></td></tr>
@@ -480,6 +491,37 @@ template&lt;class model_t &gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="a758913b3b8feb0f048f815e468c2f2b8"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class model_t &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">value_type <a class="el" href="a00529.html">Camgen::test_generator</a>&lt; model_t &gt;::M </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the i-th mass, where i&lt;0 means incoming masses and i&gt;0 outgoing ones. </p>
+<p>If i==0,i&lt;-N_in or i&gt;N_out, an error will occur. </p>
+
+<p>Reimplemented from <a class="el" href="a00442.html#a8165335a5beea72aaa9c97a224d43313">Camgen::ps_generator_base&lt; model_t &gt;</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a1448d1b1703d189b695bc5a574f3ffd0"></a>
 <div class="memitem">
 <div class="memproto">
@@ -517,7 +559,7 @@ template&lt;class model_t &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 10 2013 23:45:24 for Camorra by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Aug 18 2013 17:37:34 for Camorra by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

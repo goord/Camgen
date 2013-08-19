@@ -123,10 +123,12 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:a5d92f7676d21574ed14d82da458d7452"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00362.html#a5d92f7676d21574ed14d82da458d7452">refresh_cross_section</a> (bool with_integrand=true)</td></tr>
 <tr class="memdesc:a5d92f7676d21574ed14d82da458d7452"><td class="mdescLeft">&#160;</td><td class="mdescRight">Raises the number of calls by 1 and the weight sums by the current weight, without calling the generation method.  <a href="#a5d92f7676d21574ed14d82da458d7452">More...</a><br/></td></tr>
 <tr class="separator:a5d92f7676d21574ed14d82da458d7452"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a96247247800b9db50ddf7fafb28aca42"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a96247247800b9db50ddf7fafb28aca42"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00362.html#a96247247800b9db50ddf7fafb28aca42">reset</a> ()</td></tr>
-<tr class="memdesc:a96247247800b9db50ddf7fafb28aca42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the weight sums and n_calls to 0. Sets the weight to 1. <br/></td></tr>
+<tr class="memitem:a96247247800b9db50ddf7fafb28aca42"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00362.html#a96247247800b9db50ddf7fafb28aca42">reset</a> ()</td></tr>
+<tr class="memdesc:a96247247800b9db50ddf7fafb28aca42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the the state of the MC generator.  <a href="#a96247247800b9db50ddf7fafb28aca42">More...</a><br/></td></tr>
 <tr class="separator:a96247247800b9db50ddf7fafb28aca42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ec9818cc8260e1be5c568d319cb722b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00362.html#a1ec9818cc8260e1be5c568d319cb722b">reset_cross_section</a> ()</td></tr>
+<tr class="memdesc:a1ec9818cc8260e1be5c568d319cb722b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets cross section and weight sums of the generator, but keeps channel weights and grids intact.  <a href="#a1ec9818cc8260e1be5c568d319cb722b">More...</a><br/></td></tr>
+<tr class="separator:a1ec9818cc8260e1be5c568d319cb722b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a61c3ff75a7477c80680c1be16f03e8ca"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a61c3ff75a7477c80680c1be16f03e8ca"></a>
 virtual const <br class="typebreak"/>
 <a class="el" href="a00576.html">weight_histogrammer</a>&lt; value_t &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00362.html#a61c3ff75a7477c80680c1be16f03e8ca">bin_weights</a> (size_type bins)</td></tr>
@@ -469,6 +471,65 @@ template&lt;class value_t&gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="a96247247800b9db50ddf7fafb28aca42"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class value_t&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void <a class="el" href="a00362.html">Camgen::MC_generator</a>&lt; value_t &gt;::reset </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Resets the the state of the MC generator. </p>
+<p>Resets adaptive channels weights and grids as well. </p>
+
+<p>Reimplemented in <a class="el" href="a00447.html#a3abc78349f929f2cb7be411d9851a7d1">Camgen::ps_tree&lt; model_t, 2, N_out, rng_t &gt;</a>, <a class="el" href="a00259.html#a0b504d75eb09425456b2d27af5f2c71b">Camgen::hadronic_is_y&lt; model_t, rng_t, Minkowski_type &gt;</a>, <a class="el" href="a00430.html#aa2cd6b9887022d49cd48497b8061c54d">Camgen::process_generator&lt; model_t, N_in, N_out, rng_t &gt;</a>, <a class="el" href="a00255.html#a413a2200c7a02cdf6468b705b624a2e1">Camgen::hadronic_is_sy&lt; model_t, rng_t, Minkowski_type &gt;</a>, <a class="el" href="a00210.html#a513578e30af093a93581b3cd3667786f">Camgen::event_generator&lt; model_t, N_in, N_out, rng_t &gt;</a>, <a class="el" href="a00446.html#a90bbb01bed864774aca7f08af0a33982">Camgen::ps_tree&lt; model_t, 1, N_out, rng_t &gt;</a>, <a class="el" href="a00395.html#acc228746623bfc5c6f3f1d62f3a841e6">Camgen::particle_channel&lt; model_t, N_in, N_out, rng_t &gt;</a>, <a class="el" href="a00441.html#a205f3c5d763897f3d031ded8e0b99dc0">Camgen::ps_generator&lt; model_t, N_in, N_out &gt;</a>, <a class="el" href="a00441.html#a205f3c5d763897f3d031ded8e0b99dc0">Camgen::ps_generator&lt; model_t, 2, N_out &gt;</a>, <a class="el" href="a00441.html#a205f3c5d763897f3d031ded8e0b99dc0">Camgen::ps_generator&lt; model_t, 1, N_out &gt;</a>, <a class="el" href="a00001.html#a8083f3252ded95b8f48e0d5746b34a40">Camgen::adaptive_s_generator&lt; value_t, rng_t &gt;</a>, <a class="el" href="a00257.html#ac4a595e2cdbea918c39193f46b87fb25">Camgen::hadronic_is_xx&lt; model_t, rng_t, Minkowski_type &gt;</a>, <a class="el" href="a00437.html#a0fbd3a7065f08ca4b25e6e60c18141e3">Camgen::ps_branching&lt; model_t, N_in, N_out, rng_t &gt;</a>, and <a class="el" href="a00437.html#a0fbd3a7065f08ca4b25e6e60c18141e3">Camgen::ps_branching&lt; model_t, 2, N_out, rng_t &gt;</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1ec9818cc8260e1be5c568d319cb722b"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class value_t&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void <a class="el" href="a00362.html">Camgen::MC_generator</a>&lt; value_t &gt;::reset_cross_section </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Resets cross section and weight sums of the generator, but keeps channel weights and grids intact. </p>
+
+<p>Reimplemented in <a class="el" href="a00259.html#a297a807339f2752c8cedaadf07a197d2">Camgen::hadronic_is_y&lt; model_t, rng_t, Minkowski_type &gt;</a>, <a class="el" href="a00430.html#a7291d00338eceaefb5b5608625b2bec6">Camgen::process_generator&lt; model_t, N_in, N_out, rng_t &gt;</a>, <a class="el" href="a00255.html#ad6b7a3a115e2b7af31b1bcc98577dfff">Camgen::hadronic_is_sy&lt; model_t, rng_t, Minkowski_type &gt;</a>, <a class="el" href="a00210.html#ac012b825829f4a734f7667bb8c6b0bb8">Camgen::event_generator&lt; model_t, N_in, N_out, rng_t &gt;</a>, <a class="el" href="a00446.html#a91b224ef9d41bbc7b08f1d2a405d4860">Camgen::ps_tree&lt; model_t, 1, N_out, rng_t &gt;</a>, <a class="el" href="a00395.html#afde27e92b24ade585d066329f1181089">Camgen::particle_channel&lt; model_t, N_in, N_out, rng_t &gt;</a>, <a class="el" href="a00441.html#afb4972f1613f2f5055347190eba6ebf3">Camgen::ps_generator&lt; model_t, N_in, N_out &gt;</a>, <a class="el" href="a00441.html#afb4972f1613f2f5055347190eba6ebf3">Camgen::ps_generator&lt; model_t, 2, N_out &gt;</a>, <a class="el" href="a00441.html#afb4972f1613f2f5055347190eba6ebf3">Camgen::ps_generator&lt; model_t, 1, N_out &gt;</a>, <a class="el" href="a00001.html#a58424d0ff97bded5d1f43f9314122570">Camgen::adaptive_s_generator&lt; value_t, rng_t &gt;</a>, and <a class="el" href="a00257.html#a87377873b0ff5cfee8e65e94844e3267">Camgen::hadronic_is_xx&lt; model_t, rng_t, Minkowski_type &gt;</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ae5e70cee65aacbb6a556057de02ef3dd"></a>
 <div class="memitem">
 <div class="memproto">
@@ -533,7 +594,7 @@ template&lt;class value_t&gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 10 2013 23:45:15 for Camorra by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Aug 18 2013 17:37:25 for Camorra by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>
