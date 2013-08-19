@@ -3,9 +3,9 @@ AM_CPPFLAGS =		    	-O3 -pipe -I$(top_srcdir)/include
 EXTRA_DIST =		    	plots
 
 if USE_LHAPDF
-AM_LDFLAGS =		    	-L$(top_srcdir)/lib -lCamgen -lCamtest
-else
 AM_LDFLAGS =			-L$(top_srcdir)/lib -lCamgen -lCamtest -L$(LHAPDF_DIR)/lib -lLHAPDF
+else
+AM_LDFLAGS =		    	-L$(top_srcdir)/lib -lCamgen -lCamtest
 endif
 
 check_LTLIBRARIES =	    	libCamtest.la
