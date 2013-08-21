@@ -1031,9 +1031,9 @@ namespace Camgen
 	    {
 		if(i==j)
 		{
-		    return m_out(i);
+		    return this->m_out(i);
 		}
-		return std::max(m_out(i)+m_out(j),mmin[i][j]);
+		return std::max(this->m_out(i)+this->m_out(j),mmin[i][j]);
 	    }
 
 	    /* Evaluates the generated integrand: */

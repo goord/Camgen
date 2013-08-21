@@ -484,7 +484,7 @@ namespace Camgen
 		value_type rho=rn_stream::throw_number();
 		sub_proc=procs.begin();
 		value_type r(0);
-		while(r<rho and sub_proc!=procs.end())
+		while(r<=rho and sub_proc!=procs.end())
 		{
 		    r+=(*sub_proc)->alpha;
 		    ++sub_proc;
