@@ -764,7 +764,8 @@ namespace Camgen
     template<class model_t>const typename ps_generator_base<model_t>::size_type ps_generator_base<model_t>::kT1;
     template<class model_t>const typename ps_generator_base<model_t>::size_type ps_generator_base<model_t>::kT2;
 
-    /// Viewer class for phase space generators.
+    /// Viewer class for phase space generators. Redirects all variables from
+    /// its argument generator.
 
     template<class model_t>class ps_generator_viewer: public ps_generator_base<model_t>
     {
@@ -1077,6 +1078,107 @@ namespace Camgen
 	private:
 
 	    bool lock;
+    };
+
+    template<class model_t>class momentum_collection: public ps_generator_base<model_t>
+    {
+	public:
+
+	    /* Type definitions: */
+
+	    typedef model_t model_type;
+	    typedef vector<typename model_t::value_type,model_t::dimension> momentum_type;
+	    typedef typename momentum_type::value_type value_type;
+	    typedef typename momentum_type::size_type size_type;
+
+	    const size_type N;
+
+	    MC_integral<value_type> cross_section;
+	    
+	    momentum_collection(size_type N_):N(N_),momenta(N){}
+
+	    /// Calculates the incoming momentum.
+
+	    bool next_event(int strategy=0)
+	    {
+		if(N!=0)
+		{
+		    pin=momenta[0];
+		    for(size_type i=1;i<N;++i)
+		    {
+			pin+=momenta[i];
+		    }
+		}
+		return true;
+	    }
+
+	    /// Returns one.
+
+	    size_type n_in() const
+	    {
+		return 1;
+	    }
+
+	    /// Returns the collection size.
+
+	    size_type n_out() const
+	    {
+		return N;
+	    }
+
+	    /// Returns the cross section copy.
+
+	    MC_integral<value_type> xsec() const
+	    {
+		return MC_integral<value_type>(cross_section);
+	    }
+
+	    /// Returns the sum outgoing momenta.
+
+	    const momentum_type& p_in(size_type i) const
+	    {
+		return pin;
+	    }
+
+	    /// Returns one of the momenta.
+	    
+	    const momentum_type& p_out(size_type i) const
+	    {
+		return momenta[i];
+	    }
+
+	    /// Returns the total CM-energy if i=0, zero otherwise.
+
+	    value_type beam_energy(int i) const
+	    {
+		return this->E(p_in(i));
+	    }
+
+	    /// Returns the total (hadronic) invariant mass.
+
+	    value_type Ecm() const
+	    {
+		return this->m(p_in(0));
+	    }
+
+	    /// Returns the incoming mass.
+
+	    value_type M_in(size_type i) const
+	    {
+		return this->m(p_in(i));
+	    }
+
+	    /// Returns an outgoing mass.
+	    
+	    value_type M_out(size_type i) const
+	    {
+		return this->m(p_out(i));
+	    }
+
+	private:
+
+	    std::vector<momentum_type> momenta;
+	    momentum_type pin;
     };
 
     template<class model_t>class test_generator: public ps_generator_base<model_t>
