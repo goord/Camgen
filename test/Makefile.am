@@ -43,7 +43,7 @@ check_PROGRAMS =		bitstring_test		\
 		 		ps_reverse_test		\
 		 		parni_test		\
 		 		LHAPDF_test		\
-				ps_test			\
+				psvars_test		\
 		 		speed_test		
 
 check_HEADERS =	    	    	QEDPbdh.h		\
@@ -127,7 +127,7 @@ ps_tree_test_SOURCES =	    	ps_tree_test.cpp
 ps_reverse_test_SOURCES =	ps_reverse_test.cpp
 parni_test_SOURCES =		parni_test.cpp
 LHAPDF_test_SOURCES =		LHAPDF_test.cpp
-ps_test_SOURCES =		ps_test.cpp
+psvars_test_SOURCES =		psvars_test.cpp
 speed_test_SOURCES =		speed_test.cpp
 
 TESTS =			    	bitstring_test		\
@@ -161,6 +161,6 @@ TESTS =			    	bitstring_test		\
 				ps_reverse_test		\
 				parni_test		\
 				LHAPDF_test		\
-				ps_test			\
+				psvars_test		\
 				speed_test
 

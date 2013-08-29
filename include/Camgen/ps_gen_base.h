@@ -26,6 +26,27 @@
 
 namespace Camgen
 {
+    template<std::size_t N>class directions_3d;
+
+    template<>class directions_3d<1>
+    {
+	public:
+	    static const std::size_t kT1=2;
+	    static const std::size_t kT2=3;
+    };
+    template<>class directions_3d<2>
+    {
+	public:
+	    static const std::size_t kT1=3;
+	    static const std::size_t kT2=1;
+    };
+    template<>class directions_3d<3>
+    {
+	public:
+	    static const std::size_t kT1=1;
+	    static const std::size_t kT2=2;
+    };
+
     /// Abstract interface for phase space generators, used by output interfaces
     /// and cut objects.
     
@@ -45,8 +66,8 @@ namespace Camgen
 
 	    static const size_type k0=spacetime_type::timelike_direction;
 	    static const size_type kL=(model_type::beam_direction<0)?(-model_type::beam_direction):(model_type::beam_direction);
-	    static const size_type kT1=(kL==1)?2:1;
-	    static const size_type kT2=(kL==3)?2:3;
+	    static const size_type kT1=directions_3d<kL>::kT1;
+	    static const size_type kT2=directions_3d<kL>::kT2;
 	    
 	    /* Static utility methods: */
 	    /*-------------------------*/
@@ -202,7 +223,7 @@ namespace Camgen
 
 	    static value_type phi(const momentum_type& v)
 	    {
-		return std::atan2(v[kT1],v[kT2]);
+		return std::atan2(v[kT2],v[kT1]);
 	    }
 
 	    /// Returns the separation in eta-phi space between the argument vectors.
@@ -1143,6 +1164,13 @@ namespace Camgen
 	    /// Returns one of the momenta.
 	    
 	    const momentum_type& p_out(size_type i) const
+	    {
+		return momenta[i];
+	    }
+
+	    /// Returns one of the momenta.
+
+	    momentum_type& p_out(size_type i)
 	    {
 		return momenta[i];
 	    }
