@@ -16896,7 +16896,7 @@ fi
 
 { echo "$as_me:$LINENO: result: $WITHLHAPDF" >&5
 echo "${ECHO_T}$WITHLHAPDF" >&6; }
-if test "$WITHLHAPDF" = "yes"; then
+if test "x$WITHLHAPDF" = "xyes"; then
 LDFLAGS="-L${LHAPDF_DIR}/lib $LDFLAGS";
 CPPFLAGS="-I${LHAPDF_DIR}/include $CPPFLAGS";
 as_ac_Header=`echo "ac_cv_header_$LHAPDF_DIR/include/LHAPDF/LHAPDF.h" | $as_tr_sh`
@@ -17048,7 +17048,7 @@ fi
 
 fi
 
- if test "$WITHLHAPDF" = "yes"; then
+ if test x$WITHLHAPDF = xyes; then
   USE_LHAPDF_TRUE=
   USE_LHAPDF_FALSE='#'
 else
@@ -17436,7 +17436,7 @@ fi
 echo $ECHO_N "checking for gnuplot location... $ECHO_C" >&6; }
 { echo "$as_me:$LINENO: result: $WITHGNUPLOT" >&5
 echo "${ECHO_T}$WITHGNUPLOT" >&6; }
-if test "$WITHGNUPLOT" = "yes"; then
+if test "x$WITHGNUPLOT" = "xyes"; then
 # Extract the first word of "gnuplot", so it can be a program name with args.
 set dummy gnuplot; ac_word=$2
 { echo "$as_me:$LINENO: checking for $ac_word" >&5
@@ -17475,7 +17475,7 @@ echo "${ECHO_T}no" >&6; }
 fi
 
 
-if test "$HAVE_GNUPLOT" = "yes"; then
+if test "x$HAVE_GNUPLOT" = "xyes"; then
 
 cat >>confdefs.h <<_ACEOF
 #define GNUPLOTPATH "$GNUPLOT_DIR/gnuplot"

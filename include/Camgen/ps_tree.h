@@ -14,7 +14,7 @@
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Phase space multichannel tree class definition. Creates a recursive tree of *
- * phase space branchings and channels from a Camgen off-shell current tree.  *
+ * phase space branchings and channels from a Camgen off-shell current tree.   *
  *                                                                             *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 

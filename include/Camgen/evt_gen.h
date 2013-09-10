@@ -70,7 +70,7 @@ namespace Camgen
 		return proc1->alpha<proc2->alpha;
 	    }
 
-	    /// Process comparison class according to descending calling frequence.
+	    /// Process comparison class according to descending calling frequency.
 
 	    static bool alpha_more(const process_generator_type* proc1,const process_generator_type* proc2)
 	    {
@@ -484,7 +484,7 @@ namespace Camgen
 		value_type rho=rn_stream::throw_number();
 		sub_proc=procs.begin();
 		value_type r(0);
-		while(r<rho and sub_proc!=procs.end())
+		while(r<=rho and sub_proc!=procs.end())
 		{
 		    r+=(*sub_proc)->alpha;
 		    ++sub_proc;

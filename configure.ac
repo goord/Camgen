@@ -49,7 +49,7 @@ AC_ARG_WITH([LHAPDF],
 	     LHAPDF_DIR="$with_LHAPDF";
 	     fi],[WITHLHAPDF="no"])
 AC_MSG_RESULT($WITHLHAPDF)
-if test "$WITHLHAPDF" = "yes"; then
+if test "x$WITHLHAPDF" = "xyes"; then
 LDFLAGS="-L${LHAPDF_DIR}/lib $LDFLAGS";
 CPPFLAGS="-I${LHAPDF_DIR}/include $CPPFLAGS";
 AC_CHECK_HEADER([$LHAPDF_DIR/include/LHAPDF/LHAPDF.h],
@@ -59,7 +59,7 @@ AC_CHECK_HEADER([$LHAPDF_DIR/include/LHAPDF/LHAPDF.h],
 fi
 ])
 CAMGEN_CHECK_LHAPDF
-AM_CONDITIONAL([USE_LHAPDF],[test "$WITHLHAPDF" = "yes"])
+AM_CONDITIONAL([USE_LHAPDF],[test x$WITHLHAPDF = xyes])
 AC_SUBST(LHAPDF_DIR)
 
 # Checks for typedefs, structures, and compiler characteristics.
@@ -88,9 +88,9 @@ AC_ARG_WITH([gnuplot],
 	     fi],[WITHGNUPLOT="no"])
 AC_MSG_CHECKING([for gnuplot location])
 AC_MSG_RESULT($WITHGNUPLOT)
-if test "$WITHGNUPLOT" = "yes"; then
+if test "x$WITHGNUPLOT" = "xyes"; then
 AC_CHECK_PROG(HAVE_GNUPLOT,gnuplot,"yes","no","$GNUPLOT_DIR")
-if test "$HAVE_GNUPLOT" = "yes"; then
+if test "x$HAVE_GNUPLOT" = "xyes"; then
 AC_DEFINE_UNQUOTED([GNUPLOTPATH],["$GNUPLOT_DIR/gnuplot"],[The gnuplot binary location])
 else
 AC_MSG_NOTICE(gnuplot not found in $GNUPLOT_DIR...configuring without.)

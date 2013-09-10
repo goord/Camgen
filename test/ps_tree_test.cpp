@@ -5,7 +5,6 @@
 // see COPYING for details.
 //
 
-
 #include <Camgen/plt_config.h>
 #include <Camgen/SM.h>
 #include <Camgen/stdrand.h>
