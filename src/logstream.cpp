@@ -16,14 +16,14 @@ namespace Camgen
 
     end_msg endlog=end_msg();
 
-    logstream::logstream():enable_level(log_level::message),level(log_level::message),streaming(true),writing(false),prompting(true),is(std::cin),os(std::cout),enabled(true){}
+    logstream::logstream():enable_level(log_level::message),level(log_level::message),streaming(true),writing(false),prompting(true),is(std::cin),os(std::cout),enabled(true),max_warnings(-1),warnings(0){}
 
-    logstream::logstream(const std::string& file):enable_level(log_level::message),level(log_level::message),streaming(false),writing(true),prompting(false),is(std::cin),os(std::cout),fs(file.c_str()),enabled(true)
+    logstream::logstream(const std::string& file):enable_level(log_level::message),level(log_level::message),streaming(false),writing(true),prompting(false),is(std::cin),os(std::cout),fs(file.c_str()),enabled(true),max_warnings(-1),warnings(0)
     {
 	init_logfile();
     }
 
-    logstream::logstream(const std::string& file,std::istream& is_,std::ostream& os_):enable_level(log_level::message),level(log_level::message),streaming(true),writing(true),prompting(true),is(is_),os(os_),fs(file.c_str()),enabled(true)
+    logstream::logstream(const std::string& file,std::istream& is_,std::ostream& os_):enable_level(log_level::message),level(log_level::message),streaming(true),writing(true),prompting(true),is(is_),os(os_),fs(file.c_str()),enabled(true),max_warnings(-1),warnings(0)
     {
 	init_logfile();
     }
@@ -114,6 +114,12 @@ namespace Camgen
 	    {
 		prompting=false;
 	    }
+	}
+	warnings++;
+	if((max_warnings >= 0) && (warnings > max_warnings))
+	{
+	  close();
+	  std::exit(EXIT_FAILURE);
 	}
 	level=log_level::message;
 	return *this;

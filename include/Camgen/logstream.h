@@ -84,6 +84,15 @@ namespace Camgen
 
 	    bool prompting;
 
+	    /// Maximum of warnings allowed before exiting. A negative value means
+	    /// that there is no limit.
+
+	    int max_warnings;
+
+	    /// Variable to keep track of all the warnings issued.
+
+	    int warnings;
+
 	    /// Default constructor.
 
 	    logstream();
