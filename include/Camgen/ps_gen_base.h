@@ -209,7 +209,7 @@ namespace Camgen
 
 	    static value_type d_phi(const momentum_type& v1,const momentum_type& v2)
 	    {
-	      return std::M_PI - std::abs(std::abs(phi(v1) - phi(v2)) - M_PI);
+	      return M_PI - std::abs(std::abs(phi(v1) - phi(v2)) - M_PI);
 	    }
 
 	    /// Returns the cosine of the angle w.r.t. the beam axis of the argument
