@@ -204,6 +204,14 @@ namespace Camgen
 		return (value_type)0.5*std::log((q1+v1[kL])*(q2-v2[kL])/((q1-v1[kL])*(q2+v2[kL])));
 	    }
 
+	    /// Returns the azimuthal angle difference w.r.t. the beam axis of the
+	    /// argument vectors.
+
+	    static value_type d_phi(const momentum_type& v1,const momentum_type& v2)
+	    {
+	      return std::M_PI - std::abs(std::abs(phi(v1) - phi(v2)) - M_PI);
+	    }
+
 	    /// Returns the cosine of the angle w.r.t. the beam axis of the argument
 	    /// vector.
 
@@ -230,7 +238,7 @@ namespace Camgen
 
 	    static value_type d_R(const momentum_type& v1,const momentum_type& v2)
 	    {
-		value_type dphi=phi(v1)-phi(v2);
+	        value_type dphi=d_phi(v1,v2);
 		value_type deta=d_eta(v1,v2);
 		return std::sqrt(deta*deta+dphi*dphi);
 	    }
@@ -734,6 +742,14 @@ namespace Camgen
 	    {
 		return d_eta(p(i1),p(i2));
 	    }
+
+	    /// Returns the azimuthal angle difference w.r.t. the beam axis of the
+	    /// argument external momenta.
+
+            value_type d_phi(int i1,int i2)
+            {
+	      return d_phi(p(i1),p(i2));
+            }
 
 	    /// Returns the cosine of the angle w.r.t. the beam axis of the argument
 	    /// external momentum.
