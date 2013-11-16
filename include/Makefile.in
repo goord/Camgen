@@ -277,7 +277,6 @@ Camgen_HEADERS = Camgen/adj_rep.h		\
 		 Camgen/parni.h			\
 		 Camgen/parni_bin.h		\
 		 Camgen/parni_it.h		\
-		 Camgen/parni_sub.h		\
 		 Camgen/part_family.h		\
 		 Camgen/part_is.h		\
 		 Camgen/part_painter.h		\

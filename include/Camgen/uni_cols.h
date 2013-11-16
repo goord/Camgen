@@ -211,7 +211,10 @@ namespace Camgen
 	    {
 		for(size_type i=0;i<N_tot;++i)
 		{
-		    const_weight/=(cols_[i]->rank());
+		    if(cols_[i]->rank()>1)
+		    {
+			const_weight/=(cols_[i]->rank());
+		    }
 		}
 	    }
 
@@ -221,7 +224,10 @@ namespace Camgen
 	    {
 		for(size_type i=0;i<N_tot;++i)
 		{
-		    const_weight/=(ranges[i].size());
+		    if(ranges[i].size()>1)
+		    {
+			const_weight/=(ranges[i].size());
+		    }
 		}
 	    }
 
@@ -231,7 +237,10 @@ namespace Camgen
 	    {
 		for(size_type i=0;i<N_tot;++i)
 		{
-		    const_weight/=(ranks[i]);
+		    if(ranks[i]>1)
+		    {
+			const_weight/=(ranks[i]);
+		    }
 		}
 	    }
 

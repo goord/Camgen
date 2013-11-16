@@ -33,8 +33,8 @@ int main()
     {
 	std::string process("W- > mu-,nu_mubar");
 	std::string fname("plots/Wdecay");
-	std::cout<<"Checking phase space tree decomposition for "<<process<<"............";
-	std::cout.flush();
+	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr.flush();
 	CM_algorithm<model_type,1,2>hdecay(process);
 	hdecay.load();
 	hdecay.construct();
@@ -42,14 +42,14 @@ int main()
 	helgen->generate();
 	ps_generator_tester<model_type,1,2,rn_engine>test(hdecay.get_tree_iterator(),fname,isgen_type,psgen_type);
 	test.run(10000,100);
-	std::cout<<"done, files "<<fname+fext<<" written."<<std::endl;
+	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
     }
 
     {
 	std::string process("t > b,mu+,nu_mu");
 	std::string fname("plots/tdecay");
-	std::cout<<"Checking phase space tree decomposition for "<<process<<"............";
-	std::cout.flush();
+	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr.flush();
 	CM_algorithm<SMPbKsch,1,3>tdecay(process);
 	tdecay.load();
 	tdecay.construct();
@@ -57,7 +57,7 @@ int main()
 	helgen->generate();
 	ps_generator_tester<SMPbKsch,1,3,rn_engine>test(tdecay.get_tree_iterator(),fname,isgen_type,psgen_type);
 	test.run(10000,100);
-	std::cout<<"done, files "<<fname+fext<<" written."<<std::endl;
+	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
     }
 
     {
@@ -65,8 +65,8 @@ int main()
 	SM::refresh_widths();
 	std::string process("h0 > e-,nu_ebar,mu+,nu_mu");
 	std::string fname("plots/hdecay");
-	std::cout<<"Checking phase space tree decomposition for "<<process<<"............";
-	std::cout.flush();
+	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr.flush();
 	CM_algorithm<model_type,1,4>hdecay(process);
 	hdecay.load();
 	hdecay.construct();
@@ -74,15 +74,15 @@ int main()
 	helgen->generate();
 	ps_generator_tester<model_type,1,4,rn_engine>test(hdecay.get_tree_iterator(),fname,isgen_type,psgen_type);
 	test.run(10000,100);
-	std::cout<<"done, files "<<fname+fext<<" written."<<std::endl;
+	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
     }
 
     {
 	model_type::M_h0=200;
 	std::string process("h0 > mu-,nu_mubar,mu+,nu_mu");
 	std::string fname("plots/hdecay2");
-	std::cout<<"Checking phase space tree decomposition for "<<process<<"............";
-	std::cout.flush();
+	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr.flush();
 	CM_algorithm<model_type,1,4>hdecay(process);
 	hdecay.load();
 	hdecay.construct();
@@ -90,15 +90,15 @@ int main()
 	helgen->generate();
 	ps_generator_tester<model_type,1,4,rn_engine>test(hdecay.get_tree_iterator(),fname,isgen_type,psgen_type);
 	test.run(50000,100);
-	std::cout<<"done, files "<<fname+fext<<" written."<<std::endl;
+	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
     }
 
     {
 	double mmin=1;
 	std::string process("W+ > nu_e,nu_ebar,mu+,nu_mu");
 	std::string fname("plots/Wdecay2");
-	std::cout<<"Checking phase space tree decomposition for "<<process<<"............";
-	std::cout.flush();
+	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr.flush();
 	CM_algorithm<model_type,1,4>Wdecay(process);
 	Wdecay.load();
 	Wdecay.construct();
@@ -108,7 +108,7 @@ int main()
 	test.set_m_min(1,2,mmin);
 	test.set_m_min(3,4,mmin);
 	test.run(300000,100);
-	std::cout<<"done, files "<<fname+fext<<" written."<<std::endl;
+	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
     }
 
     {
@@ -117,8 +117,8 @@ int main()
 	double mmin=25;
 	std::string process("Z > e+,e-,mu+,nu_mu,tau-,nu_taubar");
 	std::string fname("plots/Zdecay");
-	std::cout<<"Checking phase space tree decomposition for "<<process<<"............";
-	std::cout.flush();
+	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr.flush();
 	CM_algorithm<model_type,1,6>Zdecay(process);
 	Zdecay.load();
 	Zdecay.construct();
@@ -131,7 +131,7 @@ int main()
 	test.set_m_min(3,4,mmin);
 	test.set_m_min(3,6,mmin);
 	test.run(100000,100);
-	std::cout<<"done, files "<<fname+fext<<" written."<<std::endl;
+	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
     }
     
     std::cout<<"-------------------------------------------------------------------------"<<std::endl;
@@ -143,8 +143,8 @@ int main()
 	std::string fname("plots/bahbaZ");
 	double E1=250;
 	double E2=250;
-	std::cout<<"Checking phase space tree decomposition for "<<process<<"............";
-	std::cout.flush();
+	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr.flush();
 	CM_algorithm<model_type,2,2>bahba(process);
 	bahba.load();
 	bahba.construct();
@@ -154,7 +154,7 @@ int main()
 	test.set_beam_energy(-1,E1);
 	test.set_beam_energy(-2,E2);
 	test.run(10000,100);
-	std::cout<<"done, files "<<fname+fext<<" written."<<std::endl;
+	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
     }
 	
     {
@@ -162,8 +162,8 @@ int main()
 	std::string fname("plots/tWchannel");
 	double E1=250;
 	double E2=250;
-	std::cout<<"Checking phase space tree decomposition for "<<process<<"............";
-	std::cout.flush();
+	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr.flush();
 	CM_algorithm<model_type,2,2>algo(process);
 	algo.load();
 	algo.construct();
@@ -173,7 +173,7 @@ int main()
 	test.set_beam_energy(-1,E1);
 	test.set_beam_energy(-2,E2);
 	test.run(10000,100);
-	std::cout<<"done, files "<<fname+fext<<" written."<<std::endl;
+	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
     }
     
     {
@@ -181,8 +181,8 @@ int main()
 	std::string fname("plots/sZuWchannel");
 	double E1=250;
 	double E2=250;
-	std::cout<<"Checking phase space tree decomposition for "<<process<<"............";
-	std::cout.flush();
+	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr.flush();
 	CM_algorithm<model_type,2,2>algo(process);
 	algo.load();
 	algo.construct();
@@ -192,7 +192,7 @@ int main()
 	test.set_beam_energy(-1,E1);
 	test.set_beam_energy(-2,E2);
 	test.run(10000,100);
-	std::cout<<"done, files "<<fname+fext<<" written."<<std::endl;
+	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
     }
     
     {
@@ -200,8 +200,8 @@ int main()
 	std::string fname("plots/Hprod1");
 	double E1=500;
 	double E2=500;
-	std::cout<<"Checking phase space tree decomposition for "<<process<<"............";
-	std::cout.flush();
+	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr.flush();
 	CM_algorithm<model_type,2,3>algo(process);
 	algo.load();
 	algo.construct();
@@ -211,7 +211,7 @@ int main()
 	test.set_beam_energy(-1,E1);
 	test.set_beam_energy(-2,E2);
 	test.run(20000,100);
-	std::cout<<"done, files "<<fname+fext<<" written."<<std::endl;
+	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
     }
 
     {
@@ -219,8 +219,8 @@ int main()
 	std::string fname("plots/Hprod2");
 	double E1=500;
 	double E2=500;
-	std::cout<<"Checking phase space tree decomposition for "<<process<<"............";
-	std::cout.flush();
+	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr.flush();
 	CM_algorithm<model_type,2,3>algo(process);
 	algo.load();
 	algo.construct();
@@ -230,7 +230,7 @@ int main()
 	test.set_beam_energy(-1,E1);
 	test.set_beam_energy(-2,E2);
 	test.run(20000,100);
-	std::cout<<"done, files "<<fname+fext<<" written."<<std::endl;
+	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
     }
 
     {
@@ -238,8 +238,8 @@ int main()
 	std::string fname("plots/WWZprod");
 	double E1=500;
 	double E2=500;
-	std::cout<<"Checking phase space tree decomposition for "<<process<<"............";
-	std::cout.flush();
+	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr.flush();
 	CM_algorithm<model_type,2,3>algo(process);
 	algo.load();
 	algo.construct();
@@ -249,7 +249,7 @@ int main()
 	test.set_beam_energy(-1,E1);
 	test.set_beam_energy(-2,E2);
 	test.run(20000,100);
-	std::cout<<"done, files "<<fname+fext<<" written."<<std::endl;
+	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
     }
     
     {
@@ -258,8 +258,8 @@ int main()
 	double E1=500;
 	double E2=500;
 	double mmin=1;
-	std::cout<<"Checking phase space tree decomposition for "<<process<<"............";
-	std::cout.flush();
+	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr.flush();
 	CM_algorithm<model_type,2,4>algo(process);
 	algo.load();
 	algo.construct();
@@ -270,7 +270,7 @@ int main()
 	test.set_beam_energy(-2,E2);
 	test.set_m_min(1,4,mmin);
 	test.run(20000,100);
-	std::cout<<"done, files "<<fname+fext<<" written."<<std::endl;
+	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
     }
 }
 

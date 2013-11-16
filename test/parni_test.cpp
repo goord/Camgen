@@ -1,9 +1,22 @@
+//
+// This file is part of the CAMGEN library.
+// Copyright (C) 2013 Gijs van den Oord.
+// CAMGEN is licensed under the GNU GPL, version 2,
+// see COPYING for details.
+//
+
 #include <Camgen/plt_config.h>
 #include <Camgen/stdrand.h>
 #include <Camgen/parni_sub.h>
 #include <Camgen/histogram.h>
 #include <Camgen/multiplot.h>
 #include <Camgen/sgen_grid.h>
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Facility testing adaptive grids in parni for various intgrands in various *
+ * dimensions.                                                               *
+ *                                                                           *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 using namespace Camgen;
 
@@ -32,8 +45,8 @@ int main()
     {
 	value_type x=1,xmin=0,xmax=10,m=5,w=0.75;
 	value_type wght;
-	std::cout<<"Checking 1D parni on Cauchy distribution centered at "<<m<<" with width "<<w<<" within ["<<xmin<<","<<xmax<<"]..........";
-        std::cout.flush();
+	std::cerr<<"Checking 1D parni on Cauchy distribution centered at "<<m<<" with width "<<w<<" within ["<<xmin<<","<<xmax<<"]..........";
+        std::cerr.flush();
 	std::string filename("plots/parni1D_Cauchy");
 	parni<value_type,1,std::random>* gen=new parni<value_type,1,std::random>(&x,xmin,xmax,N_bins,mode);
 	histogram<value_type>hist(&x,&wght);
@@ -102,14 +115,14 @@ int main()
 	delete plot2;
 	delete plot3;
 	delete gen;
-	std::cout<<"...........done, file "<<filename+fext<<" written."<<std::endl;
+	std::cerr<<"...........done, file "<<filename+fext<<" written."<<std::endl;
     }
 
     {
 	value_type x=1,xmin=0.1,xmax=0.9;
 	value_type wght;
-	std::cout<<"Checking 1D parni 1/(x(1-x)) within ["<<xmin<<","<<xmax<<"]..........";
-        std::cout.flush();
+	std::cerr<<"Checking 1D parni 1/(x(1-x)) within ["<<xmin<<","<<xmax<<"]..........";
+        std::cerr.flush();
 	std::string filename("plots/parni1D_beta11");
 	parni<value_type,1,std::random>* gen=new parni<value_type,1,std::random>(&x,xmin,xmax,N_bins,mode);
 	histogram<value_type>hist(&x,&wght);
@@ -176,13 +189,13 @@ int main()
 	delete plot2;
 	delete plot3;
 	delete gen;
-	std::cout<<"...........done, file "<<filename+fext<<" written."<<std::endl;
+	std::cerr<<"...........done, file "<<filename+fext<<" written."<<std::endl;
     }
     {
 	value_type x=1,xmin=-2*pi,xmax=-xmin;
 	value_type wght;
-	std::cout<<"Checking 1D parni cos(x)^2*exp(-x^2/8) within ["<<xmin<<","<<xmax<<"]..........";
-        std::cout.flush();
+	std::cerr<<"Checking 1D parni cos(x)^2*exp(-x^2/8) within ["<<xmin<<","<<xmax<<"]..........";
+        std::cerr.flush();
 	std::string filename("plots/parni1D_cosgauss");
 	parni<value_type,1,std::random>* gen=new parni<value_type,1,std::random>(&x,xmin,xmax,N_bins,mode);
 	histogram<value_type>hist(&x,&wght);
@@ -249,14 +262,14 @@ int main()
 	delete plot2;
 	delete plot3;
 	delete gen;
-	std::cout<<"...........done, file "<<filename+fext<<" written."<<std::endl;
+	std::cerr<<"...........done, file "<<filename+fext<<" written."<<std::endl;
     }
     {
 	value_type x=0,xmin=0,xmax=1;
 	value_type smin=1,smax=5;
 	value_type wght;
-	std::cout<<"Checking power-law(1D parni) on (x-1)e^{-x} within ["<<smin<<","<<smax<<"]..........";
-        std::cout.flush();
+	std::cerr<<"Checking power-law(1D parni) on (x-1)e^{-x} within ["<<smin<<","<<smax<<"]..........";
+        std::cerr.flush();
 	std::string filename("plots/parni1Dpl");
 	value_type nu(1);
 	parni<value_type,1,std::random>* gen=new parni<value_type,1,std::random>(&x,xmin,xmax,N_bins,mode);
@@ -333,14 +346,14 @@ int main()
 	delete plot3;
 	delete gen;
 	delete genmap;
-	std::cout<<"...........done, file "<<filename+fext<<" written."<<std::endl;
+	std::cerr<<"...........done, file "<<filename+fext<<" written."<<std::endl;
     }
     {
 	value_type x=0,xmin=0,xmax=1;
 	value_type smin=0,smax=4;
 	value_type wght;
-	std::cout<<"Checking Breit-Wigner(1D parni) on x/((x-2)^2+0.1*x) within ["<<smin<<","<<smax<<"]..........";
-        std::cout.flush();
+	std::cerr<<"Checking Breit-Wigner(1D parni) on x/((x-2)^2+0.1*x) within ["<<smin<<","<<smax<<"]..........";
+        std::cerr.flush();
 	std::string filename("plots/parni1DBW");
 	value_type m=std::sqrt(2),w=0.1/m;
 	parni<value_type,1,std::random>* gen=new parni<value_type,1,std::random>(&x,xmin,xmax,N_bins,mode);
@@ -417,13 +430,13 @@ int main()
 	delete plot3;
 	delete gen;
 	delete genmap;
-	std::cout<<"...........done, file "<<filename+fext<<" written."<<std::endl;
+	std::cerr<<"...........done, file "<<filename+fext<<" written."<<std::endl;
     }
     {
 	value_type x=1,x0min=0,xmin=1,xmax=5,x0max=10,m=5,w=0.75;
 	value_type wght;
-	std::cout<<"Checking 1D parni subgrid on Cauchy centered at "<<m<<" with width "<<w<<" within ["<<xmin<<","<<xmax<<"]..........";
-        std::cout.flush();
+	std::cerr<<"Checking 1D parni subgrid on Cauchy centered at "<<m<<" with width "<<w<<" within ["<<xmin<<","<<xmax<<"]..........";
+        std::cerr.flush();
 	std::string filename("plots/subparni1D_Cauchy");
 	parni<value_type,1,std::random>* gen=new parni<value_type,1,std::random>(&x,x0min,x0max,N_bins,mode);
 	N_batch=20;
@@ -521,13 +534,13 @@ int main()
 	delete plot3;
 	delete subgen;
 	delete gen;
-	std::cout<<"...........done, file "<<filename+fext<<" written."<<std::endl;
+	std::cerr<<"...........done, file "<<filename+fext<<" written."<<std::endl;
     }
     {
 	value_type smin=-2,smax=-0.25,s0min=-5,s0max=-0.1;
 	value_type wght;
-	std::cout<<"Checking power-law(1D parni) on -x*exp(-x^2) within ["<<smin<<","<<smax<<"]..........";
-        std::cout.flush();
+	std::cerr<<"Checking power-law(1D parni) on -x*exp(-x^2) within ["<<smin<<","<<smax<<"]..........";
+        std::cerr.flush();
 	std::string filename("plots/parni1Dplsub");
 	value_type nu(1);
 	pl_s_generator<value_type,std::random>* genmap=new pl_s_generator<value_type,std::random>(NULL,&nu);
@@ -600,7 +613,7 @@ int main()
 	delete plot2;
 	delete plot3;
 	delete gen;
-	std::cout<<"...........done, file "<<filename+fext<<" written."<<std::endl;
+	std::cerr<<"...........done, file "<<filename+fext<<" written."<<std::endl;
     }
     {
 	N_bins=500;
@@ -612,8 +625,8 @@ int main()
 	xmax.assign(1);
 	value_type wght;
 	value_type sigma=0.5;
-	std::cout<<"Checking 2D parni on 2D Gauss with sigma "<<sigma<<" within ["<<xmin[0]<<","<<xmax[0]<<"] x ["<<xmin[1]<<","<<xmax[1]<<"]..........";
-        std::cout.flush();
+	std::cerr<<"Checking 2D parni on 2D Gauss with sigma "<<sigma<<" within ["<<xmin[0]<<","<<xmax[0]<<"] x ["<<xmin[1]<<","<<xmax[1]<<"]..........";
+        std::cerr.flush();
 	std::string filename("plots/parni2D_Gauss");
 	parni<value_type,2,std::random>* gen=new parni<value_type,2,std::random>(&x,xmin,xmax,N_bins,mode);
 	histogram<value_type>hist1(&x[0],&wght);
@@ -691,7 +704,7 @@ int main()
 	delete plot3;
 	delete plot4;
 	delete gen;
-	std::cout<<"...........done, file "<<filename+fext<<" written."<<std::endl;
+	std::cerr<<"...........done, file "<<filename+fext<<" written."<<std::endl;
     }
     
     {
@@ -704,8 +717,8 @@ int main()
 	vector<value_type,2>xmax;
 	xmax.assign(pi);
 	value_type wght;
-	std::cout<<"Checking 2D parni on double cos^2 within ["<<xmin[0]<<","<<xmax[0]<<"] x ["<<xmin[1]<<","<<xmax[1]<<"].........";
-        std::cout.flush();
+	std::cerr<<"Checking 2D parni on double cos^2 within ["<<xmin[0]<<","<<xmax[0]<<"] x ["<<xmin[1]<<","<<xmax[1]<<"].........";
+        std::cerr.flush();
 	std::string filename("plots/parni2D_cos2");
 	parni<value_type,2,std::random>* gen=new parni<value_type,2,std::random>(&x,xmin,xmax,N_bins,mode);
 	histogram<value_type>hist1(&x[0],&wght);
@@ -782,7 +795,7 @@ int main()
 	delete plot3;
 	delete plot4;
 	delete gen;
-	std::cout<<"...........done, file "<<filename+fext<<" written."<<std::endl;
+	std::cerr<<"...........done, file "<<filename+fext<<" written."<<std::endl;
     }
     
     {
@@ -796,8 +809,8 @@ int main()
 	xmax.assign(1);
 	value_type wght;
 	value_type rmax=1,w=0.1,mu=0.5;
-	std::cout<<"Checking 2D parni on 2D Cauchy with radius "<<mu<<" and width "<<w<<" within D(0,"<<rmax<<")..........";
-        std::cout.flush();
+	std::cerr<<"Checking 2D parni on 2D Cauchy with radius "<<mu<<" and width "<<w<<" within D(0,"<<rmax<<")..........";
+        std::cerr.flush();
 	std::string filename("plots/parni2D_Cauchy");
 	parni<value_type,2,std::random>* gen=new parni<value_type,2,std::random>(&x,xmin,xmax,N_bins,mode);
 	histogram<value_type>hist1(&x[0],&wght);
@@ -878,7 +891,7 @@ int main()
 	delete plot3;
 	delete plot4;
 	delete gen;
-	std::cout<<"...........done, file "<<filename+fext<<" written."<<std::endl;
+	std::cerr<<"...........done, file "<<filename+fext<<" written."<<std::endl;
     }
 }
 
