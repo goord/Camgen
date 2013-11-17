@@ -20,7 +20,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #include <Camgen/s_gen.h>
-#include <Camgen/parni_sub.h>
+#include <Camgen/parni.h>
 
 namespace Camgen
 {
