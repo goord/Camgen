@@ -382,7 +382,7 @@ namespace Camgen
 			model<model_t>::logfile()<<"particle "<<phi->get_name()<<" decoupled from model..."<<std::endl;
 			if(phi->get_anti_particle()!=phi)
 			{
-			    model<model_t>::logfile()<<CAMGEN_STREAMLOC<<"particle "<<phi->get_anti_particle()->get_name()<<" decoupled from model"<<std::endl;
+			    model<model_t>::logfile()<<"particle "<<phi->get_anti_particle()->get_name()<<" decoupled from model..."<<std::endl;
 			}
 
 			/* Decouple every vertex that contains the particle or

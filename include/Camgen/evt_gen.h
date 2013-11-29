@@ -940,9 +940,9 @@ namespace Camgen
 
 	    /// Returns the total partonic invariant mass-squared.
 
-	    value_type s_hat() const
+	    value_type s_in() const
 	    {
-		return (*sub_proc)->s_hat();
+		return (*sub_proc)->s_in();
 	    }
 
 	    /// Returns the total event weight.

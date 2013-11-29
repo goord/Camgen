@@ -14,6 +14,7 @@
 
 #include <cstdio>
 #include <sstream>
+#include <Camgen/debug.h>
 #include <Camgen/logstream.h>
 #include <Camgen/plt_config.h>
 #include <Camgen/plt_script.h>

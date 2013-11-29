@@ -7,7 +7,6 @@
 
 #include <Camgen/plt_config.h>
 #include <Camgen/stdrand.h>
-#include <Camgen/parni_sub.h>
 #include <Camgen/histogram.h>
 #include <Camgen/multiplot.h>
 #include <Camgen/sgen_grid.h>

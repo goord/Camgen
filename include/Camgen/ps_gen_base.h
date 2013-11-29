@@ -337,6 +337,20 @@ namespace Camgen
 	    
 	    virtual value_type M_out(size_type) const=0;
 
+	    /// Virtual method returning the i-th incoming mass-squared.
+
+	    virtual value_type M2_in(size_type i) const
+	    {
+		return M_in(i)*M_in(i);
+	    }
+
+	    /// Virtual method returning the i-th outgoing mass-squared.
+
+	    virtual value_type M2_out(size_type i) const
+	    {
+		return M_out(i)*M_out(i);
+	    }
+
 	    /// Virtual method returning the i-th incoming invariant mass-squared.
 
 	    virtual value_type s_in(size_type i) const
@@ -388,21 +402,50 @@ namespace Camgen
 		return Ecm()*Ecm();
 	    }
 
-	    /// Virtual method returning the effective (partonic) invariant
-	    /// mass.
-
-	    virtual value_type Ecm_hat() const
+	    /// Virtual method returning the effective partonic incoming
+	    /// invariant mass.
+	    
+	    virtual value_type m_in() const
 	    {
-		momentum_type q(P_in());
-		return m(q);
+		return m(P_in());
 	    }
 
-	    /// Virtual method returning the effective (partonic) invariant mass-squared.
+	    /// Returns m_in().
 
-	    virtual value_type s_hat() const
+	    value_type Ecm_hat() const
 	    {
-		momentum_type q(P_in());
-		return s(q);
+		return m_in();
+	    }
+
+	    /// Virtual method returning the effective partonic incoming
+	    /// invariant mass-squared.
+	    
+	    virtual value_type s_in() const
+	    {
+		return s(P_in());
+	    }
+
+	    /// Returns s_in().
+
+	    value_type s_hat() const
+	    {
+		return s_in();
+	    }
+
+	    /// Virtual method returning the effective partonic outgoing
+	    /// invariant mass.
+	    
+	    virtual value_type m_out() const
+	    {
+		return m(P_out());
+	    }
+
+	    /// Virtual method returning the effective partonic incoming
+	    /// invariant mass.
+	    
+	    virtual value_type s_out() const
+	    {
+		return s(P_out());
 	    }
 
 	    /// Virtual method returning the total event weight (returns one by default).
@@ -507,7 +550,59 @@ namespace Camgen
 
 	    /// Returns the sum of masses of incoming particles.
 
-	    virtual value_type M_in() const
+	    virtual value_type M_in_sum() const
+	    {
+		value_type q(M_in(0));
+		size_type n(n_in());
+		for(size_type i=1;i<n;++i)
+		{
+		    q+=M_in(i);
+		}
+		return q;
+	    }
+
+	    /// Returns the sum of masses of outgoing particles.
+
+	    virtual value_type M_out_sum() const
+	    {
+		value_type q(M_out(0));
+		size_type n(n_out());
+		for(size_type i=1;i<n;++i)
+		{
+		    q+=M_out(i);
+		}
+		return q;
+	    }
+
+	    /// Returns the sum of masses squared of incoming particles.
+
+	    virtual value_type M2_in_sum() const
+	    {
+		value_type q(M2_in(0));
+		size_type n(n_in());
+		for(size_type i=1;i<n;++i)
+		{
+		    q+=M2_in(i);
+		}
+		return q;
+	    }
+
+	    /// Returns the sum of masses squared of outgoing particles.
+
+	    virtual value_type M2_out_sum() const
+	    {
+		value_type q(M2_out(0));
+		size_type n(n_out());
+		for(size_type i=1;i<n;++i)
+		{
+		    q+=M2_out(i);
+		}
+		return q;
+	    }
+
+	    /// Returns the sum of invariant masses of incoming particles.
+
+	    virtual value_type m_in_sum() const
 	    {
 		value_type q(m_in(0));
 		size_type n(n_in());
@@ -518,15 +613,41 @@ namespace Camgen
 		return q;
 	    }
 
-	    /// Returns the sum of masses of outgoing particles.
+	    /// Returns the sum of invariant masses of outgoing particles.
 
-	    virtual value_type M_out() const
+	    virtual value_type m_out_sum() const
 	    {
-		value_type q(m_out(0));
+		value_type q(M_out(0));
 		size_type n(n_out());
 		for(size_type i=1;i<n;++i)
 		{
 		    q+=m_out(i);
+		}
+		return q;
+	    }
+
+	    /// Returns the sum of invariant masses squared of incoming particles.
+
+	    virtual value_type s_in_sum() const
+	    {
+		value_type q(s_in(0));
+		size_type n(n_in());
+		for(size_type i=1;i<n;++i)
+		{
+		    q+=s_in(i);
+		}
+		return q;
+	    }
+
+	    /// Returns the sum of invariant masses squared of outgoing particles.
+
+	    virtual value_type s_out_sum() const
+	    {
+		value_type q(s_out(0));
+		size_type n(n_out());
+		for(size_type i=1;i<n;++i)
+		{
+		    q+=s_out(i);
 		}
 		return q;
 	    }
@@ -548,7 +669,15 @@ namespace Camgen
 	    {
 		return (i<0)?M_in(-i-1):M_out(i-1);
 	    }
-	   
+
+	    /// Returns the i-th mass-squared, where i<0 means incoming masses and
+	    /// i>0 outgoing ones. If i==0,i<-N_in or i>N_out, an error will
+	    /// occur.
+
+	    virtual value_type M2(int i) const
+	    {
+		return (i<0)?M2_in(-i-1):M2_out(i-1);
+	    }
 
 	    /// Reads the i-th incoming momentum's mu-th component.
 	    
