@@ -283,7 +283,7 @@ namespace Camgen
 		{
 		    (*sub_proc)->pre_initialise(verbose);
 		}
-		refresh_xsec();
+		this->refresh_cross_section();
 		adapt_processes();
 	    }
 
@@ -302,7 +302,7 @@ namespace Camgen
 		    (*sub_proc)->initialise(verbose);
 		    loop_process(subprocess_events(),verbose);
 		}
-		refresh_xsec();
+		this->refresh_cross_section();
 		adapt_processes();
 	    }
 
@@ -322,7 +322,7 @@ namespace Camgen
 		    (*sub_proc)->initialise(verbose);
 		    loop_process(subprocess_events(),verbose);
 		}
-		refresh_xsec();
+		this->refresh_cross_section();
 		adapt_processes();
 	    }
 
@@ -341,7 +341,7 @@ namespace Camgen
 		    (*sub_proc)->initialise(channel_iters,channel_batch,grid_iters,grid_batch,verbose);
 		    loop_process(sub_proc_evts,verbose);
 		}
-		refresh_xsec();
+		this->refresh_cross_section();
 		adapt_processes();
 	    }
 
@@ -496,13 +496,13 @@ namespace Camgen
 		    return false;
 		}
 		bool q=(*sub_proc)->generate();
+		(*sub_proc)->refresh_cross_section();
 		this->integrand()=(*sub_proc)->integrand();
 		this->weight()=(*sub_proc)->weight()/(*sub_proc)->alpha;
 		if(update_counter!=0 and auto_proc_adapt!=0 and update_counter%auto_proc_adapt==0)
 		{
 		    adapt_processes();
 		}
-		this->up_to_date=false;
 		return q;
 	    }
 
@@ -510,7 +510,7 @@ namespace Camgen
 
 	    void generate_unweighted(bool verbose=false)
 	    {
-		value_type rho=rn_stream::throw_number(0,this->cross_section().value);
+		value_type rho=rn_stream::throw_number(0,this->cross_section_sum().value);
 		sub_proc=procs.begin();
 		value_type r(0);
 		while(r<rho and sub_proc!=procs.end())
@@ -529,7 +529,6 @@ namespace Camgen
 		{
 		    adapt_processes();
 		}
-		this->up_to_date=false;
 	    }
 
 	    /* Generates new event according to the given strategy argument: */
@@ -573,13 +572,6 @@ namespace Camgen
 		{
 		    (*it)->reset_cross_section();
 		}
-	    }
-
-	    /// Total cross section refresher method.
-
-	    void refresh_cross_section(bool with_integrand=true)
-	    {
-		refresh_xsec();
 	    }
 
 	    /// Refreshes minimal invariant masses.
@@ -679,7 +671,7 @@ namespace Camgen
 		value_type p=process_adaptivity();
 		value_type norm(0);
 		MC_integral<value_type>proc_xsec;
-		value_type sigma=cross_section().value;
+		value_type sigma=cross_section_sum().value;
 		value_type q=process_threshold()*sigma/procs.size();
 		for(process_iterator it=procs.begin();it!=procs.end();++it)
 		{
@@ -747,17 +739,30 @@ namespace Camgen
 	    /* Public readout methods */
 	    /*------------------------*/
 
-	    /// Returns the total cross section.
+	    /// Returns the sum of subprocess cross sections.
 
-	    MC_integral<value_type> cross_section() const
+	    cross_section_type cross_section_sum() const
 	    {
-		if(this->up_to_date)
+		if(!this->up_to_date)
 		{
-		    return this->integral;
+		    summed_xsec.value=(value_type)0;
+		    summed_xsec.error=(value_type)0;
+		    summed_xsec.error_error=(value_type)0;
+
+		    for(const_process_iterator it=procs.begin();it!=procs.end();++it)
+		    {
+			MC_integral<value_type>xsect((*it)->cross_section());
+			summed_xsec+=xsect.value;
+			summed_xsec.error+=(xsect.error*xsect.error);
+			summed_xsec.error_error+=(xsect.error_error*xsect.error_error);
+		    }
+		    summed_xsec.error=std::sqrt(summed_xsec.error);
+		    summed_xsec.error_error=std::sqrt(summed_xsec.error_error);
+		    this->up_to_date=true;
 		}
-		refresh_xsec();
-		return this->integral;
+		return summed_xsec;
 	    }
+
 
 	    /// Returns the number of incoming particles.
 
@@ -796,9 +801,9 @@ namespace Camgen
 
 	    /// Returns the total cross section.
 
-	    MC_integral<value_type> xsec() const
+	    cross_section_type xsec() const
 	    {
-		return cross_section();
+		return cross_section_sum();
 	    }
 
 	    /// Returns the i-th subprocess cross section.
@@ -1097,7 +1102,7 @@ namespace Camgen
 		    os<<std::setw(10)<<(*it)->calls()<<std::endl;
 		}
 		os<<"--------------------------------------------------------------------------"<<std::endl;
-		os<<"Total: "<<cross_section()<<std::endl;
+		os<<"Total: "<<cross_section_sum()<<std::endl;
 		return os;
 	    }
 
@@ -1106,7 +1111,7 @@ namespace Camgen
 	    std::ostream& print_status(std::ostream& os=std::cout) const
 	    {
 		size_type evt_counter=0,pos_evt_counter=0,calls=0,grid_adaptations=0,channel_adaptations=0;
-		value_type efficiency;
+		value_type efficiency=0;
 		for(const_process_iterator it=procs.begin();it!=procs.end();++it)
 		{
 		    evt_counter+=((*it)->evt_counter);
@@ -1124,8 +1129,8 @@ namespace Camgen
 		os<<"Nr of updates performed:                           "<<std::scientific<<update_counter<<std::endl;
 		os<<"Nr of grid adaptations performed:                  "<<std::scientific<<grid_adaptations<<std::endl;
 		os<<"Nr of channel adaptations performed:               "<<std::scientific<<channel_adaptations<<std::endl;
-		os<<"Mean Monte Carlo efficiency (%):                   "<<std::scientific<<efficiency<<std::endl;
-		os<<"Cross section (pb):                                "<<std::scientific<<cross_section()<<std::endl;
+		os<<"Monte Carlo efficiency (%):                        "<<std::scientific<<efficiency<<std::endl;
+		os<<"Cross section (pb):                                "<<std::scientific<<cross_section_sum()<<std::endl;
 		os<<"###############################################################################################"<<std::endl;
 	    }
 
@@ -1242,6 +1247,10 @@ namespace Camgen
 
 	    std::pair<value_type,value_type> subproc_params;
 
+	    /* Sum of subprocess cross sections: */
+
+	    mutable cross_section_type summed_xsec;
+
 	    /* Private constructor: */
 	    
 	    event_generator(CM_algorithm<model_t,N_in,N_out>& algo,bool alloc):algorithm(algo),update_counter(0),auto_update(false),auto_proc_adapt(0),ps_cut(NULL),scale(NULL),subproc_params(1,0)
@@ -1336,26 +1345,6 @@ namespace Camgen
 		    std::cout<<std::setw(15)<<(*sub_proc)->cross_section().error_error;
 		    std::cout<<std::setw(10)<<(*sub_proc)->calls()<<std::endl;
 		}
-	    }
-
-	    /* Total cross section refresher method. */
-
-	    void refresh_xsec() const
-	    {
-		this->integral.value=(value_type)0;
-		this->integral.error=(value_type)0;
-		this->integral.error_error=(value_type)0;
-
-		for(const_process_iterator it=procs.begin();it!=procs.end();++it)
-		{
-		    MC_integral<value_type>xsect((*it)->cross_section());
-		    (this->integral)+=xsect.value;
-		    this->integral.error+=(xsect.error*xsect.error);
-		    this->integral.error_error+=(xsect.error_error*xsect.error_error);
-		}
-		this->integral.error=std::sqrt(this->integral.error);
-		this->integral.error_error=std::sqrt(this->integral.error_error);
-		this->up_to_date=true;
 	    }
     };
 }
