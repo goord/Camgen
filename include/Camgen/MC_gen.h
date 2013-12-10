@@ -94,7 +94,7 @@ namespace Camgen
 
 	    virtual void update(){}
 
-	    /// Adaptation method. Trivial by default.
+	    /// Adaptation method. Refines internal grids to improve efficiency. Trivial by default.
 
 	    virtual void adapt(){}
 
@@ -121,32 +121,13 @@ namespace Camgen
 		++n_calls;
 		if(!with_integrand)
 		{
-		    max_w=std::max(w,max_w);
-		    wsum+=w;
-		    value_type w2=w*w;
-		    w2sum+=w2;
-		    w3sum+=(w2*w);
-		    w4sum+=(w2*w2);
-		    if(w_hist!=NULL)
-		    {
-			w_hist->insert(w);
-		    }
+		    update_by_weight(w);
 		}
 		else
 		{
 		    if(valid(this->integrand()))
 		    {
-			value_type y=w*f;
-			max_w=std::max(y,max_w);
-			wsum+=y;
-			value_type w2=y*y;
-			w2sum+=w2;
-			w3sum+=(w2*y);
-			w4sum+=(w2*w2);
-			if(w_hist!=NULL)
-			{
-			    w_hist->insert(y);
-			}
+			update_by_weight(w*f);
 		    }
 		}
 		up_to_date=false;
@@ -564,9 +545,25 @@ namespace Camgen
 
 	    value_type f;
 
-	    /// Maximal weight accuracy parameter.
+	    /* Maximal weight accuracy parameter: */
 
 	    value_type eps;
+
+	    /* Utility helper: */
+
+	    void update_by_weight(const value_type& w)
+	    {
+		max_w=std::max(w,max_w);
+		wsum+=w;
+		value_type w2=w*w;
+		w2sum+=w2;
+		w3sum+=(w2*w);
+		w4sum+=(w2*w2);
+		if(w_hist!=NULL)
+		{
+		    w_hist->insert(w);
+		}
+	    }
     };
 }
 

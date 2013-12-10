@@ -113,7 +113,6 @@ namespace Camgen
 		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"assigned beam energy "<<E<<" invalid"<<endlog;
 		    return false;
 		}
-		std::cout<<"beam energy "<<i+1<<": "<<E<<std::endl;
 		E_beams[i]=E;
 		return true;
 	    }

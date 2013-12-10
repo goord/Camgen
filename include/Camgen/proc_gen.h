@@ -1094,7 +1094,7 @@ namespace Camgen
 
 	    value_type s_in(size_type i) const
 	    {
-		return ps_gen->s_in(i);
+		return static_cast<ps_generator_base<model_type>*>(ps_gen)->s_in(i);
 	    }
 
 	    /// Returns the i-th outgoing mass-squared (no range checking on i).
@@ -1186,9 +1186,9 @@ namespace Camgen
 
 	    /// Returns the total partonic invariant mass-squared.
 
-	    value_type s_hat() const
+	    value_type s_in() const
 	    {
-		return ps_gen->s_hat();
+		return ps_gen->s_in();
 	    }
 
 	    /// Returns the total event weight.

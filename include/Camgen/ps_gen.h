@@ -571,7 +571,7 @@ namespace Camgen
 
 	    /// Returns the total partonic invariant mass-squared.
 
-	    value_type s_hat() const
+	    value_type s_in() const
 	    {
 		return is->s_hat();
 	    }
@@ -751,19 +751,19 @@ namespace Camgen
 		bool q=true;
 		for(size_type i=0;i<N_in;++i)
 		{
-		    value_type s=spacetime_type::dot(p_in(i),p_in(i));
-		    if(!equals(s,s_in(i)))
+		    value_type s=this->ps_generator_base<model_t>::s_in(i);
+		    if(!equals(s,M2_in(i)))
 		    {
-			log(log_level::warning)<<"incoming momentum "<<i<<": "<<p_in(i)<<" with mass-squared "<<s<<" not equal to "<<s_in(i)<<" detected"<<endlog;
+			log(log_level::warning)<<"incoming momentum "<<i<<": "<<p_in(i)<<" with invariant mass "<<s<<" not equal to "<<M2_in(i)<<" detected"<<endlog;
 			q=false;
 		    }
 		}
 		for(size_type i=0;i<N_out;++i)
 		{
-		    value_type s=spacetime_type::dot(p_out(i),p_out(i));
-		    if(!equals(s,s_out(i)))
+		    value_type s=this->s_out(i);
+		    if(!equals(s,M2_out(i)))
 		    {
-			log(log_level::warning)<<"outgoing momentum "<<i<<": "<<p_out(i)<<" with mass-squared "<<s<<" not equal to "<<s_out(i)<<" detected"<<endlog;
+			log(log_level::warning)<<"outgoing momentum "<<i<<": "<<p_out(i)<<" with mass-squared "<<s<<" not equal to "<<M2_out(i)<<" detected"<<endlog;
 			q=false;
 		    }
 		}
@@ -1031,9 +1031,9 @@ namespace Camgen
 	    {
 		if(i==j)
 		{
-		    return this->m_out(i);
+		    return this->M_out(i);
 		}
-		return std::max(this->m_out(i)+this->m_out(j),mmin[i][j]);
+		return std::max(this->M_out(i)+this->M_out(j),mmin[i][j]);
 	    }
 
 	    /* Evaluates the generated integrand: */

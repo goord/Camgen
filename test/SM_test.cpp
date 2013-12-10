@@ -290,7 +290,7 @@ int main()
 
     random_number_stream<value_type,std::random>::reset_engine();
 
-    process="W+,W- > W+,W-";
+    process="W+,W- > W-,W+";
 
     {
 	CM_algorithm<model_type,2,2>algo(process);

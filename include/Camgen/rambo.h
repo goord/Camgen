@@ -107,9 +107,9 @@ namespace Camgen
 		    return false;
 		}
 		value_type Etot=std::sqrt(stot);
-		if(Etot<this->ps_generator_base<model_type>::M_out())
+		if(Etot<this->ps_generator_base<model_type>::M_out_sum())
 		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"total energy "<<Etot<<" too small to create final state with M = "<<this->ps_generator_base<model_type>::M_out()<<endlog;
+		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"total energy "<<Etot<<" too small to create final state with M = "<<this->ps_generator_base<model_type>::M_out_sum()<<endlog;
 		    this->fsw=(value_type)0;
 		    return false;
 		}
@@ -174,7 +174,7 @@ namespace Camgen
 			df=(value_type)0;
 			for(size_type j=0;j<N_out;++j)
 			{
-			    d=std::sqrt(xi*xi*Esq[j]+this->s_out(j));
+			    d=std::sqrt(xi*xi*Esq[j]+this->M2_out(j));
 			    f+=d;
 			    df+=Esq[j]/d;
 			}
@@ -182,7 +182,7 @@ namespace Camgen
 		    }
 		    for(size_type i=0;i<N_out;++i)
 		    {
-			this->p_out(i)[0]=std::sqrt(xi*xi*Esq[i]+this->s_out(i));
+			this->p_out(i)[0]=std::sqrt(xi*xi*Esq[i]+this->M2_out(i));
 			for(size_type mu=1;mu<D;++mu)
 			{
 			    this->p_out(i)[mu]*=xi;
@@ -197,7 +197,7 @@ namespace Camgen
 		    for(size_type i=0;i<N_out;++i)
 		    {
 			value_type e=this->p_out(i)[0];
-			value_type psq=e*e-this->s_out(i);
+			value_type psq=e*e-this->M2_out(i);
 			factor*=(std::sqrt(psq)/e);
 			denom+=(psq/e);
 		    }
@@ -226,7 +226,7 @@ namespace Camgen
 		    return false;
 		}
 		value_type Etot=std::sqrt(stot);
-		if(Etot<this->ps_generator_base<model_type>::M_out())
+		if(Etot<this->ps_generator_base<model_type>::M_out_sum())
 		{
 		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"total energy too small to create final state"<<endlog;
 		    this->fsw=(value_type)0;
@@ -241,7 +241,7 @@ namespace Camgen
 		    for(size_type i=0;i<N_out;++i)
 		    {
 			value_type E=this->p(i)[0];
-			value_type pvec=std::sqrt(E*E-this->s_out(i));
+			value_type pvec=std::sqrt(E*E-this->M2_out(i));
 			factor*=(pvec/E);
 			num+=pvec;
 			denom+=(pvec*pvec/E);

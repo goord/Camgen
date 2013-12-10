@@ -150,7 +150,7 @@ int main()
 		return 1;
 	    }
 
-	    value_type msum=ps.ps_generator_base<model_type>::M_out();
+	    value_type msum=ps.ps_generator_base<model_type>::M_out_sum();
 	    value_type msum_check=m1+m2+m3;
 	    if(!equals(msum,msum_check))
 	    {
