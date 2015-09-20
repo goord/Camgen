@@ -9,9 +9,8 @@
 #include <Camgen/CM_algo.h>
 #include <Camgen/ps_copy.h>
 #include <Camgen/stdrand.h>
-#include <Camgen/uni_hels.h>
-#include <Camgen/part_is.h>
-#include <Camgen/rambo.h>
+#include <Camgen/uni_psgen_fac.h>
+#include <Camgen/helgen_fac.h>
 #include <Camgen/uni_cols.h>
 #include <Camgen/qcd_cols.h>
 #include <Camgen/plt_config.h>
@@ -50,13 +49,17 @@ int main()
     //////////////////////////////////////////////////////////////////////////////////////////////////
 
     std::size_t N_batch=N_events/N_points;
+    set_initial_state_type(initial_states::partonic);
+    set_phase_space_generator_type(phase_space_generators::uniform);
+    set_helicity_generator_type(helicity_generators::uniform);
+    set_first_beam_energy(0.5*Ecm);
+    set_second_beam_energy(0.5*Ecm);
    
     {
 	typedef QCD model_type;
 	typedef QCD::value_type value_type;
-	typedef rambo<model_type,2,2,std::random> psgen_type;
-	typedef partonic_is<model_type,2> init_state;
-	typedef uniform_helicities<value_type,2,2,std::random,model_type::continuous_helicities> helgen_type;
+	typedef uniform_ps_generator_factory<model_type,2,2,std::random> ps_factory;
+	typedef helicity_generator_factory<model_type,2,2,std::random> hel_factory;
 	
 	std::string process("u,ubar > g,g");
 	std::cerr<<"Checking full colour summation in QCD for "<<process<<"..........";
@@ -64,9 +67,9 @@ int main()
 	CM_algorithm<model_type,2,2>algo(process);
 	algo.load();
 	algo.construct();
-	ps_generator<model_type,2,2>* psgen=psgen_type::create_instance(algo.get_tree_iterator(),new init_state(Ecm,Ecm));
+	ps_generator<model_type,2,2>* psgen=ps_factory::create_generator(algo.get_tree_iterator());
 	psgen->generate();
-	helicity_generator<value_type,2,2,model_type::continuous_helicities>* helgen=helgen_type::create_instance<model_type>(algo.get_tree_iterator());
+	helicity_generator<value_type,2,2,model_type::continuous_helicities>* helgen=hel_factory::create_generator(algo.get_tree_iterator());
 	helgen->generate();
 	algo.sum_colours();
 	value_type M=algo.evaluate_sum();
@@ -115,9 +118,8 @@ int main()
     {
 	typedef QCD model_type;
 	typedef model_type::value_type value_type;
-	typedef rambo<model_type,2,3,std::random> psgen_type;
-	typedef partonic_is<model_type,2> init_state;
-	typedef uniform_helicities<value_type,2,3,std::random,model_type::continuous_helicities> helgen_type;
+	typedef uniform_ps_generator_factory<model_type,2,3,std::random> ps_factory;
+	typedef helicity_generator_factory<model_type,2,3,std::random> hel_factory;
 	
 	std::string process("u,ubar > u,ubar,g");
 	std::cerr<<"Checking full colour summation in QCD for "<<process<<"..........";
@@ -125,9 +127,9 @@ int main()
 	CM_algorithm<model_type,2,3>algo(process);
 	algo.load();
 	algo.construct();
-	ps_generator<model_type,2,3>* psgen=psgen_type::create_instance(algo.get_tree_iterator(),new init_state(Ecm,Ecm));
+	ps_generator<model_type,2,3>* psgen=ps_factory::create_generator(algo.get_tree_iterator());
 	psgen->generate();
-	helicity_generator<value_type,2,3,model_type::continuous_helicities>* helgen=helgen_type::create_instance<model_type>(algo.get_tree_iterator());
+	helicity_generator<value_type,2,3,model_type::continuous_helicities>* helgen=hel_factory::create_generator(algo.get_tree_iterator());
 	helgen->generate();
 	algo.sum_colours();
 	value_type M=algo.evaluate_sum();
@@ -176,9 +178,8 @@ int main()
     {
 	typedef QCD model_type;
 	typedef model_type::value_type value_type;
-	typedef rambo<model_type,2,4,std::random> psgen_type;
-	typedef partonic_is<model_type,2> init_state;
-	typedef uniform_helicities<value_type,2,4,std::random,model_type::continuous_helicities> helgen_type;
+	typedef uniform_ps_generator_factory<model_type,2,4,std::random> ps_factory;
+	typedef helicity_generator_factory<model_type,2,4,std::random> hel_factory;
 	
 	std::string process("u,ubar > u,ubar,g,g");
 	std::cerr<<"Checking full colour summation in QCD for "<<process<<"..........";
@@ -186,9 +187,9 @@ int main()
 	CM_algorithm<model_type,2,4>algo(process);
 	algo.load();
 	algo.construct();
-	ps_generator<model_type,2,4>* psgen=psgen_type::create_instance(algo.get_tree_iterator(),new init_state(Ecm,Ecm));
+	ps_generator<model_type,2,4>* psgen=ps_factory::create_generator(algo.get_tree_iterator());
 	psgen->generate();
-	helicity_generator<value_type,2,4,model_type::continuous_helicities>* helgen=helgen_type::create_instance<model_type>(algo.get_tree_iterator());
+	helicity_generator<value_type,2,4,model_type::continuous_helicities>* helgen=hel_factory::create_generator(algo.get_tree_iterator());
 	helgen->generate();
 	algo.sum_colours();
 	value_type M=algo.evaluate_sum();
@@ -245,9 +246,8 @@ int main()
     {
 	typedef QCD model_type;
 	typedef model_type::value_type value_type;
-	typedef rambo<model_type,2,2,std::random> psgen_type;
-	typedef partonic_is<model_type,2> init_state;
-	typedef uniform_helicities<value_type,2,2,std::random,model_type::continuous_helicities> helgen_type;
+	typedef uniform_ps_generator_factory<model_type,2,2,std::random> ps_factory;
+	typedef helicity_generator_factory<model_type,2,2,std::random> hel_factory;
 	
 	std::string process("u,ubar > g,g");
 	std::cerr<<"Checking partial colour summation in QCD for "<<process<<"..........";
@@ -255,9 +255,9 @@ int main()
 	CM_algorithm<model_type,2,2>algo(process);
 	algo.load();
 	algo.construct();
-	ps_generator<model_type,2,2>* psgen=psgen_type::create_instance(algo.get_tree_iterator(),new init_state(Ecm,Ecm));
+	ps_generator<model_type,2,2>* psgen=ps_factory::create_generator(algo.get_tree_iterator());
 	psgen->generate();
-	helicity_generator<value_type,2,2,model_type::continuous_helicities>* helgen=helgen_type::create_instance<model_type>(algo.get_tree_iterator());
+	helicity_generator<value_type,2,2,model_type::continuous_helicities>* helgen=hel_factory::create_generator(algo.get_tree_iterator());
 	helgen->generate();
 	algo.get_tree_iterator()->get_phase_space(0)->colour(0)=1;
 	algo.get_tree_iterator()->get_phase_space(1)->colour(0)=2;
@@ -295,9 +295,8 @@ int main()
     {
 	typedef QCD model_type;
 	typedef model_type::value_type value_type;
-	typedef rambo<model_type,2,3,std::random> psgen_type;
-	typedef partonic_is<model_type,2> init_state;
-	typedef uniform_helicities<value_type,2,3,std::random,model_type::continuous_helicities> helgen_type;
+	typedef uniform_ps_generator_factory<model_type,2,3,std::random> ps_factory;
+	typedef helicity_generator_factory<model_type,2,3,std::random> hel_factory;
 	
 	std::string process("u,ubar > u,ubar,g");
 	std::cerr<<"Checking partial colour summation in QCD for "<<process<<"..........";
@@ -305,9 +304,9 @@ int main()
 	CM_algorithm<model_type,2,3>algo(process);
 	algo.load();
 	algo.construct();
-	ps_generator<model_type,2,3>* psgen=psgen_type::create_instance(algo.get_tree_iterator(),new init_state(Ecm,Ecm));
+	ps_generator<model_type,2,3>* psgen=ps_factory::create_generator(algo.get_tree_iterator());
 	psgen->generate();
-	helicity_generator<value_type,2,3,model_type::continuous_helicities>* helgen=helgen_type::create_instance<model_type>(algo.get_tree_iterator());
+	helicity_generator<value_type,2,3,model_type::continuous_helicities>* helgen=hel_factory::create_generator(algo.get_tree_iterator());
 	helgen->generate();
 	algo.get_tree_iterator()->get_phase_space(0)->colour(0)=1;
 	algo.get_tree_iterator()->get_phase_space(1)->colour(0)=2;
@@ -346,9 +345,8 @@ int main()
     {
 	typedef QCD model_type;
 	typedef model_type::value_type value_type;
-	typedef rambo<model_type,2,4,std::random> psgen_type;
-	typedef partonic_is<model_type,2> init_state;
-	typedef uniform_helicities<value_type,2,4,std::random,model_type::continuous_helicities> helgen_type;
+	typedef uniform_ps_generator_factory<model_type,2,4,std::random> ps_factory;
+	typedef helicity_generator_factory<model_type,2,4,std::random> hel_factory;
 	
 	std::string process("u,ubar > u,ubar,g,g");
 	std::cerr<<"Checking partial colour summation in QCD for "<<process<<"..........";
@@ -356,9 +354,9 @@ int main()
 	CM_algorithm<model_type,2,4>algo(process);
 	algo.load();
 	algo.construct();
-	ps_generator<model_type,2,4>* psgen=psgen_type::create_instance(algo.get_tree_iterator(),new init_state(Ecm,Ecm));
+	ps_generator<model_type,2,4>* psgen=ps_factory::create_generator(algo.get_tree_iterator());
 	psgen->generate();
-	helicity_generator<value_type,2,4,model_type::continuous_helicities>* helgen=helgen_type::create_instance<model_type>(algo.get_tree_iterator());
+	helicity_generator<value_type,2,4,model_type::continuous_helicities>* helgen=hel_factory::create_generator(algo.get_tree_iterator());
 	helgen->generate();
 	algo.get_tree_iterator()->get_phase_space(0)->colour(0)=1;
 	algo.get_tree_iterator()->get_phase_space(1)->colour(0)=2;
@@ -406,8 +404,7 @@ int main()
     {
 	typedef QCD model_type;
 	typedef model_type::value_type value_type;
-	typedef rambo<model_type,2,2,std::random> psgen_type;
-	typedef partonic_is<model_type,2> init_state;
+	typedef uniform_ps_generator_factory<model_type,2,2,std::random> ps_factory;
 	
 	std::string process("u,ubar > g,g");
 	std::cerr<<"Checking full colour+helicity summation in QCD for "<<process<<"..........";
@@ -415,7 +412,7 @@ int main()
 	CM_algorithm<model_type,2,2>algo(process);
 	algo.load();
 	algo.construct();
-	ps_generator<model_type,2,2>* psgen=psgen_type::create_instance(algo.get_tree_iterator(),new init_state(Ecm,Ecm));
+	ps_generator<model_type,2,2>* psgen=ps_factory::create_generator(algo.get_tree_iterator());
 	psgen->generate();
 	algo.sum_colours();
 	algo.sum_spins();
@@ -479,8 +476,8 @@ int main()
     {
 	typedef QCD model_type;
 	typedef model_type::value_type value_type;
-	typedef rambo<model_type,2,3,std::random> psgen_type;
-	typedef partonic_is<model_type,2> init_state;
+	typedef uniform_ps_generator_factory<model_type,2,3,std::random> ps_factory;
+	typedef helicity_generator_factory<model_type,2,3,std::random> hel_factory;
 	
 	std::string process("u,ubar > u,ubar,g");
 	std::cerr<<"Checking partial colour+helicity summation in QCD for "<<process<<"..........";
@@ -488,7 +485,7 @@ int main()
 	CM_algorithm<model_type,2,3>algo(process);
 	algo.load();
 	algo.construct();
-	ps_generator<model_type,2,3>* psgen=psgen_type::create_instance(algo.get_tree_iterator(),new init_state(Ecm,Ecm));
+	ps_generator<model_type,2,3>* psgen=ps_factory::create_generator(algo.get_tree_iterator());
 	psgen->generate();
 	algo.sum_colour(0);
 	algo.sum_colour(1);
@@ -556,9 +553,8 @@ int main()
     {
 	typedef QCDPbchabdc model_type;
 	typedef QCD model_type2;
-	typedef rambo<model_type,2,2,std::random> psgen_type;
-	typedef partonic_is<model_type,2> init_state;
-	typedef uniform_helicities<value_type,2,2,std::random,model_type::continuous_helicities> helgen_type;
+	typedef uniform_ps_generator_factory<model_type,2,2,std::random> ps_factory;
+	typedef helicity_generator_factory<model_type,2,2,std::random> hel_factory;
 	
 	std::string process("g,g > dbar,d");
 	std::string filename("plots/colMC1");
@@ -566,9 +562,9 @@ int main()
 	CM_algorithm<model_type,2,2>algo(process);
 	algo.load();
 	algo.construct();
-	ps_generator<model_type,2,2>* psgen=psgen_type::create_instance(algo.get_tree_iterator(),new init_state(Ecm,Ecm));
+	ps_generator<model_type,2,2>* psgen=ps_factory::create_generator(algo.get_tree_iterator());
 	psgen->generate();
-	helicity_generator<value_type,2,2,model_type::continuous_helicities>* helgen=helgen_type::create_instance<model_type>(algo.get_tree_iterator());
+	helicity_generator<value_type,2,2,model_type::continuous_helicities>* helgen=hel_factory::create_generator(algo.get_tree_iterator());
 	helgen->generate();
 	CM_algorithm<model_type2,2,2>algo2(process);
 	algo2.load();
@@ -577,8 +573,8 @@ int main()
 	copy_helicities<model_type,model_type2,2,2>(algo.get_tree_iterator(),algo2.get_tree_iterator());
 	value_type summed_result=algo.evaluate_colour_sum();
 	value_type summed_result2=algo2.evaluate_colour_sum();
-	adjoint_QCD<value_type,2,2,3,std::random,false>* colgen1=adjoint_QCD<value_type,2,2,3,std::random,false>::create_instance<model_type>(algo.get_tree_iterator());
-	colour_flow_QCD<value_type,2,2,3,std::random,false>* colgen2=colour_flow_QCD<value_type,2,2,3,std::random,false>::create_instance<model_type2>(algo2.get_tree_iterator());
+	MC_integrator<value_type>* colgen1=new MC_generator_wrapper<value_type>(adjoint_QCD<value_type,2,2,3,std::random,false>::create_instance<model_type>(algo.get_tree_iterator()));
+	MC_integrator<value_type>* colgen2=new MC_generator_wrapper<value_type>(colour_flow_QCD<value_type,2,2,3,std::random,false>::create_instance<model_type2>(algo2.get_tree_iterator()));
 	value_type n,x1,y1,x2,y2;
 	data_wrapper* data=have_gp?(new data_wrapper(&n,&x1,&y1)):(new data_wrapper(filename+".dat",&n,&x1,&y1));
 	data->add_leaf(&x2);
@@ -627,9 +623,8 @@ int main()
     {
 	typedef QCDPbchabdc model_type;
 	typedef QCDPbchabcc model_type2;
-	typedef rambo<model_type,2,3,std::random> psgen_type;
-	typedef partonic_is<model_type,2> init_state;
-	typedef uniform_helicities<value_type,2,3,std::random,model_type::continuous_helicities> helgen_type;
+	typedef uniform_ps_generator_factory<model_type,2,3,std::random> ps_factory;
+	typedef helicity_generator_factory<model_type,2,3,std::random> hel_factory;
 	
 	std::string process("u,ubar > d,dbar,g");
 	std::string filename("plots/colMC2");
@@ -637,9 +632,9 @@ int main()
 	CM_algorithm<model_type,2,3>algo(process);
 	algo.load();
 	algo.construct();
-	ps_generator<model_type,2,3>* psgen=psgen_type::create_instance(algo.get_tree_iterator(),new init_state(Ecm,Ecm));
+	ps_generator<model_type,2,3>* psgen=ps_factory::create_generator(algo.get_tree_iterator());
 	psgen->generate();
-	helicity_generator<value_type,2,3,model_type::continuous_helicities>* helgen=helgen_type::create_instance<model_type>(algo.get_tree_iterator());
+	helicity_generator<value_type,2,3,model_type::continuous_helicities>* helgen=hel_factory::create_generator(algo.get_tree_iterator());
 	helgen->generate();
 	CM_algorithm<model_type2,2,3>algo2(process);
 	algo2.load();
@@ -647,8 +642,8 @@ int main()
 	copy_momenta<model_type,model_type2,2,3>(algo.get_tree_iterator(),algo2.get_tree_iterator());
 	copy_helicities<model_type,model_type2,2,3>(algo.get_tree_iterator(),algo2.get_tree_iterator());
 	value_type summed_result=algo.evaluate_colour_sum();
-	adjoint_QCD<value_type,2,3,3,std::random,false>* colgen1=adjoint_QCD<value_type,2,3,3,std::random,false>::create_instance<model_type>(algo.get_tree_iterator());
-	adjoint_QCD<value_type,2,3,3,std::random,true>* colgen2=adjoint_QCD<value_type,2,3,3,std::random,true>::create_instance<model_type2>(algo2.get_tree_iterator());
+	MC_integrator<value_type>* colgen1=new MC_generator_wrapper<value_type>(adjoint_QCD<value_type,2,3,3,std::random,false>::create_instance<model_type>(algo.get_tree_iterator()));
+	MC_integrator<value_type>* colgen2=new MC_generator_wrapper<value_type>(adjoint_QCD<value_type,2,3,3,std::random,true>::create_instance<model_type2>(algo2.get_tree_iterator()));
 	value_type n,x1,y1,x2,y2;
 	data_wrapper* data=have_gp?(new data_wrapper(&n,&x1,&y1)):(new data_wrapper(filename+".dat",&n,&x1,&y1));
 	data->add_leaf(&x2);
@@ -696,9 +691,8 @@ int main()
     {
 	typedef QCD model_type;
 	typedef QCDPbchcfcc model_type2;
-	typedef rambo<model_type,2,4,std::random> psgen_type;
-	typedef partonic_is<model_type,2> init_state;
-	typedef uniform_helicities<value_type,2,4,std::random,true> helgen_type;
+	typedef uniform_ps_generator_factory<model_type,2,4,std::random> ps_factory;
+	typedef helicity_generator_factory<model_type,2,4,std::random> hel_factory;
 	
 	std::string process("g,g > d,dbar,u,ubar");
 	std::string filename("plots/colMC3");
@@ -706,9 +700,9 @@ int main()
 	CM_algorithm<model_type,2,4>algo(process);
 	algo.load();
 	algo.construct();
-	ps_generator<model_type,2,4>* psgen=psgen_type::create_instance(algo.get_tree_iterator(),new init_state(Ecm,Ecm));
+	ps_generator<model_type,2,4>* psgen=ps_factory::create_generator(algo.get_tree_iterator());
 	psgen->generate();
-	helicity_generator<value_type,2,4,true>* helgen=helgen_type::create_instance<model_type>(algo.get_tree_iterator());
+	helicity_generator<value_type,2,4,true>* helgen=hel_factory::create_generator(algo.get_tree_iterator());
 	helgen->generate();
 	algo.evaluate();
 	CM_algorithm<model_type2,2,4>algo2(process);
@@ -717,9 +711,9 @@ int main()
 	copy_momenta<model_type,model_type2,2,4>(algo.get_tree_iterator(),algo2.get_tree_iterator());
 	copy_helicities<model_type,model_type2,2,4>(algo.get_tree_iterator(),algo2.get_tree_iterator());
 	model_type::value_type summed_result=algo.evaluate_colour_sum();
-	uniform_colours<value_type,2,4,std::random,false>* colgen0=uniform_colours<value_type,2,4,std::random,false>::create_instance<model_type>(algo.get_tree_iterator());
-	colour_flow_QCD<value_type,2,4,3,std::random,false>* colgen1=colour_flow_QCD<value_type,2,4,3,std::random,false>::create_instance<model_type>(algo.get_tree_iterator());
-	colour_flow_QCD<value_type,2,4,3,std::random,true>* colgen2=colour_flow_QCD<value_type,2,4,3,std::random,true>::create_instance<model_type2>(algo2.get_tree_iterator());
+	MC_integrator<value_type>* colgen0=new MC_generator_wrapper<value_type>(uniform_colours<value_type,2,4,std::random,false>::create_instance<model_type>(algo.get_tree_iterator()));
+	MC_integrator<value_type>* colgen1=new MC_generator_wrapper<value_type>(colour_flow_QCD<value_type,2,4,3,std::random,false>::create_instance<model_type>(algo.get_tree_iterator()));
+	MC_integrator<value_type>* colgen2=new MC_generator_wrapper<value_type>(colour_flow_QCD<value_type,2,4,3,std::random,true>::create_instance<model_type2>(algo2.get_tree_iterator()));
 	value_type n,x1,y1,x2,y2,x3,y3;
 	data_wrapper* data=have_gp?(new data_wrapper(&n,&x1,&y1)):(new data_wrapper(filename+".dat",&n,&x1,&y1));
 	data->add_leaf(&x2);

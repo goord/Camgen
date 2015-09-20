@@ -1,149 +1,60 @@
-\hypertarget{a00280}{\section{Camgen\-:\-:histogram$<$ T, comp\-\_\-type $>$ Class Template Reference}
-\label{a00280}\index{Camgen\-::histogram$<$ T, comp\-\_\-type $>$@{Camgen\-::histogram$<$ T, comp\-\_\-type $>$}}
-}
-
-
-Histogram-\/producing class template.  
-
-
-
-
-{\ttfamily \#include $<$histogram.\-h$>$}
-
-\subsection*{Classes}
-\begin{DoxyCompactItemize}
-\item 
-class \hyperlink{a00028}{bin}
-\begin{DoxyCompactList}\small\item\em Bin class type definition. \end{DoxyCompactList}\item 
-class \hyperlink{a00116}{data\-\_\-point}
-\begin{DoxyCompactList}\small\item\em Data point type definition. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hypertarget{a00280}{}\section{Camgen\+:\+:helicity\+\_\+summer$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$ Class Template Reference}
+\label{a00280}\index{Camgen\+::helicity\+\_\+summer$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$@{Camgen\+::helicity\+\_\+summer$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$}}
+Inheritance diagram for Camgen\+:\+:helicity\+\_\+summer$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.386364cm]{a00280}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00280_ac752e3b23a0235893a23adc3435a8b3b}{histogram} (const value\-\_\-type $\ast$x, const value\-\_\-type $\ast$w=N\-U\-L\-L, std\-::size\-\_\-t pts=1000)
-\begin{DoxyCompactList}\small\item\em Constructor\-: the first argument is a pointer whose value will be written to the histogram each time the store-\/function is called. \end{DoxyCompactList}\item 
-\hypertarget{a00280_a9b41b5476ebb8bccfabe1ab2b6bb149a}{void \hyperlink{a00280_a9b41b5476ebb8bccfabe1ab2b6bb149a}{store} ()}\label{a00280_a9b41b5476ebb8bccfabe1ab2b6bb149a}
+bool \hyperlink{a00280_a7230e7f5ee3f70fcd181911f2f4cf4f6}{generate} ()
+\begin{DoxyCompactList}\small\item\em \textquotesingle{}Bare generation\textquotesingle{} method (purely virtual). \end{DoxyCompactList}\item 
+\hypertarget{a00280_a967aa3d843f335438852b44d385358e2}{}bool \hyperlink{a00280_a967aa3d843f335438852b44d385358e2}{evaluate\+\_\+weight} ()\label{a00280_a967aa3d843f335438852b44d385358e2}
 
-\begin{DoxyCompactList}\small\item\em Stores the pointer value in the histogram. \end{DoxyCompactList}\item 
-void \hyperlink{a00280_aafa937e09f5a4886b19825d1c62a6cd9}{make} (bin\-\_\-size\-\_\-type bns=100, const value\-\_\-type \&offset\-\_\-left=3, const value\-\_\-type \&offset\-\_\-right=3)
-\begin{DoxyCompactList}\small\item\em Creates a histogram from the data. \end{DoxyCompactList}\item 
-std\-::ostream \& \hyperlink{a00280_a373451c0042976a4aa1de0620f249e14}{write} (std\-::ostream \&os) const 
-\begin{DoxyCompactList}\small\item\em Outputs the bin positions, values and weights to the output stream argument. \end{DoxyCompactList}\item 
-\hypertarget{a00280_a3eabc8668b570eb6126c8e16555f298b}{\hyperlink{a00426}{plot\-\_\-script} $\ast$ \hyperlink{a00280_a3eabc8668b570eb6126c8e16555f298b}{plot} (const std\-::string \&filename, const char $\ast$term=N\-U\-L\-L) const }\label{a00280_a3eabc8668b570eb6126c8e16555f298b}
+\begin{DoxyCompactList}\small\item\em Event weight calculation method. \end{DoxyCompactList}\item 
+bool \hyperlink{a00280_a919700d1b7e3d0fb241ec68ce89c234f}{sum\+\_\+helicity} (int i) const 
+\begin{DoxyCompactList}\small\item\em Returns a spin summation flag for the i-\/th particle. \end{DoxyCompactList}\item 
+\hypertarget{a00280_aa969143fe1fa7ff42b382bb2803f711f}{}std\+::string \hyperlink{a00280_aa969143fe1fa7ff42b382bb2803f711f}{type} () const \label{a00280_aa969143fe1fa7ff42b382bb2803f711f}
 
-\begin{DoxyCompactList}\small\item\em Writes the gnuplot script for the histogram plot. \end{DoxyCompactList}\item 
-\hypertarget{a00280_a22a3305314453b74248c1ba4050afe0c}{value\-\_\-type \hyperlink{a00280_a22a3305314453b74248c1ba4050afe0c}{mean} () const }\label{a00280_a22a3305314453b74248c1ba4050afe0c}
+\begin{DoxyCompactList}\small\item\em Polymorphic type identifier. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
 
-\begin{DoxyCompactList}\small\item\em Returns the mean. \end{DoxyCompactList}\item 
-\hypertarget{a00280_ac3cba0f0df4b82262ce92381895c8879}{value\-\_\-type \hyperlink{a00280_ac3cba0f0df4b82262ce92381895c8879}{sigma} () const }\label{a00280_ac3cba0f0df4b82262ce92381895c8879}
-
-\begin{DoxyCompactList}\small\item\em Returns the variance. \end{DoxyCompactList}\item 
-\hypertarget{a00280_ab4c1f9ec5a51b4973c1522382ee9e558}{std\-::size\-\_\-t \hyperlink{a00280_ab4c1f9ec5a51b4973c1522382ee9e558}{N\-\_\-events} () const }\label{a00280_ab4c1f9ec5a51b4973c1522382ee9e558}
-
-\begin{DoxyCompactList}\small\item\em Returns the number of data points. \end{DoxyCompactList}\item 
-\hypertarget{a00280_a8430fe1342b11c173c53f1e7c4c4c928}{const\-\_\-data\-\_\-iterator \hyperlink{a00280_a8430fe1342b11c173c53f1e7c4c4c928}{data\-\_\-begin} () const }\label{a00280_a8430fe1342b11c173c53f1e7c4c4c928}
-
-\begin{DoxyCompactList}\small\item\em Const iterator to the first data point. \end{DoxyCompactList}\item 
-\hypertarget{a00280_a297ca8e89ce33201bb6531ded246b891}{const\-\_\-data\-\_\-iterator \hyperlink{a00280_a297ca8e89ce33201bb6531ded246b891}{data\-\_\-end} () const }\label{a00280_a297ca8e89ce33201bb6531ded246b891}
-
-\begin{DoxyCompactList}\small\item\em Const iterator past the last data point. \end{DoxyCompactList}\item 
-\hypertarget{a00280_a40d0017be4fd229d7ade1b6b6ff65286}{const\-\_\-reverse\-\_\-data\-\_\-iterator \hyperlink{a00280_a40d0017be4fd229d7ade1b6b6ff65286}{data\-\_\-rbegin} () const }\label{a00280_a40d0017be4fd229d7ade1b6b6ff65286}
-
-\begin{DoxyCompactList}\small\item\em Const reverse iterator to the last data point. \end{DoxyCompactList}\item 
-\hypertarget{a00280_ad3ba48fe67c2225ae2b134884029b55c}{const\-\_\-reverse\-\_\-data\-\_\-iterator \hyperlink{a00280_ad3ba48fe67c2225ae2b134884029b55c}{data\-\_\-rend} () const }\label{a00280_ad3ba48fe67c2225ae2b134884029b55c}
-
-\begin{DoxyCompactList}\small\item\em Const reverse iterator before the first data point. \end{DoxyCompactList}\item 
-\hypertarget{a00280_a4ee0ac30f6fce5d43e518953397d7a52}{const\-\_\-bin\-\_\-iterator \hyperlink{a00280_a4ee0ac30f6fce5d43e518953397d7a52}{bins\-\_\-begin} () const }\label{a00280_a4ee0ac30f6fce5d43e518953397d7a52}
-
-\begin{DoxyCompactList}\small\item\em Const iterator to the first bin. \end{DoxyCompactList}\item 
-\hypertarget{a00280_ad2835094c088b316c772211c850dc415}{const\-\_\-bin\-\_\-iterator \hyperlink{a00280_ad2835094c088b316c772211c850dc415}{bins\-\_\-end} () const }\label{a00280_ad2835094c088b316c772211c850dc415}
-
-\begin{DoxyCompactList}\small\item\em Const iterator past the last bin. \end{DoxyCompactList}\item 
-\hypertarget{a00280_a30141b73bf05264cea359b1aea85de64}{const\-\_\-reverse\-\_\-bin\-\_\-iterator \hyperlink{a00280_a30141b73bf05264cea359b1aea85de64}{bins\-\_\-rbegin} () const }\label{a00280_a30141b73bf05264cea359b1aea85de64}
-
-\begin{DoxyCompactList}\small\item\em Const reverse iterator to the last bin. \end{DoxyCompactList}\item 
-\hypertarget{a00280_a8363835c38d2df6731d2b3cdbb6276ea}{const\-\_\-reverse\-\_\-bin\-\_\-iterator \hyperlink{a00280_a8363835c38d2df6731d2b3cdbb6276ea}{bins\-\_\-rend} () const }\label{a00280_a8363835c38d2df6731d2b3cdbb6276ea}
-
-\begin{DoxyCompactList}\small\item\em Const reverse iterator before the first bin. \end{DoxyCompactList}\item 
-\hypertarget{a00280_a1d97ebf605cbdbf9b78722d4d7617f94}{value\-\_\-type \hyperlink{a00280_a1d97ebf605cbdbf9b78722d4d7617f94}{binsize} () const }\label{a00280_a1d97ebf605cbdbf9b78722d4d7617f94}
-
-\begin{DoxyCompactList}\small\item\em Returns the bin size. \end{DoxyCompactList}\item 
-\hypertarget{a00280_abd504b4f85197308a6e49781252471e9}{data\-\_\-size\-\_\-type \hyperlink{a00280_abd504b4f85197308a6e49781252471e9}{count\-\_\-events} () const }\label{a00280_abd504b4f85197308a6e49781252471e9}
-
-\begin{DoxyCompactList}\small\item\em Counts events in the histogram. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Static Public Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-\hypertarget{a00280_a180bb6560a6b52227443d7f5399d6abb}{static bool \hyperlink{a00280_a180bb6560a6b52227443d7f5399d6abb}{data\-\_\-value\-\_\-comp} (const \hyperlink{a00116}{data\-\_\-point} \&x1, const \hyperlink{a00116}{data\-\_\-point} \&x2)}\label{a00280_a180bb6560a6b52227443d7f5399d6abb}
-
-\begin{DoxyCompactList}\small\item\em Data point comparison function according to value. \end{DoxyCompactList}\item 
-\hypertarget{a00280_a5354c06b243a5a1de746ecac7d148ceb}{static bool \hyperlink{a00280_a5354c06b243a5a1de746ecac7d148ceb}{data\-\_\-weight\-\_\-comp} (const \hyperlink{a00116}{data\-\_\-point} \&x1, const \hyperlink{a00116}{data\-\_\-point} \&x2)}\label{a00280_a5354c06b243a5a1de746ecac7d148ceb}
-
-\begin{DoxyCompactList}\small\item\em Data point comparison function according to weight. \end{DoxyCompactList}\item 
-\hypertarget{a00280_a612440dcebdb0e4449a781854de8933a}{static bool \hyperlink{a00280_a612440dcebdb0e4449a781854de8933a}{bin\-\_\-pos\-\_\-comp} (const \hyperlink{a00028}{bin} \&b1, const \hyperlink{a00028}{bin} \&b2)}\label{a00280_a612440dcebdb0e4449a781854de8933a}
-
-\begin{DoxyCompactList}\small\item\em Bin comparison by position. \end{DoxyCompactList}\item 
-\hypertarget{a00280_a9945d8887d608c45a7be390ab073a6e2}{static bool \hyperlink{a00280_a9945d8887d608c45a7be390ab073a6e2}{value\-\_\-pos\-\_\-comp} (const value\-\_\-type \&x, const \hyperlink{a00028}{bin} \&b)}\label{a00280_a9945d8887d608c45a7be390ab073a6e2}
-
-\begin{DoxyCompactList}\small\item\em Bin postion-\/value comparison. \end{DoxyCompactList}\item 
-\hypertarget{a00280_aa29cb6ea9d66cdc88c6c333f4d34803a}{static bool \hyperlink{a00280_aa29cb6ea9d66cdc88c6c333f4d34803a}{bin\-\_\-value\-\_\-comp} (const \hyperlink{a00028}{bin} \&b1, const \hyperlink{a00028}{bin} \&b2)}\label{a00280_aa29cb6ea9d66cdc88c6c333f4d34803a}
-
-\begin{DoxyCompactList}\small\item\em Bin comparison by value. \end{DoxyCompactList}\item 
-\hypertarget{a00280_adb2e2466f27097e6674921b865968548}{static bool \hyperlink{a00280_adb2e2466f27097e6674921b865968548}{bin\-\_\-weight\-\_\-comp} (const \hyperlink{a00028}{bin} \&b1, const \hyperlink{a00028}{bin} \&b2)}\label{a00280_adb2e2466f27097e6674921b865968548}
-
-\begin{DoxyCompactList}\small\item\em Bin comparison by weight. \end{DoxyCompactList}\end{DoxyCompactItemize}
-
-
-\subsection{Detailed Description}
-\subsubsection*{template$<$class T, class comp\-\_\-type = std\-::less$<$\-T$>$$>$class Camgen\-::histogram$<$ T, comp\-\_\-type $>$}
-
-Histogram-\/producing class template. 
-
-The first template argument denotes the type of the random number, the second argument a comparison class. 
-
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00280_ac752e3b23a0235893a23adc3435a8b3b}{\index{Camgen\-::histogram@{Camgen\-::histogram}!histogram@{histogram}}
-\index{histogram@{histogram}!Camgen::histogram@{Camgen\-::histogram}}
-\subsubsection[{histogram}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T, class comp\-\_\-type = std\-::less$<$\-T$>$$>$ {\bf Camgen\-::histogram}$<$ T, comp\-\_\-type $>$\-::{\bf histogram} (
-\begin{DoxyParamCaption}
-\item[{const value\-\_\-type $\ast$}]{x, }
-\item[{const value\-\_\-type $\ast$}]{w = {\ttfamily NULL}, }
-\item[{std\-::size\-\_\-t}]{pts = {\ttfamily 1000}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}}\label{a00280_ac752e3b23a0235893a23adc3435a8b3b}
-
-
-Constructor\-: the first argument is a pointer whose value will be written to the histogram each time the store-\/function is called. 
-
-The second argument is optional and provides a speedup for large samples, when taken to be the expected sample size. 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00280_aafa937e09f5a4886b19825d1c62a6cd9}{\index{Camgen\-::histogram@{Camgen\-::histogram}!make@{make}}
-\index{make@{make}!Camgen::histogram@{Camgen\-::histogram}}
-\subsubsection[{make}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T, class comp\-\_\-type = std\-::less$<$\-T$>$$>$ void {\bf Camgen\-::histogram}$<$ T, comp\-\_\-type $>$\-::make (
+\hypertarget{a00280_a7230e7f5ee3f70fcd181911f2f4cf4f6}{}\index{Camgen\+::helicity\+\_\+summer$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$@{Camgen\+::helicity\+\_\+summer$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$}!generate@{generate}}
+\index{generate@{generate}!Camgen\+::helicity\+\_\+summer$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$@{Camgen\+::helicity\+\_\+summer$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$}}
+\subsubsection[{generate}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\+\_\+t , std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out$>$ bool {\bf Camgen\+::helicity\+\_\+summer}$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$\+::generate (
 \begin{DoxyParamCaption}
-\item[{bin\-\_\-size\-\_\-type}]{bns = {\ttfamily 100}, }
-\item[{const value\-\_\-type \&}]{offset\-\_\-left = {\ttfamily 3}, }
-\item[{const value\-\_\-type \&}]{offset\-\_\-right = {\ttfamily 3}}
+{}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}}\label{a00280_aafa937e09f5a4886b19825d1c62a6cd9}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{a00280_a7230e7f5ee3f70fcd181911f2f4cf4f6}
 
 
-Creates a histogram from the data. 
+\textquotesingle{}Bare generation\textquotesingle{} method (purely virtual). 
 
-The first argument determines the number of bins to be used, the second and third resp. the number of standard deviations from left and right of the mean to be plotted. \hypertarget{a00280_a373451c0042976a4aa1de0620f249e14}{\index{Camgen\-::histogram@{Camgen\-::histogram}!write@{write}}
-\index{write@{write}!Camgen::histogram@{Camgen\-::histogram}}
-\subsubsection[{write}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T, class comp\-\_\-type = std\-::less$<$\-T$>$$>$ std\-::ostream\& {\bf Camgen\-::histogram}$<$ T, comp\-\_\-type $>$\-::write (
+Should update the weight data member. 
+
+Implements \hyperlink{a00366_a197b7bb66d8de5f6de401f81bea71e6c}{Camgen\+::\+M\+C\+\_\+generator$<$ value\+\_\+t $>$}.
+
+\hypertarget{a00280_a919700d1b7e3d0fb241ec68ce89c234f}{}\index{Camgen\+::helicity\+\_\+summer$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$@{Camgen\+::helicity\+\_\+summer$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$}!sum\+\_\+helicity@{sum\+\_\+helicity}}
+\index{sum\+\_\+helicity@{sum\+\_\+helicity}!Camgen\+::helicity\+\_\+summer$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$@{Camgen\+::helicity\+\_\+summer$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$}}
+\subsubsection[{sum\+\_\+helicity}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\+\_\+t , std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out$>$ bool {\bf Camgen\+::helicity\+\_\+summer}$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$\+::sum\+\_\+helicity (
 \begin{DoxyParamCaption}
-\item[{std\-::ostream \&}]{os}
+\item[{int}]{i}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{a00280_a373451c0042976a4aa1de0620f249e14}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{a00280_a919700d1b7e3d0fb241ec68ce89c234f}
 
 
-Outputs the bin positions, values and weights to the output stream argument. 
+Returns a spin summation flag for the i-\/th particle. 
+
+If true, the process/event generator classes will sum over the corresponding helicity when computing the matrix element. Returns false by default. 
+
+Reimplemented from \hyperlink{a00271_ab8d236622fd171df60d0b733d1ae1720}{Camgen\+::helicity\+\_\+generator$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$}.
 
 
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/\-Camgen/\hyperlink{a00645}{histogram.\-h}\end{DoxyCompactItemize}
+include/\+Camgen/\hyperlink{a00659}{hel\+\_\+gen.\+h}\end{DoxyCompactItemize}

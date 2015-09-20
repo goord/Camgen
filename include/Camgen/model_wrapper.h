@@ -693,7 +693,7 @@ namespace Camgen
 		particle_type* phi=get_private_particle(str);
 		if(phi!=NULL)
 		{
-		    phi->set_propagator<prop_t>();
+		    phi->template set_propagator<prop_t>();
 		}
 	    }
 

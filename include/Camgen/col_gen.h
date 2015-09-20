@@ -14,11 +14,11 @@
 
 #include <vector>
 #include <complex>
-#include <Camgen/unused.h>
 #include <Camgen/vector.h>
 #include <Camgen/tensor.h>
 #include <Camgen/forward_decs.h>
-#include <Camgen/MC_obj_gen.h>
+#include <Camgen/obj_alloc.h>
+#include <Camgen/MC_gen.h>
 #include <Camgen/summation.h>
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -37,18 +37,17 @@ namespace Camgen
     /// which takes a number of colours and an array of colour ranks, or a tree
     /// iterator as arguments.
 
-    template<class value_t,std::size_t N_in,std::size_t N_out>class colour_generator<value_t,N_in,N_out,false>: public MC_object_generator<value_t,std::vector<std::size_t>,N_in+N_out,true>
+    template<class value_t,std::size_t N_in,std::size_t N_out>class colour_generator<value_t,N_in,N_out,false>: public MC_generator<value_t>, public object_allocator<std::vector<std::size_t> >
     {
-	typedef MC_object_generator<value_t,std::vector<std::size_t>,N_in+N_out,true> base_type;
-
+	typedef object_allocator< std::vector<std::size_t> > base_type;
 	public:
 
 	    /* Type definitions: */
 	    /*-------------------*/
 
 	    typedef value_t value_type;
-	    typedef std::size_t size_type;
-	    typedef std::vector<std::size_t> object_type;
+	    typedef typename base_type::object_type object_type;
+	    typedef typename base_type::size_type size_type;
 
 	    /* Public static data: */
 	    /*---------------------*/
@@ -155,40 +154,6 @@ namespace Camgen
 
 	    virtual std::string type() const=0;
 
-	    /// Loads derived class data from input stream (empty by default).
-
-	    virtual std::istream& load_data(std::istream& is)
-	    {
-		return is;
-	    }
-
-	    /// Loads the helicity generator from input stream.
-
-	    std::istream& load(std::istream& is)
-	    {
-		this->base_type::load(is);
-		return load_data(is);
-	    }
-
-	    /// Writes derived class data to output stream (empty by default).
-
-	    std::ostream& save_data(std::ostream& os) const
-	    {
-		return os;
-	    }
-
-	    /// Writes the helicity generator to the output stream.
-
-	    std::ostream& save(std::ostream& os) const
-	    {
-		os<<"<colgen>"<<std::endl;
-		os<<type()<<std::endl;
-		this->base_type::save(os);
-		save_data(os);
-		os<<"</colgen>"<<std::endl;
-		return os;
-	    }
-
 	    /// Virtual Les Houches event file output method.
 
 	    virtual void LH_output(vector<int,N_tot>& c,vector<int,N_tot>& cbar) const
@@ -246,11 +211,11 @@ namespace Camgen
 	    /// vector of color vector pointers to be filled by the generator. The
 	    /// second argument is in array of colour range vectors.
 
-	    colour_generator(const vector<object_type*,N_tot>& cols_,const vector<std::vector<size_type>,N_tot>& col_ranges_):base_type(cols_),prefactor(1),col_ranges(col_ranges_){}
+	    colour_generator(const vector<object_type*,N_tot>& cols_,const vector<std::vector<size_type>,N_tot>& col_ranges_):base_type(cols_.begin(),cols_.end()),prefactor(1),col_ranges(col_ranges_){}
 
 	    /// Non-allocating constructor with a global range argument.
 
-	    colour_generator(const vector<object_type*,N_tot>& cols_,size_type Nc):base_type(cols_),prefactor(1)
+	    colour_generator(const vector<object_type*,N_tot>& cols_,size_type Nc):base_type(cols_.begin(),cols_.end()),prefactor(1)
 	    {
 		for(size_type i=0;i<N_tot;++i)
 		{
@@ -261,11 +226,11 @@ namespace Camgen
 	    /// Standalone-mode constructor. The argument is an array of colour
 	    /// range vectors.
 
-	    colour_generator(const vector<std::vector<size_type>,N_tot>& col_ranges_):col_ranges(col_ranges_),prefactor(1)
+	    colour_generator(const vector<std::vector<size_type>,N_tot>& col_ranges_):base_type(N_tot),col_ranges(col_ranges_),prefactor(1)
 	    {
 		for(size_type i=0;i<N_tot;++i)
 		{
-		    this->get_object(i)->resize(col_ranges[i].size(),0);
+		    this->object(i).resize(col_ranges[i].size(),0);
 		}
 	    }
 
@@ -273,12 +238,12 @@ namespace Camgen
 	    /// number of colours, the second vector the colour ranks of the
 	    /// external particles.
 
-	    colour_generator(const vector<size_type,N_tot>& col_ranks_,size_type Nc):prefactor(1)
+	    colour_generator(const vector<size_type,N_tot>& col_ranks_,size_type Nc):base_type(N_tot),prefactor(1)
 	    {
 		for(size_type i=0;i<N_tot;++i)
 		{
 		    col_ranges[i]=std::vector<size_type>(col_ranks_[i],Nc);
-		    this->get_object(i)->resize(col_ranks_[i],0);
+		    this->object(i).resize(col_ranks_[i],0);
 		}
 	    }
 	
@@ -299,9 +264,9 @@ namespace Camgen
     /// which takes a number of colours and an array of colour ranks, or a tree
     /// iterator as arguments.
 
-    template<class value_t,std::size_t N_in,std::size_t N_out>class colour_generator<value_t,N_in,N_out,true>: public MC_object_generator<value_t,tensor< std::complex<value_t> >,N_in+N_out,1>
+    template<class value_t,std::size_t N_in,std::size_t N_out>class colour_generator<value_t,N_in,N_out,true>: public object_allocator< tensor< std::complex<value_t> > >, public MC_generator<value_t>
     {
-	typedef MC_object_generator<value_t,tensor< std::complex<value_t> >,N_in+N_out,true> base_type;
+	typedef object_allocator<tensor< std::complex<value_t> > > base_type;
 
 	public:
 	    
@@ -309,9 +274,9 @@ namespace Camgen
 	    /*-------------------*/
 
 	    typedef value_t value_type;
-	    typedef std::size_t size_type;
-	    typedef std::complex<value_type> c_value_type;
-	    typedef tensor< std::complex<value_t> > object_type;
+	    typedef typename base_type::object_type object_type;
+	    typedef typename base_type::size_type size_type;
+	    typedef typename object_type::value_type c_value_type;
 
 	    /* Public static data: */
 	    /*---------------------*/
@@ -360,14 +325,14 @@ namespace Camgen
 
 	    size_type colour_rank(size_type i) const
 	    {
-		return this->get_object(i)->rank();
+		return this->object(i).rank();
 	    }
 
 	    /// Returns the range of the j-th colour of particle i.
 
 	    size_type colour_range(size_type i,size_type j) const
 	    {
-		return this->get_object(i)->index_range(j);
+		return this->object(i).index_range(j);
 	    }
 
 	    /// Returns the reference to the j-th colour entry of particle i.
@@ -401,7 +366,7 @@ namespace Camgen
 		va_start(I,i0);
 		for(size_type j=0;j<colour_rank(k);++j)
 		{
-		    n+=(i*this->get_object(k)->block_size(j));
+		    n+=(i*this->object(k).block_size(j));
 		    i=va_arg(I,size_type);
 		}
 		va_end(I);
@@ -418,7 +383,7 @@ namespace Camgen
 		va_start(I,i0);
 		for(size_type j=0;j<colour_rank(k);++j)
 		{
-		    n+=(i*this->get_object(k)->block_size(j));
+		    n+=(i*this->object(k).block_size(j));
 		    i=va_arg(I,size_type);
 		}
 		va_end(I);
@@ -448,39 +413,6 @@ namespace Camgen
 	    /// Polymorphic type identifier.
 
 	    virtual std::string type() const=0;
-
-	    /// Loads derived class data from input stream (empty by default).
-
-	    virtual std::istream& load_data(std::istream& is)
-	    {
-		return is;
-	    }
-
-	    /// Loads the helicity generator from input stream.
-
-	    std::istream& load(std::istream& is)
-	    {
-		this->base_type::load(is);
-		return load_data(is);
-	    }
-
-	    /// Writes derived class data to output stream (empty by default).
-
-	    std::ostream& save_data(std::ostream& os) const
-	    {
-		return os;
-	    }
-
-	    /// Writes the helicity generator to the output stream.
-
-	    std::ostream& save(std::ostream& os) const
-	    {
-		os<<"<colgen>"<<std::endl;
-		this->base_type::save(os);
-		save_data(os);
-		os<<"</colgen>"<<std::endl;
-		return os;
-	    }
 
 	    /// Virtual Les Houches event file output.
 
@@ -521,16 +453,16 @@ namespace Camgen
 	    /// Non-allocating constructor, taking a vector of pointers to
 	    /// colour tensors as argument.
 
-	    colour_generator(const vector<object_type*,N_tot>& tensors):base_type(tensors),prefactor(1){}
+	    colour_generator(const vector<object_type*,N_tot>& tensors):base_type(tensors.begin(),tensors.end()),prefactor(1){}
 
 	    /// Allocating constructor. The argument is an array of colour
 	    /// range vectors.
 
-	    colour_generator(const vector<std::vector<size_type>,N_tot>& ranges):prefactor(1)
+	    colour_generator(const vector<std::vector<size_type>,N_tot>& ranges):base_type(N_tot),prefactor(1)
 	    {
 		for(size_type i=0;i<N_tot;++i)
 		{
-		    this->get_object(i)->resize(ranges[i]);
+		    this->object(i).resize(ranges[i]);
 		}
 	    }
 	    
@@ -538,13 +470,13 @@ namespace Camgen
 	    /// number of colours, the second denotes the colour ranks of
 	    /// the external particles.
 
-	    colour_generator(vector<size_type,N_tot>ranks,size_type Nc):prefactor(1)
+	    colour_generator(vector<size_type,N_tot>ranks,size_type Nc):base_type(N_tot),prefactor(1)
 	    {
 		std::vector<size_type> r;
 		for(size_type i=0;i<N_tot;++i)
 		{
 		    r.resize(ranks[i],Nc);
-		    this->get_object(i)->resize(r);
+		    this->object(i).resize(r);
 		}
 	    }
     };

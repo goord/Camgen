@@ -27,11 +27,10 @@ namespace Camgen
     /* Momentum channel class template generating invariant masses according to
      * a Breit-Wigner distribution. */
 
-    template<class value_t,class rng_t>class BW_s_generator: public inversion_s_generator< value_t,rng_t,BW_s_generator<value_t,rng_t> >
+    template<class value_t,class rng_t>class Breit_Wigner: public inversion_value_generator< value_t,rng_t,Breit_Wigner<value_t,rng_t> >
     {
-	friend class s_integrator<value_t,rng_t>;
-	typedef inversion_s_generator< value_t,rng_t,BW_s_generator<value_t,rng_t> > direct_base_type;
-	typedef s_generator<value_t,rng_t> base_type;
+	typedef inversion_value_generator< value_t,rng_t,Breit_Wigner<value_t,rng_t> > inversion_generator_type;
+	typedef value_generator<value_t,rng_t> base_type;
 
 	public:
 
@@ -54,25 +53,16 @@ namespace Camgen
 	    
 	    /* Default constructor: */
 
-	    BW_s_generator(const value_type* m_,const value_type* w_):m(m_),w(w_)
+	    Breit_Wigner(const value_type* m_,const value_type* w_):m(m_),w(w_)
 	    {
 		refresh_params();
-		this->refresh_s_min();
-		this->refresh_s_max();
-	    }
-	    
-	    /* Constructor with invariant mass pointer argument. */
-	    
-	    BW_s_generator(value_type* s_,const value_type* m_,const value_type* w_):direct_base_type(s_),m(m_),w(w_)
-	    {
-		refresh_params();
-		this->refresh_s_min();
-		this->refresh_s_max();
+		this->refresh_lower_bound();
+		this->refresh_upper_bound();
 	    }
 
 	    /* Copy constructor: */
 
-	    BW_s_generator(const BW_s_generator<value_t,rng_t>& other):direct_base_type(other),m(other.m),w(other.w),mm(other.mm),mw(other.mw),mw2(other.mw2),alpha(other.alpha),xi_plus(other.xi_plus),xi_min(other.xi_min),nu(other.nu),nubar(other.nubar),lognu(other.lognu),logminnu(other.logminnu),lognubar(other.lognubar),logminnubar(other.logminnubar){}
+	    Breit_Wigner(const Breit_Wigner<value_t,rng_t>& other):inversion_generator_type(other),m(other.m),w(other.w),mm(other.mm),mw(other.mw),mw2(other.mw2),alpha(other.alpha),xi_plus(other.xi_plus),xi_min(other.xi_min),nu(other.nu),nubar(other.nubar),lognu(other.lognu),logminnu(other.logminnu),lognubar(other.lognubar),logminnubar(other.logminnubar){}
 
 	    /* Public modifiers: */
 	    /*-------------------*/
@@ -97,7 +87,7 @@ namespace Camgen
 		xi_min=std::sqrt((value_type)2*(alpha-mm));
 		nu=std::sqrt(std::complex<value_type>(mm,-mw));
 		nubar=std::sqrt(std::complex<value_type>(mm,mw));
-		return (this->refresh_s_min() and this->refresh_s_max());
+		return (this->refresh_lower_bound() and this->refresh_upper_bound());
 	    }
 	    
 	    /* Public const methods: */
@@ -105,9 +95,9 @@ namespace Camgen
 
 	    /* Clone method: */
 
-	    BW_s_generator<value_t,rng_t>* clone() const
+	    Breit_Wigner<value_t,rng_t>* clone() const
 	    {
-		return new BW_s_generator<value_t,rng_t>(*this);
+		return new Breit_Wigner<value_t,rng_t>(*this);
 	    }
 	    
 	    /* Returns the mass value. */
@@ -150,31 +140,6 @@ namespace Camgen
 	    value_type inverse_cdf(const value_type& rho) const
 	    {
 		return (mm+mw*std::tan(mw*rho));
-	    }
-	    
-	    /* Double-dispatch integrator functions. */
-	    
-	    value_type integrate_with(const s_generator<value_t,rng_t>* gen,const value_type& sqrts) const
-	    {
-		return gen->integrate_with(this,sqrts);
-	    }
-	    value_type integrate_with(const BW_s_generator<value_t,rng_t>* gen,const value_type& sqrts) const
-	    {
-		return s_integrator<value_t,rng_t>::integrate(this,gen,sqrts);
-	    }
-	    value_type integrate_with(const pl_s_generator<value_t,rng_t>* gen,const value_type& sqrts) const
-	    {
-		typedef pl_s_generator<value_t,rng_t> gen_t;
-		return s_integrator<value_t,rng_t>::template integrate<gen_t>(this,static_cast<const inversion_s_generator<value_t,rng_t,gen_t>*>(gen),sqrts);
-	    }
-	    value_type integrate_with(const uni_s_generator<value_t,rng_t>* gen,const value_type& sqrts) const
-	    {
-		return s_integrator<value_t,rng_t>::integrate(this,gen,sqrts);
-	    }
-	    value_type integrate_with(const Dd_s_generator<value_t,rng_t>* gen,const value_type& sqrts) const
-	    {
-		typedef BW_s_generator<value_t,rng_t> gen_t;
-		return s_integrator<value_t,rng_t>::template integrate<gen_t>(static_cast<const direct_base_type*>(this),gen,sqrts);
 	    }
 
 	    /* Serialization: */
@@ -228,7 +193,7 @@ namespace Camgen
 
 	    static const value_t pi2;
     };
-    template<class value_t,class rng_t>const value_t BW_s_generator<value_t,rng_t>::pi2(std::acos((value_t)0));
+    template<class value_t,class rng_t>const value_t Breit_Wigner<value_t,rng_t>::pi2(std::acos((value_t)0));
 }
 
 #endif /*CAMGEN_BREIT_WIGNER_H_*/

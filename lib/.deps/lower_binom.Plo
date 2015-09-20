@@ -1,0 +1,6 @@
+lower_binom.lo: ../src/lower_binom.cpp ../include/Camgen/lower_binom.h \
+ ../include/Camgen/combs.h
+
+../include/Camgen/lower_binom.h:
+
+../include/Camgen/combs.h:

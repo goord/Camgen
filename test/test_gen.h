@@ -14,7 +14,7 @@
  *                                                                           *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#include <Camgen/proc_gen.h>
+#include <Camgen/uni_evtgen_fac.h>
 #include <Camgen/stdrand.h>
 
 namespace Camgen
@@ -35,7 +35,8 @@ namespace Camgen
 		    set_phase_space_generator_type(phase_space_generators::uniform);
 		    set_helicity_generator_type(helicity_generators::uniform);
 		    set_colour_generator_type(colour_generators::flow_sampling);
-		    return new process_generator<model_type,1,N_out,std::random>(it);
+		    uniform_process_generator_factory<model_type,1,N_out,std::random> factory;
+		    return factory.create_generator(it);
 		}
 
 		static void fill(tree_iterator it)
@@ -66,12 +67,13 @@ namespace Camgen
 		    set_colour_generator_type(colour_generators::flow_sampling);
 		    set_beam_energy(1,0.5*E);
 		    set_beam_energy(2,0.5*E);
-		    return new process_generator<model_type,2,N_out,std::random>(it);
+		    uniform_process_generator_factory<model_type,2,N_out,std::random> factory;
+		    return factory.create_generator(it);
 		}
 
 		static void fill(tree_iterator it,const value_type& E)
 		{
-		    process_generator<model_type,2,N_out,std::random>* gen=create_generator(it,E);
+		    process_generator<model_type,2,N_out,std::random> gen=create_generator(it,E);
 		    gen->generate();
 		    delete gen;
 		}

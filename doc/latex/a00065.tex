@@ -1,8 +1,404 @@
-\hypertarget{a00065}{\section{Camgen\-:\-:cfd\-\_\-evaluate$<$ reverse\-\_\-conj\-\_\-right$<$ compose\-\_\-vertices$<$ Feynrule\-\_\-t1, Feynrule\-\_\-t2 $>$, true $>$ $>$ Class Template Reference}
-\label{a00065}\index{Camgen\-::cfd\-\_\-evaluate$<$ reverse\-\_\-conj\-\_\-right$<$ compose\-\_\-vertices$<$ Feynrule\-\_\-t1, Feynrule\-\_\-t2 $>$, true $>$ $>$@{Camgen\-::cfd\-\_\-evaluate$<$ reverse\-\_\-conj\-\_\-right$<$ compose\-\_\-vertices$<$ Feynrule\-\_\-t1, Feynrule\-\_\-t2 $>$, true $>$ $>$}}
-}
+\hypertarget{a00065}{}\section{Camgen\+:\+:C\+M\+\_\+algorithm$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out $>$ Class Template Reference}
+\label{a00065}\index{Camgen\+::\+C\+M\+\_\+algorithm$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out $>$@{Camgen\+::\+C\+M\+\_\+algorithm$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out $>$}}
 
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+Amplitude-\/computing algorithm class template.  
+
+
+
+
+{\ttfamily \#include $<$C\+M\+\_\+algo.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
 \item 
-include/\-Camgen/charge\-\_\-conj.\-h\end{DoxyCompactItemize}
+\hyperlink{a00065_a3df215ba1f51f54e224f0b78736c7e73}{C\+M\+\_\+algorithm} (std\+::size\+\_\+t n=0)
+\begin{DoxyCompactList}\small\item\em Trivial constructor. \end{DoxyCompactList}\item 
+\hyperlink{a00065_a4a5964ae509797fb3c98012f70671220}{C\+M\+\_\+algorithm} (const std\+::string \&str, std\+::size\+\_\+t n=0)
+\begin{DoxyCompactList}\small\item\em Constructor specifying the process. \end{DoxyCompactList}\item 
+bool \hyperlink{a00065_aff4e8ab6eb8afce8b5dd1694b69016e4}{add\+\_\+process} (const std\+::string \&str)
+\begin{DoxyCompactList}\small\item\em Subprocess insertion method. \end{DoxyCompactList}\item 
+void \hyperlink{a00065_a1af7990677b4e8f265d73ab900740733}{load} ()
+\begin{DoxyCompactList}\small\item\em Function loading the external particles. \end{DoxyCompactList}\item 
+void \hyperlink{a00065_a1054b354b10f88755707e77d6f53f4f9}{sort\+\_\+by\+\_\+flavours} ()
+\begin{DoxyCompactList}\small\item\em Rearranges the process list by flavours. \end{DoxyCompactList}\item 
+void \hyperlink{a00065_abd8c0a5f195b9637e308ba6cbaa57f7f}{sort\+\_\+by\+\_\+pdg\+\_\+id} ()
+\begin{DoxyCompactList}\small\item\em Rearranges the process list by P\+D\+G id. \end{DoxyCompactList}\item 
+process\+\_\+iterator \hyperlink{a00065_ae36c07e3ce35f8093575b71de905117d}{set\+\_\+process} (const std\+::string \&proc)
+\begin{DoxyCompactList}\small\item\em Selects a subprocess by string argument. \end{DoxyCompactList}\item 
+process\+\_\+iterator \hyperlink{a00065_a566045f554f719276a3e0f1b98f6aae4}{set\+\_\+process\+\_\+flavours} (const \hyperlink{a00579}{flavour\+\_\+vector} \&fv)
+\begin{DoxyCompactList}\small\item\em Selects a process by flavour vector. \end{DoxyCompactList}\item 
+process\+\_\+iterator \hyperlink{a00065_a1afddfffa00dd964d59e896934874eda}{set\+\_\+process\+\_\+pdg\+\_\+ids} (const \hyperlink{a00579}{vector}$<$ int, N\+\_\+external $>$ \&pv)
+\begin{DoxyCompactList}\small\item\em Selects a process by flavour P\+D\+G id. \end{DoxyCompactList}\item 
+process\+\_\+iterator \hyperlink{a00065_ace7a8ee9aa706dbba692db474ef08137}{set\+\_\+process} (process\+\_\+iterator it)
+\begin{DoxyCompactList}\small\item\em If the process iterator argument points to a process within the list, sets the tree and process iterator to the corresponding tree, otherwise no action is taken. \end{DoxyCompactList}\item 
+process\+\_\+iterator \hyperlink{a00065_af627000c0a9297d08d1c619cebed3094}{set\+\_\+process} (tree\+\_\+iterator it)
+\begin{DoxyCompactList}\small\item\em If the tree iterator argument points to a tree within the list, sets the tree and process iterator to the corresponding tree, otherwise no action is taken. \end{DoxyCompactList}\item 
+\hypertarget{a00065_a58ac0e4e0863aabc955b54a6d07632cd}{}bool \hyperlink{a00065_a58ac0e4e0863aabc955b54a6d07632cd}{reset\+\_\+process} ()\label{a00065_a58ac0e4e0863aabc955b54a6d07632cd}
+
+\begin{DoxyCompactList}\small\item\em Resets the process to the first in the list. \end{DoxyCompactList}\item 
+bool \hyperlink{a00065_aa868c04918fdb2f192565892ac10dee5}{next\+\_\+process} ()
+\begin{DoxyCompactList}\small\item\em Moves to the next process in the list. \end{DoxyCompactList}\item 
+\hypertarget{a00065_a4d7e1455d11c250b296378049592b7d2}{}bool \hyperlink{a00065_a4d7e1455d11c250b296378049592b7d2}{valid\+\_\+process} () const \label{a00065_a4d7e1455d11c250b296378049592b7d2}
+
+\begin{DoxyCompactList}\small\item\em Returns whether the process is valid. \end{DoxyCompactList}\item 
+\hypertarget{a00065_a91757a172f26e1c2f31510ac75e44fe1}{}tree\+\_\+iterator \hyperlink{a00065_a91757a172f26e1c2f31510ac75e44fe1}{get\+\_\+tree\+\_\+iterator} ()\label{a00065_a91757a172f26e1c2f31510ac75e44fe1}
+
+\begin{DoxyCompactList}\small\item\em Returns the iterator to the current vertex tree. \end{DoxyCompactList}\item 
+\hypertarget{a00065_a4d862eea43cea5aaf0bda13fb48bbd6b}{}process\+\_\+iterator \hyperlink{a00065_a4d862eea43cea5aaf0bda13fb48bbd6b}{get\+\_\+process\+\_\+iterator} ()\label{a00065_a4d862eea43cea5aaf0bda13fb48bbd6b}
+
+\begin{DoxyCompactList}\small\item\em Returns the (const) iterator to the current subprocess. \end{DoxyCompactList}\item 
+\hypertarget{a00065_a335247a222e3b6f0d9be9cdfceb2d7c4}{}const\+\_\+tree\+\_\+iterator \hyperlink{a00065_a335247a222e3b6f0d9be9cdfceb2d7c4}{get\+\_\+tree\+\_\+iterator} () const \label{a00065_a335247a222e3b6f0d9be9cdfceb2d7c4}
+
+\begin{DoxyCompactList}\small\item\em Returns the (const) iterator to the current vertex tree. \end{DoxyCompactList}\item 
+\hypertarget{a00065_a9d5cd54f6e37e3b23a45e6576f34791d}{}const\+\_\+process\+\_\+iterator \hyperlink{a00065_a9d5cd54f6e37e3b23a45e6576f34791d}{get\+\_\+process\+\_\+iterator} () const \label{a00065_a9d5cd54f6e37e3b23a45e6576f34791d}
+
+\begin{DoxyCompactList}\small\item\em Returns the (const) iterator to the current subprocess. \end{DoxyCompactList}\item 
+int \hyperlink{a00065_ad32142d2aeaa4c7cb48a59bf349bf974}{get\+\_\+flavour} (std\+::size\+\_\+t i)
+\begin{DoxyCompactList}\small\item\em Returns the flavour of the i-\/th external particle in the current subprocess. \end{DoxyCompactList}\item 
+int \hyperlink{a00065_a039e963e04dd2b56d3b3e954a785578f}{get\+\_\+pdg\+\_\+id} (std\+::size\+\_\+t i)
+\begin{DoxyCompactList}\small\item\em Returns the P\+D\+G id of the i-\/th external particle in the current subprocess. \end{DoxyCompactList}\item 
+\hypertarget{a00065_a000312e3e3674c447dd4335750900c93}{}void \hyperlink{a00065_a000312e3e3674c447dd4335750900c93}{construct} ()\label{a00065_a000312e3e3674c447dd4335750900c93}
+
+\begin{DoxyCompactList}\small\item\em Constructs the vertex tree of the current subprocess. \end{DoxyCompactList}\item 
+\hypertarget{a00065_a456f4c9ded09ed96900fd9db353a8347}{}void \hyperlink{a00065_a456f4c9ded09ed96900fd9db353a8347}{construct\+\_\+trees} ()\label{a00065_a456f4c9ded09ed96900fd9db353a8347}
+
+\begin{DoxyCompactList}\small\item\em Constructs the vertex trees of all subprocesses. \end{DoxyCompactList}\item 
+\hypertarget{a00065_a3315137e5b3d94680862d712d7a473e9}{}tree\+\_\+iterator \hyperlink{a00065_a3315137e5b3d94680862d712d7a473e9}{remove\+\_\+process} ()\label{a00065_a3315137e5b3d94680862d712d7a473e9}
+
+\begin{DoxyCompactList}\small\item\em Removes current process from tree. \end{DoxyCompactList}\item 
+\hypertarget{a00065_aaadcc4fc3d87aefaf15fa868e4bb9b62}{}void \hyperlink{a00065_aaadcc4fc3d87aefaf15fa868e4bb9b62}{remove\+\_\+empty\+\_\+processes} ()\label{a00065_aaadcc4fc3d87aefaf15fa868e4bb9b62}
+
+\begin{DoxyCompactList}\small\item\em Removes subprocesses with empty vertex trees. \end{DoxyCompactList}\item 
+\hypertarget{a00065_ac92fd247115dfa053bf7190c3fd50500}{}size\+\_\+type \hyperlink{a00065_ac92fd247115dfa053bf7190c3fd50500}{n\+\_\+processes} () const \label{a00065_ac92fd247115dfa053bf7190c3fd50500}
+
+\begin{DoxyCompactList}\small\item\em Counts indistinguishable processes. \end{DoxyCompactList}\item 
+\hypertarget{a00065_a9e25911d426e3427b3aa6737e526d2a1}{}size\+\_\+type \hyperlink{a00065_a9e25911d426e3427b3aa6737e526d2a1}{n\+\_\+trees} () const \label{a00065_a9e25911d426e3427b3aa6737e526d2a1}
+
+\begin{DoxyCompactList}\small\item\em Counts current trees. \end{DoxyCompactList}\item 
+\hypertarget{a00065_af7dd450ae8de745dba9770e047fdafe0}{}size\+\_\+type \hyperlink{a00065_af7dd450ae8de745dba9770e047fdafe0}{count\+\_\+nonempty\+\_\+processes} () const \label{a00065_af7dd450ae8de745dba9770e047fdafe0}
+
+\begin{DoxyCompactList}\small\item\em Counts indistinguishable processes with nonempty vertex trees. \end{DoxyCompactList}\item 
+\hypertarget{a00065_ab4219712736358f6de47885b29d706f7}{}long long unsigned \hyperlink{a00065_ab4219712736358f6de47885b29d706f7}{count\+\_\+diagrams} ()\label{a00065_ab4219712736358f6de47885b29d706f7}
+
+\begin{DoxyCompactList}\small\item\em Counts Feynman diagrams of current subprocess. \end{DoxyCompactList}\item 
+long long unsigned \hyperlink{a00065_a3f7fba8482b0038466cf79ffe3331a00}{count\+\_\+current\+\_\+combinations} ()
+\begin{DoxyCompactList}\small\item\em Counts the recursive complexity, i.\+e. \end{DoxyCompactList}\item 
+\hypertarget{a00065_a1e2be5beaaa4a7959dc7576d9a15c393}{}long long unsigned \hyperlink{a00065_a1e2be5beaaa4a7959dc7576d9a15c393}{count\+\_\+all\+\_\+diagrams} ()\label{a00065_a1e2be5beaaa4a7959dc7576d9a15c393}
+
+\begin{DoxyCompactList}\small\item\em Counts Feynman diagrams of all subproccesses. \end{DoxyCompactList}\item 
+long long unsigned \hyperlink{a00065_a92160db9f0d2e80d79f6927668224480}{count\+\_\+all\+\_\+current\+\_\+combinations} ()
+\begin{DoxyCompactList}\small\item\em Counts the recursive complexity, i.\+e. \end{DoxyCompactList}\item 
+\hypertarget{a00065_ae19da65c82df03b814f5ccabc994639b}{}value\+\_\+type \hyperlink{a00065_ae19da65c82df03b814f5ccabc994639b}{evaluate} ()\label{a00065_ae19da65c82df03b814f5ccabc994639b}
+
+\begin{DoxyCompactList}\small\item\em Evaluates current subprocess amplitude. \end{DoxyCompactList}\item 
+\hypertarget{a00065_a7147b8a2a31ea51584956656c8fba463}{}r\+\_\+value\+\_\+type \hyperlink{a00065_a7147b8a2a31ea51584956656c8fba463}{evaluate2} ()\label{a00065_a7147b8a2a31ea51584956656c8fba463}
+
+\begin{DoxyCompactList}\small\item\em Evaluates current subprocess amplitude squared. \end{DoxyCompactList}\item 
+\hypertarget{a00065_acbd9deb20158ae0e76b30a166063d576}{}r\+\_\+value\+\_\+type \hyperlink{a00065_acbd9deb20158ae0e76b30a166063d576}{evaluate\+\_\+spin\+\_\+sum} ()\label{a00065_acbd9deb20158ae0e76b30a166063d576}
+
+\begin{DoxyCompactList}\small\item\em Evaluates spin-\/summed subprocess amplitude and returns the spin-\/summed squared amplitude. \end{DoxyCompactList}\item 
+\hypertarget{a00065_aec23cda7c4ef2db43d987f2f2bb38c78}{}r\+\_\+value\+\_\+type \hyperlink{a00065_aec23cda7c4ef2db43d987f2f2bb38c78}{evaluate\+\_\+colour\+\_\+sum} ()\label{a00065_aec23cda7c4ef2db43d987f2f2bb38c78}
+
+\begin{DoxyCompactList}\small\item\em Evaluates colour-\/summed subprocess amplitude and returns the spin-\/summed squared amplitude. \end{DoxyCompactList}\item 
+r\+\_\+value\+\_\+type \hyperlink{a00065_a6071cbab036da4c1a9d8d00eb7c0609c}{evaluate\+\_\+sum} ()
+\begin{DoxyCompactList}\small\item\em Evaluates the summed amplitude where inidividual particle helicity and colour summation flags control the summing. \end{DoxyCompactList}\item 
+\hyperlink{a00406}{phase\+\_\+space\+\_\+type} $\ast$ \hyperlink{a00065_a9b3d790cf4f6323684efeda68aab814d}{get\+\_\+phase\+\_\+space} (size\+\_\+type i)
+\begin{DoxyCompactList}\small\item\em Returns phase space object address of the i-\/th external particle in the current subprocess. \end{DoxyCompactList}\item 
+const \hyperlink{a00406}{phase\+\_\+space\+\_\+type} $\ast$ \hyperlink{a00065_af40f66d9e09e8f7e14f61ddab73b2a5e}{get\+\_\+phase\+\_\+space} (size\+\_\+type i) const 
+\begin{DoxyCompactList}\small\item\em Returns const phase space object address of the i-\/th external particle in the current subprocess. \end{DoxyCompactList}\item 
+std\+::ostream \& \hyperlink{a00065_a4f1be4b979e9a01b6699018c3ea650d6}{print} (std\+::ostream \&os) const 
+\begin{DoxyCompactList}\small\item\em Prints the current vertex tree and interacting off-\/shell currents tensors to the argument streaming object. \end{DoxyCompactList}\item 
+std\+::ostream \& \hyperlink{a00065_a36305ac3639cd8043742422e33f17d2e}{print\+\_\+tree} (std\+::ostream \&os) const 
+\begin{DoxyCompactList}\small\item\em Prints the current vertex tree without current tensors to the argument streaming object. \end{DoxyCompactList}\item 
+\hypertarget{a00065_aebd0e3d1bc1bad0857ea4ceff5e13299}{}std\+::ostream \& \hyperlink{a00065_aebd0e3d1bc1bad0857ea4ceff5e13299}{print\+\_\+processes} (std\+::ostream \&os) const \label{a00065_aebd0e3d1bc1bad0857ea4ceff5e13299}
+
+\begin{DoxyCompactList}\small\item\em Prints the process list to the argument streaming object. \end{DoxyCompactList}\item 
+\hypertarget{a00065_adee5560e371f72c271fca2297ec856b9}{}std\+::ostream \& \hyperlink{a00065_adee5560e371f72c271fca2297ec856b9}{print\+\_\+process} (std\+::ostream \&os) const \label{a00065_adee5560e371f72c271fca2297ec856b9}
+
+\begin{DoxyCompactList}\small\item\em Prints the current process to the argument streaming object. \end{DoxyCompactList}\item 
+\hypertarget{a00065_ad6c31ec843cc98a64213f0ec470c9326}{}std\+::ostream \& \hyperlink{a00065_ad6c31ec843cc98a64213f0ec470c9326}{print\+\_\+vertices} (std\+::ostream \&os) const \label{a00065_ad6c31ec843cc98a64213f0ec470c9326}
+
+\begin{DoxyCompactList}\small\item\em Prints the participating vertices to the argument streaming object. \end{DoxyCompactList}\item 
+\hypertarget{a00065_acb71ec573b3a5d47ceeb3355e99ce33f}{}void \hyperlink{a00065_acb71ec573b3a5d47ceeb3355e99ce33f}{sum\+\_\+spin} (size\+\_\+type i)\label{a00065_acb71ec573b3a5d47ceeb3355e99ce33f}
+
+\begin{DoxyCompactList}\small\item\em Switches on spin summation for particle i. \end{DoxyCompactList}\item 
+\hypertarget{a00065_afb83877c21aafd2895eea5c4a058f132}{}void \hyperlink{a00065_afb83877c21aafd2895eea5c4a058f132}{sum\+\_\+spins} ()\label{a00065_afb83877c21aafd2895eea5c4a058f132}
+
+\begin{DoxyCompactList}\small\item\em Sums all spins when calling evaluate\+\_\+spin\+\_\+sum. \end{DoxyCompactList}\item 
+\hypertarget{a00065_a95abb5d5bafbe2d8b2c96e8c01efd6c9}{}void \hyperlink{a00065_a95abb5d5bafbe2d8b2c96e8c01efd6c9}{nsum\+\_\+spin} (size\+\_\+type i)\label{a00065_a95abb5d5bafbe2d8b2c96e8c01efd6c9}
+
+\begin{DoxyCompactList}\small\item\em Switches off spin summation for particle i. \end{DoxyCompactList}\item 
+\hypertarget{a00065_ac0e8919e83584a1e88fc07dc9d7263e3}{}void \hyperlink{a00065_ac0e8919e83584a1e88fc07dc9d7263e3}{nsum\+\_\+spins} ()\label{a00065_ac0e8919e83584a1e88fc07dc9d7263e3}
+
+\begin{DoxyCompactList}\small\item\em Switches off spin summation for all particles. \end{DoxyCompactList}\item 
+\hypertarget{a00065_a72f1698fd071be001fd331ac711f4e91}{}void \hyperlink{a00065_a72f1698fd071be001fd331ac711f4e91}{sum\+\_\+colour} (size\+\_\+type i)\label{a00065_a72f1698fd071be001fd331ac711f4e91}
+
+\begin{DoxyCompactList}\small\item\em Switches on colour summation for particle i. \end{DoxyCompactList}\item 
+\hypertarget{a00065_a132587c9138299ae7e2e96de48f0a076}{}void \hyperlink{a00065_a132587c9138299ae7e2e96de48f0a076}{sum\+\_\+colours} ()\label{a00065_a132587c9138299ae7e2e96de48f0a076}
+
+\begin{DoxyCompactList}\small\item\em Sums all colours when calling evaluate\+\_\+spin\+\_\+sum. \end{DoxyCompactList}\item 
+\hypertarget{a00065_a2a8a95f34f451622a28db3e5a522c697}{}void \hyperlink{a00065_a2a8a95f34f451622a28db3e5a522c697}{nsum\+\_\+colour} (size\+\_\+type i)\label{a00065_a2a8a95f34f451622a28db3e5a522c697}
+
+\begin{DoxyCompactList}\small\item\em Switches off colour summation for particle i. \end{DoxyCompactList}\item 
+\hypertarget{a00065_ab3fa6bcf41d7bfec126d24fea99357bf}{}void \hyperlink{a00065_ab3fa6bcf41d7bfec126d24fea99357bf}{nsum\+\_\+colours} ()\label{a00065_ab3fa6bcf41d7bfec126d24fea99357bf}
+
+\begin{DoxyCompactList}\small\item\em Switches off spin summation for all particles. \end{DoxyCompactList}\item 
+\hypertarget{a00065_a2a3aa7bc8efed3d4393e50c3dff4aee3}{}void \hyperlink{a00065_a2a3aa7bc8efed3d4393e50c3dff4aee3}{refresh} ()\label{a00065_a2a3aa7bc8efed3d4393e50c3dff4aee3}
+
+\begin{DoxyCompactList}\small\item\em Refreshes the current tree and reconstructs the subprocess trees. \end{DoxyCompactList}\item 
+\hypertarget{a00065_a0501e1a6cd1b244ab4bc531d72b7ee33}{}void \hyperlink{a00065_a0501e1a6cd1b244ab4bc531d72b7ee33}{clear} ()\label{a00065_a0501e1a6cd1b244ab4bc531d72b7ee33}
+
+\begin{DoxyCompactList}\small\item\em Clears all data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class model\+\_\+t, std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out$>$class Camgen\+::\+C\+M\+\_\+algorithm$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out $>$}
+
+Amplitude-\/computing algorithm class template. 
+
+Core class of the Camgen library for evaluating scattering amplitudes of arbitrary processes in any Q\+F\+T. The first template parameter denotes the model class, the second and third the respective number of incoming and outgoing particles. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00065_a3df215ba1f51f54e224f0b78736c7e73}{}\index{Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}!C\+M\+\_\+algorithm@{C\+M\+\_\+algorithm}}
+\index{C\+M\+\_\+algorithm@{C\+M\+\_\+algorithm}!Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}}
+\subsubsection[{C\+M\+\_\+algorithm}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t, std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out$>$ {\bf Camgen\+::\+C\+M\+\_\+algorithm}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out $>$\+::{\bf C\+M\+\_\+algorithm} (
+\begin{DoxyParamCaption}
+\item[{std\+::size\+\_\+t}]{n = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00065_a3df215ba1f51f54e224f0b78736c7e73}
+
+
+Trivial constructor. 
+
+The optional integer argument denotes the external particle chosen by the algorithm as the final current in the recursion. The amplitudes should not depend on this choice, unless there is a bug in Camgen, or the model violates C\+P\+T invariance. \hypertarget{a00065_a4a5964ae509797fb3c98012f70671220}{}\index{Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}!C\+M\+\_\+algorithm@{C\+M\+\_\+algorithm}}
+\index{C\+M\+\_\+algorithm@{C\+M\+\_\+algorithm}!Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}}
+\subsubsection[{C\+M\+\_\+algorithm}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t, std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out$>$ {\bf Camgen\+::\+C\+M\+\_\+algorithm}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out $>$\+::{\bf C\+M\+\_\+algorithm} (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{str, }
+\item[{std\+::size\+\_\+t}]{n = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00065_a4a5964ae509797fb3c98012f70671220}
+
+
+Constructor specifying the process. 
+
+The first argument should be of the form \char`\"{}phi1,...,phi\+N\+\_\+in $>$
+psi1,...,psi\+N\+\_\+out\char`\"{}, and the second argument is the optional final current (see trivial constructor). 
+
+\subsection{Member Function Documentation}
+\hypertarget{a00065_aff4e8ab6eb8afce8b5dd1694b69016e4}{}\index{Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}!add\+\_\+process@{add\+\_\+process}}
+\index{add\+\_\+process@{add\+\_\+process}!Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}}
+\subsubsection[{add\+\_\+process}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t, std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out$>$ bool {\bf Camgen\+::\+C\+M\+\_\+algorithm}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out $>$\+::add\+\_\+process (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{str}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00065_aff4e8ab6eb8afce8b5dd1694b69016e4}
+
+
+Subprocess insertion method. 
+
+The argument should be of the form \char`\"{}phi1,...,phi\+N\+\_\+in $>$
+psi1,...,psi\+N\+\_\+out\char`\"{}. If the insertion was succesful, the function returns true and moves the process iterator members to this subprocess entry. \hypertarget{a00065_a92160db9f0d2e80d79f6927668224480}{}\index{Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}!count\+\_\+all\+\_\+current\+\_\+combinations@{count\+\_\+all\+\_\+current\+\_\+combinations}}
+\index{count\+\_\+all\+\_\+current\+\_\+combinations@{count\+\_\+all\+\_\+current\+\_\+combinations}!Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}}
+\subsubsection[{count\+\_\+all\+\_\+current\+\_\+combinations}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t, std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out$>$ long long unsigned {\bf Camgen\+::\+C\+M\+\_\+algorithm}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out $>$\+::count\+\_\+all\+\_\+current\+\_\+combinations (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00065_a92160db9f0d2e80d79f6927668224480}
+
+
+Counts the recursive complexity, i.\+e. 
+
+the number of current combinations in all process trees. \hypertarget{a00065_a3f7fba8482b0038466cf79ffe3331a00}{}\index{Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}!count\+\_\+current\+\_\+combinations@{count\+\_\+current\+\_\+combinations}}
+\index{count\+\_\+current\+\_\+combinations@{count\+\_\+current\+\_\+combinations}!Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}}
+\subsubsection[{count\+\_\+current\+\_\+combinations}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t, std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out$>$ long long unsigned {\bf Camgen\+::\+C\+M\+\_\+algorithm}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out $>$\+::count\+\_\+current\+\_\+combinations (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00065_a3f7fba8482b0038466cf79ffe3331a00}
+
+
+Counts the recursive complexity, i.\+e. 
+
+the number of current combinations in the process tree. \hypertarget{a00065_a6071cbab036da4c1a9d8d00eb7c0609c}{}\index{Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}!evaluate\+\_\+sum@{evaluate\+\_\+sum}}
+\index{evaluate\+\_\+sum@{evaluate\+\_\+sum}!Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}}
+\subsubsection[{evaluate\+\_\+sum}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t, std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out$>$ r\+\_\+value\+\_\+type {\bf Camgen\+::\+C\+M\+\_\+algorithm}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out $>$\+::evaluate\+\_\+sum (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00065_a6071cbab036da4c1a9d8d00eb7c0609c}
+
+
+Evaluates the summed amplitude where inidividual particle helicity and colour summation flags control the summing. 
+
+\hypertarget{a00065_ad32142d2aeaa4c7cb48a59bf349bf974}{}\index{Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}!get\+\_\+flavour@{get\+\_\+flavour}}
+\index{get\+\_\+flavour@{get\+\_\+flavour}!Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}}
+\subsubsection[{get\+\_\+flavour}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t, std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out$>$ int {\bf Camgen\+::\+C\+M\+\_\+algorithm}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out $>$\+::get\+\_\+flavour (
+\begin{DoxyParamCaption}
+\item[{std\+::size\+\_\+t}]{i}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00065_ad32142d2aeaa4c7cb48a59bf349bf974}
+
+
+Returns the flavour of the i-\/th external particle in the current subprocess. 
+
+\hypertarget{a00065_a039e963e04dd2b56d3b3e954a785578f}{}\index{Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}!get\+\_\+pdg\+\_\+id@{get\+\_\+pdg\+\_\+id}}
+\index{get\+\_\+pdg\+\_\+id@{get\+\_\+pdg\+\_\+id}!Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}}
+\subsubsection[{get\+\_\+pdg\+\_\+id}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t, std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out$>$ int {\bf Camgen\+::\+C\+M\+\_\+algorithm}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out $>$\+::get\+\_\+pdg\+\_\+id (
+\begin{DoxyParamCaption}
+\item[{std\+::size\+\_\+t}]{i}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00065_a039e963e04dd2b56d3b3e954a785578f}
+
+
+Returns the P\+D\+G id of the i-\/th external particle in the current subprocess. 
+
+\hypertarget{a00065_a9b3d790cf4f6323684efeda68aab814d}{}\index{Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}!get\+\_\+phase\+\_\+space@{get\+\_\+phase\+\_\+space}}
+\index{get\+\_\+phase\+\_\+space@{get\+\_\+phase\+\_\+space}!Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}}
+\subsubsection[{get\+\_\+phase\+\_\+space}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t, std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out$>$ {\bf phase\+\_\+space\+\_\+type}$\ast$ {\bf Camgen\+::\+C\+M\+\_\+algorithm}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out $>$\+::get\+\_\+phase\+\_\+space (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+type}]{i}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00065_a9b3d790cf4f6323684efeda68aab814d}
+
+
+Returns phase space object address of the i-\/th external particle in the current subprocess. 
+
+\hypertarget{a00065_af40f66d9e09e8f7e14f61ddab73b2a5e}{}\index{Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}!get\+\_\+phase\+\_\+space@{get\+\_\+phase\+\_\+space}}
+\index{get\+\_\+phase\+\_\+space@{get\+\_\+phase\+\_\+space}!Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}}
+\subsubsection[{get\+\_\+phase\+\_\+space}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t, std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out$>$ const {\bf phase\+\_\+space\+\_\+type}$\ast$ {\bf Camgen\+::\+C\+M\+\_\+algorithm}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out $>$\+::get\+\_\+phase\+\_\+space (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+type}]{i}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{a00065_af40f66d9e09e8f7e14f61ddab73b2a5e}
+
+
+Returns const phase space object address of the i-\/th external particle in the current subprocess. 
+
+\hypertarget{a00065_a1af7990677b4e8f265d73ab900740733}{}\index{Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}!load@{load}}
+\index{load@{load}!Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}}
+\subsubsection[{load}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t, std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out$>$ void {\bf Camgen\+::\+C\+M\+\_\+algorithm}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out $>$\+::load (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00065_a1af7990677b4e8f265d73ab900740733}
+
+
+Function loading the external particles. 
+
+This routine sorts the subprocess list by lexicographical comparison of external particle flavours and removes identical initial + final states. Then, it initializes a vertex tree for each subprocess. \hypertarget{a00065_aa868c04918fdb2f192565892ac10dee5}{}\index{Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}!next\+\_\+process@{next\+\_\+process}}
+\index{next\+\_\+process@{next\+\_\+process}!Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}}
+\subsubsection[{next\+\_\+process}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t, std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out$>$ bool {\bf Camgen\+::\+C\+M\+\_\+algorithm}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out $>$\+::next\+\_\+process (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00065_aa868c04918fdb2f192565892ac10dee5}
+
+
+Moves to the next process in the list. 
+
+Returns a boolean denoting whether this is the final process. \hypertarget{a00065_a4f1be4b979e9a01b6699018c3ea650d6}{}\index{Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}!print@{print}}
+\index{print@{print}!Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}}
+\subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t, std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out$>$ std\+::ostream\& {\bf Camgen\+::\+C\+M\+\_\+algorithm}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out $>$\+::print (
+\begin{DoxyParamCaption}
+\item[{std\+::ostream \&}]{os}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{a00065_a4f1be4b979e9a01b6699018c3ea650d6}
+
+
+Prints the current vertex tree and interacting off-\/shell currents tensors to the argument streaming object. 
+
+\hypertarget{a00065_a36305ac3639cd8043742422e33f17d2e}{}\index{Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}!print\+\_\+tree@{print\+\_\+tree}}
+\index{print\+\_\+tree@{print\+\_\+tree}!Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}}
+\subsubsection[{print\+\_\+tree}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t, std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out$>$ std\+::ostream\& {\bf Camgen\+::\+C\+M\+\_\+algorithm}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out $>$\+::print\+\_\+tree (
+\begin{DoxyParamCaption}
+\item[{std\+::ostream \&}]{os}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{a00065_a36305ac3639cd8043742422e33f17d2e}
+
+
+Prints the current vertex tree without current tensors to the argument streaming object. 
+
+\hypertarget{a00065_ae36c07e3ce35f8093575b71de905117d}{}\index{Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}!set\+\_\+process@{set\+\_\+process}}
+\index{set\+\_\+process@{set\+\_\+process}!Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}}
+\subsubsection[{set\+\_\+process}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t, std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out$>$ process\+\_\+iterator {\bf Camgen\+::\+C\+M\+\_\+algorithm}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out $>$\+::set\+\_\+process (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{proc}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00065_ae36c07e3ce35f8093575b71de905117d}
+
+
+Selects a subprocess by string argument. 
+
+The argument should be of the same form as in the constructor. Because this string has to be decomposed and matched with particles, this selection doesn\textquotesingle{}t have optimal performance. For faster selection, one should choose either sort\+\_\+by\+\_\+flavour or sort\+\_\+by\+\_\+\+P\+D\+G\+\_\+id and then use respectively set\+\_\+process\+\_\+flavours or set\+\_\+process\+\_\+pdg\+\_\+ids. Note that if the process is not found in the list, the process and corresponding vertex tree will be added automatically. \hypertarget{a00065_ace7a8ee9aa706dbba692db474ef08137}{}\index{Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}!set\+\_\+process@{set\+\_\+process}}
+\index{set\+\_\+process@{set\+\_\+process}!Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}}
+\subsubsection[{set\+\_\+process}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t, std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out$>$ process\+\_\+iterator {\bf Camgen\+::\+C\+M\+\_\+algorithm}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out $>$\+::set\+\_\+process (
+\begin{DoxyParamCaption}
+\item[{process\+\_\+iterator}]{it}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00065_ace7a8ee9aa706dbba692db474ef08137}
+
+
+If the process iterator argument points to a process within the list, sets the tree and process iterator to the corresponding tree, otherwise no action is taken. 
+
+\hypertarget{a00065_af627000c0a9297d08d1c619cebed3094}{}\index{Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}!set\+\_\+process@{set\+\_\+process}}
+\index{set\+\_\+process@{set\+\_\+process}!Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}}
+\subsubsection[{set\+\_\+process}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t, std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out$>$ process\+\_\+iterator {\bf Camgen\+::\+C\+M\+\_\+algorithm}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out $>$\+::set\+\_\+process (
+\begin{DoxyParamCaption}
+\item[{tree\+\_\+iterator}]{it}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00065_af627000c0a9297d08d1c619cebed3094}
+
+
+If the tree iterator argument points to a tree within the list, sets the tree and process iterator to the corresponding tree, otherwise no action is taken. 
+
+\hypertarget{a00065_a566045f554f719276a3e0f1b98f6aae4}{}\index{Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}!set\+\_\+process\+\_\+flavours@{set\+\_\+process\+\_\+flavours}}
+\index{set\+\_\+process\+\_\+flavours@{set\+\_\+process\+\_\+flavours}!Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}}
+\subsubsection[{set\+\_\+process\+\_\+flavours}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t, std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out$>$ process\+\_\+iterator {\bf Camgen\+::\+C\+M\+\_\+algorithm}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out $>$\+::set\+\_\+process\+\_\+flavours (
+\begin{DoxyParamCaption}
+\item[{const {\bf flavour\+\_\+vector} \&}]{fv}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00065_a566045f554f719276a3e0f1b98f6aae4}
+
+
+Selects a process by flavour vector. 
+
+If the list is sorted by flavour, the search is optimal. If the process is not found in the list, a subprocess and vertex tree will be added automatically. \hypertarget{a00065_a1afddfffa00dd964d59e896934874eda}{}\index{Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}!set\+\_\+process\+\_\+pdg\+\_\+ids@{set\+\_\+process\+\_\+pdg\+\_\+ids}}
+\index{set\+\_\+process\+\_\+pdg\+\_\+ids@{set\+\_\+process\+\_\+pdg\+\_\+ids}!Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}}
+\subsubsection[{set\+\_\+process\+\_\+pdg\+\_\+ids}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t, std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out$>$ process\+\_\+iterator {\bf Camgen\+::\+C\+M\+\_\+algorithm}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out $>$\+::set\+\_\+process\+\_\+pdg\+\_\+ids (
+\begin{DoxyParamCaption}
+\item[{const {\bf vector}$<$ int, N\+\_\+external $>$ \&}]{pv}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00065_a1afddfffa00dd964d59e896934874eda}
+
+
+Selects a process by flavour P\+D\+G id. 
+
+If the list is sorted by P\+D\+G id\textquotesingle{}s, the search is optimal. If the process is not found in the list, a subprocess and vertex tree will be added automatically. \hypertarget{a00065_a1054b354b10f88755707e77d6f53f4f9}{}\index{Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}!sort\+\_\+by\+\_\+flavours@{sort\+\_\+by\+\_\+flavours}}
+\index{sort\+\_\+by\+\_\+flavours@{sort\+\_\+by\+\_\+flavours}!Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}}
+\subsubsection[{sort\+\_\+by\+\_\+flavours}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t, std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out$>$ void {\bf Camgen\+::\+C\+M\+\_\+algorithm}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out $>$\+::sort\+\_\+by\+\_\+flavours (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00065_a1054b354b10f88755707e77d6f53f4f9}
+
+
+Rearranges the process list by flavours. 
+
+This may speed up multi-\/process evaluations if the processes are searched by internal Camgen flavours (=order of particle insertion in the model class). \hypertarget{a00065_abd8c0a5f195b9637e308ba6cbaa57f7f}{}\index{Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}!sort\+\_\+by\+\_\+pdg\+\_\+id@{sort\+\_\+by\+\_\+pdg\+\_\+id}}
+\index{sort\+\_\+by\+\_\+pdg\+\_\+id@{sort\+\_\+by\+\_\+pdg\+\_\+id}!Camgen\+::\+C\+M\+\_\+algorithm@{Camgen\+::\+C\+M\+\_\+algorithm}}
+\subsubsection[{sort\+\_\+by\+\_\+pdg\+\_\+id}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t, std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out$>$ void {\bf Camgen\+::\+C\+M\+\_\+algorithm}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out $>$\+::sort\+\_\+by\+\_\+pdg\+\_\+id (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00065_abd8c0a5f195b9637e308ba6cbaa57f7f}
+
+
+Rearranges the process list by P\+D\+G id. 
+
+This may speed up multi-\/process evaluations if the processes are searched by P\+D\+G id. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Camgen/\hyperlink{a00610}{C\+M\+\_\+algo.\+h}\end{DoxyCompactItemize}

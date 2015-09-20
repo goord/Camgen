@@ -47,7 +47,8 @@ check_PROGRAMS =		bitstring_test		\
 				save_load_test		\
 		 		speed_test		
 
-check_HEADERS =	    	    	QEDPbdh.h		\
+check_HEADERS =	    	    	ps_gen_tester.h		\
+				QEDPbdh.h		\
 			    	QEDPbch.h		\
 			    	QEDWbdh.h		\
 			    	QEDWbch.h		\
@@ -70,7 +71,9 @@ check_HEADERS =	    	    	QEDPbdh.h		\
 				susy_QCDPbchabcc.h	\
 				susy_QCDPbchcfcc.h	\
 				susy_QCDPbchcfdc.h	\
-				susy_QCDPbdhcfcc.h
+				susy_QCDPbdhcfcc.h	\
+				s_int_tester.h		\
+				test_gen.h
 
 libCamtest_la_SOURCES =		QEDPbdh.cpp		\
 				QEDPbch.cpp		\

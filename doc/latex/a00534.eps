@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 222.222222
+%%BoundingBox: 0 0 500 179.104478
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,7 +19,7 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 2.250000 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 2.791667 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
@@ -173,9 +173,9 @@
 
 boxfont setfont
 1 boundaspect scale
-(Camorra::uni_s_generator< value_t, rng_t >) cw
-(Camorra::s_generator< value_t, rng_t >) cw
-(Camorra::MC_generator< value_t >) cw
+(Camgen::symmetric_s_pair_generator< value_t, rng_t >) cw
+(Camgen::s_pair_generator< value_t, rng_t >) cw
+(Camgen::MC_generator< value_t >) cw
 /boxwidth boxwidth marginwidth 2 mul add def
 /xspacing boxwidth distx add def
 /yspacing boxheight disty add def
@@ -187,9 +187,11 @@ boundx scalefactor div boundy scalefactor div scale
 
 % ----- classes -----
 
- (Camorra::uni_s_generator< value_t, rng_t >) 0.000000 0.000000 box
- (Camorra::s_generator< value_t, rng_t >) 0.000000 1.000000 box
- (Camorra::MC_generator< value_t >) 0.000000 2.000000 box
+ (Camgen::symmetric_s_pair_generator< value_t, rng_t >) 0.000000 0.000000 box
+ (Camgen::s_pair_generator< value_t, rng_t >) 0.000000 1.000000 box
+dashed
+ (Camgen::MC_generator< value_t >) 0.000000 2.000000 box
+solid
 
 % ----- relations -----
 

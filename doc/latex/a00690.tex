@@ -1,0 +1,269 @@
+\hypertarget{a00690}{}\section{include/\+Camgen/\+M\+C\+\_\+config.h File Reference}
+\label{a00690}\index{include/\+Camgen/\+M\+C\+\_\+config.\+h@{include/\+Camgen/\+M\+C\+\_\+config.\+h}}
+
+
+Static configuration data for Camgen Monte Carlo module.  
+
+
+{\ttfamily \#include $<$map$>$}\\*
+{\ttfamily \#include $<$string$>$}\\*
+{\ttfamily \#include $<$cstddef$>$}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{a00274}{Camgen\+::helicity\+\_\+generators}
+\begin{DoxyCompactList}\small\item\em Helicity generator types. \end{DoxyCompactList}\item 
+struct \hyperlink{a00083}{Camgen\+::colour\+\_\+generators}
+\begin{DoxyCompactList}\small\item\em Colour generator types. \end{DoxyCompactList}\item 
+struct \hyperlink{a00312}{Camgen\+::initial\+\_\+states}
+\begin{DoxyCompactList}\small\item\em Initial state generator types. \end{DoxyCompactList}\item 
+struct \hyperlink{a00423}{Camgen\+::phase\+\_\+space\+\_\+generators}
+\begin{DoxyCompactList}\small\item\em Momentum generator types. \end{DoxyCompactList}\item 
+struct \hyperlink{a00255}{Camgen\+::grid\+\_\+modes}
+\begin{DoxyCompactList}\small\item\em Adaptive grid modes. \end{DoxyCompactList}\item 
+struct \hyperlink{a00494}{Camgen\+::s\+\_\+pair\+\_\+generation\+\_\+modes}
+\begin{DoxyCompactList}\small\item\em S-\/pair generation modes. \end{DoxyCompactList}\item 
+class \hyperlink{a00365}{Camgen\+::\+M\+C\+\_\+config}
+\begin{DoxyCompactList}\small\item\em Class containing static data used by Camgen routines. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{a00879}{Camgen\+::basic\+\_\+cuts}
+\begin{DoxyCompactList}\small\item\em Namespace for basic cut manipulation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00878_ae0737b857faf74c1f584b8270b7d6caa}{}void {\bfseries Camgen\+::set\+\_\+helicity\+\_\+generator\+\_\+type} (helicity\+\_\+generators\+::type)\label{a00878_ae0737b857faf74c1f584b8270b7d6caa}
+
+\begin{DoxyCompactList}\small\item\em Sets the default helicity generator. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a14d183e26f400cb7b704a22e5bd3e78e}{}void {\bfseries Camgen\+::set\+\_\+colour\+\_\+generator\+\_\+type} (colour\+\_\+generators\+::type)\label{a00878_a14d183e26f400cb7b704a22e5bd3e78e}
+
+\begin{DoxyCompactList}\small\item\em Sets the default colour generator. \end{DoxyCompactList}\item 
+\hypertarget{a00878_ae1e034c0571edf9f7449ac4dd38b269b}{}void {\bfseries Camgen\+::set\+\_\+initial\+\_\+state\+\_\+type} (initial\+\_\+states\+::type)\label{a00878_ae1e034c0571edf9f7449ac4dd38b269b}
+
+\begin{DoxyCompactList}\small\item\em Sets the default initial state. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a57c652dae85dfcc87140fee575dda9ce}{}void {\bfseries Camgen\+::set\+\_\+phase\+\_\+space\+\_\+generator\+\_\+type} (phase\+\_\+space\+\_\+generators\+::type)\label{a00878_a57c652dae85dfcc87140fee575dda9ce}
+
+\begin{DoxyCompactList}\small\item\em Sets the default phase space generator. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a3d9a5318e3d8e17cacfba879ab7c8291}{}bool {\bfseries Camgen\+::set\+\_\+beam\+\_\+energy} (int, double)\label{a00878_a3d9a5318e3d8e17cacfba879ab7c8291}
+
+\begin{DoxyCompactList}\small\item\em Sets the i-\/th beam energy, where label starts from 1,... \end{DoxyCompactList}\item 
+\hypertarget{a00878_ae2e0cea12c80a74f3bcbac43337e5e88}{}bool {\bfseries Camgen\+::set\+\_\+first\+\_\+beam\+\_\+energy} (double)\label{a00878_ae2e0cea12c80a74f3bcbac43337e5e88}
+
+\begin{DoxyCompactList}\small\item\em Sets the first beam energy. Returns false at failure (negative argument). \end{DoxyCompactList}\item 
+bool {\bfseries Camgen\+::set\+\_\+second\+\_\+beam\+\_\+energy} (double)
+\begin{DoxyCompactList}\small\item\em Sets the second beam energy. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a53fa6d3e2329bf8296ae332aefd5da50}{}void {\bfseries Camgen\+::set\+\_\+channel\+\_\+init} (std\+::size\+\_\+t, std\+::size\+\_\+t)\label{a00878_a53fa6d3e2329bf8296ae332aefd5da50}
+
+\begin{DoxyCompactList}\small\item\em Sets the number of channel iterations and batch size at initialisation. \end{DoxyCompactList}\item 
+\hypertarget{a00878_aa1dfc99b70f13b45c913a0cb81e7d62c}{}void {\bfseries Camgen\+::set\+\_\+grid\+\_\+init} (std\+::size\+\_\+t, std\+::size\+\_\+t)\label{a00878_aa1dfc99b70f13b45c913a0cb81e7d62c}
+
+\begin{DoxyCompactList}\small\item\em Sets the number of grid iterations and batch size at initialisation. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a19f0b77f8377b972be7709b95baeec3b}{}void {\bfseries Camgen\+::set\+\_\+subprocess\+\_\+events} (std\+::size\+\_\+t)\label{a00878_a19f0b77f8377b972be7709b95baeec3b}
+
+\begin{DoxyCompactList}\small\item\em Sets the number of events for subprocess cross section estimation. \end{DoxyCompactList}\item 
+void {\bfseries Camgen\+::set\+\_\+auto\+\_\+channel\+\_\+adapt} (std\+::size\+\_\+t)
+\begin{DoxyCompactList}\small\item\em Sets the automatic channel adaptation batch size. \end{DoxyCompactList}\item 
+void {\bfseries Camgen\+::set\+\_\+auto\+\_\+grid\+\_\+adapt} (std\+::size\+\_\+t)
+\begin{DoxyCompactList}\small\item\em Sets the automatic grid adaptation batch size. \end{DoxyCompactList}\item 
+void {\bfseries Camgen\+::set\+\_\+auto\+\_\+subprocess\+\_\+adapt} (std\+::size\+\_\+t)
+\begin{DoxyCompactList}\small\item\em Sets the automatic subprocess weight adaptation batch size. \end{DoxyCompactList}\item 
+bool {\bfseries Camgen\+::set\+\_\+max\+\_\+init\+\_\+rejects} (std\+::size\+\_\+t)
+\begin{DoxyCompactList}\small\item\em Sets the maximal number of events thrown not passing cuts before moving on at initialisation of channels and grids. \end{DoxyCompactList}\item 
+void {\bfseries Camgen\+::set\+\_\+adaptive\+\_\+s\+\_\+sampling} (bool)
+\begin{DoxyCompactList}\small\item\em Controls whether adaptive grids should optimise the s-\/sampling algorithms. \end{DoxyCompactList}\item 
+void {\bfseries Camgen\+::set\+\_\+adaptive\+\_\+t\+\_\+sampling} (bool)
+\begin{DoxyCompactList}\small\item\em Controls whether adaptive grids should optimise the t-\/sampling algorithms. \end{DoxyCompactList}\item 
+void {\bfseries Camgen\+::set\+\_\+adaptive\+\_\+angles} (bool)
+\begin{DoxyCompactList}\small\item\em Controls whether adaptive grids should optimise the angle sampling in s-\/branchings. \end{DoxyCompactList}\item 
+bool {\bfseries Camgen\+::set\+\_\+grid\+\_\+bins} (std\+::size\+\_\+t)
+\begin{DoxyCompactList}\small\item\em Sets the maximal number of bins used by parni instances. \end{DoxyCompactList}\item 
+\hypertarget{a00878_aa5ed3db24f82c90ae214ae9fa63e6ec3}{}void {\bfseries Camgen\+::set\+\_\+grid\+\_\+mode} (grid\+\_\+modes\+::type)\label{a00878_aa5ed3db24f82c90ae214ae9fa63e6ec3}
+
+\begin{DoxyCompactList}\small\item\em Sets the grid bin splitting criterium. \end{DoxyCompactList}\item 
+bool {\bfseries Camgen\+::set\+\_\+pdfs} (const char $\ast$, int)
+\begin{DoxyCompactList}\small\item\em Sets the pdf set name and number. \end{DoxyCompactList}\item 
+bool {\bfseries Camgen\+::set\+\_\+multichannel\+\_\+threshold} (double)
+\begin{DoxyCompactList}\small\item\em Sets the multichannel threshold. \end{DoxyCompactList}\item 
+bool {\bfseries Camgen\+::set\+\_\+subprocess\+\_\+threshold} (double)
+\begin{DoxyCompactList}\small\item\em Sets the subprocess cross section threshold. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a2a74e7d3f4062e80869473e1c8b6d5ce}{}void {\bfseries Camgen\+::set\+\_\+multichannel\+\_\+adaptivity} (double)\label{a00878_a2a74e7d3f4062e80869473e1c8b6d5ce}
+
+\begin{DoxyCompactList}\small\item\em Sets the multichannel adaptivity. \end{DoxyCompactList}\item 
+\hypertarget{a00878_af939a054b626ba0508517fc90f5aa285}{}void {\bfseries Camgen\+::set\+\_\+subprocess\+\_\+adaptivity} (double)\label{a00878_af939a054b626ba0508517fc90f5aa285}
+
+\begin{DoxyCompactList}\small\item\em Sets the subprocess weight adaptivity. \end{DoxyCompactList}\item 
+\hypertarget{a00878_acd478e4f8ff312797facbc7a9c74d69f}{}void {\bfseries Camgen\+::set\+\_\+shat\+\_\+exponent} (double)\label{a00878_acd478e4f8ff312797facbc7a9c74d69f}
+
+\begin{DoxyCompactList}\small\item\em Sets the partonic invariant mass sampling exponent. \end{DoxyCompactList}\item 
+\hypertarget{a00878_ac4bac649996298dbef5922d5ca7dc18d}{}void {\bfseries Camgen\+::set\+\_\+timelike\+\_\+exponent} (double)\label{a00878_ac4bac649996298dbef5922d5ca7dc18d}
+
+\begin{DoxyCompactList}\small\item\em Sets the massless s-\/channel propagator sampling exponent. \end{DoxyCompactList}\item 
+void {\bfseries Camgen\+::set\+\_\+timelike\+\_\+exponent} (const std\+::string \&, double)
+\begin{DoxyCompactList}\small\item\em Sets the s-\/channel propagator sampling exponent for the specific particle. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a3b4a0019472e13464986668d917321e9}{}void {\bfseries Camgen\+::set\+\_\+spacelike\+\_\+exponent} (double)\label{a00878_a3b4a0019472e13464986668d917321e9}
+
+\begin{DoxyCompactList}\small\item\em Sets the massless t-\/channel propagator sampling exponent. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a5c96576e6580d80d8661445d7700043f}{}void {\bfseries Camgen\+::set\+\_\+spacelike\+\_\+exponent} (const std\+::string \&, double)\label{a00878_a5c96576e6580d80d8661445d7700043f}
+
+\begin{DoxyCompactList}\small\item\em Sets the t-\/channel propagator exponent for the specific particle. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a219249a7b2b4cf736431df5ffb416d3a}{}void {\bfseries Camgen\+::set\+\_\+auxiliary\+\_\+exponent} (double)\label{a00878_a219249a7b2b4cf736431df5ffb416d3a}
+
+\begin{DoxyCompactList}\small\item\em Sets the auxilary multi-\/particle invariant mass sampling exponent. \end{DoxyCompactList}\item 
+bool {\bfseries Camgen\+::discard\+\_\+weight\+\_\+fraction} (double)
+\begin{DoxyCompactList}\small\item\em Sets the maximal weight stabiliser. \end{DoxyCompactList}\item 
+\hypertarget{a00878_aa89925c5963205476e5eab0603de642a}{}void {\bfseries Camgen\+::set\+\_\+weight\+\_\+bins} (std\+::size\+\_\+t)\label{a00878_aa89925c5963205476e5eab0603de642a}
+
+\begin{DoxyCompactList}\small\item\em Sets the number of bins used to histogram event weights. \end{DoxyCompactList}\item 
+bool {\bfseries Camgen\+::set\+\_\+\+N\+R\+\_\+iterations} (std\+::size\+\_\+t)
+\begin{DoxyCompactList}\small\item\em Sets the number of Newton-\/\+Raphson iterations in massive R\+A\+M\+B\+O. \end{DoxyCompactList}\item 
+\hypertarget{a00878_aefa2cea0a25ca101c7302b4483fb9b24}{}void {\bfseries Camgen\+::set\+\_\+pdf\+\_\+alpha\+\_\+s} (bool)\label{a00878_aefa2cea0a25ca101c7302b4483fb9b24}
+
+\begin{DoxyCompactList}\small\item\em Sets whether to adopt the alpha-\/s defined by the P\+D\+F\textquotesingle{}s. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a858c6ffafa0806fb33c28a0d40708866}{}void {\bfseries Camgen\+::set\+\_\+pre\+\_\+init\+\_\+events} (std\+::size\+\_\+t)\label{a00878_a858c6ffafa0806fb33c28a0d40708866}
+
+\begin{DoxyCompactList}\small\item\em Sets the pre-\/initialisation precision. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a85645287db586b6dc0c30ae712d8089f}{}helicity\+\_\+generators\+::type {\bfseries Camgen\+::helicity\+\_\+generator\+\_\+type} ()\label{a00878_a85645287db586b6dc0c30ae712d8089f}
+
+\begin{DoxyCompactList}\small\item\em Returns the helicity generator type. \end{DoxyCompactList}\item 
+\hypertarget{a00878_aadb35b3258ed02ac23e9bceb092cf617}{}colour\+\_\+generators\+::type {\bfseries Camgen\+::colour\+\_\+generator\+\_\+type} ()\label{a00878_aadb35b3258ed02ac23e9bceb092cf617}
+
+\begin{DoxyCompactList}\small\item\em Returns the colour generator type. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a0691af5b6af1f99a786fe45da43dd80b}{}initial\+\_\+states\+::type {\bfseries Camgen\+::initial\+\_\+state\+\_\+type} ()\label{a00878_a0691af5b6af1f99a786fe45da43dd80b}
+
+\begin{DoxyCompactList}\small\item\em Returns the initial state type. \end{DoxyCompactList}\item 
+\hypertarget{a00878_add0039ba62eccad4ce500a7d14205ce0}{}phase\+\_\+space\+\_\+generators\+::type {\bfseries Camgen\+::phase\+\_\+space\+\_\+generator\+\_\+type} ()\label{a00878_add0039ba62eccad4ce500a7d14205ce0}
+
+\begin{DoxyCompactList}\small\item\em Returns the phase space generator type. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a2f56b600196d9e593d244563d9699ea7}{}bool {\bfseries Camgen\+::backward\+\_\+s\+\_\+sampling} ()\label{a00878_a2f56b600196d9e593d244563d9699ea7}
+
+\begin{DoxyCompactList}\small\item\em Returns whether the invariant masses are sampled backward. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a597636ede67b7edd2a7802d8619303cd}{}bool {\bfseries Camgen\+::backward\+\_\+shat\+\_\+sampling} ()\label{a00878_a597636ede67b7edd2a7802d8619303cd}
+
+\begin{DoxyCompactList}\small\item\em Returns whether the partonic invariant mass is sampled backward. \end{DoxyCompactList}\item 
+\hypertarget{a00878_ad1362c10614d6c2848d4c93a443474bc}{}double {\bfseries Camgen\+::beam\+\_\+energy} (std\+::size\+\_\+t)\label{a00878_ad1362c10614d6c2848d4c93a443474bc}
+
+\begin{DoxyCompactList}\small\item\em Returns the beam energy. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a7df898d0a648b1b85f8418ed1a5373c2}{}double {\bfseries Camgen\+::first\+\_\+beam\+\_\+energy} ()\label{a00878_a7df898d0a648b1b85f8418ed1a5373c2}
+
+\begin{DoxyCompactList}\small\item\em Returns the first beam energy. \end{DoxyCompactList}\item 
+\hypertarget{a00878_af8724feea3036bf30679759e8674ff86}{}double {\bfseries Camgen\+::second\+\_\+beam\+\_\+energy} ()\label{a00878_af8724feea3036bf30679759e8674ff86}
+
+\begin{DoxyCompactList}\small\item\em Returns the second beam energy. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a4701d84b84d92950210c29d707d5ff19}{}std\+::size\+\_\+t {\bfseries Camgen\+::init\+\_\+channel\+\_\+iterations} ()\label{a00878_a4701d84b84d92950210c29d707d5ff19}
+
+\begin{DoxyCompactList}\small\item\em Returns the number of channel initialisation iterations. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a909df520c28dcb343bb45c0484c18e33}{}std\+::size\+\_\+t {\bfseries Camgen\+::init\+\_\+channel\+\_\+batch} ()\label{a00878_a909df520c28dcb343bb45c0484c18e33}
+
+\begin{DoxyCompactList}\small\item\em Returns the channel initialisation iteration batch size. \end{DoxyCompactList}\item 
+\hypertarget{a00878_aec199dad2e3a981732f1b754ef780907}{}std\+::size\+\_\+t {\bfseries Camgen\+::init\+\_\+grid\+\_\+iterations} ()\label{a00878_aec199dad2e3a981732f1b754ef780907}
+
+\begin{DoxyCompactList}\small\item\em Returns the number of grid initialisation iterations. \end{DoxyCompactList}\item 
+\hypertarget{a00878_abc620352fdb254351d0bd992fa6ad8e0}{}std\+::size\+\_\+t {\bfseries Camgen\+::init\+\_\+grid\+\_\+batch} ()\label{a00878_abc620352fdb254351d0bd992fa6ad8e0}
+
+\begin{DoxyCompactList}\small\item\em Returns the grid initialisation batch size. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a48a6b3d1e3a94e622d75fc2f4c204630}{}std\+::size\+\_\+t {\bfseries Camgen\+::subprocess\+\_\+events} ()\label{a00878_a48a6b3d1e3a94e622d75fc2f4c204630}
+
+\begin{DoxyCompactList}\small\item\em Returns the number of subprocess cross section estimation events. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a040576ccd9f56a46334e4cfd8a5b554e}{}bool {\bfseries Camgen\+::auto\+\_\+channel\+\_\+adapt} ()\label{a00878_a040576ccd9f56a46334e4cfd8a5b554e}
+
+\begin{DoxyCompactList}\small\item\em Returns whether the channels are automatically adapted. \end{DoxyCompactList}\item 
+\hypertarget{a00878_af557e259212f3212ab4c60a08625216b}{}std\+::size\+\_\+t {\bfseries Camgen\+::auto\+\_\+channel\+\_\+batch} ()\label{a00878_af557e259212f3212ab4c60a08625216b}
+
+\begin{DoxyCompactList}\small\item\em Returns the automatic channel adaptation batch size. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a3c970a0eee330bf5a512083b715fe4b0}{}bool {\bfseries Camgen\+::auto\+\_\+grid\+\_\+adapt} ()\label{a00878_a3c970a0eee330bf5a512083b715fe4b0}
+
+\begin{DoxyCompactList}\small\item\em Returns whether the grids are automatically adapted. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a0152cb9afac8cb34a5fb0330472c1344}{}std\+::size\+\_\+t {\bfseries Camgen\+::auto\+\_\+grid\+\_\+batch} ()\label{a00878_a0152cb9afac8cb34a5fb0330472c1344}
+
+\begin{DoxyCompactList}\small\item\em Returns the automatic grid adaptation batch size. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a9409b57f8454f3ef5a361867bb2530b3}{}bool {\bfseries Camgen\+::auto\+\_\+subprocess\+\_\+adapt} ()\label{a00878_a9409b57f8454f3ef5a361867bb2530b3}
+
+\begin{DoxyCompactList}\small\item\em Returns whether the subprocess weights are automatically adapted. \end{DoxyCompactList}\item 
+\hypertarget{a00878_abe2b1aab7d10219076e10f2dc0ea1944}{}std\+::size\+\_\+t {\bfseries Camgen\+::auto\+\_\+subprocess\+\_\+batch} ()\label{a00878_abe2b1aab7d10219076e10f2dc0ea1944}
+
+\begin{DoxyCompactList}\small\item\em Returns the automatic subprocess weights adaptation batch size. \end{DoxyCompactList}\item 
+std\+::size\+\_\+t {\bfseries Camgen\+::max\+\_\+init\+\_\+rejects} ()
+\begin{DoxyCompactList}\small\item\em Returns the maximal number of thrown points at grid/channel initialisation not passing the cuts before moving on. \end{DoxyCompactList}\item 
+bool {\bfseries Camgen\+::adaptive\+\_\+s\+\_\+sampling} ()
+\begin{DoxyCompactList}\small\item\em Returns whether the s-\/type propagators should be optimised with an adaptive grid. \end{DoxyCompactList}\item 
+bool {\bfseries Camgen\+::adaptive\+\_\+t\+\_\+sampling} ()
+\begin{DoxyCompactList}\small\item\em Returns whether the t-\/type propagators should be optimised with an adaptive grid. \end{DoxyCompactList}\item 
+bool {\bfseries Camgen\+::adaptive\+\_\+angles} ()
+\begin{DoxyCompactList}\small\item\em Returns whether the s-\/braching angles should be optimised with an adaptive grid. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a909bd9954cd0132a45102c5fca15e259}{}std\+::size\+\_\+t {\bfseries Camgen\+::grid\+\_\+bins} ()\label{a00878_a909bd9954cd0132a45102c5fca15e259}
+
+\begin{DoxyCompactList}\small\item\em Returns the maximal number of bins per 1-\/d grid. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a1f8278cb3de70846a499c98c6b60ff9e}{}grid\+\_\+modes\+::type {\bfseries Camgen\+::grid\+\_\+mode} ()\label{a00878_a1f8278cb3de70846a499c98c6b60ff9e}
+
+\begin{DoxyCompactList}\small\item\em Returns the grid bin-\/splitting mode. \end{DoxyCompactList}\item 
+\hypertarget{a00878_ade651df5baf7c473757ff2c69b2d32f5}{}const char $\ast$ {\bfseries Camgen\+::pdf\+\_\+name} ()\label{a00878_ade651df5baf7c473757ff2c69b2d32f5}
+
+\begin{DoxyCompactList}\small\item\em Returns the current pdf name. \end{DoxyCompactList}\item 
+\hypertarget{a00878_ab52216341809366c89f47bbc14d608de}{}int {\bfseries Camgen\+::pdf\+\_\+number} ()\label{a00878_ab52216341809366c89f47bbc14d608de}
+
+\begin{DoxyCompactList}\small\item\em Returns the current pdf number. \end{DoxyCompactList}\item 
+\hypertarget{a00878_adbd6755bcf0ce4875b7e2724dd95a4d6}{}double {\bfseries Camgen\+::multichannel\+\_\+threshold} ()\label{a00878_adbd6755bcf0ce4875b7e2724dd95a4d6}
+
+\begin{DoxyCompactList}\small\item\em Returns the multichannel threshold. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a64845d4544eab34ef9f57ca5489e7d59}{}double {\bfseries Camgen\+::subprocess\+\_\+threshold} ()\label{a00878_a64845d4544eab34ef9f57ca5489e7d59}
+
+\begin{DoxyCompactList}\small\item\em Returns the subprocess threshold. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a26b06cbad2fe3a549cf0102ef2605280}{}double {\bfseries Camgen\+::multichannel\+\_\+adaptivity} ()\label{a00878_a26b06cbad2fe3a549cf0102ef2605280}
+
+\begin{DoxyCompactList}\small\item\em Returns the multichannel adaptivity. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a736671e9ed27610eab1526c638156c77}{}double {\bfseries Camgen\+::subprocess\+\_\+adaptivity} ()\label{a00878_a736671e9ed27610eab1526c638156c77}
+
+\begin{DoxyCompactList}\small\item\em Returns the subprocess weight adaptivity. \end{DoxyCompactList}\item 
+\hypertarget{a00878_ae4a3ebfc64b6591a69a84781aef94f80}{}double {\bfseries Camgen\+::shat\+\_\+exponent} ()\label{a00878_ae4a3ebfc64b6591a69a84781aef94f80}
+
+\begin{DoxyCompactList}\small\item\em Returns the partonic invariant mass sampling exponent. \end{DoxyCompactList}\item 
+\hypertarget{a00878_aca68996421ae280ada5d9bf6966e9857}{}double {\bfseries Camgen\+::timelike\+\_\+exponent} ()\label{a00878_aca68996421ae280ada5d9bf6966e9857}
+
+\begin{DoxyCompactList}\small\item\em Returns the timelike propagator sampling exponent. \end{DoxyCompactList}\item 
+double {\bfseries Camgen\+::timelike\+\_\+exponent} (const std\+::string \&)
+\begin{DoxyCompactList}\small\item\em Returns the timelike propagator sampling exponent for the given particle. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a64fc037fbef0f6cb7bb1771eef05dc9f}{}double {\bfseries Camgen\+::spacelike\+\_\+exponent} ()\label{a00878_a64fc037fbef0f6cb7bb1771eef05dc9f}
+
+\begin{DoxyCompactList}\small\item\em Returns the spacelike propagator sampling exponent. \end{DoxyCompactList}\item 
+double {\bfseries Camgen\+::spacelike\+\_\+exponent} (const std\+::string \&)
+\begin{DoxyCompactList}\small\item\em Returns the spacelike propagator sampling exponent for the given particle. \end{DoxyCompactList}\item 
+\hypertarget{a00878_ab4ad02e88ed91b81dc8a95c9c8f2d587}{}double {\bfseries Camgen\+::auxiliary\+\_\+exponent} ()\label{a00878_ab4ad02e88ed91b81dc8a95c9c8f2d587}
+
+\begin{DoxyCompactList}\small\item\em Returns the multi-\/particle invariant mass sampling exponent. \end{DoxyCompactList}\item 
+\hypertarget{a00878_ab0a5373efc296afd16509ef6bb82601e}{}double {\bfseries Camgen\+::discarded\+\_\+weight\+\_\+fraction} ()\label{a00878_ab0a5373efc296afd16509ef6bb82601e}
+
+\begin{DoxyCompactList}\small\item\em Returns the ignored fraction of highest-\/weight events. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a76102538735607adcb9e8d904203302d}{}std\+::size\+\_\+t {\bfseries Camgen\+::weight\+\_\+bins} ()\label{a00878_a76102538735607adcb9e8d904203302d}
+
+\begin{DoxyCompactList}\small\item\em Returns the number of bins for weights-\/histogramming. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a97b1f4314d1b71089b429b36a56712a9}{}std\+::size\+\_\+t {\bfseries Camgen\+::\+N\+R\+\_\+iterations} ()\label{a00878_a97b1f4314d1b71089b429b36a56712a9}
+
+\begin{DoxyCompactList}\small\item\em Returns the nr of Newton-\/\+Raphson iterations in massive R\+A\+M\+B\+O. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a22bfeba643397eecac7f5611cd031b3a}{}bool {\bfseries Camgen\+::use\+\_\+pdf\+\_\+alpha\+\_\+s} ()\label{a00878_a22bfeba643397eecac7f5611cd031b3a}
+
+\begin{DoxyCompactList}\small\item\em Returns whether to use the pdf\textquotesingle{}s alpha\+\_\+s. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a4bbfbf420fc1ca323a5c5696a1c356a0}{}std\+::size\+\_\+t {\bfseries Camgen\+::pre\+\_\+init\+\_\+events} ()\label{a00878_a4bbfbf420fc1ca323a5c5696a1c356a0}
+
+\begin{DoxyCompactList}\small\item\em Returns the pre-\/initialisation precision. \end{DoxyCompactList}\item 
+\hypertarget{a00878_af8abca0440b21f67688eefe7f92a8138}{}s\+\_\+pair\+\_\+generation\+\_\+modes\+::type {\bfseries Camgen\+::s\+\_\+pair\+\_\+generation\+\_\+mode} ()\label{a00878_af8abca0440b21f67688eefe7f92a8138}
+
+\begin{DoxyCompactList}\small\item\em Returns the s-\/pair generation mode. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a1087174af481b616729434d2c8da413b}{}void {\bfseries Camgen\+::set\+\_\+s\+\_\+pair\+\_\+generation\+\_\+mode} (s\+\_\+pair\+\_\+generation\+\_\+modes\+::type)\label{a00878_a1087174af481b616729434d2c8da413b}
+
+\begin{DoxyCompactList}\small\item\em Sets the s-\/pair generation mode. \end{DoxyCompactList}\item 
+double \hyperlink{a00879_a2c6ac3377c1cfcca9c07fd789eb6d8a1}{Camgen\+::basic\+\_\+cuts\+::set\+\_\+m\+\_\+min} (int i, int j, double)
+\begin{DoxyCompactList}\small\item\em Sets the minimal invariant mass for particles (i,j). \end{DoxyCompactList}\item 
+double \hyperlink{a00879_a06768fc1ac5f34d8657a1b1dfd0a104d}{Camgen\+::basic\+\_\+cuts\+::set\+\_\+s\+\_\+min} (int i, int j, double)
+\begin{DoxyCompactList}\small\item\em Sets the minimal invariant mass-\/squared for particles (i,j). \end{DoxyCompactList}\item 
+\hypertarget{a00879_a7a908084900d0916765a80c48cbde675}{}void \hyperlink{a00879_a7a908084900d0916765a80c48cbde675}{Camgen\+::basic\+\_\+cuts\+::clear} ()\label{a00879_a7a908084900d0916765a80c48cbde675}
+
+\begin{DoxyCompactList}\small\item\em Sets all basic cut variables to their default values. \end{DoxyCompactList}\item 
+\hypertarget{a00879_ad9a932146d48ae43b7f29776cd917921}{}double \hyperlink{a00879_ad9a932146d48ae43b7f29776cd917921}{Camgen\+::basic\+\_\+cuts\+::m\+\_\+min} (int i, int j)\label{a00879_ad9a932146d48ae43b7f29776cd917921}
+
+\begin{DoxyCompactList}\small\item\em Returns the minimal (i,j)-\/dimass. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Static configuration data for Camgen Monte Carlo module. 
+

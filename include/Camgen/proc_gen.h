@@ -12,21 +12,47 @@
 #ifndef CAMGEN_PROC_GEN_H_
 #define CAMGEN_PROC_GEN_H_
 
+/* * * * * * * * * * * * * * * * * * * * * * * *
+ * Single-process Monte Carlo generator class. *
+ *                                             *
+ * * * * * * * * * * * * * * * * * * * * * * * */
+
 #include <Camgen/CM_algo.h>
-#include <Camgen/helgen_fac.h>
-#include <Camgen/colgen_fac.h>
-#include <Camgen/psgen_fac.h>
-#include <Camgen/gen_conf.h>
+#include <Camgen/hel_gen.h>
+#include <Camgen/col_gen.h>
+#include <Camgen/ps_gen.h>
+#include <Camgen/rn_strm.h>
 
 namespace Camgen
 {
-    template<class model_t,std::size_t N_in,std::size_t N_out,class rng_t>class event_generator;
+    template<class model_t,bool q=model_t::coloured>class continuous_colours;
 
-    /// Single-process matrix-element event generator class.
-
-    template<class model_t,std::size_t N_in,std::size_t N_out,class rng_t>class process_generator: public MC_generator<typename model_t::value_type>,public ps_generator_base<model_t>,public phase_space_cut,public scale_expression<typename model_t::value_type>
+    template<class model_t>class continuous_colours<model_t,false>
     {
-	friend class event_generator<model_t,N_in,N_out,rng_t>;
+	public:
+
+	    static const bool value=false;
+    };
+
+    template<class model_t>class continuous_colours<model_t,true>
+    {
+	public:
+
+	    static const bool value=model_t::continuous_colours;
+    };
+
+
+	
+    /* Forward declaration of process generator factory base: */
+
+    template<class model_t,std::size_t N_in,std::size_t N_out,class rng_t>class process_generator_factory_base;
+
+    /// Single-process matrix-element Monte Carlo event generator class.
+
+    template<class model_t,std::size_t N_in,std::size_t N_out, class rng_t>class process_generator: public MC_integrator<typename model_t::value_type>,public ps_generator_base<model_t>,public phase_space_cut,public scale_expression<typename model_t::value_type>
+    {
+	friend class process_generator_factory_base<model_t,N_in,N_out,rng_t>;
+
 	typedef MC_generator<typename model_t::value_type> base_type;
 	
 	public:
@@ -35,17 +61,16 @@ namespace Camgen
 
 	    typedef model_t model_type;
 	    typedef typename model_t::value_type value_type;
-	    typedef typename get_spacetime_type<model_t>::type spacetime_type;
 	    typedef vector<value_type,model_t::dimension> momentum_type;
 	    typedef std::size_t size_type;
-	    typedef rng_t rn_engine;
-	    typedef random_number_stream<value_type,rng_t> rn_stream;
+	    typedef rng_t random_number_generator_type;
+	    typedef random_number_stream<value_type,rng_t> random_number_generator;
 	    typedef typename CM_algorithm<model_t,N_in,N_out>::tree_iterator CM_tree_iterator;
 	    typedef typename CM_algorithm<model_t,N_in,N_out>::phase_space_type phase_space_type;
-	    typedef typename ps_generator_factory<model_t,N_in,N_out,rng_t>::generator_type ps_generator_type;
-	    typedef typename helicity_generator_factory<model_t,N_in,N_out,rng_t>::generator_type helicity_generator_type;
-	    typedef typename colour_generator_factory<model_t,N_in,N_out,rng_t>::generator_type colour_generator_type;
-
+	    typedef ps_generator<model_t,N_in,N_out> momentum_generator_type;
+	    typedef helicity_generator<value_type,N_in,N_out,model_type::continuous_helicities> helicity_generator_type;
+	    typedef colour_generator<value_type,N_in,N_out,continuous_colours<model_t>::value> colour_generator_type;
+	    
 	    /* Utility function: */
 
 	    static bool accept(const value_type& f)
@@ -56,6 +81,11 @@ namespace Camgen
 		}
 		log(log_level::warning)<<CAMGEN_STREAMLOC<<"integrand "<<f<<" was not accepted by process generator"<<endlog;
 		return false;
+	    }
+
+	    static value_type throw_number(const value_type& min,const value_type& max)
+	    {
+		return random_number_generator::throw_number(min,max);
 	    }
 
 	    /* Public data members: */
@@ -73,122 +103,12 @@ namespace Camgen
 
 	    const value_type symmetry_factor;
 
-	    /* Public static factory methods: */
-	    /*--------------------------------*/
-
-	    /// Factory method reading a generator instance from the input
-	    /// stream.
-	    
-	    static process_generator<model_t,N_in,N_out,rng_t>* read(CM_algorithm<model_t,N_in,N_out>& algo,std::istream& is)
-	    {
-		std::string line;
-		while(line!="<procgen>" and !is.eof())
-		{
-		    std::getline(is,line);
-		}
-		if(is.eof())
-		{
-		    log(log_level::warning)<<"end of file reached before process generator flag was read"<<endlog;
-		    return NULL;
-		}
-		process_generator<model_t,N_in,N_out,rng_t>* result=create_instance_noflags(algo,is,false);
-		while(line!="</procgen>" and !is.eof())
-		{
-		    std::getline(is,line);
-		}
-		return result;
-	    }
-
-	    /// Factory method reading a generator instance from the input
-	    /// file.
-	    
-	    static process_generator<model_t,N_in,N_out,rng_t>* read(CM_algorithm<model_t,N_in,N_out>& algo,const std::string& filename)
-	    {
-		std::ifstream ifs;
-		ifs.open(filename.c_str());
-		if(!ifs.is_open())
-		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"error opening input file "<<filename<<"--returning NULL."<<endlog;
-		    return NULL;
-		}
-		return read(algo,ifs);
-	    }
-
-	    /// Factory method reading a generator instance from the input
-	    /// stream and copying the cuts and scale expression from the
-	    /// settings.
-
-	    static process_generator<model_t,N_in,N_out,rng_t>* read(CM_algorithm<model_t,N_in,N_out>& algo,generator_configuration<model_t>& settings,std::istream& is)
-	    {
-		process_generator<model_t,N_in,N_out,rng_t>* result=read(algo,is);
-		result->insert_cut(&settings);
-		result->insert_scale(&settings);
-		return result;
-	    }
-
-	    /// Factory method reading a generator instance from the input
-	    /// stream and copying the cuts and scale expression from the
-	    /// settings.
-
-	    static process_generator<model_t,N_in,N_out,rng_t>* read(CM_algorithm<model_t,N_in,N_out>& algo,generator_configuration<model_t>& settings,const std::string& filename)
-	    {
-		std::ifstream ifs;
-		ifs.open(filename.c_str());
-		if(!ifs.is_open())
-		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"error opening input file "<<filename<<"--returning NULL."<<endlog;
-		    return NULL;
-		}
-		return read(algo,settings,ifs);
-	    }
-
-	    /* Public constructor: */
-	    /*---------------------*/
-
-	    /// Constructor configuring with static configurations settings.
-
-	    process_generator(CM_tree_iterator it):id(0),symmetry_factor(it->symmetry_factor()),evt_counter(0),pos_evt_counter(0),tot_weight(0),alpha(1),amplitude(it),zero_me(it->count_diagrams()==(long long unsigned)0),me(1),ps_gen(NULL),ps_weight(1),ps_factor(1),hel_gen(NULL),hel_weight(1),hel_factor(1),col_gen(NULL),col_weight(1),col_factor(1),update_counter(0),auto_update(false),grid_adaptations(0),auto_grid_adapt(0),channel_adaptations(0),auto_channel_adapt(0),max_rejects(std::numeric_limits<size_type>::max()),pre_init_evts(0),ps_cut(NULL),scale(NULL)
-	    {
-		summed_spins.reset();
-		summed_colours.reset();
-		configure();
-	    }
-
-	    /// Constructor configuring with static configurations settings.
-	    /// Takes the current subprocess in algo.
-
-	    process_generator(CM_algorithm<model_t,N_in,N_out>& algo):id(0),symmetry_factor(algo.get_tree_iterator()->symmetry_factor()),evt_counter(0),pos_evt_counter(0),tot_weight(0),alpha(1),amplitude(algo.get_tree_iterator()),zero_me(amplitude->count_diagrams()==(long long unsigned)0),me(1),ps_gen(NULL),ps_weight(1),ps_factor(1),hel_gen(NULL),hel_weight(1),hel_factor(1),col_gen(NULL),col_weight(1),col_factor(1),update_counter(0),auto_update(false),grid_adaptations(0),auto_grid_adapt(0),channel_adaptations(0),auto_channel_adapt(0),max_rejects(std::numeric_limits<size_type>::max()),pre_init_evts(0),ps_cut(NULL),scale(NULL)
-	    {
-		summed_spins.reset();
-		summed_colours.reset();
-		configure();
-	    }
-
-	    /// Constructor configuring with configuration class settings.
-	    
-	    process_generator(CM_tree_iterator it,generator_configuration<model_t>& settings):id(0),symmetry_factor(it->symmetry_factor()),evt_counter(0),pos_evt_counter(0),tot_weight(0),alpha(1),amplitude(it),zero_me(it->count_diagrams()==(long long unsigned)0),me(1),ps_gen(NULL),ps_weight(1),ps_factor(1),hel_gen(NULL),hel_weight(1),hel_factor(1),col_gen(NULL),col_weight(1),col_factor(1),update_counter(0),auto_update(false),grid_adaptations(0),auto_grid_adapt(0),channel_adaptations(0),auto_channel_adapt(0),max_rejects(std::numeric_limits<size_type>::max()),pre_init_evts(0),ps_cut(NULL),scale(NULL)
-	    {
-		summed_spins.reset();
-		summed_colours.reset();
-		configure(settings);
-	    }
-
-	    /// Constructor configuring with configuration class settings.
-	    /// Takes the current subprocess in algo.
-	    
-	    process_generator(CM_algorithm<model_t,N_in,N_out>& algo,generator_configuration<model_t>& settings):id(0),symmetry_factor(algo.get_tree_iterator()->symmetry_factor()),evt_counter(0),pos_evt_counter(0),tot_weight(0),alpha(1),amplitude(algo.get_tree_iterator()),zero_me(amplitude->count_diagrams()==(long long unsigned)0),me(1),ps_gen(NULL),ps_weight(1),ps_factor(1),hel_gen(NULL),hel_weight(1),hel_factor(1),col_gen(NULL),col_weight(1),col_factor(1),update_counter(0),auto_update(false),grid_adaptations(0),auto_grid_adapt(0),channel_adaptations(0),auto_channel_adapt(0),max_rejects(std::numeric_limits<size_type>::max()),pre_init_evts(0),ps_cut(NULL),scale(NULL)
-	    {
-		summed_spins.reset();
-		summed_colours.reset();
-		configure(settings);
-	    }
-
-	    /* Public destructors */
-	    /*--------------------*/
+	    /* Public modifying member functions */
+	    /*-----------------------------------*/
 
 	    /// Destructor.
 	    
-	    virtual ~process_generator()
+	    ~process_generator()
 	    {
 		if(ps_gen!=NULL)
 		{
@@ -204,51 +124,10 @@ namespace Camgen
 		}
 	    }
 
-	    /* Public modifying member functions */
-	    /*-----------------------------------*/
-
-	    /// Adopts parameters and generator instances from the static
-	    /// configuration data.
-	    
-	    void configure()
-	    {
-		set_helicity_generator();
-		set_colour_generator();
-		set_phase_space_generator();
-		if(Camgen::auto_channel_adapt())
-		{
-		    set_auto_channel_adapt(auto_channel_batch());
-		}
-		if(Camgen::auto_grid_adapt())
-		{
-		    set_auto_grid_adapt(auto_grid_batch());
-		}
-		max_rejects=max_init_rejects();
-		if(discarded_weight_fraction()>(value_type)0 and discarded_weight_fraction()<(value_type)1)
-		{
-		    this->bin_weights(weight_bins());
-		    this->reduce_max_weight(discarded_weight_fraction());
-		}
-		set_pre_init_events(Camgen::pre_init_events());
-	    }
-
-	    /// Adopts parameters and generator instances from the configuration
-	    /// object.
-	    
-	    void configure(generator_configuration<model_t>& settings)
-	    {
-		settings.lock_generator(this);
-		basic_cuts::clear();
-		settings.configure();
-		configure();
-		insert_scale(&settings);
-		insert_cut(&settings);
-	    }
-
 	    /// Pre-initialisation method. Used by event_generator class to get
 	    /// a first estimation of the cross section.
 
-	    void pre_initialise(bool verbose=false)
+	    void pre_initialise(size_type n_evts, bool verbose=false)
 	    {
 		if(verbose)
 		{
@@ -257,8 +136,8 @@ namespace Camgen
 		    std::cout<<"pre-init subprocess "<<ss.str();
 		    std::cout.flush();
 		}
-		size_type batch=pre_init_evts/10;
-		for(size_type i=0;i<pre_init_evts;++i)
+		size_type batch=n_evts/10;
+		for(size_type i=0;i<n_evts;++i)
 		{
 		    throw_event();
 		    this->refresh_cross_section();
@@ -272,23 +151,6 @@ namespace Camgen
 		{
 		    std::cout<<this->cross_section()<<std::endl;
 		}
-	    }
-
-	    /// Initialises with number of channel and grid iterations/batch
-	    /// sizes defined in the static configuration.
-	    
-	    void initialise(bool verbose=false)
-	    {
-		initialise(init_channel_iterations(),init_channel_batch(),init_grid_iterations(),init_grid_batch(),verbose);
-	    }
-
-	    /// Initialises with the number of channel and grid iterations/batch
-	    /// sizes defined in the configuration object.
-
-	    void initialise(generator_configuration<model_t>& settings,bool verbose=false)
-	    {
-		settings.configure();
-		initialise(verbose);
 	    }
 
 	    /// Initialises with channel_iter multichannel iterations of batch
@@ -360,58 +222,6 @@ namespace Camgen
 		}
 	    }
 
-	    /// Sets the helicity generator type.
-
-	    helicity_generator_type* set_helicity_generator(helicity_generators::type t=Camgen::helicity_generator_type())
-	    {
-		if(hel_gen!=NULL)
-		{
-		    delete hel_gen;
-		}
-		hel_gen=helicity_generator_factory<model_t,N_in,N_out,rng_t>::create_instance(amplitude,t);
-		hel_factor=(hel_gen==NULL)?(value_type)1:(hel_gen->averaging_factor());
-		if(hel_gen!=NULL)
-		{
-		    for(size_type i=0;i<(N_in+N_out);++i)
-		    {
-			summed_spins[i]=hel_gen->sum_helicity(i);
-		    }
-		}
-		return hel_gen;
-	    }
-
-	    /// Sets the colour generator type.
-
-	    colour_generator_type* set_colour_generator(colour_generators::type t=Camgen::colour_generator_type())
-	    {
-		if(col_gen!=NULL)
-		{
-		    delete col_gen;
-		}
-		col_gen=colour_generator_factory<model_t,N_in,N_out,rng_t>::create_instance(amplitude,t);
-		col_factor=(col_gen==NULL)?(value_type)1:(col_gen->averaging_factor());
-		if(col_gen!=NULL)
-		{
-		    for(size_type i=0;i<(N_in+N_out);++i)
-		    {
-			summed_colours[i]=col_gen->sum_colour(i);
-		    }
-		}
-		return col_gen;
-	    }
-
-	    /// Sets the phase space generator type.
-
-	    ps_generator_type* set_phase_space_generator(initial_states::type t1=Camgen::initial_state_type(),phase_space_generators::type t2=Camgen::phase_space_generator_type())
-	    {
-		if(ps_gen!=NULL)
-		{
-		    delete ps_gen;
-		}
-		ps_gen=ps_generator_factory<model_t,N_in,N_out,rng_t>::create_instance(amplitude,t1,t2);
-		return ps_gen;
-	    }
-
 	    /// Sets the i-th beam energy.
 
 	    bool set_beam_energy(int i,const value_type& E)
@@ -462,13 +272,6 @@ namespace Camgen
 	    {
 		if(ps_gen!=NULL)
 		{
-		    for(size_type i=1;i<=N_out;++i)
-		    {
-			for(size_type j=i+1;j<=N_out;++j)
-			{
-			    ps_gen->set_m_min(i,j,basic_cuts::m_min(i,j));
-			}
-		    }
 		    return ps_gen->refresh_m_min();
 		}
 		return true;
@@ -715,11 +518,11 @@ namespace Camgen
 		do
 		{
 		    generate();
-		    if(!this->valid(tot_weight))
+		    if(!is_finite_number(tot_weight))
 		    {
 			continue;
 		    }
-		    rho=rn_stream::throw_number((value_type)0,this->max_w_eps);
+		    rho=throw_number((value_type)0,this->max_w_eps);
 		}
 		while(rho>tot_weight);
 		tot_weight=this->cross_section().value;
@@ -732,7 +535,7 @@ namespace Camgen
 		}
 	    }
 
-	    /* Generates new event according to the given strategy argument: */
+	    /// Generates new event according to the given strategy argument.
 
 	    bool next_event(int strategy)
 	    {
@@ -814,22 +617,6 @@ namespace Camgen
 			q=true;
 		    }
 		}
-		if(hel_gen!=NULL)
-		{
-		    if(accept(hel_gen->integrand()))
-		    {
-			hel_gen->update();
-			q=true;
-		    }
-		}
-		if(col_gen!=NULL)
-		{
-		    if(accept(col_gen->integrand()))
-		    {
-			col_gen->update();
-			q=true;
-		    }
-		}
 		if(q)
 		{
 		    ++update_counter;
@@ -868,16 +655,6 @@ namespace Camgen
 		    ps_gen->adapt();
 		    q=true;
 		}
-		if(hel_gen!=NULL)
-		{
-		    hel_gen->adapt();
-		    q=true;
-		}
-		if(col_gen!=NULL)
-		{
-		    col_gen->adapt();
-		    q=true;
-		}
 		if(q)
 		{
 		    ++grid_adaptations;
@@ -890,18 +667,10 @@ namespace Camgen
 
 	    void reset()
 	    {
-		this->base_type::reset();
+		this->MC_integrator<value_type>::reset();
 		if(ps_gen!=NULL)
 		{
 		    ps_gen->reset();
-		}
-		if(hel_gen!=NULL)
-		{
-		    hel_gen->reset();
-		}
-		if(col_gen!=NULL)
-		{
-		    col_gen->reset();
 		}
 		evt_counter=0;
 		pos_evt_counter=0;
@@ -914,18 +683,10 @@ namespace Camgen
 
 	    void reset_cross_section()
 	    {
-		this->base_type::reset_cross_section();
+		this->MC_integrator<value_type>::reset_cross_section();
 		if(ps_gen!=NULL)
 		{
 		    ps_gen->reset_cross_section();
-		}
-		if(hel_gen!=NULL)
-		{
-		    hel_gen->reset_cross_section();
-		}
-		if(col_gen!=NULL)
-		{
-		    col_gen->reset_cross_section();
 		}
 	    }
 
@@ -933,7 +694,6 @@ namespace Camgen
 
 	    bool refresh_params()
 	    {
-		zero_me=(amplitude->count_diagrams()==(long long unsigned)0);
 		if(ps_gen!=NULL)
 		{
 		    return ps_gen->refresh_params();
@@ -995,13 +755,6 @@ namespace Camgen
 		{
 		    ps_gen->set_optimal_multichannel();
 		}
-	    }
-
-	    /// Sets the pre-initialisation precision.
-
-	    void set_pre_init_events(size_type n)
-	    {
-		pre_init_evts=n;
 	    }
 
 	    /// Sets whther to use the pdf alpha_s.
@@ -1279,7 +1032,7 @@ namespace Camgen
 
 	    /// Returns the phase space generator.
 
-	    const ps_generator_type* get_momentum_generator() const
+	    const momentum_generator_type* get_momentum_generator() const
 	    {
 		return ps_gen;
 	    }
@@ -1400,13 +1153,6 @@ namespace Camgen
 		return alpha_pdf;
 	    }
 
-	    /// Returns the pre-initialisation precision.
-
-	    value_type pre_init_events() const
-	    {
-		return pre_init_evts;
-	    }
-
 	    /* Serialization: */
 	    /*----------------*/
 
@@ -1522,289 +1268,71 @@ namespace Camgen
 		return os;
 	    }
 
-	    /// Overridden loading method.
-
-	    std::istream& load(std::istream& is)
-	    {
-		this->base_type::load(is);
-		safe_read(is,alpha);
-		is>>evt_counter>>pos_evt_counter>>update_counter;
-		is>>grid_adaptations>>channel_adaptations>>summed_spins>>summed_colours;
-		is>>auto_update>>auto_grid_adapt>>auto_channel_adapt>>max_rejects>>alpha_pdf;
-		return is;
-	    }
-
-	    /// Overridden saving method.
-
-	    std::ostream& save(std::ostream& os) const
-	    {
-		os<<"<procgen>"<<std::endl;
-		os<<id<<std::endl;
-		print_process(os);
-		os<<std::endl;
-		if(ps_gen==NULL)
-		{
-		    os<<'N'<<std::endl;
-		}
-		else
-		{
-		    ps_gen->save(os);
-		}
-		if(col_gen==NULL)
-		{
-		    os<<'N'<<std::endl;
-		}
-		else
-		{
-		    col_gen->save(os);
-		}
-		if(hel_gen==NULL)
-		{
-		    os<<'N'<<std::endl;
-		}
-		else
-		{
-		    hel_gen->save(os);
-		}
-		this->base_type::save(os);
-		safe_write(os,alpha);
-		os<<"\t"<<evt_counter<<"\t"<<pos_evt_counter<<"\t"<<update_counter<<"\t";
-		os<<grid_adaptations<<"\t"<<channel_adaptations<<std::endl;
-		os<<summed_spins<<"\t"<<summed_colours;
-		os<<auto_update<<"\t"<<auto_grid_adapt<<"\t"<<auto_channel_adapt<<"\t"<<max_rejects<<"\t"<<alpha_pdf<<std::endl;
-		os<<"</procgen>"<<std::endl;
-		return os;
-	    }
-
-	    /// Writes the object to the argument filename.
-
-	    bool write(const std::string& filename) const
-	    {
-		std::ofstream ofs;
-		ofs.open(filename.c_str());
-		if(!ofs.is_open())
-		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"error opening output file "<<filename<<endlog;
-		    return false;
-		}
-		save(ofs);
-		ofs.close();
-		return true;
-	    }
-
-	private:
-
-	    /* Private static methods: */
-	    /*-------------------------*/
-
-	    /* Factory method from input stream, no request for input stream
-	     * process flags: */
-	    
-	    static process_generator<model_t,N_in,N_out,rng_t>* create_instance_noflags(CM_algorithm<model_t,N_in,N_out>& algo,std::istream& is,bool verbose=false)
-	    {
-		size_type id_=0;
-		is>>id_>>std::ws;
-		std::string procline;
-		std::getline(is,procline);
-		algo.set_process(procline);
-		if(!algo.valid_process())
-		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"invalid process detected--returning NULL"<<endlog;
-		    return NULL;
-		}
-		process_generator<model_t,N_in,N_out,rng_t>* result=new process_generator<model_t,N_in,N_out,rng_t>(algo.get_tree_iterator(),id_);
-		if(verbose)
-		{
-		    std::cout<<"Created process generator instance..."<<std::endl;
-		    std::cout<<"------------------"<<std::endl;
-		    std::cout<<"Process:"<<std::endl;
-		    std::cout<<"------------------"<<std::endl;
-		    algo.get_tree_iterator()->print_process(std::cout);
-		    std::cout<<std::endl;
-		}
-		is>>std::ws;
-		if(is.peek()=='N')
-		{
-		    is.ignore(1);
-		}
-		else
-		{
-		    result->ps_gen=ps_generator_factory<model_t,N_in,N_out,rng_t>::create_instance(algo.get_tree_iterator(),is);
-		}
-		is>>std::ws;
-		if(is.peek()=='N')
-		{
-		    is.ignore(1);
-		}
-		else
-		{
-		    result->col_gen=colour_generator_factory<model_t,N_in,N_out,rng_t,model_t::coloured>::create_instance(algo.get_tree_iterator(),is);
-		    result->col_factor=(result->col_gen==NULL)?(value_type)1:(result->col_gen->averaging_factor());
-		    if(result->col_gen!=NULL)
-		    {
-			for(size_type i=0;i<(N_in+N_out);++i)
-			{
-			    result->summed_colours[i]=result->col_gen->sum_colour(i);
-			}
-		    }
-		}
-		is>>std::ws;
-		if(is.peek()=='N')
-		{
-		    is.ignore(1);
-		}
-		else
-		{
-		    result->hel_gen=helicity_generator_factory<model_t,N_in,N_out,rng_t>::create_instance(algo.get_tree_iterator(),is);
-		    result->hel_factor=(result->hel_gen==NULL)?(value_type)1:(result->hel_gen->averaging_factor());
-		    if(result->hel_gen!=NULL)
-		    {
-			for(size_type i=0;i<(N_in+N_out);++i)
-			{
-			    result->summed_spins[i]=result->hel_gen->sum_helicity(i);
-			}
-		    }
-		}
-		result->load(is);
-		if(verbose)
-		{
-		    std::cout<<"------------------"<<std::endl;
-		    std::cout<<"Settings:"<<std::endl;
-		    std::cout<<"------------------"<<std::endl;
-		    result->print_settings(std::cout);
-		}
-		return result;
-	    }
-
-	    /* Private data members */
-	    /*----------------------*/
-
-	    /* Event counter: */
-
-	    size_type evt_counter;
-
-	    /* Nonzero-weight event counter: */
-
-	    size_type pos_evt_counter;
-
-	    /* Full weight variable. */
-
-	    value_type tot_weight;
-
-	    /* Multichannel weight variable. */
-	    
-	    value_type alpha;
-
-	    /* Camgen tree iterator for matrix-element calculation: */
-
-	    CM_tree_iterator amplitude;
-
-	    /* Helicity summation flags: */
-
-	    std::bitset<N_in+N_out>summed_spins;
-
-	    /* Colour summation flags: */
-
-	    std::bitset<N_in+N_out>summed_colours;
-
-	    /// Flag denoting whether the matrix element is zero.
-
-	    bool zero_me;
-
-	    /* Matrix element, final state symmetry factor: */
-
-	    value_type me;
-
-	    /* Momentum generator instance: */
-	    
-	    ps_generator_type* ps_gen;
-	    
-	    /* Phase space weight and flux factor: */
-	    
-	    value_type ps_weight,ps_factor;
-
-	    /* Helicity generator instance: */
-
-	    helicity_generator_type* hel_gen;
-	    
-	    /* Helicity generator weight and normalisation factor: */
-	    
-	    value_type hel_weight,hel_factor;
-
-	    /* Colour generator instance: */
-	    
-	    colour_generator_type* col_gen;
-
-	    /* Colour generator weight and normalisation factor: */
-
-	    value_type col_weight,col_factor;
-
-	    /* Update counter: */
-
-	    size_type update_counter;
-
-	    /* Automatic update flag: */
-
-	    bool auto_update;
-
-	    /* Grid adaptation counter: */
-
-	    size_type grid_adaptations;
-
-	    /* Automatic grid adaptation batch size: */
-
-	    size_type auto_grid_adapt;
-
-	    /* Channel adaptation counter: */
-
-	    size_type channel_adaptations;
-
-	    /* Automatic channel adaptation batch size: */
-
-	    size_type auto_channel_adapt;
-
-	    /* Maximal nr of rejections for positive event generation: */
-
-	    size_type max_rejects;
-
-	    /* Pre-initialisation precision: */
-
-	    size_type pre_init_evts;
-
-	    /* Phase space cuts depending on this instance: */
-
-	    phase_space_cut* ps_cut;
-
-	    /* QCD scale expression instance: */
-
-	    scale_expression<value_type>* scale;
-
-	    /* Boolean denoting whether to adopt pdf's alpha: */
-
-	    bool alpha_pdf;
+	protected:
 
 	    /* Private constructor, no configuration performed: */
 
-	    process_generator(CM_tree_iterator it,size_type id_):id(id_),symmetry_factor(it->symmetry_factor()),evt_counter(0),pos_evt_counter(0),tot_weight(0),alpha(1),amplitude(it),zero_me(it->count_diagrams()==(long long unsigned)0),me(1),ps_gen(NULL),ps_weight(1),ps_factor(1),hel_gen(NULL),hel_weight(1),hel_factor(1),col_gen(NULL),col_weight(1),col_factor(1),update_counter(0),auto_update(false),grid_adaptations(0),auto_grid_adapt(0),channel_adaptations(0),auto_channel_adapt(0),max_rejects(std::numeric_limits<size_type>::max()),pre_init_evts(0),ps_cut(NULL),scale(NULL),alpha_pdf(Camgen::use_pdf_alpha_s())
+	    process_generator(CM_tree_iterator it,size_type id_=0):id(id_),symmetry_factor(it->symmetry_factor()),evt_counter(0),pos_evt_counter(0),tot_weight(0),alpha(1),amplitude(it),zero_me(it->count_diagrams()==(long long unsigned)0),me(1),ps_gen(NULL),ps_weight(1),ps_factor(1),hel_gen(NULL),hel_weight(1),hel_factor(1),col_gen(NULL),col_weight(1),col_factor(1),update_counter(0),auto_update(false),grid_adaptations(0),auto_grid_adapt(0),channel_adaptations(0),auto_channel_adapt(0),max_rejects(std::numeric_limits<size_type>::max()),ps_cut(NULL),scale(NULL),alpha_pdf(true)
 	    {
 		summed_spins.reset();
 		summed_colours.reset();
+	    }
+
+	    /* Sets the helicity generator type: */
+
+	    void set_helicity_generator(helicity_generator_type* hel_gen_)
+	    {
+		if(hel_gen!=NULL)
+		{
+		    delete hel_gen;
+		}
+		hel_gen=hel_gen_;
+		hel_factor=(hel_gen==NULL)?(value_type)1:(hel_gen->averaging_factor());
+		if(hel_gen!=NULL)
+		{
+		    for(size_type i=0;i<(N_in+N_out);++i)
+		    {
+			summed_spins[i]=hel_gen->sum_helicity(i);
+		    }
+		}
+	    }
+
+	    /* Sets the colour generator type: */
+
+	    void set_colour_generator(colour_generator_type* col_gen_)
+	    {
+		if(col_gen!=NULL)
+		{
+		    delete col_gen;
+		}
+		col_gen=col_gen_;
+		col_factor=(col_gen==NULL)?(value_type)1:(col_gen->averaging_factor());
+		if(col_gen!=NULL)
+		{
+		    for(size_type i=0;i<(N_in+N_out);++i)
+		    {
+			summed_colours[i]=col_gen->sum_colour(i);
+		    }
+		}
+	    }
+
+	    /* Sets the phase space generator type: */
+
+	    void set_ps_generator(momentum_generator_type* ps_gen_)
+	    {
+		if(ps_gen!=NULL)
+		{
+		    delete ps_gen;
+		}
+		ps_gen=ps_gen_;
 	    }
 
 	    /* Integrand definition helper: */
 
 	    void set_integrands(const value_type& f)
 	    {
-		this->integrand()=f;
+		this->MC_integrator<value_type>::integrand()=f;
 		tot_weight=this->weight()*f;
-		if(hel_gen!=NULL)
-		{
-		    hel_gen->integrand()=f;
-		}
-		if(col_gen!=NULL)
-		{
-		    col_gen->integrand()=f;
-		}
 		if(ps_gen!=NULL)
 		{
 		    ps_gen->integrand()=f*hel_weight*col_weight;
@@ -1864,9 +1392,114 @@ namespace Camgen
 		while(tot_weight==(value_type)0 and (n<max_rejects));
 		return (tot_weight!=(value_type)0);
 	    }
+
+	private:
+
+	    /* Private data members */
+	    /*----------------------*/
+
+	    /* Event counter: */
+
+	    size_type evt_counter;
+
+	    /* Nonzero-weight event counter: */
+
+	    size_type pos_evt_counter;
+
+	    /* Full weight variable. */
+
+	    value_type tot_weight;
+
+	    /* Multichannel weight variable. */
+	    
+	    value_type alpha;
+
+	    /* Camgen tree iterator for matrix-element calculation: */
+
+	    CM_tree_iterator amplitude;
+
+	    /* Helicity summation flags: */
+
+	    std::bitset<N_in+N_out>summed_spins;
+
+	    /* Colour summation flags: */
+
+	    std::bitset<N_in+N_out>summed_colours;
+
+	    /* Flag denoting whether the matrix element is zero: */
+
+	    bool zero_me;
+
+	    /* Matrix element, final state symmetry factor: */
+
+	    value_type me;
+
+	    /* Momentum generator instance: */
+	    
+	    momentum_generator_type* ps_gen;
+	    
+	    /* Phase space weight and flux factor: */
+	    
+	    value_type ps_weight,ps_factor;
+
+	    /* Helicity generator instance: */
+
+	    helicity_generator_type* hel_gen;
+	    
+	    /* Helicity generator weight and normalisation factor: */
+	    
+	    value_type hel_weight,hel_factor;
+
+	    /* Colour generator instance: */
+	    
+	    colour_generator_type* col_gen;
+
+	    /* Colour generator weight and normalisation factor: */
+
+	    value_type col_weight,col_factor;
+
+	    /* Update counter: */
+
+	    size_type update_counter;
+
+	    /* Automatic update flag: */
+
+	    bool auto_update;
+
+	    /* Grid adaptation counter: */
+
+	    size_type grid_adaptations;
+
+	    /* Automatic grid adaptation batch size: */
+
+	    size_type auto_grid_adapt;
+
+	    /* Channel adaptation counter: */
+
+	    size_type channel_adaptations;
+
+	    /* Automatic channel adaptation batch size: */
+
+	    size_type auto_channel_adapt;
+
+	    /* Maximal nr of rejections for positive event generation: */
+
+	    size_type max_rejects;
+
+	    /* Phase space cuts depending on this instance: */
+
+	    phase_space_cut* ps_cut;
+
+	    /* QCD scale expression instance: */
+
+	    scale_expression<value_type>* scale;
+
+	    /* Boolean denoting whether to adopt pdf's alpha: */
+
+	    bool alpha_pdf;
     };
     template<class model_t,std::size_t N_in,std::size_t N_out,class rng_t>const typename process_generator<model_t,N_in,N_out,rng_t>::value_type process_generator<model_t,N_in,N_out,rng_t>::pb_conversion=0.389e+09;
 }
 
-#endif /*CAMGEN_PROC_GEN_H_*/
+#endif /*CAMGEN_PROC_GEN_BASE_H_*/
 

@@ -1,0 +1,91 @@
+Checking gauge invariance for e+,e- > ~mu_L+,~mu_L-...................done.
+Checking particle 1 as final current for e+,e- > ~mu_L+,~mu_L-...................done.
+Checking particle 2 as final current for e+,e- > ~mu_L+,~mu_L-...................done.
+Checking particle 3 as final current for e+,e- > ~mu_L+,~mu_L-...................done.
+Checking Weyl-basis computation for e+,e- > ~mu_L+,~mu_L-...................done.
+Checking gauge invariance for e+,e- > ~e_L+,~e_L-...................done.
+Checking particle 1 as final current for e+,e- > ~e_L+,~e_L-...................done.
+Checking particle 2 as final current for e+,e- > ~e_L+,~e_L-...................done.
+Checking particle 3 as final current for e+,e- > ~e_L+,~e_L-...................done.
+Checking Weyl-basis computation for e+,e- > ~e_L+,~e_L-...................done.
+Checking gauge invariance for e-,~chi_10 > e-,~chi_10...................done.
+Checking particle 1 as final current for e-,~chi_10 > e-,~chi_10...................done.
+Checking particle 2 as final current for e-,~chi_10 > e-,~chi_10...................done.
+Checking particle 3 as final current for e-,~chi_10 > e-,~chi_10...................done.
+Checking Weyl-basis computation for e-,~chi_10 > e-,~chi_10...................done.
+Checking gauge invariance for e-,e- > ~e_L-,~e_L-...................done.
+Checking particle 1 as final current for e-,e- > ~e_L-,~e_L-...................done.
+Checking particle 2 as final current for e-,e- > ~e_L-,~e_L-...................done.
+Checking particle 3 as final current for e-,e- > ~e_L-,~e_L-...................done.
+Checking Weyl-basis computation for e-,e- > ~e_L-,~e_L-...................done.
+Checking gauge invariance for e+,e- > ~mu_L+,~mu_L-,gamma...................done.
+Checking particle 1 as final current for e+,e- > ~mu_L+,~mu_L-,gamma...................done.
+Checking particle 2 as final current for e+,e- > ~mu_L+,~mu_L-,gamma...................done.
+Checking particle 3 as final current for e+,e- > ~mu_L+,~mu_L-,gamma...................done.
+Checking particle 4 as final current for e+,e- > ~mu_L+,~mu_L-,gamma...................done.
+Checking Weyl-basis computation for e+,e- > ~mu_L+,~mu_L-,gamma...................done.
+Checking gauge invariance for e+,e- > ~e_L+,~e_L-,gamma...................done.
+Checking particle 1 as final current for e+,e- > ~e_L+,~e_L-,gamma...................done.
+Checking particle 2 as final current for e+,e- > ~e_L+,~e_L-,gamma...................done.
+Checking particle 3 as final current for e+,e- > ~e_L+,~e_L-,gamma...................done.
+Checking particle 4 as final current for e+,e- > ~e_L+,~e_L-,gamma...................done.
+Checking Weyl-basis computation for e+,e- > ~e_L+,~e_L-,gamma...................done.
+Checking gauge invariance for e-,e- > ~e_L-,~e_L-,gamma...................done.
+Checking particle 1 as final current for e-,e- > ~e_L-,~e_L-,gamma...................done.
+Checking particle 2 as final current for e-,e- > ~e_L-,~e_L-,gamma...................done.
+Checking particle 3 as final current for e-,e- > ~e_L-,~e_L-,gamma...................done.
+Checking particle 4 as final current for e-,e- > ~e_L-,~e_L-,gamma...................done.
+Checking Weyl-basis computation for e-,e- > ~e_L-,~e_L-,gamma...................done.
+Checking gauge invariance for e+,e- > ~mu_L+,~mu_L-,~chi_10...................done.
+Checking particle 1 as final current for e+,e- > ~mu_L+,~mu_L-,~chi_10...................done.
+Checking particle 2 as final current for e+,e- > ~mu_L+,~mu_L-,~chi_10...................done.
+Checking particle 3 as final current for e+,e- > ~mu_L+,~mu_L-,~chi_10...................done.
+Checking particle 4 as final current for e+,e- > ~mu_L+,~mu_L-,~chi_10...................done.
+Checking Weyl-basis computation for e+,e- > ~mu_L+,~mu_L-,~chi_10...................done.
+Checking gauge invariance for e+,e- > ~e_L+,~e_L-,~chi_10...................done.
+Checking particle 1 as final current for e+,e- > ~e_L+,~e_L-,~chi_10...................done.
+Checking particle 2 as final current for e+,e- > ~e_L+,~e_L-,~chi_10...................done.
+Checking particle 3 as final current for e+,e- > ~e_L+,~e_L-,~chi_10...................done.
+Checking particle 4 as final current for e+,e- > ~e_L+,~e_L-,~chi_10...................done.
+Checking Weyl-basis computation for e+,e- > ~e_L+,~e_L-,~chi_10...................done.
+Checking gauge invariance for e-,e- > ~e_L-,~e_L-,~chi_10...................done.
+Checking particle 1 as final current for e-,e- > ~e_L-,~e_L-,~chi_10...................done.
+Checking particle 2 as final current for e-,e- > ~e_L-,~e_L-,~chi_10...................done.
+Checking particle 3 as final current for e-,e- > ~e_L-,~e_L-,~chi_10...................done.
+Checking particle 4 as final current for e-,e- > ~e_L-,~e_L-,~chi_10...................done.
+Checking Weyl-basis computation for e-,e- > ~e_L-,~e_L-,~chi_10...................done.
+Checking gauge invariance for e+,e- > ~mu_L+,~mu_L-,mu+,mu-...................done.
+Checking particle 1 as final current for e+,e- > ~mu_L+,~mu_L-,mu+,mu-...................done.
+Checking particle 2 as final current for e+,e- > ~mu_L+,~mu_L-,mu+,mu-...................done.
+Checking particle 3 as final current for e+,e- > ~mu_L+,~mu_L-,mu+,mu-...................done.
+Checking particle 4 as final current for e+,e- > ~mu_L+,~mu_L-,mu+,mu-...................done.
+Checking particle 5 as final current for e+,e- > ~mu_L+,~mu_L-,mu+,mu-...................done.
+Checking Weyl-basis computation for e+,e- > ~mu_L+,~mu_L-,mu+,mu-...................done.
+Checking gauge invariance for e+,e- > ~e_L+,~e_L-,~e_R+,~e_R-...................done.
+Checking particle 1 as final current for e+,e- > ~e_L+,~e_L-,~e_R+,~e_R-...................done.
+Checking particle 2 as final current for e+,e- > ~e_L+,~e_L-,~e_R+,~e_R-...................done.
+Checking particle 3 as final current for e+,e- > ~e_L+,~e_L-,~e_R+,~e_R-...................done.
+Checking particle 4 as final current for e+,e- > ~e_L+,~e_L-,~e_R+,~e_R-...................done.
+Checking particle 5 as final current for e+,e- > ~e_L+,~e_L-,~e_R+,~e_R-...................done.
+Checking Weyl-basis computation for e+,e- > ~e_L+,~e_L-,~e_R+,~e_R-...................done.
+Checking gauge invariance for e-,e- > ~e_L-,~e_L-,gamma,gamma...................done.
+Checking particle 1 as final current for e-,e- > ~e_L-,~e_L-,gamma,gamma...................done.
+Checking particle 2 as final current for e-,e- > ~e_L-,~e_L-,gamma,gamma...................done.
+Checking particle 3 as final current for e-,e- > ~e_L-,~e_L-,gamma,gamma...................done.
+Checking particle 4 as final current for e-,e- > ~e_L-,~e_L-,gamma,gamma...................done.
+Checking particle 5 as final current for e-,e- > ~e_L-,~e_L-,gamma,gamma...................done.
+Checking Weyl-basis computation for e-,e- > ~e_L-,~e_L-,gamma,gamma...................done.
+Checking gauge invariance for e-,e- > ~e_L-,~e_L-,gamma,~chi_10...................done.
+Checking particle 1 as final current for e-,e- > ~e_L-,~e_L-,gamma,~chi_10...................done.
+Checking particle 2 as final current for e-,e- > ~e_L-,~e_L-,gamma,~chi_10...................done.
+Checking particle 3 as final current for e-,e- > ~e_L-,~e_L-,gamma,~chi_10...................done.
+Checking particle 4 as final current for e-,e- > ~e_L-,~e_L-,gamma,~chi_10...................done.
+Checking particle 5 as final current for e-,e- > ~e_L-,~e_L-,gamma,~chi_10...................done.
+Checking Weyl-basis computation for e-,e- > ~e_L-,~e_L-,gamma,~chi_10...................done.
+Checking gauge invariance for e-,e- > e-,e-,~chi_10,~chi_10...................done.
+Checking particle 1 as final current for e-,e- > e-,e-,~chi_10,~chi_10...................done.
+Checking particle 2 as final current for e-,e- > e-,e-,~chi_10,~chi_10...................done.
+Checking particle 3 as final current for e-,e- > e-,e-,~chi_10,~chi_10...................done.
+Checking particle 4 as final current for e-,e- > e-,e-,~chi_10,~chi_10...................done.
+Checking particle 5 as final current for e-,e- > e-,e-,~chi_10,~chi_10...................done.
+Checking Weyl-basis computation for e-,e- > e-,e-,~chi_10,~chi_10...................done.

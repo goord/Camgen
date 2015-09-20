@@ -1,28 +1,46 @@
-\hypertarget{a00718}{\section{include/\-Camgen/ps\-\_\-tree.h File Reference}
-\label{a00718}\index{include/\-Camgen/ps\-\_\-tree.\-h@{include/\-Camgen/ps\-\_\-tree.\-h}}
-}
+\hypertarget{a00718}{}\section{include/\+Camgen/phase\+\_\+space.h File Reference}
+\label{a00718}\index{include/\+Camgen/phase\+\_\+space.\+h@{include/\+Camgen/phase\+\_\+space.\+h}}
 
 
-Phase space generator classes using the recursive phase space decomposition.  
+contains the phase space classes  
 
 
 {\ttfamily \#include $<$algorithm$>$}\\*
-{\ttfamily \#include $<$Camgen/rn\-\_\-strm.\-h$>$}\\*
-{\ttfamily \#include $<$Camgen/ps\-\_\-fac.\-h$>$}\\*
-{\ttfamily \#include $<$Camgen/ps\-\_\-gen.\-h$>$}\\*
-{\ttfamily \#include $<$Camgen/rambo.\-h$>$}\\*
+{\ttfamily \#include $<$Camgen/unused.\+h$>$}\\*
+{\ttfamily \#include $<$Camgen/debug.\+h$>$}\\*
+{\ttfamily \#include $<$Camgen/logstream.\+h$>$}\\*
+{\ttfamily \#include $<$Camgen/forward\+\_\+decs.\+h$>$}\\*
+{\ttfamily \#include $<$Camgen/vector.\+h$>$}\\*
+{\ttfamily \#include $<$Camgen/tensor.\+h$>$}\\*
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{a00446}{Camgen\-::ps\-\_\-tree$<$ model\-\_\-t, 1, N\-\_\-out, rng\-\_\-t $>$}
-\item 
-class \hyperlink{a00032}{Camgen\-::ps\-\_\-tree$<$ model\-\_\-t, 1, N\-\_\-out, rng\-\_\-t $>$\-::bitstring\-\_\-eq}
-\item 
-class \hyperlink{a00447}{Camgen\-::ps\-\_\-tree$<$ model\-\_\-t, 2, N\-\_\-out, rng\-\_\-t $>$}
-\item 
-class \hyperlink{a00031}{Camgen\-::ps\-\_\-tree$<$ model\-\_\-t, 2, N\-\_\-out, rng\-\_\-t $>$\-::bitstring\-\_\-eq}
-\end{DoxyCompactItemize}
+class \hyperlink{a00019}{Camgen\+::base\+\_\+ps$<$ model\+\_\+t $>$}
+\begin{DoxyCompactList}\small\item\em Phase space base class template. \end{DoxyCompactList}\item 
+class \hyperlink{a00276}{Camgen\+::helicity\+\_\+ps$<$ model\+\_\+t, cont\+\_\+helicities $>$}
+\begin{DoxyCompactList}\small\item\em Helicity phase space class template. \end{DoxyCompactList}\item 
+class \hyperlink{a00277}{Camgen\+::helicity\+\_\+ps$<$ model\+\_\+t, false $>$}
+\begin{DoxyCompactList}\small\item\em Helicity phase space template specialisation for discrete-\/helicity model types. \end{DoxyCompactList}\item 
+class \hyperlink{a00275}{Camgen\+::helicity\+\_\+phases$<$ value\+\_\+t $>$}
+\begin{DoxyCompactList}\small\item\em Continuous helicity data holder type. \end{DoxyCompactList}\item 
+class \hyperlink{a00278}{Camgen\+::helicity\+\_\+ps$<$ model\+\_\+t, true $>$}
+\begin{DoxyCompactList}\small\item\em Helicity phase space template specialisation for continuous-\/helicity model types. \end{DoxyCompactList}\item 
+class \hyperlink{a00084}{Camgen\+::colour\+\_\+ps$<$ model\+\_\+t, cont\+\_\+colours $>$}
+\begin{DoxyCompactList}\small\item\em Colour phase space class template. \end{DoxyCompactList}\item 
+class \hyperlink{a00085}{Camgen\+::colour\+\_\+ps$<$ model\+\_\+t, false $>$}
+\begin{DoxyCompactList}\small\item\em Colour phase space template specialisation for discrete-\/colour model types. \end{DoxyCompactList}\item 
+class \hyperlink{a00086}{Camgen\+::colour\+\_\+ps$<$ model\+\_\+t, true $>$}
+\begin{DoxyCompactList}\small\item\em Colour phase space template specialisation for continuous-\/colour model types. \end{DoxyCompactList}\item 
+class \hyperlink{a00410}{Camgen\+::particle\+\_\+ps$<$ model\+\_\+t, dim, true $>$}
+\begin{DoxyCompactList}\small\item\em Particle phase space template specialisation for colourful model types. \end{DoxyCompactList}\item 
+class \hyperlink{a00409}{Camgen\+::particle\+\_\+ps$<$ model\+\_\+t, dim, false $>$}
+\begin{DoxyCompactList}\small\item\em Particle phase space template specialisation for colourless model types. \end{DoxyCompactList}\item 
+class \hyperlink{a00408}{Camgen\+::particle\+\_\+ps$<$ model\+\_\+t, 0, true $>$}
+\begin{DoxyCompactList}\small\item\em Particle phase space template specialisation for colourful zero-\/dimensional model types. \end{DoxyCompactList}\item 
+class \hyperlink{a00407}{Camgen\+::particle\+\_\+ps$<$ model\+\_\+t, 0, false $>$}
+\begin{DoxyCompactList}\small\item\em Particle phase space template specialisation for colourless zero-\/dimensional model types. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Phase space generator classes using the recursive phase space decomposition. 
+contains the phase space classes 
+

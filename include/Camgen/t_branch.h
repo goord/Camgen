@@ -17,14 +17,16 @@
 
 #include <Camgen/Minkowski.h>
 #include <Camgen/MC_config.h>
-#include <Camgen/branching.h>
+#include <Camgen/ps_branching.h>
 #include <Camgen/uni_sphere.h>
 #include <Camgen/Lorentz.h>
 #include <Camgen/ps_vol.h>
-#include <Camgen/parni.h>
+#include <Camgen/ss_gen_fac.h>
 
 namespace Camgen
 {
+    template<class model_t,std::size_t N_out,class rng_t,class spacetime_t>class t_branching;
+
     /* t-branching specialisation for Minkowski spacetimes: */
     
     template<class model_t,std::size_t N_out,class rng_t>class t_branching<model_t,N_out,rng_t,typename Minkowski_type::template implementation<typename model_t::value_type,model_t::dimension> >: public ps_branching<model_t,2,N_out,rng_t>
@@ -35,6 +37,7 @@ namespace Camgen
 
 	    /* Type definitions: */
 
+	    typedef model_t model_type;
 	    typedef typename model_t::value_type value_type;
 	    typedef typename Minkowski_type::template implementation<value_type,model_t::dimension> spacetime_type;
 	    typedef rng_t rn_engine;
@@ -42,19 +45,21 @@ namespace Camgen
 	    typedef typename base_type::momentum_type momentum_type;
 	    typedef typename base_type::size_type size_type;
 	    typedef typename base_type::channel_type channel_type;
-	    typedef uniform_sphere<value_type,model_t::dimension-2,rn_engine> sphere_gen_type;
-
-	    /* Initial t-channel branching flag: */
-
-	    const bool init_t_branching;
-
-	    /* Final t-channel branching flag: */
-
-	    const bool final_t_branching;
+	    typedef typename base_type::ps_channel_type ps_channel_type;
+	    typedef uniform_sphere<value_type,model_t::dimension-2,rn_engine> sphere_generator_type;
+	    typedef s_pair_generator<value_type,rng_t> s_pair_generator_type;
 
 	    /* Second beam: */
 	    
-	    const channel_type* aux_in_channel;
+	    const channel_type* const sb_channel;
+
+	    /* Total output channel: */
+
+	    channel_type* const stot_channel;
+
+	    /* Flag denoting whether second outgoing branching is timelike (final t-channel): */
+
+	    const bool is_final;
 
 	    /* Constructor. First argument is the incoming spacelike channel or
 	     * first beam, second argument is the second beam, third argument is
@@ -68,71 +73,70 @@ namespace Camgen
 			channel_type* out1_,
 			channel_type* out2_,
 			channel_type* out3_,
-			bool final=false):base_type(in1_,2),
-	    				  init_t_branching(in1_->on_shell()),
-					  final_t_branching(final),
-					  aux_in_channel(in2_),
-					  s1_channel(out1_),
-					  t_channel(out2_),
-					  s2_channel(out3_),
-					  sphere_generator(new sphere_gen_type)
-	    {
-		/* t-channel goes first...*/
-
-		this->channels[0]=final?out1_:out2_;
-		this->channels[1]=final?out3_:out1_;
-	    }
+			channel_type* out13_,
+			bool is_final_):base_type(in1_,out1_,is_final_?out3_:out2_),
+					sb_channel(in2_),
+					s1_channel(out1_),
+					t_channel(out2_),
+					s2_channel(out3_),
+					stot_channel(out13_),
+					is_final(is_final_),
+					ssgen(s_pair_generator_factory<value_type,rng_t>::create(this->s_generator(out1_),this->s_generator(out3_),stot_channel->s())){}
 
 	    /* Destructor: */
 
 	    ~t_branching()
 	    {
-		delete sphere_generator;
+		delete ssgen;
 	    }
 
 	    /* Generates positive invariants: */
 
 	    bool generate_s()
 	    {
-		if(!refresh_s_bounds())
+		sweight=(value_type)1;
+		if(this->backward_s_sampling)
 		{
-		    sweight=(value_type)0;
-		    return false;
-		}
-		const value_type& sqrts1=s1_channel->m();
-		const value_type& sqrts2=s2_channel->m();
-		if(this->max_s_pairs()>1)
-		{
-		    std::size_t n=0;
-		    bool q,q1,q2;
-		    do
+		    if(stot_channel->get_status()==ps_channel_type::reset)
 		    {
-			q1=s1_channel->generate_s();
-			q2=s2_channel->generate_s();
-			q=(q1 and q2 and (sqrts1+sqrts2<=sqrts));
-			++n;
+			stot_channel->shortprint(std::cerr);
+			log(log_level::warning)<<CAMGEN_STREAMLOC<<"sampling invariant mass without total invariant mass generated..."<<endlog;
 		    }
-		    while(!q and (n<this->max_s_pairs()));
-		    if(!q)
+		    if(!s1_channel->on_shell() and s1_channel->branching_count()==0) //auxiliary channel
 		    {
-			log(log_level::warning)<<CAMGEN_STREAMLOC<<"no succesful s-pair generated after "<<n<<" throws--returning weight 0"<<endlog;
-			sweight=(value_type)0;
-			return false;
+			s1_channel->set_m_max(stot_channel->m()-s2_channel->m());
+			if(!s1_channel->generate_s())
+			{
+			    sweight=(value_type)0;
+			    return false;
+			}
+			s1_channel->set_status_s_generated();
+			sweight*=s1_channel->s_weight();
 		    }
-		    sweight=integrate(s1_channel,s2_channel,sqrts)*(s1_channel->s_weight())*(s2_channel->s_weight());
+		    if(!s2_channel->on_shell() and s2_channel->branching_count()==0) //auxiliary channel
+		    {
+			s2_channel->set_m_max(stot_channel->m()-s1_channel->m());
+			if(!s2_channel->generate_s())
+			{
+			    sweight=(value_type)0;
+			    return false;
+			}
+			s2_channel->set_status_s_generated();
+			sweight*=s2_channel->s_weight();
+		    }
 		}
 		else
 		{
-		    bool q1=s1_channel->generate_s();
-		    bool q2=s2_channel->generate_s();
-		    if(!(q1 and q2) or ((sqrts1+sqrts2)>sqrts))
+		    if(!ssgen->generate())
 		    {
 			sweight=(value_type)0;
 			return false;
 		    }
-		    sweight=(s1_channel->s_weight())*(s2_channel->s_weight());
+		    s1_channel->set_status_s_generated();
+		    s2_channel->set_status_s_generated();
+		    sweight=ssgen->weight();
 		}
-		return (sweight>(value_type)0);
+		return true;
 	    }
 
 	    /* Generates the spacelike invariant: */
@@ -140,18 +144,24 @@ namespace Camgen
 	    bool generate_t()
 	    {
 		value_type sa=this->s_in();
-		value_type sb=aux_in_channel->s();
+		value_type sb=sb_channel->s();
 		value_type s1=s1_channel->s();
 		value_type s2=s2_channel->s();
-		
+		value_type s=stot_channel->s();
+
 		value_type A=0.5*(sa+sb+s1+s2-s-(sa-sb)*(s1-s2)/s);
-		value_type B=0.5*std::sqrt(Kallen(s,sa,sb)*Kallen(s,s1,s2))/s;
+		value_type l12=Kallen(s,s1,s2);
+		if(l12<(value_type)0)
+		{
+		    tweight=(value_type)0;
+		    return false;
+		}
+		value_type B=0.5*std::sqrt(Kallen(s,sa,sb)*l12)/s;
 		value_type tmin=A-B;
 		value_type tmax=A+B;
 
 		if(!(t_channel->set_s_range(tmin,tmax)))
 		{
-		    t_channel->s_warning();
 		    tweight=(value_type)0;
 		    return false;
 		}
@@ -160,8 +170,8 @@ namespace Camgen
 		    tweight=(value_type)0;
 		    return false;
 		}
+		t_channel->set_status_s_generated();
 		tweight=t_channel->s_weight();
-		cos_theta=(t_channel->s()-A)/B;
 		return (tweight>(value_type)0);
 	    }
 
@@ -169,18 +179,37 @@ namespace Camgen
 
 	    bool generate_p()
 	    {
+		value_type s1=s1_channel->s();
+		value_type s2=s2_channel->s();
+		value_type s=stot_channel->s();
+
+		value_type m=stot_channel->m();
 		momentum_type pahat=this->p_in();
-		boost_to_restframe(pahat,Ptot,sqrts);
-		sphere_generator->generate();
+		momentum_type Ptot=pahat+sb_channel->p();
+
+		boost_to_restframe(pahat,Ptot,m);
+		sphere_generator.generate();
 		value_type pdots(0);
 		for(size_type i=0;i<model_t::dimension-1;++i)
 		{
-		    pdots+=(pahat[i+1]*sphere_generator->object()[i]);
+		    pdots+=(pahat[i+1]*sphere_generator.object()[i]);
 		}
 		value_type pahatabs=std::sqrt(spacetime_type::space_dot(pahat,pahat));
-		value_type l12=std::sqrt(Kallen(s,s1_channel->s(),s2_channel->s()));
-		value_type qhatabs=(value_type)0.5*l12/sqrts;
-		value_type c1,c2,sin_theta=std::sqrt((1-cos_theta)*(1+cos_theta));
+		value_type k12=Kallen(s,s1,s2);
+		if(k12<(value_type)0)
+		{
+		    this->weight()=(value_type)0;
+		    return false;
+		}
+		value_type l12=std::sqrt(k12);
+		value_type qhatabs=(value_type)0.5*l12/m;
+
+		value_type A=0.5*(t_channel->s_max()+t_channel->s_min());
+		value_type B=0.5*(t_channel->s_max()-t_channel->s_min());
+		value_type cos_theta=(t_channel->s()-A)/B;
+		value_type sin_theta=std::sqrt((1-cos_theta)*(1+cos_theta));
+
+		value_type c1,c2;
 		if(equals(pdots,(value_type)0))
 		{
 		    c1=qhatabs*cos_theta/pahatabs;
@@ -193,15 +222,22 @@ namespace Camgen
 		    c1=qhatabs*(cos_theta+y)/pahatabs;
 		    c2=qhatabs*alpha*y;
 		}
-		(s1_channel->p())[0]=(value_type)0.5*(s+s1_channel->s()-s2_channel->s())/sqrts;
+		(s1_channel->p())[0]=(value_type)0.5*(s+s1-s2)/m;
+
+
 		for(size_type i=1;i<model_t::dimension;++i)
 		{
-		    (s1_channel->p())[i]=c1*pahat[i]-c2*sphere_generator->object()[i-1];
+		    (s1_channel->p())[i]=c1*pahat[i]-c2*sphere_generator.object()[i-1];
 		}
-		boost_from_restframe(s1_channel->p(),Ptot,sqrts);
+		boost_from_restframe(s1_channel->p(),Ptot,m);
+		s1_channel->set_status_p_generated();
+		s1_channel->evaluate_s();
 		s2_channel->p()=Ptot-s1_channel->p();
+		s2_channel->set_status_p_generated();
 		t_channel->p()=this->p_in()-s1_channel->p();
-		this->weight()=massless_ps<value_type,2,model_t::dimension>::volume(sqrts)*std::pow(l12/s,int(model_t::dimension-4))*sweight*tweight/((value_type)2*sqrts*pahatabs);
+		t_channel->set_status_p_generated();
+
+		this->weight()=massless_ps<value_type,2,model_t::dimension>::volume(m)*std::pow(l12/s,int(model_t::dimension-4))*sweight*tweight/((value_type)2*m*pahatabs);
 		return (this->weight()>(value_type)0);
 	    }
 
@@ -209,31 +245,47 @@ namespace Camgen
             
 	    bool evaluate_branching_weight()
             {
-		if(!refresh_s_bounds())
+		sweight=(value_type)1;
+		if(this->backward_s_sampling)
 		{
-		    sweight=(value_type)0;
-		    tweight=(value_type)0;
-		    this->weight()=(value_type)0;
-		    return false;
-		}
-		if((s1_channel->m()+s2_channel->m()>sqrts) or !s1_channel->evaluate_s_weight() or !s2_channel->evaluate_s_weight())
-		{
-		    sweight=(value_type)0;
-		    tweight=(value_type)0;
-		    this->weight()=(value_type)0;
-		    return false;
-		}
-		if(this->max_s_pairs()>1)
-		{
-		    sweight=integrate(s1_channel,s2_channel,sqrts)*(s1_channel->s_weight())*(s2_channel->s_weight());
+		    if(!s1_channel->on_shell() and s1_channel->branching_count()==0) //auxiliary channel
+		    {
+			s1_channel->set_m_max(stot_channel->m()-s2_channel->m());
+			if(!s1_channel->evaluate_s_weight())
+			{
+			    sweight=(value_type)0;
+			    return false;
+			}
+			sweight*=s1_channel->s_weight();
+		    }
+		    if(!s2_channel->on_shell() and s2_channel->branching_count()==0) //auxiliary channel
+		    {
+			s2_channel->set_m_max(stot_channel->m()-s1_channel->m());
+			if(!s2_channel->evaluate_s_weight())
+			{
+			    sweight=(value_type)0;
+			    return false;
+			}
+			sweight*=s2_channel->s_weight();
+		    }
+
 		}
 		else
 		{
-		    sweight=(s1_channel->s_weight())*(s2_channel->s_weight());
+		    if(!ssgen->evaluate_weight())
+		    { 
+			sweight=(value_type)0;
+			return false;
+		    }
+		    sweight=ssgen->weight();
 		}
+
 		value_type sa=this->s_in();
-		value_type sb=aux_in_channel->s();
+		value_type sb=sb_channel->s();
 		value_type s1=s1_channel->s();
+
+		value_type s=stot_channel->s();
+		value_type m=stot_channel->m();
 		value_type s2=s2_channel->s();
 
 		value_type A=0.5*(sa+sb+s1+s2-s-(sa-sb)*(s1-s2)/s);
@@ -242,10 +294,9 @@ namespace Camgen
 		value_type B=0.5*lab*l12/s;
 		value_type tmin=A-B;
 		value_type tmax=A+B;
-		
+
 		if(!t_channel->set_s_range(tmin,tmax))
 		{
-		    t_channel->s_warning();
 		    tweight=(value_type)0;
 		    this->weight()=(value_type)0;
 		    return false;
@@ -257,7 +308,8 @@ namespace Camgen
 		    return false;
 		}
 		tweight=t_channel->s_weight();
-		this->weight()=massless_ps<value_type,2,model_t::dimension>::volume(sqrts)*std::pow(l12/s,int(model_t::dimension-4))*sweight*tweight/lab;
+		this->weight()=massless_ps<value_type,2,model_t::dimension>::volume(m)*std::pow(l12/s,int(model_t::dimension-4))*sweight*tweight/lab;
+
 		return (this->weight()>(value_type)0);
             }
 
@@ -268,7 +320,7 @@ namespace Camgen
 		const t_branching<model_t,N_out,rng_t,spacetime_type>* othercast=dynamic_cast<const t_branching<model_t,N_out,rng_t,spacetime_type>*>(other);
 		if(othercast!=NULL)
 		{
-		    return (this->same_incoming_channel(other) and aux_in_channel==othercast->aux_in_channel 
+		    return (this->same_incoming_channel(other) and sb_channel==othercast->sb_channel 
 			    				       and s1_channel==othercast->s1_channel
 							       and t_channel==othercast->t_channel
 							       and s2_channel==othercast->s2_channel);
@@ -276,70 +328,45 @@ namespace Camgen
 		return false;
 	    }
 
+	    bool t_type() const
+	    {
+		return true;
+	    }
+
 	    /* Returns the t-type for printing: */
 
 	    std::string type() const
 	    {
-		if(final_t_branching)
-		{
-		    return "t.";
-		}
-		return "t";
+		return is_final?"t.":"t";
 	    }
 
-	    /* Serialization helper: */
-
-	    std::ostream& save_channels(std::ostream& os) const
+	    const channel_type* t_channel_out() const
 	    {
-		os<<this->incoming_channel->name<<"\t"<<aux_in_channel->name<<std::endl;
-		os<<s1_channel->name<<"\t"<<t_channel->name<<"\t"<<s2_channel->name<<std::endl;
+		return t_channel;
+	    }
+
+	    const channel_type* s2_channel_out() const
+	    {
+		return s2_channel;
+	    }
+
+	    t_branching<model_type,N_out,rn_engine,spacetime_type>* copy_to_final_branching(channel_type* s2_channel_) const
+	    {
+		return new t_branching<model_type,N_out,rn_engine,spacetime_type>(this->incoming_channel,sb_channel,s1_channel,t_channel,s2_channel_,stot_channel,true);
+	    }
+
+	    std::ostream& print(std::ostream& os) const
+	    {
+		this->base_type::print(os);
+		os<<std::setw(15)<<std::left<<(is_final?t_channel->name:s2_channel->name);
+		os<<std::setw(15)<<std::left<<stot_channel->name;
 		return os;
 	    }
 
-	protected:
-
-	    /* Updates maximal invariant masses: */
 	    
-	    bool refresh_s_bounds()
+	    momentum_type evaluate_p_in() const
 	    {
-		Ptot=this->p_in()+aux_in_channel->p();
-		s=spacetime_type::dot(Ptot,Ptot);
-		if(s<(value_type)0)
-		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"negative total incoming invariant mass encountered in t-branching"<<endlog;
-		    return false;
-		}
-		sqrts=std::sqrt(s);
-		if(sqrts<s1_channel->m_min()+s2_channel->m_min())
-		{
-		    return false;
-		}
-		if(!(s1_channel->set_m_max(sqrts-s2_channel->m_min())))
-		{
-		    s1_channel->s_warning();
-		    return false;
-		}
-		if(!(s2_channel->set_m_max(sqrts-s1_channel->m_min())))
-		{
-		    s2_channel->s_warning();
-		    return false;
-		}
-		return true;
-	    }
-
-	    /* Recursively unsets the redundant flag: */
-	    
-	    void unset_redundant()
-	    {
-		this->base_type::unset_redundant();
-		if(final_t_branching)
-		{
-		    t_channel->unset_redundant();
-		}
-		else
-		{
-		    s2_channel->unset_redundant();
-		}
+		return s1_channel->p()+s2_channel->p()-sb_channel->p();
 	    }
 
 	private:
@@ -354,25 +381,13 @@ namespace Camgen
 
 	    value_type sweight,tweight;
 
+	    /* Invariant mass pair generator: */
+
+	    s_pair_generator_type* ssgen;
+
 	    /* Azimuthal angle generator: */
 
-	    sphere_gen_type* sphere_generator;
-	    
-	    /* Total incoming momentum: */
-	    
-	    momentum_type Ptot;
-
-	    /* Total incoming invariant mass-squared: */
-	    
-	    value_type s;
-
-	    /* Total incoming invariant mass: */
-
-	    value_type sqrts;
-
-	    /* Cosine of the polar scattering angle: */
-
-	    value_type cos_theta;
+	    sphere_generator_type sphere_generator;
     };
 }
 

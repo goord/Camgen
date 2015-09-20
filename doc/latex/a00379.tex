@@ -1,9 +1,130 @@
-\hypertarget{a00379}{\section{Camgen\-:\-:name\-\_\-neq$<$ value\-\_\-t $>$ Class Template Reference}
-\label{a00379}\index{Camgen\-::name\-\_\-neq$<$ value\-\_\-t $>$@{Camgen\-::name\-\_\-neq$<$ value\-\_\-t $>$}}
-}
+\hypertarget{a00379}{}\section{Camgen\+:\+:multi\+\_\+channel$<$ value\+\_\+t, rng\+\_\+t $>$ Class Template Reference}
+\label{a00379}\index{Camgen\+::multi\+\_\+channel$<$ value\+\_\+t, rng\+\_\+t $>$@{Camgen\+::multi\+\_\+channel$<$ value\+\_\+t, rng\+\_\+t $>$}}
 
 
-The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+Multichannel Monte Carlo generator class.  
+
+
+
+
+{\ttfamily \#include $<$multi\+\_\+channel.\+h$>$}
+
+Inheritance diagram for Camgen\+:\+:multi\+\_\+channel$<$ value\+\_\+t, rng\+\_\+t $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.216359cm]{a00379}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
 \item 
-include/\-Camgen/forward\-\_\-decs.\-h\item 
-include/\-Camgen/name\-\_\-comp.\-h\end{DoxyCompactItemize}
+struct \hyperlink{a00061}{channel\+\_\+type}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00379_a64cfde48e4782eefef698991bfaa3156}{}\hyperlink{a00379_a64cfde48e4782eefef698991bfaa3156}{multi\+\_\+channel} ()\label{a00379_a64cfde48e4782eefef698991bfaa3156}
+
+\begin{DoxyCompactList}\small\item\em Default onstructor. \end{DoxyCompactList}\item 
+\hypertarget{a00379_a583ec1106e2de9cc092050826f3a1b96}{}\hyperlink{a00379_a583ec1106e2de9cc092050826f3a1b96}{multi\+\_\+channel} (const std\+::vector$<$ \hyperlink{a00366}{generator\+\_\+type} $\ast$ $>$ \&generators)\label{a00379_a583ec1106e2de9cc092050826f3a1b96}
+
+\begin{DoxyCompactList}\small\item\em Constructor with channels argument. \end{DoxyCompactList}\item 
+\hypertarget{a00379_a09ab4a65050348712ea6de233a5a0dcb}{}virtual \hyperlink{a00379_a09ab4a65050348712ea6de233a5a0dcb}{$\sim$multi\+\_\+channel} ()\label{a00379_a09ab4a65050348712ea6de233a5a0dcb}
+
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\hyperlink{a00366}{generator\+\_\+type} $\ast$ \hyperlink{a00379_a32132c51c31d9e8e3a80d2c2d8988b35}{select\+\_\+channel} ()
+\begin{DoxyCompactList}\small\item\em Method that picks the generator channel according to the relative weights. \end{DoxyCompactList}\item 
+\hypertarget{a00379_a2e49aeeb30314a910779e5bdefd38453}{}void \hyperlink{a00379_a2e49aeeb30314a910779e5bdefd38453}{reset\+\_\+current\+\_\+channel} ()\label{a00379_a2e49aeeb30314a910779e5bdefd38453}
+
+\begin{DoxyCompactList}\small\item\em Resets the chosen sub-\/channel. \end{DoxyCompactList}\item 
+\hypertarget{a00379_a814e48a31b082dcf59ee3161c192fc3f}{}\hyperlink{a00366}{generator\+\_\+type} $\ast$ \hyperlink{a00379_a814e48a31b082dcf59ee3161c192fc3f}{current\+\_\+channel} ()\label{a00379_a814e48a31b082dcf59ee3161c192fc3f}
+
+\begin{DoxyCompactList}\small\item\em Returns the channel chosen by select\+\_\+channel. \end{DoxyCompactList}\item 
+\hypertarget{a00379_ae47b19549d982e49894e5a22599eb742}{}bool \hyperlink{a00379_ae47b19549d982e49894e5a22599eb742}{generate} ()\label{a00379_ae47b19549d982e49894e5a22599eb742}
+
+\begin{DoxyCompactList}\small\item\em Generation method implementation. \end{DoxyCompactList}\item 
+\hypertarget{a00379_a6c15fa2eef9d33c9b665ce44462e8bf1}{}bool \hyperlink{a00379_a6c15fa2eef9d33c9b665ce44462e8bf1}{evaluate\+\_\+weight} ()\label{a00379_a6c15fa2eef9d33c9b665ce44462e8bf1}
+
+\begin{DoxyCompactList}\small\item\em Weight evaluation method. \end{DoxyCompactList}\item 
+\hypertarget{a00379_a9cdb594ead0652a5c3c8b67ab54353bc}{}bool \hyperlink{a00379_a9cdb594ead0652a5c3c8b67ab54353bc}{evaluate\+\_\+weight} (bool recurse)\label{a00379_a9cdb594ead0652a5c3c8b67ab54353bc}
+
+\begin{DoxyCompactList}\small\item\em Weight evaluation method with recursion flag. \end{DoxyCompactList}\item 
+\hypertarget{a00379_aaa4efcbda0705e575e1e8864de8bf08c}{}void \hyperlink{a00379_aaa4efcbda0705e575e1e8864de8bf08c}{update} ()\label{a00379_aaa4efcbda0705e575e1e8864de8bf08c}
+
+\begin{DoxyCompactList}\small\item\em Updates internal multichannel weights. \end{DoxyCompactList}\item 
+\hypertarget{a00379_a050eecf19eadf81db8d9e2faefd4e302}{}void \hyperlink{a00379_a050eecf19eadf81db8d9e2faefd4e302}{adapt} ()\label{a00379_a050eecf19eadf81db8d9e2faefd4e302}
+
+\begin{DoxyCompactList}\small\item\em Adapts multichannel weights. \end{DoxyCompactList}\item 
+\hypertarget{a00379_a140d5ac974ad3336afd20401c1f2856d}{}void \hyperlink{a00379_a140d5ac974ad3336afd20401c1f2856d}{add\+\_\+generator} (\hyperlink{a00366}{generator\+\_\+type} $\ast$\hyperlink{a00379_adf7372bbbcd347dde1ee06ee3dfd9242}{generator})\label{a00379_a140d5ac974ad3336afd20401c1f2856d}
+
+\begin{DoxyCompactList}\small\item\em Adds a sub-\/channel, resets all weights if necessary. \end{DoxyCompactList}\item 
+\hypertarget{a00379_a6c628b99b1a411129e0a9a73357f23ae}{}void \hyperlink{a00379_a6c628b99b1a411129e0a9a73357f23ae}{remove\+\_\+generator} (\hyperlink{a00366}{generator\+\_\+type} $\ast$\hyperlink{a00379_adf7372bbbcd347dde1ee06ee3dfd9242}{generator})\label{a00379_a6c628b99b1a411129e0a9a73357f23ae}
+
+\begin{DoxyCompactList}\small\item\em Removes a sub-\/channel, resets all weights if necessary. \end{DoxyCompactList}\item 
+\hypertarget{a00379_a56a0a2847cbd2c9e65586a6aa6dd426b}{}void \hyperlink{a00379_a56a0a2847cbd2c9e65586a6aa6dd426b}{replace\+\_\+generator} (\hyperlink{a00366}{generator\+\_\+type} $\ast$first, \hyperlink{a00366}{generator\+\_\+type} $\ast$second)\label{a00379_a56a0a2847cbd2c9e65586a6aa6dd426b}
+
+\begin{DoxyCompactList}\small\item\em Replaces a sub-\/channel. \end{DoxyCompactList}\item 
+\hypertarget{a00379_a8568dba076981c43d38f2a745f08c56b}{}bool \hyperlink{a00379_a8568dba076981c43d38f2a745f08c56b}{contains\+\_\+generator} (\hyperlink{a00366}{generator\+\_\+type} $\ast$\hyperlink{a00379_adf7372bbbcd347dde1ee06ee3dfd9242}{generator}) const \label{a00379_a8568dba076981c43d38f2a745f08c56b}
+
+\begin{DoxyCompactList}\small\item\em Queries whether the given generator is in the multichannel. \end{DoxyCompactList}\item 
+size\+\_\+type \hyperlink{a00379_adbc1a1152bf4226cfcac887923c85366}{channel\+\_\+count} () const 
+\begin{DoxyCompactList}\small\item\em Returns the number of channels, whee the argument controls whether to count the zero-\/weight channels. \end{DoxyCompactList}\item 
+\hypertarget{a00379_adf7372bbbcd347dde1ee06ee3dfd9242}{}const \hyperlink{a00366}{generator\+\_\+type} $\ast$ \hyperlink{a00379_adf7372bbbcd347dde1ee06ee3dfd9242}{generator} (size\+\_\+type i) const \label{a00379_adf7372bbbcd347dde1ee06ee3dfd9242}
+
+\begin{DoxyCompactList}\small\item\em Returns the i-\/th channel (no bound-\/checking). \end{DoxyCompactList}\item 
+\hypertarget{a00379_a2ef12eaf50f5549652b1df4e1bf5507b}{}value\+\_\+type \hyperlink{a00379_a2ef12eaf50f5549652b1df4e1bf5507b}{alpha} (size\+\_\+type i) const \label{a00379_a2ef12eaf50f5549652b1df4e1bf5507b}
+
+\begin{DoxyCompactList}\small\item\em Returns the i-\/th multichannel weight (no bound-\/checking). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00379_aa585d83b7017df54c2fc0a9f84c9d9ed}{}value\+\_\+type \hyperlink{a00379_aa585d83b7017df54c2fc0a9f84c9d9ed}{adaptive\+\_\+exponent}\label{a00379_aa585d83b7017df54c2fc0a9f84c9d9ed}
+
+\begin{DoxyCompactList}\small\item\em Adaption exponent parameter. \end{DoxyCompactList}\item 
+value\+\_\+type \hyperlink{a00379_ab6dc38b4116fd836a04281052464d01a}{channel\+\_\+threshold}
+\begin{DoxyCompactList}\small\item\em Multichannel threshold parameter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class value\+\_\+t, class rng\+\_\+t$>$class Camgen\+::multi\+\_\+channel$<$ value\+\_\+t, rng\+\_\+t $>$}
+
+Multichannel Monte Carlo generator class. 
+
+\subsection{Member Function Documentation}
+\hypertarget{a00379_adbc1a1152bf4226cfcac887923c85366}{}\index{Camgen\+::multi\+\_\+channel@{Camgen\+::multi\+\_\+channel}!channel\+\_\+count@{channel\+\_\+count}}
+\index{channel\+\_\+count@{channel\+\_\+count}!Camgen\+::multi\+\_\+channel@{Camgen\+::multi\+\_\+channel}}
+\subsubsection[{channel\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\+\_\+t, class rng\+\_\+t$>$ size\+\_\+type {\bf Camgen\+::multi\+\_\+channel}$<$ value\+\_\+t, rng\+\_\+t $>$\+::channel\+\_\+count (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{a00379_adbc1a1152bf4226cfcac887923c85366}
+
+
+Returns the number of channels, whee the argument controls whether to count the zero-\/weight channels. 
+
+\hypertarget{a00379_a32132c51c31d9e8e3a80d2c2d8988b35}{}\index{Camgen\+::multi\+\_\+channel@{Camgen\+::multi\+\_\+channel}!select\+\_\+channel@{select\+\_\+channel}}
+\index{select\+\_\+channel@{select\+\_\+channel}!Camgen\+::multi\+\_\+channel@{Camgen\+::multi\+\_\+channel}}
+\subsubsection[{select\+\_\+channel}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\+\_\+t, class rng\+\_\+t$>$ {\bf generator\+\_\+type}$\ast$ {\bf Camgen\+::multi\+\_\+channel}$<$ value\+\_\+t, rng\+\_\+t $>$\+::select\+\_\+channel (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00379_a32132c51c31d9e8e3a80d2c2d8988b35}
+
+
+Method that picks the generator channel according to the relative weights. 
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00379_ab6dc38b4116fd836a04281052464d01a}{}\index{Camgen\+::multi\+\_\+channel@{Camgen\+::multi\+\_\+channel}!channel\+\_\+threshold@{channel\+\_\+threshold}}
+\index{channel\+\_\+threshold@{channel\+\_\+threshold}!Camgen\+::multi\+\_\+channel@{Camgen\+::multi\+\_\+channel}}
+\subsubsection[{channel\+\_\+threshold}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\+\_\+t, class rng\+\_\+t$>$ value\+\_\+type {\bf Camgen\+::multi\+\_\+channel}$<$ value\+\_\+t, rng\+\_\+t $>$\+::channel\+\_\+threshold}\label{a00379_ab6dc38b4116fd836a04281052464d01a}
+
+
+Multichannel threshold parameter. 
+
+Channels with weights below this value are discarded. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Camgen/\hyperlink{a00698}{multi\+\_\+channel.\+h}\end{DoxyCompactItemize}

@@ -23,34 +23,40 @@
 #include <Camgen/particle.h>
 #include <Camgen/flav_comp.h>
 #include <Camgen/bipart.h>
-#include <Camgen/ps_decl.h>
 #include <Camgen/ps_vol.h>
 
 namespace Camgen
 {
+    template<class model_t,std::size_t N_in,std::size_t N_out,class rng_t>class particle_channel;
+    template<class model_t,std::size_t N_in,std::size_t N_out,class rng_t>class ps_branching;
+
     /* Phase space momentum channel class: */
 
     template<class model_t,std::size_t N_in,std::size_t N_out,class rng_t>class momentum_channel
     {
-	friend class particle_channel<model_t,N_in,N_out,rng_t>;
-	friend class ps_factory<model_t,N_in,N_out,rng_t,typename model_t::spacetime_type>;
-	friend class ps_tree<model_t,N_in,N_out,rng_t>;
-
 	public:
+
+	    enum generation_status
+	    {
+		reset,
+		s_set,
+		p_set
+	    };
 
 	    /* Type definitions: */
 
 	    typedef model_t model_type;
-	    typedef typename get_spacetime_type<model_t>::type spacetime_type;
+	    typedef std::size_t size_type;
 	    typedef typename model_t::value_type value_type;
 	    typedef vector<typename model_t::value_type,model_t::dimension> momentum_type;
-	    typedef std::size_t size_type;
+	    typedef typename get_spacetime_type<model_t>::type spacetime_type;
 	    typedef particle_channel<model_t,N_in,N_out,rng_t> particle_channel_type;
 	    typedef std::list<particle_channel_type*> particle_channel_list;
 	    typedef typename particle_channel_list::iterator particle_channel_iterator;
 	    typedef typename particle_channel_list::const_iterator const_particle_channel_iterator;
 	    static const std::size_t N_bits=N_in+N_out-1;
 	    typedef bit_string<N_bits> bit_string_type;
+	    typedef generation_status status_type;
 
 	    /* Static members: */
 	    /*-----------------*/
@@ -78,13 +84,6 @@ namespace Camgen
 		return comp(first->particle_type,second->particle_type);
 	    }
 
-	    /* Particle channel redundancy tester: */
-
-	    static bool necessary_particle(const particle_channel_type* p)
-	    {
-		return !(p->is_redundant());
-	    }
-
 	    /* Public data members */
 	    /*---------------------*/
 
@@ -97,42 +96,34 @@ namespace Camgen
 
 	    /* Momentum-allocating constructor. */
 
-	    momentum_channel(bit_string_type bitstring_):bitstring(bitstring_),momentum(new momentum_type),alloc_momentum(true),invariant_mass(0),signed_mass(0),generation_flag(false)
+	    momentum_channel(bit_string_type bitstring_):bitstring(bitstring_),momentum(new momentum_type),alloc_momentum(true),invariant_mass(0),status(reset)
 	    {
 		if(timelike())
 		{
 		    sminmin=(value_type)0;
-		    mminmin=(value_type)0;
 		    smaxmax=std::numeric_limits<value_type>::infinity();
-		    mmaxmax=std::numeric_limits<value_type>::infinity();
 		}
 		if(spacelike())
 		{
 		    sminmin=-std::numeric_limits<value_type>::infinity();
-		    mminmin=-std::numeric_limits<value_type>::infinity();
 		    smaxmax=(value_type)0;
-		    mmaxmax=(value_type)0;
 		}
 		momentum->assign((value_type)0);
 	    }
 
 	    /* Momentum reference-copying constructor. */
 
-	    momentum_channel(bit_string_type bitstring_,momentum_type* momentum_):bitstring(bitstring_),momentum(momentum_),alloc_momentum(false),invariant_mass(0),signed_mass(0),generation_flag(false)
+	    momentum_channel(bit_string_type bitstring_,momentum_type* momentum_):bitstring(bitstring_),momentum(momentum_),alloc_momentum(false),invariant_mass(0),status(reset)
 	    {
 		if(timelike())
 		{
 		    sminmin=(value_type)0;
-		    mminmin=(value_type)0;
 		    smaxmax=std::numeric_limits<value_type>::infinity();
-		    mmaxmax=std::numeric_limits<value_type>::infinity();
 		}
 		if(spacelike())
 		{
 		    sminmin=-std::numeric_limits<value_type>::infinity();
-		    mminmin=-std::numeric_limits<value_type>::infinity();
 		    smaxmax=(value_type)0;
-		    mmaxmax=(value_type)0;
 		}
 		momentum->assign((value_type)0);
 	    }
@@ -155,6 +146,37 @@ namespace Camgen
 	    /* Public modifyers */
 	    /*------------------*/
 
+	    void add_particle_channel(particle_channel_type* channel)
+	    {
+		if(on_shell())
+		{
+		    particle_channel_iterator it=particle_channels.begin();
+		    if(it!=particle_channels.end())
+		    {
+			delete *it;
+			*it=channel;
+		    }
+		    else
+		    {
+			particle_channels.insert(it,channel);
+		    }
+		}
+		else
+		{
+		    particle_channel_iterator it=std::lower_bound(particle_channels.begin(),particle_channels.end(),channel,particle_comp);
+
+		    if(it!=particle_channels.end() and (*it)->particle_type==channel->particle_type)
+		    {
+			delete *it;
+			*it=channel;
+		    }
+		    else
+		    {
+			particle_channels.insert(it,channel);
+		    }
+		}
+	    }
+
 	    /* Evaluates all subchannel weights: */
 
 	    bool evaluate_weight()
@@ -165,55 +187,6 @@ namespace Camgen
 		    q&=(*it)->evaluate_weight();
 		}
 		return q;
-	    }
-
-	    /* Adds a particle channel: */
-
-	    particle_channel_type* add_particle_channel(const particle<model_t>* phi,const value_type* Ecmhat=NULL)
-	    {
-		/* If the channel is external, replace the particle channels: */
-		
-		if(on_shell())
-		{
-		    if(any())
-		    {
-			for(particle_channel_iterator it=particle_channels.begin();it!=particle_channels.end();++it)
-			{
-			    delete *it;
-			}
-			particle_channels.clear();
-		    }
-		    particle_channel_type* p=new particle_channel_type(this,phi,Ecmhat);
-		    particle_channel_iterator it=std::lower_bound(particle_channels.begin(),particle_channels.end(),p,particle_comp);
-		    particle_channels.insert(it,p);
-		    return p;
-		}
-
-		/* If the particle channel is already constructed, return the
-		 * instance: */
-
-		for(particle_channel_iterator it=particle_channels.begin();it!=particle_channels.end();++it)
-		{
-		    if((*it)->particle_type==phi)
-		    {
-			return *it;
-		    }
-		}
-
-		/* If the particle is pure gauge, do nothing and return the null
-		 * pointer: */
-
-		if(phi!=NULL)
-		{
-		    if(phi->get_pdg_id()==0 and !phi->is_auxiliary())
-		    {
-			return NULL;
-		    }
-		}
-		particle_channel_type* p=new particle_channel_type(this,phi,Ecmhat);
-		particle_channel_iterator it=std::lower_bound(particle_channels.begin(),particle_channels.end(),p,particle_comp);
-		particle_channels.insert(it,p);
-		return p;
 	    }
 
 	    /* Returns the particle channel of flavour phi. Returns the null
@@ -251,26 +224,7 @@ namespace Camgen
 	    value_type evaluate_s()
 	    {
 		invariant_mass=spacetime_type::dot(*momentum,*momentum);
-		signed_mass=(invariant_mass<0)?(-std::sqrt(-invariant_mass)):std::sqrt(invariant_mass);
 		return invariant_mass;
-	    }
-
-	    /* Evaluates the invariant mass from the invariant mass-squared. */
-
-	    value_type evaluate_m()
-	    {
-		signed_mass=(invariant_mass<0)?(-std::sqrt(-invariant_mass)):std::sqrt(invariant_mass);
-		return signed_mass;
-	    }
-
-	    /* Resets the generation flags. */
-
-	    void reset_generation_flags()
-	    {
-		for(particle_channel_iterator it=particle_channels.begin();it!=particle_channels.end();++it)
-		{
-		    (*it)->reset_generation_flags();
-		}
 	    }
 
 	    /* Sets the momentum pointer: */
@@ -291,51 +245,10 @@ namespace Camgen
 	    bool set_s_min_min(const value_type& sminmin_)
 	    {
 		sminmin=sminmin_;
-		mminmin=sgn_sqrt(sminmin);
 		bool q=true;
 		for(particle_channel_iterator it=particle_channels.begin();it!=particle_channels.end();++it)
 		{
 		    q&=((*it)->set_s_min_min(sminmin));
-		}
-		return q;
-	    }
-
-	    /* Sets the minimal minimal signed invariant mass. Updates all propagator
-	    samplers invariant mass limits. */
-	    
-	    bool set_m_min_min(const value_type& mminmin_)
-	    {
-		mminmin=mminmin_;
-		sminmin=sgn_sq(mminmin);
-		bool q=true;
-		for(particle_channel_iterator it=particle_channels.begin();it!=particle_channels.end();++it)
-		{
-		    q&=((*it)->set_s_min_min(sminmin));
-		}
-		return q;
-	    }
-
-	    /* Sets the minimal invariant mass-squared for all particle
-	     * channels: */
-	    
-	    bool set_s_min(const value_type& smin_)
-	    {
-		bool q=true;
-		for(particle_channel_iterator it=particle_channels.begin();it!=particle_channels.end();++it)
-		{
-		    q&=((*it)->set_s_min(smin_));
-		}
-		return q;
-	    }
-
-	    /* Sets the minimal invariant mass for all particle channels: */
-	    
-	    bool set_m_min(const value_type& mmin_)
-	    {
-		bool q=true;
-		for(particle_channel_iterator it=particle_channels.begin();it!=particle_channels.end();++it)
-		{
-		    q&=((*it)->set_m_min(mmin_));
 		}
 		return q;
 	    }
@@ -345,7 +258,6 @@ namespace Camgen
 	    bool set_s_max_max(const value_type& smaxmax_)
 	    {
 		smaxmax=smaxmax_;
-		mmaxmax=sgn_sqrt(smaxmax);
 		bool q=true;
 		for(particle_channel_iterator it=particle_channels.begin();it!=particle_channels.end();++it)
 		{
@@ -354,17 +266,31 @@ namespace Camgen
 		return q;
 	    }
 
-	    /* Sets the minimal signed invariant mass. Updates all propagator
-	    samplers invariant mass limits. */
+	    /* Sets the minimal minimal invariant mass and updates all particle
+	     * channels: */
+	    
+	    bool set_m_min_min(const value_type& mminmin_)
+	    {
+		return set_s_min_min(sgn_sq(mminmin_));
+	    }
+
+	    /* Sets the maximal invariant mass for all channels: */
 	    
 	    bool set_m_max_max(const value_type& mmaxmax_)
 	    {
-		mmaxmax=mmaxmax_;
-		smaxmax=sgn_sq(mmaxmax);
+		return set_s_max_max(sgn_sq(mmaxmax_));
+	    }
+
+	    /* Sets the minimal invariant mass-squared for all particle
+	     * channels: */
+	    
+	    bool set_s_min(const value_type& smin_)
+	    {
 		bool q=true;
+		value_type sm=std::max(sminmin,smin_);
 		for(particle_channel_iterator it=particle_channels.begin();it!=particle_channels.end();++it)
 		{
-		    q&=((*it)->set_s_max_max(smaxmax));
+		    q&=((*it)->set_s_min(sm));
 		}
 		return q;
 	    }
@@ -375,23 +301,26 @@ namespace Camgen
 	    bool set_s_max(const value_type& smax_)
 	    {
 		bool q=true;
+		value_type sm=std::min(smaxmax,smax_);
 		for(particle_channel_iterator it=particle_channels.begin();it!=particle_channels.end();++it)
 		{
-		    q&=((*it)->set_s_max(smax_));
+		    q&=((*it)->set_s_max(sm));
 		}
 		return q;
 	    }
 
-	    /* Sets the maximal invariant mass for all particle channels: */
+	    /* Sets the minimal invariant mass for all particle channels: */
+	    
+	    bool set_m_min(const value_type& mmin_)
+	    {
+		return set_s_min(sgn_sq(mmin_));
+	    }
+
+	    /* Sets the maximal invariant mass for all channels: */
 	    
 	    bool set_m_max(const value_type& mmax_)
 	    {
-		bool q=true;
-		for(particle_channel_iterator it=particle_channels.begin();it!=particle_channels.end();++it)
-		{
-		    q&=((*it)->set_m_max(mmax_));
-		}
-		return q;
+		return set_s_max(sgn_sq(mmax_));
 	    }
 
 	    /* Function filling the mmin components for timelike channels: */
@@ -437,7 +366,7 @@ namespace Camgen
 
 	    /* Re-evaluates mminmin from branchings. */
 
-	    bool refresh_m_min(const value_type& s,const value_type& sa,const value_type& sb)
+	    bool refresh_s_min(const value_type& s,const value_type& sa,const value_type& sb)
 	    {
 		if(on_shell())
 		{
@@ -448,14 +377,14 @@ namespace Camgen
 		    value_type result(0);
 		    for(size_type i=0;i<mmin_decomps.size();++i)
 		    {
-			value_type s(0);
+			value_type m(0);
 			for(size_type j=0;j<mmin_decomps[i].size();++j)
 			{
-			    s+=(*mmin_decomps[i][j]);
+			    m+=(*mmin_decomps[i][j]);
 			}
-			result=std::max(result,s);
+			result=std::max(result,m);
 		    }
-		    return set_m_min_min(result);
+		    return set_s_min_min(result*result);
 		}
 		else if(spacelike())
 		{
@@ -505,119 +434,80 @@ namespace Camgen
 		return false;
 	    }
 
-	    /* Refreshes internal generation parameters. */
+	    /* Refreshes internal parameters: */
 
-	    bool refresh_params()
-	    {
-		bool q=true;
-		for(particle_channel_iterator it=particle_channels.begin();it!=particle_channels.end();++it)
-		{
-		    q&=((*it)->refresh_params());
-		}
-		return q;
-	    }
-
-	    /* Updates all subchannels with the argument value: */
-
-	    void update(const value_type& integrand)
+	    void refresh_params()
 	    {
 		for(particle_channel_iterator it=particle_channels.begin();it!=particle_channels.end();++it)
 		{
-		    (*it)->integrand()=integrand;
-		    (*it)->update();
+		    (*it)->refresh_params();
 		}
 	    }
 
-	    /* Adapts all subchannels: */
+	    /* Set the status to s-generated: */
 
-	    void adapt_grids()
+	    void set_status_s_generated()
 	    {
-		for(particle_channel_iterator it=particle_channels.begin();it!=particle_channels.end();++it)
+		if(status==s_set)
 		{
-		    (*it)->adapt_grids();
+		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"invariant mass regenerated..."<<endlog;
 		}
+		if(status==p_set)
+		{
+		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"invariant mass regenerated after momentum was set..."<<endlog;
+		}
+		status=s_set;
 	    }
 
-	    /* Adapts all subchannels: */
+	    /* Set the status to p-generated: */
 
-	    void adapt_channels()
+	    void set_status_p_generated()
 	    {
-		for(particle_channel_iterator it=particle_channels.begin();it!=particle_channels.end();++it)
+		if(status==p_set)
 		{
-		    (*it)->adapt_channels();
+		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"momentum regenerated after momentum was set..."<<endlog;
 		}
+		status=p_set;
 	    }
 
-	    /* Adapts all subchannels: */
+	    /* Reset the status: */
 
-	    void adapt()
+	    void reset_status()
 	    {
-		for(particle_channel_iterator it=particle_channels.begin();it!=particle_channels.end();++it)
-		{
-		    (*it)->adapt();
-		}
+		status=reset;
 	    }
 
-	    /* Resets all subchannel multichannel configurations:
-	     * */
-
-	    void reset()
-	    {
-		for(particle_channel_iterator it=particle_channels.begin();it!=particle_channels.end();++it)
-		{
-		    (*it)->reset();
-		}
-	    }
-
-	    /* Resets all subchannel cross sections: * */
-
-	    void reset_cross_section()
-	    {
-		for(particle_channel_iterator it=particle_channels.begin();it!=particle_channels.end();++it)
-		{
-		    (*it)->reset_cross_section();
-		}
-	    }
-
-	    /* Sets all particle channel redundancy flags: */
-	    
-	    void set_redundant()
-	    {
-		for(particle_channel_iterator it=particle_channels.begin();it!=particle_channels.end();++it)
-		{
-		    (*it)->set_redundant();
-		}
-	    }
-
-	    /* Cleans the channel from all redundant subchannels: */
-
-	    void clean()
-	    {
-		particle_channel_iterator it=std::stable_partition(particle_channels.begin(),particle_channels.end(),necessary_particle);
-		for(particle_channel_iterator it2=particle_channels.begin();it2!=it;++it2)
-		{
-		    (*it2)->clean();
-		}
-		for(particle_channel_iterator it2=it;it2!=particle_channels.end();++it2)
-		{
-		    delete *it2;
-		}
-		particle_channels.erase(it,particle_channels.end());
-	    }
-
-	    /* Sets the multichannel adaptivity and threshold to the argument
-	     * pair: */
-
-	    void set_multichannel_params(const std::pair<value_type,value_type>& x)
-	    {
-		for(particle_channel_iterator it=particle_channels.begin();it!=particle_channels.end();++it)
-		{
-		    (*it)->set_multichannel_params(x);
-		}
-	    }
 
 	    /* Public readout functions */
 	    /*--------------------------*/
+
+	    /* Returns the starting iterator to the particle channels: */
+
+	    particle_channel_iterator begin_particle_channels()
+	    {
+		return particle_channels.begin();
+	    }
+
+	    /* Returns the end iterator of the particle channels: */
+
+	    particle_channel_iterator end_particle_channels()
+	    {
+		return particle_channels.end();
+	    }
+
+	    /* Returns the starting const iterator to the particle channels: */
+
+	    const_particle_channel_iterator begin_particle_channels() const
+	    {
+		return particle_channels.begin();
+	    }
+
+	    /* Returns the end const iterator of the particle channels: */
+
+	    const_particle_channel_iterator end_particle_channels() const
+	    {
+		return particle_channels.end();
+	    }
 
 	    /* Returns a reference to the momentum flowing through the channel.
 	     * */
@@ -665,9 +555,9 @@ namespace Camgen
 
 	    /* Returns a reference to the signed invariant mass. */
 
-	    const value_type& m() const
+	    value_type m() const
 	    {
-		return signed_mass;
+		return sgn_sqrt(invariant_mass);
 	    }
 
 	    /* Returns a const reference to the minimal invariant mass-squared.
@@ -681,9 +571,9 @@ namespace Camgen
 	    /* Returns a const reference to the minimal signed invariant mass.
 	     * */
 
-	    const value_type& m_min_min() const
+	    value_type m_min_min() const
 	    {
-		return mminmin;
+		return sgn_sqrt(sminmin);
 	    }
 
 	    /* Returns a const reference to the minimal invariant mass-squared.
@@ -697,9 +587,9 @@ namespace Camgen
 	    /* Returns a const reference to the minimal signed invariant mass.
 	     * */
 
-	    const value_type& m_max_max() const
+	    value_type m_max_max() const
 	    {
-		return mmaxmax;
+		return sgn_sqrt(smaxmax);
 	    }
 	    
 	    /* Returns whether there are no particles propagating: */
@@ -716,18 +606,11 @@ namespace Camgen
 		return (particle_channels.size()!=0);
 	    }
 
-	    /* Returns whether the momentum channel is redundant: */
+	    /* Returns the number of particles propagating: */
 
-	    bool is_redundant() const
+	    size_type count_particle_channels()
 	    {
-		for(const_particle_channel_iterator it=particle_channels.begin();it!=particle_channels.end();++it)
-		{
-		    if(!((*it)->is_redundant()))
-		    {
-			return false;
-		    }
-		}
-		return true;
+		return particle_channels.size();
 	    }
 
 	    /* Returns whether the channel is external. */
@@ -759,30 +642,19 @@ namespace Camgen
 		return !spacelike();
 	    }
 
-	    /* Returns whether the channel has just been generated: */
+	    /* Returns whether this is the s-hat channel.*/
 
-	    bool is_generated() const
+	    bool shat_channel() const
 	    {
-		return generation_flag;
+		return (timelike() and bitstring.count()==N_out);
 	    }
 
-	    /* Normalisation checking utility: */
+	    /* Returns the generation status: */
 
-	    std::ostream& check_s_norm(std::ostream& os) const
+	    status_type get_status() const
 	    {
-		if(on_shell())
-		{
-		    return os;
-		}
-		for(const_particle_channel_iterator it=particle_channels.begin();it!=particle_channels.end();++it)
-		{
-		    (*it)->check_s_norm(os);
-		}
-		return os;
+		return status;
 	    }
-
-	    /* Serialization */
-	    /*---------------*/
 
 	    /* Printing method. */
 	    
@@ -795,9 +667,9 @@ namespace Camgen
 		n+=6*model_t::dimension+15;
 		sstr2<<*momentum;
 		os<<std::setw(6*model_t::dimension+20)<<std::left<<sstr2.str();
-		os<<std::setw(23)<<std::left<<signed_mass;
-		os<<std::setw(23)<<std::left<<mminmin;
-		os<<std::setw(23)<<std::left<<mmaxmax<<std::endl;
+		os<<std::setw(23)<<std::left<<m();
+		os<<std::setw(23)<<std::left<<m_min_min();
+		os<<std::setw(23)<<std::left<<m_max_max()<<std::endl;
 		os<<std::setw(n+70)<<std::setfill('.')<<'.'<<std::endl;
 		os<<std::setfill(' ');
 		os<<std::endl;
@@ -815,43 +687,7 @@ namespace Camgen
 
 	    std::ostream& shortprint(std::ostream& os) const
 	    {
-		os<<bitstring<<"\t, p = "<<*momentum<<", m = "<<signed_mass<<", [m--,m++] = ["<<mminmin<<','<<mmaxmax<<']';
-		return os;
-	    }
-
-	    /* Overridden loading function: */
-
-	    std::istream& load(std::istream& is)
-	    {
-		safe_read(is,signed_mass);
-		safe_read(is,mminmin);
-		safe_read(is,mmaxmax);
-		
-		invariant_mass=sgn_sq(signed_mass);
-		sminmin=sgn_sq(mminmin);
-		smaxmax=sgn_sq(mmaxmax);
-		std::string initflag;
-		std::getline(is,initflag);
-		return is;
-	    }
-
-	    /* Overridden saving function: */
-
-	    std::ostream& save(std::ostream& os) const
-	    {
-		os<<"<channel>"<<std::endl;
-		os<<bitstring<<std::endl;
-		safe_write(os,signed_mass);
-		os<<"\t";
-		safe_write(os,mminmin);
-		os<<"\t";
-		safe_write(os,mmaxmax);
-		os<<std::endl;
-		for(typename particle_channel_list::const_iterator it=particle_channels.begin();it!=particle_channels.end();++it)
-		{
-		    (*it)->save(os);
-		}
-		os<<"</channel>"<<std::endl;
+		os<<bitstring<<"\t, p = "<<*momentum<<", m = "<<m()<<", [m--,m++] = ["<<m_min_min()<<','<<m_max_max()<<']';
 		return os;
 	    }
 
@@ -875,14 +711,10 @@ namespace Camgen
 	    /* Invariant mass-squared: */
 
 	    value_type invariant_mass;
-	    
-	    /* Signed invariant mass: */
-	    
-	    value_type signed_mass;
 
 	    /* Extremal invariant mass bounds: */
 
-	    value_type sminmin,mminmin,smaxmax,mmaxmax;
+	    value_type sminmin,smaxmax;
 
 	    /* Vector of references for computing smin: */
 
@@ -892,9 +724,13 @@ namespace Camgen
 
 	    std::vector<std::vector<const value_type*> > mmin_decomps_bar;
 
-	    /* Generation flag: */
+	    /* Channel generation status: */
 
-	    bool generation_flag;
+	    status_type status;
+
+	    /* Private modifiers: */
+	    /*--------------------*/
+
     };
     template<class model_t,std::size_t N_in,std::size_t N_out,class rng_t>const std::size_t momentum_channel<model_t,N_in,N_out,rng_t>::N_bits;
 

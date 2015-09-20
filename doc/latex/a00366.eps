@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 111.111111
+%%BoundingBox: 0 0 500 596.590909
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,13 +19,13 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 4.500000 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 0.838095 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
 /yspacing 0 def
-/rows 2 def
-/cols 1 def
+/rows 21 def
+/cols 2 def
 /scalefactor 0 def
 /boxfont /Times-Roman findfont fontheight scalefont def
 
@@ -173,8 +173,27 @@
 
 boxfont setfont
 1 boundaspect scale
-(Camgen::MC_object_generator< value_t, object_t, 1, true >) cw
 (Camgen::MC_generator< value_t >) cw
+(Camgen::colour_generator< value_t, N_in, N_out, false >) cw
+(Camgen::colour_generator< value_t, N_in, N_out, true >) cw
+(Camgen::helicity_generator< value_t, N_in, N_out, false >) cw
+(Camgen::helicity_generator< value_t, N_in, N_out, true >) cw
+(Camgen::MC_integrator< value_t >) cw
+(Camgen::multi_channel< value_t, rng_t >) cw
+(Camgen::normal_generator< value_t, rng_t >) cw
+(Camgen::parni_generator< value_t, D, rng_t, key_t >) cw
+(Camgen::parni_generator< value_t, 1, rng_t, key_t >) cw
+(Camgen::parni_sub_grid< value_t, D, rng_t, key_t >) cw
+(Camgen::s_pair_generator< value_t, rng_t >) cw
+(Camgen::uniform_sphere< value_t, D, rng_t >) cw
+(Camgen::uniform_sphere< value_t, 1, rng_t >) cw
+(Camgen::uniform_sphere< value_t, 2, rng_t >) cw
+(Camgen::uniform_sphere< value_t, 3, rng_t >) cw
+(Camgen::value_generator< value_t, rng_t >) cw
+(Camgen::parni_sub_grid< value_t, 1, rng_t >) cw
+(Camgen::parni_sub_grid< value_t, 1, rng_t, key_t >) cw
+(Camgen::uniform_sphere< value_t, 2 *N_c-1, rng_t >) cw
+(Camgen::uniform_sphere< value_t, N_c *N_c-2, rng_t >) cw
 /boxwidth boxwidth marginwidth 2 mul add def
 /xspacing boxwidth distx add def
 /yspacing boxheight disty add def
@@ -186,12 +205,79 @@ boundx scalefactor div boundy scalefactor div scale
 
 % ----- classes -----
 
- (Camgen::MC_object_generator< value_t, object_t, 1, true >) 0.000000 0.000000 box
- (Camgen::MC_generator< value_t >) 0.000000 1.000000 box
+ (Camgen::MC_generator< value_t >) 0.000000 20.000000 box
+ (Camgen::colour_generator< value_t, N_in, N_out, false >) 1.000000 19.000000 box
+1.000000 19.000000 mark
+ (Camgen::colour_generator< value_t, N_in, N_out, true >) 1.000000 18.000000 box
+1.000000 18.000000 mark
+ (Camgen::helicity_generator< value_t, N_in, N_out, false >) 1.000000 17.000000 box
+1.000000 17.000000 mark
+ (Camgen::helicity_generator< value_t, N_in, N_out, true >) 1.000000 16.000000 box
+1.000000 16.000000 mark
+ (Camgen::MC_integrator< value_t >) 1.000000 15.000000 box
+1.000000 15.000000 mark
+ (Camgen::multi_channel< value_t, rng_t >) 1.000000 14.000000 box
+1.000000 14.000000 mark
+ (Camgen::normal_generator< value_t, rng_t >) 1.000000 13.000000 box
+ (Camgen::parni_generator< value_t, D, rng_t, key_t >) 1.000000 12.000000 box
+ (Camgen::parni_generator< value_t, 1, rng_t, key_t >) 1.000000 11.000000 box
+ (Camgen::parni_sub_grid< value_t, D, rng_t, key_t >) 1.000000 10.000000 box
+ (Camgen::s_pair_generator< value_t, rng_t >) 1.000000 9.000000 box
+1.000000 9.000000 mark
+ (Camgen::uniform_sphere< value_t, D, rng_t >) 1.000000 8.000000 box
+ (Camgen::uniform_sphere< value_t, 1, rng_t >) 1.000000 7.000000 box
+ (Camgen::uniform_sphere< value_t, 2, rng_t >) 1.000000 6.000000 box
+ (Camgen::uniform_sphere< value_t, 3, rng_t >) 1.000000 5.000000 box
+ (Camgen::value_generator< value_t, rng_t >) 1.000000 4.000000 box
+1.000000 4.000000 mark
+ (Camgen::parni_sub_grid< value_t, 1, rng_t >) 1.000000 3.000000 box
+ (Camgen::parni_sub_grid< value_t, 1, rng_t, key_t >) 1.000000 2.000000 box
+ (Camgen::uniform_sphere< value_t, 2 *N_c-1, rng_t >) 1.000000 1.000000 box
+ (Camgen::uniform_sphere< value_t, N_c *N_c-2, rng_t >) 1.000000 0.000000 box
 
 % ----- relations -----
 
 solid
-0 0.000000 0.000000 out
+1 0.000000 19.250000 out
 solid
-1 0.000000 1.000000 in
+0 0.000000 19.500000 hedge
+solid
+0 0.000000 18.500000 hedge
+solid
+0 0.000000 17.500000 hedge
+solid
+0 0.000000 16.500000 hedge
+solid
+0 0.000000 15.500000 hedge
+solid
+0 0.000000 14.500000 hedge
+solid
+0 0.000000 13.500000 hedge
+solid
+0 0.000000 12.500000 hedge
+solid
+0 0.000000 11.500000 hedge
+solid
+0 0.000000 10.500000 hedge
+solid
+0 0.000000 9.500000 hedge
+solid
+0 0.000000 8.500000 hedge
+solid
+0 0.000000 7.500000 hedge
+solid
+0 0.000000 6.500000 hedge
+solid
+0 0.000000 5.500000 hedge
+solid
+0 0.000000 4.500000 hedge
+solid
+0 0.000000 3.500000 hedge
+solid
+0 0.000000 2.500000 hedge
+solid
+0 0.000000 1.500000 hedge
+solid
+0 0.000000 0.500000 hedge
+solid
+0.000000 20.000000 0.500000 vedge

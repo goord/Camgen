@@ -9,7 +9,7 @@
 
 namespace Camgen
 {
-    const double numeric_configuration<double>::epsilon_abs=1e-03;
-    const double numeric_configuration<double>::epsilon_rel=1e-09;
+    const double numeric_configuration<double>::epsilon_abs=1e-06;
+    const double numeric_configuration<double>::epsilon_rel=1e-06;
 }
 

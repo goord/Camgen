@@ -1,8 +1,54 @@
-\hypertarget{a00534}{\section{Camgen\-:\-:colour\-\_\-tensor\-:\-:T\-T\-\_\-contr\-\_\-helper$<$ rep\-\_\-t, Feynrule\-\_\-t, I, J, K, L $>$ Class Template Reference}
-\label{a00534}\index{Camgen\-::colour\-\_\-tensor\-::\-T\-T\-\_\-contr\-\_\-helper$<$ rep\-\_\-t, Feynrule\-\_\-t, I, J, K, L $>$@{Camgen\-::colour\-\_\-tensor\-::\-T\-T\-\_\-contr\-\_\-helper$<$ rep\-\_\-t, Feynrule\-\_\-t, I, J, K, L $>$}}
-}
+\hypertarget{a00534}{}\section{Camgen\+:\+:symmetric\+\_\+s\+\_\+pair\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$ Class Template Reference}
+\label{a00534}\index{Camgen\+::symmetric\+\_\+s\+\_\+pair\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$@{Camgen\+::symmetric\+\_\+s\+\_\+pair\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$}}
 
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+Generates a pair of invariant masses, with zero weights if they do not respect the momentum conservation constraint\+:  
+
+
+
+
+{\ttfamily \#include $<$ss\+\_\+gen.\+h$>$}
+
+Inheritance diagram for Camgen\+:\+:symmetric\+\_\+s\+\_\+pair\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{a00534}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
 \item 
-include/\-Camgen/T\-T\-\_\-contr\-\_\-helper.\-h\end{DoxyCompactItemize}
+bool \hyperlink{a00534_a5f259afbf4c7c1f73649bd3775b14517}{generate} ()
+\begin{DoxyCompactList}\small\item\em \textquotesingle{}Bare generation\textquotesingle{} method (purely virtual). \end{DoxyCompactList}\item 
+\hypertarget{a00534_ad8c122e8f0b816e31e7f2bc951c0a03b}{}bool \hyperlink{a00534_ad8c122e8f0b816e31e7f2bc951c0a03b}{evaluate\+\_\+weight} ()\label{a00534_ad8c122e8f0b816e31e7f2bc951c0a03b}
+
+\begin{DoxyCompactList}\small\item\em Event weight calculation method. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class value\+\_\+t, class rng\+\_\+t$>$class Camgen\+::symmetric\+\_\+s\+\_\+pair\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$}
+
+Generates a pair of invariant masses, with zero weights if they do not respect the momentum conservation constraint\+: 
+
+\subsection{Member Function Documentation}
+\hypertarget{a00534_a5f259afbf4c7c1f73649bd3775b14517}{}\index{Camgen\+::symmetric\+\_\+s\+\_\+pair\+\_\+generator@{Camgen\+::symmetric\+\_\+s\+\_\+pair\+\_\+generator}!generate@{generate}}
+\index{generate@{generate}!Camgen\+::symmetric\+\_\+s\+\_\+pair\+\_\+generator@{Camgen\+::symmetric\+\_\+s\+\_\+pair\+\_\+generator}}
+\subsubsection[{generate}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\+\_\+t, class rng\+\_\+t$>$ bool {\bf Camgen\+::symmetric\+\_\+s\+\_\+pair\+\_\+generator}$<$ value\+\_\+t, rng\+\_\+t $>$\+::generate (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{a00534_a5f259afbf4c7c1f73649bd3775b14517}
+
+
+\textquotesingle{}Bare generation\textquotesingle{} method (purely virtual). 
+
+Should update the weight data member. 
+
+Implements \hyperlink{a00366_a197b7bb66d8de5f6de401f81bea71e6c}{Camgen\+::\+M\+C\+\_\+generator$<$ value\+\_\+t $>$}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Camgen/\hyperlink{a00785}{ss\+\_\+gen.\+h}\end{DoxyCompactItemize}

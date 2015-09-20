@@ -1,162 +1,65 @@
-\hypertarget{a00385}{\section{Camgen\-:\-:parni$<$ value\-\_\-t, 1, rng\-\_\-t, key\-\_\-t $>$ Class Template Reference}
-\label{a00385}\index{Camgen\-::parni$<$ value\-\_\-t, 1, rng\-\_\-t, key\-\_\-t $>$@{Camgen\-::parni$<$ value\-\_\-t, 1, rng\-\_\-t, key\-\_\-t $>$}}
-}
+\hypertarget{a00385}{}\section{Camgen\+:\+:normal\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$ Class Template Reference}
+\label{a00385}\index{Camgen\+::normal\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$@{Camgen\+::normal\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$}}
 
 
-Parni specialisation for one-\/dimensional integration.  
+Normally distributed random number generator class definition.  
 
 
 
 
-{\ttfamily \#include $<$parni.\-h$>$}
+{\ttfamily \#include $<$norm\+\_\+gen.\+h$>$}
 
-Inheritance diagram for Camgen\-:\-:parni$<$ value\-\_\-t, 1, rng\-\_\-t, key\-\_\-t $>$\-:\begin{figure}[H]
+Inheritance diagram for Camgen\+:\+:normal\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=1.895093cm]{a00385}
+\includegraphics[height=2.000000cm]{a00385}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00385_a3a602696cc9c190dd9fece7a7e1c9aa1}{parni} (const point\-\_\-type \&xmin\-\_\-, const point\-\_\-type \&xmax\-\_\-, size\-\_\-type n\-\_\-bins\-\_\-=500, grid\-\_\-modes\-::type mode\-\_\-=grid\-\_\-modes\-::cumulant\-\_\-weights)
-\begin{DoxyCompactList}\small\item\em Constructor with lower-\/left and upper-\/right integration domain corners and the maximal number of bins as arguments. \end{DoxyCompactList}\item 
-\hyperlink{a00385_a334af27545cc2f915a6da5431bdaa0ff}{parni} (point\-\_\-type $\ast$point\-\_\-, const point\-\_\-type \&xmin\-\_\-, const point\-\_\-type \&xmax\-\_\-, size\-\_\-type n\-\_\-bins\-\_\-=500, grid\-\_\-modes\-::type mode\-\_\-=grid\-\_\-modes\-::cumulant\-\_\-weights)
-\begin{DoxyCompactList}\small\item\em Constructor with an external point address (to be filled) and lower-\/left and upper-\/right integration domain corners and the maximal number of bins as arguments. \end{DoxyCompactList}\item 
-\hypertarget{a00385_a9fab247a166421bac36ced355ed01e9a}{\hyperlink{a00385_a9fab247a166421bac36ced355ed01e9a}{$\sim$parni} ()}\label{a00385_a9fab247a166421bac36ced355ed01e9a}
+\hypertarget{a00385_a5fa68e1fc9f59a63e44c982067d7b1de}{}\hyperlink{a00385_a5fa68e1fc9f59a63e44c982067d7b1de}{normal\+\_\+generator} (const value\+\_\+type $\ast$mu\+\_\+=N\+U\+L\+L, const value\+\_\+type $\ast$sigma\+\_\+=N\+U\+L\+L)\label{a00385_a5fa68e1fc9f59a63e44c982067d7b1de}
 
-\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
-\hypertarget{a00385_a70e97a80af86d90e73603ba9f21b446d}{bool \hyperlink{a00385_a70e97a80af86d90e73603ba9f21b446d}{generate} ()}\label{a00385_a70e97a80af86d90e73603ba9f21b446d}
+\begin{DoxyCompactList}\small\item\em Allocating constructor with mean and variance address arguments. \end{DoxyCompactList}\item 
+\hypertarget{a00385_a7e29a2228ed20c64bd191d35eb64256e}{}\hyperlink{a00385_a7e29a2228ed20c64bd191d35eb64256e}{normal\+\_\+generator} (object\+\_\+type $\ast$instance\+\_\+, const value\+\_\+type $\ast$mu\+\_\+=N\+U\+L\+L, const value\+\_\+type $\ast$sigma\+\_\+=N\+U\+L\+L)\label{a00385_a7e29a2228ed20c64bd191d35eb64256e}
 
-\begin{DoxyCompactList}\small\item\em Generation method implementation. \end{DoxyCompactList}\item 
-\hypertarget{a00385_aae06454f775452b7d0615c09bf9b6142}{bool \hyperlink{a00385_aae06454f775452b7d0615c09bf9b6142}{evaluate\-\_\-weight} ()}\label{a00385_aae06454f775452b7d0615c09bf9b6142}
+\begin{DoxyCompactList}\small\item\em Non-\/allocating constructor with mean and variance addresses. \end{DoxyCompactList}\item 
+\hypertarget{a00385_a2dbac3922bbf37727f61efecfcea45d8}{}\hyperlink{a00385}{normal\+\_\+generator}$<$ value\+\_\+t, rng\+\_\+t $>$ $\ast$ \hyperlink{a00385_a2dbac3922bbf37727f61efecfcea45d8}{clone} () const \label{a00385_a2dbac3922bbf37727f61efecfcea45d8}
 
-\begin{DoxyCompactList}\small\item\em Weight evaluation method. \end{DoxyCompactList}\item 
-\hypertarget{a00385_a4e00d9cd734dc325a90e4b1c3a809cb7}{void \hyperlink{a00385_a4e00d9cd734dc325a90e4b1c3a809cb7}{update} ()}\label{a00385_a4e00d9cd734dc325a90e4b1c3a809cb7}
+\begin{DoxyCompactList}\small\item\em Cloning method. \end{DoxyCompactList}\item 
+\hypertarget{a00385_abe9367101dcd82fa1b9026634c4ec3b6}{}bool \hyperlink{a00385_abe9367101dcd82fa1b9026634c4ec3b6}{generate} ()\label{a00385_abe9367101dcd82fa1b9026634c4ec3b6}
 
-\begin{DoxyCompactList}\small\item\em Overridden updating method. \end{DoxyCompactList}\item 
-\hypertarget{a00385_a02e435069a682019849eca515dcc1d84}{void \hyperlink{a00385_a02e435069a682019849eca515dcc1d84}{adapt} ()}\label{a00385_a02e435069a682019849eca515dcc1d84}
+\begin{DoxyCompactList}\small\item\em Throwing operator. \end{DoxyCompactList}\item 
+\hypertarget{a00385_a09309bb03c9e37d685f547c9ce8532b8}{}bool \hyperlink{a00385_a09309bb03c9e37d685f547c9ce8532b8}{evaluate\+\_\+weight} ()\label{a00385_a09309bb03c9e37d685f547c9ce8532b8}
 
-\begin{DoxyCompactList}\small\item\em Overridden adaptation method. \end{DoxyCompactList}\item 
-\hypertarget{a00385_a2cee7cb79b7c063bab36b94ae1d95fba}{void \hyperlink{a00385_a2cee7cb79b7c063bab36b94ae1d95fba}{adapt} (const point\-\_\-type \&a, const point\-\_\-type \&b)}\label{a00385_a2cee7cb79b7c063bab36b94ae1d95fba}
+\begin{DoxyCompactList}\small\item\em Evaluates the weight of the current object. \end{DoxyCompactList}\item 
+\hypertarget{a00385_aef57350f99b72663bc2d783eb524312a}{}value\+\_\+type \hyperlink{a00385_aef57350f99b72663bc2d783eb524312a}{mean} () const \label{a00385_aef57350f99b72663bc2d783eb524312a}
 
-\begin{DoxyCompactList}\small\item\em Adapts the grid between the selected boundaries. \end{DoxyCompactList}\item 
-void \hyperlink{a00385_a35113663cb802ce279584b6ee5c6d5c5}{reset} ()
-\begin{DoxyCompactList}\small\item\em Resets the cross section and re-\/initialises the grid to a single bin. \end{DoxyCompactList}\item 
-\hypertarget{a00385_a0ecbb32e8ac09fe88291e4a4c45be738}{bool \hyperlink{a00385_a0ecbb32e8ac09fe88291e4a4c45be738}{final} () const }\label{a00385_a0ecbb32e8ac09fe88291e4a4c45be738}
+\begin{DoxyCompactList}\small\item\em Returns the Gauss mean value. \end{DoxyCompactList}\item 
+\hypertarget{a00385_a3bde918d60c0e94bb42fa3621701f076}{}value\+\_\+type \hyperlink{a00385_a3bde918d60c0e94bb42fa3621701f076}{variance} () const \label{a00385_a3bde918d60c0e94bb42fa3621701f076}
 
-\begin{DoxyCompactList}\small\item\em Returns whether the maximal number of bins has been reached. \end{DoxyCompactList}\item 
-\hypertarget{a00385_afb807f1bed94f20d2d00a10b2e461b06}{size\-\_\-type \hyperlink{a00385_afb807f1bed94f20d2d00a10b2e461b06}{count\-\_\-bins} () const }\label{a00385_afb807f1bed94f20d2d00a10b2e461b06}
+\begin{DoxyCompactList}\small\item\em Returns the standard deviation. \end{DoxyCompactList}\item 
+\hypertarget{a00385_a391a356dc08f2d549f7bb85b9b46bab1}{}\hyperlink{a00235}{function\+\_\+stream} $\ast$ \hyperlink{a00385_a391a356dc08f2d549f7bb85b9b46bab1}{pdf\+\_\+plot} (const value\+\_\+type \&x) const \label{a00385_a391a356dc08f2d549f7bb85b9b46bab1}
 
-\begin{DoxyCompactList}\small\item\em Returns the number of bins in the tree. \end{DoxyCompactList}\item 
-\hypertarget{a00385_ac8c16489d879bd679d1c306824aa3730}{size\-\_\-type \hyperlink{a00385_ac8c16489d879bd679d1c306824aa3730}{count\-\_\-leaves} () const }\label{a00385_ac8c16489d879bd679d1c306824aa3730}
-
-\begin{DoxyCompactList}\small\item\em Returns the number of leaves in the tree. \end{DoxyCompactList}\item 
-\hypertarget{a00385_a3116ecf154176502f13244e906d2904a}{const value\-\_\-type \& \hyperlink{a00385_a3116ecf154176502f13244e906d2904a}{norm} () const }\label{a00385_a3116ecf154176502f13244e906d2904a}
-
-\begin{DoxyCompactList}\small\item\em Weight normalisation. \end{DoxyCompactList}\item 
-\hypertarget{a00385_aea7baabddaac111f4139df81f13690c4}{std\-::ostream \& \hyperlink{a00385_aea7baabddaac111f4139df81f13690c4}{print} (std\-::ostream \&os) const }\label{a00385_aea7baabddaac111f4139df81f13690c4}
-
-\begin{DoxyCompactList}\small\item\em Printing method. \end{DoxyCompactList}\item 
-\hypertarget{a00385_ad1fbf2b8cb14a62376f885314d196aad}{std\-::ostream \& \hyperlink{a00385_ad1fbf2b8cb14a62376f885314d196aad}{print\-\_\-leaves} (std\-::ostream \&os) const }\label{a00385_ad1fbf2b8cb14a62376f885314d196aad}
-
-\begin{DoxyCompactList}\small\item\em Method printing only child bins. \end{DoxyCompactList}\item 
-\hypertarget{a00385_a06c190bc0d84022e4286ff0a1bcd7f50}{\hyperlink{a00426}{plot\-\_\-script} $\ast$ \hyperlink{a00385_a06c190bc0d84022e4286ff0a1bcd7f50}{print\-\_\-rectangles} (\hyperlink{a00426}{plot\-\_\-script} $\ast$ps) const }\label{a00385_a06c190bc0d84022e4286ff0a1bcd7f50}
-
-\begin{DoxyCompactList}\small\item\em Adds the rectangles to the plotscript pointer. \end{DoxyCompactList}\item 
-\hypertarget{a00385_a72f1fb0acdf47ec224396042c34bab07}{std\-::istream \& \hyperlink{a00385_a72f1fb0acdf47ec224396042c34bab07}{load} (std\-::istream \&is)}\label{a00385_a72f1fb0acdf47ec224396042c34bab07}
-
-\begin{DoxyCompactList}\small\item\em Overridden loading method. \end{DoxyCompactList}\item 
-\hypertarget{a00385_aa4cb8b0f76ef1dddc0d32189b219a224}{std\-::ostream \& \hyperlink{a00385_aa4cb8b0f76ef1dddc0d32189b219a224}{save} (std\-::ostream \&os) const }\label{a00385_aa4cb8b0f76ef1dddc0d32189b219a224}
-
-\begin{DoxyCompactList}\small\item\em Overridden saving method. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Static Public Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-\hypertarget{a00385_a403f673708d829862359816162f39c06}{static bool \hyperlink{a00385_a403f673708d829862359816162f39c06}{accept} (const value\-\_\-type \&f)}\label{a00385_a403f673708d829862359816162f39c06}
-
-\begin{DoxyCompactList}\small\item\em Integrand acceptance function. \end{DoxyCompactList}\item 
-\hypertarget{a00385_a777d762a07d99e3fe38a061711948f28}{static \hyperlink{a00384}{parni}$<$ value\-\_\-t, \\*
-1, rng\-\_\-t, key\-\_\-t $>$ $\ast$ \hyperlink{a00385_a777d762a07d99e3fe38a061711948f28}{create\-\_\-instance} (std\-::istream \&is)}\label{a00385_a777d762a07d99e3fe38a061711948f28}
-
-\begin{DoxyCompactList}\small\item\em Creates a parni instance from the input stream. \end{DoxyCompactList}\item 
-static \hyperlink{a00384}{parni}$<$ value\-\_\-t, \\*
-1, rng\-\_\-t, key\-\_\-t $>$ $\ast$ \hyperlink{a00385_a358c0c2adcd5ab0ce752a0c2d317e0f4}{create\-\_\-instance} (point\-\_\-type $\ast$point\-\_\-, std\-::istream \&is)
-\begin{DoxyCompactList}\small\item\em Creates a parni instance from the input stream with generated point address. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em T\+O\+D\+O\+: get this out... \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{a00385_a515b584c4b08f7c607c1a6ceabf6f395}{const size\-\_\-type \hyperlink{a00385_a515b584c4b08f7c607c1a6ceabf6f395}{n\-\_\-bins}}\label{a00385_a515b584c4b08f7c607c1a6ceabf6f395}
+\hypertarget{a00385_acdc632d3b47eca58b47c94030311dca4}{}const value\+\_\+type $\ast$ \hyperlink{a00385_acdc632d3b47eca58b47c94030311dca4}{mu}\label{a00385_acdc632d3b47eca58b47c94030311dca4}
 
-\begin{DoxyCompactList}\small\item\em Maximal number of bins. \end{DoxyCompactList}\item 
-\hypertarget{a00385_a714ec9515a194c5b2aa89d79cefd7369}{const grid\-\_\-modes\-::type \hyperlink{a00385_a714ec9515a194c5b2aa89d79cefd7369}{mode}}\label{a00385_a714ec9515a194c5b2aa89d79cefd7369}
+\begin{DoxyCompactList}\small\item\em Mean value address. \end{DoxyCompactList}\item 
+\hypertarget{a00385_abf64e0c0479116b3ffce47d39ad43df2}{}const value\+\_\+type $\ast$ \hyperlink{a00385_abf64e0c0479116b3ffce47d39ad43df2}{sigma}\label{a00385_abf64e0c0479116b3ffce47d39ad43df2}
 
-\begin{DoxyCompactList}\small\item\em Parni bin-\/splitting criterium. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Variance address. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-\subsubsection*{template$<$class value\-\_\-t, class rng\-\_\-t, class key\-\_\-t$>$class Camgen\-::parni$<$ value\-\_\-t, 1, rng\-\_\-t, key\-\_\-t $>$}
+\subsubsection*{template$<$class value\+\_\+t, class rng\+\_\+t$>$class Camgen\+::normal\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$}
 
-Parni specialisation for one-\/dimensional integration. 
+Normally distributed random number generator class definition. 
 
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00385_a3a602696cc9c190dd9fece7a7e1c9aa1}{\index{Camgen\-::parni$<$ value\-\_\-t, 1, rng\-\_\-t, key\-\_\-t $>$@{Camgen\-::parni$<$ value\-\_\-t, 1, rng\-\_\-t, key\-\_\-t $>$}!parni@{parni}}
-\index{parni@{parni}!Camgen::parni< value_t, 1, rng_t, key_t >@{Camgen\-::parni$<$ value\-\_\-t, 1, rng\-\_\-t, key\-\_\-t $>$}}
-\subsubsection[{parni}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\-\_\-t , class rng\-\_\-t , class key\-\_\-t $>$ {\bf Camgen\-::parni}$<$ value\-\_\-t, 1, rng\-\_\-t, key\-\_\-t $>$\-::{\bf parni} (
-\begin{DoxyParamCaption}
-\item[{const point\-\_\-type \&}]{xmin\-\_\-, }
-\item[{const point\-\_\-type \&}]{xmax\-\_\-, }
-\item[{size\-\_\-type}]{n\-\_\-bins\-\_\- = {\ttfamily 500}, }
-\item[{grid\-\_\-modes\-::type}]{mode\-\_\- = {\ttfamily grid\-\_\-modes\-:\-:cumulant\-\_\-weights}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}}\label{a00385_a3a602696cc9c190dd9fece7a7e1c9aa1}
+The first template argument denotes the numerical type, the second parameter denotes the random number stream. 
 
-
-Constructor with lower-\/left and upper-\/right integration domain corners and the maximal number of bins as arguments. 
-
-\hypertarget{a00385_a334af27545cc2f915a6da5431bdaa0ff}{\index{Camgen\-::parni$<$ value\-\_\-t, 1, rng\-\_\-t, key\-\_\-t $>$@{Camgen\-::parni$<$ value\-\_\-t, 1, rng\-\_\-t, key\-\_\-t $>$}!parni@{parni}}
-\index{parni@{parni}!Camgen::parni< value_t, 1, rng_t, key_t >@{Camgen\-::parni$<$ value\-\_\-t, 1, rng\-\_\-t, key\-\_\-t $>$}}
-\subsubsection[{parni}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\-\_\-t , class rng\-\_\-t , class key\-\_\-t $>$ {\bf Camgen\-::parni}$<$ value\-\_\-t, 1, rng\-\_\-t, key\-\_\-t $>$\-::{\bf parni} (
-\begin{DoxyParamCaption}
-\item[{point\-\_\-type $\ast$}]{point\-\_\-, }
-\item[{const point\-\_\-type \&}]{xmin\-\_\-, }
-\item[{const point\-\_\-type \&}]{xmax\-\_\-, }
-\item[{size\-\_\-type}]{n\-\_\-bins\-\_\- = {\ttfamily 500}, }
-\item[{grid\-\_\-modes\-::type}]{mode\-\_\- = {\ttfamily grid\-\_\-modes\-:\-:cumulant\-\_\-weights}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}}\label{a00385_a334af27545cc2f915a6da5431bdaa0ff}
-
-
-Constructor with an external point address (to be filled) and lower-\/left and upper-\/right integration domain corners and the maximal number of bins as arguments. 
-
-
-
-\subsection{Member Function Documentation}
-\hypertarget{a00385_a358c0c2adcd5ab0ce752a0c2d317e0f4}{\index{Camgen\-::parni$<$ value\-\_\-t, 1, rng\-\_\-t, key\-\_\-t $>$@{Camgen\-::parni$<$ value\-\_\-t, 1, rng\-\_\-t, key\-\_\-t $>$}!create\-\_\-instance@{create\-\_\-instance}}
-\index{create\-\_\-instance@{create\-\_\-instance}!Camgen::parni< value_t, 1, rng_t, key_t >@{Camgen\-::parni$<$ value\-\_\-t, 1, rng\-\_\-t, key\-\_\-t $>$}}
-\subsubsection[{create\-\_\-instance}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\-\_\-t , class rng\-\_\-t , class key\-\_\-t $>$ static {\bf parni}$<$value\-\_\-t,1,rng\-\_\-t,key\-\_\-t$>$$\ast$ {\bf Camgen\-::parni}$<$ value\-\_\-t, 1, rng\-\_\-t, key\-\_\-t $>$\-::create\-\_\-instance (
-\begin{DoxyParamCaption}
-\item[{point\-\_\-type $\ast$}]{point\-\_\-, }
-\item[{std\-::istream \&}]{is}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{a00385_a358c0c2adcd5ab0ce752a0c2d317e0f4}
-
-
-Creates a parni instance from the input stream with generated point address. 
-
-\hypertarget{a00385_a35113663cb802ce279584b6ee5c6d5c5}{\index{Camgen\-::parni$<$ value\-\_\-t, 1, rng\-\_\-t, key\-\_\-t $>$@{Camgen\-::parni$<$ value\-\_\-t, 1, rng\-\_\-t, key\-\_\-t $>$}!reset@{reset}}
-\index{reset@{reset}!Camgen::parni< value_t, 1, rng_t, key_t >@{Camgen\-::parni$<$ value\-\_\-t, 1, rng\-\_\-t, key\-\_\-t $>$}}
-\subsubsection[{reset}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\-\_\-t , class rng\-\_\-t , class key\-\_\-t $>$ void {\bf Camgen\-::parni}$<$ value\-\_\-t, 1, rng\-\_\-t, key\-\_\-t $>$\-::reset (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}}\label{a00385_a35113663cb802ce279584b6ee5c6d5c5}
-
-
-Resets the cross section and re-\/initialises the grid to a single bin. 
-
-
-
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/\-Camgen/\hyperlink{a00682}{parni.\-h}\end{DoxyCompactItemize}
+include/\+Camgen/\hyperlink{a00701}{norm\+\_\+gen.\+h}\end{DoxyCompactItemize}

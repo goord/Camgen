@@ -1,15 +1,63 @@
-\hypertarget{a00481}{\section{Camgen\-:\-:s\-\_\-branching$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t, typename Minkowski\-\_\-type\-:\-:template implementation$<$ typename model\-\_\-t\-:\-:value\-\_\-type, D $>$ $>$ Class Template Reference}
-\label{a00481}\index{Camgen\-::s\-\_\-branching$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t, typename Minkowski\-\_\-type\-::template implementation$<$ typename model\-\_\-t\-::value\-\_\-type, D $>$ $>$@{Camgen\-::s\-\_\-branching$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t, typename Minkowski\-\_\-type\-::template implementation$<$ typename model\-\_\-t\-::value\-\_\-type, D $>$ $>$}}
-}
-Inheritance diagram for Camgen\-:\-:s\-\_\-branching$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t, typename Minkowski\-\_\-type\-:\-:template implementation$<$ typename model\-\_\-t\-:\-:value\-\_\-type, D $>$ $>$\-:\begin{figure}[H]
+\hypertarget{a00481}{}\section{Camgen\+:\+:root\+\_\+tree$<$ model\+\_\+t $>$ Class Template Reference}
+\label{a00481}\index{Camgen\+::root\+\_\+tree$<$ model\+\_\+t $>$@{Camgen\+::root\+\_\+tree$<$ model\+\_\+t $>$}}
+
+
+R\+O\+O\+T T\+Tree output interface class.  
+
+
+
+
+{\ttfamily \#include $<$root\+\_\+if.\+h$>$}
+
+Inheritance diagram for Camgen\+:\+:root\+\_\+tree$<$ model\+\_\+t $>$\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2.019231cm]{a00481}
+\includegraphics[height=2.000000cm]{a00481}
 \end{center}
 \end{figure}
-\subsection*{Additional Inherited Members}
-
-
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
 \item 
-include/\-Camgen/s\-\_\-branch.\-h\end{DoxyCompactItemize}
+\hypertarget{a00481_a12096cd7504f2a1acc8ff7ded843558c}{}\hyperlink{a00481_a12096cd7504f2a1acc8ff7ded843558c}{root\+\_\+tree} (const std\+::string \&file\+\_\+name\+\_\+=\char`\"{}output\char`\"{}, const std\+::string tree\+\_\+name\+\_\+=\char`\"{}output\+\_\+tree\char`\"{}, const std\+::string description\+\_\+=\char`\"{}no \hyperlink{a00319_a366c2b2cfaa58182e2feebc1c30ce94c}{description} available\char`\"{})\label{a00481_a12096cd7504f2a1acc8ff7ded843558c}
+
+\begin{DoxyCompactList}\small\item\em Constructor with file name, tree name and tree description arguments. \end{DoxyCompactList}\item 
+\hypertarget{a00481_a2803c4cd8c150157c39f489f146ea1e4}{}\hyperlink{a00319}{base\+\_\+type} $\ast$ \hyperlink{a00481_a2803c4cd8c150157c39f489f146ea1e4}{create} (const std\+::string \&file\+\_\+name\+\_\+) const \label{a00481_a2803c4cd8c150157c39f489f146ea1e4}
+
+\begin{DoxyCompactList}\small\item\em Creation method, no data copying expected. \end{DoxyCompactList}\item 
+\hypertarget{a00481_ae29fa21f91261d513e1e71138ab7649f}{}bool \hyperlink{a00481_ae29fa21f91261d513e1e71138ab7649f}{open\+\_\+file} ()\label{a00481_ae29fa21f91261d513e1e71138ab7649f}
+
+\begin{DoxyCompactList}\small\item\em Abstract method opening the file. \end{DoxyCompactList}\item 
+\hypertarget{a00481_ab188c181eef370b5464d77409afc7a94}{}bool \hyperlink{a00481_ab188c181eef370b5464d77409afc7a94}{close\+\_\+file} ()\label{a00481_ab188c181eef370b5464d77409afc7a94}
+
+\begin{DoxyCompactList}\small\item\em Abstract method closing the file. \end{DoxyCompactList}\item 
+\hypertarget{a00481_a7be0744a790db35344e4f6342fa0c930}{}bool \hyperlink{a00481_a7be0744a790db35344e4f6342fa0c930}{branch} (const \hyperlink{a00579}{momentum\+\_\+type} $\ast$p, const std\+::string \&name)\label{a00481_a7be0744a790db35344e4f6342fa0c930}
+
+\begin{DoxyCompactList}\small\item\em Virtual method adding a branch holding a Lorentz vector. \end{DoxyCompactList}\item 
+\hypertarget{a00481_a1eb58837e2275b9ec56fcd98b943a21d}{}bool \hyperlink{a00481_a1eb58837e2275b9ec56fcd98b943a21d}{branch} (const value\+\_\+type $\ast$x, const std\+::string \&name)\label{a00481_a1eb58837e2275b9ec56fcd98b943a21d}
+
+\begin{DoxyCompactList}\small\item\em Virtual method adding a branch holding a floating-\/point number. \end{DoxyCompactList}\item 
+\hypertarget{a00481_a8f0f5e963b9ab9dc9d4f9318a6a7cbf6}{}bool \hyperlink{a00481_a8f0f5e963b9ab9dc9d4f9318a6a7cbf6}{branch} (const int $\ast$n, const std\+::string \&name)\label{a00481_a8f0f5e963b9ab9dc9d4f9318a6a7cbf6}
+
+\begin{DoxyCompactList}\small\item\em Virtual method adding a branch holding an integer. \end{DoxyCompactList}\item 
+\hypertarget{a00481_a75478ad9b737d76ea983ecc1583d6bce}{}bool \hyperlink{a00481_a75478ad9b737d76ea983ecc1583d6bce}{branch} (const bool $\ast$n, const std\+::string \&name)\label{a00481_a75478ad9b737d76ea983ecc1583d6bce}
+
+\begin{DoxyCompactList}\small\item\em Virtual method adding a branch holding a boolean. \end{DoxyCompactList}\item 
+\hypertarget{a00481_a9be150afdc00d9d7b3c9db35f5494968}{}bool \hyperlink{a00481_a9be150afdc00d9d7b3c9db35f5494968}{write\+\_\+event} ()\label{a00481_a9be150afdc00d9d7b3c9db35f5494968}
+
+\begin{DoxyCompactList}\small\item\em Virtual method writing the event to the output file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00481_aec66ac94eb5969f4d22f50c1d1db2ba5}{}const std\+::string \hyperlink{a00481_aec66ac94eb5969f4d22f50c1d1db2ba5}{tree\+\_\+name}\label{a00481_aec66ac94eb5969f4d22f50c1d1db2ba5}
+
+\begin{DoxyCompactList}\small\item\em R\+O\+O\+T tree name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class model\+\_\+t$>$class Camgen\+::root\+\_\+tree$<$ model\+\_\+t $>$}
+
+R\+O\+O\+T T\+Tree output interface class. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Camgen/\hyperlink{a00760}{root\+\_\+if.\+h}\end{DoxyCompactItemize}

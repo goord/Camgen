@@ -65,9 +65,8 @@ namespace Camgen
 
 	    ps_generator_tester(CM_tree_iterator amplitude_,const std::string& filename_,initial_states::type isgen_type=Camgen::initial_state_type(),phase_space_generators::type psgen_type=Camgen::phase_space_generator_type()):filename(filename_),sym_factor(amplitude_->symmetry_factor()),amplitude(amplitude_)
 	    {
-		ps_gen=gen_factory::create_instance(amplitude,isgen_type,psgen_type);
-		uni_gen=gen_factory::create_instance(amplitude,isgen_type,phase_space_generators::uniform);
-
+		ps_gen=gen_factory::create_generator(amplitude,isgen_type,psgen_type);
+		uni_gen=gen_factory::create_generator(amplitude,isgen_type,phase_space_generators::uniform);
 	    }
 
 	    /* Sets the i-th beam energy: */
@@ -80,7 +79,7 @@ namespace Camgen
 	    /* Run method, performing N_events calls to the MC generator and RAMBO, and
 	     * recording N_points cross section along the run: */
 
-	    void run(size_type N_events,size_type N_points)
+	    bool run(size_type N_events,size_type N_points,bool verbose=false,bool skip_plot=false,bool skip_check=false)
 	    {
 		size_type N_batch=N_events/N_points;
 		value_type n,psvol1,psvol1err,psvol2,psvol2err,xsec1,xsec1err,xsec2,xsec2err;
@@ -105,46 +104,66 @@ namespace Camgen
 
 		for(size_type i=0;i<N_events;++i)
 		{
-		    if(ps_gen->generate())
+		    bool ps_generated=ps_gen->generate();
+
+		    if(ps_generated)
 		    {
-			ps_gen->check();
-			value_type w1=(ps_gen->pass())?ps_gen->weight():(value_type)0;
-			w1sum+=w1;
-			w1sqsum+=(w1*w1);
-			amplitude->reset();
+			if(!skip_check and !ps_gen->check())
+			{
+			    return false;
+			}
+		    }
+		    value_type w1=(ps_generated and ps_gen->pass())?ps_gen->weight():(value_type)0;
+
+		    w1sum+=w1;
+		    w1sqsum+=(w1*w1);
+		    amplitude->reset();
+		    if(w1!=(value_type)0)
+		    {
 			ps_gen->integrand()*=std::norm(amplitude->evaluate())*sym_factor;
-			
 			if(ps_gen->weight()!=ps_gen->weight())
 			{
-			    Camgen::log(log_level::warning)<<"Invalid phase space weight encountered:";
-			    ps_gen->print(Camgen::log);
-			    Camgen::log<<endlog;
+			    ps_gen->print(std::cerr);
+			    Camgen::log<<"Invalid phase space weight encountered: "<<ps_gen->weight()<<endlog;
 			}
 			if(ps_gen->integrand()!=ps_gen->integrand())
 			{
-			    Camgen::log(log_level::warning)<<"Invalid phase space integrand encountered:";
-			    amplitude->print(Camgen::log);
-			    ps_gen->print(Camgen::log);
-			    Camgen::log<<endlog;
+			    amplitude->print(std::cerr);
+			    ps_gen->print(std::cerr);
+			    Camgen::log<<"Invalid phase space integrand encountered: "<<ps_gen->integrand()<<endlog;
 			}
 		    }
 		    else
 		    {
 			ps_gen->integrand()=(value_type)0;
 		    }
-		    ps_gen->refresh_cross_section();
 		    ps_gen->update();
-		    if(uni_gen->generate())
+		    if(verbose)
+		    {
+			std::cerr<<i<<": w = "<<ps_gen->weight()<<", M ="<<ps_gen->integrand()<<std::endl;
+		    }
+		    ps_gen->refresh_cross_section();
+		    
+		    bool rambo_generated=uni_gen->generate();
+		    if(rambo_generated)
 		    {
 			uni_gen->check();
-			value_type w2=(uni_gen->pass())?uni_gen->weight():(value_type)0;
-			w2sum+=w2;
-			w2sqsum+=(w2*w2);
-			amplitude->reset();
+		    }
+		    value_type w2=(rambo_generated and uni_gen->pass())?uni_gen->weight():(value_type)0;
+		    w2sum+=w2;
+		    w2sqsum+=(w2*w2);
+		    amplitude->reset();
+		    if(w2!=(value_type)0)
+		    {
 			uni_gen->integrand()*=std::norm(amplitude->evaluate())*sym_factor;
 		    }
-		    uni_gen->refresh_cross_section();
+		    else
+		    {
+			ps_gen->integrand()=(value_type)0;
+		    }
 		    uni_gen->update();
+		    uni_gen->refresh_cross_section();
+
 		    if(i!=0 and i%N_batch==0)
 		    {
 			n=(value_type)i;
@@ -160,40 +179,50 @@ namespace Camgen
 			data->fill();
 		    }
 		}
-		data->write();
-		data_stream* datstr1=new data_stream(data,"1","2","3");
-		datstr1->title="MC";
-		datstr1->style="yerrorbars";
-		data_stream* datstr2=new data_stream(data,"1","4","5");
-		datstr2->title="RAMBO";
-		datstr2->style="yerrorbars";
-		plot_script* psvolplot=new plot_script("Phase space volume");
-		psvolplot->add_plot(datstr1);
-		psvolplot->add_plot(datstr2);
-		double dx=N_events/5;
-		for(size_type i=0;i<5;++i)
+
+		if(!skip_plot)
 		{
-		    psvolplot->add_x_tic(i*dx);
+		    data->write();
+		    data_stream* datstr1=new data_stream(data,"1","2","3");
+		    datstr1->title="MC";
+		    datstr1->style="yerrorbars";
+		    data_stream* datstr2=new data_stream(data,"1","4","5");
+		    datstr2->title="RAMBO";
+		    datstr2->style="yerrorbars";
+		    plot_script* psvolplot=new plot_script("Phase space volume");
+		    psvolplot->add_plot(datstr1);
+		    psvolplot->add_plot(datstr2);
+		    double dx=N_events/5;
+		    for(size_type i=0;i<5;++i)
+		    {
+			psvolplot->add_x_tic(i*dx);
+		    }
+
+		    data_stream* datstr3=new data_stream(data,"1","6","7");
+		    datstr3->title="MC";
+		    datstr3->style="yerrorbars";
+		    data_stream* datstr4=new data_stream(data,"1","8","9");
+		    datstr4->title="RAMBO";
+		    datstr4->style="yerrorbars";
+		    plot_script* xsecplot=new plot_script("Cross section");
+		    xsecplot->add_plot(datstr3);
+		    xsecplot->add_plot(datstr4);
+		    for(size_type i=0;i<5;++i)
+		    {
+			xsecplot->add_x_tic(i*dx);
+		    }
+
+		    multi_plot<1,2>plotall(filename,"postscript enhanced color");
+		    plotall.add_plot(psvolplot,0,0);
+		    plotall.add_plot(xsecplot,0,1);
+		    plotall.plot();
+
+		    delete xsecplot;
 		}
 
-		data_stream* datstr3=new data_stream(data,"1","6","7");
-		datstr3->title="MC";
-		datstr3->style="yerrorbars";
-		data_stream* datstr4=new data_stream(data,"1","8","9");
-		datstr4->title="RAMBO";
-		datstr4->style="yerrorbars";
-		plot_script* xsecplot=new plot_script("Cross section");
-		xsecplot->add_plot(datstr3);
-		xsecplot->add_plot(datstr4);
-		for(size_type i=0;i<5;++i)
-		{
-		    xsecplot->add_x_tic(i*dx);
-		}
+		delete data;
 
-		multi_plot<1,2>plotall(filename,"postscript enhanced color");
-		plotall.add_plot(psvolplot,0,0);
-		plotall.add_plot(xsecplot,0,1);
-		plotall.plot();
+		return equals(ps_gen->cross_section(),uni_gen->cross_section());
 	    }
 
 	    /* Destructor: */
@@ -246,6 +275,15 @@ namespace Camgen
 	    std::ostream& print_generator(std::ostream& os) const
 	    {
 		ps_gen->print(os);
+		return os;
+	    }
+
+	    std::ostream& print_status(std::ostream& os) const
+	    {
+		os<<"RAMBO status:"<<std::endl;
+		uni_gen->print_status(std::cout);
+		os<<"generator status: "<<std::endl;
+		ps_gen->print_status(std::cout);
 		return os;
 	    }
     };

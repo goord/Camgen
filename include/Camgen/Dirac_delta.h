@@ -8,25 +8,22 @@
 #ifndef CAMGEN_DIRAC_DELTA_H_
 #define CAMGEN_DIRAC_DELTA_H_
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * Declaration and implementation of the Dirac delta type invariant mass *
- * sampler, for on-shell particle propagator sampling.                   *
- *                                                                       *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* * * * * * * * * * * * * * * * * * * * * * * *
+ * Dirac-delta type value generator definition *
+ *                                             *
+ * * * * * * * * * * * * * * * * * * * * * * * */
 
 #include <sstream>
 #include <Camgen/utils.h>
-#include <Camgen/s_gen.h>
-#include <Camgen/s_int.h>
+#include <Camgen/val_gen.h>
 
 namespace Camgen
 {
     /* On-shell momentum generator channel class. */
 
-    template<class value_t,class rng_t>class Dd_s_generator: public s_generator<value_t,rng_t>
+    template<class value_t,class rng_t>class Dirac_delta: public value_generator<value_t,rng_t>
     {
-	friend class s_integrator<value_t,rng_t>;
-	typedef s_generator<value_t,rng_t> base_type;
+	typedef value_generator<value_t,rng_t> base_type;
 
 	public:
 
@@ -48,16 +45,11 @@ namespace Camgen
 
 	    /* Default constructor with (optional) mass address argument. */
 
-	    Dd_s_generator(const value_type* m_=NULL):m(m_),mm(squareval(m)){}
-
-	    /* Constructor with momentum and (optional) mass address argument.
-	     * */
-
-	    Dd_s_generator(value_type* s_,const value_type* m_=NULL):base_type(s_),m(m_),mm(squareval(m)){}
+	    Dirac_delta(const value_type* m_=NULL):m(m_),mm(squareval(m)){}
 
 	    /* Copy constructor: */
 
-	    Dd_s_generator(const Dd_s_generator<value_t,rng_t>& other):base_type(other),m(other.m),mm(other.mm){}
+	    Dirac_delta(const Dirac_delta<value_t,rng_t>& other):base_type(other),m(other.m),mm(other.mm){}
 
 	    /* Public modifiers: */
 	    /*-------------------*/
@@ -80,7 +72,7 @@ namespace Camgen
 		    this->weight()=(value_type)0;
 		    return false;
 		}
-		this->s()=mm;
+		this->value()=mm;
 		this->weight()=(value_type)1;
 		return true;
 	    }
@@ -90,9 +82,9 @@ namespace Camgen
 
 	    /* Virtual cloning method. */
 
-	    virtual Dd_s_generator<value_t,rng_t>* clone() const
+	    virtual Dirac_delta<value_t,rng_t>* clone() const
 	    {
-		return new Dd_s_generator<value_t,rng_t>(*this);
+		return new Dirac_delta<value_t,rng_t>(*this);
 	    }
 
 	    /* Mass output. */
@@ -123,29 +115,31 @@ namespace Camgen
 		return s;
 	    }
 
-	    /* Double-dispatch integrator functions. */
-	    
-	    value_type integrate_with(const s_generator<value_t,rng_t>* gen,const value_type& sqrts) const
+	    /* Normalisation refresher: */
+
+	    void refresh_norm()
 	    {
-		return gen->integrate_with(this,sqrts);
+		bool q=(mm>=this->lower_bound() and mm<=this->upper_bound());
+		this->norm=q?(value_type)1:(value_type)0;
 	    }
-	    value_type integrate_with(const BW_s_generator<value_t,rng_t>* gen,const value_type& sqrts) const
+
+	    /* Weight evaluation method: */
+
+	    bool evaluate_weight()
 	    {
-		typedef BW_s_generator<value_t,rng_t> type;
-		return s_integrator<value_t,rng_t>::template integrate<type>(static_cast<const inversion_s_generator<value_t,rng_t,type>*>(gen),this,sqrts);
+		if(!(this->normalisable()))
+		{
+		    return false;
+		}
+		this->weight()=get_fast_weight();
+		return true;
 	    }
-	    value_type integrate_with(const pl_s_generator<value_t,rng_t>* gen,const value_type& sqrts) const
+
+	    /* Fast weight evaluation method: */
+
+	    value_type get_fast_weight() const
 	    {
-		typedef pl_s_generator<value_t,rng_t> type;
-		return s_integrator<value_t,rng_t>::template integrate<type>(static_cast<const inversion_s_generator<value_t,rng_t,type>*>(gen),this,sqrts);
-	    }
-	    value_type integrate_with(const uni_s_generator<value_t,rng_t>* gen,const value_type& sqrts) const
-	    {
-		return s_integrator<value_t,rng_t>::integrate(gen,this,sqrts);
-	    }
-	    value_type integrate_with(const Dd_s_generator<value_t,rng_t>* gen,const value_type& sqrts) const
-	    {
-		return s_integrator<value_t,rng_t>::integrate(this,gen,sqrts);
+		return equals(this->value(),mm)?(value_type)1:(value_type)0;
 	    }
 
 	    /* Serialization: */
@@ -173,23 +167,6 @@ namespace Camgen
 		std::stringstream ss;
 		ss<<"Dd("<<mass()<<')';
 		return ss.str();
-	    }
-
-	protected:
-
-	    /* Normalisation refresher: */
-
-	    void refresh_norm()
-	    {
-		bool q=(mm>=this->s_min() and mm<=this->s_max());
-		this->norm=q?(value_type)1:(value_type)0;
-	    }
-
-	    /* Fast weight evaluation method: */
-
-	    value_type get_fast_weight() const
-	    {
-		return equals(this->s(),mm)?(value_type)1:(value_type)0;
 	    }
 
 	private:

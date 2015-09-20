@@ -23,10 +23,10 @@
 
 namespace Camgen
 {
-    template<class value_t,class rng_t>class inv_cosh_y_generator: public inversion_s_generator<value_t,rng_t,inv_cosh_y_generator<value_t,rng_t> >
+    template<class value_t,class rng_t>class inverse_cosh: public inversion_value_generator<value_t,rng_t,inverse_cosh<value_t,rng_t> >
     {
-	typedef inversion_s_generator< value_t,rng_t,inv_cosh_y_generator<value_t,rng_t> > direct_base_type;
-	typedef s_generator<value_t,rng_t> base_type;
+	typedef inversion_value_generator< value_t,rng_t,inverse_cosh<value_t,rng_t> > inversion_generator_type;
+	typedef value_generator<value_t,rng_t> base_type;
 
 	public:
 
@@ -42,25 +42,16 @@ namespace Camgen
 
 	    /* Default constructor: */
 
-	    inv_cosh_y_generator(const value_type* y0_=NULL):y0(y0_)
+	    inverse_cosh(const value_type* y0_=NULL):y0(y0_)
 	    {
 		refresh_params();
-		this->refresh_s_min();
-		this->refresh_s_max();
-	    }
-
-	    /* Constructor with central value argument: */
-
-	    inv_cosh_y_generator(value_type* y_,const value_type* y0_=NULL):direct_base_type(y_),y0(y0_)
-	    {
-		refresh_params();
-		this->refresh_s_min();
-		this->refresh_s_max();
+		this->refresh_lower_bound();
+		this->refresh_upper_bound();
 	    }
 
 	    /* Copy constructor: */
 
-	    inv_cosh_y_generator(const inv_cosh_y_generator<value_t,rng_t>& other):direct_base_type(other),y0(other.y0){}
+	    inverse_cosh(const inverse_cosh<value_t,rng_t>& other):inversion_generator_type(other),y0(other.y0){}
 
 	    /* Public modifiers: */
 	    /*-------------------*/
@@ -69,7 +60,7 @@ namespace Camgen
 	    {
 		this->min_cumulant_lim=(value_type)0;
 		this->max_cumulant_lim=pi;
-		return (this->refresh_s_min() and this->refresh_s_max());
+		return (this->refresh_lower_bound() and this->refresh_upper_bound());
 
 	    }
 
@@ -78,9 +69,9 @@ namespace Camgen
 
 	    /* Clone method: */
 
-	    inv_cosh_y_generator<value_t,rng_t>* clone() const
+	    inverse_cosh<value_t,rng_t>* clone() const
 	    {
-		return new inv_cosh_y_generator<value_t,rng_t>(*this);
+		return new inverse_cosh<value_t,rng_t>(*this);
 	    }
 
 	    /* Central peak readout: */
@@ -112,34 +103,6 @@ namespace Camgen
 		return (peak()+std::log(std::tan(0.5*rho)));
 	    }
 	    
-	    /* Double-dispatch integrator functions. */
-	    
-	    value_type integrate_with(const s_generator<value_t,rng_t>* gen,const value_type& sqrts) const
-	    {
-		log(log_level::error)<<CAMGEN_STREAMLOC<<"integration method not defined"<<endlog;
-		return 0;
-	    }
-	    value_type integrate_with(const BW_s_generator<value_t,rng_t>* gen,const value_type& sqrts) const
-	    {
-		log(log_level::error)<<CAMGEN_STREAMLOC<<"integration method not defined"<<endlog;
-		return 0;
-	    }
-	    value_type integrate_with(const pl_s_generator<value_t,rng_t>* gen,const value_type& sqrts) const
-	    {
-		log(log_level::error)<<CAMGEN_STREAMLOC<<"integration method not defined"<<endlog;
-		return 0;
-	    }
-	    value_type integrate_with(const uni_s_generator<value_t,rng_t>* gen,const value_type& sqrts) const
-	    {
-		log(log_level::error)<<CAMGEN_STREAMLOC<<"integration method not defined"<<endlog;
-		return 0;
-	    }
-	    value_type integrate_with(const Dd_s_generator<value_t,rng_t>* gen,const value_type& sqrts) const
-	    {
-		log(log_level::error)<<CAMGEN_STREAMLOC<<"integration method not defined"<<endlog;
-		return 0;
-	    }
-
 	    /* Serialization: */
 	    /*----------------*/
 
@@ -184,7 +147,7 @@ namespace Camgen
 
 	    static const value_t pi;
     };
-    template<class value_t,class rng_t>const value_t inv_cosh_y_generator<value_t,rng_t>::pi(std::acos(-(value_t)1));
+    template<class value_t,class rng_t>const value_t inverse_cosh<value_t,rng_t>::pi(std::acos(-(value_t)1));
 }
 
 #endif /*CAMGEN_INV_COSH_H_*/

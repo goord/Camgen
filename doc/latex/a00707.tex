@@ -1,34 +1,26 @@
-\hypertarget{a00707}{
-\section{include/Camorra/model.h File Reference}
-\label{a00707}\index{include/Camorra/model.h@{include/Camorra/model.h}}
-}
+\hypertarget{a00707}{}\section{include/\+Camgen/parni\+\_\+gen.h File Reference}
+\label{a00707}\index{include/\+Camgen/parni\+\_\+gen.\+h@{include/\+Camgen/parni\+\_\+gen.\+h}}
 
 
-model base class template interface and implementation header.  
+Monte-\/\+Carlo generator class using an adaptive, unequal-\/spaced grid.  
 
 
-{\ttfamily \#include $<$ostream$>$}\par
-{\ttfamily \#include $<$fstream$>$}\par
-{\ttfamily \#include $<$string$>$}\par
-{\ttfamily \#include $<$cxxabi.h$>$}\par
-{\ttfamily \#include $<$Camorra/unpack\_\-vert.h$>$}\par
-{\ttfamily \#include $<$Camorra/license\_\-print.h$>$}\par
-{\ttfamily \#include $<$Camorra/mod\_\-wrapper.h$>$}\par
-{\ttfamily \#include $<$Camorra/scalar\_\-particle.h$>$}\par
-{\ttfamily \#include $<$Camorra/fermion.h$>$}\par
-{\ttfamily \#include $<$Camorra/vector\_\-particle.h$>$}\par
-{\ttfamily \#include $<$Camorra/comp\_\-vert.h$>$}\par
-{\ttfamily \#include $<$Camorra/vertex.h$>$}\par
-{\ttfamily \#include $<$Camorra/adj\_\-rep.h$>$}\par
-{\ttfamily \#include $<$Camorra/fundam\_\-rep.h$>$}\par
-{\ttfamily \#include $<$Camorra/f.h$>$}\par
-{\ttfamily \#include $<$Camorra/asymtvv.h$>$}\par
+{\ttfamily \#include $<$set$>$}\\*
+{\ttfamily \#include $<$Camgen/obj\+\_\+alloc.\+h$>$}\\*
+{\ttfamily \#include $<$Camgen/\+M\+C\+\_\+gen.\+h$>$}\\*
+{\ttfamily \#include $<$Camgen/\+M\+C\+\_\+int\+\_\+base.\+h$>$}\\*
+{\ttfamily \#include $<$Camgen/parni\+\_\+it.\+h$>$}\\*
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{a00368}{Camorra::model$<$ model\_\-t $>$}
-\begin{DoxyCompactList}\small\item\em model base class template. \end{DoxyCompactList}\end{DoxyCompactItemize}
+class \hyperlink{a00393}{Camgen\+::parni\+\_\+generator$<$ value\+\_\+t, D, rng\+\_\+t, key\+\_\+t $>$}
+\begin{DoxyCompactList}\small\item\em Parni adaptive grid for multi-\/dimensional integration. \end{DoxyCompactList}\item 
+class \hyperlink{a00394}{Camgen\+::parni\+\_\+generator$<$ value\+\_\+t, 1, rng\+\_\+t, key\+\_\+t $>$}
+\begin{DoxyCompactList}\small\item\em Parni specialisation for one-\/dimensional integration. \end{DoxyCompactList}\item 
+class \hyperlink{a00397}{Camgen\+::parni\+\_\+sub\+\_\+grid$<$ value\+\_\+t, D, rng\+\_\+t, key\+\_\+t $>$}
+\begin{DoxyCompactList}\small\item\em Parni sub grid generator class, generating points from a parent grid within smaller bounds. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-model base class template interface and implementation header. 
+Monte-\/\+Carlo generator class using an adaptive, unequal-\/spaced grid. 
+

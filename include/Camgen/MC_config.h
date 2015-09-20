@@ -18,12 +18,10 @@
 
 namespace Camgen
 {
-    /// Helicity generator types namespace.
+    /// Helicity generator types.
 
     struct helicity_generators
     {
-	/// Helicity generator types.
-	
 	enum type
 	{
 	    unused,
@@ -33,12 +31,10 @@ namespace Camgen
 	};
     };
 
-    /// Colour generator types namespace.
-
+    /// Colour generator types.
+	
     struct colour_generators
     {
-	/// Colour generator types.
-	
 	enum type
 	{
 	    unused,
@@ -48,7 +44,7 @@ namespace Camgen
 	};
     };
     
-    /// Initial state generator types namespace.
+    /// Initial state generator types.
 
     struct initial_states
     {
@@ -68,7 +64,7 @@ namespace Camgen
 	};
     };
 
-    /// Momentum generator types namespace.
+    /// Momentum generator types.
 
     struct phase_space_generators
     {
@@ -82,7 +78,7 @@ namespace Camgen
 	};
     };
 
-    /// Adaptive grid modes namespace.
+    /// Adaptive grid modes.
 
     struct grid_modes
     {
@@ -91,6 +87,18 @@ namespace Camgen
 	    cumulant_weights,
 	    variance_weights,
 	    maximum_weights
+	};
+    };
+
+    /// S-pair generation modes.
+    
+    struct s_pair_generation_modes
+    {
+	enum type
+	{
+	    asymmetric,
+	    symmetric,
+	    hit_and_miss
 	};
     };
 
@@ -149,14 +157,6 @@ namespace Camgen
     /// automatic subprocess weights adaption is switched off.
 
     void set_auto_subprocess_adapt(std::size_t);
-
-    /// Sets the maximal number of MC throws in s-pair generation. If set to
-    /// unity, the one-shot method is used. Otherwise, s-pair bound checking is
-    /// performed. Returns false if the argument is invalid (zero) or
-    /// incompatible with the grids flag, in which case the one-shot method is
-    /// always used.
-
-    bool set_max_s_pairs(std::size_t);
 
     /// Sets the maximal number of events thrown not passing cuts before moving
     /// on at initialisation of channels and grids.
@@ -337,10 +337,6 @@ namespace Camgen
     /// Returns the automatic subprocess weights adaptation batch size.
     
     std::size_t auto_subprocess_batch();
-
-    /// Returns the maximal number of s-pair generations per s-branching.
-
-    std::size_t max_s_pairs();
     
     /// Returns the maximal number of thrown points at grid/channel
     /// initialisation not passing the cuts before moving on.
@@ -439,6 +435,14 @@ namespace Camgen
     /// Returns the pre-initialisation precision.
 
     std::size_t pre_init_events();
+
+    /// Returns the s-pair generation mode.
+
+    s_pair_generation_modes::type s_pair_generation_mode();
+
+    /// Sets the s-pair generation mode.
+
+    void set_s_pair_generation_mode(s_pair_generation_modes::type);
     
     /// Namespace for basic cut manipulation.
 
@@ -484,7 +488,6 @@ namespace Camgen
 	    static void set_auto_channel_adapt(std::size_t);
 	    static void set_auto_grid_adapt(std::size_t);
 	    static void set_auto_subprocess_adapt(std::size_t);
-	    static bool set_max_s_pairs(std::size_t);
 	    static bool set_max_init_rejects(std::size_t);
 	    static void set_adaptive_s_sampling(bool);
 	    static void set_adaptive_t_sampling(bool);
@@ -507,6 +510,7 @@ namespace Camgen
 	    static bool set_NR_iterations(std::size_t);
 	    static void set_pdf_alpha_s(bool);
 	    static void set_pre_init_events(std::size_t);
+	    static void set_s_pair_generation_mode(s_pair_generation_modes::type);
 
 	    /* Public static readout functions: */
 
@@ -530,7 +534,6 @@ namespace Camgen
 	    static std::size_t auto_grid_batch();
 	    static bool auto_subprocess_adapt();
 	    static std::size_t auto_subprocess_batch();
-	    static std::size_t max_s_pairs();
 	    static std::size_t max_init_rejects();
 	    static bool adaptive_s_sampling();
 	    static bool adaptive_t_sampling();
@@ -554,6 +557,7 @@ namespace Camgen
 	    static std::size_t NR_iterations();
 	    static bool use_pdf_alpha_s();
 	    static std::size_t pre_init_events();
+	    static s_pair_generation_modes::type s_pair_generation_mode();
 
 	    /* Basic cut inserters: */
 
@@ -610,6 +614,7 @@ namespace Camgen
 	    static std::size_t NR_iters;
 	    static bool pdf_alpha_s;
 	    static std::size_t init_evts;
+	    static s_pair_generation_modes::type s_pair_genmode;
 	    
 	    static std::map<std::string,double> nu_s_phi;
 	    static std::map<std::string,double> nu_t_phi;

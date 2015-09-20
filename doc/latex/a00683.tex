@@ -1,0 +1,35 @@
+\hypertarget{a00683}{}\section{include/\+Camgen/\+Lorentz.h File Reference}
+\label{a00683}\index{include/\+Camgen/\+Lorentz.\+h@{include/\+Camgen/\+Lorentz.\+h}}
+
+
+Lorentz boost functions for Camgen vectors.  
+
+
+{\ttfamily \#include $<$Camgen/vector.\+h$>$}\\*
+{\ttfamily \#include $<$Camgen/\+Minkowski.\+h$>$}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class value\+\_\+t , std\+::size\+\_\+t D$>$ }\\vector$<$ value\+\_\+t, D $>$ \& {\bfseries Camgen\+::boost\+\_\+from\+\_\+restframe} (vector$<$ value\+\_\+t, D $>$ \&q, const vector$<$ value\+\_\+t, D $>$ \&p, const value\+\_\+t \&sqrts)
+\begin{DoxyCompactList}\small\item\em Boosts the first vector q, assumed to be defined in the rest-\/frame of p and having invariant mass sqrts, to the lab frame. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class value\+\_\+t , std\+::size\+\_\+t D$>$ }\\vector$<$ value\+\_\+t, D $>$ \& {\bfseries Camgen\+::boost\+\_\+from\+\_\+restframe} (vector$<$ value\+\_\+t, D $>$ \&q, const vector$<$ value\+\_\+t, D $>$ \&p)
+\begin{DoxyCompactList}\small\item\em Boosts the first vector q, assumed to be defined in the rest-\/frame of p, to the lab frame. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class value\+\_\+t , std\+::size\+\_\+t D$>$ }\\vector$<$ value\+\_\+t, D $>$ {\bfseries Camgen\+::copy\+\_\+boost\+\_\+from\+\_\+restframe} (const vector$<$ value\+\_\+t, D $>$ \&q, const vector$<$ value\+\_\+t, D $>$ \&p, const value\+\_\+t \&sqrts)
+\begin{DoxyCompactList}\small\item\em Boosts a copy of the first vector q, assumed to be defined in the rest-\/frame of p , assumed to have invariant mass sqrts, to the lab frame. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class value\+\_\+t , std\+::size\+\_\+t D$>$ }\\vector$<$ value\+\_\+t, D $>$ {\bfseries Camgen\+::copy\+\_\+boost\+\_\+from\+\_\+restframe} (const vector$<$ value\+\_\+t, D $>$ \&q, const vector$<$ value\+\_\+t, D $>$ \&p)
+\begin{DoxyCompactList}\small\item\em Boosts a copy of the first vector q, assumed to be defined in the rest-\/frame of p, to the lab frame. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class value\+\_\+t , std\+::size\+\_\+t D$>$ }\\vector$<$ value\+\_\+t, D $>$ \& {\bfseries Camgen\+::boost\+\_\+to\+\_\+restframe} (vector$<$ value\+\_\+t, D $>$ \&q, const vector$<$ value\+\_\+t, D $>$ \&p, const value\+\_\+t \&sqrts)
+\begin{DoxyCompactList}\small\item\em Boosts the first vector q to the rest-\/frame of the vector p, assumed to have invariant mass sqrts. \end{DoxyCompactList}\item 
+\hypertarget{a00878_abb5eb6c49b5a2ff87a16dc23728e779b}{}{\footnotesize template$<$class value\+\_\+t , std\+::size\+\_\+t D$>$ }\\vector$<$ value\+\_\+t, D $>$ \& {\bfseries Camgen\+::boost\+\_\+to\+\_\+restframe} (vector$<$ value\+\_\+t, D $>$ \&q, const vector$<$ value\+\_\+t, D $>$ \&p)\label{a00878_abb5eb6c49b5a2ff87a16dc23728e779b}
+
+\begin{DoxyCompactList}\small\item\em Boosts the first vector q to the rest-\/frame of the vector p. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class value\+\_\+t , std\+::size\+\_\+t D$>$ }\\vector$<$ value\+\_\+t, D $>$ {\bfseries Camgen\+::copy\+\_\+boost\+\_\+to\+\_\+restframe} (const vector$<$ value\+\_\+t, D $>$ \&q, const vector$<$ value\+\_\+t, D $>$ \&p, const value\+\_\+t \&sqrts)
+\begin{DoxyCompactList}\small\item\em Boosts a copy of the first vector q to the rest-\/frame of the vector p, assumed to have invariant mass sqrts. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a7809ff644ef4a5fe3693137967664e99}{}{\footnotesize template$<$class value\+\_\+t , std\+::size\+\_\+t D$>$ }\\vector$<$ value\+\_\+t, D $>$ {\bfseries Camgen\+::copy\+\_\+boost\+\_\+to\+\_\+restframe} (const vector$<$ value\+\_\+t, D $>$ \&q, const vector$<$ value\+\_\+t, D $>$ \&p)\label{a00878_a7809ff644ef4a5fe3693137967664e99}
+
+\begin{DoxyCompactList}\small\item\em Boosts a copy of the first vector q to the rest-\/frame of the vector p. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Lorentz boost functions for Camgen vectors. 
+

@@ -8,11 +8,11 @@
 #ifndef CAMGEN_HELGEN_FAC_H_
 #define CAMGEN_HELGEN_FAC_H_
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * Helicity generator factory specialisation for the istream class, creating *
- * a helicity generator instance from a filestream.                          *
- *                                                                           *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Helicity generator factory. Creates uniform or importance sampling  *
+ * helicity generators or sequential spin summation objects.           *
+ *                                                                     *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #include <Camgen/MC_config.h>
 #include <Camgen/uni_hels.h>
@@ -35,15 +35,15 @@ namespace Camgen
 	    /// Factory method returning a helicity generator instance from a
 	    /// tree iterator.
 
-	    static generator_type* create_instance(typename CM_algorithm<model_t,N_in,N_out>::tree_iterator it)
+	    static generator_type* create_generator(typename CM_algorithm<model_t,N_in,N_out>::tree_iterator it)
 	    {
-		return create_instance(it,helicity_generator_type());
+		return create_generator(it,helicity_generator_type());
 	    }
 
 	    /// Factory method returning a helicity generator instance from a
 	    /// tree iterator and generator tag.
 
-	    static generator_type* create_instance(typename CM_algorithm<model_t,N_in,N_out>::tree_iterator it,generator_tag tag)
+	    static generator_type* create_generator(typename CM_algorithm<model_t,N_in,N_out>::tree_iterator it,generator_tag tag)
 	    {
 		switch(tag)
 		{
@@ -56,54 +56,6 @@ namespace Camgen
 		    default:
 			return NULL;
 		}
-	    }
-
-	    /// Creates a helicity generator instance from a tree iterator and
-	    /// an input stream.
-
-	    static generator_type* create_instance(typename CM_algorithm<model_t,N_in,N_out>::tree_iterator it,std::istream& is)
-	    {
-		std::string initline,endline;
-		do
-		{
-		    std::getline(is,initline);
-		}
-		while(initline!="<helgen>" and !is.eof());
-		if(is.eof())
-		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"end of file reached before initial data are read"<<endlog;
-		    return NULL;
-		}
-		generator_type* result;
-		std::string type;
-		is>>type;
-		if(type=="sum")
-		{
-		    result=helicity_summer<value_type,N_in,N_out,ch>::template create_instance<model_t>(it);
-		}
-		else if(type=="uniform")
-		{
-		    result=uniform_helicities<value_type,N_in,N_out,rng_t,ch>::template create_instance<model_t>(it);
-		}
-		else if(type=="longitudinal")
-		{
-		    result=longitudinal_helicities<value_type,N_in,N_out,rng_t,ch>::template create_instance<model_t>(it);
-		}
-		else
-		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"helicity generator type "<<type<<" not recognised"<<endlog;
-		    result=NULL;
-		}
-		if(result!=NULL)
-		{
-		    result->load(is);
-		}
-		do
-		{
-		    std::getline(is,endline);
-		}
-		while(endline!="</helgen>" and !is.eof());
-		return result;
 	    }
     };
     template<class model_t,std::size_t N_in,std::size_t N_out,class rng_t>const bool helicity_generator_factory<model_t,N_in,N_out,rng_t>::ch;

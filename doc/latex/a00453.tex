@@ -1,14 +1,57 @@
-\hypertarget{a00453}{\section{Camgen\-:\-:R\-\_\-gauge$<$ model\-\_\-t $>$ Class Template Reference}
-\label{a00453}\index{Camgen\-::\-R\-\_\-gauge$<$ model\-\_\-t $>$@{Camgen\-::\-R\-\_\-gauge$<$ model\-\_\-t $>$}}
-}
-Inheritance diagram for Camgen\-:\-:R\-\_\-gauge$<$ model\-\_\-t $>$\-:\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[height=2.000000cm]{a00453}
-\end{center}
-\end{figure}
+\hypertarget{a00453}{}\section{Camgen\+:\+:ps\+\_\+generator\+\_\+factory\+\_\+base$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, is\+\_\+factory\+\_\+type, fs\+\_\+factory\+\_\+type $>$ Class Template Reference}
+\label{a00453}\index{Camgen\+::ps\+\_\+generator\+\_\+factory\+\_\+base$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, is\+\_\+factory\+\_\+type, fs\+\_\+factory\+\_\+type $>$@{Camgen\+::ps\+\_\+generator\+\_\+factory\+\_\+base$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, is\+\_\+factory\+\_\+type, fs\+\_\+factory\+\_\+type $>$}}
 
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+Base class for phase space factories.  
+
+
+
+
+{\ttfamily \#include $<$psgen\+\_\+fac\+\_\+base.\+h$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
 \item 
-include/\-Camgen/R\-\_\-gauge.\-h\end{DoxyCompactItemize}
+static \hyperlink{a00450}{generator\+\_\+type} $\ast$ \hyperlink{a00453_afbb1ad50d21e56067a9e1b777d4a3ddd}{create\+\_\+generator} (tree\+\_\+iterator it)
+\begin{DoxyCompactList}\small\item\em Creates a phase space generator instance for given amplitude iterator using runtime configuration data. \end{DoxyCompactList}\item 
+static \hyperlink{a00450}{generator\+\_\+type} $\ast$ \hyperlink{a00453_a7321000aa0cc49bc07297e57672aa4c7}{create\+\_\+generator} (tree\+\_\+iterator it, is\+\_\+type is\+\_\+type\+\_\+, fs\+\_\+type fs\+\_\+type\+\_\+)
+\begin{DoxyCompactList}\small\item\em Creates a phase space generator for the given amplitude iterator, initial state type and final state type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class model\+\_\+t, std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out, class is\+\_\+factory\+\_\+type, class fs\+\_\+factory\+\_\+type$>$class Camgen\+::ps\+\_\+generator\+\_\+factory\+\_\+base$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, is\+\_\+factory\+\_\+type, fs\+\_\+factory\+\_\+type $>$}
+
+Base class for phase space factories. 
+
+Last template argument denotes the derived type (static polymorphism) 
+
+\subsection{Member Function Documentation}
+\hypertarget{a00453_afbb1ad50d21e56067a9e1b777d4a3ddd}{}\index{Camgen\+::ps\+\_\+generator\+\_\+factory\+\_\+base@{Camgen\+::ps\+\_\+generator\+\_\+factory\+\_\+base}!create\+\_\+generator@{create\+\_\+generator}}
+\index{create\+\_\+generator@{create\+\_\+generator}!Camgen\+::ps\+\_\+generator\+\_\+factory\+\_\+base@{Camgen\+::ps\+\_\+generator\+\_\+factory\+\_\+base}}
+\subsubsection[{create\+\_\+generator}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t, std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out, class is\+\_\+factory\+\_\+type, class fs\+\_\+factory\+\_\+type$>$ static {\bf generator\+\_\+type}$\ast$ {\bf Camgen\+::ps\+\_\+generator\+\_\+factory\+\_\+base}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, is\+\_\+factory\+\_\+type, fs\+\_\+factory\+\_\+type $>$\+::create\+\_\+generator (
+\begin{DoxyParamCaption}
+\item[{tree\+\_\+iterator}]{it}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{a00453_afbb1ad50d21e56067a9e1b777d4a3ddd}
+
+
+Creates a phase space generator instance for given amplitude iterator using runtime configuration data. 
+
+\hypertarget{a00453_a7321000aa0cc49bc07297e57672aa4c7}{}\index{Camgen\+::ps\+\_\+generator\+\_\+factory\+\_\+base@{Camgen\+::ps\+\_\+generator\+\_\+factory\+\_\+base}!create\+\_\+generator@{create\+\_\+generator}}
+\index{create\+\_\+generator@{create\+\_\+generator}!Camgen\+::ps\+\_\+generator\+\_\+factory\+\_\+base@{Camgen\+::ps\+\_\+generator\+\_\+factory\+\_\+base}}
+\subsubsection[{create\+\_\+generator}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t, std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out, class is\+\_\+factory\+\_\+type, class fs\+\_\+factory\+\_\+type$>$ static {\bf generator\+\_\+type}$\ast$ {\bf Camgen\+::ps\+\_\+generator\+\_\+factory\+\_\+base}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, is\+\_\+factory\+\_\+type, fs\+\_\+factory\+\_\+type $>$\+::create\+\_\+generator (
+\begin{DoxyParamCaption}
+\item[{tree\+\_\+iterator}]{it, }
+\item[{is\+\_\+type}]{is\+\_\+type\+\_\+, }
+\item[{fs\+\_\+type}]{fs\+\_\+type\+\_\+}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{a00453_a7321000aa0cc49bc07297e57672aa4c7}
+
+
+Creates a phase space generator for the given amplitude iterator, initial state type and final state type. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Camgen/\hyperlink{a00748}{psgen\+\_\+fac\+\_\+base.\+h}\end{DoxyCompactItemize}

@@ -1,19 +1,34 @@
-\hypertarget{a00659}{\section{include/\-Camgen/\-L\-H\-E\-\_\-if.h File Reference}
-\label{a00659}\index{include/\-Camgen/\-L\-H\-E\-\_\-if.\-h@{include/\-Camgen/\-L\-H\-E\-\_\-if.\-h}}
-}
+\hypertarget{a00659}{}\section{include/\+Camgen/hel\+\_\+gen.h File Reference}
+\label{a00659}\index{include/\+Camgen/hel\+\_\+gen.\+h@{include/\+Camgen/hel\+\_\+gen.\+h}}
 
 
-Les-\/\-Houches interface output for phase space generators.  
+helicity generator abstract base class template interface and implementation.  
 
 
-{\ttfamily \#include $<$fstream$>$}\\*
-{\ttfamily \#include $<$Camgen/if\-\_\-output.\-h$>$}\\*
+{\ttfamily \#include $<$bitset$>$}\\*
+{\ttfamily \#include $<$vector$>$}\\*
+{\ttfamily \#include $<$complex$>$}\\*
+{\ttfamily \#include $<$Camgen/phase\+\_\+space.\+h$>$}\\*
+{\ttfamily \#include $<$Camgen/obj\+\_\+alloc.\+h$>$}\\*
+{\ttfamily \#include $<$Camgen/\+M\+C\+\_\+gen.\+h$>$}\\*
+{\ttfamily \#include $<$Camgen/summation.\+h$>$}\\*
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{a00323}{Camgen\-::\-L\-H\-E\-\_\-interface$<$ model\-\_\-t $>$}
-\begin{DoxyCompactList}\small\item\em Les-\/\-Houches event file output interface class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+class \hyperlink{a00270}{Camgen\+::helicity\+\_\+generator$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, cont\+\_\+hels $>$}
+\item 
+class \hyperlink{a00271}{Camgen\+::helicity\+\_\+generator$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$}
+\begin{DoxyCompactList}\small\item\em Helicity generator base class specialization for discrete helicities. \end{DoxyCompactList}\item 
+class \hyperlink{a00272}{Camgen\+::helicity\+\_\+generator$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, true $>$}
+\begin{DoxyCompactList}\small\item\em Helicity generator base class specialization for continuous helicities. \end{DoxyCompactList}\item 
+class \hyperlink{a00279}{Camgen\+::helicity\+\_\+summer$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, cont\+\_\+hels $>$}
+\begin{DoxyCompactList}\small\item\em Helicity-\/summing dummy class. \end{DoxyCompactList}\item 
+class \hyperlink{a00280}{Camgen\+::helicity\+\_\+summer$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$}
+\item 
+class \hyperlink{a00281}{Camgen\+::helicity\+\_\+summer$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, true $>$}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Les-\/\-Houches interface output for phase space generators. 
+helicity generator abstract base class template interface and implementation. 
+

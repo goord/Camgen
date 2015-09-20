@@ -135,6 +135,10 @@ namespace Camgen
 		return true;
 	    }
 
+	    /* Trivial update method: */
+
+	    void update(){}
+
 	    /* Public readout methods */
 	    /*------------------------*/
 
@@ -306,6 +310,10 @@ namespace Camgen
 		this->weight()=(value_type)1;
 		return true;
 	    }
+
+	    /* Trivial update method: */
+
+	    void update(){}
 
 	    /* Public readout methods */
 	    /*------------------------*/

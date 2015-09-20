@@ -17,23 +17,21 @@
  *                                                 *
  * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#include <Camgen/unused.h>
 #include <Camgen/CM_algo.h>
-#include <Camgen/MC_config.h>
 #include <Camgen/init_state.h>
 #include <Camgen/gen_conf.h>
+#include <Camgen/MC_int.h>
 
 namespace Camgen
 {
-
     /// Phase space generator base class template.
 
-    template<class model_t,std::size_t N_in,std::size_t N_out>class ps_generator: public MC_generator<typename model_t::value_type>,
+    template<class model_t,std::size_t N_in,std::size_t N_out>class ps_generator: public MC_integrator<typename model_t::value_type>,
     										  public ps_generator_base<model_t>,
 										  public phase_space_cut,
 										  public scale_expression<typename model_t::value_type>
     {
-	typedef MC_generator<typename model_t::value_type> base_type;
+	typedef MC_integrator<typename model_t::value_type> base_type;
 
 	public:
 
@@ -53,16 +51,12 @@ namespace Camgen
 
 	    static value_type ps_factor;
 
-	    /* Flag denoting whether the final state samples s-hat: */
-
-	    const bool s_hat_sampling;
-
 	    /* Public constructors */
 	    /*---------------------*/
 
 	    /// Constructor with initial state argument.
 
-	    ps_generator(init_state_type* is_):s_hat_sampling(!is_->s_hat_sampling),fsw(0),is(is_),isw(0),ps_cut(NULL),scale(NULL)
+	    ps_generator(init_state_type* is_):fsw(0),is(is_),isw(0),ps_cut(NULL),scale(NULL)
 	    {
 		for(size_type i=0;i<N_in;++i)
 		{
@@ -229,10 +223,7 @@ namespace Camgen
 
 	    /// Refreshes internal parameters.
 
-	    virtual bool refresh_params()
-	    {
-		return is->refresh_params();
-	    }
+	    virtual bool refresh_params(){}
 
 	    /// Inserts a phase space cut.
 
@@ -248,71 +239,23 @@ namespace Camgen
 		scale=expr;
 	    }
 
-	    /// Calls the initial state generator.
-
-	    bool generate_is()
-	    {
-		if(s_hat_sampling)
-		{
-		    value_type shat;
-		    if(!generate_s_hat(shat))
-		    {
-			isw=(value_type)0;
-			return false;
-		    }
-		    is->set_s_hat(shat);
-		}
-		if(!(is->generate()))
-		{
-		    isw=(value_type)0;
-		    return false;
-		}
-		isw=is->weight();
-		return true;
-	    }
-
-	    /// Calles the initial state weight evaluation method.
-	    
-	    bool evaluate_is_weight()
-	    {
-		if(!is->evaluate_weight())
-		{
-		    isw=(value_type)0;
-		    return false;
-		}
-		isw=is->weight();
-		return true;
-	    }
-
-	    /// Purely virtual method generating the final state.
-
-	    virtual bool generate_fs()=0;
-
-	    /// Purely virtual method evaluating the final state weight.
-	    
-	    virtual bool evaluate_fs_weight()=0;
-
-	    /// Virtual method generating the partonic invariant mass.
-
-	    virtual bool generate_s_hat(value_type& s)
-	    {
-		return true;
-	    }
-
 	    /// Generation method.
 
-	    bool generate()
+	    virtual bool generate()
 	    {
 		if(!generate_is())
 		{
 		    this->weight()=(value_type)0;
-		    this->integrand()=(value_type)0;
+		    return false;
+		}
+		if(!check_sufficient_shat())
+		{
+		    this->weight()=(value_type)0;
 		    return false;
 		}
 		if(!generate_fs())
 		{
 		    this->weight()=(value_type)0;
-		    this->integrand()=(value_type)0;
 		    return false;
 		}
 		collect_integrand();
@@ -322,18 +265,16 @@ namespace Camgen
 
 	    /// Weight evaluation implementation.
 
-	    bool evaluate_weight()
+	    virtual bool evaluate_weight()
 	    {
 		if(!evaluate_is_weight())
 		{
 		    this->weight()=(value_type)0;
-		    this->integrand()=(value_type)0;
 		    return false;
 		}
 		if(!evaluate_fs_weight())
 		{
 		    this->weight()=(value_type)0;
-		    this->integrand()=(value_type)0;
 		    return false;
 		}
 		collect_integrand();
@@ -348,27 +289,12 @@ namespace Camgen
 		return generate();
 	    }
 
-	    /// Initial-state updating method.
+	    /// Overridden updating method.
 
-	    void update_is()
+	    virtual void update()
 	    {
 		is->integrand()=(this->integrand())*(this->weight());
 		is->update();
-	    }
-
-	    /// Final-state updating method.
-
-	    virtual void update_fs(){}
-
-	    /// Overridden updating method.
-
-	    void update()
-	    {
-		update_is();
-		if(this->weight()>(value_type)0)
-		{
-		    update_fs();
-		}
 	    }
 
 	    /// VEGAS-grid adaptation method.
@@ -407,18 +333,10 @@ namespace Camgen
 		is->reset();
 	    }
 
-	    /// Resets cross section of initial and final state generators.
-
-	    virtual void reset_cross_section()
-	    {
-		this->base_type::reset_cross_section();
-		is->reset_cross_section();
-	    }
-
 	    /// Sets all momentum and mass addresses to the current tree's
 	    /// external legs momenta and masses.
 
-	    bool set_tree(typename CM_algorithm<model_t,N_in,N_out>::tree_iterator it)
+	    virtual bool set_amplitude(typename CM_algorithm<model_t,N_in,N_out>::tree_iterator it)
 	    {
 		for(size_type i=0;i<N_in;++i)
 		{
@@ -449,10 +367,6 @@ namespace Camgen
 			eff_mmin[i][j]=eval_m_min(i,j);
 			eff_mmin[j][i]=eff_mmin[i][j];
 		    }
-		}
-		if(N_in==1)
-		{
-		    refresh_Ecm();
 		}
 		return true;
 	    }
@@ -661,7 +575,7 @@ namespace Camgen
 
 	    /// Implementation of the factorisation scale.
 
-	    value_type F_scale()
+	    value_type F_scale() const
 	    {
 		if(scale!=NULL)
 		{
@@ -677,7 +591,7 @@ namespace Camgen
 
 	    /// Implementation of the renormalisation scale.
 
-	    value_type R_scale()
+	    value_type R_scale() const
 	    {
 		if(scale!=NULL)
 		{
@@ -693,7 +607,7 @@ namespace Camgen
 
 	    /// Implementation of the QCD scale.
 
-	    value_type QCD_scale()
+	    value_type QCD_scale() const
 	    {
 		if(scale!=NULL)
 		{
@@ -735,7 +649,7 @@ namespace Camgen
 		bool q=true;
 		for(size_type mu=0;mu!=model_t::dimension;++mu)
 		{
-		    q&=equals(Pin[mu],Pout[mu]);
+		    q&=equals(Pin[mu]/Ecm_hat(),Pout[mu]/Ecm_hat());
 		}
 		if(!q)
 		{
@@ -752,22 +666,46 @@ namespace Camgen
 		for(size_type i=0;i<N_in;++i)
 		{
 		    value_type s=this->ps_generator_base<model_t>::s_in(i);
-		    if(!equals(s,M2_in(i)))
+		    if(!equals(s/Ecm_hat(),this->M2_in(i)/Ecm_hat()))
 		    {
-			log(log_level::warning)<<"incoming momentum "<<i<<": "<<p_in(i)<<" with invariant mass "<<s<<" not equal to "<<M2_in(i)<<" detected"<<endlog;
+			log(log_level::warning)<<CAMGEN_STREAMLOC<<"incoming momentum "<<i<<": "<<p_in(i)<<" with invariant mass "<<s<<" not equal to "<<this->M2_in(i)<<" detected"<<endlog;
 			q=false;
 		    }
 		}
 		for(size_type i=0;i<N_out;++i)
 		{
 		    value_type s=this->s_out(i);
-		    if(!equals(s,M2_out(i)))
+		    if(!equals(s/Ecm_hat(),this->M2_out(i)/Ecm_hat()))
 		    {
-			log(log_level::warning)<<"outgoing momentum "<<i<<": "<<p_out(i)<<" with mass-squared "<<s<<" not equal to "<<M2_out(i)<<" detected"<<endlog;
+			log(log_level::warning)<<CAMGEN_STREAMLOC<<"outgoing momentum "<<i<<": "<<p_out(i)<<" with mass-squared "<<s<<" not equal to "<<this->M2_out(i)<<" detected"<<endlog;
 			q=false;
 		    }
 		}
 		return q;
+	    }
+
+	    /// Checks parton level momentum conservation condition
+
+	    bool check_sufficient_shat() const
+	    {
+		if(Ecm_hat()<=this->M_out_sum())
+		{
+		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"total CM-energy "<<Ecm_hat()<<" insufficient to accomodate outgoing particles with total mass "<<this->M_out_sum()<<endlog;
+		    return false;
+		}
+		return true;
+	    }
+
+	    /// Checks hadron level momentum conservation condition
+
+	    bool check_sufficient_s() const
+	    {
+		if(Ecm()<=this->M_out_sum())
+		{
+		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"total CM-energy "<<Ecm()<<" insufficient to accomodate outgoing particles with total mass "<<this->M_out_sum()<<endlog;
+		    return false;
+		}
+		return true;
 	    }
 
 	    /// Checks momentum conservation and masses.
@@ -856,7 +794,7 @@ namespace Camgen
 
 	    std::ostream& print_settings(std::ostream& os) const
 	    {
-		os<<std::setw(30)<<std::left<<"s-hat sampling:"<<(s_hat_sampling?"fs":"is")<<std::endl<<std::endl;
+		os<<std::setw(30)<<std::left<<"s-hat sampling:"<<(is->s_hat_sampling?"fs":"is")<<std::endl<<std::endl;
 		os<<std::setw(30)<<std::left<<"initial state:"<<is->type()<<std::endl;
 		is->print_settings(os);
 		os<<std::endl<<std::setw(30)<<std::left<<"final state:"<<type()<<std::endl;
@@ -885,64 +823,29 @@ namespace Camgen
 		return os;
 	    }
 
-	    /// Loading method implementation.
-
-	    std::istream& load(std::istream& istr)
+	    /// Prints the status of the generator.
+	    
+	    std::ostream& print_status(std::ostream& os=std::cout) const
 	    {
-		this->base_type::load(istr);
-		for(size_type i=0;i<N_out;++i)
-		{
-		    for(size_type j=(i+1);j<N_out;++j)
-		    {
-			istr>>mmin[i][j];
-			mmin[j][i]=mmin[i][j];
-		    }
-		}
-		load_data(istr);
-		return istr;
-	    }
-
-	    /// Virtual loading method for derived types.
-
-	    virtual std::istream& load_data(std::istream& is)
-	    {
-		return is;
-	    }
-
-	    /// Saving method implementation.
-
-	    std::ostream& save(std::ostream& os) const
-	    {
-		os<<"<psgen>"<<std::endl;
-		is->save(os);
-		os<<"<fsgen>"<<std::endl;
-		os<<type()<<std::endl;
-		save_preamble(os);
-		this->base_type::save(os);
-		for(size_type i=0;i<N_out;++i)
-		{
-		    for(size_type j=(i+1);j<N_out;++j)
-		    {
-			os<<"\t"<<mmin[i][j];
-		    }
-		}
-		os<<std::endl;
-		save_data(os);
-		os<<"</fsgen>"<<std::endl<<"</psgen>"<<std::endl;
+		os<<"###############################################################################################"<<std::endl;
+		os<<"Nr of events contributing to cross-section:        "<<std::scientific<<this->calls()<<std::endl;
+		os<<"Monte Carlo efficiency (%):                        "<<std::scientific<<this->efficiency()<<std::endl;
+		os<<"Cross section (pb):                                "<<std::scientific<<this->cross_section()<<std::endl;
+		os<<"###############################################################################################"<<std::endl;
 		return os;
 	    }
 
-	    /// Virtual saving method for derived types.
+	    /// Prints the ingredients of the returned weight.
 
-	    virtual std::ostream& save_data(std::ostream& os) const
+	    std::ostream& print_weights(std::ostream& os=std::cout) const
 	    {
-		return os;
-	    }
-
-	    /* Outputs the const data: */
-
-	    virtual std::ostream& save_preamble(std::ostream& os) const
-	    {
+		os<<"###############################################################################################"<<std::endl;
+		os<<"Initial state weight:				"<<std::scientific<<is_weight()<<std::endl;
+		os<<"Final state weight:				"<<std::scientific<<fs_weight()<<std::endl;
+		os<<"Flux factor:					"<<std::scientific<<flux_factor()<<std::endl;
+		os<<"Full integrand:                                    "<<std::scientific<<this->integrand()<<std::endl;
+		os<<"Full weight:                                       "<<std::scientific<<this->weight()<<std::endl;
+		os<<"###############################################################################################"<<std::endl;
 		return os;
 	    }
 
@@ -956,9 +859,45 @@ namespace Camgen
 
 	    value_type eff_mmin[N_out][N_out];
 
-	    /* Final-state weight: */
+	    /// Calls the initial state generator.
 
-	    value_type fsw;
+	    virtual bool generate_is()
+	    {
+		if(!(is->generate()))
+		{
+		    isw=(value_type)0;
+		    return false;
+		}
+		isw=is->weight();
+		return true;
+	    }
+
+	    /// Calles the initial state weight evaluation method.
+	    
+	    bool evaluate_is_weight()
+	    {
+		if(!is->evaluate_weight())
+		{
+		    isw=(value_type)0;
+		    return false;
+		}
+		isw=is->weight();
+		return true;
+	    }
+
+	    /// Virtual method generating the final state.
+
+	    virtual bool generate_fs()
+	    {
+		return true;
+	    }
+
+	    /// Virtual method evaluating the final state weight.
+	    
+	    virtual bool evaluate_fs_weight()
+	    {
+		return true;
+	    }
 
 	    /// Sets the i-th incoming momentum (no range checking on i)
 
@@ -1000,12 +939,32 @@ namespace Camgen
 		mout[i]=m;
 	    }
 
-
 	    /// Returns the initial-state pointer.
 	    
-	    init_state_type* init_state()
+	    init_state_type* is_generator()
 	    {
 		return is;
+	    }
+
+	    /// Returns the initial-state const-pointer.
+	    
+	    const init_state_type* is_generator() const
+	    {
+		return is;
+	    }
+
+	    /// Returns the initial state weight reference.
+
+	    value_type& is_weight()
+	    {
+		return isw;
+	    }
+
+	    /// Returns the final state weight reference.
+
+	    value_type& fs_weight()
+	    {
+		return fsw;
 	    }
 
 	    /// Returns whether the outgoing state has massive particles.
@@ -1059,6 +1018,10 @@ namespace Camgen
 	    /* Initial-state weight: */
 
 	    value_type isw;
+
+	    /* Final-state weight: */
+
+	    value_type fsw;
 
 	    /* Incoming momenta: */
 

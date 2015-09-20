@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 108.695652
+%%BoundingBox: 0 0 500 114.942529
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,13 +19,13 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 4.600000 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 4.350000 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
 /yspacing 0 def
-/rows 2 def
-/cols 1 def
+/rows 4 def
+/cols 2 def
 /scalefactor 0 def
 /boxfont /Times-Roman findfont fontheight scalefont def
 
@@ -173,8 +173,12 @@
 
 boxfont setfont
 1 boundaspect scale
-(Camorra::MC_object_generator< value_t, object_t, 1, false >) cw
-(Camorra::MC_generator< value_t >) cw
+(Camgen::matrix_element< model_t >) cw
+(Camgen::MC_generator< model_t::value_type >) cw
+(Camgen::ps_generator_viewer< model_t >) cw
+(Camgen::ps_generator_base< model_t >) cw
+(Camgen::matrix_element_reweighter< model_t, model_t2 >) cw
+(Camgen::unit_matrix_element< model_t >) cw
 /boxwidth boxwidth marginwidth 2 mul add def
 /xspacing boxwidth distx add def
 /yspacing boxheight disty add def
@@ -186,12 +190,32 @@ boundx scalefactor div boundy scalefactor div scale
 
 % ----- classes -----
 
- (Camorra::MC_object_generator< value_t, object_t, 1, false >) 0.000000 0.000000 box
- (Camorra::MC_generator< value_t >) 0.000000 1.000000 box
+ (Camgen::matrix_element< model_t >) 0.500000 1.000000 box
+ (Camgen::MC_generator< model_t::value_type >) 0.000000 2.000000 box
+ (Camgen::ps_generator_viewer< model_t >) 1.000000 2.000000 box
+ (Camgen::ps_generator_base< model_t >) 1.000000 3.000000 box
+ (Camgen::matrix_element_reweighter< model_t, model_t2 >) 0.000000 0.000000 box
+ (Camgen::unit_matrix_element< model_t >) 1.000000 0.000000 box
 
 % ----- relations -----
 
 solid
-0 0.000000 0.000000 out
+0 0.500000 1.000000 out
 solid
-1 0.000000 1.000000 in
+0.000000 1.000000 2.000000 conn
+solid
+1 0.000000 2.000000 in
+solid
+1 1.000000 2.000000 in
+solid
+0 1.000000 2.000000 out
+solid
+1 1.000000 3.000000 in
+solid
+1 0.500000 0.250000 out
+solid
+0.000000 1.000000 1.000000 conn
+solid
+0 0.000000 0.750000 in
+solid
+0 1.000000 0.750000 in

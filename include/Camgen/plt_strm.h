@@ -76,8 +76,6 @@ namespace Camgen
 	    function_stream* clone() const;
     };
 
-    class data_stream;
-
     /// Data output stream wrapper class.
 
     class data_wrapper

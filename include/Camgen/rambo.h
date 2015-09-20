@@ -52,27 +52,6 @@ namespace Camgen
 
 	    static const size_type D=model_t::dimension;
 
-	    /* Public static methods: */
-	    /*------------------------*/
-
-	    /* Factory method. */
-
-	    static rambo<model_t,N_in,N_out,rng_t,Minkowski_type>* create_instance(typename CM_algorithm<model_t,N_in,N_out>::tree_iterator it,init_state_type* is_)
-	    {
-		if(!is_->s_hat_sampling)
-		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"invalid request to let RAMBO generate partonic invariant mass--returning NULL"<<endlog;
-		    return NULL;
-		}
-		rambo<model_t,N_in,N_out,rng_t,Minkowski_type>* result=new rambo<model_t,N_in,N_out,rng_t,Minkowski_type>(is_);
-		if(!result->set_tree(it))
-		{
-		    delete result;
-		    return NULL;
-		}
-		return result;
-	    }
-
 	    /* Public constructors: */
 	    /*----------------------*/
 
@@ -103,14 +82,14 @@ namespace Camgen
 		if(stot<(value_type)0)
 		{
 		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"negative total invariant mass-squared encountered: P = "<<P<<endlog;
-		    this->fsw=(value_type)0;
+		    this->fs_weight()=(value_type)0;
 		    return false;
 		}
 		value_type Etot=std::sqrt(stot);
 		if(Etot<this->ps_generator_base<model_type>::M_out_sum())
 		{
 		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"total energy "<<Etot<<" too small to create final state with M = "<<this->ps_generator_base<model_type>::M_out_sum()<<endlog;
-		    this->fsw=(value_type)0;
+		    this->fs_weight()=(value_type)0;
 		    return false;
 		}
 
@@ -155,7 +134,7 @@ namespace Camgen
 		}
 		if(!this->massive_fs())
 		{
-		    this->fsw=massless_ps<value_type,N_out,D>::volume(Etot);
+		    this->fs_weight()=massless_ps<value_type,N_out,D>::volume(Etot);
 		}
 		else
 		{
@@ -191,7 +170,7 @@ namespace Camgen
 
 		    /* Extra weight due to phase space contraction: */
 
-		    (this->fsw)=massless_ps<value_type,N_out,D>::volume(Etot)*std::pow(xi,int((D-2)*N_out-D+1))*Etot;
+		    (this->fs_weight())=massless_ps<value_type,N_out,D>::volume(Etot)*std::pow(xi,int((D-2)*N_out-D+1))*Etot;
 		    value_type factor=(value_type)1;
 		    value_type denom=(value_type)0;
 		    for(size_type i=0;i<N_out;++i)
@@ -201,7 +180,7 @@ namespace Camgen
 			factor*=(std::sqrt(psq)/e);
 			denom+=(psq/e);
 		    }
-		    (this->fsw)*=(factor/denom);
+		    (this->fs_weight())*=(factor/denom);
 		}
 		
 		/* Boosting CM-momenta to the lab frame: */
@@ -222,17 +201,17 @@ namespace Camgen
 		if(stot<(value_type)0)
 		{
 		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"negative total invariant mass-squared encountered"<<endlog;
-		    this->fsw=(value_type)0;
+		    this->fs_weight()=(value_type)0;
 		    return false;
 		}
 		value_type Etot=std::sqrt(stot);
 		if(Etot<this->ps_generator_base<model_type>::M_out_sum())
 		{
 		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"total energy too small to create final state"<<endlog;
-		    this->fsw=(value_type)0;
+		    this->fs_weight()=(value_type)0;
 		    return false;
 		}
-		this->fsw=massless_ps<value_type,N_out,D>::volume(Etot);
+		this->fs_weight()=massless_ps<value_type,N_out,D>::volume(Etot);
 		if(this->massive_fs())
 		{
 		    value_type factor=(value_type)1;
@@ -246,7 +225,7 @@ namespace Camgen
 			num+=pvec;
 			denom+=(pvec*pvec/E);
 		    }
-		    (this->fsw)*=(Etot*std::pow(num/Etot,int((D-2)*N_out-D+1))*factor/denom);
+		    this->fs_weight()*=(Etot*std::pow(num/Etot,int((D-2)*N_out-D+1))*factor/denom);
 		}
 		return true;
 	    }
@@ -261,30 +240,9 @@ namespace Camgen
 		return new rambo<model_t,N_in,N_out,rng_t,Minkowski_type>(*this);
 	    }
 
-	    /* Serialization: */
-	    /*----------------*/
-
-	    /* Type identifier: */
-
 	    std::string type() const
 	    {
 		return "rambo";
-	    }
-
-	    /// Virtual method printing the fs-generator settings.
-
-	    std::ostream& print_fs_settings(std::ostream& os) const
-	    {
-		os<<std::setw(30)<<std::left<<"NR-iters:"<<NR_iterations()<<std::endl;
-		return os;
-	    }
-
-	    /* Overridden loading operator: */
-
-	    std::istream& load_data(std::istream& is)
-	    {
-		this->refresh_m_min();
-		return is;
 	    }
 
 	private:

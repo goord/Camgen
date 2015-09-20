@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 231.660232
+%%BoundingBox: 0 0 500 158.730159
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,12 +19,12 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 2.158333 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 3.150000 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
 /yspacing 0 def
-/rows 3 def
+/rows 2 def
 /cols 1 def
 /scalefactor 0 def
 /boxfont /Times-Roman findfont fontheight scalefont def
@@ -173,9 +173,8 @@
 
 boxfont setfont
 1 boundaspect scale
-(Camgen::interface_engine< model_t >) cw
-(Camgen::ps_generator_viewer< model_t >) cw
-(Camgen::ps_generator_base< model_t >) cw
+(Camgen::interaction< model_t, N, false >) cw
+(Camgen::interaction_base< model_t, N >) cw
 /boxwidth boxwidth marginwidth 2 mul add def
 /xspacing boxwidth distx add def
 /yspacing boxheight disty add def
@@ -187,9 +186,8 @@ boundx scalefactor div boundy scalefactor div scale
 
 % ----- classes -----
 
- (Camgen::interface_engine< model_t >) 0.000000 0.000000 box
- (Camgen::ps_generator_viewer< model_t >) 0.000000 1.000000 box
- (Camgen::ps_generator_base< model_t >) 0.000000 2.000000 box
+ (Camgen::interaction< model_t, N, false >) 0.000000 0.000000 box
+ (Camgen::interaction_base< model_t, N >) 0.000000 1.000000 box
 
 % ----- relations -----
 
@@ -197,7 +195,3 @@ solid
 0 0.000000 0.000000 out
 solid
 1 0.000000 1.000000 in
-solid
-0 0.000000 1.000000 out
-solid
-1 0.000000 2.000000 in

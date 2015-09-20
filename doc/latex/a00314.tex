@@ -1,82 +1,13 @@
-\hypertarget{a00314}{\section{Camgen\-:\-:interface\-\_\-engine$<$ model\-\_\-t $>$ Class Template Reference}
-\label{a00314}\index{Camgen\-::interface\-\_\-engine$<$ model\-\_\-t $>$@{Camgen\-::interface\-\_\-engine$<$ model\-\_\-t $>$}}
-}
-
-
-Interface engine base class\-:  
-
-
-
-
-{\ttfamily \#include $<$if\-\_\-engine.\-h$>$}
-
-Inheritance diagram for Camgen\-:\-:interface\-\_\-engine$<$ model\-\_\-t $>$\-:\begin{figure}[H]
+\hypertarget{a00314}{}\section{Camgen\+:\+:interaction$<$ model\+\_\+t, N, false $>$ Class Template Reference}
+\label{a00314}\index{Camgen\+::interaction$<$ model\+\_\+t, N, false $>$@{Camgen\+::interaction$<$ model\+\_\+t, N, false $>$}}
+Inheritance diagram for Camgen\+:\+:interaction$<$ model\+\_\+t, N, false $>$\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=3.000000cm]{a00314}
+\includegraphics[height=2.000000cm]{a00314}
 \end{center}
 \end{figure}
-\subsection*{Public Member Functions}
-\begin{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-\hypertarget{a00314_a343963d3ea0e66429432e8496534c142}{\hyperlink{a00314_a343963d3ea0e66429432e8496534c142}{interface\-\_\-engine} ()}\label{a00314_a343963d3ea0e66429432e8496534c142}
-
-\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
-\hypertarget{a00314_ad342ed491c8c93e057a8581496fd9dd7}{\hyperlink{a00314_ad342ed491c8c93e057a8581496fd9dd7}{interface\-\_\-engine} (const \hyperlink{a00442}{ps\-\_\-generator\-\_\-base}$<$ model\-\_\-t $>$ $\ast$gen\-\_\-)}\label{a00314_ad342ed491c8c93e057a8581496fd9dd7}
-
-\begin{DoxyCompactList}\small\item\em Constructor with generator instance argument. \end{DoxyCompactList}\item 
-\hypertarget{a00314_aa7f1746c6c1a6b5d382308423a16b086}{\hyperlink{a00314_aa7f1746c6c1a6b5d382308423a16b086}{interface\-\_\-engine} (const \hyperlink{a00442}{ps\-\_\-generator\-\_\-base}$<$ model\-\_\-t $>$ $\ast$gen\-\_\-, \hyperlink{a00315}{interface\-\_\-output}$<$ model\-\_\-t $>$ $\ast$output\-\_\-)}\label{a00314_aa7f1746c6c1a6b5d382308423a16b086}
-
-\begin{DoxyCompactList}\small\item\em Constructor with generator and output instance arguments. \end{DoxyCompactList}\item 
-\hypertarget{a00314_abcf2a665d45d27762db5e3ba01eae5e1}{void \hyperlink{a00314_abcf2a665d45d27762db5e3ba01eae5e1}{add\-\_\-branches} (\hyperlink{a00315}{interface\-\_\-output}$<$ model\-\_\-t $>$ $\ast$output\-\_\-)}\label{a00314_abcf2a665d45d27762db5e3ba01eae5e1}
-
-\begin{DoxyCompactList}\small\item\em Copies the output variable addresses to the output object. \end{DoxyCompactList}\item 
-\hypertarget{a00314_a756e355ca2e52d691dc616acaa3e61be}{virtual \hyperlink{a00314}{interface\-\_\-engine}\\*
-$<$ model\-\_\-t $>$ $\ast$ \hyperlink{a00314_a756e355ca2e52d691dc616acaa3e61be}{clone} () const =0}\label{a00314_a756e355ca2e52d691dc616acaa3e61be}
-
-\begin{DoxyCompactList}\small\item\em Abstract clone method. \end{DoxyCompactList}\item 
-\hypertarget{a00314_a26aa352398b544f0a8d0e91acd02a84c}{virtual void \hyperlink{a00314_a26aa352398b544f0a8d0e91acd02a84c}{fill} ()=0}\label{a00314_a26aa352398b544f0a8d0e91acd02a84c}
-
-\begin{DoxyCompactList}\small\item\em Abstract method filling the output variables. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Protected Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-virtual void \hyperlink{a00314_a9a6ee7dc4e89ecec32603e51da802cc4}{add\-\_\-variables} ()=0
-\begin{DoxyCompactList}\small\item\em Abstract mathod adding variables to the interface. \end{DoxyCompactList}\item 
-\hypertarget{a00314_a7500d971ef67d2045a64fdb9429a810c}{bool \hyperlink{a00314_a7500d971ef67d2045a64fdb9429a810c}{add\-\_\-variable} (const \hyperlink{a00559}{momentum\-\_\-type} \&q, const std\-::string \&name)}\label{a00314_a7500d971ef67d2045a64fdb9429a810c}
-
-\begin{DoxyCompactList}\small\item\em Adds an momentum-\/valued output variable to the interface engine. \end{DoxyCompactList}\item 
-\hypertarget{a00314_aca7d353daee5721c27a6e33571366a34}{bool \hyperlink{a00314_aca7d353daee5721c27a6e33571366a34}{add\-\_\-variable} (const value\-\_\-type \&q, const std\-::string \&name)}\label{a00314_aca7d353daee5721c27a6e33571366a34}
-
-\begin{DoxyCompactList}\small\item\em Adds a floating-\/point-\/valued output variable to the interface engine. \end{DoxyCompactList}\item 
-\hypertarget{a00314_a47a525730c8a76d72d4612ac9390a360}{bool \hyperlink{a00314_a47a525730c8a76d72d4612ac9390a360}{add\-\_\-variable} (const int \&q, const std\-::string \&name)}\label{a00314_a47a525730c8a76d72d4612ac9390a360}
-
-\begin{DoxyCompactList}\small\item\em Adds an integer-\/valued output variable to the interface engine. \end{DoxyCompactList}\item 
-\hypertarget{a00314_a83adfb42e106a738461bceb4df4d1881}{bool \hyperlink{a00314_a83adfb42e106a738461bceb4df4d1881}{add\-\_\-variable} (const bool \&q, const std\-::string \&name)}\label{a00314_a83adfb42e106a738461bceb4df4d1881}
-
-\begin{DoxyCompactList}\small\item\em Adds an boolean-\/valued output variable to the interface engine. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Additional Inherited Members}
-
-
-\subsection{Detailed Description}
-\subsubsection*{template$<$class model\-\_\-t$>$class Camgen\-::interface\-\_\-engine$<$ model\-\_\-t $>$}
-
-Interface engine base class\-: 
-
-\subsection{Member Function Documentation}
-\hypertarget{a00314_a9a6ee7dc4e89ecec32603e51da802cc4}{\index{Camgen\-::interface\-\_\-engine@{Camgen\-::interface\-\_\-engine}!add\-\_\-variables@{add\-\_\-variables}}
-\index{add\-\_\-variables@{add\-\_\-variables}!Camgen::interface_engine@{Camgen\-::interface\-\_\-engine}}
-\subsubsection[{add\-\_\-variables}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t$>$ virtual void {\bf Camgen\-::interface\-\_\-engine}$<$ model\-\_\-t $>$\-::add\-\_\-variables (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}}\label{a00314_a9a6ee7dc4e89ecec32603e51da802cc4}
-
-
-Abstract mathod adding variables to the interface. 
-
-Derived classes should implement this function with \hyperlink{a00314_a7500d971ef67d2045a64fdb9429a810c}{add\-\_\-variable()} statements to stream the variable addresses to the output interface. 
-
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
-\item 
-include/\-Camgen/\hyperlink{a00647}{if\-\_\-engine.\-h}\end{DoxyCompactItemize}
+include/\+Camgen/interaction.\+h\end{DoxyCompactItemize}

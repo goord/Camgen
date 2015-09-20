@@ -19,9 +19,8 @@
 #include <Camgen/init_state.h>
 #include <Camgen/pdf_wrapper.h>
 #include <Camgen/rn_strm.h>
-#include <Camgen/power_law.h>
-#include <Camgen/inv_cosh.h>
 #include <Camgen/ps_vol.h>
+#include <Camgen/val_gen_fac.h>
 
 namespace Camgen
 {
@@ -72,7 +71,7 @@ namespace Camgen
 		pdf_wrapper::initialise(MC_config::pdf_name(),MC_config::pdf_number());
 		xmin.assign(static_cast<value_type>(pdf_wrapper::xmin()));
 		xmax.assign(static_cast<value_type>(pdf_wrapper::xmax()));
-		xgen=new parni<value_type,2,rng_t>(&xvec,xmin,xmax,2*grid_bins(),grid_mode());
+		xgen=new parni_generator<value_type,2,rng_t>(&xvec,xmin,xmax,2*grid_bins(),grid_mode());
 	    }
 
 	    /* Copy constructor: */
@@ -82,7 +81,7 @@ namespace Camgen
 		pdf_wrapper::initialise(MC_config::pdf_name(),MC_config::pdf_number());
 		xmin.assign(static_cast<value_type>(pdf_wrapper::xmin()));
 		xmax.assign(static_cast<value_type>(pdf_wrapper::xmax()));
-		xgen=new parni<value_type,2,rng_t>(&xvec,xmin,xmax,2*grid_bins(),grid_mode());
+		xgen=new parni_generator<value_type,2,rng_t>(&xvec,xmin,xmax,2*grid_bins(),grid_mode());
 	    }
 
 	    /* Public destructors */
@@ -350,38 +349,6 @@ namespace Camgen
 		return os;
 	    }
 
-	    /* Derived loading method: */
-
-	    std::istream& load_data(std::istream& is)
-	    {
-		safe_read(is,xmin[0]);
-		safe_read(is,xmin[1]);
-		safe_read(is,xmax[0]);
-		safe_read(is,xmax[1]);
-		if(xgen!=NULL)
-		{
-		    delete xgen;
-		}
-		xgen=parni<value_type,2,rng_t>::create_instance(&xvec,is);
-		return is;
-	    }
-
-	    /* Derived saving method: */
-
-	    std::ostream& save_data(std::ostream& os) const
-	    {
-		safe_write(os,xmin[0]);
-		os<<"\t";
-		safe_write(os,xmin[1]);
-		os<<"\t\t";
-		safe_write(os,xmax[0]);
-		os<<"\t";
-		safe_write(os,xmax[1]);
-		os<<std::endl;
-		xgen->save(os);
-		return os;
-	    }
-
 	private:
 
 	    /* x-values, minima and maxima: */
@@ -390,7 +357,7 @@ namespace Camgen
 	    
 	    /* Adaptive grid generating x-values: */
 	    
-	    parni<value_type,2,rng_t>* xgen;
+	    parni_generator<value_type,2,rng_t>* xgen;
 
 	    /* Boolean denoting whether the initial state was swapped: */
 
@@ -453,18 +420,20 @@ namespace Camgen
 		pdf_wrapper::initialise(MC_config::pdf_name(),MC_config::pdf_number());
 		LHA_ymax=static_cast<value_type>(pdf_wrapper::ymax());
 		ymax=LHA_ymax;
-		tau_gen=new adaptive_s_generator<value_type,rng_t>(&tau,new pl_s_generator<value_type,rng_t>(NULL,&nu_tau));
-		tau_gen->set_s_min_min(0);
-		tau_gen->set_s_min(0);
-		tau_gen->set_s_max_max(1);
-		tau_gen->set_s_max(1);
-		y_gen=new adaptive_s_generator<value_type,rng_t>(&y,new inv_cosh_y_generator<value_type,rng_t>);
+		tau_gen=new adaptive_value_generator<value_type,rng_t>(new power_law<value_type,rng_t>(NULL,&nu_tau));
+		tau_gen->set_value(&tau);
+		tau_gen->set_mapping_lower_bound(0);
+		tau_gen->set_lower_bound(0);
+		tau_gen->set_mapping_upper_bound(1);
+		tau_gen->set_upper_bound(1);
+		y_gen=new adaptive_value_generator<value_type,rng_t>(new inverse_cosh<value_type,rng_t>);
+		y_gen->set_value(&y);
 		if(ymax!=std::numeric_limits<value_type>::infinity())
 		{
-		    y_gen->set_s_min_min(-ymax);
-		    y_gen->set_s_min(-ymax);
-		    y_gen->set_s_max_max(ymax);
-		    y_gen->set_s_max(ymax);
+		    y_gen->set_mapping_lower_bound(-ymax);
+		    y_gen->set_lower_bound(-ymax);
+		    y_gen->set_mapping_upper_bound(ymax);
+		    y_gen->set_upper_bound(ymax);
 		}
 	    }
 
@@ -475,18 +444,20 @@ namespace Camgen
 		pdf_wrapper::initialise(MC_config::pdf_name(),MC_config::pdf_number());
 		LHA_ymax=static_cast<value_type>(pdf_wrapper::ymax());
 		ymax=LHA_ymax;
-		tau_gen=new adaptive_s_generator<value_type,rng_t>(&tau,new pl_s_generator<value_type,rng_t>(NULL,&nu_tau));
-		tau_gen->set_s_min_min(0);
-		tau_gen->set_s_min(0);
-		tau_gen->set_s_max_max(1);
-		tau_gen->set_s_max(1);
-		y_gen=new adaptive_s_generator<value_type,rng_t>(&y,new inv_cosh_y_generator<value_type,rng_t>);
+		tau_gen=new adaptive_value_generator<value_type,rng_t>(new power_law<value_type,rng_t>(NULL,&nu_tau));
+		tau_gen->set_value(&tau);
+		tau_gen->set_mapping_lower_bound(0);
+		tau_gen->set_lower_bound(0);
+		tau_gen->set_mapping_upper_bound(1);
+		tau_gen->set_upper_bound(1);
+		y_gen=new adaptive_value_generator<value_type,rng_t>(new inverse_cosh<value_type,rng_t>);
+		y_gen->set_value(&y);
 		if(LHA_ymax!=std::numeric_limits<value_type>::infinity())
 		{
-		    y_gen->set_s_min_min(-ymax);
-		    y_gen->set_s_min(-ymax);
-		    y_gen->set_s_max_max(ymax);
-		    y_gen->set_s_max(ymax);
+		    y_gen->set_mapping_lower_bound(-ymax);
+		    y_gen->set_lower_bound(-ymax);
+		    y_gen->set_mapping_upper_bound(ymax);
+		    y_gen->set_upper_bound(ymax);
 		}
 	    }
 
@@ -513,13 +484,13 @@ namespace Camgen
 		value_type E2=this->beam_energy(1);
 		if(this->set_s((value_type)4*E1*E2))
 		{
-		    tau_gen->set_s_min_min((this->s_hat_min()-this->m2(0)-this->m2(1))/this->s());
-		    tau_gen->set_s_min((this->s_hat_min()-this->m2(0)-this->m2(1))/this->s());
-		    ymax=std::min(-(value_type)0.5*std::log(tau_gen->s_min()),LHA_ymax);
-		    y_gen->set_s_min_min(-ymax);
-		    y_gen->set_s_min(-ymax);
-		    y_gen->set_s_max_max(ymax);
-		    y_gen->set_s_max(ymax);
+		    tau_gen->set_mapping_lower_bound((this->s_hat_min()-this->m2(0)-this->m2(1))/this->s());
+		    tau_gen->set_lower_bound((this->s_hat_min()-this->m2(0)-this->m2(1))/this->s());
+		    ymax=std::min(-(value_type)0.5*std::log(tau_gen->lower_bound()),LHA_ymax);
+		    y_gen->set_mapping_lower_bound(-ymax);
+		    y_gen->set_lower_bound(-ymax);
+		    y_gen->set_mapping_upper_bound(ymax);
+		    y_gen->set_upper_bound(ymax);
 		    return true;
 		}
 		return false;
@@ -531,13 +502,13 @@ namespace Camgen
 	    {
 		if(this->base_type::set_s_hat_min(s))
 		{
-		    tau_gen->set_s_min_min((this->s_hat_min()-this->m2(0)-this->m2(1))/this->s());
-		    tau_gen->set_s_min((this->s_hat_min()-this->m2(0)-this->m2(1))/this->s());
-		    ymax=std::min(-(value_type)0.5*std::log(tau_gen->s_min()),LHA_ymax);
-		    y_gen->set_s_min_min(-ymax);
-		    y_gen->set_s_min(-ymax);
-		    y_gen->set_s_max_max(ymax);
-		    y_gen->set_s_max(ymax);
+		    tau_gen->set_mapping_lower_bound((this->s_hat_min()-this->m2(0)-this->m2(1))/this->s());
+		    tau_gen->set_lower_bound((this->s_hat_min()-this->m2(0)-this->m2(1))/this->s());
+		    ymax=std::min(-(value_type)0.5*std::log(tau_gen->lower_bound()),LHA_ymax);
+		    y_gen->set_mapping_lower_bound(-ymax);
+		    y_gen->set_lower_bound(-ymax);
+		    y_gen->set_mapping_upper_bound(ymax);
+		    y_gen->set_upper_bound(ymax);
 		    return true;
 		}
 		return false;
@@ -549,13 +520,13 @@ namespace Camgen
 	    {
 		if(this->base_type::set_m_hat_min(m))
 		{
-		    tau_gen->set_s_min_min((this->s_hat_min()-this->m2(0)-this->m2(1))/this->s());
-		    tau_gen->set_s_min((this->s_hat_min()-this->m2(0)-this->m2(1))/this->s());
-		    ymax=std::min(-(value_type)0.5*std::log(tau_gen->s_min()),LHA_ymax);
-		    y_gen->set_s_min_min(-ymax);
-		    y_gen->set_s_min(-ymax);
-		    y_gen->set_s_max_max(ymax);
-		    y_gen->set_s_max(ymax);
+		    tau_gen->set_mapping_lower_bound((this->s_hat_min()-this->m2(0)-this->m2(1))/this->s());
+		    tau_gen->set_lower_bound((this->s_hat_min()-this->m2(0)-this->m2(1))/this->s());
+		    ymax=std::min(-(value_type)0.5*std::log(tau_gen->lower_bound()),LHA_ymax);
+		    y_gen->set_mapping_lower_bound(-ymax);
+		    y_gen->set_lower_bound(-ymax);
+		    y_gen->set_mapping_upper_bound(ymax);
+		    y_gen->set_upper_bound(ymax);
 		    return true;
 		}
 		return false;
@@ -567,15 +538,15 @@ namespace Camgen
 	    {
 		if(!tau_gen->generate())
 		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"tau generation failed within ["<<tau_gen->s_min()<<','<<tau_gen->s_max()<<']'<<endlog;
+		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"tau generation failed within ["<<tau_gen->lower_bound()<<','<<tau_gen->upper_bound()<<']'<<endlog;
 		    this->weight()=(value_type)0;
 		    return false;
 		}
 		value_type ybound=std::min(ymax,-(value_type)0.5*std::log(tau));
-		y_gen->set_s_range(-ybound,ybound);
+		y_gen->set_bounds(-ybound,ybound);
 		if(!y_gen->generate())
 		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"y generation failed within ["<<y_gen->s_min()<<','<<y_gen->s_max()<<']'<<endlog;
+		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"y generation failed within ["<<y_gen->lower_bound()<<','<<y_gen->upper_bound()<<']'<<endlog;
 		    this->weight()=(value_type)0;
 		    return false;
 		}
@@ -642,7 +613,7 @@ namespace Camgen
 		}
 		y=(value_type)0.5*std::log(x1/x2);
 		value_type ybound=std::max(ymax,-(value_type)0.5*std::log(tau));
-		y_gen->set_s_range(-ybound,ybound);
+		y_gen->set_bounds(-ybound,ybound);
 		if(!y_gen->evaluate_weight())
 		{
 		    this->weight()=(value_type)0;
@@ -804,46 +775,11 @@ namespace Camgen
 		return os;
 	    }
 
-	    /* Derived loading method: */
-
-	    std::istream& load_data(std::istream& is)
-	    {
-		safe_read(is,nu_tau);
-		safe_read(is,ymax);
-		safe_read(is,LHA_ymax);
-		if(tau_gen!=NULL)
-		{
-		    delete tau_gen;
-		}
-		tau_gen=s_generator<value_type,rng_t>::create_instance(&tau,is,NULL,NULL,&nu_tau);
-		if(y_gen!=NULL)
-		{
-		    delete y_gen;
-		}
-		y_gen=s_generator<value_type,rng_t>::create_instance(&y,is,NULL,NULL,NULL);
-		return is;
-	    }
-
-	    /* Derived saving method: */
-
-	    std::ostream& save_data(std::ostream& os) const
-	    {
-		safe_write(os,nu_tau);
-		os<<"\t";
-		safe_write(os,ymax);
-		os<<"\t";
-		safe_write(os,LHA_ymax);
-		os<<std::endl;
-		tau_gen->save(os);
-		y_gen->save(os);
-		return os;
-	    }
-
 	private:
 	    
 	    value_type tau,y,x1,x2,ymax,LHA_ymax;
-	    s_generator<value_type,rng_t>* tau_gen;
-	    s_generator<value_type,rng_t>* y_gen;
+	    adaptive_value_generator<value_type,rng_t>* tau_gen;
+	    adaptive_value_generator<value_type,rng_t>* y_gen;
 	    bool flip;
     };
     template<class model_t,class rng_t>const typename hadronic_is_sy<model_t,rng_t,Minkowski_type>::size_type hadronic_is_sy<model_t,rng_t,Minkowski_type>::k0;
@@ -896,14 +832,15 @@ namespace Camgen
 	    {
 		pdf_wrapper::initialise(MC_config::pdf_name(),MC_config::pdf_number());
 		value_type xmin=static_cast<value_type>(pdf_wrapper::xmin());
-		y_gen=new adaptive_s_generator<value_type,rng_t>(&y,new inv_cosh_y_generator<value_type,rng_t>);
+		y_gen=new adaptive_value_generator<value_type,rng_t>(new inverse_cosh<value_type,rng_t>);
+		y_gen->set_value(&y);
 		if(xmin>(value_type)0)
 		{
 		    LHA_ymax=(value_type)0.5*std::log(static_cast<value_type>(pdf_wrapper::xmax())/xmin);
-		    y_gen->set_s_min_min(-LHA_ymax);
-		    y_gen->set_s_min(-LHA_ymax);
-		    y_gen->set_s_max_max(LHA_ymax);
-		    y_gen->set_s_max(LHA_ymax);
+		    y_gen->set_mapping_lower_bound(-LHA_ymax);
+		    y_gen->set_lower_bound(-LHA_ymax);
+		    y_gen->set_mapping_upper_bound(LHA_ymax);
+		    y_gen->set_upper_bound(LHA_ymax);
 		}
 		else
 		{
@@ -918,14 +855,15 @@ namespace Camgen
 	    {
 		pdf_wrapper::initialise(MC_config::pdf_name(),MC_config::pdf_number());
 		value_type xmin=static_cast<value_type>(pdf_wrapper::xmin());
-		y_gen=new adaptive_s_generator<value_type,rng_t>(&y,new inv_cosh_y_generator<value_type,rng_t>);
+		y_gen=new adaptive_value_generator<value_type,rng_t>(new inverse_cosh<value_type,rng_t>);
+		y_gen->set_value(&y);
 		if(xmin>(value_type)0)
 		{
 		    LHA_ymax=(value_type)0.5*std::log(static_cast<value_type>(pdf_wrapper::xmax())/xmin);
-		    y_gen->set_s_min_min(-LHA_ymax);
-		    y_gen->set_s_min(-LHA_ymax);
-		    y_gen->set_s_max_max(LHA_ymax);
-		    y_gen->set_s_max(LHA_ymax);
+		    y_gen->set_mapping_lower_bound(-LHA_ymax);
+		    y_gen->set_lower_bound(-LHA_ymax);
+		    y_gen->set_mapping_upper_bound(LHA_ymax);
+		    y_gen->set_upper_bound(LHA_ymax);
 		}
 		else
 		{
@@ -958,10 +896,10 @@ namespace Camgen
 		{
 		    tau_min=(this->s_hat_min()-this->m2(0)-this->m2(1))/this->s();
 		    ymax=std::min(-(value_type)0.5*std::log(tau_min),LHA_ymax);
-		    y_gen->set_s_min_min(-ymax);
-		    y_gen->set_s_min(-ymax);
-		    y_gen->set_s_max_max(ymax);
-		    y_gen->set_s_max(ymax);
+		    y_gen->set_mapping_lower_bound(-ymax);
+		    y_gen->set_lower_bound(-ymax);
+		    y_gen->set_mapping_upper_bound(ymax);
+		    y_gen->set_upper_bound(ymax);
 		    return true;
 		}
 		return false;
@@ -975,10 +913,10 @@ namespace Camgen
 		{
 		    tau_min=(this->s_hat_min()-this->m2(0)-this->m2(1))/this->s();
 		    ymax=std::min(-(value_type)0.5*std::log(tau_min),LHA_ymax);
-		    y_gen->set_s_min_min(-ymax);
-		    y_gen->set_s_min(-ymax);
-		    y_gen->set_s_max_max(ymax);
-		    y_gen->set_s_max(ymax);
+		    y_gen->set_mapping_lower_bound(-ymax);
+		    y_gen->set_lower_bound(-ymax);
+		    y_gen->set_mapping_upper_bound(ymax);
+		    y_gen->set_upper_bound(ymax);
 		    return true;
 		}
 		return false;
@@ -992,10 +930,10 @@ namespace Camgen
 		{
 		    tau_min=(this->s_hat_min()-this->m2(0)-this->m2(1))/this->s();
 		    ymax=std::min(-(value_type)0.5*std::log(tau_min),LHA_ymax);
-		    y_gen->set_s_min_min(-ymax);
-		    y_gen->set_s_min(-ymax);
-		    y_gen->set_s_max_max(ymax);
-		    y_gen->set_s_max(ymax);
+		    y_gen->set_mapping_lower_bound(-ymax);
+		    y_gen->set_lower_bound(-ymax);
+		    y_gen->set_mapping_upper_bound(ymax);
+		    y_gen->set_upper_bound(ymax);
 		    return true;
 		}
 		return false;
@@ -1007,8 +945,8 @@ namespace Camgen
 	    {
 		tau=this->s_hat()/this->s();
 		value_type ybound=std::min(ymax,-(value_type)0.5*std::log(tau));
-		y_gen->set_s_min(-ybound);
-		y_gen->set_s_max(ybound);
+		y_gen->set_lower_bound(-ybound);
+		y_gen->set_upper_bound(ybound);
 		if(!y_gen->generate())
 		{
 		    this->weight()=(value_type)0;
@@ -1058,8 +996,8 @@ namespace Camgen
 		tau=x1*x2;
 
 		value_type ybound=std::max(ymax,-(value_type)0.5*std::log(tau));
-		y_gen->set_s_min(-ybound);
-		y_gen->set_s_max(ybound);
+		y_gen->set_lower_bound(-ybound);
+		y_gen->set_upper_bound(ybound);
 		y=(value_type)0.5*std::log(x1/x2);
 		if(!y_gen->evaluate_weight())
 		{
@@ -1214,39 +1152,10 @@ namespace Camgen
 		return os;
 	    }
 
-	    /* Derived loading method: */
-
-	    std::istream& load_data(std::istream& is)
-	    {
-		safe_read(is,tau_min);
-		safe_read(is,ymax);
-		safe_read(is,LHA_ymax);
-		if(y_gen!=NULL)
-		{
-		    delete y_gen;
-		}
-		y_gen=s_generator<value_type,rng_t>::create_instance(&y,is,NULL,NULL,NULL);
-		return is;
-	    }
-
-	    /* Derived saving method: */
-
-	    std::ostream& save_data(std::ostream& os) const
-	    {
-		safe_write(os,tau_min);
-		os<<"\t";
-		safe_write(os,ymax);
-		os<<"\t";
-		safe_write(os,LHA_ymax);
-		os<<std::endl;
-		y_gen->save(os);
-		return os;
-	    }
-
 	private:
 	    
 	    value_type y,tau,x1,x2,tau_min,LHA_ymax,ymax;
-	    s_generator<value_type,rng_t>* y_gen;
+	    adaptive_value_generator<value_type,rng_t>* y_gen;
 	    bool flip;
     };
     template<class model_t,class rng_t>const typename hadronic_is_y<model_t,rng_t,Minkowski_type>::size_type hadronic_is_y<model_t,rng_t,Minkowski_type>::k0;

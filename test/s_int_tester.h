@@ -15,12 +15,15 @@
  *                                                                               *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#include <Camgen/s_gen.h>
 #include <Camgen/multiplot.h>
+#include <Camgen/ss_gen.h>
+#include <Camgen/Dirac_delta.h>
+#include <Camgen/uni_val_gen.h>
+#include <Camgen/MC_int.h>
 
 namespace Camgen
 {
-    template<class value_t,class rng_t>class s_int_tester: public MC_generator<value_t>
+    template<class value_t,class rng_t>class s_int_tester
     {
 	public:
 
@@ -29,195 +32,156 @@ namespace Camgen
 	    typedef value_t value_type;
 	    typedef rng_t rn_engine;
 	    typedef random_number_stream<value_t,rng_t> rn_stream;
-
-	    /* Total invariant mass: */
-
-	    value_type sqrts;
-
-	    /* Maximal number of invariant masses thrown per event: */
-
-	    std::size_t max_throws;
+	    typedef value_generator<value_t,rng_t> s_generator_type;
+	    typedef Dirac_delta<value_t,rng_t> Dirac_delta_type;
+	    typedef uniform_value_generator<value_t,rng_t> uniform_type;
 
 	    /* Constructor: */
 
-	    s_int_tester(s_generator<value_t,rng_t>* sgen1_,s_generator<value_t,rng_t>* sgen2_):max_throws(10000),sgen1(sgen1_),sgen2(sgen2_),needs_refreshing(true),check_bounds(true)
+	    s_int_tester(s_generator_type* sgen1_,s_generator_type* sgen2_):sgen1(sgen1_),sgen2(sgen2_),s1_on_shell(dynamic_cast<Dirac_delta_type*>(sgen1_)!=NULL),s2_on_shell(dynamic_cast<Dirac_delta_type*>(sgen2_)!=NULL)
 	    {
-		if(dynamic_cast<Dd_s_generator<value_t,rng_t>*>(sgen1_)!=NULL)
+		if(s1_on_shell)
 		{
-		    const value_type* m=static_cast<Dd_s_generator<value_t,rng_t>*>(sgen1_)->m;
+		    const value_type* m=static_cast<Dirac_delta_type*>(sgen1_)->m;
 		    value_type mass=(m==NULL)?0:(*m);
-		    sgen1->set_m_min(mass);
-		    check_sgen1=new Dd_s_generator<value_t,rng_t>(m);
-		    check_sgen1->set_m_min(mass);
+		    sgen1->set_lower_bound(mass*mass);
+		    sgen1_check=new Dirac_delta_type(m);
+		    sgen1_check->set_lower_bound(mass*mass);
 		}
 		else
 		{
-		    check_sgen1=new uni_s_generator<value_t,rng_t>;
+		    sgen1_check=new uniform_type();
+		    sgen1_check->set_lower_bound(sgen1->lower_bound());
 		}
-		if(dynamic_cast<Dd_s_generator<value_t,rng_t>*>(sgen2_)!=NULL)
+		if(s2_on_shell)
 		{
-		    const value_type* m=static_cast<Dd_s_generator<value_t,rng_t>*>(sgen2_)->m;
+		    const value_type* m=static_cast<Dirac_delta_type*>(sgen2_)->m;
 		    value_type mass=(m==NULL)?0:(*m);
-		    sgen2->set_m_min(mass);
-		    check_sgen2=new Dd_s_generator<value_t,rng_t>(m);
-		    check_sgen2->set_m_min(mass);
+		    sgen2->set_lower_bound(mass*mass);
+		    sgen2_check=new Dirac_delta_type(m);
+		    sgen2_check->set_lower_bound(mass*mass);
 		}
 		else
 		{
-		    check_sgen2=new uni_s_generator<value_t,rng_t>;
+		    sgen2_check=new uniform_type();
+		    sgen2_check->set_lower_bound(sgen2->lower_bound());
 		}
+
+		MC_generator<value_t>* ssgen1=new symmetric_s_generator_composition<value_t,rng_t>(sgen1,sgen2,s);
+		ssgen_multichannel=new MC_generator_wrapper<value_t>(ssgen1);
+		ssgen_multichannel_wrapper=new MC_generator_wrapper<value_t>(ssgen_multichannel,false);
+		
+		MC_generator<value_t>* ssgen2=new symmetric_s_pair_generator<value_t,rng_t>(sgen1,sgen2,s);
+		ssgen_composition=new MC_generator_wrapper<value_t>(ssgen2);
+		ssgen_composition_wrapper=new MC_generator_wrapper<value_t>(ssgen_composition,false);
+
+		MC_generator<value_t>* ssgen3=new symmetric_s_pair_generator<value_t,rng_t>(sgen1_check,sgen2_check,s);
+		ssgen_check=new MC_generator_wrapper<value_t>(ssgen3);
+		ssgen_check_wrapper=new MC_generator_wrapper<value_t>(ssgen_check,false);
 	    }
 
 	    /* Destructor: */
 
 	    ~s_int_tester()
 	    {
-		delete check_sgen1;
-		delete check_sgen2;
+		delete ssgen_multichannel_wrapper;
+		delete ssgen_composition_wrapper;
+		delete ssgen_multichannel;
+		delete ssgen_composition;
+		delete ssgen_check_wrapper;
+		delete ssgen_check;
+		delete sgen1_check;
+		delete sgen2_check;
 	    }
+
+	    /* Refreshes upper and lower limits: */
 
 	    bool refresh_s_bounds()
 	    {
-		if(needs_refreshing)
+		value_type smin=sgen1->lower_bound()+sgen2->lower_bound()+2*std::sqrt(sgen1->lower_bound()*sgen2->lower_bound());
+		
+		if(s<=smin)
 		{
-		    if(sqrts<(value_type)0)
-		    {
-			return false;
-		    }
-		    if(!(sqrts>sgen1->m_min()+sgen2->m_min()))
-		    {
-			return false;
-		    }
-		    return (sgen1->set_m_max(sqrts-sgen2->m_min()) and sgen2->set_m_max(sqrts-sgen1->m_min()));
+		    return false;
 		}
-		return true;
+
+		value_type smax1=s+sgen2->lower_bound()-2*std::sqrt(s*sgen2->lower_bound());
+		value_type smax2=s+sgen1->lower_bound()-2*std::sqrt(s*sgen1->lower_bound());
+
+		bool q=true;
+
+		q&=sgen1_check->set_lower_bound(sgen1->lower_bound());
+		q&=sgen2_check->set_lower_bound(sgen2->lower_bound());
+
+		q&=sgen1->set_upper_bound(smax1);
+		q&=sgen2->set_upper_bound(smax2);
+		
+		q&=sgen1_check->set_upper_bound(smax1);
+		q&=sgen2_check->set_upper_bound(smax2);
+
+		return q;
 	    }
 
-	    bool generate()
+	    void run(std::size_t nevts)
 	    {
-		if(!refresh_s_bounds())
-		{
-		    this->weight()=(value_type)0;
-		    return false;
-		}
-		value_type s=sqrts*sqrts;
-		const value_type& s1=sgen1->s();
-		const value_type& s2=sgen2->s();
-		value_type stot;
-		if(check_bounds)
-		{
-		    std::size_t n=0;
-		    do
-		    {
-			sgen1->generate();
-			sgen2->generate();
-			stot=s1+s2+(value_type)2*std::sqrt(s1*s2);
-			++n;
-		    }
-		    while((stot>s) and (n<max_throws));
-		    if(stot>s)
-		    {
-			Camgen::log(log_level::warning)<<"No succesful s-pair generated after "<<n<<" throws, returning weight 0."<<endlog;
-			this->weight()=(value_type)0;
-			return false;
-		    }
-		    this->weight()=integrate(sgen1,sgen2,sqrts)*(sgen1->weight())*(sgen2->weight());
-		}
-		else
-		{
-		    sgen1->generate();
-		    sgen2->generate();
-		    value_type stot=s1+s2+(value_type)2*std::sqrt(s1*s2);
-		    if(stot>s)
-		    {
-			this->weight()=(value_type)0;
-			return false;
-		    }
-		    this->weight()=(sgen1->weight())*(sgen2->weight());
-		}
-		return true;
-	    }
+		sgen1_check->reset();
+		sgen2_check->reset();
+		ssgen_multichannel->reset();
+		ssgen_composition->reset();
+		ssgen_check->reset();
+		ssgen_multichannel_wrapper->reset();
+		ssgen_composition_wrapper->reset();
+		ssgen_check_wrapper->reset();
 
-            bool evaluate_weight()
-            {
-		if(!refresh_s_bounds())
-		{
-		    this->weight()=(value_type)0;
-		    return false;
-		}
-		value_type s=sqrts*sqrts;
-		value_type s1=sgen1->s();
-		value_type s2=sgen2->s();
-		if(s1+s2+std::sqrt(s1*s2)>s)
-		{
-		    Camgen::log(log_level::warning)<<"Energy-conservation violation encountered in s-branching...returning weight 0"<<endlog;
-		    this->weight()=(value_type)0;
-		    return false;
-		}
-		bool q=(sgen1->evaluate_weight() and sgen2->evaluate_weight());
-		if(!q)
-		{
-		    this->weight()=(value_type)0;
-		    return false;
-		}
-		if(check_bounds)
-		{
-		    this->weight()=integrate(sgen1,sgen2,sqrts)*(sgen1->weight())*(sgen2->weight());
-		}
-		else
-		{
-		    this->weight()=(sgen1->weight())*(sgen2->weight());
-		}
-		return true;
-            }
-
-	    /* Performs a MC run at the current invariant mass: */
-
-	    bool run(std::size_t N)
-	    {
 		if(refresh_s_bounds())
 		{
-		    norm2=integrate_unnormalised(sgen1,sgen2,sqrts);
-		    needs_refreshing=false;
-		}
-		else
-		{
-		    return false;
-		}
-		check_sgen1->set_m_range(sgen1->m_min(),sgen1->m_max());
-		check_sgen2->set_m_range(sgen2->m_min(),sgen2->m_max());
-		norm1=integrate_unnormalised(check_sgen1,check_sgen2,sqrts);
-		
-		/* PS volume calculation: */
-		
-		this->reset();
-		this->integrand()=(value_type)1;
-		check_bounds=true;
-		for(std::size_t i=0;i<N;++i)
-		{
-		    generate();
-		    this->refresh_cross_section();
-		}
-		MC_norm1=(this->cross_section()).value;
-		MC_err1=(this->cross_section()).error;
-
-		/* Density integral calculation: */
-
-		this->reset();
-		check_bounds=false;
-		for(std::size_t i=0;i<N;++i)
-		{
-		    if(generate())
+		    for(std::size_t i=0;i<nevts;++i)
 		    {
-			this->integrand()=sgen1->density()*sgen2->density();
+			if(ssgen_multichannel_wrapper->generate())
+			{
+			    ssgen_multichannel->integrand()=(value_t)1;
+			    ssgen_multichannel_wrapper->integrand()=sgen1->density()*sgen2->density();
+			}
+			ssgen_multichannel->refresh_cross_section();
+			ssgen_multichannel_wrapper->refresh_cross_section();
+			if(ssgen_composition_wrapper->generate())
+			{
+			    ssgen_composition->integrand()=(value_t)1;
+			    ssgen_composition_wrapper->integrand()=sgen1->density()*sgen2->density();
+			}
+			ssgen_composition->refresh_cross_section();
+			ssgen_composition_wrapper->refresh_cross_section();
+			if(ssgen_check_wrapper->generate())
+			{
+			    sgen1->value()=sgen1_check->value();
+			    sgen1->evaluate_weight();
+			    sgen2->value()=sgen2_check->value();
+			    sgen2->evaluate_weight();
+			    ssgen_check->integrand()=1;
+			    ssgen_check_wrapper->integrand()=sgen1->density()*sgen2->density();
+			}
+			ssgen_check->refresh_cross_section();
+			ssgen_check_wrapper->refresh_cross_section();
 		    }
-		    this->refresh_cross_section();
 		}
 
-		MC_norm2=(this->cross_section()).value;
-		MC_err2=(this->cross_section()).error;
+		MC_norm1=ssgen_multichannel->cross_section().value;
+		MC_err1=ssgen_multichannel->cross_section().error;
 
-		return true;
+		MC_norm2=ssgen_composition->cross_section().value;
+		MC_err2=ssgen_composition->cross_section().error;
+
+		MC_norm3=ssgen_check->cross_section().value;
+		MC_err3=ssgen_check->cross_section().error;
+		
+		MC_norm4=ssgen_multichannel_wrapper->cross_section().value;
+		MC_err4=ssgen_multichannel_wrapper->cross_section().error;
+
+		MC_norm5=ssgen_composition_wrapper->cross_section().value;
+		MC_err5=ssgen_composition_wrapper->cross_section().error;
+
+		MC_norm6=ssgen_check_wrapper->cross_section().value;
+		MC_err6=ssgen_check_wrapper->cross_section().error;
 	    }
 
 	    /* Performs N1 runs of each N2 Monte Carlo points, with invariant
@@ -227,25 +191,31 @@ namespace Camgen
 	    void run(const value_type& sqrtsmin,const value_type& sqrtsmax,std::size_t N1,std::size_t N2,const std::string& filename,const char* term=NULL)
 	    {
 #ifdef GNUPLOTPATH
-		data_wrapper* data=new data_wrapper(&sqrts,&norm1);
+		data_wrapper* data=new data_wrapper(&sqrts,&psvol);
 #else
-		data_wrapper* data=new data_wrapper(filename+".dat",&sqrts,&norm1);
+		data_wrapper* data=new data_wrapper(filename+".dat",&sqrts,&psvol);
 #endif
 		data->add_leaf(&MC_norm1);
 		data->add_leaf(&MC_err1);
-		data->add_leaf(&norm2);
 		data->add_leaf(&MC_norm2);
 		data->add_leaf(&MC_err2);
+		data->add_leaf(&MC_norm3);
+		data->add_leaf(&MC_err3);
+		data->add_leaf(&MC_norm4);
+		data->add_leaf(&MC_err4);
+		data->add_leaf(&MC_norm5);
+		data->add_leaf(&MC_err5);
+		data->add_leaf(&MC_norm6);
+		data->add_leaf(&MC_err6);
 		
-		value_type delta=std::abs(sqrtsmax-sqrtsmin)/N1;
 		sqrts=std::min(sqrtsmin,sqrtsmax);
+		value_type delta=std::abs(sqrtsmax-sqrtsmin)/N1;
 		for(std::size_t i=0;i<N1;++i)
 		{
-		    needs_refreshing=true;
-		    if(run(N2))
-		    {
-			data->fill();
-		    }
+		    s=sqrts*sqrts;
+		    psvol=ps_volume();
+		    run(N2);
+		    data->fill();
 		    sqrts+=delta;
 		}
 
@@ -254,25 +224,41 @@ namespace Camgen
 		exstr1->style="lines";
 		
 		data_stream* mcstr1=new data_stream(data,"1","3","4");
-		mcstr1->title="MC PS vol";
+		mcstr1->title="MC PS vol (bnd check)";
 		mcstr1->style="yerrorbars";
+		
+		data_stream* mcstr2=new data_stream(data,"1","5","6");
+		mcstr2->title="MC PS vol";
+		mcstr2->style="yerrorbars";
+		
+		data_stream* mcstr3=new data_stream(data,"1","7","8");
+		mcstr3->title="uni MC PS vol";
+		mcstr3->style="yerrorbars";
 		
 		plot_script* psplot=new plot_script(filename);
 		psplot->ylog=true;
 		psplot->add_plot(exstr1);
 		psplot->add_plot(mcstr1);
+		psplot->add_plot(mcstr2);
+		psplot->add_plot(mcstr3);
 
-		data_stream* exstr2=new data_stream(data,"1","5");
-		exstr2->title="exact integral";
-		exstr2->style="lines";
-		
-		data_stream* mcstr2=new data_stream(data,"1","6","7");
-		mcstr2->title="MC integral";
-		mcstr2->style="yerrorbars";
+		data_stream* mcstr4=new data_stream(data,"1","9","10");
+		mcstr4->title="MC integral (bnd check)";
+		mcstr4->style="yerrorbars";
+
+		data_stream* mcstr5=new data_stream(data,"1","11","12");
+		mcstr5->title="MC integral";
+		mcstr5->style="yerrorbars";
+
+		data_stream* mcstr6=new data_stream(data,"1","13","14");
+		mcstr6->title="uni MC integral";
+		mcstr6->style="yerrorbars";
 		
 		plot_script* intplot=new plot_script(filename);
-		intplot->add_plot(exstr2);
-		intplot->add_plot(mcstr2);
+		intplot->ylog=true;
+		intplot->add_plot(mcstr4);
+		intplot->add_plot(mcstr5);
+		intplot->add_plot(mcstr6);
 
 		multi_plot<1,2>plt(filename,term);
 		plt.add_plot(psplot,0,0);
@@ -284,14 +270,58 @@ namespace Camgen
 	    }
 	
 	private:
+
+	    value_type s,sqrts;
 	    
-	    s_generator<value_t,rng_t>* sgen1;
-	    s_generator<value_t,rng_t>* sgen2;
-	    s_generator<value_t,rng_t>* check_sgen1;
-	    s_generator<value_t,rng_t>* check_sgen2;
-	    bool needs_refreshing,check_bounds;
+	    s_generator_type* sgen1;
+	    s_generator_type* sgen2;
+
+	    MC_integrator<value_t>* ssgen_multichannel;
+	    MC_integrator<value_t>* ssgen_multichannel_wrapper;
+	    MC_integrator<value_t>* ssgen_composition;
+	    MC_integrator<value_t>* ssgen_composition_wrapper;
+	    
+	    s_generator_type* sgen1_check;
+	    s_generator_type* sgen2_check;
+
+	    MC_integrator<value_t>* ssgen_check;
+	    MC_integrator<value_t>* ssgen_check_wrapper;
+
+	    bool s1_on_shell,s2_on_shell;
 	    std::string filename;
-	    value_type norm1,MC_norm1,MC_err1,norm2,MC_norm2,MC_err2;
+
+	    value_type psvol;
+	    value_type MC_norm1,MC_err1;
+	    value_type MC_norm2,MC_err2;
+	    value_type MC_norm3,MC_err3;
+	    value_type MC_norm4,MC_err4;
+	    value_type MC_norm5,MC_err5;
+	    value_type MC_norm6,MC_err6;
+
+	    /* Returns the current phase space volume: */
+
+	    value_type ps_volume() const
+	    {
+		if(s<sgen1->lower_bound()+sgen2->lower_bound()+2*std::sqrt(sgen1->lower_bound()*sgen2->lower_bound()))
+		{
+		    return 0;
+		}
+		if(!s1_on_shell && !s2_on_shell)
+		{
+		    value_type smax2=s-sgen1->lower_bound();
+		    value_type smax1=s-sgen2->lower_bound();
+		    return smax2*(0.5*smax2-4*sqrts*std::sqrt(smax2)/(value_type)3+smax1);
+		}
+		if(s1_on_shell && !s2_on_shell)
+		{
+		    return s+sgen1->lower_bound()-sgen2->lower_bound()-2*std::sqrt(s*sgen1->lower_bound());
+		}
+		if(s2_on_shell && !s1_on_shell)
+		{
+		    return s+sgen2->lower_bound()-sgen1->lower_bound()-2*std::sqrt(s*sgen2->lower_bound());
+		}
+		return 1;
+	    }
     };
 }
 

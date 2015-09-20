@@ -1,8 +1,80 @@
-\hypertarget{a00471}{\section{Camgen\-:\-:root\-\_\-type\-\_\-id$<$ value\-\_\-type, bits $>$ Class Template Reference}
-\label{a00471}\index{Camgen\-::root\-\_\-type\-\_\-id$<$ value\-\_\-type, bits $>$@{Camgen\-::root\-\_\-type\-\_\-id$<$ value\-\_\-type, bits $>$}}
-}
+\hypertarget{a00471}{}\section{Camgen\+:\+:random\+\_\+number\+\_\+stream$<$ value\+\_\+t, rng\+\_\+t $>$ Class Template Reference}
+\label{a00471}\index{Camgen\+::random\+\_\+number\+\_\+stream$<$ value\+\_\+t, rng\+\_\+t $>$@{Camgen\+::random\+\_\+number\+\_\+stream$<$ value\+\_\+t, rng\+\_\+t $>$}}
 
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+Random number generator wrapper.  
+
+
+
+
+{\ttfamily \#include $<$rn\+\_\+strm.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
 \item 
-include/\-Camgen/\hyperlink{a00732}{root\-\_\-if.\-h}\end{DoxyCompactItemize}
+\hypertarget{a00471_a9294408b4bf4d469d2cb1682e10225a8}{}typedef value\+\_\+t \hyperlink{a00471_a9294408b4bf4d469d2cb1682e10225a8}{value\+\_\+type}\label{a00471_a9294408b4bf4d469d2cb1682e10225a8}
+
+\begin{DoxyCompactList}\small\item\em Numerical type to convert the random numbers to. \end{DoxyCompactList}\item 
+\hypertarget{a00471_a92bc880a1666c8fcd7caba5fed55009c}{}typedef rng\+\_\+t \hyperlink{a00471_a92bc880a1666c8fcd7caba5fed55009c}{rn\+\_\+engine}\label{a00471_a92bc880a1666c8fcd7caba5fed55009c}
+
+\begin{DoxyCompactList}\small\item\em Reference type definition to the random number generator. \end{DoxyCompactList}\item 
+\hypertarget{a00471_aaea501ae2db60d08b10b98b3cf499f37}{}typedef rng\+\_\+t\+::result\+\_\+type \hyperlink{a00471_aaea501ae2db60d08b10b98b3cf499f37}{int\+\_\+type}\label{a00471_aaea501ae2db60d08b10b98b3cf499f37}
+
+\begin{DoxyCompactList}\small\item\em Result (integer type) of the random number generator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00471_aea964b4b9f7a0c33cec784099bdabad3}{}static std\+::size\+\_\+t \hyperlink{a00471_aea964b4b9f7a0c33cec784099bdabad3}{number\+\_\+of\+\_\+throws} ()\label{a00471_aea964b4b9f7a0c33cec784099bdabad3}
+
+\begin{DoxyCompactList}\small\item\em Returns the number of calls to rng. \end{DoxyCompactList}\item 
+\hypertarget{a00471_a25a21df7cddd17508448cb9fce5b324e}{}static \hyperlink{a00471_aaea501ae2db60d08b10b98b3cf499f37}{int\+\_\+type} \hyperlink{a00471_a25a21df7cddd17508448cb9fce5b324e}{throw\+\_\+integer} ()\label{a00471_a25a21df7cddd17508448cb9fce5b324e}
+
+\begin{DoxyCompactList}\small\item\em Returns a random integer between min-\/ and max. \end{DoxyCompactList}\item 
+\hypertarget{a00471_ad871ac7b41171f96c1fc9da41dddce2f}{}static \hyperlink{a00471_aaea501ae2db60d08b10b98b3cf499f37}{int\+\_\+type} \hyperlink{a00471_ad871ac7b41171f96c1fc9da41dddce2f}{throw\+\_\+coin} ()\label{a00471_ad871ac7b41171f96c1fc9da41dddce2f}
+
+\begin{DoxyCompactList}\small\item\em Returns randomly 0 or 1. \end{DoxyCompactList}\item 
+\hypertarget{a00471_ac2697129e9250c4bbba19f710a516a46}{}static \hyperlink{a00471_aaea501ae2db60d08b10b98b3cf499f37}{int\+\_\+type} \hyperlink{a00471_ac2697129e9250c4bbba19f710a516a46}{throw\+\_\+dice} (\hyperlink{a00471_aaea501ae2db60d08b10b98b3cf499f37}{int\+\_\+type} max)\label{a00471_ac2697129e9250c4bbba19f710a516a46}
+
+\begin{DoxyCompactList}\small\item\em Returns a random integer from 0 to max. \end{DoxyCompactList}\item 
+\hypertarget{a00471_a2dacb6aab559df22441ff8878a738445}{}static \hyperlink{a00471_aaea501ae2db60d08b10b98b3cf499f37}{int\+\_\+type} \hyperlink{a00471_a2dacb6aab559df22441ff8878a738445}{throw\+\_\+dice} (\hyperlink{a00471_aaea501ae2db60d08b10b98b3cf499f37}{int\+\_\+type} min, \hyperlink{a00471_aaea501ae2db60d08b10b98b3cf499f37}{int\+\_\+type} max)\label{a00471_a2dacb6aab559df22441ff8878a738445}
+
+\begin{DoxyCompactList}\small\item\em Returns a random integer between min and max. \end{DoxyCompactList}\item 
+\hypertarget{a00471_a7146f8145374f9875c1f9b79ac8ba2c1}{}static \hyperlink{a00471_a9294408b4bf4d469d2cb1682e10225a8}{value\+\_\+type} \hyperlink{a00471_a7146f8145374f9875c1f9b79ac8ba2c1}{throw\+\_\+number} ()\label{a00471_a7146f8145374f9875c1f9b79ac8ba2c1}
+
+\begin{DoxyCompactList}\small\item\em Returns a random floating-\/point number between 0 and 1. \end{DoxyCompactList}\item 
+\hypertarget{a00471_ad007496e6b3f252263fb5a7471eb5565}{}static \hyperlink{a00471_a9294408b4bf4d469d2cb1682e10225a8}{value\+\_\+type} \hyperlink{a00471_ad007496e6b3f252263fb5a7471eb5565}{throw\+\_\+number} (const \hyperlink{a00471_a9294408b4bf4d469d2cb1682e10225a8}{value\+\_\+type} \&max)\label{a00471_ad007496e6b3f252263fb5a7471eb5565}
+
+\begin{DoxyCompactList}\small\item\em Returns a random floating-\/point number between 0 and the argument. \end{DoxyCompactList}\item 
+\hypertarget{a00471_af68d5d4d26c15b15912d4187f0f34ce8}{}static \hyperlink{a00471_a9294408b4bf4d469d2cb1682e10225a8}{value\+\_\+type} \hyperlink{a00471_af68d5d4d26c15b15912d4187f0f34ce8}{throw\+\_\+number} (const \hyperlink{a00471_a9294408b4bf4d469d2cb1682e10225a8}{value\+\_\+type} \&min, const \hyperlink{a00471_a9294408b4bf4d469d2cb1682e10225a8}{value\+\_\+type} \&max)\label{a00471_af68d5d4d26c15b15912d4187f0f34ce8}
+
+\begin{DoxyCompactList}\small\item\em Returns a random floating-\/point number between min and max. \end{DoxyCompactList}\item 
+\hypertarget{a00471_a778b7c62cba3d0daa7f84de402829073}{}static void \hyperlink{a00471_a778b7c62cba3d0daa7f84de402829073}{reset\+\_\+engine} ()\label{a00471_a778b7c62cba3d0daa7f84de402829073}
+
+\begin{DoxyCompactList}\small\item\em Resets the engine. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00471_a52779e1c6d29463ea54695edd61c8ba3}{}static const \hyperlink{a00471_aaea501ae2db60d08b10b98b3cf499f37}{int\+\_\+type} \hyperlink{a00471_a52779e1c6d29463ea54695edd61c8ba3}{min\+\_\+value} =rng\+\_\+t\+::min\+\_\+value\label{a00471_a52779e1c6d29463ea54695edd61c8ba3}
+
+\begin{DoxyCompactList}\small\item\em Minimal value thrown by rng\+\_\+t. \end{DoxyCompactList}\item 
+\hypertarget{a00471_ada49cf2023194ff542387f01032f7116}{}static const \hyperlink{a00471_aaea501ae2db60d08b10b98b3cf499f37}{int\+\_\+type} \hyperlink{a00471_ada49cf2023194ff542387f01032f7116}{max\+\_\+value} =rng\+\_\+t\+::max\+\_\+value\label{a00471_ada49cf2023194ff542387f01032f7116}
+
+\begin{DoxyCompactList}\small\item\em Maximal value thrown by rng\+\_\+t. \end{DoxyCompactList}\item 
+\hypertarget{a00471_a62cfe3c49122f089f839869ee502f6a9}{}static const \hyperlink{a00471_aaea501ae2db60d08b10b98b3cf499f37}{int\+\_\+type} \hyperlink{a00471_a62cfe3c49122f089f839869ee502f6a9}{range\+\_\+value} =\hyperlink{a00471_ada49cf2023194ff542387f01032f7116}{max\+\_\+value}-\/\hyperlink{a00471_a52779e1c6d29463ea54695edd61c8ba3}{min\+\_\+value}\label{a00471_a62cfe3c49122f089f839869ee502f6a9}
+
+\begin{DoxyCompactList}\small\item\em Range of values thrown by rng\+\_\+t (assuming max\+\_\+value is positive). \end{DoxyCompactList}\item 
+\hypertarget{a00471_a11eb62d9f8ec484e79a125f440c78cf7}{}static const \hyperlink{a00471_a9294408b4bf4d469d2cb1682e10225a8}{value\+\_\+type} \hyperlink{a00471_a11eb62d9f8ec484e79a125f440c78cf7}{range} =\hyperlink{a00471}{random\+\_\+number\+\_\+stream}$<$value\+\_\+t,rng\+\_\+t$>$\+::\hyperlink{a00471_a62cfe3c49122f089f839869ee502f6a9}{range\+\_\+value}\label{a00471_a11eb62d9f8ec484e79a125f440c78cf7}
+
+\begin{DoxyCompactList}\small\item\em Range of values thrown by rng\+\_\+t, as a value\+\_\+type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class value\+\_\+t, class rng\+\_\+t$>$class Camgen\+::random\+\_\+number\+\_\+stream$<$ value\+\_\+t, rng\+\_\+t $>$}
+
+Random number generator wrapper. 
+
+Converts an integer random number generator rng\+\_\+t to a stream of numerical type value\+\_\+t. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Camgen/\hyperlink{a00759}{rn\+\_\+strm.\+h}\end{DoxyCompactItemize}

@@ -1,82 +1,88 @@
-\hypertarget{a00319}{\section{Camgen\-:\-:Legendre$<$ value\-\_\-t, N $>$ Class Template Reference}
-\label{a00319}\index{Camgen\-::\-Legendre$<$ value\-\_\-t, N $>$@{Camgen\-::\-Legendre$<$ value\-\_\-t, N $>$}}
-}
+\hypertarget{a00319}{}\section{Camgen\+:\+:interface\+\_\+output$<$ model\+\_\+t $>$ Class Template Reference}
+\label{a00319}\index{Camgen\+::interface\+\_\+output$<$ model\+\_\+t $>$@{Camgen\+::interface\+\_\+output$<$ model\+\_\+t $>$}}
 
 
-Rank-\/\-N \hyperlink{a00319}{Legendre} polynomials with argument type value\-\_\-t.  
+Base class for output interface engines.  
 
 
 
 
-{\ttfamily \#include $<$Legendre.\-h$>$}
+{\ttfamily \#include $<$if\+\_\+output.\+h$>$}
 
-\subsection*{Public Types}
+Inheritance diagram for Camgen\+:\+:interface\+\_\+output$<$ model\+\_\+t $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{a00319}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{a00319_a6eb9a63823f5074b09c8c916818d94e7}{typedef value\-\_\-t \hyperlink{a00319_a6eb9a63823f5074b09c8c916818d94e7}{value\-\_\-type}}\label{a00319_a6eb9a63823f5074b09c8c916818d94e7}
+\hypertarget{a00319_aa5ce96d626aa9caeeba50ea9e44461cb}{}\hyperlink{a00319_aa5ce96d626aa9caeeba50ea9e44461cb}{interface\+\_\+output} (const std\+::string \&file\+\_\+name\+\_\+)\label{a00319_aa5ce96d626aa9caeeba50ea9e44461cb}
 
-\begin{DoxyCompactList}\small\item\em Value type definition. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Static Public Member Functions}
+\begin{DoxyCompactList}\small\item\em Constructor with file name argument. \end{DoxyCompactList}\item 
+\hypertarget{a00319_a760fd43bcc09c6ad679ad7a02dfc0b41}{}\hyperlink{a00319_a760fd43bcc09c6ad679ad7a02dfc0b41}{interface\+\_\+output} (const std\+::string \&file\+\_\+name\+\_\+, const std\+::string description\+\_\+)\label{a00319_a760fd43bcc09c6ad679ad7a02dfc0b41}
+
+\begin{DoxyCompactList}\small\item\em Constructor with file name and description arguments. \end{DoxyCompactList}\item 
+\hypertarget{a00319_a2c347bdc9f312885ec2b2a6c106d6b08}{}virtual \hyperlink{a00319_a2c347bdc9f312885ec2b2a6c106d6b08}{$\sim$interface\+\_\+output} ()\label{a00319_a2c347bdc9f312885ec2b2a6c106d6b08}
+
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\hypertarget{a00319_a82146fc6a440711b242c5fd2f4909f2b}{}virtual \hyperlink{a00319}{interface\+\_\+output}$<$ model\+\_\+t $>$ $\ast$ \hyperlink{a00319_a82146fc6a440711b242c5fd2f4909f2b}{create} (const std\+::string \&file\+\_\+name\+\_\+) const =0\label{a00319_a82146fc6a440711b242c5fd2f4909f2b}
+
+\begin{DoxyCompactList}\small\item\em Creation method, no data copying expected. \end{DoxyCompactList}\item 
+\hypertarget{a00319_ab056e5f5f2fe27c097d06e5d25f6e22c}{}virtual bool \hyperlink{a00319_ab056e5f5f2fe27c097d06e5d25f6e22c}{open\+\_\+file} ()=0\label{a00319_ab056e5f5f2fe27c097d06e5d25f6e22c}
+
+\begin{DoxyCompactList}\small\item\em Abstract method opening the file. \end{DoxyCompactList}\item 
+\hypertarget{a00319_a25ebf7a86cd5f93b7582aacf6932fcf2}{}virtual bool \hyperlink{a00319_a25ebf7a86cd5f93b7582aacf6932fcf2}{close\+\_\+file} ()=0\label{a00319_a25ebf7a86cd5f93b7582aacf6932fcf2}
+
+\begin{DoxyCompactList}\small\item\em Abstract method closing the file. \end{DoxyCompactList}\item 
+\hypertarget{a00319_a2a076e52335cd34901d796b50eb43e95}{}virtual bool \hyperlink{a00319_a2a076e52335cd34901d796b50eb43e95}{branch} (const \hyperlink{a00579}{momentum\+\_\+type} $\ast$, const std\+::string \&)\label{a00319_a2a076e52335cd34901d796b50eb43e95}
+
+\begin{DoxyCompactList}\small\item\em Virtual method adding a branch holding a Lorentz vector. \end{DoxyCompactList}\item 
+\hypertarget{a00319_a84acdedce7e9f533520359eea3c5e8ba}{}virtual bool \hyperlink{a00319_a84acdedce7e9f533520359eea3c5e8ba}{branch} (const value\+\_\+type $\ast$, const std\+::string \&)\label{a00319_a84acdedce7e9f533520359eea3c5e8ba}
+
+\begin{DoxyCompactList}\small\item\em Virtual method adding a branch holding a floating-\/point number. \end{DoxyCompactList}\item 
+\hypertarget{a00319_ab4d33b8a2d429fa44a9f75c8b202c889}{}virtual bool \hyperlink{a00319_ab4d33b8a2d429fa44a9f75c8b202c889}{branch} (const int $\ast$, const std\+::string \&)\label{a00319_ab4d33b8a2d429fa44a9f75c8b202c889}
+
+\begin{DoxyCompactList}\small\item\em Virtual method adding a branch holding an integer. \end{DoxyCompactList}\item 
+\hypertarget{a00319_af1c0d6fc5a8027f99756653914d116c6}{}virtual bool \hyperlink{a00319_af1c0d6fc5a8027f99756653914d116c6}{branch} (const bool $\ast$, const std\+::string \&)\label{a00319_af1c0d6fc5a8027f99756653914d116c6}
+
+\begin{DoxyCompactList}\small\item\em Virtual method adding a branch holding a boolean. \end{DoxyCompactList}\item 
+\hypertarget{a00319_a75ec56db0587a4d62a8831cdb80248a5}{}virtual bool \hyperlink{a00319_a75ec56db0587a4d62a8831cdb80248a5}{write\+\_\+event} ()\label{a00319_a75ec56db0587a4d62a8831cdb80248a5}
+
+\begin{DoxyCompactList}\small\item\em Virtual method writing the event to the output file. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{a00319_ac94d8fdd89e311ce7fef48a3eacc2dc5}{write\+\_\+event} (const \hyperlink{a00451}{ps\+\_\+generator\+\_\+base}$<$ model\+\_\+t $>$ $\ast$gen)
+\begin{DoxyCompactList}\small\item\em Virtual method writing the event to the output file, with process generator instance argument. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-static void \hyperlink{a00319_a6e64948b240f9bf2a13a815e5e813d91}{initialise} (std\-::size\-\_\-t N\-R\-\_\-iterations=10)
-\begin{DoxyCompactList}\small\item\em Initialisation method. \end{DoxyCompactList}\item 
-\hypertarget{a00319_aa6108158ad3067ce30d29013f1a69d63}{static \hyperlink{a00319_a6eb9a63823f5074b09c8c916818d94e7}{value\-\_\-type} \hyperlink{a00319_aa6108158ad3067ce30d29013f1a69d63}{value} (const \hyperlink{a00319_a6eb9a63823f5074b09c8c916818d94e7}{value\-\_\-type} \&x)}\label{a00319_aa6108158ad3067ce30d29013f1a69d63}
+\hypertarget{a00319_adcc7d26eacb87b67d0c4b160fffeacd4}{}const std\+::string \hyperlink{a00319_adcc7d26eacb87b67d0c4b160fffeacd4}{file\+\_\+name}\label{a00319_adcc7d26eacb87b67d0c4b160fffeacd4}
 
-\begin{DoxyCompactList}\small\item\em \hyperlink{a00319}{Legendre} polynomial evaluation in point x. \end{DoxyCompactList}\item 
-\hypertarget{a00319_af34d5658c1c955157d2a82f2ff3a9d00}{static \hyperlink{a00319_a6eb9a63823f5074b09c8c916818d94e7}{value\-\_\-type} \hyperlink{a00319_af34d5658c1c955157d2a82f2ff3a9d00}{derivative} (const \hyperlink{a00319_a6eb9a63823f5074b09c8c916818d94e7}{value\-\_\-type} \&x)}\label{a00319_af34d5658c1c955157d2a82f2ff3a9d00}
+\begin{DoxyCompactList}\small\item\em Output file name. \end{DoxyCompactList}\item 
+\hypertarget{a00319_a366c2b2cfaa58182e2feebc1c30ce94c}{}std\+::string \hyperlink{a00319_a366c2b2cfaa58182e2feebc1c30ce94c}{description}\label{a00319_a366c2b2cfaa58182e2feebc1c30ce94c}
 
-\begin{DoxyCompactList}\small\item\em \hyperlink{a00319}{Legendre} polynomial derivative evaluation in point x. \end{DoxyCompactList}\item 
-\hypertarget{a00319_a15d6ba871e96f4b44f9063d5240b8e7c}{static \hyperlink{a00319_a6eb9a63823f5074b09c8c916818d94e7}{value\-\_\-type} \hyperlink{a00319_a15d6ba871e96f4b44f9063d5240b8e7c}{root} (std\-::size\-\_\-t n)}\label{a00319_a15d6ba871e96f4b44f9063d5240b8e7c}
-
-\begin{DoxyCompactList}\small\item\em Returns the n-\/th root. \end{DoxyCompactList}\item 
-\hypertarget{a00319_ae15e195f92889818dcd965c0b98648d7}{static \hyperlink{a00319_a6eb9a63823f5074b09c8c916818d94e7}{value\-\_\-type} \hyperlink{a00319_ae15e195f92889818dcd965c0b98648d7}{weight} (std\-::size\-\_\-t n)}\label{a00319_ae15e195f92889818dcd965c0b98648d7}
-
-\begin{DoxyCompactList}\small\item\em Returns the n-\/th Gauss quadrature integration weight. \end{DoxyCompactList}\item 
-{\footnotesize template$<$value\-\_\-type  f$>$ }\\static \hyperlink{a00319_a6eb9a63823f5074b09c8c916818d94e7}{value\-\_\-type} \hyperlink{a00319_a065a10559bc657e1e00b20a6394d35b1}{Gauss\-\_\-integrate} (const \hyperlink{a00319_a6eb9a63823f5074b09c8c916818d94e7}{value\-\_\-type} \&a, const \hyperlink{a00319_a6eb9a63823f5074b09c8c916818d94e7}{value\-\_\-type} \&b)
-\begin{DoxyCompactList}\small\item\em Integrates the template argument function on the interval \mbox{[}a,b\mbox{]} by Gauss quadrature. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Static Public Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\hypertarget{a00319_a42d6b56dc79967ab2a8e8996a8c3161c}{static const std\-::size\-\_\-t \hyperlink{a00319_a42d6b56dc79967ab2a8e8996a8c3161c}{rank} =N}\label{a00319_a42d6b56dc79967ab2a8e8996a8c3161c}
-
-\begin{DoxyCompactList}\small\item\em Polynomial rank definition. \end{DoxyCompactList}\item 
-\hypertarget{a00319_a43fe30b8944276252e2545ac464e1fe6}{static const bool \hyperlink{a00319_a43fe30b8944276252e2545ac464e1fe6}{symmetric} =(N\%2==0)}\label{a00319_a43fe30b8944276252e2545ac464e1fe6}
-
-\begin{DoxyCompactList}\small\item\em Symmetry tag definition. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Output file description. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-\subsubsection*{template$<$class value\-\_\-t, std\-::size\-\_\-t N$>$class Camgen\-::\-Legendre$<$ value\-\_\-t, N $>$}
+\subsubsection*{template$<$class model\+\_\+t$>$class Camgen\+::interface\+\_\+output$<$ model\+\_\+t $>$}
 
-Rank-\/\-N \hyperlink{a00319}{Legendre} polynomials with argument type value\-\_\-t. 
+Base class for output interface engines. 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00319_a065a10559bc657e1e00b20a6394d35b1}{\index{Camgen\-::\-Legendre@{Camgen\-::\-Legendre}!Gauss\-\_\-integrate@{Gauss\-\_\-integrate}}
-\index{Gauss\-\_\-integrate@{Gauss\-\_\-integrate}!Camgen::Legendre@{Camgen\-::\-Legendre}}
-\subsubsection[{Gauss\-\_\-integrate}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\-\_\-t , std\-::size\-\_\-t N$>$ template$<$value\-\_\-type  f$>$ static {\bf value\-\_\-type} {\bf Camgen\-::\-Legendre}$<$ value\-\_\-t, N $>$\-::Gauss\-\_\-integrate (
+\hypertarget{a00319_ac94d8fdd89e311ce7fef48a3eacc2dc5}{}\index{Camgen\+::interface\+\_\+output@{Camgen\+::interface\+\_\+output}!write\+\_\+event@{write\+\_\+event}}
+\index{write\+\_\+event@{write\+\_\+event}!Camgen\+::interface\+\_\+output@{Camgen\+::interface\+\_\+output}}
+\subsubsection[{write\+\_\+event}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t$>$ virtual bool {\bf Camgen\+::interface\+\_\+output}$<$ model\+\_\+t $>$\+::write\+\_\+event (
 \begin{DoxyParamCaption}
-\item[{const {\bf value\-\_\-type} \&}]{a, }
-\item[{const {\bf value\-\_\-type} \&}]{b}
+\item[{const {\bf ps\+\_\+generator\+\_\+base}$<$ model\+\_\+t $>$ $\ast$}]{gen}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{a00319_a065a10559bc657e1e00b20a6394d35b1}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{a00319_ac94d8fdd89e311ce7fef48a3eacc2dc5}
 
 
-Integrates the template argument function on the interval \mbox{[}a,b\mbox{]} by Gauss quadrature. 
-
-\hypertarget{a00319_a6e64948b240f9bf2a13a815e5e813d91}{\index{Camgen\-::\-Legendre@{Camgen\-::\-Legendre}!initialise@{initialise}}
-\index{initialise@{initialise}!Camgen::Legendre@{Camgen\-::\-Legendre}}
-\subsubsection[{initialise}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\-\_\-t , std\-::size\-\_\-t N$>$ static void {\bf Camgen\-::\-Legendre}$<$ value\-\_\-t, N $>$\-::initialise (
-\begin{DoxyParamCaption}
-\item[{std\-::size\-\_\-t}]{N\-R\-\_\-iterations = {\ttfamily 10}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{a00319_a6e64948b240f9bf2a13a815e5e813d91}
+Virtual method writing the event to the output file, with process generator instance argument. 
 
 
-Initialisation method. 
 
-Computes the roots with Newton-\/\-Raphson and the corresponding Gauss quadrature weights. 
-
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/\-Camgen/\hyperlink{a00657}{Legendre.\-h}\end{DoxyCompactItemize}
+include/\+Camgen/\hyperlink{a00668}{if\+\_\+output.\+h}\end{DoxyCompactItemize}

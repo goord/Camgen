@@ -19,6 +19,9 @@
  *                                                                             *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+
+#include <complex>
+
 namespace Camgen
 {
     /* Forward class template declaration: */
@@ -52,6 +55,19 @@ namespace Camgen
     };
     template<class value_type>const value_type numeric_configuration<value_type>::epsilon_abs=static_cast<value_type>(numeric_configuration<double>::epsilon_abs);
     template<class value_type>const value_type numeric_configuration<value_type>::epsilon_rel=static_cast<value_type>(numeric_configuration<double>::epsilon_rel);
+
+    /* Numeric configuration class template specialization for complex data types: */
+
+    template<class value_type>class numeric_configuration< std::complex<value_type> >
+    {
+	public:
+
+	    const static value_type epsilon_abs;
+
+	    const static value_type epsilon_rel;
+    };
+    template<class value_type>const value_type numeric_configuration< std::complex<value_type> >::epsilon_abs=static_cast<value_type>(numeric_configuration<double>::epsilon_abs);
+    template<class value_type>const value_type numeric_configuration< std::complex<value_type> >::epsilon_rel=static_cast<value_type>(numeric_configuration<double>::epsilon_rel);
 }
 
 #endif /*CAMGEN_NUM_CONFIG_H_*/

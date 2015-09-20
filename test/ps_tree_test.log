@@ -1,0 +1,29 @@
+-------------------------------------------------------------------------
+testing ps_tree MC modules in decays.....................................
+-------------------------------------------------------------------------
+Checking phase space tree decomposition for h0 > gamma,gamma............done.
+Checking phase space tree decomposition for gamma > e+,e-............done.
+Checking phase space tree decomposition for W- > mu-,nu_mubar............done, files plots/W_ln.eps written.
+Checking phase space tree decomposition for t > b,mu+,nu_mu............done, files plots/t_bln.eps written.
+Checking phase space tree decomposition for h0 > e-,nu_ebar,mu+,nu_mu............done, files plots/h_WW_2l2n.eps written.
+Checking phase space tree decomposition for h0 > e-,nu_ebar,mu+,nu_mu............done, files plots/h_WW*_2l2n.eps written.
+Checking phase space tree decomposition for h0 > mu-,nu_mubar,mu+,nu_mu............done, files plots/h_2l2n2.eps written.
+Checking phase space tree decomposition for h0 > mu-,mu+,e-,e+............done, files plots/h_ZZ_4l.eps written.
+Checking phase space tree decomposition for h0 > mu-,mu+,e-,e+............done, files plots/h_ZZ*_4l.eps written.
+-------------------------------------------------------------------------
+testing ps_tree MC modules in scattering.................................
+-------------------------------------------------------------------------
+Checking phase space tree decomposition for e+,e- > u,dbar............done.
+Checking phase space tree decomposition for e+,e- > t,tbar............done.
+Checking phase space tree decomposition for e+,e- > mu+,mu-............done, files plots/ee_ll.eps written.
+Checking phase space tree decomposition for e+,mu- > nu_ebar,nu_mu............done, files plots/emu_2n.eps written.
+Checking phase space tree decomposition for e+,e- > nu_e,nu_ebar............done, files plots/ee_2n.eps written.
+Checking phase space tree decomposition for e+,mu- > nu_ebar,h0,nu_mu............done, files plots/emu_h2n.eps written.
+Checking phase space tree decomposition for e+,e- > nu_ebar,h0,nu_e............done, files plots/ee_h2n.eps written.
+Checking phase space tree decomposition for nu_e,nu_mu > nu_e,Z,nu_mu............done, files plots/nn_Z2n.eps written.
+Checking phase space tree decomposition for e+,e- > nu_ebar,mu+,mu-,nu_e............done, files plots/ee_2mu2ne.eps written.
+Checking phase space tree decomposition for e+,e- > nu_mubar,mu+,mu-,nu_mu............done, files plots/ee_2mu2nmu.eps written.
+Checking phase space tree decomposition for e+,e- > nu_e,W+,W-,nu_ebar............done, files plots/ee_2W2n.eps written.
+Checking phase space tree decomposition for e+,e- > nu_e,Z,Z,nu_ebar............done, files plots/ee_2Z2n.eps written.
+Checking phase space tree decomposition for e+,e- > nu_e,W+,W-,nu_ebar............done, files plots/ee_2W2n.eps written.
+Checking phase space tree decomposition for e+,e- > nu_e,u,dbar,mu-,nu_mubar,nu_ebar............done, files plots/ee_qqbarl3n.eps written.

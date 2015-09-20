@@ -44,11 +44,15 @@ int main()
 	algo.construct();
 	algo.sum_spins();
 	process_generator<QEDPbdh,2,2,std::random>* gen=test_utils::test_generator_builder<QEDPbdh,2,2>::create_generator(algo.get_tree_iterator(),Ecm);
+	std::cerr<<"Checking Pauli basis helicity spinors in process "<<process<<"..........";
+	std::cerr.flush();
 	for(unsigned i=0;i<N_events;++i)
 	{
 	    gen->generate();
 	    matrix_els[i]=algo.evaluate_spin_sum();
 	}
+	delete gen;
+	std::cerr<<"..........done."<<std::endl;
     }
 
     random_number_stream<value_type,std::random>::reset_engine();
@@ -70,6 +74,7 @@ int main()
 		return 1;
 	    }
 	}
+	delete gen;
 	std::cerr<<"..........done."<<std::endl;
     }
 
@@ -92,6 +97,7 @@ int main()
 		return 1;
 	    }
 	}
+	delete gen;
 	std::cerr<<"..........done."<<std::endl;
     }
 
@@ -114,6 +120,7 @@ int main()
 		return 1;
 	    }
 	}
+	delete gen;
 	std::cerr<<"..........done."<<std::endl;
     }
 
@@ -136,6 +143,7 @@ int main()
 		return 1;
 	    }
 	}
+	delete gen;
 	std::cerr<<"..........done."<<std::endl;
     }
 
@@ -158,6 +166,7 @@ int main()
 		return 1;
 	    }
 	}
+	delete gen;
 	std::cerr<<"..........done."<<std::endl;
     }
 
@@ -171,11 +180,15 @@ int main()
 	algo.construct();
 	algo.sum_spins();
 	process_generator<QEDPbdh,2,2,std::random>* gen=test_utils::test_generator_builder<QEDPbdh,2,2>::create_generator(algo.get_tree_iterator(),Ecm);
+	std::cerr<<"Checking Pauli basis helicity spinors in process "<<process<<"..........";
+	std::cerr.flush();
 	for(unsigned i=0;i<N_events;++i)
 	{
 	    gen->generate();
 	    matrix_els[i]=algo.evaluate_spin_sum();
 	}
+	delete gen;
+	std::cerr<<"..........done."<<std::endl;
     }
 
     random_number_stream<value_type,std::random>::reset_engine();
@@ -197,6 +210,7 @@ int main()
 		return 1;
 	    }
 	}
+	delete gen;
 	std::cerr<<"..........done."<<std::endl;
     }
 
@@ -220,6 +234,7 @@ int main()
 		return 1;
 	    }
 	}
+	delete gen;
 	std::cerr<<"..........done."<<std::endl;
     }
 
@@ -242,6 +257,7 @@ int main()
 		return 1;
 	    }
 	}
+	delete gen;
 	std::cerr<<"..........done."<<std::endl;
     }
 
@@ -264,6 +280,7 @@ int main()
 		return 1;
 	    }
 	}
+	delete gen;
 	std::cerr<<"..........done."<<std::endl;
     }
 
@@ -286,6 +303,7 @@ int main()
 		return 1;
 	    }
 	}
+	delete gen;
 	std::cerr<<"..........done."<<std::endl;
     }
 
@@ -299,11 +317,15 @@ int main()
 	algo.construct();
 	algo.sum_spins();
 	process_generator<QEDPbdh,2,3,std::random>* gen=test_utils::test_generator_builder<QEDPbdh,2,3>::create_generator(algo.get_tree_iterator(),Ecm);
+	std::cerr<<"Checking Pauli basis helicity spinors in process "<<process<<"..........";
+	std::cerr.flush();
 	for(unsigned i=0;i<N_events;++i)
 	{
 	    gen->generate();
 	    matrix_els[i]=algo.evaluate_spin_sum();
 	}
+	delete gen;
+	std::cerr<<"..........done."<<std::endl;
     }
 
     random_number_stream<value_type,std::random>::reset_engine();
@@ -325,6 +347,7 @@ int main()
 		return 1;
 	    }
 	}
+	delete gen;
 	std::cerr<<"..........done."<<std::endl;
     }
 
@@ -347,6 +370,7 @@ int main()
 		return 1;
 	    }
 	}
+	delete gen;
 	std::cerr<<"..........done."<<std::endl;
     }
 
@@ -369,6 +393,7 @@ int main()
 		return 1;
 	    }
 	}
+	delete gen;
 	std::cerr<<"..........done."<<std::endl;
     }
 
@@ -391,6 +416,7 @@ int main()
 		return 1;
 	    }
 	}
+	delete gen;
 	std::cerr<<"..........done."<<std::endl;
     }
 
@@ -413,6 +439,7 @@ int main()
 		return 1;
 	    }
 	}
+	delete gen;
 	std::cerr<<"..........done."<<std::endl;
     }
     
@@ -426,11 +453,15 @@ int main()
 	algo.construct();
 	algo.sum_spins();
 	process_generator<QEDPbdh,2,4,std::random>* gen=test_utils::test_generator_builder<QEDPbdh,2,4>::create_generator(algo.get_tree_iterator(),Ecm);
+	std::cerr<<"Checking Pauli basis helicity spinors in process "<<process<<"..........";
+	std::cerr.flush();
 	for(unsigned i=0;i<N_events;++i)
 	{
 	    gen->generate();
 	    matrix_els[i]=algo.evaluate_spin_sum();
 	}
+	delete gen;
+	std::cerr<<"..........done."<<std::endl;
     }
 
     random_number_stream<value_type,std::random>::reset_engine();
@@ -452,6 +483,7 @@ int main()
 		return 1;
 	    }
 	}
+	delete gen;
 	std::cerr<<"..........done."<<std::endl;
     }
 
@@ -474,6 +506,7 @@ int main()
 		return 1;
 	    }
 	}
+	delete gen;
 	std::cerr<<"..........done."<<std::endl;
     }
 
@@ -496,6 +529,7 @@ int main()
 		return 1;
 	    }
 	}
+	delete gen;
 	std::cerr<<"..........done."<<std::endl;
     }
 
@@ -518,6 +552,7 @@ int main()
 		return 1;
 	    }
 	}
+	delete gen;
 	std::cerr<<"..........done."<<std::endl;
     }
 
@@ -540,6 +575,7 @@ int main()
 		return 1;
 	    }
 	}
+	delete gen;
 	std::cerr<<"..........done."<<std::endl;
     }
 }

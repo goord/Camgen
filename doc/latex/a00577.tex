@@ -1,15 +1,249 @@
-\hypertarget{a00577}{\section{Camgen\-:\-:Weyl\-\_\-basis Class Reference}
-\label{a00577}\index{Camgen\-::\-Weyl\-\_\-basis@{Camgen\-::\-Weyl\-\_\-basis}}
-}
-\subsection*{Classes}
+\hypertarget{a00577}{}\section{Camgen\+:\+:value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$ Class Template Reference}
+\label{a00577}\index{Camgen\+::value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$@{Camgen\+::value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$}}
+
+
+Momentum channel base class for phase space generators.  
+
+
+
+
+{\ttfamily \#include $<$val\+\_\+gen.\+h$>$}
+
+Inheritance diagram for Camgen\+:\+:value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=0.621359cm]{a00577}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{a00289}{implementation}
+\hypertarget{a00577_a5fbd52596a35e41175ede0dd78163194}{}\hyperlink{a00577_a5fbd52596a35e41175ede0dd78163194}{value\+\_\+generator} ()\label{a00577_a5fbd52596a35e41175ede0dd78163194}
+
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\hypertarget{a00577_a284a726e62720c5e27953452abfd3c04}{}\hyperlink{a00577_a284a726e62720c5e27953452abfd3c04}{value\+\_\+generator} (const \hyperlink{a00577}{value\+\_\+generator}$<$ value\+\_\+t, rng\+\_\+t $>$ \&other)\label{a00577_a284a726e62720c5e27953452abfd3c04}
+
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\hypertarget{a00577_a58fe662b505c68e3f0459690119b34d7}{}virtual \hyperlink{a00577_a58fe662b505c68e3f0459690119b34d7}{$\sim$value\+\_\+generator} ()\label{a00577_a58fe662b505c68e3f0459690119b34d7}
+
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\hypertarget{a00577_a06cfcc2ffd927fa15ae05cfb87d4e611}{}virtual void \hyperlink{a00577_a06cfcc2ffd927fa15ae05cfb87d4e611}{set\+\_\+value} (value\+\_\+type $\ast$val\+\_\+)\label{a00577_a06cfcc2ffd927fa15ae05cfb87d4e611}
+
+\begin{DoxyCompactList}\small\item\em Sets the invariant mass address to the argument pointer. \end{DoxyCompactList}\item 
+\hypertarget{a00577_a406c9a5035f55a136d4698cf33887f21}{}bool \hyperlink{a00577_a406c9a5035f55a136d4698cf33887f21}{set\+\_\+lower\+\_\+bound} (const value\+\_\+type \&min\+\_\+val\+\_\+)\label{a00577_a406c9a5035f55a136d4698cf33887f21}
+
+\begin{DoxyCompactList}\small\item\em Sets the minimal generated invariant mass-\/squared. \end{DoxyCompactList}\item 
+\hypertarget{a00577_a163f2b4e36223191a84fdac3f5b31d6f}{}bool \hyperlink{a00577_a163f2b4e36223191a84fdac3f5b31d6f}{set\+\_\+upper\+\_\+bound} (const value\+\_\+type \&max\+\_\+val\+\_\+)\label{a00577_a163f2b4e36223191a84fdac3f5b31d6f}
+
+\begin{DoxyCompactList}\small\item\em Sets the maximal generated invariant mass-\/squared. \end{DoxyCompactList}\item 
+\hypertarget{a00577_aa955515247464a5d8ea0fc326bc99afe}{}bool \hyperlink{a00577_aa955515247464a5d8ea0fc326bc99afe}{set\+\_\+bounds} (const value\+\_\+type \&min\+\_\+val\+\_\+, const value\+\_\+type \&max\+\_\+val\+\_\+)\label{a00577_aa955515247464a5d8ea0fc326bc99afe}
+
+\begin{DoxyCompactList}\small\item\em Sets the invariant mass-\/squared range. \end{DoxyCompactList}\item 
+\hypertarget{a00577_ae3f628417738cf3079006729b9ce829e}{}virtual bool \hyperlink{a00577_ae3f628417738cf3079006729b9ce829e}{generate} ()\label{a00577_ae3f628417738cf3079006729b9ce829e}
+
+\begin{DoxyCompactList}\small\item\em Generation method. \end{DoxyCompactList}\item 
+\hypertarget{a00577_afa629a1f746c5975ff16bcd9066d2c58}{}virtual bool \hyperlink{a00577_afa629a1f746c5975ff16bcd9066d2c58}{evaluate\+\_\+weight} ()\label{a00577_afa629a1f746c5975ff16bcd9066d2c58}
+
+\begin{DoxyCompactList}\small\item\em Weight evaluation method. \end{DoxyCompactList}\item 
+\hypertarget{a00577_a838f7b27eb7059e49e8cd4fa68a81b6f}{}virtual void \hyperlink{a00577_a838f7b27eb7059e49e8cd4fa68a81b6f}{update} ()\label{a00577_a838f7b27eb7059e49e8cd4fa68a81b6f}
+
+\begin{DoxyCompactList}\small\item\em Trivial update method. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{a00577_ad5adee012d119632ceee3840161bb6c0}{refresh\+\_\+params} ()
+\begin{DoxyCompactList}\small\item\em Re-\/evaluates internal parameters from external pointer values. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{a00577_a606b58f4f1ce170f0c789f30887d233f}{refresh\+\_\+lower\+\_\+bound} ()
+\begin{DoxyCompactList}\small\item\em Re-\/evaluates all internal parameters depending on the lower bound. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{a00577_ab36b05cba8bbc97a7ace38ae7edf58d8}{refresh\+\_\+upper\+\_\+bound} ()
+\begin{DoxyCompactList}\small\item\em Re-\/evaluates all internal parameters depending on the upper bound. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{a00577_a720106d300c813bb22c3f137de5b7591}{refresh\+\_\+bounds} ()
+\begin{DoxyCompactList}\small\item\em Re-\/evaluates all internal parameters depending on uper and lower bounds. \end{DoxyCompactList}\item 
+virtual \hyperlink{a00577}{value\+\_\+generator}$<$ value\+\_\+t, rng\+\_\+t $>$ $\ast$ \hyperlink{a00577_ae411860e047b0bffe64d3530e7bd742a}{clone} () const 
+\begin{DoxyCompactList}\small\item\em Instance cloning method. \end{DoxyCompactList}\item 
+\hypertarget{a00577_af4d83a08106e9049daa52dff8ce0bb09}{}virtual value\+\_\+type \hyperlink{a00577_af4d83a08106e9049daa52dff8ce0bb09}{map} (const value\+\_\+type \&) const =0\label{a00577_af4d83a08106e9049daa52dff8ce0bb09}
+
+\begin{DoxyCompactList}\small\item\em Maps the first argument, a random number in \mbox{[}0,1\mbox{]} to a value. \end{DoxyCompactList}\item 
+\hypertarget{a00577_ae242ade030ff57ec9369f3bd675eb747}{}virtual value\+\_\+type \hyperlink{a00577_ae242ade030ff57ec9369f3bd675eb747}{inverse\+\_\+map} (const value\+\_\+type \&) const =0\label{a00577_ae242ade030ff57ec9369f3bd675eb747}
+
+\begin{DoxyCompactList}\small\item\em Maps the value argument to a random number in \mbox{[}0,1\mbox{]}. \end{DoxyCompactList}\item 
+bool \hyperlink{a00577_afbf28daec2e71af8876efc05fbe9eaaa}{normalisable} () const 
+\begin{DoxyCompactList}\small\item\em Returns whether the requested density is nomalisable within current interval. \end{DoxyCompactList}\item 
+\hypertarget{a00577_a0d838c5abf3df69ab3059508e7bef26a}{}bool \hyperlink{a00577_a0d838c5abf3df69ab3059508e7bef26a}{is\+\_\+bounded} () const \label{a00577_a0d838c5abf3df69ab3059508e7bef26a}
+
+\begin{DoxyCompactList}\small\item\em Returns whether the value range is bounded. \end{DoxyCompactList}\item 
+\hypertarget{a00577_a5aaaa9576cac99c36e35c59be8cf1467}{}value\+\_\+type \hyperlink{a00577_a5aaaa9576cac99c36e35c59be8cf1467}{density} () const \label{a00577_a5aaaa9576cac99c36e35c59be8cf1467}
+
+\begin{DoxyCompactList}\small\item\em Returns the probability density at the given invariant mass. \end{DoxyCompactList}\item 
+\hypertarget{a00577_a68a41a29f419cbad5e3b6be783a8bfcc}{}value\+\_\+type \& \hyperlink{a00577_a68a41a29f419cbad5e3b6be783a8bfcc}{value} ()\label{a00577_a68a41a29f419cbad5e3b6be783a8bfcc}
+
+\begin{DoxyCompactList}\small\item\em Returns a reference to the invariant mass-\/squared. \end{DoxyCompactList}\item 
+\hypertarget{a00577_a2613dce4e4d8f4c5c523b488b6fc7c03}{}const value\+\_\+type \& \hyperlink{a00577_a2613dce4e4d8f4c5c523b488b6fc7c03}{value} () const \label{a00577_a2613dce4e4d8f4c5c523b488b6fc7c03}
+
+\begin{DoxyCompactList}\small\item\em Returns a constant reference to the invariant mass-\/squared. \end{DoxyCompactList}\item 
+\hypertarget{a00577_ab170e4455571bd373ee275271c777fbb}{}value\+\_\+type $\ast$ \hyperlink{a00577_ab170e4455571bd373ee275271c777fbb}{get\+\_\+value} ()\label{a00577_ab170e4455571bd373ee275271c777fbb}
+
+\begin{DoxyCompactList}\small\item\em Returns the invariant mass-\/squared address. \end{DoxyCompactList}\item 
+\hypertarget{a00577_a6528e82cba250592880a15ddbbadc525}{}const value\+\_\+type $\ast$ \hyperlink{a00577_a6528e82cba250592880a15ddbbadc525}{get\+\_\+value} () const \label{a00577_a6528e82cba250592880a15ddbbadc525}
+
+\begin{DoxyCompactList}\small\item\em Returns the constant invariant mass address. \end{DoxyCompactList}\item 
+\hypertarget{a00577_ab8cd4fc5bdcf7a9cee6ad543ab0e243d}{}const value\+\_\+type \& \hyperlink{a00577_ab8cd4fc5bdcf7a9cee6ad543ab0e243d}{lower\+\_\+bound} () const \label{a00577_ab8cd4fc5bdcf7a9cee6ad543ab0e243d}
+
+\begin{DoxyCompactList}\small\item\em Returns the minimal invariant mass-\/squared value. \end{DoxyCompactList}\item 
+\hypertarget{a00577_a036608f7b5f8d354edfeab58a6505903}{}const value\+\_\+type \& \hyperlink{a00577_a036608f7b5f8d354edfeab58a6505903}{upper\+\_\+bound} () const \label{a00577_a036608f7b5f8d354edfeab58a6505903}
+
+\begin{DoxyCompactList}\small\item\em Returns the maximal invariant mass-\/squared value. \end{DoxyCompactList}\item 
+\hypertarget{a00577_a986780bdd304c01e706af88a2add0ebe}{}bool \hyperlink{a00577_a986780bdd304c01e706af88a2add0ebe}{within\+\_\+bounds} () const \label{a00577_a986780bdd304c01e706af88a2add0ebe}
+
+\begin{DoxyCompactList}\small\item\em Returns whether the invariant mass is within limits. \end{DoxyCompactList}\item 
+\hypertarget{a00577_a0cfa8490f4dfee7fd9b66707956eb90c}{}virtual void \hyperlink{a00577_a0cfa8490f4dfee7fd9b66707956eb90c}{refresh\+\_\+norm} ()=0\label{a00577_a0cfa8490f4dfee7fd9b66707956eb90c}
+
+\begin{DoxyCompactList}\small\item\em Evaluates the (private) normalisation factor. \end{DoxyCompactList}\item 
+virtual value\+\_\+type \hyperlink{a00577_a4af6e06d81d2326b48ca2b792c0a4bdb}{get\+\_\+fast\+\_\+weight} () const =0
+\begin{DoxyCompactList}\small\item\em Returns the weight of the current configuration without bound-\/ or norm-\/checking. \end{DoxyCompactList}\item 
+\hypertarget{a00577_aa7d9af53b400cb6e51ba01ecc08cb2c9}{}bool \hyperlink{a00577_aa7d9af53b400cb6e51ba01ecc08cb2c9}{check} ()\label{a00577_aa7d9af53b400cb6e51ba01ecc08cb2c9}
+
+\begin{DoxyCompactList}\small\item\em Checking function. \end{DoxyCompactList}\item 
+\hyperlink{a00284}{histogram}$<$ value\+\_\+type $>$ \hyperlink{a00577_a3e35d4b097cca97a61280c698d3a8a12}{testrun} (size\+\_\+type N\+\_\+events, size\+\_\+type N\+\_\+bins)
+\begin{DoxyCompactList}\small\item\em Testrun of N\+\_\+events generations returning a histogram with N\+\_\+bins bins. \end{DoxyCompactList}\item 
+\hypertarget{a00577_aadd89058cfaaca8b2587b0351fa5e583}{}virtual std\+::string \hyperlink{a00577_aadd89058cfaaca8b2587b0351fa5e583}{type} () const =0\label{a00577_aadd89058cfaaca8b2587b0351fa5e583}
+
+\begin{DoxyCompactList}\small\item\em Returns a string containing the type. \end{DoxyCompactList}\item 
+\hypertarget{a00577_a4737b3170d8e655e501dd9c612c59ee2}{}virtual std\+::string \hyperlink{a00577_a4737b3170d8e655e501dd9c612c59ee2}{detailed\+\_\+type} () const \label{a00577_a4737b3170d8e655e501dd9c612c59ee2}
+
+\begin{DoxyCompactList}\small\item\em Returns the detailed type of the generator. \end{DoxyCompactList}\item 
+\hypertarget{a00577_a4979e74f683cd25b4da4677b70e20b21}{}virtual std\+::ostream \& \hyperlink{a00577_a4979e74f683cd25b4da4677b70e20b21}{print} (std\+::ostream \&os) const \label{a00577_a4979e74f683cd25b4da4677b70e20b21}
+
+\begin{DoxyCompactList}\small\item\em Printing method\+: \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
 \item 
-class \hyperlink{a00301}{implementation$<$ value\-\_\-t, 4, true $>$}
-\end{DoxyCompactItemize}
+\hypertarget{a00577_a82901a139665b85df4598e72e61f180c}{}value\+\_\+type \hyperlink{a00577_a82901a139665b85df4598e72e61f180c}{min\+\_\+val}\label{a00577_a82901a139665b85df4598e72e61f180c}
+
+\begin{DoxyCompactList}\small\item\em Minimal and maximal invariant mass-\/squared. \end{DoxyCompactList}\item 
+\hypertarget{a00577_a6205989942c1610149952c4c94035e32}{}value\+\_\+type \hyperlink{a00577_a6205989942c1610149952c4c94035e32}{norm}\label{a00577_a6205989942c1610149952c4c94035e32}
+
+\begin{DoxyCompactList}\small\item\em Normalisation constant. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\subsection{Detailed Description}
+\subsubsection*{template$<$class value\+\_\+t, class rng\+\_\+t$>$class Camgen\+::value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$}
+
+Momentum channel base class for phase space generators. 
+
+\subsection{Member Function Documentation}
+\hypertarget{a00577_ae411860e047b0bffe64d3530e7bd742a}{}\index{Camgen\+::value\+\_\+generator@{Camgen\+::value\+\_\+generator}!clone@{clone}}
+\index{clone@{clone}!Camgen\+::value\+\_\+generator@{Camgen\+::value\+\_\+generator}}
+\subsubsection[{clone}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\+\_\+t, class rng\+\_\+t$>$ virtual {\bf value\+\_\+generator}$<$value\+\_\+t,rng\+\_\+t$>$$\ast$ {\bf Camgen\+::value\+\_\+generator}$<$ value\+\_\+t, rng\+\_\+t $>$\+::clone (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{a00577_ae411860e047b0bffe64d3530e7bd742a}
+
+
+Instance cloning method. 
+
+Returns the N\+U\+L\+L pointer if not overridden. 
+
+Reimplemented in \hyperlink{a00434_a1491d799cdc4af17521a73520f731770}{Camgen\+::power\+\_\+law$<$ value\+\_\+t, rng\+\_\+t $>$}, \hyperlink{a00027_a45f43e8a8954267185dd9462e4701611}{Camgen\+::\+Breit\+\_\+\+Wigner$<$ value\+\_\+t, rng\+\_\+t $>$}, \hyperlink{a00321_a6737a7af2020fbe006482ba160dbd8b6}{Camgen\+::inversion\+\_\+value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t, sub\+\_\+type $>$}, \hyperlink{a00321_a6737a7af2020fbe006482ba160dbd8b6}{Camgen\+::inversion\+\_\+value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t, power\+\_\+law$<$ value\+\_\+t, rng\+\_\+t $>$ $>$}, \hyperlink{a00321_a6737a7af2020fbe006482ba160dbd8b6}{Camgen\+::inversion\+\_\+value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t, inverse\+\_\+cosh$<$ value\+\_\+t, rng\+\_\+t $>$ $>$}, \hyperlink{a00321_a6737a7af2020fbe006482ba160dbd8b6}{Camgen\+::inversion\+\_\+value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t, Breit\+\_\+\+Wigner$<$ value\+\_\+t, rng\+\_\+t $>$ $>$}, \hyperlink{a00128_a641603a439c2b37ea33a17b62db26c1e}{Camgen\+::\+Dirac\+\_\+delta$<$ value\+\_\+t, rng\+\_\+t $>$}, \hyperlink{a00320_a93ef78d56e7320e6b6a7390778948174}{Camgen\+::inverse\+\_\+cosh$<$ value\+\_\+t, rng\+\_\+t $>$}, and \hyperlink{a00570_a8f41a15f1cb6ef12c60afdfa9f89469a}{Camgen\+::uniform\+\_\+value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$}.
+
+\hypertarget{a00577_a4af6e06d81d2326b48ca2b792c0a4bdb}{}\index{Camgen\+::value\+\_\+generator@{Camgen\+::value\+\_\+generator}!get\+\_\+fast\+\_\+weight@{get\+\_\+fast\+\_\+weight}}
+\index{get\+\_\+fast\+\_\+weight@{get\+\_\+fast\+\_\+weight}!Camgen\+::value\+\_\+generator@{Camgen\+::value\+\_\+generator}}
+\subsubsection[{get\+\_\+fast\+\_\+weight}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\+\_\+t, class rng\+\_\+t$>$ virtual value\+\_\+type {\bf Camgen\+::value\+\_\+generator}$<$ value\+\_\+t, rng\+\_\+t $>$\+::get\+\_\+fast\+\_\+weight (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{a00577_a4af6e06d81d2326b48ca2b792c0a4bdb}
+
+
+Returns the weight of the current configuration without bound-\/ or norm-\/checking. 
+
+
+
+Implemented in \hyperlink{a00001_aac9de7a843e6d91ed6cda6758f2e19e4}{Camgen\+::adaptive\+\_\+value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$}, \hyperlink{a00001_aac9de7a843e6d91ed6cda6758f2e19e4}{Camgen\+::adaptive\+\_\+value\+\_\+generator$<$ value\+\_\+type, rng\+\_\+t $>$}, \hyperlink{a00128_a1160e94fa42c3171f8ccadff9bff0955}{Camgen\+::\+Dirac\+\_\+delta$<$ value\+\_\+t, rng\+\_\+t $>$}, \hyperlink{a00321_aafe186d1ceebae6572e3eccb0ad89224}{Camgen\+::inversion\+\_\+value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t, sub\+\_\+type $>$}, \hyperlink{a00321_aafe186d1ceebae6572e3eccb0ad89224}{Camgen\+::inversion\+\_\+value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t, power\+\_\+law$<$ value\+\_\+t, rng\+\_\+t $>$ $>$}, \hyperlink{a00321_aafe186d1ceebae6572e3eccb0ad89224}{Camgen\+::inversion\+\_\+value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t, inverse\+\_\+cosh$<$ value\+\_\+t, rng\+\_\+t $>$ $>$}, \hyperlink{a00321_aafe186d1ceebae6572e3eccb0ad89224}{Camgen\+::inversion\+\_\+value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t, Breit\+\_\+\+Wigner$<$ value\+\_\+t, rng\+\_\+t $>$ $>$}, and \hyperlink{a00570_acbc47578d709200f3ceb70cc6544ff15}{Camgen\+::uniform\+\_\+value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$}.
+
+\hypertarget{a00577_afbf28daec2e71af8876efc05fbe9eaaa}{}\index{Camgen\+::value\+\_\+generator@{Camgen\+::value\+\_\+generator}!normalisable@{normalisable}}
+\index{normalisable@{normalisable}!Camgen\+::value\+\_\+generator@{Camgen\+::value\+\_\+generator}}
+\subsubsection[{normalisable}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\+\_\+t, class rng\+\_\+t$>$ bool {\bf Camgen\+::value\+\_\+generator}$<$ value\+\_\+t, rng\+\_\+t $>$\+::normalisable (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{a00577_afbf28daec2e71af8876efc05fbe9eaaa}
+
+
+Returns whether the requested density is nomalisable within current interval. 
+
+\hypertarget{a00577_a720106d300c813bb22c3f137de5b7591}{}\index{Camgen\+::value\+\_\+generator@{Camgen\+::value\+\_\+generator}!refresh\+\_\+bounds@{refresh\+\_\+bounds}}
+\index{refresh\+\_\+bounds@{refresh\+\_\+bounds}!Camgen\+::value\+\_\+generator@{Camgen\+::value\+\_\+generator}}
+\subsubsection[{refresh\+\_\+bounds}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\+\_\+t, class rng\+\_\+t$>$ virtual bool {\bf Camgen\+::value\+\_\+generator}$<$ value\+\_\+t, rng\+\_\+t $>$\+::refresh\+\_\+bounds (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{a00577_a720106d300c813bb22c3f137de5b7591}
+
+
+Re-\/evaluates all internal parameters depending on uper and lower bounds. 
+
+Returns false if the input parameters are invalid. 
+
+Reimplemented in \hyperlink{a00001_a995493aac48a6e64d7447a51f6381014}{Camgen\+::adaptive\+\_\+value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$}, and \hyperlink{a00001_a995493aac48a6e64d7447a51f6381014}{Camgen\+::adaptive\+\_\+value\+\_\+generator$<$ value\+\_\+type, rng\+\_\+t $>$}.
+
+\hypertarget{a00577_a606b58f4f1ce170f0c789f30887d233f}{}\index{Camgen\+::value\+\_\+generator@{Camgen\+::value\+\_\+generator}!refresh\+\_\+lower\+\_\+bound@{refresh\+\_\+lower\+\_\+bound}}
+\index{refresh\+\_\+lower\+\_\+bound@{refresh\+\_\+lower\+\_\+bound}!Camgen\+::value\+\_\+generator@{Camgen\+::value\+\_\+generator}}
+\subsubsection[{refresh\+\_\+lower\+\_\+bound}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\+\_\+t, class rng\+\_\+t$>$ virtual bool {\bf Camgen\+::value\+\_\+generator}$<$ value\+\_\+t, rng\+\_\+t $>$\+::refresh\+\_\+lower\+\_\+bound (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{a00577_a606b58f4f1ce170f0c789f30887d233f}
+
+
+Re-\/evaluates all internal parameters depending on the lower bound. 
+
+Returns false if the input parameters are invalid. 
+
+Reimplemented in \hyperlink{a00001_a4d4bd3b524a004dba5e01790182817cf}{Camgen\+::adaptive\+\_\+value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$}, \hyperlink{a00001_a4d4bd3b524a004dba5e01790182817cf}{Camgen\+::adaptive\+\_\+value\+\_\+generator$<$ value\+\_\+type, rng\+\_\+t $>$}, \hyperlink{a00321_a02da89e6bcf998ef31f0724210d58a21}{Camgen\+::inversion\+\_\+value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t, sub\+\_\+type $>$}, \hyperlink{a00321_a02da89e6bcf998ef31f0724210d58a21}{Camgen\+::inversion\+\_\+value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t, power\+\_\+law$<$ value\+\_\+t, rng\+\_\+t $>$ $>$}, \hyperlink{a00321_a02da89e6bcf998ef31f0724210d58a21}{Camgen\+::inversion\+\_\+value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t, inverse\+\_\+cosh$<$ value\+\_\+t, rng\+\_\+t $>$ $>$}, and \hyperlink{a00321_a02da89e6bcf998ef31f0724210d58a21}{Camgen\+::inversion\+\_\+value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t, Breit\+\_\+\+Wigner$<$ value\+\_\+t, rng\+\_\+t $>$ $>$}.
+
+\hypertarget{a00577_ad5adee012d119632ceee3840161bb6c0}{}\index{Camgen\+::value\+\_\+generator@{Camgen\+::value\+\_\+generator}!refresh\+\_\+params@{refresh\+\_\+params}}
+\index{refresh\+\_\+params@{refresh\+\_\+params}!Camgen\+::value\+\_\+generator@{Camgen\+::value\+\_\+generator}}
+\subsubsection[{refresh\+\_\+params}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\+\_\+t, class rng\+\_\+t$>$ virtual bool {\bf Camgen\+::value\+\_\+generator}$<$ value\+\_\+t, rng\+\_\+t $>$\+::refresh\+\_\+params (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{a00577_ad5adee012d119632ceee3840161bb6c0}
+
+
+Re-\/evaluates internal parameters from external pointer values. 
+
+Returns false if the input parameters are invalid. 
+
+Reimplemented in \hyperlink{a00001_ab5f62076a8a9d79d279f99fc05d6758f}{Camgen\+::adaptive\+\_\+value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$}, \hyperlink{a00001_ab5f62076a8a9d79d279f99fc05d6758f}{Camgen\+::adaptive\+\_\+value\+\_\+generator$<$ value\+\_\+type, rng\+\_\+t $>$}, \hyperlink{a00434_af910f1d7b90205f53714bc6da16407b8}{Camgen\+::power\+\_\+law$<$ value\+\_\+t, rng\+\_\+t $>$}, \hyperlink{a00027_a2fd9996da8a6cc37e427e7eb92328b42}{Camgen\+::\+Breit\+\_\+\+Wigner$<$ value\+\_\+t, rng\+\_\+t $>$}, \hyperlink{a00128_af65c7c209cecd81bb1ba2467274d93d5}{Camgen\+::\+Dirac\+\_\+delta$<$ value\+\_\+t, rng\+\_\+t $>$}, and \hyperlink{a00320_af6c6edb1d3b7a3be19759225598eff8c}{Camgen\+::inverse\+\_\+cosh$<$ value\+\_\+t, rng\+\_\+t $>$}.
+
+\hypertarget{a00577_ab36b05cba8bbc97a7ace38ae7edf58d8}{}\index{Camgen\+::value\+\_\+generator@{Camgen\+::value\+\_\+generator}!refresh\+\_\+upper\+\_\+bound@{refresh\+\_\+upper\+\_\+bound}}
+\index{refresh\+\_\+upper\+\_\+bound@{refresh\+\_\+upper\+\_\+bound}!Camgen\+::value\+\_\+generator@{Camgen\+::value\+\_\+generator}}
+\subsubsection[{refresh\+\_\+upper\+\_\+bound}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\+\_\+t, class rng\+\_\+t$>$ virtual bool {\bf Camgen\+::value\+\_\+generator}$<$ value\+\_\+t, rng\+\_\+t $>$\+::refresh\+\_\+upper\+\_\+bound (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{a00577_ab36b05cba8bbc97a7ace38ae7edf58d8}
+
+
+Re-\/evaluates all internal parameters depending on the upper bound. 
+
+Returns false if the input parameters are invalid. 
+
+Reimplemented in \hyperlink{a00001_ad40f7085df9948494142cfe196ae8ffe}{Camgen\+::adaptive\+\_\+value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$}, \hyperlink{a00001_ad40f7085df9948494142cfe196ae8ffe}{Camgen\+::adaptive\+\_\+value\+\_\+generator$<$ value\+\_\+type, rng\+\_\+t $>$}, \hyperlink{a00321_a0cc4677ad141c3103dd459e587cf0770}{Camgen\+::inversion\+\_\+value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t, sub\+\_\+type $>$}, \hyperlink{a00321_a0cc4677ad141c3103dd459e587cf0770}{Camgen\+::inversion\+\_\+value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t, power\+\_\+law$<$ value\+\_\+t, rng\+\_\+t $>$ $>$}, \hyperlink{a00321_a0cc4677ad141c3103dd459e587cf0770}{Camgen\+::inversion\+\_\+value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t, inverse\+\_\+cosh$<$ value\+\_\+t, rng\+\_\+t $>$ $>$}, and \hyperlink{a00321_a0cc4677ad141c3103dd459e587cf0770}{Camgen\+::inversion\+\_\+value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t, Breit\+\_\+\+Wigner$<$ value\+\_\+t, rng\+\_\+t $>$ $>$}.
+
+\hypertarget{a00577_a3e35d4b097cca97a61280c698d3a8a12}{}\index{Camgen\+::value\+\_\+generator@{Camgen\+::value\+\_\+generator}!testrun@{testrun}}
+\index{testrun@{testrun}!Camgen\+::value\+\_\+generator@{Camgen\+::value\+\_\+generator}}
+\subsubsection[{testrun}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\+\_\+t, class rng\+\_\+t$>$ {\bf histogram}$<$value\+\_\+type$>$ {\bf Camgen\+::value\+\_\+generator}$<$ value\+\_\+t, rng\+\_\+t $>$\+::testrun (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+type}]{N\+\_\+events, }
+\item[{size\+\_\+type}]{N\+\_\+bins}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00577_a3e35d4b097cca97a61280c698d3a8a12}
+
+
+Testrun of N\+\_\+events generations returning a histogram with N\+\_\+bins bins. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/\-Camgen/Weyl\-\_\-basis.\-h\end{DoxyCompactItemize}
+include/\+Camgen/\hyperlink{a00828}{val\+\_\+gen.\+h}\end{DoxyCompactItemize}

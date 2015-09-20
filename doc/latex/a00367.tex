@@ -1,59 +1,66 @@
-\hypertarget{a00367}{\section{Camgen\-:\-:M\-C\-\_\-object\-\_\-generator$<$ value\-\_\-t, object\-\_\-t, N, false $>$ Class Template Reference}
-\label{a00367}\index{Camgen\-::\-M\-C\-\_\-object\-\_\-generator$<$ value\-\_\-t, object\-\_\-t, N, false $>$@{Camgen\-::\-M\-C\-\_\-object\-\_\-generator$<$ value\-\_\-t, object\-\_\-t, N, false $>$}}
-}
+\hypertarget{a00367}{}\section{Camgen\+:\+:M\+C\+\_\+generator\+\_\+wrapper$<$ value\+\_\+t $>$ Class Template Reference}
+\label{a00367}\index{Camgen\+::\+M\+C\+\_\+generator\+\_\+wrapper$<$ value\+\_\+t $>$@{Camgen\+::\+M\+C\+\_\+generator\+\_\+wrapper$<$ value\+\_\+t $>$}}
 
 
-Specialization for objects without default constructor.  
+Wrapper class, converting a generator into an integrator.  
 
 
 
 
-{\ttfamily \#include $<$M\-C\-\_\-obj\-\_\-gen.\-h$>$}
+{\ttfamily \#include $<$M\+C\+\_\+int.\+h$>$}
 
-Inheritance diagram for Camgen\-:\-:M\-C\-\_\-object\-\_\-generator$<$ value\-\_\-t, object\-\_\-t, N, false $>$\-:\begin{figure}[H]
+Inheritance diagram for Camgen\+:\+:M\+C\+\_\+generator\+\_\+wrapper$<$ value\+\_\+t $>$\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2.000000cm]{a00367}
+\includegraphics[height=3.000000cm]{a00367}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{a00367_a772e666989503d5a955797affbfdf3da}{\hyperlink{a00367_a772e666989503d5a955797affbfdf3da}{M\-C\-\_\-object\-\_\-generator} (const \hyperlink{a00559}{vector}$<$ object\-\_\-type $\ast$, N $>$ \&instances\-\_\-)}\label{a00367_a772e666989503d5a955797affbfdf3da}
+\hypertarget{a00367_abebdfe6804af3a7b4e9360632ebb13f4}{}\hyperlink{a00367_abebdfe6804af3a7b4e9360632ebb13f4}{M\+C\+\_\+generator\+\_\+wrapper} (\hyperlink{a00366}{generator\+\_\+type} $\ast$generator\+\_\+, bool owner\+\_\+=true)\label{a00367_abebdfe6804af3a7b4e9360632ebb13f4}
 
-\begin{DoxyCompactList}\small\item\em Constructor with input instances. \end{DoxyCompactList}\item 
-\hypertarget{a00367_a8c7f1390bbb9e13e8a1bbc220c54b188}{\hyperlink{a00367_a8c7f1390bbb9e13e8a1bbc220c54b188}{M\-C\-\_\-object\-\_\-generator} (const \hyperlink{a00364}{M\-C\-\_\-object\-\_\-generator}$<$ value\-\_\-t, object\-\_\-t, N, false $>$ \&other)}\label{a00367_a8c7f1390bbb9e13e8a1bbc220c54b188}
-
-\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
-\hypertarget{a00367_a99dffb2e6ffd569524825739b30573f8}{virtual \hyperlink{a00367_a99dffb2e6ffd569524825739b30573f8}{$\sim$\-M\-C\-\_\-object\-\_\-generator} ()}\label{a00367_a99dffb2e6ffd569524825739b30573f8}
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hypertarget{a00367_a6cf4eb6458d51e634c6b4ebcb719b0fb}{}\hyperlink{a00367_a6cf4eb6458d51e634c6b4ebcb719b0fb}{$\sim$\+M\+C\+\_\+generator\+\_\+wrapper} ()\label{a00367_a6cf4eb6458d51e634c6b4ebcb719b0fb}
 
 \begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
-\hypertarget{a00367_ad72c3efd707a9223b70d02384d73fcfd}{object\-\_\-type \& \hyperlink{a00367_ad72c3efd707a9223b70d02384d73fcfd}{object} (size\-\_\-type i=0)}\label{a00367_ad72c3efd707a9223b70d02384d73fcfd}
+bool \hyperlink{a00367_a5fa053a552e2022c82efc1d250f38017}{generate} ()
+\begin{DoxyCompactList}\small\item\em \textquotesingle{}Bare generation\textquotesingle{} method (purely virtual). \end{DoxyCompactList}\item 
+\hypertarget{a00367_aca1d1e4feec55bd7af3ccac697645d64}{}bool \hyperlink{a00367_aca1d1e4feec55bd7af3ccac697645d64}{evaluate\+\_\+weight} ()\label{a00367_aca1d1e4feec55bd7af3ccac697645d64}
 
-\begin{DoxyCompactList}\small\item\em Returns the reference to the i-\/th instance. \end{DoxyCompactList}\item 
-\hypertarget{a00367_a007fd575573311c637cbd69a4238111a}{const object\-\_\-type \& \hyperlink{a00367_a007fd575573311c637cbd69a4238111a}{object} (size\-\_\-type i=0) const }\label{a00367_a007fd575573311c637cbd69a4238111a}
+\begin{DoxyCompactList}\small\item\em Event weight calculation method. \end{DoxyCompactList}\item 
+\hypertarget{a00367_aef97ca76b294a65b54e07159b3bd9d0c}{}void \hyperlink{a00367_aef97ca76b294a65b54e07159b3bd9d0c}{update} ()\label{a00367_aef97ca76b294a65b54e07159b3bd9d0c}
 
-\begin{DoxyCompactList}\small\item\em Returns the const reference to the i-\/th instance. \end{DoxyCompactList}\item 
-\hypertarget{a00367_a281a6a2d3535dda27cac5b34e3c5949a}{object\-\_\-type $\ast$ \hyperlink{a00367_a281a6a2d3535dda27cac5b34e3c5949a}{get\-\_\-object} (size\-\_\-type i=0)}\label{a00367_a281a6a2d3535dda27cac5b34e3c5949a}
+\begin{DoxyCompactList}\small\item\em Updates internal parameters with the current integrand value. \end{DoxyCompactList}\item 
+\hypertarget{a00367_a49710db0b359ca453fe42f4ce63b24f1}{}void \hyperlink{a00367_a49710db0b359ca453fe42f4ce63b24f1}{adapt} ()\label{a00367_a49710db0b359ca453fe42f4ce63b24f1}
 
-\begin{DoxyCompactList}\small\item\em Returns the address of the i-\/th instance. \end{DoxyCompactList}\item 
-\hypertarget{a00367_aa00cd5099ade15d826bbffefbb9983a5}{const object\-\_\-type $\ast$ \hyperlink{a00367_aa00cd5099ade15d826bbffefbb9983a5}{get\-\_\-object} (size\-\_\-type i=0) const }\label{a00367_aa00cd5099ade15d826bbffefbb9983a5}
-
-\begin{DoxyCompactList}\small\item\em Returns the const pointer to the i-\/th instance. \end{DoxyCompactList}\item 
-\hypertarget{a00367_a5ccedce10a1eac070db1f182e295836d}{void \hyperlink{a00367_a5ccedce10a1eac070db1f182e295836d}{set\-\_\-object} (object\-\_\-type $\ast$instance\-\_\-, size\-\_\-type i=0)}\label{a00367_a5ccedce10a1eac070db1f182e295836d}
-
-\begin{DoxyCompactList}\small\item\em Sets the address to the i-\/th instance. \end{DoxyCompactList}\item 
-\hypertarget{a00367_acb98e53979676e20b584263efc6bc26a}{const object\-\_\-type \& \hyperlink{a00367_acb98e53979676e20b584263efc6bc26a}{operator()} (size\-\_\-type i)}\label{a00367_acb98e53979676e20b584263efc6bc26a}
-
-\begin{DoxyCompactList}\small\item\em Calls the generation method and returns the i-\/th object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Adapts internal parameters with the current integrand value. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
 
 \subsection{Detailed Description}
-\subsubsection*{template$<$class value\-\_\-t, class object\-\_\-t, std\-::size\-\_\-t N$>$class Camgen\-::\-M\-C\-\_\-object\-\_\-generator$<$ value\-\_\-t, object\-\_\-t, N, false $>$}
+\subsubsection*{template$<$class value\+\_\+t$>$class Camgen\+::\+M\+C\+\_\+generator\+\_\+wrapper$<$ value\+\_\+t $>$}
 
-Specialization for objects without default constructor. 
+Wrapper class, converting a generator into an integrator. 
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\subsection{Member Function Documentation}
+\hypertarget{a00367_a5fa053a552e2022c82efc1d250f38017}{}\index{Camgen\+::\+M\+C\+\_\+generator\+\_\+wrapper@{Camgen\+::\+M\+C\+\_\+generator\+\_\+wrapper}!generate@{generate}}
+\index{generate@{generate}!Camgen\+::\+M\+C\+\_\+generator\+\_\+wrapper@{Camgen\+::\+M\+C\+\_\+generator\+\_\+wrapper}}
+\subsubsection[{generate}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\+\_\+t $>$ bool {\bf Camgen\+::\+M\+C\+\_\+generator\+\_\+wrapper}$<$ value\+\_\+t $>$\+::generate (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{a00367_a5fa053a552e2022c82efc1d250f38017}
+
+
+\textquotesingle{}Bare generation\textquotesingle{} method (purely virtual). 
+
+Should update the weight data member. 
+
+Implements \hyperlink{a00366_a197b7bb66d8de5f6de401f81bea71e6c}{Camgen\+::\+M\+C\+\_\+generator$<$ value\+\_\+t $>$}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/\-Camgen/\hyperlink{a00673}{M\-C\-\_\-obj\-\_\-gen.\-h}\end{DoxyCompactItemize}
+include/\+Camgen/\hyperlink{a00692}{M\+C\+\_\+int.\+h}\end{DoxyCompactItemize}

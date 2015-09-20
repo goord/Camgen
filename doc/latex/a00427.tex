@@ -1,42 +1,41 @@
-\hypertarget{a00427}{\section{Camgen\-:\-:plot\-\_\-stream Class Reference}
-\label{a00427}\index{Camgen\-::plot\-\_\-stream@{Camgen\-::plot\-\_\-stream}}
-}
+\hypertarget{a00427}{}\section{Camgen\+:\+:plot\+\_\+config Class Reference}
+\label{a00427}\index{Camgen\+::plot\+\_\+config@{Camgen\+::plot\+\_\+config}}
 
 
-Abstract base type of the plot streaming classes.  
+Plotting configuration data holder.  
 
 
 
 
-{\ttfamily \#include $<$plt\-\_\-strm.\-h$>$}
+{\ttfamily \#include $<$plt\+\_\+config.\+h$>$}
 
-Inheritance diagram for Camgen\-:\-:plot\-\_\-stream\-:\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[height=2.000000cm]{a00427}
-\end{center}
-\end{figure}
-\subsection*{Public Member Functions}
+\subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{a00427_a55d9ade8007c07c115c2cb837d895d37}{\hyperlink{a00427_a55d9ade8007c07c115c2cb837d895d37}{plot\-\_\-stream} ()}\label{a00427_a55d9ade8007c07c115c2cb837d895d37}
+\hypertarget{a00427_a615c3c7b8bbecddcda4436a08dd4e301}{}static int \hyperlink{a00427_a615c3c7b8bbecddcda4436a08dd4e301}{max\+\_\+tmp\+\_\+files} ()\label{a00427_a615c3c7b8bbecddcda4436a08dd4e301}
 
-\begin{DoxyCompactList}\small\item\em Trivial constructor. \end{DoxyCompactList}\item 
-\hypertarget{a00427_a6510b1620aa6fa695c1f1397e92bea4c}{virtual \hyperlink{a00427_a6510b1620aa6fa695c1f1397e92bea4c}{$\sim$plot\-\_\-stream} ()}\label{a00427_a6510b1620aa6fa695c1f1397e92bea4c}
+\begin{DoxyCompactList}\small\item\em Maximum number of temporary data files. \end{DoxyCompactList}\item 
+\hypertarget{a00427_a20dc2a981b98297089f04adc72d12c7e}{}static char $\ast$ \hyperlink{a00427_a20dc2a981b98297089f04adc72d12c7e}{tmp\+\_\+file} ()\label{a00427_a20dc2a981b98297089f04adc72d12c7e}
 
-\begin{DoxyCompactList}\small\item\em Trivial destructor. \end{DoxyCompactList}\item 
-\hypertarget{a00427_a1bf2748c2bb6da34a39b10b303abd9bf}{virtual void \hyperlink{a00427_a1bf2748c2bb6da34a39b10b303abd9bf}{write} (std\-::ostream \&) const =0}\label{a00427_a1bf2748c2bb6da34a39b10b303abd9bf}
+\begin{DoxyCompactList}\small\item\em Creates a unique temporary file name (dynamically. \end{DoxyCompactList}\item 
+\hypertarget{a00427_af5aec1edd57c037a5573467c4c1a9a97}{}static F\+I\+L\+E $\ast$ \hyperlink{a00427_af5aec1edd57c037a5573467c4c1a9a97}{open\+\_\+pipe} ()\label{a00427_af5aec1edd57c037a5573467c4c1a9a97}
 
-\begin{DoxyCompactList}\small\item\em Plot command writing method. \end{DoxyCompactList}\item 
-\hypertarget{a00427_a8f00766cd1d70da570f2d7f769d4ac42}{virtual \hyperlink{a00427}{plot\-\_\-stream} $\ast$ \hyperlink{a00427_a8f00766cd1d70da570f2d7f769d4ac42}{clone} () const =0}\label{a00427_a8f00766cd1d70da570f2d7f769d4ac42}
+\begin{DoxyCompactList}\small\item\em Opens pipe to gnuplot, returns N\+U\+L\+L if gnuplot is not installed. \end{DoxyCompactList}\item 
+\hypertarget{a00427_abb6c7f63db9af2c39be1e3bd317e4ef8}{}static int \hyperlink{a00427_abb6c7f63db9af2c39be1e3bd317e4ef8}{close\+\_\+pipe} (F\+I\+L\+E $\ast$)\label{a00427_abb6c7f63db9af2c39be1e3bd317e4ef8}
 
-\begin{DoxyCompactList}\small\item\em Virtual clone method. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Closes the pipe to gnuplot. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00427_ad397bbb1415a8958506aab635f26ed60}{}static const char $\ast$ \hyperlink{a00427_ad397bbb1415a8958506aab635f26ed60}{gnuplot\+\_\+path} =N\+U\+L\+L\label{a00427_ad397bbb1415a8958506aab635f26ed60}
+
+\begin{DoxyCompactList}\small\item\em Path to gnuplot program (N\+U\+L\+L of not existent). \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Abstract base type of the plot streaming classes. 
+Plotting configuration data holder. 
 
-The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-include/\-Camgen/\hyperlink{a00700}{plt\-\_\-strm.\-h}\item 
-src/plt\-\_\-strm.\-cpp\end{DoxyCompactItemize}
+include/\+Camgen/plt\+\_\+config.\+h\item 
+src/plt\+\_\+config.\+cpp\end{DoxyCompactItemize}

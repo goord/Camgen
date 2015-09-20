@@ -8,10 +8,9 @@
 #include <Camgen/license_print.h>
 #include <Camgen/CM_algo.h>
 #include <Camgen/ps_copy.h>
+#include <Camgen/uni_psgen_fac.h>
 #include <Camgen/stdrand.h>
 #include <Camgen/uni_hels.h>
-#include <Camgen/part_is.h>
-#include <Camgen/rambo.h>
 #include <Camgen/plt_config.h>
 #include <Camgen/plt_script.h>
 #include <Camgen/SM.h>
@@ -46,11 +45,14 @@ int main()
     //////////////////////////////////////////////////////////////////////////////////////////////////
 
     std::size_t N_batch=N_events/N_points;
+    set_initial_state_type(initial_states::partonic);
+    set_phase_space_generator_type(phase_space_generators::uniform);
+    set_first_beam_energy(0.5*Ecm);
+    set_second_beam_energy(0.5*Ecm);
    
     {
 	typedef QEDPbdh model_type;
-	typedef rambo<model_type,2,2,std::random> ps_gen;
-	typedef partonic_is<model_type,2> init_state;
+	typedef uniform_ps_generator_factory<model_type,2,2,std::random> factory_type;
 	
 	std::string process("e+,e- > e+,e-");
 	std::cerr<<"Checking full helicity summation in QED for "<<process<<"..........";
@@ -58,7 +60,7 @@ int main()
 	CM_algorithm<model_type,2,2>algo(process);
 	algo.load();
 	algo.construct();
-	ps_generator<model_type,2,2>* psgen=ps_gen::create_instance(algo.get_tree_iterator(),new init_state(Ecm,Ecm));
+	ps_generator<model_type,2,2>* psgen=factory_type::create_generator(algo.get_tree_iterator());
 	psgen->generate();
 	algo.sum_spins();
 	value_type M=algo.evaluate_sum();
@@ -97,8 +99,7 @@ int main()
 
     {
 	typedef QEDPbdh model_type;
-	typedef rambo<model_type,2,3,std::random> ps_gen;
-	typedef partonic_is<model_type,2> init_state;
+	typedef uniform_ps_generator_factory<model_type,2,3,std::random> factory_type;
 	
 	std::string process("e+,e- > e+,e-,gamma");
 	std::cerr<<"Checking full helicity summation in QED for "<<process<<"..........";
@@ -106,7 +107,7 @@ int main()
 	CM_algorithm<model_type,2,3>algo(process);
 	algo.load();
 	algo.construct();
-	ps_generator<model_type,2,3>* psgen=ps_gen::create_instance(algo.get_tree_iterator(),new init_state(Ecm,Ecm));
+	ps_generator<model_type,2,3>* psgen=factory_type::create_generator(algo.get_tree_iterator());
 	psgen->generate();
 	algo.sum_spins();
 	value_type M=algo.evaluate_sum();
@@ -149,8 +150,7 @@ int main()
 
     {
 	typedef QEDPbdh model_type;
-	typedef rambo<model_type,2,4,std::random> ps_gen;
-	typedef partonic_is<model_type,2> init_state;
+	typedef uniform_ps_generator_factory<model_type,2,4,std::random> factory_type;
 	
 	std::string process("e+,e- > e+,gamma,e-,gamma");
 	std::cerr<<"Checking full helicity summation in QED for "<<process<<"..........";
@@ -158,7 +158,7 @@ int main()
 	CM_algorithm<model_type,2,4>algo(process);
 	algo.load();
 	algo.construct();
-	ps_generator<model_type,2,4>* psgen=ps_gen::create_instance(algo.get_tree_iterator(),new init_state(Ecm,Ecm));
+	ps_generator<model_type,2,4>* psgen=factory_type::create_generator(algo.get_tree_iterator());
 	psgen->generate();
 	algo.sum_spins();
 	value_type M=algo.evaluate_sum();
@@ -205,8 +205,7 @@ int main()
 
     {
 	typedef QEDPbdh model_type;
-	typedef rambo<model_type,2,2,std::random> ps_gen;
-	typedef partonic_is<model_type,2> init_state;
+	typedef uniform_ps_generator_factory<model_type,2,2,std::random> factory_type;
 	
 	std::string process("e+,e- > e+,e-");
 	std::cerr<<"Checking partial helicity summation in QED for "<<process<<"..........";
@@ -214,7 +213,7 @@ int main()
 	CM_algorithm<model_type,2,2>algo(process);
 	algo.load();
 	algo.construct();
-	ps_generator<model_type,2,2>* psgen=ps_gen::create_instance(algo.get_tree_iterator(),new init_state(Ecm,Ecm));
+	ps_generator<model_type,2,2>* psgen=factory_type::create_generator(algo.get_tree_iterator());
 	psgen->generate();
 	algo.sum_spin(2);
 	algo.sum_spin(3);
@@ -242,8 +241,7 @@ int main()
 
     {
 	typedef QEDPbdh model_type;
-	typedef rambo<model_type,2,3,std::random> ps_gen;
-	typedef partonic_is<model_type,2> init_state;
+	typedef uniform_ps_generator_factory<model_type,2,3,std::random> factory_type;
 	
 	std::string process("e+,e- > e+,e-,gamma");
 	std::cerr<<"Checking partial helicity summation in QED for "<<process<<"..........";
@@ -251,7 +249,7 @@ int main()
 	CM_algorithm<model_type,2,3>algo(process);
 	algo.load();
 	algo.construct();
-	ps_generator<model_type,2,3>* psgen=ps_gen::create_instance(algo.get_tree_iterator(),new init_state(Ecm,Ecm));
+	ps_generator<model_type,2,3>* psgen=factory_type::create_generator(algo.get_tree_iterator());
 	psgen->generate();
 	algo.sum_spin(2);
 	algo.sum_spin(3);
@@ -280,8 +278,7 @@ int main()
 
     {
 	typedef QEDPbdh model_type;
-	typedef rambo<model_type,2,4,std::random> ps_gen;
-	typedef partonic_is<model_type,2> init_state;
+	typedef uniform_ps_generator_factory<model_type,2,4,std::random> factory_type;
 	
 	std::string process("e+,e- > e+,e-,gamma,gamma");
 	std::cerr<<"Checking partial helicity summation in QED for "<<process<<"..........";
@@ -289,7 +286,7 @@ int main()
 	CM_algorithm<model_type,2,4>algo(process);
 	algo.load();
 	algo.construct();
-	ps_generator<model_type,2,4>* psgen=ps_gen::create_instance(algo.get_tree_iterator(),new init_state(Ecm,Ecm));
+	ps_generator<model_type,2,4>* psgen=factory_type::create_generator(algo.get_tree_iterator());
 	psgen->generate();
 	algo.sum_spin(0);
 	algo.sum_spin(1);
@@ -334,8 +331,7 @@ int main()
     {
 	typedef QEDPbdh model_type;
 	typedef QEDPbch model_type2;
-	typedef rambo<model_type,2,2,std::random> ps_gen;
-	typedef partonic_is<model_type,2> init_state;
+	typedef uniform_ps_generator_factory<model_type,2,2,std::random> factory_type;
 	
 	std::string process("e+,e- > e+,e-");
 	std::string filename("plots/helMC1");
@@ -343,15 +339,15 @@ int main()
 	CM_algorithm<model_type,2,2>algo(process);
 	algo.load();
 	algo.construct();
-	ps_generator<model_type,2,2>* psgen=ps_gen::create_instance(algo.get_tree_iterator(),new init_state(Ecm,Ecm));
+	ps_generator<model_type,2,2>* psgen=factory_type::create_generator(algo.get_tree_iterator());
 	psgen->generate();
 	CM_algorithm<model_type2,2,2>algo2(process);
 	algo2.load();
 	algo2.construct();
 	copy_momenta<model_type,model_type2,2,2>(algo.get_tree_iterator(),algo2.get_tree_iterator());
 	value_type summed_result=algo.evaluate_spin_sum();
-	uniform_helicities<value_type,2,2,std::random,false>* helgen1=uniform_helicities<value_type,2,2,std::random,false>::create_instance<model_type>(algo.get_tree_iterator());
-	uniform_helicities<value_type,2,2,std::random,true>* helgen2=uniform_helicities<value_type,2,2,std::random,true>::create_instance<model_type2>(algo2.get_tree_iterator());
+	MC_integrator<value_type>* helgen1=new MC_generator_wrapper<value_type>(uniform_helicities<value_type,2,2,std::random,false>::create_instance<model_type>(algo.get_tree_iterator()));
+	MC_integrator<value_type>* helgen2=new MC_generator_wrapper<value_type>(uniform_helicities<value_type,2,2,std::random,true>::create_instance<model_type2>(algo2.get_tree_iterator()));
 	value_type n,x1,y1,x2,y2;
 	data_wrapper* data=have_gp?(new data_wrapper(&n,&x1,&y1)):(new data_wrapper(filename+".dat",&n,&x1,&y1));
 	data->add_leaf(&x2);
@@ -399,8 +395,7 @@ int main()
     {
 	typedef QEDPbdh model_type;
 	typedef QEDPbch model_type2;
-	typedef rambo<model_type,2,3,std::random> ps_gen;
-	typedef partonic_is<model_type,2> init_state;
+	typedef uniform_ps_generator_factory<model_type,2,3,std::random> factory_type;
 	
 	std::string process("e+,e- > e+,e-,gamma");
 	std::string filename("plots/helMC2");
@@ -408,15 +403,15 @@ int main()
 	CM_algorithm<model_type,2,3>algo(process);
 	algo.load();
 	algo.construct();
-	ps_generator<model_type,2,3>* psgen=ps_gen::create_instance(algo.get_tree_iterator(),new init_state(Ecm,Ecm));
+	ps_generator<model_type,2,3>* psgen=factory_type::create_generator(algo.get_tree_iterator());
 	psgen->generate();
 	CM_algorithm<model_type2,2,3>algo2(process);
 	algo2.load();
 	algo2.construct();
 	copy_momenta<model_type,model_type2,2,3>(algo.get_tree_iterator(),algo2.get_tree_iterator());
 	value_type summed_result=algo.evaluate_spin_sum();
-	uniform_helicities<value_type,2,3,std::random,false>* helgen1=uniform_helicities<value_type,2,3,std::random,false>::create_instance<model_type>(algo.get_tree_iterator());
-	uniform_helicities<value_type,2,3,std::random,true>* helgen2=uniform_helicities<value_type,2,3,std::random,true>::create_instance<model_type2>(algo2.get_tree_iterator());
+	MC_integrator<value_type>* helgen1=new MC_generator_wrapper<value_type>(uniform_helicities<value_type,2,3,std::random,false>::create_instance<model_type>(algo.get_tree_iterator()));
+	MC_integrator<value_type>* helgen2=new MC_generator_wrapper<value_type>(uniform_helicities<value_type,2,3,std::random,true>::create_instance<model_type2>(algo2.get_tree_iterator()));
 	value_type n,x1,y1,x2,y2;
 	data_wrapper* data=have_gp?(new data_wrapper(&n,&x1,&y1)):(new data_wrapper(filename+".dat",&n,&x1,&y1));
 	data->add_leaf(&x2);
@@ -464,8 +459,7 @@ int main()
     {
 	typedef QEDPbdh model_type;
 	typedef QEDPbch model_type2;
-	typedef rambo<model_type,2,4,std::random> ps_gen;
-	typedef partonic_is<model_type,2> init_state;
+	typedef uniform_ps_generator_factory<model_type,2,4,std::random> factory_type;
 	
 	std::string process("e+,e- > e+,e-,gamma,gamma");
 	std::string filename("plots/helMC3");
@@ -473,15 +467,15 @@ int main()
 	CM_algorithm<model_type,2,4>algo(process);
 	algo.load();
 	algo.construct();
-	ps_generator<model_type,2,4>* psgen=ps_gen::create_instance(algo.get_tree_iterator(),new init_state(Ecm,Ecm));
+	ps_generator<model_type,2,4>* psgen=factory_type::create_generator(algo.get_tree_iterator());
 	psgen->generate();
 	CM_algorithm<model_type2,2,4>algo2(process);
 	algo2.load();
 	algo2.construct();
 	copy_momenta<model_type,model_type2,2,4>(algo.get_tree_iterator(),algo2.get_tree_iterator());
 	value_type summed_result=algo.evaluate_spin_sum();
-	uniform_helicities<value_type,2,4,std::random,false>* helgen1=uniform_helicities<value_type,2,4,std::random,false>::create_instance<model_type>(algo.get_tree_iterator());
-	uniform_helicities<value_type,2,4,std::random,true>* helgen2=uniform_helicities<value_type,2,4,std::random,true>::create_instance<model_type2>(algo2.get_tree_iterator());
+	MC_integrator<value_type>* helgen1=new MC_generator_wrapper<value_type>(uniform_helicities<value_type,2,4,std::random,false>::create_instance<model_type>(algo.get_tree_iterator()));
+	MC_integrator<value_type>* helgen2=new MC_generator_wrapper<value_type>(uniform_helicities<value_type,2,4,std::random,true>::create_instance<model_type2>(algo2.get_tree_iterator()));
 	value_type n,x1,y1,x2,y2;
 	data_wrapper* data=have_gp?(new data_wrapper(&n,&x1,&y1)):(new data_wrapper(filename+".dat",&n,&x1,&y1));
 	data->add_leaf(&x2);

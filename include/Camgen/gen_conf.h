@@ -19,7 +19,6 @@
  *                                                                         *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#include <Camgen/MC_config.h>
 #include <Camgen/ps_cut.h>
 #include <Camgen/ps_gen_base.h>
 #include <Camgen/scale_expr.h>
@@ -37,16 +36,11 @@ namespace Camgen
 	    typedef typename momentum_type::value_type value_type;
 	    typedef typename momentum_type::size_type size_type;
 	    typedef typename ps_generator_viewer<model_t>::spacetime_type spacetime_type;
-	    typedef helicity_generators::type helicity_generator_tag;
-	    typedef colour_generators::type colour_generator_tag;
-	    typedef initial_states::type initial_state_tag;
-	    typedef phase_space_generators::type ps_generator_tag;
 
 	    generator_configuration(){}
 
 	    virtual void configure()=0;
     };
-
 }
 
 #endif /*CAMGEN_GEN_CONF_H_*/

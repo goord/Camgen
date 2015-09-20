@@ -1,0 +1,13 @@
+-------------------------------------------------------------------------
+testing adaptive integration algorithm...................................
+-------------------------------------------------------------------------
+Checking 1D parni on Cauchy distribution centered at 5 with width 0.75 within [0,10].....................done, file plots/parni1D_Cauchy.eps written.
+Checking 1D parni 1/(x(1-x)) within [0.1,0.9].....................done, file plots/parni1D_beta11.eps written.
+Checking 1D parni cos(x)^2*exp(-x^2/8) within [-6.28319,6.28319].....................done, file plots/parni1D_cosgauss.eps written.
+Checking power-law(1D parni) on (x-1)e^{-x} within [1,5].....................done, file plots/parni1Dpl.eps written.
+Checking Breit-Wigner(1D parni) on x/((x-2)^2+0.1*x) within [0,4].....................done, file plots/parni1DBW.eps written.
+Checking 1D parni subgrid on Cauchy centered at 5 with width 0.75 within [1,5].....................done, file plots/subparni1D_Cauchy.eps written.
+Checking power-law(1D parni) on -x*exp(-x^2) within [-2,-0.25].....................done, file plots/parni1Dplsub.eps written.
+Checking 2D parni on 2D Gauss with sigma 0.5 within [-1,1] x [-1,1].....................done, file plots/parni2D_Gauss.eps written.
+Checking 2D parni on double cos^2 within [-3.14159,3.14159] x [-3.14159,3.14159]....................done, file plots/parni2D_cos2.eps written.
+Checking 2D parni on 2D Cauchy with radius 0.5 and width 0.1 within D(0,1).....................done, file plots/parni2D_Cauchy.eps written.

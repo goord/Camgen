@@ -6,23 +6,32 @@
 //
 
 /*! \file evt_gen.h
-    \brief Multi-process event generator class.
+    \brief Multi-process Monte Carlo event generator class template.
  */
 
 #ifndef CAMGEN_EVT_GEN_H_
 #define CAMGEN_EVT_GEN_H_
 
-#include <Camgen/MC_config.h>
 #include <Camgen/proc_gen.h>
 
 namespace Camgen
 {
-    template<class model_t,std::size_t N_in,std::size_t N_out,class rng_t>class event_generator: public MC_generator<typename model_t::value_type>,
+    /* Forward declaration of process generator factory base: */
+
+    template<class model_t,std::size_t N_in,std::size_t N_out,class rng_t>class event_generator_factory_base;
+
+    /// Multi-process matrix-element Monte Carlo event generator class.
+    
+    template<class model_t,std::size_t N_in,std::size_t N_out,class rng_t>class event_generator: public MC_integrator<typename model_t::value_type>,
     												 public ps_generator_base<model_t>,
 												 public phase_space_cut,
 												 public scale_expression<typename model_t::value_type>
     {
-	typedef MC_generator<typename model_t::value_type> base_type;
+	/* Forward declaration of process generator factory base: */
+
+    	friend class event_generator_factory_base<model_t,N_in,N_out,rng_t>;
+
+	typedef MC_integrator<typename model_t::value_type> base_type;
 
 	public:
 
@@ -33,8 +42,8 @@ namespace Camgen
 	    typedef typename get_spacetime_type<model_t>::type spacetime_type;
 	    typedef vector<value_type,spacetime_type::dimension> momentum_type;
 	    typedef typename momentum_type::size_type size_type;
-	    typedef rng_t rn_engine;
-	    typedef random_number_stream<value_type,rng_t> rn_stream;
+	    typedef rng_t random_number_generator_type;
+	    typedef random_number_stream<value_type,rng_t> random_number_generator;
 	    typedef typename CM_algorithm<model_t,N_in,N_out>::tree_iterator CM_tree_iterator;
 	    typedef process_generator<model_t,N_in,N_out,rng_t> process_generator_type;
 	    typedef std::vector<process_generator_type*> process_container;
@@ -77,250 +86,45 @@ namespace Camgen
 		return proc1->alpha>proc2->alpha;
 	    }
 
-	    /// Creates an event generator from a CM algorithm and an input
-	    /// stream.
-	    
-	    static event_generator<model_t,N_in,N_out,rng_t>* read(CM_algorithm<model_t,N_in,N_out>& algo,std::istream& is)
+	    /// Throws a random value between min and max.
+
+	    static value_type throw_number(const value_type& min,const value_type& max)
 	    {
-		if(algo.n_trees()==0)
-		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"event generator requested for empty process list--NULL returned"<<endlog;
-		    return NULL;
-		}
-		event_generator<model_t,N_in,N_out,rng_t>* result=new event_generator<model_t,N_in,N_out,rng_t>(algo,false);
-		std::string line;
-		while(line!="<evtgen>" and !is.eof())
-		{
-		    std::getline(is,line);
-		}
-		if(is.eof())
-		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"end of file reached before event generator flag was read"<<endlog;
-		    return NULL;
-		}
-		result->load(is);
-		while(line!="<procgen>" and !is.eof())
-		{
-		    std::getline(is,line);
-		}
-		if(is.eof())
-		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"end of file reached before first process flag was read"<<endlog;
-		    return NULL;
-		}
-		process_generator_type* p;
-		while(line=="<procgen>" and !is.eof())
-		{
-		    p=process_generator_type::create_instance_noflags(algo,is,false);
-		    if(p!=NULL)
-		    {
-			result->procs.push_back(p);
-		    }
-		    while(line!="</procgen>" and !is.eof())
-		    {
-			std::getline(is,line);
-		    }
-		    std::getline(is,line);
-		}
-		std::sort(result->procs.begin(),result->procs.end(),alpha_more);
-		if(result->procs.size()!=0)
-		{
-		    result->sub_proc=result->procs.begin();
-		}
-		else
-		{
-		    result->sub_proc=result->procs.end();
-		}
-		return result;
+		return random_number_generator::throw_number(min,max);
 	    }
 
-	    /// Factory method reading a generator instance from the input
-	    /// file.
-	    
-	    static event_generator<model_t,N_in,N_out,rng_t>* read(CM_algorithm<model_t,N_in,N_out>& algo,const std::string& filename)
+	    /* Public data: */
+	    /*--------------*/
+
+	    /// Subprocess weight adaptivity.
+
+	    value_type process_adaptivity;
+
+	    /// Subprocess weight threshold.
+
+	    value_type process_threshold;
+
+	    /* Public modifying member functions */
+	    /*-----------------------------------*/
+
+	    /// Destructor.
+
+	    ~event_generator()
 	    {
-		std::ifstream ifs;
-		ifs.open(filename.c_str());
-		if(!ifs.is_open())
+		for(size_type i=0;i<procs.size();++i)
 		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"error opening input file "<<filename<<"--NULL returned"<<endlog;
-		    return NULL;
+		    delete procs[i];
 		}
-		return read(algo,ifs);
-	    }
-
-	    /// Creates an event generator from a CM algorithm and an input
-	    /// stream.
-	    
-	    static event_generator<model_t,N_in,N_out,rng_t>* read(CM_algorithm<model_t,N_in,N_out>& algo,generator_configuration<model_t>& settings,std::istream& is)
-	    {
-		if(algo.n_trees()==0)
-		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"event generator requested for empty process list--NULL returned"<<endlog;
-		    return NULL;
-		}
-		event_generator<model_t,N_in,N_out,rng_t>* result=new event_generator<model_t,N_in,N_out,rng_t>(algo,false);
-		std::string line;
-		while(line!="<evtgen>" and !is.eof())
-		{
-		    std::getline(is,line);
-		}
-		if(is.eof())
-		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"end of file reached before event generator flag was read"<<endlog;
-		    return NULL;
-		}
-		result->load(is);
-		while(line!="<procgen>" and !is.eof())
-		{
-		    std::getline(is,line);
-		}
-		if(is.eof())
-		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"end of file reached before first process flag was read"<<endlog;
-		    return NULL;
-		}
-		process_generator_type* p;
-		while(line=="<procgen>" and !is.eof())
-		{
-		    p=process_generator_type::create_instance_noflags(algo,is,false);
-		    if(p!=NULL)
-		    {
-			p->insert_cut(&settings);
-			p->insert_scale(&settings);
-			result->procs.push_back(p);
-		    }
-		    while(line!="</procgen>" and !is.eof())
-		    {
-			std::getline(is,line);
-		    }
-		    std::getline(is,line);
-		}
-		std::sort(result->procs.begin(),result->procs.end(),alpha_more);
-		if(result->procs.size()!=0)
-		{
-		    result->sub_proc=result->procs.begin();
-		}
-		else
-		{
-		    result->sub_proc=result->procs.end();
-		}
-		settings.lock_generator(result);
-		result->ps_cut=&settings;
-		result->scale=&settings;
-		return result;
-	    }
-
-	    /// Factory method reading a generator instance from the input
-	    /// stream and copying the cuts and scale expression from the
-	    /// settings.
-
-	    static event_generator<model_t,N_in,N_out,rng_t>* read(CM_algorithm<model_t,N_in,N_out>& algo,generator_configuration<model_t>& settings,const std::string& filename)
-	    {
-		std::ifstream ifs;
-		ifs.open(filename.c_str());
-		if(!ifs.is_open())
-		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"error opening input file "<<filename<<"--NULL returned"<<endlog;
-		    return NULL;
-		}
-		return read(algo,settings,ifs);
-	    }
-
-	    /* Public constructors: */
-	    /*----------------------*/
-
-	    /// Constructor from static configuration data.
-
-	    event_generator(CM_algorithm<model_t,N_in,N_out>& algo):algorithm(algo),update_counter(0),auto_update(false),auto_proc_adapt(0),ps_cut(NULL),scale(NULL),subproc_params(1,0)
-	    {
-		procs.reserve(algorithm.n_trees());
-		init();
-		for(sub_proc=procs.begin();sub_proc!=procs.end();++sub_proc)
-		{
-		    (*sub_proc)->configure();
-		}
-		if(auto_subprocess_adapt())
-		{
-		    set_auto_proc_adapt(auto_subprocess_batch());
-		}
-		subproc_params.first=subprocess_adaptivity();
-		subproc_params.second=subprocess_threshold();
-	    }
-
-	    /// Constructor from configuration data in the settings object.
-
-	    event_generator(CM_algorithm<model_t,N_in,N_out>& algo,generator_configuration<model_t>& settings):algorithm(algo),update_counter(0),auto_update(false),auto_proc_adapt(0),ps_cut(NULL),scale(NULL),subproc_params(1,0)
-	    {
-		procs.reserve(algorithm.n_trees());
-		init();
-		for(sub_proc=procs.begin();sub_proc!=procs.end();++sub_proc)
-		{
-		    settings.set_generator(*sub_proc);
-		    basic_cuts::clear();
-		    settings.configure();
-		    (*sub_proc)->configure();
-		    (*sub_proc)->insert_scale(&settings);
-		    (*sub_proc)->insert_cut(&settings);
-		}
-		sub_proc=procs.begin();
-		settings.lock_generator(this);
-		settings.configure();
-		if(auto_subprocess_adapt())
-		{
-		    set_auto_proc_adapt(auto_subprocess_batch());
-		}
-		subproc_params.first=subprocess_adaptivity();
-		subproc_params.second=subprocess_threshold();
 	    }
 
 	    /// Pre-initialisation method to obtain first subprocess cross
 	    /// section estimates, determining which subprocesses are relevant.
 
-	    void pre_initialise(bool verbose=false)
+	    void pre_initialise(size_type n_evts,bool verbose=false)
 	    {
 		for(sub_proc=procs.begin();sub_proc!=procs.end();++sub_proc)
 		{
-		    (*sub_proc)->pre_initialise(verbose);
-		}
-		this->refresh_cross_section();
-		adapt_processes();
-	    }
-
-	    /// Initialiser method using static configuration data.
-
-	    void initialise(bool verbose=false)
-	    {
-		for(sub_proc=procs.begin();sub_proc!=procs.end();++sub_proc)
-		{
-		    if(verbose)
-		    {
-			std::stringstream ss;
-			(*sub_proc)->print_process(ss);
-			std::cout<<std::endl<<"init subprocess "<<ss.str()<<std::endl;
-		    }
-		    (*sub_proc)->initialise(verbose);
-		    loop_process(subprocess_events(),verbose);
-		}
-		this->refresh_cross_section();
-		adapt_processes();
-	    }
-
-	    /// Initialiser method using generator settings data.
-
-	    void initialise(generator_configuration<model_t>& settings,bool verbose=false)
-	    {
-		for(sub_proc=procs.begin();sub_proc!=procs.end();++sub_proc)
-		{
-		    if(verbose)
-		    {
-			std::stringstream ss;
-			(*sub_proc)->print_process(ss);
-			std::cout<<std::endl<<"init subprocess "<<ss.str()<<std::endl;
-		    }
-		    settings.configure();
-		    (*sub_proc)->initialise(verbose);
-		    loop_process(subprocess_events(),verbose);
+		    (*sub_proc)->pre_initialise(n_evts,verbose);
 		}
 		this->refresh_cross_section();
 		adapt_processes();
@@ -344,19 +148,6 @@ namespace Camgen
 		this->refresh_cross_section();
 		adapt_processes();
 	    }
-
-	    /// Destructor.
-
-	    virtual ~event_generator()
-	    {
-		for(size_type i=0;i<procs.size();++i)
-		{
-		    delete procs[i];
-		}
-	    }
-
-	    /* Public modifying member functions */
-	    /*-----------------------------------*/
 
 	    /// Sets the i-th beam energy.
 
@@ -481,7 +272,7 @@ namespace Camgen
 		    this->weight()=(value_type)0;
 		    return false;
 		}
-		value_type rho=rn_stream::throw_number();
+		value_type rho=throw_number((value_type)0,(value_type)1);
 		sub_proc=procs.begin();
 		value_type r(0);
 		while(r<=rho and sub_proc!=procs.end())
@@ -510,7 +301,7 @@ namespace Camgen
 
 	    void generate_unweighted(bool verbose=false)
 	    {
-		value_type rho=rn_stream::throw_number(0,this->cross_section_sum().value);
+		value_type rho=throw_number(0,this->cross_section_sum().value);
 		sub_proc=procs.begin();
 		value_type r(0);
 		while(r<rho and sub_proc!=procs.end())
@@ -531,7 +322,7 @@ namespace Camgen
 		}
 	    }
 
-	    /* Generates new event according to the given strategy argument: */
+	    /// Generates new event according to the given strategy argument.
 
 	    bool next_event(int strategy)
 	    {
@@ -668,17 +459,16 @@ namespace Camgen
 
 	    void adapt_processes()
 	    {
-		value_type p=process_adaptivity();
 		value_type norm(0);
 		MC_integral<value_type>proc_xsec;
 		value_type sigma=cross_section_sum().value;
-		value_type q=process_threshold()*sigma/procs.size();
+		value_type q=process_threshold*sigma/procs.size();
 		for(process_iterator it=procs.begin();it!=procs.end();++it)
 		{
 		    proc_xsec=(*it)->cross_section();
 		    if((proc_xsec.value+proc_xsec.error)>q)
 		    {
-			(*it)->alpha=std::pow((*it)->cross_section().error,p);
+			(*it)->alpha=std::pow((*it)->cross_section().error,process_adaptivity);
 			norm+=(*it)->alpha;
 		    }
 		    else
@@ -1069,20 +859,6 @@ namespace Camgen
 		return procs.end();
 	    }
 
-	    /// Returns the subprocess weight adaptivity.
-
-	    value_type process_adaptivity() const
-	    {
-		return subproc_params.first;
-	    }
-
-	    /// Returns the subprocess weight threshold.
-
-	    value_type process_threshold() const
-	    {
-		return subproc_params.second;
-	    }
-
 	    /* Serialization: */
 	    /*----------------*/
 
@@ -1151,8 +927,8 @@ namespace Camgen
 		{
 		    os<<std::setw(30)<<std::left<<"auto-adapt batch size:"<<auto_proc_adapt<<std::endl;
 		}
-		os<<std::setw(30)<<std::left<<"process adaptivity:"<<subprocess_adaptivity()<<std::endl;
-		os<<std::setw(30)<<std::left<<"process xsec threshold:"<<subprocess_threshold()<<std::endl;
+		os<<std::setw(30)<<std::left<<"process adaptivity:"<<process_adaptivity<<std::endl;
+		os<<std::setw(30)<<std::left<<"process xsec threshold:"<<process_threshold<<std::endl;
 		os<<"..........................."<<std::endl;
 		os<<"Subprocess settings:	"<<std::endl;
 		os<<"..........................."<<std::endl;
@@ -1167,51 +943,15 @@ namespace Camgen
 		return os;
 	    }
 
-	    /// Overridden loading method.
-
-	    std::istream& load(std::istream& is)
-	    {
-		this->base_type::load(is);
-		is>>update_counter>>auto_update>>auto_proc_adapt>>subproc_params.first>>subproc_params.second;
-		return is;
-	    }
-
-	    /// Overridden saving method.
-
-	    std::ostream& save(std::ostream& os) const
-	    {
-		os<<"<evtgen>"<<std::endl;
-		this->base_type::save(os);
-		os<<update_counter<<"\t"<<auto_update<<"\t"<<auto_proc_adapt<<"\t"<<subproc_params.first<<"\t"<<subproc_params.second<<std::endl;
-		for(const_process_iterator it=procs.begin();it!=procs.end();++it)
-		{
-		    (*it)->save(os);
-		}
-		os<<"</evtgen>"<<std::endl;
-		return os;
-	    }
-
-	    /// Writes the object to the argument filename.
-
-	    bool write(const std::string& filename) const
-	    {
-		std::ofstream ofs;
-		ofs.open(filename.c_str());
-		if(!ofs.is_open())
-		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"error opening output file "<<filename<<endlog;
-		    return false;
-		}
-		save(ofs);
-		ofs.close();
-		return true;
-	    }
-
 	protected:
 
 	    /// Camgen algorithm instance.
 
 	    CM_algorithm<model_t,N_in,N_out>& algorithm;
+
+	    /// Constructor from static configuration data.
+
+	    event_generator(CM_algorithm<model_t,N_in,N_out>& algo):process_adaptivity(1),process_threshold(0),algorithm(algo),update_counter(0),auto_update(false),auto_proc_adapt(0),ps_cut(NULL),scale(NULL){}
 
 	private:
 
@@ -1243,65 +983,9 @@ namespace Camgen
 
 	    scale_expression<value_type>* scale;
 
-	    /* Subprocess adaptation parameters: */
-
-	    std::pair<value_type,value_type> subproc_params;
-
 	    /* Sum of subprocess cross sections: */
 
 	    mutable cross_section_type summed_xsec;
-
-	    /* Private constructor: */
-	    
-	    event_generator(CM_algorithm<model_t,N_in,N_out>& algo,bool alloc):algorithm(algo),update_counter(0),auto_update(false),auto_proc_adapt(0),ps_cut(NULL),scale(NULL),subproc_params(1,0)
-	    {
-		procs.reserve(algorithm.n_trees());
-		if(alloc)
-		{
-		    init();
-		}
-		else
-		{
-		    sub_proc=procs.end();
-		}
-	    }
-
-	    /* Constructor helper function: */
-
-	    void init()
-	    {
-		if(algorithm.reset_process())
-		{
-		    size_type id=0;
-		    do
-		    {
-			if(!algorithm.get_tree_iterator()->is_empty())
-			{
-			    procs.push_back(new process_generator_type(algorithm.get_tree_iterator(),id));
-			    ++id;
-			}
-		    }
-		    while(algorithm.next_process());
-		    if(procs.size()!=0)
-		    {
-			value_type alpha=(value_type)1/(value_type)procs.size();
-			for(size_type i=0;i<procs.size();++i)
-			{
-			    procs[i]->alpha=alpha;
-			}
-			sub_proc=procs.begin();
-		    }
-		    else
-		    {
-			sub_proc=procs.end();
-		    }
-		}
-		else
-		{
-		    procs.clear();
-		    sub_proc=procs.end();
-		}
-	    }
 
 	    /* Helper function for initialisation: */
 
@@ -1349,5 +1033,5 @@ namespace Camgen
     };
 }
 
-#endif /*CAMGEN_EVT_GEN_H_*/
+#endif /*CAMGEN_EVT_GEN_BASE_H_*/
 

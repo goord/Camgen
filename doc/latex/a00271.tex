@@ -1,82 +1,127 @@
-\hypertarget{a00271}{\section{Camgen\-:\-:helicity\-\_\-phases$<$ value\-\_\-t $>$ Class Template Reference}
-\label{a00271}\index{Camgen\-::helicity\-\_\-phases$<$ value\-\_\-t $>$@{Camgen\-::helicity\-\_\-phases$<$ value\-\_\-t $>$}}
-}
+\hypertarget{a00271}{}\section{Camgen\+:\+:helicity\+\_\+generator$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$ Class Template Reference}
+\label{a00271}\index{Camgen\+::helicity\+\_\+generator$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$@{Camgen\+::helicity\+\_\+generator$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$}}
 
 
-Continuous helicity data holder type.  
+Helicity generator base class specialization for discrete helicities.  
 
 
 
 
-{\ttfamily \#include $<$phase\-\_\-space.\-h$>$}
+{\ttfamily \#include $<$hel\+\_\+gen.\+h$>$}
 
+Inheritance diagram for Camgen\+:\+:helicity\+\_\+generator$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.372549cm]{a00271}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{a00271_a5f5f9351481028c0a7062da4e1319234}{\hyperlink{a00271_a5f5f9351481028c0a7062da4e1319234}{helicity\-\_\-phases} ()}\label{a00271_a5f5f9351481028c0a7062da4e1319234}
+\hypertarget{a00271_a225344dbb12c3e0ab9d20d94a7890809}{}virtual \hyperlink{a00271_a225344dbb12c3e0ab9d20d94a7890809}{$\sim$helicity\+\_\+generator} ()\label{a00271_a225344dbb12c3e0ab9d20d94a7890809}
 
-\begin{DoxyCompactList}\small\item\em Default constructor (constructs scalar state). \end{DoxyCompactList}\item 
-\hypertarget{a00271_a9b2e699f79b1e741958ff2a439017c13}{\hyperlink{a00271_a9b2e699f79b1e741958ff2a439017c13}{helicity\-\_\-phases} (int max\-\_\-hel, bool massive=false)}\label{a00271_a9b2e699f79b1e741958ff2a439017c13}
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\hypertarget{a00271_af547f9bf6b087eb596ee75c730fc84d2}{}int \& \hyperlink{a00271_af547f9bf6b087eb596ee75c730fc84d2}{helicity} (size\+\_\+type i)\label{a00271_af547f9bf6b087eb596ee75c730fc84d2}
 
-\begin{DoxyCompactList}\small\item\em Constructor with maximal helicity max\-\_\-hel. \end{DoxyCompactList}\item 
-\hypertarget{a00271_a06604417c978a0035de8e49af206396e}{value\-\_\-type \& \hyperlink{a00271_a06604417c978a0035de8e49af206396e}{helicity\-\_\-phase} (int i)}\label{a00271_a06604417c978a0035de8e49af206396e}
+\begin{DoxyCompactList}\small\item\em Returns the reference to the helicity of the i-\/th particle. \end{DoxyCompactList}\item 
+\hypertarget{a00271_a9bbbbc353160c3c324dad288dc92ad67}{}const int \& \hyperlink{a00271_a9bbbbc353160c3c324dad288dc92ad67}{helicity} (size\+\_\+type i) const \label{a00271_a9bbbbc353160c3c324dad288dc92ad67}
 
-\begin{DoxyCompactList}\small\item\em Helicity phase access. \end{DoxyCompactList}\item 
-\hypertarget{a00271_a45714de482d1835e558d9b66b5edba61}{value\-\_\-type \& \hyperlink{a00271_a45714de482d1835e558d9b66b5edba61}{positive\-\_\-helicity\-\_\-phase} (int i)}\label{a00271_a45714de482d1835e558d9b66b5edba61}
+\begin{DoxyCompactList}\small\item\em Returns the const reference to the helicity of the i-\/th particle. \end{DoxyCompactList}\item 
+\hypertarget{a00271_a4d9caa3945423bff1cedb9e3f120ae0f}{}int \hyperlink{a00271_a4d9caa3945423bff1cedb9e3f120ae0f}{maximal\+\_\+helicity} (size\+\_\+type i) const \label{a00271_a4d9caa3945423bff1cedb9e3f120ae0f}
 
-\begin{DoxyCompactList}\small\item\em Positive helicity phase access. \end{DoxyCompactList}\item 
-\hypertarget{a00271_a53728fd2d71a048b384e06b2b9b8a5e7}{value\-\_\-type \& \hyperlink{a00271_a53728fd2d71a048b384e06b2b9b8a5e7}{negative\-\_\-helicity\-\_\-phase} (int i)}\label{a00271_a53728fd2d71a048b384e06b2b9b8a5e7}
+\begin{DoxyCompactList}\small\item\em Returns the maximal helicity of particle i. \end{DoxyCompactList}\item 
+\hypertarget{a00271_a553cc4fe3cdd3161718190684845edc7}{}bool \hyperlink{a00271_a553cc4fe3cdd3161718190684845edc7}{has\+\_\+zero\+\_\+helicity} (size\+\_\+type i) const \label{a00271_a553cc4fe3cdd3161718190684845edc7}
 
-\begin{DoxyCompactList}\small\item\em Negative helicity phase access. \end{DoxyCompactList}\item 
-\hypertarget{a00271_aa9365d9eca35c397b79e87bee4649ac2}{value\-\_\-type \& \hyperlink{a00271_aa9365d9eca35c397b79e87bee4649ac2}{zero\-\_\-helicity\-\_\-phase} ()}\label{a00271_aa9365d9eca35c397b79e87bee4649ac2}
+\begin{DoxyCompactList}\small\item\em Returns whether particle i has a zero helicity state. \end{DoxyCompactList}\item 
+\hypertarget{a00271_a47689b9dfa69a269bd103e9b2e5fd0ad}{}value\+\_\+type \hyperlink{a00271_a47689b9dfa69a269bd103e9b2e5fd0ad}{averaging\+\_\+factor} () const \label{a00271_a47689b9dfa69a269bd103e9b2e5fd0ad}
 
-\begin{DoxyCompactList}\small\item\em Zero helicity phase access. \end{DoxyCompactList}\item 
-\hypertarget{a00271_aaaf246643011e27d709381d8cbf15aed}{const value\-\_\-type \& \hyperlink{a00271_aaaf246643011e27d709381d8cbf15aed}{helicity\-\_\-phase} (int i) const }\label{a00271_aaaf246643011e27d709381d8cbf15aed}
+\begin{DoxyCompactList}\small\item\em Returns the initial-\/state helicity averaging factor for cross sections. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{a00271_ab8d236622fd171df60d0b733d1ae1720}{sum\+\_\+helicity} (int i) const 
+\begin{DoxyCompactList}\small\item\em Returns a spin summation flag for the i-\/th particle. \end{DoxyCompactList}\item 
+\hypertarget{a00271_a32fbc77c747b6af90230ea0f26123ccc}{}virtual std\+::string \hyperlink{a00271_a32fbc77c747b6af90230ea0f26123ccc}{type} () const =0\label{a00271_a32fbc77c747b6af90230ea0f26123ccc}
 
-\begin{DoxyCompactList}\small\item\em Const helicity phase access. \end{DoxyCompactList}\item 
-\hypertarget{a00271_a5e29c9516044c5482e057a0327da134f}{const value\-\_\-type \& \hyperlink{a00271_a5e29c9516044c5482e057a0327da134f}{positive\-\_\-helicity\-\_\-phase} (int i) const }\label{a00271_a5e29c9516044c5482e057a0327da134f}
-
-\begin{DoxyCompactList}\small\item\em Const positive helicity phase access. \end{DoxyCompactList}\item 
-\hypertarget{a00271_aa35fa9590cf61e931bb66260d7499a13}{const value\-\_\-type \& \hyperlink{a00271_aa35fa9590cf61e931bb66260d7499a13}{negative\-\_\-helicity\-\_\-phase} (int i) const }\label{a00271_aa35fa9590cf61e931bb66260d7499a13}
-
-\begin{DoxyCompactList}\small\item\em Const negative helicity phase access. \end{DoxyCompactList}\item 
-\hypertarget{a00271_aebd313e8a517e88ed886d97fc795c97e}{const value\-\_\-type \& \hyperlink{a00271_aebd313e8a517e88ed886d97fc795c97e}{zero\-\_\-helicity\-\_\-phase} () const }\label{a00271_aebd313e8a517e88ed886d97fc795c97e}
-
-\begin{DoxyCompactList}\small\item\em Const zero helicity phase access. \end{DoxyCompactList}\item 
-\hypertarget{a00271_a973c81eba8f08e6646a80f41ae0da6c8}{int \hyperlink{a00271_a973c81eba8f08e6646a80f41ae0da6c8}{max\-\_\-helicity} () const }\label{a00271_a973c81eba8f08e6646a80f41ae0da6c8}
-
-\begin{DoxyCompactList}\small\item\em Maximal helicity readout. \end{DoxyCompactList}\item 
-\hypertarget{a00271_a8dbf49ceb87326a0428fd97b72b6a321}{size\-\_\-type \hyperlink{a00271_a8dbf49ceb87326a0428fd97b72b6a321}{n\-\_\-helicities} () const }\label{a00271_a8dbf49ceb87326a0428fd97b72b6a321}
-
-\begin{DoxyCompactList}\small\item\em Nr. of helicity states. \end{DoxyCompactList}\item 
-\hypertarget{a00271_a17058c9650fd8be8a7f8296d13a16a17}{\hyperlink{a00271}{helicity\-\_\-phases}$<$ value\-\_\-t $>$ \& \hyperlink{a00271_a17058c9650fd8be8a7f8296d13a16a17}{set\-\_\-pure\-\_\-state} (int n)}\label{a00271_a17058c9650fd8be8a7f8296d13a16a17}
-
-\begin{DoxyCompactList}\small\item\em Sets the superposition to a pure helicity-\/n state. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Static Public Member Functions}
+\begin{DoxyCompactList}\small\item\em Polymorphic type identifier. \end{DoxyCompactList}\item 
+std\+::ostream \& \hyperlink{a00271_a55f9f3fdf26128fe54e9eec4ac4de750}{print} (std\+::ostream \&os=std\+::cout) const 
+\begin{DoxyCompactList}\small\item\em Prints the generated spin configuration to the argument streaming object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{a00271_a3b793e835178f97e46abe614c3511c53}{static \hyperlink{a00271}{helicity\-\_\-phases}$<$ value\-\_\-t $>$ \hyperlink{a00271_a3b793e835178f97e46abe614c3511c53}{create\-\_\-scalar} ()}\label{a00271_a3b793e835178f97e46abe614c3511c53}
-
-\begin{DoxyCompactList}\small\item\em Returns a scalar helicity holder. \end{DoxyCompactList}\item 
-\hypertarget{a00271_a4643d48b195159b06a0ca695a9f0ef9a}{static \hyperlink{a00271}{helicity\-\_\-phases}$<$ value\-\_\-t $>$ \hyperlink{a00271_a4643d48b195159b06a0ca695a9f0ef9a}{create\-\_\-massless} (int s)}\label{a00271_a4643d48b195159b06a0ca695a9f0ef9a}
-
-\begin{DoxyCompactList}\small\item\em Returns a massless spin-\/s helicity holder. \end{DoxyCompactList}\item 
-\hypertarget{a00271_aa4e25d80ab5d66f829d5150edf058e15}{static \hyperlink{a00271}{helicity\-\_\-phases}$<$ value\-\_\-t $>$ \hyperlink{a00271_aa4e25d80ab5d66f829d5150edf058e15}{create\-\_\-massive} (int s)}\label{a00271_aa4e25d80ab5d66f829d5150edf058e15}
-
-\begin{DoxyCompactList}\small\item\em Returns a massive spin-\/s helicity holder. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Public Attributes}
+\hyperlink{a00271_a7a9e24ee4ac64da2657523792729c8b1}{helicity\+\_\+generator} (const \hyperlink{a00579}{vector}$<$ int $\ast$, N\+\_\+tot $>$ \&hels\+\_\+, const \hyperlink{a00579}{vector}$<$ int, N\+\_\+tot $>$ \&max\+\_\+hels\+\_\+, std\+::bitset$<$ N\+\_\+tot $>$ zero\+\_\+hels\+\_\+)
+\begin{DoxyCompactList}\small\item\em Non-\/allocating constructor. \end{DoxyCompactList}\item 
+\hyperlink{a00271_a88704ef647b316ee8b893df31b64035a}{helicity\+\_\+generator} (const \hyperlink{a00579}{vector}$<$ int, N\+\_\+tot $>$ \&max\+\_\+hels\+\_\+, std\+::bitset$<$ N\+\_\+tot $>$ zero\+\_\+hels\+\_\+)
+\begin{DoxyCompactList}\small\item\em Allocating constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{a00271_a9000d212d7d943c73228bcc6ac2ccdce}{const bool \hyperlink{a00271_a9000d212d7d943c73228bcc6ac2ccdce}{zero\-\_\-helicity\-\_\-state}}\label{a00271_a9000d212d7d943c73228bcc6ac2ccdce}
+\hypertarget{a00271_aabfd768deccb37d34c66bd67ab6e6b5b}{}value\+\_\+type \hyperlink{a00271_aabfd768deccb37d34c66bd67ab6e6b5b}{prefactor}\label{a00271_aabfd768deccb37d34c66bd67ab6e6b5b}
 
-\begin{DoxyCompactList}\small\item\em Flag denoting whether we have a zero helicity phase. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Spin-\/averaging prefactor. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-\subsubsection*{template$<$class value\-\_\-t$>$class Camgen\-::helicity\-\_\-phases$<$ value\-\_\-t $>$}
+\subsubsection*{template$<$class value\+\_\+t, std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out$>$class Camgen\+::helicity\+\_\+generator$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$}
 
-Continuous helicity data holder type. 
+Helicity generator base class specialization for discrete helicities. 
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+A derived class should provide an implementation of the \hyperlink{a00366_a197b7bb66d8de5f6de401f81bea71e6c}{generate()} and (optionally) \hyperlink{a00366_a0eb3cb6ba8fb5a5c29817e12fbb1519c}{evaluate\+\_\+weight()} member functions and have constructor which takes two arrays of numbers or a \hyperlink{a00439}{process\+\_\+tree} list iterator as arguments. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00271_a7a9e24ee4ac64da2657523792729c8b1}{}\index{Camgen\+::helicity\+\_\+generator$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$@{Camgen\+::helicity\+\_\+generator$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$}!helicity\+\_\+generator@{helicity\+\_\+generator}}
+\index{helicity\+\_\+generator@{helicity\+\_\+generator}!Camgen\+::helicity\+\_\+generator$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$@{Camgen\+::helicity\+\_\+generator$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$}}
+\subsubsection[{helicity\+\_\+generator}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\+\_\+t , std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out$>$ {\bf Camgen\+::helicity\+\_\+generator}$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$\+::{\bf helicity\+\_\+generator} (
+\begin{DoxyParamCaption}
+\item[{const {\bf vector}$<$ int $\ast$, N\+\_\+tot $>$ \&}]{hels\+\_\+, }
+\item[{const {\bf vector}$<$ int, N\+\_\+tot $>$ \&}]{max\+\_\+hels\+\_\+, }
+\item[{std\+::bitset$<$ N\+\_\+tot $>$}]{zero\+\_\+hels\+\_\+}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}\label{a00271_a7a9e24ee4ac64da2657523792729c8b1}
+
+
+Non-\/allocating constructor. 
+
+The first arguments is a vector of integer addresses to store the helicity configuration in. The second argument is a vector of maximal helicity values of all external particles. The third argument is a bitset determining whether the particles contain a zero-\/helicity state. \hypertarget{a00271_a88704ef647b316ee8b893df31b64035a}{}\index{Camgen\+::helicity\+\_\+generator$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$@{Camgen\+::helicity\+\_\+generator$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$}!helicity\+\_\+generator@{helicity\+\_\+generator}}
+\index{helicity\+\_\+generator@{helicity\+\_\+generator}!Camgen\+::helicity\+\_\+generator$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$@{Camgen\+::helicity\+\_\+generator$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$}}
+\subsubsection[{helicity\+\_\+generator}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\+\_\+t , std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out$>$ {\bf Camgen\+::helicity\+\_\+generator}$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$\+::{\bf helicity\+\_\+generator} (
+\begin{DoxyParamCaption}
+\item[{const {\bf vector}$<$ int, N\+\_\+tot $>$ \&}]{max\+\_\+hels\+\_\+, }
+\item[{std\+::bitset$<$ N\+\_\+tot $>$}]{zero\+\_\+hels\+\_\+}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}\label{a00271_a88704ef647b316ee8b893df31b64035a}
+
+
+Allocating constructor. 
+
+The first argument is a vector of maximal helicity values of all external particles. The second argument is a bitset determining whether the particles contain a zero-\/helicity state. 
+
+\subsection{Member Function Documentation}
+\hypertarget{a00271_a55f9f3fdf26128fe54e9eec4ac4de750}{}\index{Camgen\+::helicity\+\_\+generator$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$@{Camgen\+::helicity\+\_\+generator$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$}!print@{print}}
+\index{print@{print}!Camgen\+::helicity\+\_\+generator$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$@{Camgen\+::helicity\+\_\+generator$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$}}
+\subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\+\_\+t , std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out$>$ std\+::ostream\& {\bf Camgen\+::helicity\+\_\+generator}$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$\+::print (
+\begin{DoxyParamCaption}
+\item[{std\+::ostream \&}]{os = {\ttfamily std\+:\+:cout}}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{a00271_a55f9f3fdf26128fe54e9eec4ac4de750}
+
+
+Prints the generated spin configuration to the argument streaming object. 
+
+\hypertarget{a00271_ab8d236622fd171df60d0b733d1ae1720}{}\index{Camgen\+::helicity\+\_\+generator$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$@{Camgen\+::helicity\+\_\+generator$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$}!sum\+\_\+helicity@{sum\+\_\+helicity}}
+\index{sum\+\_\+helicity@{sum\+\_\+helicity}!Camgen\+::helicity\+\_\+generator$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$@{Camgen\+::helicity\+\_\+generator$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$}}
+\subsubsection[{sum\+\_\+helicity}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\+\_\+t , std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out$>$ virtual bool {\bf Camgen\+::helicity\+\_\+generator}$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$\+::sum\+\_\+helicity (
+\begin{DoxyParamCaption}
+\item[{int}]{i}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{a00271_ab8d236622fd171df60d0b733d1ae1720}
+
+
+Returns a spin summation flag for the i-\/th particle. 
+
+If true, the process/event generator classes will sum over the corresponding helicity when computing the matrix element. Returns false by default. 
+
+Reimplemented in \hyperlink{a00280_a919700d1b7e3d0fb241ec68ce89c234f}{Camgen\+::helicity\+\_\+summer$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/\-Camgen/\hyperlink{a00694}{phase\-\_\-space.\-h}\end{DoxyCompactItemize}
+include/\+Camgen/\hyperlink{a00659}{hel\+\_\+gen.\+h}\end{DoxyCompactItemize}

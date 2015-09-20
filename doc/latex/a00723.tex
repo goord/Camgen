@@ -1,61 +1,23 @@
-\hypertarget{a00723}{
-\section{include/Camorra/ps\_\-copy.h File Reference}
-\label{a00723}\index{include/Camorra/ps\_\-copy.h@{include/Camorra/ps\_\-copy.h}}
-}
+\hypertarget{a00723}{}\section{include/\+Camgen/plt\+\_\+script.h File Reference}
+\label{a00723}\index{include/\+Camgen/plt\+\_\+script.\+h@{include/\+Camgen/plt\+\_\+script.\+h}}
 
 
-Classes to copy phase space variables between different CM\_\-algorithm instances.  
+gnuplot-\/script producing class.  
 
 
-{\ttfamily \#include $<$Camorra/CM\_\-algorithm.h$>$}\par
+{\ttfamily \#include $<$string$>$}\\*
+{\ttfamily \#include $<$fstream$>$}\\*
+{\ttfamily \#include $<$vector$>$}\\*
+{\ttfamily \#include $<$map$>$}\\*
+{\ttfamily \#include $<$Camgen/plt\+\_\+obj.\+h$>$}\\*
+{\ttfamily \#include $<$Camgen/plt\+\_\+strm.\+h$>$}\\*
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{a00372}{Camorra::momentum\_\-copy$<$ model\_\-t1, model\_\-t2, D1, D2 $>$}
-\item 
-class \hyperlink{a00373}{Camorra::momentum\_\-copy$<$ model\_\-t1, model\_\-t2, D, D $>$}
-\item 
-class \hyperlink{a00248}{Camorra::helicity\_\-copy$<$ model\_\-t1, model\_\-t2, q1, q2 $>$}
-\item 
-class \hyperlink{a00249}{Camorra::helicity\_\-copy$<$ model\_\-t1, model\_\-t2, false, false $>$}
-\item 
-class \hyperlink{a00250}{Camorra::helicity\_\-copy$<$ model\_\-t1, model\_\-t2, false, true $>$}
-\item 
-class \hyperlink{a00251}{Camorra::helicity\_\-copy$<$ model\_\-t1, model\_\-t2, true, true $>$}
-\item 
-class \hyperlink{a00070}{Camorra::colour\_\-copy\_\-helper$<$ model\_\-t1, model\_\-t2, q1, q2 $>$}
-\item 
-class \hyperlink{a00071}{Camorra::colour\_\-copy\_\-helper$<$ model\_\-t1, model\_\-t2, false, false $>$}
-\item 
-class \hyperlink{a00073}{Camorra::colour\_\-copy\_\-helper$<$ model\_\-t1, model\_\-t2, true, true $>$}
-\item 
-class \hyperlink{a00072}{Camorra::colour\_\-copy\_\-helper$<$ model\_\-t1, model\_\-t2, false, true $>$}
-\item 
-class \hyperlink{a00068}{Camorra::colour\_\-copy$<$ model\_\-t1, model\_\-t2, false $>$}
-\item 
-class \hyperlink{a00069}{Camorra::colour\_\-copy$<$ model\_\-t1, model\_\-t2, true $>$}
-\item 
-class \hyperlink{a00405}{Camorra::phase\_\-space\_\-copy$<$ model\_\-t1, model\_\-t2 $>$}
-\end{DoxyCompactItemize}
-\subsection*{Functions}
-\begin{DoxyCompactItemize}
-\item 
-\hypertarget{a00825_a979334a179f3e239cd7b3e9403bbf35a}{
-{\footnotesize template$<$class model\_\-t1 , class model\_\-t2 , std::size\_\-t N\_\-in, std::size\_\-t N\_\-out$>$ }\\void \hyperlink{a00825_a979334a179f3e239cd7b3e9403bbf35a}{Camorra::copy\_\-momenta} (typename CM\_\-algorithm$<$ model\_\-t1, N\_\-in, N\_\-out $>$::const\_\-tree\_\-iterator it1, typename CM\_\-algorithm$<$ model\_\-t2, N\_\-in, N\_\-out $>$::tree\_\-iterator it2)}
-\label{a00825_a979334a179f3e239cd7b3e9403bbf35a}
-
-\begin{DoxyCompactList}\small\item\em Function copying momenta from CM tree iterator it1 to it2. \end{DoxyCompactList}\item 
-\hypertarget{a00825_addebe2e16404cc760d50e370b86b800b}{
-{\footnotesize template$<$class model\_\-t1 , class model\_\-t2 , std::size\_\-t N\_\-in, std::size\_\-t N\_\-out$>$ }\\void \hyperlink{a00825_addebe2e16404cc760d50e370b86b800b}{Camorra::copy\_\-helicities} (typename CM\_\-algorithm$<$ model\_\-t1, N\_\-in, N\_\-out $>$::const\_\-tree\_\-iterator it1, typename CM\_\-algorithm$<$ model\_\-t2, N\_\-in, N\_\-out $>$::tree\_\-iterator it2)}
-\label{a00825_addebe2e16404cc760d50e370b86b800b}
-
-\begin{DoxyCompactList}\small\item\em Function copying helicities from CM tree iterator it1 to it2. \end{DoxyCompactList}\item 
-\hypertarget{a00825_a82d76ae94657c4c7797850f09d1ce67f}{
-{\footnotesize template$<$class model\_\-t1 , class model\_\-t2 , std::size\_\-t N\_\-in, std::size\_\-t N\_\-out$>$ }\\void \hyperlink{a00825_a82d76ae94657c4c7797850f09d1ce67f}{Camorra::copy\_\-colours} (typename CM\_\-algorithm$<$ model\_\-t1, N\_\-in, N\_\-out $>$::const\_\-tree\_\-iterator it1, typename CM\_\-algorithm$<$ model\_\-t2, N\_\-in, N\_\-out $>$::tree\_\-iterator it2)}
-\label{a00825_a82d76ae94657c4c7797850f09d1ce67f}
-
-\begin{DoxyCompactList}\small\item\em Function copying colours from CM tree iterator it1 to it2. \end{DoxyCompactList}\end{DoxyCompactItemize}
+class \hyperlink{a00431}{Camgen\+::plot\+\_\+script}
+\begin{DoxyCompactList}\small\item\em Gnuplot-\/scripting class. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Classes to copy phase space variables between different CM\_\-algorithm instances. 
+gnuplot-\/script producing class. 
+

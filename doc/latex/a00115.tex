@@ -1,8 +1,65 @@
-\hypertarget{a00115}{\section{Camgen\-:\-:colour\-\_\-tensor\-:\-:d$<$ adjoint\-\_\-rep$<$ S\-U$<$ N $>$ $>$, I, J $>$ Class Template Reference}
-\label{a00115}\index{Camgen\-::colour\-\_\-tensor\-::d$<$ adjoint\-\_\-rep$<$ S\-U$<$ N $>$ $>$, I, J $>$@{Camgen\-::colour\-\_\-tensor\-::d$<$ adjoint\-\_\-rep$<$ S\-U$<$ N $>$ $>$, I, J $>$}}
-}
+\hypertarget{a00115}{}\section{Camgen\+:\+:data\+\_\+stream Class Reference}
+\label{a00115}\index{Camgen\+::data\+\_\+stream@{Camgen\+::data\+\_\+stream}}
 
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+Plot command streaming class for data-\/plotting.  
+
+
+
+
+{\ttfamily \#include $<$plt\+\_\+strm.\+h$>$}
+
+Inheritance diagram for Camgen\+:\+:data\+\_\+stream\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{a00115}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
 \item 
-include/\-Camgen/d.\-h\end{DoxyCompactItemize}
+\hypertarget{a00115_ab75592c53569323eac9cf92b62ada9d2}{}\hyperlink{a00115_ab75592c53569323eac9cf92b62ada9d2}{data\+\_\+stream} (\hyperlink{a00116}{data\+\_\+wrapper} $\ast$)\label{a00115_ab75592c53569323eac9cf92b62ada9d2}
+
+\begin{DoxyCompactList}\small\item\em Constructor with data buffer. \end{DoxyCompactList}\item 
+\hypertarget{a00115_ac421009ddaaf089e6193c23747f93ed7}{}\hyperlink{a00115_ac421009ddaaf089e6193c23747f93ed7}{data\+\_\+stream} (\hyperlink{a00116}{data\+\_\+wrapper} $\ast$, const std\+::string \&)\label{a00115_ac421009ddaaf089e6193c23747f93ed7}
+
+\begin{DoxyCompactList}\small\item\em Constructor with data buffer and column string. \end{DoxyCompactList}\item 
+\hypertarget{a00115_aa76a5153380208b3a112689e20611a67}{}\hyperlink{a00115_aa76a5153380208b3a112689e20611a67}{data\+\_\+stream} (\hyperlink{a00116}{data\+\_\+wrapper} $\ast$, const std\+::string \&, const std\+::string \&)\label{a00115_aa76a5153380208b3a112689e20611a67}
+
+\begin{DoxyCompactList}\small\item\em Constructor with data buffer and 2 column strings. \end{DoxyCompactList}\item 
+\hypertarget{a00115_a8d83e622d90df4b96208dde7e49b52ad}{}\hyperlink{a00115_a8d83e622d90df4b96208dde7e49b52ad}{data\+\_\+stream} (\hyperlink{a00116}{data\+\_\+wrapper} $\ast$, const std\+::string \&, const std\+::string \&, const std\+::string \&)\label{a00115_a8d83e622d90df4b96208dde7e49b52ad}
+
+\begin{DoxyCompactList}\small\item\em Constructor with data buffer and 3 column strings. \end{DoxyCompactList}\item 
+\hypertarget{a00115_a1372f7f4582c3f38a39598da73ef10e3}{}\hyperlink{a00115_a1372f7f4582c3f38a39598da73ef10e3}{data\+\_\+stream} (const \hyperlink{a00115}{data\+\_\+stream} \&)\label{a00115_a1372f7f4582c3f38a39598da73ef10e3}
+
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\hypertarget{a00115_a9d0a6d6486e6435cc154ee864e769272}{}\hyperlink{a00115_a9d0a6d6486e6435cc154ee864e769272}{$\sim$data\+\_\+stream} ()\label{a00115_a9d0a6d6486e6435cc154ee864e769272}
+
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\hypertarget{a00115_ad2c77ea77b290ce3cc0290455960dad4}{}void \hyperlink{a00115_ad2c77ea77b290ce3cc0290455960dad4}{write} (std\+::ostream \&) const \label{a00115_ad2c77ea77b290ce3cc0290455960dad4}
+
+\begin{DoxyCompactList}\small\item\em Streams the gnuplot command. \end{DoxyCompactList}\item 
+\hypertarget{a00115_af05ed243a7f75a7a7362a7f09f343a41}{}\hyperlink{a00115}{data\+\_\+stream} $\ast$ \hyperlink{a00115_af05ed243a7f75a7a7362a7f09f343a41}{clone} () const \label{a00115_af05ed243a7f75a7a7362a7f09f343a41}
+
+\begin{DoxyCompactList}\small\item\em Clone method implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00115_aa1c1d0322045902c0813999b6716bc5f}{}const std\+::string \hyperlink{a00115_aa1c1d0322045902c0813999b6716bc5f}{command}\label{a00115_aa1c1d0322045902c0813999b6716bc5f}
+
+\begin{DoxyCompactList}\small\item\em Plot command. \end{DoxyCompactList}\item 
+\hypertarget{a00115_ae5d24d01b312a2cbfce93a0edbb5de83}{}std\+::string \hyperlink{a00115_ae5d24d01b312a2cbfce93a0edbb5de83}{title}\label{a00115_ae5d24d01b312a2cbfce93a0edbb5de83}
+
+\begin{DoxyCompactList}\small\item\em Title of the plotted variable. \end{DoxyCompactList}\item 
+\hypertarget{a00115_a879cb4f17927d1fe3fa384b9ce878237}{}std\+::string \hyperlink{a00115_a879cb4f17927d1fe3fa384b9ce878237}{style}\label{a00115_a879cb4f17927d1fe3fa384b9ce878237}
+
+\begin{DoxyCompactList}\small\item\em Gnuplot style of the plotted variable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Plot command streaming class for data-\/plotting. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Camgen/\hyperlink{a00724}{plt\+\_\+strm.\+h}\item 
+src/plt\+\_\+strm.\+cpp\end{DoxyCompactItemize}

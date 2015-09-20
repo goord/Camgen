@@ -15,9 +15,9 @@
 #include <bitset>
 #include <vector>
 #include <complex>
-#include <Camgen/unused.h>
 #include <Camgen/phase_space.h>
-#include <Camgen/MC_obj_gen.h>
+#include <Camgen/obj_alloc.h>
+#include <Camgen/MC_gen.h>
 #include <Camgen/summation.h>
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -40,18 +40,17 @@ namespace Camgen
     /// which takes two arrays of numbers or a process_tree list iterator as
     /// arguments.
 
-    template<class value_t,std::size_t N_in,std::size_t N_out>class helicity_generator<value_t,N_in,N_out,false>: public MC_object_generator<value_t,int,N_in+N_out,true>
+    template<class value_t,std::size_t N_in,std::size_t N_out>class helicity_generator<value_t,N_in,N_out,false>: public object_allocator<int>, public MC_generator<value_t>
     {
-	typedef MC_object_generator<value_t,int,N_in+N_out,true> base_type;
+	typedef object_allocator<int> base_type;
 
 	public:
 
 	    /* Useful type definitions: */
 
 	    typedef value_t value_type;
-	    typedef std::size_t size_type;
-	    typedef int object_type;
-	    typedef typename base_type::integral_type integral_type;
+	    typedef typename base_type::size_type size_type;
+	    typedef typename base_type::object_type object_type;
 
 	    /* Public static data: */
 	    /*---------------------*/
@@ -155,40 +154,6 @@ namespace Camgen
 
 	    virtual std::string type() const=0;
 
-	    /// Loads derived class data from input stream (empty by default).
-
-	    virtual std::istream& load_data(std::istream& is)
-	    {
-		return is;
-	    }
-
-	    /// Loads the helicity generator from input stream.
-
-	    std::istream& load(std::istream& is)
-	    {
-		this->base_type::load(is);
-		return load_data(is);
-	    }
-
-	    /// Writes derived class data to output stream (empty by default).
-
-	    std::ostream& save_data(std::ostream& os) const
-	    {
-		return os;
-	    }
-
-	    /// Writes the helicity generator to the output stream.
-
-	    std::ostream& save(std::ostream& os) const
-	    {
-		os<<"<helgen>"<<std::endl;
-		os<<type()<<std::endl;
-		this->base_type::save(os);
-		save_data(os);
-		os<<"</helgen>"<<std::endl;
-		return os;
-	    }
-
 	    /// Prints the generated spin configuration to the argument
 	    /// streaming object.
 
@@ -247,7 +212,7 @@ namespace Camgen
 	    /// external particles. The third argument is a bitset determining
 	    /// whether the particles contain a zero-helicity state.
 
-	    helicity_generator(const vector<int*,N_tot>& hels_,const vector<int,N_tot>& max_hels_,std::bitset<N_tot> zero_hels_):base_type(hels_),prefactor(1),zero_hels(zero_hels_)
+	    helicity_generator(const vector<int*,N_tot>& hels_,const vector<int,N_tot>& max_hels_,std::bitset<N_tot> zero_hels_):base_type(hels_.begin(),hels_.end()),prefactor(1),zero_hels(zero_hels_)
 	    {
 		for(size_type i=0;i<N_tot;++i)
 		{
@@ -268,7 +233,7 @@ namespace Camgen
 	    /// argument is a bitset determining whether the particles contain
 	    /// a zero-helicity state.
 
-	    helicity_generator(const vector<int,N_tot>& max_hels_,std::bitset<N_tot> zero_hels_):prefactor(1),zero_hels(zero_hels_)
+	    helicity_generator(const vector<int,N_tot>& max_hels_,std::bitset<N_tot> zero_hels_):base_type(N_tot),prefactor(1),zero_hels(zero_hels_)
 	    {
 		for(size_type i=0;i<N_tot;++i)
 		{
@@ -306,19 +271,18 @@ namespace Camgen
     /// which takes two arrays of numbers or a process_tree list iterator as
     /// arguments.
 
-    template<class value_t,std::size_t N_in,std::size_t N_out>class helicity_generator<value_t,N_in,N_out,true>: public MC_object_generator<value_t,helicity_phases<value_t>,N_in+N_out,true>
+    template<class value_t,std::size_t N_in,std::size_t N_out>class helicity_generator<value_t,N_in,N_out,true>: public object_allocator< helicity_phases<value_t> >, public MC_generator<value_t>
     {
-	typedef MC_object_generator<value_t,helicity_phases<value_t>,N_in+N_out,true> base_type;
+	typedef object_allocator< helicity_phases<value_t> > base_type;
 
 	public:
 
 	    /* Useful type definitions: */
 
 	    typedef value_t value_type;
-	    typedef std::complex<value_t> c_value_type;
-	    typedef std::size_t size_type;
+	    typedef typename base_type::size_type size_type;
 	    typedef typename base_type::object_type object_type;
-	    typedef typename base_type::integral_type integral_type;
+	    typedef typename std::complex<value_t> c_value_type;
 
 	    /* Public static data: */
 	    /*---------------------*/
@@ -356,21 +320,21 @@ namespace Camgen
 	    
 	    c_value_type& helicity_phase(size_type i,int l)
 	    {
-		return this->get_object(i)->helicity_phase(l);
+		return this->object(i).helicity_phase(l);
 	    }
 
 	    /// Returns a const reference to helicity phase l of particle i.
 	    
 	    const c_value_type& helicity_phase(size_type i,int l) const
 	    {
-		return this->get_object(i)->helicity_phase(l);
+		return this->object(i).helicity_phase(l);
 	    }
 
 	    /// Returns maximal helicity of particle i.
 
 	    int maximal_helicity(size_type i) const
 	    {
-		return this->get_object(i)->max_helicity();
+		return this->object(i).max_helicity();
 	    }
 
 	    /// Returns a boolean denoting whether particle i contains a zero
@@ -378,7 +342,7 @@ namespace Camgen
 
 	    bool has_zero_helicity(size_type i) const
 	    {
-		return this->get_object(i)->zero_helicity_state;
+		return this->object(i).zero_helicity_state;
 	    }
 
 	    /// Returns the initial-state helicity averaging factor for cross sections.
@@ -405,40 +369,6 @@ namespace Camgen
 
 	    virtual std::string type() const=0;
 
-	    /// Loads derived class data from input stream (empty by default).
-
-	    virtual std::istream& load_data(std::istream& is)
-	    {
-		return is;
-	    }
-
-	    /// Loads the helicity generator from input stream.
-
-	    std::istream& load(std::istream& is)
-	    {
-		this->base_type::load(is);
-		return load_data(is);
-	    }
-
-	    /// Writes derived class data to output stream (empty by default).
-
-	    std::ostream& save_data(std::ostream& os) const
-	    {
-		return os;
-	    }
-
-	    /// Writes the helicity generator to the output stream.
-
-	    std::ostream& save(std::ostream& os) const
-	    {
-		os<<"<helgen>"<<std::endl;
-		os<<type()<<std::endl;
-		this->base_type::save(os);
-		save_data(os);
-		os<<"</helgen>"<<std::endl;
-		return os;
-	    }
-
 	    /// Prints the generated spin configuration to the argument
 	    /// streaming object.
 
@@ -447,21 +377,21 @@ namespace Camgen
 		for(size_type i=0;i<N_in;++i)
 		{
 		    os<<"[";
-		    for(size_type l=0;l<this->get_object(i)->max_helicity();++l)
+		    for(size_type l=0;l<this->object(i).max_helicity();++l)
 		    {
-			os<<this->get_object(i)->negative_helicity_phase(l)<<",";
+			os<<this->object(i).negative_helicity_phase(l)<<",";
 		    }
-		    if(this->get_object(i)->zero_helicity_state)
+		    if(this->object(i).zero_helicity_state)
 		    {
-			os<<this->get_object(i)->zero_helicity_phase();
+			os<<this->object(i).zero_helicity_phase();
 		    }
 		    else
 		    {
 			os<<"0";
 		    }
-		    for(size_type l=0;l<this->get_object(i)->max_helicity();++l)
+		    for(size_type l=0;l<this->object(i).max_helicity();++l)
 		    {
-			os<<","<<this->get_object(i)->positive_helicity_phase(l);
+			os<<","<<this->object(i).positive_helicity_phase(l);
 		    }
 		    os<<"] ";
 		}
@@ -469,21 +399,21 @@ namespace Camgen
 		for(size_type i=N_in;i<N_tot;++i)
 		{
 		    os<<"[";
-		    for(size_type l=0;l<this->get_object(i)->max_helicity();++l)
+		    for(size_type l=0;l<this->object(i).max_helicity();++l)
 		    {
-			os<<this->get_object(i)->negative_helicity_phase(l)<<",";
+			os<<this->object(i).negative_helicity_phase(l)<<",";
 		    }
-		    if(this->get_object(i)->zero_helicity_state)
+		    if(this->object(i).zero_helicity_state)
 		    {
-			os<<this->get_object(i)->zero_helicity_phase();
+			os<<this->object(i).zero_helicity_phase();
 		    }
 		    else
 		    {
 			os<<"0";
 		    }
-		    for(size_type l=0;l<this->get_object(i)->max_helicity();++l)
+		    for(size_type l=0;l<this->object(i).max_helicity();++l)
 		    {
-			os<<","<<this->get_object(i)->positive_helicity_phase(l);
+			os<<","<<this->object(i).positive_helicity_phase(l);
 		    }
 		    os<<"] ";
 		}
@@ -506,11 +436,11 @@ namespace Camgen
 	    /// phases and the third argument the vector of negative-helicity
 	    /// phases.
 
-	    helicity_generator(const vector<helicity_phases<value_type>*,N_tot>& hels_):base_type(hels_),prefactor(1)
+	    helicity_generator(const vector<helicity_phases<value_type>*,N_tot>& hels_):base_type(hels_.begin(),hels_.end()),prefactor(1)
 	    {
 		for(size_type i=0;i<N_in;++i)
 		{
-		    prefactor/=(this->get_object(i)->n_helicities());
+		    prefactor/=(this->object(i).n_helicities());
 		}
 	    }
     };

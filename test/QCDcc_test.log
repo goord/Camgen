@@ -1,0 +1,49 @@
+----------------------------------------------------------
+testing QCD amplitudes with continuous colours............
+----------------------------------------------------------
+Checking gauge invariance for g,g > g,g...................done.
+Checking 4-gluon vertex in g,g > g,g...................done.
+Checking crossing symmetries for g,g > g,g...................done.
+Checking particle 1 as final current for g,g > g,g...................done.
+Checking particle 2 as final current for g,g > g,g...................done.
+Checking particle 3 as final current for g,g > g,g...................done.
+Checking colour-flow amplitudes for g,g > g,g...................done.
+Checking colour-flow 4-gluon vertex in g,g > g,g...................done.
+Checking gauge invariance for g,g > g,g,g...................done.
+Checking 4-gluon vertex in g,g > g,g,g...................done.
+Checking crossing symmetries for g,g > g,g,g...................done.
+Checking particle 1 as final current for g,g > g,g,g...................done.
+Checking particle 2 as final current for g,g > g,g,g...................done.
+Checking particle 3 as final current for g,g > g,g,g...................done.
+Checking particle 4 as final current for g,g > g,g,g...................done.
+Checking colour-flow amplitudes for g,g > g,g,g...................done.
+Checking colour-flow 4-gluon vertex in g,g > g,g,g...................done.
+Checking gauge invariance for g,g > g,g,g,g...................done.
+Checking 4-gluon vertex in g,g > g,g,g,g...................done.
+Checking crossing symmetries for g,g > g,g,g,g...................done.
+Checking particle 1 as final current for g,g > g,g,g,g...................done.
+Checking particle 2 as final current for g,g > g,g,g,g...................done.
+Checking particle 3 as final current for g,g > g,g,g,g...................done.
+Checking particle 4 as final current for g,g > g,g,g,g...................done.
+Checking particle 5 as final current for g,g > g,g,g,g...................done.
+Checking colour-flow amplitudes for g,g > g,g,g,g...................done.
+Checking colour-flow 4-gluon vertex in g,g > g,g,g,g...................done.
+Checking gauge invariance for u,ubar > u,ubar...................done.
+Checking particle 1 as final current for u,ubar > u,ubar...................done.
+Checking particle 2 as final current for u,ubar > u,ubar...................done.
+Checking particle 3 as final current for u,ubar > u,ubar...................done.
+Checking colour-flow amplitudes for u,ubar > u,ubar...................done.
+Checking gauge invariance for u,ubar > u,ubar,g...................done.
+Checking particle 1 as final current for u,ubar > u,ubar,g...................done.
+Checking particle 2 as final current for u,ubar > u,ubar,g...................done.
+Checking particle 3 as final current for u,ubar > u,ubar,g...................done.
+Checking particle 3 as final current for u,ubar > u,ubar,g...................done.
+Checking colour-flow amplitudes for u,ubar > u,ubar,g...................done.
+Checking gauge invariance for u,ubar > u,ubar,u,ubar...................done.
+Checking crossing symmetries for u,ubar > u,ubar,u,ubar...................done.
+Checking particle 1 as final current for u,ubar > u,ubar,u,ubar...................done.
+Checking particle 2 as final current for u,ubar > u,ubar,u,ubar...................done.
+Checking particle 3 as final current for u,ubar > u,ubar,u,ubar...................done.
+Checking particle 4 as final current for u,ubar > u,ubar,u,ubar...................done.
+Checking particle 5 as final current for u,ubar > u,ubar,u,ubar...................done.
+Checking colour-flow amplitudes for u,ubar > u,ubar,u,ubar...................done.

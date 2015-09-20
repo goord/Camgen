@@ -1,21 +1,28 @@
-\hypertarget{a00665}{
-\section{include/Camorra/LH\_\-interface.h File Reference}
-\label{a00665}\index{include/Camorra/LH\_\-interface.h@{include/Camorra/LH\_\-interface.h}}
-}
+\hypertarget{a00665}{}\section{include/\+Camgen/histogram.h File Reference}
+\label{a00665}\index{include/\+Camgen/histogram.\+h@{include/\+Camgen/histogram.\+h}}
 
 
-LH\_\-interface class template interface and implementation header.  
+Small histogramming class definition.  
 
 
-{\ttfamily \#include $<$cxxabi.h$>$}\par
-{\ttfamily \#include $<$cmath$>$}\par
-{\ttfamily \#include $<$Camorra/CM\_\-algorithm.h$>$}\par
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$vector$>$}\\*
+{\ttfamily \#include $<$cmath$>$}\\*
+{\ttfamily \#include $<$fstream$>$}\\*
+{\ttfamily \#include $<$algorithm$>$}\\*
+{\ttfamily \#include $<$Camgen/plt\+\_\+config.\+h$>$}\\*
+{\ttfamily \#include $<$Camgen/plt\+\_\+script.\+h$>$}\\*
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{a00298}{Camorra::LH\_\-interface$<$ model\_\-t, N\_\-out $>$}
-\begin{DoxyCompactList}\small\item\em \hyperlink{a00065}{CM\_\-algorithm} subclass with Les Houches IO support. \end{DoxyCompactList}\end{DoxyCompactItemize}
+class \hyperlink{a00284}{Camgen\+::histogram$<$ T, comp\+\_\+type $>$}
+\begin{DoxyCompactList}\small\item\em Histogram-\/producing class template. \end{DoxyCompactList}\item 
+class \hyperlink{a00114}{Camgen\+::histogram$<$ T, comp\+\_\+type $>$\+::data\+\_\+point}
+\begin{DoxyCompactList}\small\item\em Data point type definition. \end{DoxyCompactList}\item 
+class \hyperlink{a00021}{Camgen\+::histogram$<$ T, comp\+\_\+type $>$\+::bin}
+\begin{DoxyCompactList}\small\item\em Bin class type definition. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-LH\_\-interface class template interface and implementation header. 
+Small histogramming class definition. 
+

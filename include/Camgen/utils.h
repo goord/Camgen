@@ -8,32 +8,21 @@
 #ifndef CAMGEN_UTILS_H_
 #define CAMGEN_UTILS_H_
 
-#include <limits>
 #include <string>
 #include <sstream>
 #include <iostream>
 #include <iomanip>
 #include <complex>
-#include <Camgen/num_config.h>
+#include <Camgen/num_utils.h>
 
 
 /* * * * * * * * * * * * * *
- * Utilities for Camgen...*
+ * Utilities for Camgen... *
  *                         *
  * * * * * * * * * * * * * */
 
 namespace Camgen
 {
-    /* Checking equality up to certain precision: */
-
-    template<class T>bool equals(const T& a,const T& b)
-    {
-	if(std::abs(a-b)<numeric_configuration<T>::epsilon_abs)
-	{
-	    return true;
-	}
-	return std::abs(a-b)<=numeric_configuration<T>::epsilon_rel*std::max(std::abs(a),std::abs(b));
-    }
     template<class T>bool equals(const std::complex<T>& a,const std::complex<T>& b)
     {
 	if(std::abs(a-b)<numeric_configuration<T>::epsilon_abs)
@@ -42,42 +31,6 @@ namespace Camgen
 	}
 	return std::abs(a-b)<=numeric_configuration<T>::epsilon_rel*std::max(std::abs(a),std::abs(b));
     }
-
-    /* Comparisons up to PRECISION: */
-
-    template<class T>bool smaller(const T& a,const T& b)
-    {
-	return (!equals(a,b) and a<b);
-    }
-    template<class T>bool larger(const T& a,const T& b)
-    {
-	return (!equals(a,b) and a>b);
-    }
-
-
-    /* Checking equality of two sequences up to PRECISION: */
-
-    template<class T>bool equal_sequences(const T& first,const T& second)
-    {
-	if(first.size()==second.size())
-	{
-	    typename T::const_iterator it1=first.begin();
-	    for(typename T::const_iterator it2=second.begin();it2 != second.end();++it2)
-	    {
-		if(!equals(*it1,*it2))
-		{
-		    return false;
-		}	
-		++it1;
-	    }
-	    return true;
-	}
-	else
-	{
-	    return false;
-	}
-    }
-
     /* Optimised multiplication by the imaginary unit: */
 
     template<class T>std::complex<T>times_i(const std::complex<T>& z)
@@ -291,56 +244,6 @@ namespace Camgen
 	std::stringstream ss;
 	ss<<object;
 	return ss.str();
-    }
-
-    /* Safe serialization of floating-point numbers, printing "M" for minus
-     * infinity, "P" for plus infinity and "N" for nan: */
-
-    template<class T>std::ostream& safe_write(std::ostream& os,const T& x)
-    {
-	if(x!=x)
-	{
-	    return (os<<'N');
-	}
-	else if(x==-std::numeric_limits<T>::infinity())
-	{
-	    return (os<<'M');
-	}
-	else if(x==std::numeric_limits<T>::infinity())
-	{
-	    return (os<<'P');
-	}
-	else
-	{
-	    return (os<<x);
-	}
-    }
-
-    /* Safe deserialization of floating-point numbers, reading minus infinity
-     * for "M", plus infinity for "P" and not a number for "N" */
-
-    template<class T>std::istream& safe_read(std::istream& is,T& x)
-    {
-	is>>std::ws;
-	char c=is.peek();
-	switch(c)
-	{
-	    case 'N':
-		x=(x-x)/(x-x);
-		is.ignore(1);
-		break;
-	    case 'M':
-		x=-std::numeric_limits<T>::infinity();
-		is.ignore(1);
-		break;
-	    case 'P':
-		x=std::numeric_limits<T>::infinity();
-		is.ignore(1);
-		break;
-	    default:
-		is>>x;
-	}
-	return is;
     }
 }
 

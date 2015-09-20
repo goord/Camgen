@@ -1,46 +1,40 @@
-\hypertarget{a00694}{\section{include/\-Camgen/phase\-\_\-space.h File Reference}
-\label{a00694}\index{include/\-Camgen/phase\-\_\-space.\-h@{include/\-Camgen/phase\-\_\-space.\-h}}
-}
+\hypertarget{a00694}{}\section{include/\+Camgen/\+M\+C\+\_\+integral.h File Reference}
+\label{a00694}\index{include/\+Camgen/\+M\+C\+\_\+integral.\+h@{include/\+Camgen/\+M\+C\+\_\+integral.\+h}}
 
 
-contains the phase space classes  
+Monte Carlo cross section class template.  
 
 
-{\ttfamily \#include $<$algorithm$>$}\\*
-{\ttfamily \#include $<$Camgen/unused.\-h$>$}\\*
-{\ttfamily \#include $<$Camgen/debug.\-h$>$}\\*
-{\ttfamily \#include $<$Camgen/logstream.\-h$>$}\\*
-{\ttfamily \#include $<$Camgen/forward\-\_\-decs.\-h$>$}\\*
-{\ttfamily \#include $<$Camgen/vector.\-h$>$}\\*
-{\ttfamily \#include $<$Camgen/tensor.\-h$>$}\\*
+{\ttfamily \#include $<$cmath$>$}\\*
+{\ttfamily \#include $<$iostream$>$}\\*
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{a00026}{Camgen\-::base\-\_\-ps$<$ model\-\_\-t $>$}
-\begin{DoxyCompactList}\small\item\em Phase space base class template. \end{DoxyCompactList}\item 
-class \hyperlink{a00272}{Camgen\-::helicity\-\_\-ps$<$ model\-\_\-t, cont\-\_\-helicities $>$}
-\begin{DoxyCompactList}\small\item\em Helicity phase space class template. \end{DoxyCompactList}\item 
-class \hyperlink{a00273}{Camgen\-::helicity\-\_\-ps$<$ model\-\_\-t, false $>$}
-\begin{DoxyCompactList}\small\item\em Helicity phase space template specialisation for discrete-\/helicity model types. \end{DoxyCompactList}\item 
-class \hyperlink{a00271}{Camgen\-::helicity\-\_\-phases$<$ value\-\_\-t $>$}
-\begin{DoxyCompactList}\small\item\em Continuous helicity data holder type. \end{DoxyCompactList}\item 
-class \hyperlink{a00274}{Camgen\-::helicity\-\_\-ps$<$ model\-\_\-t, true $>$}
-\begin{DoxyCompactList}\small\item\em Helicity phase space template specialisation for continuous-\/helicity model types. \end{DoxyCompactList}\item 
-class \hyperlink{a00089}{Camgen\-::colour\-\_\-ps$<$ model\-\_\-t, cont\-\_\-colours $>$}
-\begin{DoxyCompactList}\small\item\em Colour phase space class template. \end{DoxyCompactList}\item 
-class \hyperlink{a00090}{Camgen\-::colour\-\_\-ps$<$ model\-\_\-t, false $>$}
-\begin{DoxyCompactList}\small\item\em Colour phase space template specialisation for discrete-\/colour model types. \end{DoxyCompactList}\item 
-class \hyperlink{a00091}{Camgen\-::colour\-\_\-ps$<$ model\-\_\-t, true $>$}
-\begin{DoxyCompactList}\small\item\em Colour phase space template specialisation for continuous-\/colour model types. \end{DoxyCompactList}\item 
-class \hyperlink{a00404}{Camgen\-::particle\-\_\-ps$<$ model\-\_\-t, dim, true $>$}
-\begin{DoxyCompactList}\small\item\em Particle phase space template specialisation for colourful model types. \end{DoxyCompactList}\item 
-class \hyperlink{a00403}{Camgen\-::particle\-\_\-ps$<$ model\-\_\-t, dim, false $>$}
-\begin{DoxyCompactList}\small\item\em Particle phase space template specialisation for colourless model types. \end{DoxyCompactList}\item 
-class \hyperlink{a00402}{Camgen\-::particle\-\_\-ps$<$ model\-\_\-t, 0, true $>$}
-\begin{DoxyCompactList}\small\item\em Particle phase space template specialisation for colourful zero-\/dimensional model types. \end{DoxyCompactList}\item 
-class \hyperlink{a00401}{Camgen\-::particle\-\_\-ps$<$ model\-\_\-t, 0, false $>$}
-\begin{DoxyCompactList}\small\item\em Particle phase space template specialisation for colourless zero-\/dimensional model types. \end{DoxyCompactList}\end{DoxyCompactItemize}
+class \hyperlink{a00368}{Camgen\+::\+M\+C\+\_\+integral$<$ value\+\_\+t $>$}
+\begin{DoxyCompactList}\small\item\em Cross section data holder class template. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00878_ab1a6213080c5b6957b5e020bca5c4834}{}{\footnotesize template$<$class value\+\_\+t $>$ }\\M\+C\+\_\+integral$<$ value\+\_\+t $>$ {\bfseries Camgen\+::operator+} (const M\+C\+\_\+integral$<$ value\+\_\+t $>$ \&xs1, const M\+C\+\_\+integral$<$ value\+\_\+t $>$ \&xs2)\label{a00878_ab1a6213080c5b6957b5e020bca5c4834}
+
+\begin{DoxyCompactList}\small\item\em Addition operator. \end{DoxyCompactList}\item 
+\hypertarget{a00878_ac4b8d41e45449acee2e0ca88ebd57e7d}{}{\footnotesize template$<$class value\+\_\+t $>$ }\\M\+C\+\_\+integral$<$ value\+\_\+t $>$ {\bfseries Camgen\+::operator-\/} (const M\+C\+\_\+integral$<$ value\+\_\+t $>$ \&xs1, const M\+C\+\_\+integral$<$ value\+\_\+t $>$ \&xs2)\label{a00878_ac4b8d41e45449acee2e0ca88ebd57e7d}
+
+\begin{DoxyCompactList}\small\item\em Subtraction operator. \end{DoxyCompactList}\item 
+\hypertarget{a00878_ad0e755d4416b6c2f36d4b5a8466c33bb}{}{\footnotesize template$<$class value\+\_\+t $>$ }\\M\+C\+\_\+integral$<$ value\+\_\+t $>$ {\bfseries Camgen\+::operator$\ast$} (const value\+\_\+t \&c, const M\+C\+\_\+integral$<$ value\+\_\+t $>$ \&xs)\label{a00878_ad0e755d4416b6c2f36d4b5a8466c33bb}
+
+\begin{DoxyCompactList}\small\item\em Multiplication operators. \end{DoxyCompactList}\item 
+\hypertarget{a00878_ae7c359b169e13bc5a2b6aa39e48a9d35}{}{\footnotesize template$<$class value\+\_\+t $>$ }\\M\+C\+\_\+integral$<$ value\+\_\+t $>$ {\bfseries Camgen\+::operator/} (const M\+C\+\_\+integral$<$ value\+\_\+t $>$ \&xs, const value\+\_\+t \&c)\label{a00878_ae7c359b169e13bc5a2b6aa39e48a9d35}
+
+\begin{DoxyCompactList}\small\item\em Division operator. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a25d685ebb8680a897a0a6c2c75fb3fe3}{}{\footnotesize template$<$class value\+\_\+t $>$ }\\std\+::ostream \& {\bfseries Camgen\+::operator$<$$<$} (std\+::ostream \&os, const M\+C\+\_\+integral$<$ value\+\_\+t $>$ \&xs)\label{a00878_a25d685ebb8680a897a0a6c2c75fb3fe3}
+
+\begin{DoxyCompactList}\small\item\em Output stream operator. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a0187258c4d7bf378c89bcdbf2ea5e939}{}{\footnotesize template$<$class value\+\_\+t $>$ }\\bool {\bfseries Camgen\+::equals} (const M\+C\+\_\+integral$<$ value\+\_\+t $>$ \&first, const M\+C\+\_\+integral$<$ value\+\_\+t $>$ \&second)\label{a00878_a0187258c4d7bf378c89bcdbf2ea5e939}
+
+\begin{DoxyCompactList}\small\item\em Comparison for cross sctions. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-contains the phase space classes 
+Monte Carlo cross section class template. 
+

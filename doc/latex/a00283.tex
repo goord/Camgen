@@ -1,14 +1,75 @@
-\hypertarget{a00283}{\section{Camgen\-:\-:Euclidean\-\_\-\-Pauli\-\_\-basis\-:\-:implementation$<$ value\-\_\-t, dim, q $>$ Class Template Reference}
-\label{a00283}\index{Camgen\-::\-Euclidean\-\_\-\-Pauli\-\_\-basis\-::implementation$<$ value\-\_\-t, dim, q $>$@{Camgen\-::\-Euclidean\-\_\-\-Pauli\-\_\-basis\-::implementation$<$ value\-\_\-t, dim, q $>$}}
-}
-Inheritance diagram for Camgen\-:\-:Euclidean\-\_\-\-Pauli\-\_\-basis\-:\-:implementation$<$ value\-\_\-t, dim, q $>$\-:\begin{figure}[H]
+\hypertarget{a00283}{}\section{Camgen\+:\+:Herwig\+\_\+interface$<$ model\+\_\+t $>$ Class Template Reference}
+\label{a00283}\index{Camgen\+::\+Herwig\+\_\+interface$<$ model\+\_\+t $>$@{Camgen\+::\+Herwig\+\_\+interface$<$ model\+\_\+t $>$}}
+
+
+Les-\/\+Houches event file output interface class.  
+
+
+
+
+{\ttfamily \#include $<$Herwig\+\_\+if.\+h$>$}
+
+Inheritance diagram for Camgen\+:\+:Herwig\+\_\+interface$<$ model\+\_\+t $>$\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=2.000000cm]{a00283}
 \end{center}
 \end{figure}
-
-
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
 \item 
-include/\-Camgen/spinbase\-\_\-\-E\-P.\-h\end{DoxyCompactItemize}
+\hypertarget{a00283_ac7783bf83f16bd4a075a6e3cfd438edc}{}\hyperlink{a00283_ac7783bf83f16bd4a075a6e3cfd438edc}{Herwig\+\_\+interface} (\hyperlink{a00451}{generator\+\_\+type} $\ast$gen\+\_\+, int weight\+\_\+switch\+\_\+, unsigned proc\+\_\+id\+\_\+=1)\label{a00283_ac7783bf83f16bd4a075a6e3cfd438edc}
+
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hypertarget{a00283_a497fa7494387d4a28095ee407b8a458d}{}\hyperlink{a00283_a497fa7494387d4a28095ee407b8a458d}{Herwig\+\_\+interface} (\hyperlink{a00451}{generator\+\_\+type} $\ast$gen\+\_\+, int weight\+\_\+switch\+\_\+, const std\+::string \&descr\+\_\+, unsigned proc\+\_\+id\+\_\+=1)\label{a00283_a497fa7494387d4a28095ee407b8a458d}
+
+\begin{DoxyCompactList}\small\item\em Constructor with description. \end{DoxyCompactList}\item 
+\hypertarget{a00283_a100c57c8c8a36b0ddc6a05378c2977c2}{}\hyperlink{a00283_a100c57c8c8a36b0ddc6a05378c2977c2}{$\sim$\+Herwig\+\_\+interface} ()\label{a00283_a100c57c8c8a36b0ddc6a05378c2977c2}
+
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\hypertarget{a00283_a7813e6b9a95a413999dcb25e9b447637}{}void \hyperlink{a00283_a7813e6b9a95a413999dcb25e9b447637}{open} ()\label{a00283_a7813e6b9a95a413999dcb25e9b447637}
+
+\begin{DoxyCompactList}\small\item\em Initialisation method. \end{DoxyCompactList}\item 
+\hypertarget{a00283_aadb707b92b34464fd1ff595e85d2d11a}{}bool \hyperlink{a00283_aadb707b92b34464fd1ff595e85d2d11a}{set\+Event} (int id\+Process=0)\label{a00283_aadb707b92b34464fd1ff595e85d2d11a}
+
+\begin{DoxyCompactList}\small\item\em Fills the event common block. \end{DoxyCompactList}\item 
+\hypertarget{a00283_a89bbbf1a35a57ada1275fa6e4c59e82b}{}size\+\_\+type \hyperlink{a00283_a89bbbf1a35a57ada1275fa6e4c59e82b}{event\+\_\+size} () const \label{a00283_a89bbbf1a35a57ada1275fa6e4c59e82b}
+
+\begin{DoxyCompactList}\small\item\em Required disk space per event. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00283_a44e06946b527bf8bb1c2edc2ee48060c}{}const unsigned \hyperlink{a00283_a44e06946b527bf8bb1c2edc2ee48060c}{proc\+\_\+id}\label{a00283_a44e06946b527bf8bb1c2edc2ee48060c}
+
+\begin{DoxyCompactList}\small\item\em Process id. \end{DoxyCompactList}\item 
+const int \hyperlink{a00283_a2dedaf0e690349d499044ca1aa0ab95b}{weight\+\_\+switch}
+\begin{DoxyCompactList}\small\item\em Les-\/\+Houches accord weight switch\+: 1\+: weighted events to P\+S, unweighted out, no xsec provided. \end{DoxyCompactList}\item 
+bool \hyperlink{a00283_a6fd3ab282136d8ceb709e5030e9f48a3}{generation\+\_\+switch}
+\begin{DoxyCompactList}\small\item\em Generation switch. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class model\+\_\+t$>$class Camgen\+::\+Herwig\+\_\+interface$<$ model\+\_\+t $>$}
+
+Les-\/\+Houches event file output interface class. 
+
+\subsection{Member Data Documentation}
+\hypertarget{a00283_a6fd3ab282136d8ceb709e5030e9f48a3}{}\index{Camgen\+::\+Herwig\+\_\+interface@{Camgen\+::\+Herwig\+\_\+interface}!generation\+\_\+switch@{generation\+\_\+switch}}
+\index{generation\+\_\+switch@{generation\+\_\+switch}!Camgen\+::\+Herwig\+\_\+interface@{Camgen\+::\+Herwig\+\_\+interface}}
+\subsubsection[{generation\+\_\+switch}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t $>$ bool {\bf Camgen\+::\+Herwig\+\_\+interface}$<$ model\+\_\+t $>$\+::generation\+\_\+switch}\label{a00283_a6fd3ab282136d8ceb709e5030e9f48a3}
+
+
+Generation switch. 
+
+If set true, the matrix element generation is triggered by the parton shower, otherwise, it has to be performed by the user. \hypertarget{a00283_a2dedaf0e690349d499044ca1aa0ab95b}{}\index{Camgen\+::\+Herwig\+\_\+interface@{Camgen\+::\+Herwig\+\_\+interface}!weight\+\_\+switch@{weight\+\_\+switch}}
+\index{weight\+\_\+switch@{weight\+\_\+switch}!Camgen\+::\+Herwig\+\_\+interface@{Camgen\+::\+Herwig\+\_\+interface}}
+\subsubsection[{weight\+\_\+switch}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t $>$ const int {\bf Camgen\+::\+Herwig\+\_\+interface}$<$ model\+\_\+t $>$\+::weight\+\_\+switch}\label{a00283_a2dedaf0e690349d499044ca1aa0ab95b}
+
+
+Les-\/\+Houches accord weight switch\+: 1\+: weighted events to P\+S, unweighted out, no xsec provided. 
+
+2\+: weighted events to P\+S, unweighted out, xsecs provided. 3\+: unweighted events to P\+S, unweighted out. 4\+: weighted events to P\+S, weighted out. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Camgen/\hyperlink{a00664}{Herwig\+\_\+if.\+h}\end{DoxyCompactItemize}

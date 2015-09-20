@@ -1,0 +1,47 @@
+----------------------------------------------------------
+testing gamma matrix algebra in the Weyl basis............
+----------------------------------------------------------
+Checking Dirac algebra.....................done.
+Checking gamma 5.....................done.
+Checking Dirac conjugation matrix.....................done.
+Checking charge conjugation matrix.....................done.
+Checking Id overridden recursive relations....................done.
+Checking C overridden recursive relations....................done.
+Checking C* overridden recursive relations....................done.
+Checking g5 overridden recursive relations....................done.
+Checking g5.C overridden recursive relations....................done.
+Checking C*.g5 overridden recursive relations....................done.
+Checking gL overridden recursive relations....................done.
+Checking gL.C overridden recursive relations....................done.
+Checking C*.gL overridden recursive relations....................done.
+Checking gR overridden recursive relations....................done.
+Checking gR.C overridden recursive relations....................done.
+Checking C*.gR overridden recursive relations....................done.
+Checking gVA overridden recursive relations....................done.
+Checking gVA.C overridden recursive relations....................done.
+Checking C*.gVA overridden recursive relations....................done.
+Checking gLR overridden recursive relations....................done.
+Checking gLR.C overridden recursive relations....................done.
+Checking C*.gLR overridden recursive relations....................done.
+Checking g overridden recursive relations....................done.
+Checking g.C overridden recursive relations....................done.
+Checking C*.g overridden recursive relations....................done.
+Checking gg5 overridden recursive relations....................done.
+Checking gg5.C overridden recursive relations....................done.
+Checking C*.gg5 overridden recursive relations....................done.
+Checking ggL overridden recursive relations....................done.
+Checking ggL.C overridden recursive relations....................done.
+Checking C*.ggL overridden recursive relations....................done.
+Checking ggR overridden recursive relations....................done.
+Checking ggR.C overridden recursive relations....................done.
+Checking C*.ggR overridden recursive relations....................done.
+Checking ggVA overridden recursive relations....................done.
+Checking ggVA.C overridden recursive relations....................done.
+Checking C*.ggVA overridden recursive relations....................done.
+Checking ggLR overridden recursive relations....................done.
+Checking ggLR.C overridden recursive relations....................done.
+Checking C*.ggLR overridden recursive relations....................done.
+Checking overridden massless propagator....................done.
+Checking overridden massive propagator....................done.
+Checking overridden massless antiparticle propagator....................done.
+Checking overridden massive antiparticle propagator....................done.

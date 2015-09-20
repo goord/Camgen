@@ -1,0 +1,27 @@
+----------------------------------------------------------
+testing massive spinor constructions in QED...............
+----------------------------------------------------------
+Checking Pauli basis helicity spinors in process tau+,tau- > gamma,gamma....................done.
+Checking Pauli basis KS-spinors in process tau+,tau- > gamma,gamma....................done.
+Checking Pauli basis polarised spinors in process tau+,tau- > gamma,gamma....................done.
+Checking Weyl basis helicity spinors in process tau+,tau- > gamma,gamma....................done.
+Checking Weyl basis KS-spinors in process tau+,tau- > gamma,gamma....................done.
+Checking Weyl basis polarised spinors in process tau+,tau- > gamma,gamma....................done.
+Checking Pauli basis helicity spinors in process tau+,tau- > tau+,tau-....................done.
+Checking Pauli basis KS-spinors in process tau+,tau- > tau+,tau-....................done.
+Checking Pauli basis polarised spinors in process tau+,tau- > tau+,tau-....................done.
+Checking Weyl basis helicity spinors in process tau+,tau- > tau+,tau-....................done.
+Checking Weyl basis KS-spinors in process tau+,tau- > tau+,tau-....................done.
+Checking Weyl basis polarised spinors in process tau+,tau- > tau+,tau-....................done.
+Checking Pauli basis helicity spinors in process tau+,tau- > tau+,tau-,gamma....................done.
+Checking Pauli basis KS-spinors in process tau+,tau- > tau+,tau-,gamma....................done.
+Checking Pauli basis polarised spinors in process tau+,tau- > tau+,tau-,gamma....................done.
+Checking Weyl basis helicity spinors in process tau+,tau- > tau+,tau-,gamma....................done.
+Checking Weyl basis KS-spinors in process tau+,tau- > tau+,tau-,gamma....................done.
+Checking Weyl basis polarised spinors in process tau+,tau- > tau+,tau-,gamma....................done.
+Checking Pauli basis helicity spinors in process tau+,tau- > tau+,tau-,tau+,tau-....................done.
+Checking Pauli basis KS-spinors in process tau+,tau- > tau+,tau-,tau+,tau-....................done.
+Checking Pauli basis polarised spinors in process tau+,tau- > tau+,tau-,tau+,tau-....................done.
+Checking Weyl basis helicity spinors in process tau+,tau- > tau+,tau-,tau+,tau-....................done.
+Checking Weyl basis KS-spinors in process tau+,tau- > tau+,tau-,tau+,tau-....................done.
+Checking Weyl basis polarised spinors in process tau+,tau- > tau+,tau-,tau+,tau-....................done.

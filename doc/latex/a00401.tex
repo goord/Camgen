@@ -1,29 +1,48 @@
-\hypertarget{a00401}{\section{Camgen\-:\-:particle\-\_\-ps$<$ model\-\_\-t, 0, false $>$ Class Template Reference}
-\label{a00401}\index{Camgen\-::particle\-\_\-ps$<$ model\-\_\-t, 0, false $>$@{Camgen\-::particle\-\_\-ps$<$ model\-\_\-t, 0, false $>$}}
-}
-
-
-Particle phase space template specialisation for colourless zero-\/dimensional model types.  
-
-
-
-
-{\ttfamily \#include $<$phase\-\_\-space.\-h$>$}
-
-Inheritance diagram for Camgen\-:\-:particle\-\_\-ps$<$ model\-\_\-t, 0, false $>$\-:\begin{figure}[H]
+\hypertarget{a00401}{}\section{Camgen\+:\+:particle\+\_\+channel$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$ Class Template Reference}
+\label{a00401}\index{Camgen\+::particle\+\_\+channel$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$@{Camgen\+::particle\+\_\+channel$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$}}
+Inheritance diagram for Camgen\+:\+:particle\+\_\+channel$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2.000000cm]{a00401}
+\includegraphics[height=1.609195cm]{a00401}
 \end{center}
 \end{figure}
-\subsection*{Additional Inherited Members}
-
-
-\subsection{Detailed Description}
-\subsubsection*{template$<$class model\-\_\-t$>$class Camgen\-::particle\-\_\-ps$<$ model\-\_\-t, 0, false $>$}
-
-Particle phase space template specialisation for colourless zero-\/dimensional model types. 
-
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
 \item 
-include/\-Camgen/\hyperlink{a00694}{phase\-\_\-space.\-h}\end{DoxyCompactItemize}
+bool \hyperlink{a00401_a23098c7456702cce4946d0d787f5bf37}{generate} ()
+\begin{DoxyCompactList}\small\item\em \textquotesingle{}Bare generation\textquotesingle{} method (purely virtual). \end{DoxyCompactList}\item 
+\hypertarget{a00401_a1c398ce4d7dd1aed47752d2391ae11df}{}bool \hyperlink{a00401_a1c398ce4d7dd1aed47752d2391ae11df}{evaluate\+\_\+weight} ()\label{a00401_a1c398ce4d7dd1aed47752d2391ae11df}
+
+\begin{DoxyCompactList}\small\item\em Event weight calculation method. \end{DoxyCompactList}\item 
+\hypertarget{a00401_a40cc397db66b0451b6135c80645e50b9}{}void \hyperlink{a00401_a40cc397db66b0451b6135c80645e50b9}{update} ()\label{a00401_a40cc397db66b0451b6135c80645e50b9}
+
+\begin{DoxyCompactList}\small\item\em Updates internal parameters with the current integrand value. \end{DoxyCompactList}\item 
+\hypertarget{a00401_a02d5211d206546de42ec20bbfbf6ecef}{}void \hyperlink{a00401_a02d5211d206546de42ec20bbfbf6ecef}{adapt} ()\label{a00401_a02d5211d206546de42ec20bbfbf6ecef}
+
+\begin{DoxyCompactList}\small\item\em Adapts internal parameters with the current integrand value. \end{DoxyCompactList}\item 
+\hypertarget{a00401_acc228746623bfc5c6f3f1d62f3a841e6}{}void \hyperlink{a00401_acc228746623bfc5c6f3f1d62f3a841e6}{reset} ()\label{a00401_acc228746623bfc5c6f3f1d62f3a841e6}
+
+\begin{DoxyCompactList}\small\item\em Resets internal parameters to default values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00401_a23098c7456702cce4946d0d787f5bf37}{}\index{Camgen\+::particle\+\_\+channel@{Camgen\+::particle\+\_\+channel}!generate@{generate}}
+\index{generate@{generate}!Camgen\+::particle\+\_\+channel@{Camgen\+::particle\+\_\+channel}}
+\subsubsection[{generate}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t, std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out, class rng\+\_\+t$>$ bool {\bf Camgen\+::particle\+\_\+channel}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$\+::generate (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{a00401_a23098c7456702cce4946d0d787f5bf37}
+
+
+\textquotesingle{}Bare generation\textquotesingle{} method (purely virtual). 
+
+Should update the weight data member. 
+
+Implements \hyperlink{a00366_a197b7bb66d8de5f6de401f81bea71e6c}{Camgen\+::\+M\+C\+\_\+generator$<$ model\+\_\+t\+::value\+\_\+type $>$}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Camgen/p\+\_\+channel.\+h\end{DoxyCompactItemize}

@@ -1,8 +1,81 @@
-\hypertarget{a00327}{\section{Camgen\-:\-:longitudinal\-\_\-helicities$<$ value\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t, q $>$ Class Template Reference}
-\label{a00327}\index{Camgen\-::longitudinal\-\_\-helicities$<$ value\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t, q $>$@{Camgen\-::longitudinal\-\_\-helicities$<$ value\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t, q $>$}}
-}
+\hypertarget{a00327}{}\section{Camgen\+:\+:L\+H\+E\+\_\+interface$<$ model\+\_\+t $>$ Class Template Reference}
+\label{a00327}\index{Camgen\+::\+L\+H\+E\+\_\+interface$<$ model\+\_\+t $>$@{Camgen\+::\+L\+H\+E\+\_\+interface$<$ model\+\_\+t $>$}}
 
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+Les-\/\+Houches event file output interface class.  
+
+
+
+
+{\ttfamily \#include $<$L\+H\+E\+\_\+if.\+h$>$}
+
+Inheritance diagram for Camgen\+:\+:L\+H\+E\+\_\+interface$<$ model\+\_\+t $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{a00327}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
 \item 
-include/\-Camgen/\hyperlink{a00662}{long\-\_\-hels.\-h}\end{DoxyCompactItemize}
+\hypertarget{a00327_ab899574bcfbb64ccfcf32115e29b8d3f}{}\hyperlink{a00327_ab899574bcfbb64ccfcf32115e29b8d3f}{L\+H\+E\+\_\+interface} (\hyperlink{a00451}{generator\+\_\+type} $\ast$gen, const std\+::string \&file\+\_\+name\+\_\+, int weight\+\_\+switch\+\_\+, unsigned proc\+\_\+id\+\_\+=1)\label{a00327_ab899574bcfbb64ccfcf32115e29b8d3f}
+
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hypertarget{a00327_a3e407eda72246cf24b54b4154c9c845a}{}\hyperlink{a00327_a3e407eda72246cf24b54b4154c9c845a}{L\+H\+E\+\_\+interface} (\hyperlink{a00451}{generator\+\_\+type} $\ast$gen, const std\+::string \&file\+\_\+name\+\_\+, int weight\+\_\+switch\+\_\+, const std\+::string \&descr\+\_\+, unsigned proc\+\_\+id\+\_\+=1)\label{a00327_a3e407eda72246cf24b54b4154c9c845a}
+
+\begin{DoxyCompactList}\small\item\em Constructor with description. \end{DoxyCompactList}\item 
+\hypertarget{a00327_aa054e0ffb00c9136509cf6b136446026}{}\hyperlink{a00327_aa054e0ffb00c9136509cf6b136446026}{$\sim$\+L\+H\+E\+\_\+interface} ()\label{a00327_aa054e0ffb00c9136509cf6b136446026}
+
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\hypertarget{a00327_a563ae5ac0c1389fea0bd7616eef95ca3}{}bool \hyperlink{a00327_a563ae5ac0c1389fea0bd7616eef95ca3}{write} ()\label{a00327_a563ae5ac0c1389fea0bd7616eef95ca3}
+
+\begin{DoxyCompactList}\small\item\em Writes and closes the datafile. \end{DoxyCompactList}\item 
+\hypertarget{a00327_a1815dc45320bbf0d041064bdf1521317}{}bool \hyperlink{a00327_a1815dc45320bbf0d041064bdf1521317}{fill\+\_\+event} ()\label{a00327_a1815dc45320bbf0d041064bdf1521317}
+
+\begin{DoxyCompactList}\small\item\em Fills the event common block. \end{DoxyCompactList}\item 
+\hypertarget{a00327_aab8e06d09a764122a89115144a83fb44}{}size\+\_\+type \hyperlink{a00327_aab8e06d09a764122a89115144a83fb44}{event\+\_\+size} () const \label{a00327_aab8e06d09a764122a89115144a83fb44}
+
+\begin{DoxyCompactList}\small\item\em Required disk space per event. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00327_ab375d56ae94afa6c5c27a5e5f937ec44}{}const std\+::string \hyperlink{a00327_ab375d56ae94afa6c5c27a5e5f937ec44}{file\+\_\+name}\label{a00327_ab375d56ae94afa6c5c27a5e5f937ec44}
+
+\begin{DoxyCompactList}\small\item\em Output file name. \end{DoxyCompactList}\item 
+\hypertarget{a00327_a0768f1718ffaebf200b096efd5297fd4}{}const unsigned \hyperlink{a00327_a0768f1718ffaebf200b096efd5297fd4}{proc\+\_\+id}\label{a00327_a0768f1718ffaebf200b096efd5297fd4}
+
+\begin{DoxyCompactList}\small\item\em Process id. \end{DoxyCompactList}\item 
+const int \hyperlink{a00327_a067bf1d9ce6ef519da53c80d422b89dd}{weight\+\_\+switch}
+\begin{DoxyCompactList}\small\item\em Les-\/\+Houches accord weight switch\+: 1\+: weighted events to P\+S, unweighted out, no xsec provided. \end{DoxyCompactList}\item 
+\hypertarget{a00327_ac99556b033add683c6699d01af862cf9}{}std\+::string \hyperlink{a00327_ac99556b033add683c6699d01af862cf9}{description}\label{a00327_ac99556b033add683c6699d01af862cf9}
+
+\begin{DoxyCompactList}\small\item\em Description string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00327_a67cf6b11cd11c9d97e7eda381024de55}{}bool \hyperlink{a00327_a67cf6b11cd11c9d97e7eda381024de55}{open\+\_\+file} ()\label{a00327_a67cf6b11cd11c9d97e7eda381024de55}
+
+\begin{DoxyCompactList}\small\item\em Opens the (temporary) datafile. \end{DoxyCompactList}\item 
+\hypertarget{a00327_a22cd41958e840759ec9912f53c081c1b}{}void \hyperlink{a00327_a22cd41958e840759ec9912f53c081c1b}{write\+\_\+init} ()\label{a00327_a22cd41958e840759ec9912f53c081c1b}
+
+\begin{DoxyCompactList}\small\item\em Initialisation block writing. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class model\+\_\+t$>$class Camgen\+::\+L\+H\+E\+\_\+interface$<$ model\+\_\+t $>$}
+
+Les-\/\+Houches event file output interface class. 
+
+\subsection{Member Data Documentation}
+\hypertarget{a00327_a067bf1d9ce6ef519da53c80d422b89dd}{}\index{Camgen\+::\+L\+H\+E\+\_\+interface@{Camgen\+::\+L\+H\+E\+\_\+interface}!weight\+\_\+switch@{weight\+\_\+switch}}
+\index{weight\+\_\+switch@{weight\+\_\+switch}!Camgen\+::\+L\+H\+E\+\_\+interface@{Camgen\+::\+L\+H\+E\+\_\+interface}}
+\subsubsection[{weight\+\_\+switch}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t $>$ const int {\bf Camgen\+::\+L\+H\+E\+\_\+interface}$<$ model\+\_\+t $>$\+::weight\+\_\+switch}\label{a00327_a067bf1d9ce6ef519da53c80d422b89dd}
+
+
+Les-\/\+Houches accord weight switch\+: 1\+: weighted events to P\+S, unweighted out, no xsec provided. 
+
+2\+: weighted events to P\+S, unweighted out, xsecs provided. 3\+: unweighted events to P\+S, unweighted out. 4\+: weighted events to P\+S, weighted out. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Camgen/\hyperlink{a00679}{L\+H\+E\+\_\+if.\+h}\end{DoxyCompactItemize}

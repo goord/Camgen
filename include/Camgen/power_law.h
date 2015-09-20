@@ -28,11 +28,10 @@ namespace Camgen
     /* Momentum channel class template generating invariant masses according to
      * a power-law distribution. */
     
-    template<class value_t,class rng_t>class pl_s_generator: public inversion_s_generator< value_t,rng_t,pl_s_generator<value_t,rng_t> >
+    template<class value_t,class rng_t>class power_law: public inversion_value_generator< value_t,rng_t,power_law<value_t,rng_t> >
     {
-	friend class s_integrator<value_t,rng_t>;
-	typedef inversion_s_generator< value_t,rng_t,pl_s_generator<value_t,rng_t> > direct_base_type;
-	typedef s_generator<value_t,rng_t> base_type;
+	typedef inversion_value_generator< value_t,rng_t,power_law<value_t,rng_t> > inversion_generator_type;
+	typedef value_generator<value_t,rng_t> base_type;
 
 	public:
 
@@ -64,25 +63,16 @@ namespace Camgen
 	    
 	    /* Default constructor: */
 
-	    pl_s_generator(const value_type* m_,const value_type* nu_):m(m_),nu(nu_)
+	    power_law(const value_type* m_,const value_type* nu_):m(m_),nu(nu_)
 	    {
 		refresh_params();
-		this->refresh_s_min();
-		this->refresh_s_max();
-	    }
-	    
-	    /* Constructor with inveriant mass pointer argument. */
-	    
-	    pl_s_generator(value_type* s_,const value_type* m_,const value_type* nu_):direct_base_type(s_),m(m_),nu(nu_)
-	    {
-		refresh_params();
-		this->refresh_s_min();
-		this->refresh_s_max();
+		this->refresh_lower_bound();
+		this->refresh_upper_bound();
 	    }
 
 	    /* Copy constructor: */
 
-	    pl_s_generator(const pl_s_generator<value_t,rng_t>& other):direct_base_type(other),m(other.m),nu(other.nu),exp_t(other.exp_t),nu_inv(other.nu_inv),mm(other.mm){}
+	    power_law(const power_law<value_t,rng_t>& other):inversion_generator_type(other),m(other.m),nu(other.nu),exp_t(other.exp_t),nu_inv(other.nu_inv),mm(other.mm){}
 
 	    /* Public modifiers: */
 	    /*-------------------*/
@@ -133,7 +123,21 @@ namespace Camgen
 		}
 		nu_inv=(value_type)1/((value_type)1-exp());
 		mm=(m==NULL)?(value_type)0:((*m)*(*m));
-		return (this->refresh_s_min() and this->refresh_s_max());
+		return (this->refresh_lower_bound() and this->refresh_upper_bound());
+	    }
+
+	    /* Normalisation refresher. */
+
+	    void refresh_norm()
+	    {
+		if((exp_t==logarithmic or exp_t==negative) and mm>this->lower_bound() and mm<this->upper_bound())
+		{
+		    this->norm=std::numeric_limits<value_type>::infinity();
+		}
+		else
+		{
+		    this->norm=std::abs(this->max_cumulant-this->min_cumulant);
+		}
 	    }
 
 	    /* Public const methods: */
@@ -141,9 +145,9 @@ namespace Camgen
 	    
 	    /* Clone method implementation: */
 
-	    pl_s_generator<value_t,rng_t>* clone() const
+	    power_law<value_t,rng_t>* clone() const
 	    {
-		return new pl_s_generator<value_t,rng_t>(*this);
+		return new power_law<value_t,rng_t>(*this);
 	    }
 
 	    /* Returns the mass value. */
@@ -198,35 +202,10 @@ namespace Camgen
 		    case zero:
 			return rho;
 		    case logarithmic:
-			return ((this->s_min()>mm)?(mm+std::exp(rho)):((this->s_max()<mm)?(mm-std::exp(-rho)):mm));
+			return ((this->lower_bound()>mm)?(mm+std::exp(rho)):((this->upper_bound()<mm)?(mm-std::exp(-rho)):mm));
 		    default:
 			return ((rho/nu_inv)>(value_type)0)?(mm+std::pow(rho/nu_inv,nu_inv)):(mm-std::pow(-rho/nu_inv,nu_inv));
 		}
-	    }
-
-	    /* Double-dispatch integrator functions. */
-	    
-	    value_type integrate_with(const s_generator<value_t,rng_t>* gen,const value_type& sqrts) const
-	    {
-		return gen->integrate_with(this,sqrts);
-	    }
-	    value_type integrate_with(const BW_s_generator<value_t,rng_t>* gen,const value_type& sqrts) const
-	    {
-		return s_integrator<value_t,rng_t>::integrate(gen,this,sqrts);
-	    }
-	    value_type integrate_with(const pl_s_generator<value_t,rng_t>* gen,const value_type& sqrts) const
-	    {
-		typedef pl_s_generator<value_t,rng_t> type;
-		return s_integrator<value_t,rng_t>::template integrate<type,type>(static_cast<const direct_base_type*>(this),static_cast<const direct_base_type*>(gen),sqrts);
-	    }
-	    value_type integrate_with(const uni_s_generator<value_t,rng_t>* gen,const value_type& sqrts) const
-	    {
-		return s_integrator<value_t,rng_t>::integrate(this,gen,sqrts);
-	    }
-	    value_type integrate_with(const Dd_s_generator<value_t,rng_t>* gen,const value_type& sqrts) const
-	    {
-		typedef pl_s_generator<value_t,rng_t> type;
-		return s_integrator<value_type,rng_t>::template integrate<type>(static_cast<const direct_base_type*>(this),gen,sqrts);
 	    }
 
 	    /* Serialization: */
@@ -283,22 +262,6 @@ namespace Camgen
 		result->title="density";
 		result->style="lines";
 		return result;
-	    }
-
-	protected:
-
-	    /* Normalisation refresher. */
-
-	    void refresh_norm()
-	    {
-		if((exp_t==logarithmic or exp_t==negative) and mm>this->s_min() and mm<this->s_max())
-		{
-		    this->norm=std::numeric_limits<value_type>::infinity();
-		}
-		else
-		{
-		    this->norm=std::abs(this->max_cumulant-this->min_cumulant);
-		}
 	    }
 
 	private:

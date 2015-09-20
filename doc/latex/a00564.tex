@@ -1,8 +1,57 @@
-\hypertarget{a00564}{\section{Camgen\-:\-:vector\-\_\-wave\-\_\-function$<$ model\-\_\-t, dim, spacetime\-\_\-t, Dirac\-\_\-t $>$ Class Template Reference}
-\label{a00564}\index{Camgen\-::vector\-\_\-wave\-\_\-function$<$ model\-\_\-t, dim, spacetime\-\_\-t, Dirac\-\_\-t $>$@{Camgen\-::vector\-\_\-wave\-\_\-function$<$ model\-\_\-t, dim, spacetime\-\_\-t, Dirac\-\_\-t $>$}}
-}
-
-
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\hypertarget{a00564}{}\section{Camgen\+:\+:uniform\+\_\+process\+\_\+generator\+\_\+factory$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$ Class Template Reference}
+\label{a00564}\index{Camgen\+::uniform\+\_\+process\+\_\+generator\+\_\+factory$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$@{Camgen\+::uniform\+\_\+process\+\_\+generator\+\_\+factory$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$}}
+Inheritance diagram for Camgen\+:\+:uniform\+\_\+process\+\_\+generator\+\_\+factory$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{a00564}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
 \item 
-include/\-Camgen/forward\-\_\-decs.\-h\end{DoxyCompactItemize}
+\hypertarget{a00564_ae1a8993ba53d772bdb2c26a45dbfd02c}{}\hyperlink{a00450}{momentum\+\_\+generator\+\_\+type} $\ast$ \hyperlink{a00564_ae1a8993ba53d772bdb2c26a45dbfd02c}{create\+\_\+momentum\+\_\+generator} (C\+M\+\_\+tree\+\_\+iterator amplitude)\label{a00564_ae1a8993ba53d772bdb2c26a45dbfd02c}
+
+\begin{DoxyCompactList}\small\item\em Creates a phase space generator for the given single-\/process amplitude. \end{DoxyCompactList}\item 
+\hyperlink{a00270}{helicity\+\_\+generator\+\_\+type} $\ast$ \hyperlink{a00564_a01af1c8ab5eecc0f7893b87c032a11c7}{create\+\_\+helicity\+\_\+generator} (C\+M\+\_\+tree\+\_\+iterator amplitude)
+\begin{DoxyCompactList}\small\item\em Creates a helicity generator for the given single-\/process amplitude. \end{DoxyCompactList}\item 
+\hyperlink{a00077}{colour\+\_\+generator\+\_\+type} $\ast$ \hyperlink{a00564_a1cc10bf21fa62ab396604192c1b0068f}{create\+\_\+colour\+\_\+generator} (C\+M\+\_\+tree\+\_\+iterator amplitude)
+\begin{DoxyCompactList}\small\item\em Creates a colour generator for the given single-\/process amplitude. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00564_a1cc10bf21fa62ab396604192c1b0068f}{}\index{Camgen\+::uniform\+\_\+process\+\_\+generator\+\_\+factory@{Camgen\+::uniform\+\_\+process\+\_\+generator\+\_\+factory}!create\+\_\+colour\+\_\+generator@{create\+\_\+colour\+\_\+generator}}
+\index{create\+\_\+colour\+\_\+generator@{create\+\_\+colour\+\_\+generator}!Camgen\+::uniform\+\_\+process\+\_\+generator\+\_\+factory@{Camgen\+::uniform\+\_\+process\+\_\+generator\+\_\+factory}}
+\subsubsection[{create\+\_\+colour\+\_\+generator}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t , std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out, class rng\+\_\+t $>$ {\bf colour\+\_\+generator\+\_\+type}$\ast$ {\bf Camgen\+::uniform\+\_\+process\+\_\+generator\+\_\+factory}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$\+::create\+\_\+colour\+\_\+generator (
+\begin{DoxyParamCaption}
+\item[{C\+M\+\_\+tree\+\_\+iterator}]{amplitude}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{a00564_a1cc10bf21fa62ab396604192c1b0068f}
+
+
+Creates a colour generator for the given single-\/process amplitude. 
+
+
+
+Implements \hyperlink{a00438_a27f18a9d611a97da7fb6707144e5d501}{Camgen\+::process\+\_\+generator\+\_\+factory\+\_\+base$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$}.
+
+\hypertarget{a00564_a01af1c8ab5eecc0f7893b87c032a11c7}{}\index{Camgen\+::uniform\+\_\+process\+\_\+generator\+\_\+factory@{Camgen\+::uniform\+\_\+process\+\_\+generator\+\_\+factory}!create\+\_\+helicity\+\_\+generator@{create\+\_\+helicity\+\_\+generator}}
+\index{create\+\_\+helicity\+\_\+generator@{create\+\_\+helicity\+\_\+generator}!Camgen\+::uniform\+\_\+process\+\_\+generator\+\_\+factory@{Camgen\+::uniform\+\_\+process\+\_\+generator\+\_\+factory}}
+\subsubsection[{create\+\_\+helicity\+\_\+generator}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t , std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out, class rng\+\_\+t $>$ {\bf helicity\+\_\+generator\+\_\+type}$\ast$ {\bf Camgen\+::uniform\+\_\+process\+\_\+generator\+\_\+factory}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$\+::create\+\_\+helicity\+\_\+generator (
+\begin{DoxyParamCaption}
+\item[{C\+M\+\_\+tree\+\_\+iterator}]{amplitude}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{a00564_a01af1c8ab5eecc0f7893b87c032a11c7}
+
+
+Creates a helicity generator for the given single-\/process amplitude. 
+
+
+
+Implements \hyperlink{a00438_ac7f8b23c99e1024c16d4a064a862ca4b}{Camgen\+::process\+\_\+generator\+\_\+factory\+\_\+base$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Camgen/uni\+\_\+evtgen\+\_\+fac.\+h\end{DoxyCompactItemize}

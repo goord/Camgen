@@ -1,118 +1,155 @@
-\hypertarget{a00326}{\section{Camgen\-:\-:logstream Class Reference}
-\label{a00326}\index{Camgen\-::logstream@{Camgen\-::logstream}}
-}
+\hypertarget{a00326}{}\section{Camgen\+:\+:L\+H\+\_\+interface$<$ model\+\_\+t, N\+\_\+out $>$ Class Template Reference}
+\label{a00326}\index{Camgen\+::\+L\+H\+\_\+interface$<$ model\+\_\+t, N\+\_\+out $>$@{Camgen\+::\+L\+H\+\_\+interface$<$ model\+\_\+t, N\+\_\+out $>$}}
 
 
-Log stream class declaration with standard output and file streams.  
+\hyperlink{a00065}{C\+M\+\_\+algorithm} subclass with Les Houches I\+O support.  
 
 
 
 
-{\ttfamily \#include $<$logstream.\-h$>$}
+{\ttfamily \#include $<$L\+H\+\_\+if.\+h$>$}
 
-Inheritance diagram for Camgen\-:\-:logstream\-:\begin{figure}[H]
+Inheritance diagram for Camgen\+:\+:L\+H\+\_\+interface$<$ model\+\_\+t, N\+\_\+out $>$\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=5.000000cm]{a00326}
+\includegraphics[height=2.000000cm]{a00326}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{a00326_a59f934ba427fe75d4c8a1f4501f5101a}{\hyperlink{a00326_a59f934ba427fe75d4c8a1f4501f5101a}{logstream} ()}\label{a00326_a59f934ba427fe75d4c8a1f4501f5101a}
+\hyperlink{a00326_a5cb39be90d6edeec70a0c78327b1cec8}{L\+H\+\_\+interface} (std\+::size\+\_\+t n=0)
+\begin{DoxyCompactList}\small\item\em Trivial constructor. \end{DoxyCompactList}\item 
+\hyperlink{a00326_aa0b7c09c288d4823915af9032ad92a82}{L\+H\+\_\+interface} (const std\+::string \&proc, std\+::size\+\_\+t n=0)
+\begin{DoxyCompactList}\small\item\em Constructor specifying the process. \end{DoxyCompactList}\item 
+\hypertarget{a00326_af0b374043930699a78a0dec0c77998cf}{}void \hyperlink{a00326_af0b374043930699a78a0dec0c77998cf}{set\+\_\+beams\+\_\+ids} (int i1, int i2)\label{a00326_af0b374043930699a78a0dec0c77998cf}
 
-\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
-\hypertarget{a00326_aa61e2bcd90b857f4399cfd80b7118475}{\hyperlink{a00326_aa61e2bcd90b857f4399cfd80b7118475}{logstream} (const std\-::string \&)}\label{a00326_aa61e2bcd90b857f4399cfd80b7118475}
+\begin{DoxyCompactList}\small\item\em Beam P\+D\+G id input (default values\+: 0). \end{DoxyCompactList}\item 
+\hypertarget{a00326_a385a610b35ae425024a6727eef94f000}{}void \hyperlink{a00326_a385a610b35ae425024a6727eef94f000}{set\+\_\+\+L\+H\+C\+\_\+beams} ()\label{a00326_a385a610b35ae425024a6727eef94f000}
 
-\begin{DoxyCompactList}\small\item\em Constructor with log file name argument. \end{DoxyCompactList}\item 
-\hyperlink{a00326_ac6caf435a7fc57e53d45c928680037d8}{logstream} (const std\-::string \&, std\-::istream \&, std\-::ostream \&)
-\begin{DoxyCompactList}\small\item\em Constructor with log file name and input/output stream arguments. \end{DoxyCompactList}\item 
-\hypertarget{a00326_a1892de99cb47b8b1eb893f2216e8525b}{\hyperlink{a00326_a1892de99cb47b8b1eb893f2216e8525b}{$\sim$logstream} ()}\label{a00326_a1892de99cb47b8b1eb893f2216e8525b}
+\begin{DoxyCompactList}\small\item\em Proton-\/proton beam input. \end{DoxyCompactList}\item 
+\hypertarget{a00326_afaf2108e359fb46a83a5d743fb1ff36e}{}void \hyperlink{a00326_afaf2108e359fb46a83a5d743fb1ff36e}{set\+\_\+tevatron\+\_\+beams} ()\label{a00326_afaf2108e359fb46a83a5d743fb1ff36e}
 
-\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
-\hypertarget{a00326_ae4584dbcbedac153a276ff21098d0793}{\hyperlink{a00326}{logstream} \& \hyperlink{a00326_ae4584dbcbedac153a276ff21098d0793}{open} (const std\-::string \&)}\label{a00326_ae4584dbcbedac153a276ff21098d0793}
+\begin{DoxyCompactList}\small\item\em Proton-\/antiproton beam input. \end{DoxyCompactList}\item 
+\hypertarget{a00326_a3b34726638267a141d17d464f5228740}{}void \hyperlink{a00326_a3b34726638267a141d17d464f5228740}{set\+\_\+\+L\+E\+P\+\_\+beams} ()\label{a00326_a3b34726638267a141d17d464f5228740}
 
-\begin{DoxyCompactList}\small\item\em Opens the log file. \end{DoxyCompactList}\item 
-\hypertarget{a00326_abade997a668239429b3b8421ce176b04}{\hyperlink{a00326}{logstream} \& \hyperlink{a00326_abade997a668239429b3b8421ce176b04}{close} ()}\label{a00326_abade997a668239429b3b8421ce176b04}
+\begin{DoxyCompactList}\small\item\em Electron-\/positron beam input. \end{DoxyCompactList}\item 
+\hypertarget{a00326_a3e637e38356d8c83397d0301e7d98d30}{}void \hyperlink{a00326_a3e637e38356d8c83397d0301e7d98d30}{set\+\_\+beam\+\_\+energies} (const r\+\_\+value\+\_\+type \&E1, const r\+\_\+value\+\_\+type \&E2)\label{a00326_a3e637e38356d8c83397d0301e7d98d30}
 
-\begin{DoxyCompactList}\small\item\em Closes the log file. \end{DoxyCompactList}\item 
-\hypertarget{a00326_a5a393fe8ddeb2980990a6274ecb2bd61}{\hyperlink{a00326}{logstream} \& \hyperlink{a00326_a5a393fe8ddeb2980990a6274ecb2bd61}{operator()} (log\-\_\-level\-::type)}\label{a00326_a5a393fe8ddeb2980990a6274ecb2bd61}
+\begin{DoxyCompactList}\small\item\em Beam energies input (default values\+: 0). \end{DoxyCompactList}\item 
+\hypertarget{a00326_a3ea0390cb9cf9a577120a88a50487f32}{}void \hyperlink{a00326_a3ea0390cb9cf9a577120a88a50487f32}{set\+\_\+pdf\+\_\+authors} (int n1, int n2)\label{a00326_a3ea0390cb9cf9a577120a88a50487f32}
 
-\begin{DoxyCompactList}\small\item\em Sets the log level. \end{DoxyCompactList}\item 
-\hyperlink{a00326}{logstream} \& \hyperlink{a00326_a56de0ce1889be01adc18292271e53b42}{assert} (bool)
-\begin{DoxyCompactList}\small\item\em Assertion\-: if failing, logging is disabled until end\-\_\-message is called. \end{DoxyCompactList}\item 
-\hypertarget{a00326_a402aaf9489352bd0f003500db0c08567}{bool \hyperlink{a00326_a402aaf9489352bd0f003500db0c08567}{logging} () const }\label{a00326_a402aaf9489352bd0f003500db0c08567}
+\begin{DoxyCompactList}\small\item\em pdf authors input (default values\+: -\/1). \end{DoxyCompactList}\item 
+\hypertarget{a00326_a5f371b21240ffb0ea90a2d265dc15370}{}void \hyperlink{a00326_a5f371b21240ffb0ea90a2d265dc15370}{set\+\_\+pdf\+\_\+cernlib\+\_\+codes} (int n1, int n2)\label{a00326_a5f371b21240ffb0ea90a2d265dc15370}
 
-\begin{DoxyCompactList}\small\item\em Returns whether the current configuration enables logging. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Public Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\hypertarget{a00326_a3171337db250824f825a71777b18a5a6}{log\-\_\-level\-::type \hyperlink{a00326_a3171337db250824f825a71777b18a5a6}{enable\-\_\-level}}\label{a00326_a3171337db250824f825a71777b18a5a6}
+\begin{DoxyCompactList}\small\item\em pdf authors cernlib code input (default values\+: -\/1). \end{DoxyCompactList}\item 
+\hypertarget{a00326_ad54f6f0859e844f1c872def0d2ddfa1c}{}\hyperlink{a00326_ad54f6f0859e844f1c872def0d2ddfa1c}{$\sim$\+L\+H\+\_\+interface} ()\label{a00326_ad54f6f0859e844f1c872def0d2ddfa1c}
 
-\begin{DoxyCompactList}\small\item\em Level above which logging is enabled. \end{DoxyCompactList}\item 
-\hypertarget{a00326_ab5fa0b81374949814298ef5e505410e7}{log\-\_\-level\-::type \hyperlink{a00326_ab5fa0b81374949814298ef5e505410e7}{level}}\label{a00326_ab5fa0b81374949814298ef5e505410e7}
+\begin{DoxyCompactList}\small\item\em Destructor, closing open files. \end{DoxyCompactList}\item 
+\hypertarget{a00326_a07a634c0334ab3c2b61f212dc3f81bee}{}void \hyperlink{a00326_a07a634c0334ab3c2b61f212dc3f81bee}{load} ()\label{a00326_a07a634c0334ab3c2b61f212dc3f81bee}
 
-\begin{DoxyCompactList}\small\item\em Level of the current log message. \end{DoxyCompactList}\item 
-bool \hyperlink{a00326_a27e6b54cae2e0c36403e0002bbcd1b2c}{streaming}
-\begin{DoxyCompactList}\small\item\em Flag controlling whether the log messages are streamed to standard output. \end{DoxyCompactList}\item 
-bool \hyperlink{a00326_a6731cdd504121f6565943c9875ab6814}{writing}
-\begin{DoxyCompactList}\small\item\em Flag controlling whether the log messages are streamed to file (if such a file is created). \end{DoxyCompactList}\item 
-\hypertarget{a00326_a7179753a14e4ef7929aa6c6f2c8da310}{bool \hyperlink{a00326_a7179753a14e4ef7929aa6c6f2c8da310}{prompting}}\label{a00326_a7179753a14e4ef7929aa6c6f2c8da310}
+\begin{DoxyCompactList}\small\item\em Loads the inserted processes and sorts them by P\+D\+G-\/id. \end{DoxyCompactList}\item 
+\hypertarget{a00326_a47ab5ff8d75600e11b6117ce1da39079}{}void \hyperlink{a00326_a47ab5ff8d75600e11b6117ce1da39079}{read} (const char $\ast$fname)\label{a00326_a47ab5ff8d75600e11b6117ce1da39079}
 
-\begin{DoxyCompactList}\small\item\em Flag controlling whether the logging prompts at message streams. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Starts reading a Les-\/\+Houches event file. \end{DoxyCompactList}\item 
+\hypertarget{a00326_aabf04004e59b40bbc1df35d85dc177f4}{}void \hyperlink{a00326_aabf04004e59b40bbc1df35d85dc177f4}{write} (const char $\ast$fname)\label{a00326_aabf04004e59b40bbc1df35d85dc177f4}
+
+\begin{DoxyCompactList}\small\item\em Starts writing a Les-\/\+Houches event file. \end{DoxyCompactList}\item 
+bool \hyperlink{a00326_a5ab609c33cbbf9095f67903f84a6af96}{read\+\_\+event} ()
+\begin{DoxyCompactList}\small\item\em Reads the next event in the file. \end{DoxyCompactList}\item 
+bool \hyperlink{a00326_afa0fa10eaaae4381a48909c00cbdb767}{write\+\_\+event} ()
+\begin{DoxyCompactList}\small\item\em Writes the current event to the Les-\/\+Houches event file. \end{DoxyCompactList}\item 
+void \hyperlink{a00326_a96712f08c069ed72d2de8364fb740dee}{input\+\_\+event} ()
+\begin{DoxyCompactList}\small\item\em Inserts the event in the vertex tree. \end{DoxyCompactList}\item 
+void \hyperlink{a00326_a736d8187bd61e9136a65c6907ec0dfd1}{rescale\+\_\+phase\+\_\+space} ()
+\begin{DoxyCompactList}\small\item\em Function boosting and rescaling the inputted momenta to make them on-\/shell. \end{DoxyCompactList}\item 
+\hypertarget{a00326_a628289bd16fc63e510edea398ea97774}{}void \hyperlink{a00326_a628289bd16fc63e510edea398ea97774}{set\+\_\+\+N\+R\+\_\+iterations} (size\+\_\+type n)\label{a00326_a628289bd16fc63e510edea398ea97774}
+
+\begin{DoxyCompactList}\small\item\em Determines the number of Newton-\/\+Raphson iterations for obtaining momentum scale factor. \end{DoxyCompactList}\item 
+\hypertarget{a00326_a02877f2ccb7860e06d2caa77afec4015}{}const r\+\_\+value\+\_\+type \& \hyperlink{a00326_a02877f2ccb7860e06d2caa77afec4015}{get\+\_\+scaling\+\_\+weight} () const \label{a00326_a02877f2ccb7860e06d2caa77afec4015}
+
+\begin{DoxyCompactList}\small\item\em Returns the extra weight due the rescale\+\_\+phase\+\_\+space call. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Log stream class declaration with standard output and file streams. 
+\subsubsection*{template$<$class model\+\_\+t, std\+::size\+\_\+t N\+\_\+out$>$class Camgen\+::\+L\+H\+\_\+interface$<$ model\+\_\+t, N\+\_\+out $>$}
+
+\hyperlink{a00065}{C\+M\+\_\+algorithm} subclass with Les Houches I\+O support. 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00326_ac6caf435a7fc57e53d45c928680037d8}{\index{Camgen\-::logstream@{Camgen\-::logstream}!logstream@{logstream}}
-\index{logstream@{logstream}!Camgen::logstream@{Camgen\-::logstream}}
-\subsubsection[{logstream}]{\setlength{\rightskip}{0pt plus 5cm}Camgen\-::logstream\-::logstream (
+\hypertarget{a00326_a5cb39be90d6edeec70a0c78327b1cec8}{}\index{Camgen\+::\+L\+H\+\_\+interface@{Camgen\+::\+L\+H\+\_\+interface}!L\+H\+\_\+interface@{L\+H\+\_\+interface}}
+\index{L\+H\+\_\+interface@{L\+H\+\_\+interface}!Camgen\+::\+L\+H\+\_\+interface@{Camgen\+::\+L\+H\+\_\+interface}}
+\subsubsection[{L\+H\+\_\+interface}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t , std\+::size\+\_\+t N\+\_\+out$>$ {\bf Camgen\+::\+L\+H\+\_\+interface}$<$ model\+\_\+t, N\+\_\+out $>$\+::{\bf L\+H\+\_\+interface} (
 \begin{DoxyParamCaption}
-\item[{const std\-::string \&}]{file, }
-\item[{std\-::istream \&}]{is\-\_\-, }
-\item[{std\-::ostream \&}]{os\-\_\-}
+\item[{std\+::size\+\_\+t}]{n = {\ttfamily 0}}
 \end{DoxyParamCaption}
-)}}\label{a00326_ac6caf435a7fc57e53d45c928680037d8}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00326_a5cb39be90d6edeec70a0c78327b1cec8}
 
 
-Constructor with log file name and input/output stream arguments. 
+Trivial constructor. 
+
+The optional integer argument denotes the external particle chosen by the algorithm as the final current in the recursion. The amplitudes should not depend on this choice, unless there is a bug in Camgen, or the model violates C\+P\+T invariance. \hypertarget{a00326_aa0b7c09c288d4823915af9032ad92a82}{}\index{Camgen\+::\+L\+H\+\_\+interface@{Camgen\+::\+L\+H\+\_\+interface}!L\+H\+\_\+interface@{L\+H\+\_\+interface}}
+\index{L\+H\+\_\+interface@{L\+H\+\_\+interface}!Camgen\+::\+L\+H\+\_\+interface@{Camgen\+::\+L\+H\+\_\+interface}}
+\subsubsection[{L\+H\+\_\+interface}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t , std\+::size\+\_\+t N\+\_\+out$>$ {\bf Camgen\+::\+L\+H\+\_\+interface}$<$ model\+\_\+t, N\+\_\+out $>$\+::{\bf L\+H\+\_\+interface} (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{proc, }
+\item[{std\+::size\+\_\+t}]{n = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00326_aa0b7c09c288d4823915af9032ad92a82}
 
 
+Constructor specifying the process. 
+
+The first argument should be of the form \char`\"{}phi1,...,phi\+N\+\_\+in $>$
+psi1,...,psi\+N\+\_\+out\char`\"{}, and the second argument is the optional final current (see trivial constructor). 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00326_a56de0ce1889be01adc18292271e53b42}{\index{Camgen\-::logstream@{Camgen\-::logstream}!assert@{assert}}
-\index{assert@{assert}!Camgen::logstream@{Camgen\-::logstream}}
-\subsubsection[{assert}]{\setlength{\rightskip}{0pt plus 5cm}{\bf logstream} \& Camgen\-::logstream\-::assert (
+\hypertarget{a00326_a96712f08c069ed72d2de8364fb740dee}{}\index{Camgen\+::\+L\+H\+\_\+interface@{Camgen\+::\+L\+H\+\_\+interface}!input\+\_\+event@{input\+\_\+event}}
+\index{input\+\_\+event@{input\+\_\+event}!Camgen\+::\+L\+H\+\_\+interface@{Camgen\+::\+L\+H\+\_\+interface}}
+\subsubsection[{input\+\_\+event}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t , std\+::size\+\_\+t N\+\_\+out$>$ void {\bf Camgen\+::\+L\+H\+\_\+interface}$<$ model\+\_\+t, N\+\_\+out $>$\+::input\+\_\+event (
 \begin{DoxyParamCaption}
-\item[{bool}]{condition}
+{}
 \end{DoxyParamCaption}
-)}}\label{a00326_a56de0ce1889be01adc18292271e53b42}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00326_a96712f08c069ed72d2de8364fb740dee}
 
 
-Assertion\-: if failing, logging is disabled until end\-\_\-message is called. 
+Inserts the event in the vertex tree. 
+
+Starts by searching the internal process list for the most recently read process from the L\+H file. If this process is not found, will automatically an entry in the process list and construct a corresponding vertex tree. Then, inserts the momenta and colours in the phase space instances of the external particles. \hypertarget{a00326_a5ab609c33cbbf9095f67903f84a6af96}{}\index{Camgen\+::\+L\+H\+\_\+interface@{Camgen\+::\+L\+H\+\_\+interface}!read\+\_\+event@{read\+\_\+event}}
+\index{read\+\_\+event@{read\+\_\+event}!Camgen\+::\+L\+H\+\_\+interface@{Camgen\+::\+L\+H\+\_\+interface}}
+\subsubsection[{read\+\_\+event}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t , std\+::size\+\_\+t N\+\_\+out$>$ bool {\bf Camgen\+::\+L\+H\+\_\+interface}$<$ model\+\_\+t, N\+\_\+out $>$\+::read\+\_\+event (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00326_a5ab609c33cbbf9095f67903f84a6af96}
 
 
+Reads the next event in the file. 
 
-\subsection{Member Data Documentation}
-\hypertarget{a00326_a27e6b54cae2e0c36403e0002bbcd1b2c}{\index{Camgen\-::logstream@{Camgen\-::logstream}!streaming@{streaming}}
-\index{streaming@{streaming}!Camgen::logstream@{Camgen\-::logstream}}
-\subsubsection[{streaming}]{\setlength{\rightskip}{0pt plus 5cm}bool Camgen\-::logstream\-::streaming}}\label{a00326_a27e6b54cae2e0c36403e0002bbcd1b2c}
-
-
-Flag controlling whether the log messages are streamed to standard output. 
-
-\hypertarget{a00326_a6731cdd504121f6565943c9875ab6814}{\index{Camgen\-::logstream@{Camgen\-::logstream}!writing@{writing}}
-\index{writing@{writing}!Camgen::logstream@{Camgen\-::logstream}}
-\subsubsection[{writing}]{\setlength{\rightskip}{0pt plus 5cm}bool Camgen\-::logstream\-::writing}}\label{a00326_a6731cdd504121f6565943c9875ab6814}
+Returns a boolean denoting whether the read-\/in was succesful. \hypertarget{a00326_a736d8187bd61e9136a65c6907ec0dfd1}{}\index{Camgen\+::\+L\+H\+\_\+interface@{Camgen\+::\+L\+H\+\_\+interface}!rescale\+\_\+phase\+\_\+space@{rescale\+\_\+phase\+\_\+space}}
+\index{rescale\+\_\+phase\+\_\+space@{rescale\+\_\+phase\+\_\+space}!Camgen\+::\+L\+H\+\_\+interface@{Camgen\+::\+L\+H\+\_\+interface}}
+\subsubsection[{rescale\+\_\+phase\+\_\+space}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t , std\+::size\+\_\+t N\+\_\+out$>$ void {\bf Camgen\+::\+L\+H\+\_\+interface}$<$ model\+\_\+t, N\+\_\+out $>$\+::rescale\+\_\+phase\+\_\+space (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00326_a736d8187bd61e9136a65c6907ec0dfd1}
 
 
-Flag controlling whether the log messages are streamed to file (if such a file is created). 
+Function boosting and rescaling the inputted momenta to make them on-\/shell. 
+
+For events with effective quark masses etc., this routine recales the input momenta to match with Camgen\textquotesingle{}s internal masses while retaining momentum conservation. As a result, the event attains an extra weight, which is accessed by the get\+\_\+scaling\+\_\+weight function. \hypertarget{a00326_afa0fa10eaaae4381a48909c00cbdb767}{}\index{Camgen\+::\+L\+H\+\_\+interface@{Camgen\+::\+L\+H\+\_\+interface}!write\+\_\+event@{write\+\_\+event}}
+\index{write\+\_\+event@{write\+\_\+event}!Camgen\+::\+L\+H\+\_\+interface@{Camgen\+::\+L\+H\+\_\+interface}}
+\subsubsection[{write\+\_\+event}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t , std\+::size\+\_\+t N\+\_\+out$>$ bool {\bf Camgen\+::\+L\+H\+\_\+interface}$<$ model\+\_\+t, N\+\_\+out $>$\+::write\+\_\+event (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00326_afa0fa10eaaae4381a48909c00cbdb767}
 
 
+Writes the current event to the Les-\/\+Houches event file. 
 
-The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+Returns a boolean denoting whether the output was succesful. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/\-Camgen/logstream.\-h\item 
-src/logstream.\-cpp\end{DoxyCompactItemize}
+include/\+Camgen/\hyperlink{a00678}{L\+H\+\_\+if.\+h}\end{DoxyCompactItemize}

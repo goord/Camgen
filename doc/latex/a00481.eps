@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 72.115385
+%%BoundingBox: 0 0 500 173.913043
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,12 +19,12 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 6.933333 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 2.875000 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
 /yspacing 0 def
-/rows 3 def
+/rows 2 def
 /cols 1 def
 /scalefactor 0 def
 /boxfont /Times-Roman findfont fontheight scalefont def
@@ -173,9 +173,8 @@
 
 boxfont setfont
 1 boundaspect scale
-(Camgen::s_branching< model_t, N_in, N_out, rng_t, typename Minkowski_type::template implementation< typename model_t::value_type, D > >) cw
-(Camgen::ps_branching< model_t, N_in, N_out, rng_t >) cw
-(Camgen::MC_generator< model_t::value_type >) cw
+(Camgen::root_tree< model_t >) cw
+(Camgen::interface_output< model_t >) cw
 /boxwidth boxwidth marginwidth 2 mul add def
 /xspacing boxwidth distx add def
 /yspacing boxheight disty add def
@@ -187,9 +186,8 @@ boundx scalefactor div boundy scalefactor div scale
 
 % ----- classes -----
 
- (Camgen::s_branching< model_t, N_in, N_out, rng_t, typename Minkowski_type::template implementation< typename model_t::value_type, D > >) 0.000000 0.000000 box
- (Camgen::ps_branching< model_t, N_in, N_out, rng_t >) 0.000000 1.000000 box
- (Camgen::MC_generator< model_t::value_type >) 0.000000 2.000000 box
+ (Camgen::root_tree< model_t >) 0.000000 0.000000 box
+ (Camgen::interface_output< model_t >) 0.000000 1.000000 box
 
 % ----- relations -----
 
@@ -197,7 +195,3 @@ solid
 0 0.000000 0.000000 out
 solid
 1 0.000000 1.000000 in
-solid
-0 0.000000 1.000000 out
-solid
-1 0.000000 2.000000 in

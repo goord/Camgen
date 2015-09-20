@@ -22,7 +22,7 @@ namespace Camgen
 
     template<class value_t,std::size_t D,class rng_t,class key_t>class parni_bin_iterator
     {
-	friend class parni<value_t,D,rng_t,key_t>;
+	friend class parni_generator<value_t,D,rng_t,key_t>;
 	friend class parni_bin<value_t,D,rng_t,key_t>;
 
 	public:
@@ -120,7 +120,7 @@ namespace Camgen
 
     template<class value_t,std::size_t D,class rng_t,class key_t>class const_parni_bin_iterator
     {
-	friend class parni<value_t,D,rng_t,key_t>;
+	friend class parni_generator<value_t,D,rng_t,key_t>;
 	friend class parni_bin<value_t,D,rng_t,key_t>;
 
 	public:
@@ -218,7 +218,7 @@ namespace Camgen
 
     template<class value_t,std::size_t D,class rng_t,class key_t>class parni_leaf_iterator
     {
-	friend class parni<value_t,D,rng_t,key_t>;
+	friend class parni_generator<value_t,D,rng_t,key_t>;
 	friend class parni_bin<value_t,D,rng_t,key_t>;
 
 	public:
@@ -316,7 +316,7 @@ namespace Camgen
 
     template<class value_t,std::size_t D,class rng_t,class key_t>class const_parni_leaf_iterator
     {
-	friend class parni<value_t,D,rng_t,key_t>;
+	friend class parni_generator<value_t,D,rng_t,key_t>;
 	friend class parni_bin<value_t,D,rng_t,key_t>;
 
 	public:
@@ -414,7 +414,7 @@ namespace Camgen
 
     template<class value_t,std::size_t D,class rng_t,class key_t>class reverse_parni_bin_iterator
     {
-	friend class parni<value_t,D,rng_t,key_t>;
+	friend class parni_generator<value_t,D,rng_t,key_t>;
 	friend class parni_bin<value_t,D,rng_t,key_t>;
 
 	public:
@@ -512,7 +512,7 @@ namespace Camgen
 
     template<class value_t,std::size_t D,class rng_t,class key_t>class const_reverse_parni_bin_iterator
     {
-	friend class parni<value_t,D,rng_t,key_t>;
+	friend class parni_generator<value_t,D,rng_t,key_t>;
 	friend class parni_bin<value_t,D,rng_t,key_t>;
 
 	public:
@@ -610,7 +610,7 @@ namespace Camgen
 
     template<class value_t,std::size_t D,class rng_t,class key_t>class reverse_parni_leaf_iterator
     {
-	friend class parni<value_t,D,rng_t,key_t>;
+	friend class parni_generator<value_t,D,rng_t,key_t>;
 	friend class parni_bin<value_t,D,rng_t,key_t>;
 
 	public:
@@ -708,7 +708,7 @@ namespace Camgen
 
     template<class value_t,std::size_t D,class rng_t,class key_t>class const_reverse_parni_leaf_iterator
     {
-	friend class parni<value_t,D,rng_t,key_t>;
+	friend class parni_generator<value_t,D,rng_t,key_t>;
 	friend class parni_bin<value_t,D,rng_t,key_t>;
 
 	public:

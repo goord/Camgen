@@ -31,7 +31,8 @@ namespace Camgen
 {
     /* Parni class forward declaration: */
 
-    template<class value_t,std::size_t D,class rng_t,class key_t=std::size_t>class parni;
+    template<class value_t,std::size_t D,class rng_t,class key_t=std::size_t>class parni_generator;
+    template<class value_t,std::size_t D,class rng_t,class key_t=std::size_t>class parni_integrator;
     
     /* Parni subgrid forward declaration: */
     
@@ -61,7 +62,7 @@ namespace Camgen
     {
 	/* Friend declarations: */
 
-	friend class parni<value_t,D,rng_t>;
+	friend class parni_generator<value_t,D,rng_t>;
 	friend class parni_sub_grid<value_t,D,rng_t>;
 	friend class parni_bin_iterator<value_t,D,rng_t,key_t>;
 	friend class const_parni_bin_iterator<value_t,D,rng_t,key_t>;
@@ -119,37 +120,6 @@ namespace Camgen
 		    }
 		}
 		return b;
-	    }
-
-	    /* Factory method with input stream argument: */
-
-	    static parni_bin<value_t,D,rng_t,key_t>* create_instance(std::istream& is,const point_type* min_pos_,const point_type* max_pos_,grid_modes::type mode_=grid_modes::cumulant_weights)
-	    {
-		std::string dummy;
-		is>>std::ws;
-		if(is.peek()=='N')
-		{
-		    std::getline(is,dummy);
-		    return NULL;
-		}
-		vector<key_type,D>key_;
-		for(size_type i=0;i<D;++i)
-		{
-		    is>>key_[i];
-		}
-		parni_bin<value_t,D,rng_t,key_t>* result=new parni_bin<value_t,D,rng_t,key_t>(min_pos_,max_pos_,key_,mode_);
-		result->load(is);
-		result->child1=create_instance(is,min_pos_,max_pos_,mode_);
-		if(result->child1!=NULL)
-		{
-		    result->child1->parent=result;
-		}
-		result->child2=create_instance(is,min_pos_,max_pos_,mode_);
-		if(result->child2!=NULL)
-		{
-		    result->child2->parent=result;
-		}
-		return result;
 	    }
 
 	    /* Maximal key value, determines the maximal tree depth: */
@@ -744,73 +714,6 @@ namespace Camgen
 
 	    size_type split_ind;
 
-	    /* Loads bin data from input stream: */
-
-	    std::istream& load(std::istream& is)
-	    {
-		safe_read(is,F0);
-		safe_read(is,F1);
-		if(mode==grid_modes::variance_weights)
-		{
-		    safe_read(is,F2);
-		}
-		if(mode==grid_modes::maximum_weights)
-		{
-		    safe_read(is,fmax);
-		    safe_read(is,fmax1);
-		    safe_read(is,fmax2);
-		}
-		safe_read(is,w);
-		return is;
-	    }
-
-	    /* Recursively saves bin data to output stream: */
-
-	    std::ostream& save(std::ostream& os) const
-	    {
-		for(size_type i=0;i<D;++i)
-		{
-		    os<<key[i]<<"\t";
-		}
-		safe_write(os,F0);
-		os<<"\t";
-		safe_write(os,F1);
-		if(mode==grid_modes::variance_weights)
-		{
-		    os<<"\t";
-		    safe_write(os,F2);
-		}
-		if(mode==grid_modes::maximum_weights)
-		{
-		    os<<"\t";
-		    safe_write(os,fmax);
-		    os<<"\t";
-		    safe_write(os,fmax1);
-		    os<<"\t";
-		    safe_write(os,fmax2);
-		}
-		os<<"\t";
-		safe_write(os,w);
-		os<<std::endl;
-		if(child1!=NULL)
-		{
-		    child1->save(os);
-		}
-		else
-		{
-		    os<<'N'<<std::endl;
-		}
-		if(child2!=NULL)
-		{
-		    child2->save(os);
-		}
-		else
-		{
-		    os<<'N'<<std::endl;
-		}
-		return os;
-	    }
-
 	    /* Returns the current instance: */
 
 	    parni_bin<value_t,D,rng_t>* first_bin()
@@ -1103,7 +1006,7 @@ namespace Camgen
     {
 	/* Friend declarations: */
 
-	friend class parni<value_t,1,rng_t>;
+	friend class parni_generator<value_t,1,rng_t>;
 	friend class parni_sub_grid<value_t,1,rng_t>;
 	friend class parni_bin_iterator<value_t,1,rng_t,key_t>;
 	friend class const_parni_bin_iterator<value_t,1,rng_t,key_t>;
@@ -1145,34 +1048,6 @@ namespace Camgen
 		    ++b;
 		}
 		return b;
-	    }
-
-	    /* Factory method with input stream argument: */
-
-	    static parni_bin<value_t,1,rng_t,key_t>* create_instance(std::istream& is,const point_type* min_pos_,const point_type* max_pos_,grid_modes::type mode_=grid_modes::cumulant_weights)
-	    {
-		std::string dummy;
-		is>>std::ws;
-		if(is.peek()=='N')
-		{
-		    std::getline(is,dummy);
-		    return NULL;
-		}
-		key_type key_(1);
-		is>>key_;
-		parni_bin<value_t,1,rng_t,key_t>* result=new parni_bin<value_t,1,rng_t,key_t>(min_pos_,max_pos_,key_,mode_);
-		result->load(is);
-		result->child1=create_instance(is,min_pos_,max_pos_,mode_);
-		if(result->child1!=NULL)
-		{
-		    result->child1->parent=result;
-		}
-		result->child2=create_instance(is,min_pos_,max_pos_,mode_);
-		if(result->child2!=NULL)
-		{
-		    result->child2->parent=result;
-		}
-		return result;
 	    }
 
 	    /* Maximal key value, determines the maximal tree depth: */
@@ -1715,70 +1590,6 @@ namespace Camgen
 	    
 	    parni_bin<value_t,1,rng_t>* child1;
 	    parni_bin<value_t,1,rng_t>* child2;
-
-	    /* Loads bin data from input stream: */
-
-	    std::istream& load(std::istream& is)
-	    {
-		safe_read(is,F0);
-		safe_read(is,F1);
-		if(mode==grid_modes::variance_weights)
-		{
-		    safe_read(is,F2);
-		}
-		if(mode==grid_modes::maximum_weights)
-		{
-		    safe_read(is,fmax);
-		    safe_read(is,fmax1);
-		    safe_read(is,fmax2);
-		}
-		safe_read(is,w);
-		return is;
-	    }
-
-	    /* Recursively saves bin data to output stream: */
-
-	    std::ostream& save(std::ostream& os) const
-	    {
-		os<<key<<"\t";
-		safe_write(os,F0);
-		os<<"\t";
-		safe_write(os,F1);
-		if(mode==grid_modes::variance_weights)
-		{
-		    os<<"\t";
-		    safe_write(os,F2);
-		}
-		if(mode==grid_modes::maximum_weights)
-		{
-		    os<<"\t";
-		    safe_write(os,fmax);
-		    os<<"\t";
-		    safe_write(os,fmax1);
-		    os<<"\t";
-		    safe_write(os,fmax2);
-		}
-		os<<"\t";
-		safe_write(os,w);
-		os<<std::endl;
-		if(child1!=NULL)
-		{
-		    child1->save(os);
-		}
-		else
-		{
-		    os<<'N'<<std::endl;
-		}
-		if(child2!=NULL)
-		{
-		    child2->save(os);
-		}
-		else
-		{
-		    os<<'N'<<std::endl;
-		}
-		return os;
-	    }
 
 	    /* Returns the current instance: */
 

@@ -276,7 +276,7 @@ namespace Camgen
 		{
 		    if(this->colour_range(i,0)==N_c)
 		    {
-			q_gen();
+			q_gen.generate();
 			for(size_type j=0;j<N_c;++j)
 			{
 			    this->colour_entry(i,j)=q_norm*std::complex<value_type>(qvec[j<<1],qvec[(j<<1)+1]);
@@ -284,7 +284,7 @@ namespace Camgen
 		    }
 		    if(this->colour_range(i,0)==N_c*N_c-1)
 		    {
-			g_gen();
+			g_gen.generate();
 			for(size_type j=0;j<N_c*N_c-1;++j)
 			{
 			    this->colour_entry(i,j)=std::complex<value_type>(g_norm*gvec[j],0);
@@ -834,7 +834,7 @@ namespace Camgen
 		{
 		    if(this->colour_rank(i)==1)
 		    {
-			q_gen();
+			q_gen.generate();
 			for(size_type j=0;j<N_c;++j)
 			{
 			    this->colour_entry(i,j)=q_norm*std::complex<value_type>(qvec[j<<1],qvec[(j<<1)+1]);
@@ -843,7 +843,7 @@ namespace Camgen
 		    if(this->colour_rank(i)==2)
 		    {
 			colsum_factor*=2;
-			g_gen();
+			g_gen.generate();
 			size_type c=0;
 			this->colour_entry(i,0)=std::complex<value_type>(0,0);
 			for(size_type j=1;j<N_c;++j)

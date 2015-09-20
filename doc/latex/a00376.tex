@@ -1,52 +1,50 @@
-\hypertarget{a00376}{\section{Camgen\-:\-:multi\-\_\-plot$<$ M, N $>$ Class Template Reference}
-\label{a00376}\index{Camgen\-::multi\-\_\-plot$<$ M, N $>$@{Camgen\-::multi\-\_\-plot$<$ M, N $>$}}
-}
-
-
-Multiplot-\/scripting class.  
-
-
-
-
-{\ttfamily \#include $<$multiplot.\-h$>$}
-
+\hypertarget{a00376}{}\section{Camgen\+:\+:momentum\+\_\+collection$<$ model\+\_\+t $>$ Class Template Reference}
+\label{a00376}\index{Camgen\+::momentum\+\_\+collection$<$ model\+\_\+t $>$@{Camgen\+::momentum\+\_\+collection$<$ model\+\_\+t $>$}}
+Inheritance diagram for Camgen\+:\+:momentum\+\_\+collection$<$ model\+\_\+t $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{a00376}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{a00376_aef053c10f5955934be8792fe0d5db63a}{\hyperlink{a00376_aef053c10f5955934be8792fe0d5db63a}{multi\-\_\-plot} (const std\-::string \&file\-\_\-, const char $\ast$term=N\-U\-L\-L)}\label{a00376_aef053c10f5955934be8792fe0d5db63a}
+\hypertarget{a00376_a9ef470e4e676cc24e5c8cd1e001e23b8}{}bool \hyperlink{a00376_a9ef470e4e676cc24e5c8cd1e001e23b8}{next\+\_\+event} (int strategy=0)\label{a00376_a9ef470e4e676cc24e5c8cd1e001e23b8}
 
-\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
-\hypertarget{a00376_a30977af8adb7db607839b4183c13e191}{void \hyperlink{a00376_a30977af8adb7db607839b4183c13e191}{add\-\_\-plot} (\hyperlink{a00426}{plot\-\_\-script} $\ast$plt, std\-::size\-\_\-t i, std\-::size\-\_\-t j)}\label{a00376_a30977af8adb7db607839b4183c13e191}
+\begin{DoxyCompactList}\small\item\em Calculates the incoming momentum. \end{DoxyCompactList}\item 
+\hypertarget{a00376_a78f829d46d2a0be7df59cde8bba60e7e}{}size\+\_\+type \hyperlink{a00376_a78f829d46d2a0be7df59cde8bba60e7e}{n\+\_\+in} () const \label{a00376_a78f829d46d2a0be7df59cde8bba60e7e}
 
-\begin{DoxyCompactList}\small\item\em Adds a plot script. \end{DoxyCompactList}\item 
-\hypertarget{a00376_a1b2f538de3ee1a5334c34379999f905f}{std\-::ostream \& \hyperlink{a00376_a1b2f538de3ee1a5334c34379999f905f}{write} (std\-::ostream \&os) const }\label{a00376_a1b2f538de3ee1a5334c34379999f905f}
+\begin{DoxyCompactList}\small\item\em Returns one. \end{DoxyCompactList}\item 
+\hypertarget{a00376_aa11e7e798696d5e672674405a0a23f9c}{}size\+\_\+type \hyperlink{a00376_aa11e7e798696d5e672674405a0a23f9c}{n\+\_\+out} () const \label{a00376_aa11e7e798696d5e672674405a0a23f9c}
 
-\begin{DoxyCompactList}\small\item\em Writes the multiplot script. \end{DoxyCompactList}\item 
-\hypertarget{a00376_a12255f3c1213be24e44b711f5bd75a2e}{bool \hyperlink{a00376_a12255f3c1213be24e44b711f5bd75a2e}{write} () const }\label{a00376_a12255f3c1213be24e44b711f5bd75a2e}
+\begin{DoxyCompactList}\small\item\em Returns the collection size. \end{DoxyCompactList}\item 
+\hypertarget{a00376_a622c7de6df2afd843fb7016298708310}{}\hyperlink{a00368}{M\+C\+\_\+integral}$<$ value\+\_\+type $>$ \hyperlink{a00376_a622c7de6df2afd843fb7016298708310}{xsec} () const \label{a00376_a622c7de6df2afd843fb7016298708310}
 
-\begin{DoxyCompactList}\small\item\em Writes the script to a file with extension \char`\"{}.\-gp\char`\"{}. \end{DoxyCompactList}\item 
-\hypertarget{a00376_ad0bb261f48733d7db941f70e5580d3c2}{bool \hyperlink{a00376_ad0bb261f48733d7db941f70e5580d3c2}{plot} () const }\label{a00376_ad0bb261f48733d7db941f70e5580d3c2}
+\begin{DoxyCompactList}\small\item\em Returns the cross section copy. \end{DoxyCompactList}\item 
+\hypertarget{a00376_a920894255910e9261d756491b8e7cd51}{}const \hyperlink{a00579}{momentum\+\_\+type} \& \hyperlink{a00376_a920894255910e9261d756491b8e7cd51}{p\+\_\+in} (size\+\_\+type i) const \label{a00376_a920894255910e9261d756491b8e7cd51}
 
-\begin{DoxyCompactList}\small\item\em Invokes gnuplot to execute the plot script. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Public Attributes}
-\begin{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Returns the sum outgoing momenta. \end{DoxyCompactList}\item 
+\hypertarget{a00376_aabb19ba169a79646496c2ec409b991b9}{}const \hyperlink{a00579}{momentum\+\_\+type} \& \hyperlink{a00376_aabb19ba169a79646496c2ec409b991b9}{p\+\_\+out} (size\+\_\+type i) const \label{a00376_aabb19ba169a79646496c2ec409b991b9}
+
+\begin{DoxyCompactList}\small\item\em Returns one of the momenta. \end{DoxyCompactList}\item 
+\hypertarget{a00376_a830416e6a878fe76fd7653fd23ef21dc}{}\hyperlink{a00579}{momentum\+\_\+type} \& \hyperlink{a00376_a830416e6a878fe76fd7653fd23ef21dc}{p\+\_\+out} (size\+\_\+type i)\label{a00376_a830416e6a878fe76fd7653fd23ef21dc}
+
+\begin{DoxyCompactList}\small\item\em Returns one of the momenta. \end{DoxyCompactList}\item 
+\hypertarget{a00376_a8d45247bb59c6dc1be7b04270f310bae}{}value\+\_\+type \hyperlink{a00376_a8d45247bb59c6dc1be7b04270f310bae}{beam\+\_\+energy} (int i) const \label{a00376_a8d45247bb59c6dc1be7b04270f310bae}
+
+\begin{DoxyCompactList}\small\item\em Returns the total C\+M-\/energy if i=0, zero otherwise. \end{DoxyCompactList}\item 
+\hypertarget{a00376_a66e408db6170c531c7e1a5b80bdd8ee4}{}value\+\_\+type \hyperlink{a00376_a66e408db6170c531c7e1a5b80bdd8ee4}{Ecm} () const \label{a00376_a66e408db6170c531c7e1a5b80bdd8ee4}
+
+\begin{DoxyCompactList}\small\item\em Returns the total (hadronic) invariant mass. \end{DoxyCompactList}\item 
+\hypertarget{a00376_a9233243ceef0b960d8c412da9d025560}{}value\+\_\+type \hyperlink{a00376_a9233243ceef0b960d8c412da9d025560}{M\+\_\+in} (size\+\_\+type i) const \label{a00376_a9233243ceef0b960d8c412da9d025560}
+
+\begin{DoxyCompactList}\small\item\em Returns the incoming mass. \end{DoxyCompactList}\item 
+\hypertarget{a00376_aaf650e881d8c4b4886931ba974d2abc3}{}value\+\_\+type \hyperlink{a00376_aaf650e881d8c4b4886931ba974d2abc3}{M\+\_\+out} (size\+\_\+type i) const \label{a00376_aaf650e881d8c4b4886931ba974d2abc3}
+
+\begin{DoxyCompactList}\small\item\em Returns an outgoing mass. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-\hypertarget{a00376_aa8ca7763d97797780ac1d22c43242619}{std\-::string \hyperlink{a00376_aa8ca7763d97797780ac1d22c43242619}{file}}\label{a00376_aa8ca7763d97797780ac1d22c43242619}
-
-\begin{DoxyCompactList}\small\item\em Plot filename. \end{DoxyCompactList}\item 
-\hypertarget{a00376_a20b5d0ee587a7b330a1a902bec367bd4}{const char $\ast$ \hyperlink{a00376_a20b5d0ee587a7b330a1a902bec367bd4}{terminal}}\label{a00376_a20b5d0ee587a7b330a1a902bec367bd4}
-
-\begin{DoxyCompactList}\small\item\em Terminal. \end{DoxyCompactList}\item 
-\hypertarget{a00376_ab14fca27427ba44595cc20ce994938fe}{std\-::string \hyperlink{a00376_ab14fca27427ba44595cc20ce994938fe}{title}}\label{a00376_ab14fca27427ba44595cc20ce994938fe}
-
-\begin{DoxyCompactList}\small\item\em Multiplot title. \end{DoxyCompactList}\end{DoxyCompactItemize}
-
-
-\subsection{Detailed Description}
-\subsubsection*{template$<$std\-::size\-\_\-t M, std\-::size\-\_\-t N$>$class Camgen\-::multi\-\_\-plot$<$ M, N $>$}
-
-Multiplot-\/scripting class. 
-
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
-\item 
-include/\-Camgen/\hyperlink{a00677}{multiplot.\-h}\end{DoxyCompactItemize}
+include/\+Camgen/\hyperlink{a00743}{ps\+\_\+gen\+\_\+base.\+h}\end{DoxyCompactItemize}

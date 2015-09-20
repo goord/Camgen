@@ -1,0 +1,12 @@
+----------------------------------------------------------
+testing tree construction by phi^3 diagram counting.......
+----------------------------------------------------------
+Checking the number of 2->2 diagrams....................done, counted correctly 3 diagrams
+Checking the number of 2->3 diagrams....................done, counted correctly 15 diagrams
+Checking the number of 2->4 diagrams....................done, counted correctly 105 diagrams
+Checking the number of 2->5 diagrams....................done, counted correctly 945 diagrams
+Checking the number of 2->6 diagrams....................done, counted correctly 10395 diagrams
+Checking the number of 2->7 diagrams....................done, counted correctly 135135 diagrams
+Checking the number of 2->8 diagrams....................done, counted correctly 2027025 diagrams
+Checking the number of 2->9 diagrams....................done, counted correctly 34459425 diagrams
+Checking the number of 2->10 diagrams....................done, counted correctly 654729075 diagrams

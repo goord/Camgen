@@ -1,16 +1,55 @@
-\hypertarget{a00397}{\section{Camgen\-:\-:particle\-\_\-family$<$ model\-\_\-t $>$ Class Template Reference}
-\label{a00397}\index{Camgen\-::particle\-\_\-family$<$ model\-\_\-t $>$@{Camgen\-::particle\-\_\-family$<$ model\-\_\-t $>$}}
-}
-Inheritance diagram for Camgen\-:\-:particle\-\_\-family$<$ model\-\_\-t $>$\-:\begin{figure}[H]
+\hypertarget{a00397}{}\section{Camgen\+:\+:parni\+\_\+sub\+\_\+grid$<$ value\+\_\+t, D, rng\+\_\+t, key\+\_\+t $>$ Class Template Reference}
+\label{a00397}\index{Camgen\+::parni\+\_\+sub\+\_\+grid$<$ value\+\_\+t, D, rng\+\_\+t, key\+\_\+t $>$@{Camgen\+::parni\+\_\+sub\+\_\+grid$<$ value\+\_\+t, D, rng\+\_\+t, key\+\_\+t $>$}}
+
+
+Parni sub grid generator class, generating points from a parent grid within smaller bounds.  
+
+
+
+
+{\ttfamily \#include $<$parni\+\_\+gen.\+h$>$}
+
+Inheritance diagram for Camgen\+:\+:parni\+\_\+sub\+\_\+grid$<$ value\+\_\+t, D, rng\+\_\+t, key\+\_\+t $>$\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=2.000000cm]{a00397}
 \end{center}
 \end{figure}
-\subsection*{Additional Inherited Members}
-
-
-The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
 \item 
-include/\-Camgen/forward\-\_\-decs.\-h\item 
-include/\-Camgen/part\-\_\-family.\-h\end{DoxyCompactItemize}
+\hypertarget{a00397_af169354f712a50c182fdb15e87fdfbf0}{}\hyperlink{a00397_af169354f712a50c182fdb15e87fdfbf0}{$\sim$parni\+\_\+sub\+\_\+grid} ()\label{a00397_af169354f712a50c182fdb15e87fdfbf0}
+
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\hypertarget{a00397_ad283e60b7b3cf6516fa5453b9ddd2469}{}bool \hyperlink{a00397_ad283e60b7b3cf6516fa5453b9ddd2469}{set\+\_\+x\+\_\+min} (const \hyperlink{a00579}{point\+\_\+type} \&xmin\+\_\+)\label{a00397_ad283e60b7b3cf6516fa5453b9ddd2469}
+
+\begin{DoxyCompactList}\small\item\em Sets the sub-\/interval lower bound. \end{DoxyCompactList}\item 
+\hypertarget{a00397_ae3ef8f0e20313ca18d1703999a5b0b23}{}\hyperlink{a00579}{point\+\_\+type} \hyperlink{a00397_ae3ef8f0e20313ca18d1703999a5b0b23}{x\+\_\+min} () const \label{a00397_ae3ef8f0e20313ca18d1703999a5b0b23}
+
+\begin{DoxyCompactList}\small\item\em Returns the sub-\/interval lower bound. \end{DoxyCompactList}\item 
+\hypertarget{a00397_a9de8dc23ae2108a18a87c029ca34e746}{}bool \hyperlink{a00397_a9de8dc23ae2108a18a87c029ca34e746}{set\+\_\+x\+\_\+max} (const \hyperlink{a00579}{point\+\_\+type} \&xmax\+\_\+)\label{a00397_a9de8dc23ae2108a18a87c029ca34e746}
+
+\begin{DoxyCompactList}\small\item\em Sets the sub-\/interval upper bound. \end{DoxyCompactList}\item 
+\hypertarget{a00397_a021d3be763d4b1f8ed43c3c995cec60e}{}\hyperlink{a00579}{point\+\_\+type} \hyperlink{a00397_a021d3be763d4b1f8ed43c3c995cec60e}{x\+\_\+max} () const \label{a00397_a021d3be763d4b1f8ed43c3c995cec60e}
+
+\begin{DoxyCompactList}\small\item\em Returns the sub-\/interval upper bound. \end{DoxyCompactList}\item 
+\hypertarget{a00397_a5423309febf75bf091f5eb42685eca3f}{}bool \hyperlink{a00397_a5423309febf75bf091f5eb42685eca3f}{generate} ()\label{a00397_a5423309febf75bf091f5eb42685eca3f}
+
+\begin{DoxyCompactList}\small\item\em Generation method implementation. \end{DoxyCompactList}\item 
+\hypertarget{a00397_a8b2c09df7a3556afcf6acb728bdfefbc}{}bool \hyperlink{a00397_a8b2c09df7a3556afcf6acb728bdfefbc}{evaluate\+\_\+weight} ()\label{a00397_a8b2c09df7a3556afcf6acb728bdfefbc}
+
+\begin{DoxyCompactList}\small\item\em Weight evaluation method. \end{DoxyCompactList}\item 
+\hypertarget{a00397_a47ba1b2a50eed38d949bdc49a41cf9a5}{}void \hyperlink{a00397_a47ba1b2a50eed38d949bdc49a41cf9a5}{refresh\+\_\+bounds} ()\label{a00397_a47ba1b2a50eed38d949bdc49a41cf9a5}
+
+\begin{DoxyCompactList}\small\item\em Refreshes internal parameters depending on the boundary values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class value\+\_\+t, std\+::size\+\_\+t D, class rng\+\_\+t, class key\+\_\+t$>$class Camgen\+::parni\+\_\+sub\+\_\+grid$<$ value\+\_\+t, D, rng\+\_\+t, key\+\_\+t $>$}
+
+Parni sub grid generator class, generating points from a parent grid within smaller bounds. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Camgen/parni\+\_\+bin.\+h\item 
+include/\+Camgen/\hyperlink{a00707}{parni\+\_\+gen.\+h}\end{DoxyCompactItemize}

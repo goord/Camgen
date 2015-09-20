@@ -1,21 +1,89 @@
-\hypertarget{a00596}{
-\section{include/Camgen/s\_\-int.h File Reference}
-\label{a00596}\index{include/Camgen/s\_\-int.h@{include/Camgen/s\_\-int.h}}
-}
+\hypertarget{a00596}{}\section{Camgen\+:\+:weight\+\_\+histogrammer$<$ value\+\_\+t $>$ Class Template Reference}
+\label{a00596}\index{Camgen\+::weight\+\_\+histogrammer$<$ value\+\_\+t $>$@{Camgen\+::weight\+\_\+histogrammer$<$ value\+\_\+t $>$}}
 
 
-Class template integrating a pair of invariant mass pdf's with energy conservation constraint.  
+Weight histogramming class for maximal epsilon-\/weight determination.  
 
 
-{\ttfamily \#include $<$cmath$>$}\par
-{\ttfamily \#include $<$complex$>$}\par
-{\ttfamily \#include $<$Camgen/dilog.h$>$}\par
-\subsection*{Classes}
+
+
+{\ttfamily \#include $<$whist.\+h$>$}
+
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{a00442}{Camorra::s\_\-integrator$<$ value\_\-t, rng\_\-t $>$}
-\end{DoxyCompactItemize}
+\hypertarget{a00596_a9c9e10ca93b4c307c3c4cbafd5492efd}{}\hyperlink{a00596_a9c9e10ca93b4c307c3c4cbafd5492efd}{weight\+\_\+histogrammer} (const value\+\_\+type \&maxw\+\_\+, size\+\_\+type nbins)\label{a00596_a9c9e10ca93b4c307c3c4cbafd5492efd}
+
+\begin{DoxyCompactList}\small\item\em Constructor with maximum weight and number of bins. \end{DoxyCompactList}\item 
+\hypertarget{a00596_adcbbe7cf56320b7404b7cb54d70b15f1}{}\hyperlink{a00596_adcbbe7cf56320b7404b7cb54d70b15f1}{weight\+\_\+histogrammer} (size\+\_\+type nbins)\label{a00596_adcbbe7cf56320b7404b7cb54d70b15f1}
+
+\begin{DoxyCompactList}\small\item\em Constructor with number of bins argument (max weight is taken 1). \end{DoxyCompactList}\item 
+void \hyperlink{a00596_ae200d4ddb19e3533d041880372a3bb65}{insert} (const value\+\_\+type \&w)
+\begin{DoxyCompactList}\small\item\em Inserts a weight. \end{DoxyCompactList}\item 
+\hypertarget{a00596_a25544e42f597dc9e756bcff1f0a36eea}{}size\+\_\+type \hyperlink{a00596_a25544e42f597dc9e756bcff1f0a36eea}{bins} () const \label{a00596_a25544e42f597dc9e756bcff1f0a36eea}
+
+\begin{DoxyCompactList}\small\item\em Number of bins. \end{DoxyCompactList}\item 
+\hypertarget{a00596_ad8c1d28bce5747b90651f01801460904}{}value\+\_\+type \hyperlink{a00596_ad8c1d28bce5747b90651f01801460904}{bin\+\_\+width} () const \label{a00596_ad8c1d28bce5747b90651f01801460904}
+
+\begin{DoxyCompactList}\small\item\em Bin width. \end{DoxyCompactList}\item 
+\hypertarget{a00596_a1da0126269357ccb03857e8f385363a3}{}value\+\_\+type \hyperlink{a00596_a1da0126269357ccb03857e8f385363a3}{lower\+\_\+bound} () const \label{a00596_a1da0126269357ccb03857e8f385363a3}
+
+\begin{DoxyCompactList}\small\item\em Minimum value histogrammmed. \end{DoxyCompactList}\item 
+\hypertarget{a00596_a7157c09ebc3d0eab093075c027cc70bf}{}value\+\_\+type \hyperlink{a00596_a7157c09ebc3d0eab093075c027cc70bf}{upper\+\_\+bound} () const \label{a00596_a7157c09ebc3d0eab093075c027cc70bf}
+
+\begin{DoxyCompactList}\small\item\em Maximal value histogrammed. \end{DoxyCompactList}\item 
+\hypertarget{a00596_ad978b54ae1fd228c547e9b65fb2fa8bd}{}value\+\_\+type \hyperlink{a00596_ad978b54ae1fd228c547e9b65fb2fa8bd}{events} () const \label{a00596_ad978b54ae1fd228c547e9b65fb2fa8bd}
+
+\begin{DoxyCompactList}\small\item\em Sum of all bin contents. \end{DoxyCompactList}\item 
+\hypertarget{a00596_afe3d42e15eeef2c8720484eb7e69f79e}{}value\+\_\+type \hyperlink{a00596_afe3d42e15eeef2c8720484eb7e69f79e}{integral} () const \label{a00596_afe3d42e15eeef2c8720484eb7e69f79e}
+
+\begin{DoxyCompactList}\small\item\em Sum of all bin contents times bin width. \end{DoxyCompactList}\item 
+\hypertarget{a00596_a4aac02b910231940ba7a86545002d79c}{}value\+\_\+type \hyperlink{a00596_a4aac02b910231940ba7a86545002d79c}{max\+\_\+freq} () const \label{a00596_a4aac02b910231940ba7a86545002d79c}
+
+\begin{DoxyCompactList}\small\item\em Maximal frequency. \end{DoxyCompactList}\item 
+value\+\_\+type \hyperlink{a00596_a8ac6da412698412ff7ea54f3cd5f3595}{max\+\_\+weight} (const value\+\_\+type \&epsilon) const 
+\begin{DoxyCompactList}\small\item\em Computes the weight for which all higher-\/weight events make up epsilon times the total cross section. \end{DoxyCompactList}\item 
+\hypertarget{a00596_a0e1b046ad4fb04b7ddd15461807a0943}{}\hyperlink{a00431}{plot\+\_\+script} $\ast$ \hyperlink{a00596_a0e1b046ad4fb04b7ddd15461807a0943}{plot} (const std\+::string \&filename, const char $\ast$term=N\+U\+L\+L) const \label{a00596_a0e1b046ad4fb04b7ddd15461807a0943}
+
+\begin{DoxyCompactList}\small\item\em Plot script. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00596_ad858e1e18cff73605faeaaf77bb37ba3}{}\hyperlink{a00596_ad858e1e18cff73605faeaaf77bb37ba3}{weight\+\_\+histogrammer} ()\label{a00596_ad858e1e18cff73605faeaaf77bb37ba3}
+
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Class template integrating a pair of invariant mass pdf's with energy conservation constraint. 
+\subsubsection*{template$<$class value\+\_\+t$>$class Camgen\+::weight\+\_\+histogrammer$<$ value\+\_\+t $>$}
+
+Weight histogramming class for maximal epsilon-\/weight determination. 
+
+\subsection{Member Function Documentation}
+\hypertarget{a00596_ae200d4ddb19e3533d041880372a3bb65}{}\index{Camgen\+::weight\+\_\+histogrammer@{Camgen\+::weight\+\_\+histogrammer}!insert@{insert}}
+\index{insert@{insert}!Camgen\+::weight\+\_\+histogrammer@{Camgen\+::weight\+\_\+histogrammer}}
+\subsubsection[{insert}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\+\_\+t$>$ void {\bf Camgen\+::weight\+\_\+histogrammer}$<$ value\+\_\+t $>$\+::insert (
+\begin{DoxyParamCaption}
+\item[{const value\+\_\+type \&}]{w}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00596_ae200d4ddb19e3533d041880372a3bb65}
+
+
+Inserts a weight. 
+
+If the argument is larger than the current histogram allows, rebins the histogram such that the number of bins is conserved. \hypertarget{a00596_a8ac6da412698412ff7ea54f3cd5f3595}{}\index{Camgen\+::weight\+\_\+histogrammer@{Camgen\+::weight\+\_\+histogrammer}!max\+\_\+weight@{max\+\_\+weight}}
+\index{max\+\_\+weight@{max\+\_\+weight}!Camgen\+::weight\+\_\+histogrammer@{Camgen\+::weight\+\_\+histogrammer}}
+\subsubsection[{max\+\_\+weight}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\+\_\+t$>$ value\+\_\+type {\bf Camgen\+::weight\+\_\+histogrammer}$<$ value\+\_\+t $>$\+::max\+\_\+weight (
+\begin{DoxyParamCaption}
+\item[{const value\+\_\+type \&}]{epsilon}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{a00596_a8ac6da412698412ff7ea54f3cd5f3595}
+
+
+Computes the weight for which all higher-\/weight events make up epsilon times the total cross section. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Camgen/\hyperlink{a00848}{whist.\+h}\end{DoxyCompactItemize}

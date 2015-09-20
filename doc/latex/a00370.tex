@@ -1,525 +1,57 @@
-\hypertarget{a00370}{\section{Camgen\-:\-:model$<$ model\-\_\-t $>$ Class Template Reference}
-\label{a00370}\index{Camgen\-::model$<$ model\-\_\-t $>$@{Camgen\-::model$<$ model\-\_\-t $>$}}
-}
+\hypertarget{a00370}{}\section{Camgen\+:\+:M\+C\+\_\+integrator\+\_\+base$<$ value\+\_\+t $>$ Class Template Reference}
+\label{a00370}\index{Camgen\+::\+M\+C\+\_\+integrator\+\_\+base$<$ value\+\_\+t $>$@{Camgen\+::\+M\+C\+\_\+integrator\+\_\+base$<$ value\+\_\+t $>$}}
 
 
-model base class template.  
+Abstract base class for integrator classes.  
 
 
 
 
-{\ttfamily \#include $<$model.\-h$>$}
+{\ttfamily \#include $<$M\+C\+\_\+int\+\_\+base.\+h$>$}
 
-Inheritance diagram for Camgen\-:\-:model$<$ model\-\_\-t $>$\-:\begin{figure}[H]
+Inheritance diagram for Camgen\+:\+:M\+C\+\_\+integrator\+\_\+base$<$ value\+\_\+t $>$\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=0.657277cm]{a00370}
+\includegraphics[height=1.398058cm]{a00370}
 \end{center}
 \end{figure}
-\subsection*{Static Public Member Functions}
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static model\-\_\-t $\ast$ \hyperlink{a00370_addb0565969863861ecfb72877717b1e6}{get\-\_\-instance} ()
-\begin{DoxyCompactList}\small\item\em Returns the single instance of model\-\_\-t. \end{DoxyCompactList}\item 
-static void \hyperlink{a00370_aac3264ce0db5925641f695c1b0fdfcac}{initialise} ()
-\begin{DoxyCompactList}\small\item\em Creates the single instance of model\-\_\-t. \end{DoxyCompactList}\item 
-\hypertarget{a00370_ab917e4ae26df6441d5edbb4a18009610}{static bool \hyperlink{a00370_ab917e4ae26df6441d5edbb4a18009610}{initialised} ()}\label{a00370_ab917e4ae26df6441d5edbb4a18009610}
+\hypertarget{a00370_a8d6ba84b704680c6eb4484df262da740}{}\hyperlink{a00370_a8d6ba84b704680c6eb4484df262da740}{M\+C\+\_\+integrator\+\_\+base} ()\label{a00370_a8d6ba84b704680c6eb4484df262da740}
 
-\begin{DoxyCompactList}\small\item\em Requests whether the singleton instance was created. \end{DoxyCompactList}\item 
-\hypertarget{a00370_ac4c8696fff15e80f82dbc71b0fad5f0c}{static std\-::ostream \& \hyperlink{a00370_ac4c8696fff15e80f82dbc71b0fad5f0c}{logfile} ()}\label{a00370_ac4c8696fff15e80f82dbc71b0fad5f0c}
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hypertarget{a00370_a579e858e0d7bb20cd8ce6b2070800a81}{}virtual \hyperlink{a00370_a579e858e0d7bb20cd8ce6b2070800a81}{$\sim$\+M\+C\+\_\+integrator\+\_\+base} ()\label{a00370_a579e858e0d7bb20cd8ce6b2070800a81}
 
-\begin{DoxyCompactList}\small\item\em Returns the log file stream. \end{DoxyCompactList}\item 
-static void \hyperlink{a00370_a37ba372a5b17bbb43840f2f195b7622d}{add\-\_\-auxiliary\-\_\-particle} (const std\-::string \&str, const \hyperlink{a00501}{spin} \&s)
-\begin{DoxyCompactList}\small\item\em Inserts spin-\/s auxiliary particle with name str. \end{DoxyCompactList}\item 
-\hypertarget{a00370_a029fc5fabfc31ac9f3cd71420c2302d7}{static void \hyperlink{a00370_a029fc5fabfc31ac9f3cd71420c2302d7}{add\-\_\-auxiliary\-\_\-particles} (const std\-::string \&str1, const std\-::string \&str2, const \hyperlink{a00501}{spin} \&s)}\label{a00370_a029fc5fabfc31ac9f3cd71420c2302d7}
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\hypertarget{a00370_adce320174be43d256e68e344b1d87e7e}{}virtual void \hyperlink{a00370_adce320174be43d256e68e344b1d87e7e}{update} ()=0\label{a00370_adce320174be43d256e68e344b1d87e7e}
 
-\begin{DoxyCompactList}\small\item\em Inserts a pair of conjugate spin-\/s auxiliary particles with names (str1,str2). \end{DoxyCompactList}\item 
-{\footnotesize template$<$class rep\-\_\-t $>$ }\\static void \hyperlink{a00370_aa1e50838292e002cb2997f8d34e376bf}{add\-\_\-auxiliary\-\_\-particle} (const std\-::string \&str, const \hyperlink{a00501}{spin} \&s)
-\begin{DoxyCompactList}\small\item\em Inserts spin-\/s auxiliary multiplet with name str in representation rep\-\_\-t. \end{DoxyCompactList}\item 
-\hypertarget{a00370_a8888489c8a72e26cba9a34772adabf8a}{{\footnotesize template$<$class rep\-\_\-t $>$ }\\static void \hyperlink{a00370_a8888489c8a72e26cba9a34772adabf8a}{add\-\_\-auxiliary\-\_\-particles} (const std\-::string \&str1, const std\-::string \&str2, const \hyperlink{a00501}{spin} \&s)}\label{a00370_a8888489c8a72e26cba9a34772adabf8a}
+\begin{DoxyCompactList}\small\item\em Updates internal parameters with the current integrand value. \end{DoxyCompactList}\item 
+\hypertarget{a00370_a09d91a0a6c6ac859b75cf252669b8624}{}virtual void \hyperlink{a00370_a09d91a0a6c6ac859b75cf252669b8624}{adapt} ()\label{a00370_a09d91a0a6c6ac859b75cf252669b8624}
 
-\begin{DoxyCompactList}\small\item\em Inserts a pair of conjugate spin-\/s auxiliary multiplets with names (str1,str2) in representation rep\-\_\-t. \end{DoxyCompactList}\item 
-\hypertarget{a00370_a2472b1dfd3f7da1bbba6140aad987257}{static void \hyperlink{a00370_a2472b1dfd3f7da1bbba6140aad987257}{add\-\_\-scalar} (const std\-::string \&str, int n=0)}\label{a00370_a2472b1dfd3f7da1bbba6140aad987257}
+\begin{DoxyCompactList}\small\item\em Adapts internal parameters with the current integrand value. \end{DoxyCompactList}\item 
+\hypertarget{a00370_a003e7dad9599bf458c3cbe3d175b7e75}{}virtual void \hyperlink{a00370_a003e7dad9599bf458c3cbe3d175b7e75}{reset} ()\label{a00370_a003e7dad9599bf458c3cbe3d175b7e75}
 
-\begin{DoxyCompactList}\small\item\em Inserts a massless scalar particle with name str and P\-D\-G-\/id n. \end{DoxyCompactList}\item 
-\hypertarget{a00370_a9030576274aac8572d1546868e46e650}{static void \hyperlink{a00370_a9030576274aac8572d1546868e46e650}{add\-\_\-scalars} (const std\-::string \&str1, const std\-::string str2, int n=0)}\label{a00370_a9030576274aac8572d1546868e46e650}
+\begin{DoxyCompactList}\small\item\em Resets internal parameters to default values. \end{DoxyCompactList}\item 
+\hypertarget{a00370_a87512ef77196949ca32092f47030c4d5}{}void \hyperlink{a00370_a87512ef77196949ca32092f47030c4d5}{update} (const value\+\_\+type \&f\+\_\+)\label{a00370_a87512ef77196949ca32092f47030c4d5}
 
-\begin{DoxyCompactList}\small\item\em Inserts a pair of conjugate massless scalar particles with names (str1,str2) and P\-D\-G-\/ids (n,-\/n). \end{DoxyCompactList}\item 
-\hypertarget{a00370_ad83cae9524f80d31eed52d6b28b99bfa}{static void \hyperlink{a00370_ad83cae9524f80d31eed52d6b28b99bfa}{add\-\_\-scalar} (const std\-::string \&str, void $\ast$m, int n=0)}\label{a00370_ad83cae9524f80d31eed52d6b28b99bfa}
+\begin{DoxyCompactList}\small\item\em Substitutes the integrand with the argument and performs \hyperlink{a00370_adce320174be43d256e68e344b1d87e7e}{update()}. \end{DoxyCompactList}\item 
+\hypertarget{a00370_af1e218e86ac45f36b40fb1a6d8fcb7a4}{}value\+\_\+type \& \hyperlink{a00370_af1e218e86ac45f36b40fb1a6d8fcb7a4}{integrand} ()\label{a00370_af1e218e86ac45f36b40fb1a6d8fcb7a4}
 
-\begin{DoxyCompactList}\small\item\em Inserts a scalar particle with name str, mass $\ast$m and P\-D\-G-\/id n. \end{DoxyCompactList}\item 
-\hypertarget{a00370_ae9c3e377abcb541b43a3e45b53b5f627}{static void \hyperlink{a00370_ae9c3e377abcb541b43a3e45b53b5f627}{add\-\_\-scalars} (const std\-::string \&str1, const std\-::string \&str2, void $\ast$m, int n=0)}\label{a00370_ae9c3e377abcb541b43a3e45b53b5f627}
+\begin{DoxyCompactList}\small\item\em Intergrand value reference. \end{DoxyCompactList}\item 
+\hypertarget{a00370_a1314fa7effd46afaf87e633432ad9069}{}const value\+\_\+type \& \hyperlink{a00370_a1314fa7effd46afaf87e633432ad9069}{integrand} () const \label{a00370_a1314fa7effd46afaf87e633432ad9069}
 
-\begin{DoxyCompactList}\small\item\em Inserts a pair of conjugate scalar particles with names (str1,str2), mass $\ast$m and P\-D\-G-\/ids (n,-\/n). \end{DoxyCompactList}\item 
-\hypertarget{a00370_a1db50ccce26c6d65aad150720cf45161}{static void \hyperlink{a00370_a1db50ccce26c6d65aad150720cf45161}{add\-\_\-scalar} (const std\-::string \&str, void $\ast$m, void $\ast$w, int n=0)}\label{a00370_a1db50ccce26c6d65aad150720cf45161}
+\begin{DoxyCompactList}\small\item\em Integrand value const reference. \end{DoxyCompactList}\item 
+\hypertarget{a00370_af280e33e904654a05daa7a736eaf3410}{}bool \hyperlink{a00370_af280e33e904654a05daa7a736eaf3410}{validate\+\_\+integrand} () const \label{a00370_af280e33e904654a05daa7a736eaf3410}
 
-\begin{DoxyCompactList}\small\item\em Inserts a scalar particle with name str, mass $\ast$m, width $\ast$w and P\-D\-G-\/id n. \end{DoxyCompactList}\item 
-\hypertarget{a00370_aee7b9562b32be5e4dffbee9071fe750f}{static void \hyperlink{a00370_aee7b9562b32be5e4dffbee9071fe750f}{add\-\_\-scalars} (const std\-::string \&str1, const std\-::string \&str2, void $\ast$m, void $\ast$w, int n=0)}\label{a00370_aee7b9562b32be5e4dffbee9071fe750f}
-
-\begin{DoxyCompactList}\small\item\em Inserts a pair of conjugate scalar particles with names (str1,str2), mass $\ast$m, width $\ast$w and P\-D\-G-\/ids (n,-\/n). \end{DoxyCompactList}\item 
-\hypertarget{a00370_a029e8bbd411f974616ef7e1220d9e9f0}{{\footnotesize template$<$class rep\-\_\-t $>$ }\\static void \hyperlink{a00370_a029e8bbd411f974616ef7e1220d9e9f0}{add\-\_\-scalar} (const std\-::string \&str, int n=0)}\label{a00370_a029e8bbd411f974616ef7e1220d9e9f0}
-
-\begin{DoxyCompactList}\small\item\em Inserts a massless scalar multiplet with name str and P\-D\-G-\/id n in representation rep\-\_\-t. \end{DoxyCompactList}\item 
-\hypertarget{a00370_a3054d815cf3a749525291aaed0f5d5dd}{{\footnotesize template$<$class rep\-\_\-t $>$ }\\static void \hyperlink{a00370_a3054d815cf3a749525291aaed0f5d5dd}{add\-\_\-scalars} (const std\-::string \&str1, const std\-::string \&str2, int n=0)}\label{a00370_a3054d815cf3a749525291aaed0f5d5dd}
-
-\begin{DoxyCompactList}\small\item\em Inserts a pair of conjugate massless scalar multiplets with names (str1,str2) and P\-D\-G-\/ids (n,-\/n) in representation rep\-\_\-t. \end{DoxyCompactList}\item 
-\hypertarget{a00370_a629a83856e1021fec02e12b01d6a7342}{{\footnotesize template$<$class rep\-\_\-t $>$ }\\static void \hyperlink{a00370_a629a83856e1021fec02e12b01d6a7342}{add\-\_\-scalar} (const std\-::string \&str, void $\ast$m, int n=0)}\label{a00370_a629a83856e1021fec02e12b01d6a7342}
-
-\begin{DoxyCompactList}\small\item\em Inserts a scalar multiplet with name str, mass $\ast$m and P\-D\-G-\/id n in representation rep\-\_\-t. \end{DoxyCompactList}\item 
-\hypertarget{a00370_a7e6c0da84c3155c80e37199817fd4a8d}{{\footnotesize template$<$class rep\-\_\-t $>$ }\\static void \hyperlink{a00370_a7e6c0da84c3155c80e37199817fd4a8d}{add\-\_\-scalars} (const std\-::string \&str1, const std\-::string \&str2, void $\ast$m, int n=0)}\label{a00370_a7e6c0da84c3155c80e37199817fd4a8d}
-
-\begin{DoxyCompactList}\small\item\em Inserts a pair of conjugate scalar multiplets with names (str1,str2), mass $\ast$m and P\-D\-G-\/ids (n,-\/n) in representation rep\-\_\-t. \end{DoxyCompactList}\item 
-\hypertarget{a00370_a97c2aafa864d22447b142020a05ad9ff}{{\footnotesize template$<$class rep\-\_\-t $>$ }\\static void \hyperlink{a00370_a97c2aafa864d22447b142020a05ad9ff}{add\-\_\-scalar} (const std\-::string \&str, void $\ast$m, void $\ast$w, int n=0)}\label{a00370_a97c2aafa864d22447b142020a05ad9ff}
-
-\begin{DoxyCompactList}\small\item\em Inserts a scalar multiplet with name str, mass $\ast$m, width $\ast$w and P\-D\-G-\/id n in representation rep\-\_\-t. \end{DoxyCompactList}\item 
-\hypertarget{a00370_af96849646b9097e3677961af7787811e}{{\footnotesize template$<$class rep\-\_\-t $>$ }\\static void \hyperlink{a00370_af96849646b9097e3677961af7787811e}{add\-\_\-scalars} (const std\-::string \&str1, const std\-::string \&str2, void $\ast$m, void $\ast$w, int n=0)}\label{a00370_af96849646b9097e3677961af7787811e}
-
-\begin{DoxyCompactList}\small\item\em Inserts a pair of conjugate scalar multiplets with names (str1,str2), mass $\ast$m, width $\ast$w and P\-D\-G-\/ids (n,-\/n) in representation rep\-\_\-t. \end{DoxyCompactList}\item 
-\hypertarget{a00370_a68b370343c09a6e02aee70732eed1242}{static void \hyperlink{a00370_a68b370343c09a6e02aee70732eed1242}{add\-\_\-fermion} (const std\-::string \&str, int n=0)}\label{a00370_a68b370343c09a6e02aee70732eed1242}
-
-\begin{DoxyCompactList}\small\item\em Inserts a massless Majorana fermion with name str and P\-D\-G-\/id n. \end{DoxyCompactList}\item 
-static void \hyperlink{a00370_a8d405f13336b9e6b339c62c40b73cd2b}{add\-\_\-fermions} (const std\-::string \&str1, const std\-::string \&str2, int n=0)
-\begin{DoxyCompactList}\small\item\em Inserts a pair of conjugate Dirac fermions with names (str1,str2) and P\-D\-G-\/ids (n,-\/n). \end{DoxyCompactList}\item 
-\hypertarget{a00370_aef88dbc0a38bbefca4827d67b2244867}{static void \hyperlink{a00370_aef88dbc0a38bbefca4827d67b2244867}{add\-\_\-fermion} (const std\-::string \&str, void $\ast$m, int n=0)}\label{a00370_aef88dbc0a38bbefca4827d67b2244867}
-
-\begin{DoxyCompactList}\small\item\em Inserts a Majorana fermion with name str, mass $\ast$m and P\-D\-G-\/id n. \end{DoxyCompactList}\item 
-\hypertarget{a00370_a78aefcded03d37c4267bd6f410199aa9}{static void \hyperlink{a00370_a78aefcded03d37c4267bd6f410199aa9}{add\-\_\-fermions} (const std\-::string \&str1, const std\-::string \&str2, void $\ast$m, int n=0)}\label{a00370_a78aefcded03d37c4267bd6f410199aa9}
-
-\begin{DoxyCompactList}\small\item\em Inserts a pair of conjugate Dirac fermions with names (str1,str2), mass $\ast$m and P\-D\-G-\/ids (n,-\/n). \end{DoxyCompactList}\item 
-\hypertarget{a00370_ac93469e0837a782225f2c803e847e290}{static void \hyperlink{a00370_ac93469e0837a782225f2c803e847e290}{add\-\_\-fermion} (const std\-::string \&str, void $\ast$m, void $\ast$w, int n=0)}\label{a00370_ac93469e0837a782225f2c803e847e290}
-
-\begin{DoxyCompactList}\small\item\em Inserts a Majorana fermion with name str, mass $\ast$m, width $\ast$w and P\-D\-G-\/id n. \end{DoxyCompactList}\item 
-\hypertarget{a00370_a46eb14a53499f20bfbea625b01bbde92}{static void \hyperlink{a00370_a46eb14a53499f20bfbea625b01bbde92}{add\-\_\-fermions} (const std\-::string \&str1, const std\-::string \&str2, void $\ast$m, void $\ast$w, int n=0)}\label{a00370_a46eb14a53499f20bfbea625b01bbde92}
-
-\begin{DoxyCompactList}\small\item\em Inserts a pair of conjugate Dirac fermions with names (str1,str2), mass $\ast$m, width $\ast$w and P\-D\-G-\/ids (n,-\/n). \end{DoxyCompactList}\item 
-\hypertarget{a00370_a35659103225313895bab57fd0a1a5c89}{{\footnotesize template$<$class rep\-\_\-t $>$ }\\static void \hyperlink{a00370_a35659103225313895bab57fd0a1a5c89}{add\-\_\-fermion} (const std\-::string \&str, int n=0)}\label{a00370_a35659103225313895bab57fd0a1a5c89}
-
-\begin{DoxyCompactList}\small\item\em Inserts a massless Majorana fermion multiplet with name str and P\-D\-G-\/id n in representation rep\-\_\-t. \end{DoxyCompactList}\item 
-\hypertarget{a00370_ab3c53963beb700633bed6da348a4bbde}{{\footnotesize template$<$class rep\-\_\-t $>$ }\\static void \hyperlink{a00370_ab3c53963beb700633bed6da348a4bbde}{add\-\_\-fermions} (const std\-::string \&str1, const std\-::string \&str2, int n=0)}\label{a00370_ab3c53963beb700633bed6da348a4bbde}
-
-\begin{DoxyCompactList}\small\item\em Inserts a pair of conjugate Dirac fermion multiplets with names (str1,str2) and P\-D\-G-\/ids (n,-\/n) in representation rep\-\_\-t. \end{DoxyCompactList}\item 
-\hypertarget{a00370_a8802b9975deec1990fdc52555484f001}{{\footnotesize template$<$class rep\-\_\-t $>$ }\\static void \hyperlink{a00370_a8802b9975deec1990fdc52555484f001}{add\-\_\-fermion} (const std\-::string \&str, void $\ast$m, int n=0)}\label{a00370_a8802b9975deec1990fdc52555484f001}
-
-\begin{DoxyCompactList}\small\item\em Inserts a Majorana fermion with name str, mass $\ast$m and P\-D\-G-\/id n in representation rep\-\_\-t. \end{DoxyCompactList}\item 
-\hypertarget{a00370_a067a269d3fd0772630e716939bb85d74}{{\footnotesize template$<$class rep\-\_\-t $>$ }\\static void \hyperlink{a00370_a067a269d3fd0772630e716939bb85d74}{add\-\_\-fermions} (const std\-::string \&str1, const std\-::string \&str2, void $\ast$m, int n=0)}\label{a00370_a067a269d3fd0772630e716939bb85d74}
-
-\begin{DoxyCompactList}\small\item\em Inserts a pair of conjugate Dirac fermions with names (str1,str2), mass $\ast$m and P\-D\-G-\/ids (n,-\/n) in representation rep\-\_\-t. \end{DoxyCompactList}\item 
-\hypertarget{a00370_ad7f5ce640caf371a0acafe100f138de4}{{\footnotesize template$<$class rep\-\_\-t $>$ }\\static void \hyperlink{a00370_ad7f5ce640caf371a0acafe100f138de4}{add\-\_\-fermion} (const std\-::string \&str, void $\ast$m, void $\ast$w, int n=0)}\label{a00370_ad7f5ce640caf371a0acafe100f138de4}
-
-\begin{DoxyCompactList}\small\item\em Inserts a Majorana fermion with name str, mass $\ast$m, width $\ast$w and P\-D\-G-\/id n in representation rep\-\_\-t. \end{DoxyCompactList}\item 
-\hypertarget{a00370_a91b3e991cb82636afd1e55f43f627cad}{{\footnotesize template$<$class rep\-\_\-t $>$ }\\static void \hyperlink{a00370_a91b3e991cb82636afd1e55f43f627cad}{add\-\_\-fermions} (const std\-::string \&str1, const std\-::string \&str2, void $\ast$m, void $\ast$w, int n=0)}\label{a00370_a91b3e991cb82636afd1e55f43f627cad}
-
-\begin{DoxyCompactList}\small\item\em Inserts a pair of conjugate Dirac fermions with names (str1,str2), mass $\ast$m, width $\ast$w and P\-D\-G-\/ids (n,-\/n) in representation rep\-\_\-t. \end{DoxyCompactList}\item 
-\hypertarget{a00370_a0284fb404903e3ebb75dbaa7e337b3ff}{{\footnotesize template$<$template$<$ class mod $>$class g$>$ }\\static void \hyperlink{a00370_a0284fb404903e3ebb75dbaa7e337b3ff}{add\-\_\-vector} (const std\-::string \&str, int n=0)}\label{a00370_a0284fb404903e3ebb75dbaa7e337b3ff}
-
-\begin{DoxyCompactList}\small\item\em Inserts a massless vector particle in gauge g with name str and P\-D\-G-\/id n. \end{DoxyCompactList}\item 
-\hypertarget{a00370_ad582726dbded0bc66c8f8bda99446b7d}{{\footnotesize template$<$template$<$ class mod $>$class g$>$ }\\static void \hyperlink{a00370_ad582726dbded0bc66c8f8bda99446b7d}{add\-\_\-vectors} (const std\-::string \&str1, const std\-::string \&str2, int n=0)}\label{a00370_ad582726dbded0bc66c8f8bda99446b7d}
-
-\begin{DoxyCompactList}\small\item\em Inserts a pair of conjugate massless vector particles with names (str1,str2) and P\-D\-G-\/ids (n,-\/n). \end{DoxyCompactList}\item 
-\hypertarget{a00370_ab03c093b9bd2cf4d67f646204bf2f7d0}{{\footnotesize template$<$template$<$ class mod $>$class g$>$ }\\static void \hyperlink{a00370_ab03c093b9bd2cf4d67f646204bf2f7d0}{add\-\_\-vector} (const std\-::string \&str, void $\ast$m, int n=0)}\label{a00370_ab03c093b9bd2cf4d67f646204bf2f7d0}
-
-\begin{DoxyCompactList}\small\item\em Inserts a vector particle in gauge g with name str, mass $\ast$m and P\-D\-G-\/id n. \end{DoxyCompactList}\item 
-\hypertarget{a00370_ab97bc2dcf6fa9351a4d615be5e7a8425}{{\footnotesize template$<$template$<$ class mod $>$class g$>$ }\\static void \hyperlink{a00370_ab97bc2dcf6fa9351a4d615be5e7a8425}{add\-\_\-vectors} (const std\-::string \&str1, const std\-::string \&str2, void $\ast$m, int n=0)}\label{a00370_ab97bc2dcf6fa9351a4d615be5e7a8425}
-
-\begin{DoxyCompactList}\small\item\em Inserts a pair of conjugate vector particles with names (str1,str2), mass $\ast$m and P\-D\-G-\/ids (n,-\/n). \end{DoxyCompactList}\item 
-\hypertarget{a00370_a8fb7f8b4ddb45dc1889b046a0f333a3b}{{\footnotesize template$<$template$<$ class mod $>$class g$>$ }\\static void \hyperlink{a00370_a8fb7f8b4ddb45dc1889b046a0f333a3b}{add\-\_\-vector} (const std\-::string \&str, void $\ast$m, void $\ast$w, int n=0)}\label{a00370_a8fb7f8b4ddb45dc1889b046a0f333a3b}
-
-\begin{DoxyCompactList}\small\item\em Inserts a vector particle in gauge g with name str, mass $\ast$m, width $\ast$w and P\-D\-G-\/id n. \end{DoxyCompactList}\item 
-\hypertarget{a00370_ad261293fcd85128d9d06ad33c84192dc}{{\footnotesize template$<$template$<$ class mod $>$class g$>$ }\\static void \hyperlink{a00370_ad261293fcd85128d9d06ad33c84192dc}{add\-\_\-vectors} (const std\-::string \&str1, const std\-::string \&str2, void $\ast$m, void $\ast$w, int n=0)}\label{a00370_ad261293fcd85128d9d06ad33c84192dc}
-
-\begin{DoxyCompactList}\small\item\em Inserts a pair of conjugate vector particles with names (str1,str2), mass $\ast$m, width $\ast$w and P\-D\-G-\/ids (n,-\/n). \end{DoxyCompactList}\item 
-\hypertarget{a00370_a984fc6fde4897b248426d472714305e5}{{\footnotesize template$<$class rep\-\_\-t , template$<$ class mod $>$class g$>$ }\\static void \hyperlink{a00370_a984fc6fde4897b248426d472714305e5}{add\-\_\-vector} (const std\-::string \&str, int n=0)}\label{a00370_a984fc6fde4897b248426d472714305e5}
-
-\begin{DoxyCompactList}\small\item\em Inserts a massless vector multiplet in gauge g with name str and P\-D\-G-\/id n in representation rep\-\_\-t. \end{DoxyCompactList}\item 
-\hypertarget{a00370_a86ae07ca89c421c6d143e88a1922a1a3}{{\footnotesize template$<$class rep\-\_\-t , template$<$ class mod $>$class g$>$ }\\static void \hyperlink{a00370_a86ae07ca89c421c6d143e88a1922a1a3}{add\-\_\-vectors} (const std\-::string \&str1, const std\-::string \&str2, int n=0)}\label{a00370_a86ae07ca89c421c6d143e88a1922a1a3}
-
-\begin{DoxyCompactList}\small\item\em Inserts a pair of conjugate massless vector multiplets with names (str1,str2) and P\-D\-G-\/ids (n,-\/n) in representation rep\-\_\-t. \end{DoxyCompactList}\item 
-\hypertarget{a00370_ae7334993355db2d1df194f83680d6292}{{\footnotesize template$<$class rep\-\_\-t , template$<$ class mod $>$class g$>$ }\\static void \hyperlink{a00370_ae7334993355db2d1df194f83680d6292}{add\-\_\-vector} (const std\-::string \&str, void $\ast$m, int n=0)}\label{a00370_ae7334993355db2d1df194f83680d6292}
-
-\begin{DoxyCompactList}\small\item\em Inserts a vector multiplet in gauge g with name str, mass $\ast$m and P\-D\-G-\/id n in representation rep\-\_\-t. \end{DoxyCompactList}\item 
-\hypertarget{a00370_a0bf317da6294eb702558bebb681d95d2}{{\footnotesize template$<$class rep\-\_\-t , template$<$ class mod $>$class g$>$ }\\static void \hyperlink{a00370_a0bf317da6294eb702558bebb681d95d2}{add\-\_\-vectors} (const std\-::string \&str1, const std\-::string \&str2, void $\ast$m, int n=0)}\label{a00370_a0bf317da6294eb702558bebb681d95d2}
-
-\begin{DoxyCompactList}\small\item\em Inserts a pair of conjugate vector multiplets with names (str1,str2), mass $\ast$m and P\-D\-G-\/ids (n,-\/n) in representation rep\-\_\-t. \end{DoxyCompactList}\item 
-\hypertarget{a00370_a13af59ef20dfa354e8603c32884fcfa4}{{\footnotesize template$<$class rep\-\_\-t , template$<$ class mod $>$class g$>$ }\\static void \hyperlink{a00370_a13af59ef20dfa354e8603c32884fcfa4}{add\-\_\-vector} (const std\-::string \&str, void $\ast$m, void $\ast$w, int n=0)}\label{a00370_a13af59ef20dfa354e8603c32884fcfa4}
-
-\begin{DoxyCompactList}\small\item\em Inserts a vector multiplet in gauge g with name str, mass $\ast$m, width $\ast$w and P\-D\-G-\/id n in representation rep\-\_\-t. \end{DoxyCompactList}\item 
-\hypertarget{a00370_a831d7e21cd47179d80ee5c56adf107d3}{{\footnotesize template$<$class rep\-\_\-t , template$<$ class mod $>$class g$>$ }\\static void \hyperlink{a00370_a831d7e21cd47179d80ee5c56adf107d3}{add\-\_\-vectors} (const std\-::string \&str1, const std\-::string \&str2, void $\ast$m, void $\ast$w, int n=0)}\label{a00370_a831d7e21cd47179d80ee5c56adf107d3}
-
-\begin{DoxyCompactList}\small\item\em Inserts a pair of conjugate vector multiplets with names (str1,str2), mass $\ast$m, width $\ast$w and P\-D\-G-\/ids (n,-\/n) in representation rep\-\_\-t. \end{DoxyCompactList}\item 
-{\footnotesize template$<$template$<$ class mod $>$class g$>$ }\\static void \hyperlink{a00370_a011d03cd0180b4b7fc6cfdee3444a43c}{add\-\_\-photon} ()
-\begin{DoxyCompactList}\small\item\em Insert a photon in gauge g (name \char`\"{}gamma\char`\"{}, P\-D\-G-\/id 22). \end{DoxyCompactList}\item 
-{\footnotesize template$<$template$<$ class mod $>$class g, class group\-\_\-t $>$ }\\static void \hyperlink{a00370_a72e2d95ddeb7b482732e86b7b45d4b9d}{add\-\_\-gluon} ()
-\begin{DoxyCompactList}\small\item\em Insert a gluon of group group\-\_\-t in gauge g (name \char`\"{}g\char`\"{}, P\-D\-G-\/id 21). \end{DoxyCompactList}\item 
-{\footnotesize template$<$class group\-\_\-t $>$ }\\static void \hyperlink{a00370_a3e03c5b326768183c974de1e3fa06fc1}{add\-\_\-quarks} (const std\-::string \&str1, const std\-::string \&str2, int n=0)
-\begin{DoxyCompactList}\small\item\em Inserts massless quarks with names (str1,str2) and P\-D\-G-\/ids (n,-\/n) in the fundamental representation of group\-\_\-t. \end{DoxyCompactList}\item 
-{\footnotesize template$<$class group\-\_\-t $>$ }\\static void \hyperlink{a00370_a865da3783727b5c5e33d3b7345eb0cf1}{add\-\_\-quarks} (const std\-::string \&str1, const std\-::string str2, void $\ast$m, int n=0)
-\begin{DoxyCompactList}\small\item\em Inserts quarks with names (str1,str2), mass $\ast$m and P\-D\-G-\/ids (n,-\/n) in the fundamental representation of group\-\_\-t. \end{DoxyCompactList}\item 
-{\footnotesize template$<$class group\-\_\-t $>$ }\\static void \hyperlink{a00370_a3c1268dfedbc356a20a5fcd6febe8f3b}{add\-\_\-quarks} (const std\-::string \&str1, const std\-::string str2, void $\ast$m, void $\ast$w, int n=0)
-\begin{DoxyCompactList}\small\item\em Inserts quarks with names (str1,str2), mass $\ast$m, width $\ast$w and P\-D\-G-\/ids (n,-\/n) in the fundamental representation of group\-\_\-t. \end{DoxyCompactList}\item 
-{\footnotesize template$<$template$<$ class mod $>$class Feynrule\-\_\-t$>$ }\\static void \hyperlink{a00370_abd07d9b401653097ac2bd08865a17d2b}{add\-\_\-vertex} (const std\-::string \&phi1, const std\-::string \&phi2, const std\-::string \&\hyperlink{a00418}{phi3}, void $\ast$c1, void $\ast$c2=N\-U\-L\-L, void $\ast$c3=N\-U\-L\-L)
-\begin{DoxyCompactList}\small\item\em Inserts a 3-\/vertex connecting particles phi1,phi2,\hyperlink{a00418}{phi3} by Feynman rule Feynrule\-\_\-t with couplings $\ast$c1(,$\ast$c2,$\ast$c3). \end{DoxyCompactList}\item 
-\hypertarget{a00370_aeeca69f18dedd8c9855518cc895a3181}{{\footnotesize template$<$class coltens\-\_\-t , template$<$ class mod $>$class Feynrule\-\_\-t$>$ }\\static void \hyperlink{a00370_aeeca69f18dedd8c9855518cc895a3181}{add\-\_\-vertex} (const std\-::string \&phi1, const std\-::string \&phi2, const std\-::string \&\hyperlink{a00418}{phi3}, void $\ast$c1, void $\ast$c2=N\-U\-L\-L, void $\ast$c3=N\-U\-L\-L)}\label{a00370_aeeca69f18dedd8c9855518cc895a3181}
-
-\begin{DoxyCompactList}\small\item\em Inserts a 3-\/vertex connecting particles phi1,phi2,\hyperlink{a00418}{phi3} by Feynman rule Feynrule\-\_\-t with colour structure coltens\-\_\-t and couplings $\ast$c1(,$\ast$c2,$\ast$c3). \end{DoxyCompactList}\item 
-\hypertarget{a00370_ad944c2c9d2c051c4692285b4a6834a4c}{{\footnotesize template$<$template$<$ class mod $>$class Feynrule\-\_\-t$>$ }\\static void \hyperlink{a00370_ad944c2c9d2c051c4692285b4a6834a4c}{add\-\_\-vertex} (const std\-::string \&phi1, const std\-::string \&phi2, const std\-::string \&\hyperlink{a00418}{phi3}, const std\-::string \&phi4, void $\ast$c1, void $\ast$c2=N\-U\-L\-L, void $\ast$c3=N\-U\-L\-L)}\label{a00370_ad944c2c9d2c051c4692285b4a6834a4c}
-
-\begin{DoxyCompactList}\small\item\em Inserts a 4-\/vertex connecting particles phi1,phi2,\hyperlink{a00418}{phi3},phi4 by Feynman rule Feynrule\-\_\-t with couplings $\ast$c1(,$\ast$c2,$\ast$c3). \end{DoxyCompactList}\item 
-\hypertarget{a00370_aebf3e4488323bb36b01109db552b28ae}{{\footnotesize template$<$class coltens\-\_\-t , template$<$ class mod $>$class Feynrule\-\_\-t$>$ }\\static void \hyperlink{a00370_aebf3e4488323bb36b01109db552b28ae}{add\-\_\-vertex} (const std\-::string \&phi1, const std\-::string \&phi2, const std\-::string \&\hyperlink{a00418}{phi3}, const std\-::string \&phi4, void $\ast$c1, void $\ast$c2=N\-U\-L\-L, void $\ast$c3=N\-U\-L\-L)}\label{a00370_aebf3e4488323bb36b01109db552b28ae}
-
-\begin{DoxyCompactList}\small\item\em Inserts a 4-\/vertex connecting particles phi1,phi2,\hyperlink{a00418}{phi3},phi4 by Feynman rule Feynrule\-\_\-t with colour structure coltens\-\_\-t and couplings $\ast$c1(,$\ast$c2,$\ast$c3). \end{DoxyCompactList}\item 
-{\footnotesize template$<$class group\-\_\-t $>$ }\\static void \hyperlink{a00370_a1a0e098a96a98c708e8d647e147eb9fe}{add\-\_\-fast\-\_\-4g\-\_\-vertex} (const std\-::string \&phi, void $\ast$c0)
-\begin{DoxyCompactList}\small\item\em Insert the fast 4-\/gluon vertex. \end{DoxyCompactList}\item 
-\hypertarget{a00370_a554b309bf5636ab532074419aa98c555}{static void \hyperlink{a00370_a554b309bf5636ab532074419aa98c555}{construct\-\_\-family} (const std\-::string \&str, const std\-::string \&cont)}\label{a00370_a554b309bf5636ab532074419aa98c555}
-
-\begin{DoxyCompactList}\small\item\em Inserts a particle family with name str and content cont to the model wrapper. \end{DoxyCompactList}\item 
-\hypertarget{a00370_ab599162e170d8234213fc107d5c6427a}{static std\-::ostream \& \hyperlink{a00370_ab599162e170d8234213fc107d5c6427a}{print} (std\-::ostream \&os)}\label{a00370_ab599162e170d8234213fc107d5c6427a}
-
-\begin{DoxyCompactList}\small\item\em Sends compile-\/time data, particle content and vertex list to os. \end{DoxyCompactList}\item 
-\hypertarget{a00370_a387b2e149ddb4ee519fea4d7ce2dc8f9}{static void \hyperlink{a00370_a387b2e149ddb4ee519fea4d7ce2dc8f9}{discard\-\_\-widths} ()}\label{a00370_a387b2e149ddb4ee519fea4d7ce2dc8f9}
-
-\begin{DoxyCompactList}\small\item\em Sets all decay widths to zero. \end{DoxyCompactList}\item 
-\hypertarget{a00370_a80902416868d9ee4d19979b8386fd433}{static void \hyperlink{a00370_a80902416868d9ee4d19979b8386fd433}{apply\-\_\-widths} ()}\label{a00370_a80902416868d9ee4d19979b8386fd433}
-
-\begin{DoxyCompactList}\small\item\em Applies the finite decay widths. \end{DoxyCompactList}\item 
-static void \hyperlink{a00370_a89e70b576cf3cb5e345bd3252dc01373}{set\-\_\-fixed\-\_\-width\-\_\-scheme} ()
-\begin{DoxyCompactList}\small\item\em Sets the fixed width scheme for all propagators (no width included in spacelike propagators, not gauge-\/invariant). \end{DoxyCompactList}\item 
-static void \hyperlink{a00370_abf489c248710fb84d0642590b1023db9}{set\-\_\-complex\-\_\-mass\-\_\-scheme} ()
-\begin{DoxyCompactList}\small\item\em Sets the complex mass scheme for all propagators (width included in spacelike propagators, allows exact gauge-\/invariance). \end{DoxyCompactList}\item 
-static void \hyperlink{a00370_adf237ebf4d679ef7cb395d15617a5b5b}{set\-\_\-running\-\_\-width\-\_\-scheme} ()
-\begin{DoxyCompactList}\small\item\em Sets the running-\/width scheme (no complex masses in numerators, no widths in spacelike propagators, not gauge-\/invariant). \end{DoxyCompactList}\item 
-\hypertarget{a00370_a788b430717c5cadaa9ffe32dc8bf20a2}{static void \hyperlink{a00370_a788b430717c5cadaa9ffe32dc8bf20a2}{set\-\_\-spacelike\-\_\-fermion\-\_\-widths} (bool q)}\label{a00370_a788b430717c5cadaa9ffe32dc8bf20a2}
-
-\begin{DoxyCompactList}\small\item\em Switches off spacelike fermion widths. \end{DoxyCompactList}\item 
-static void \hyperlink{a00370_aa517bf6e9bb16ca21999b4f96039e0d5}{erase\-\_\-particle} (const std\-::string \&phi)
-\begin{DoxyCompactList}\small\item\em Erases a particle named phi from the static list. \end{DoxyCompactList}\item 
-static void \hyperlink{a00370_a8b0187733197a7fcbe21004033664b72}{erase\-\_\-vertex} (const std\-::string \&phi1, const std\-::string \&phi2, const std\-::string \&\hyperlink{a00418}{phi3})
-\begin{DoxyCompactList}\small\item\em Erases the 3-\/vertices connecting phi1,phi2,\hyperlink{a00418}{phi3}. \end{DoxyCompactList}\item 
-static void \hyperlink{a00370_a761070785a66c0c840f1b08bece67b0f}{erase\-\_\-vertex} (const std\-::string \&phi1, const std\-::string \&phi2, const std\-::string \&\hyperlink{a00418}{phi3}, const std\-::string \&phi4)
-\begin{DoxyCompactList}\small\item\em Erases the 4-\/vertices connecting phi1,phi2,str3,str4. \end{DoxyCompactList}\item 
-static void \hyperlink{a00370_a46c5d085b3af9acdfe0784662f572e28}{decouple\-\_\-particle} (const std\-::string \&phi)
-\begin{DoxyCompactList}\small\item\em Decouples particle named phi from the rest. \end{DoxyCompactList}\item 
-static void \hyperlink{a00370_af843c90460f953d8717728aa89d70552}{couple\-\_\-particle} (const std\-::string \&phi)
-\begin{DoxyCompactList}\small\item\em Couples particle named phi. \end{DoxyCompactList}\item 
-static void \hyperlink{a00370_ad9ef56b861b25d8f9440bd97f635cc40}{decouple\-\_\-vertex} (const std\-::string \&phi1, const std\-::string \&phi2, const std\-::string \&\hyperlink{a00418}{phi3})
-\begin{DoxyCompactList}\small\item\em Decouples the 3-\/vertices connecting phi1,phi2,\hyperlink{a00418}{phi3}. \end{DoxyCompactList}\item 
-static void \hyperlink{a00370_a1ada7c0d83308877cd41c28cf1c89be0}{couple\-\_\-vertex} (const std\-::string \&phi1, const std\-::string \&phi2, const std\-::string \&\hyperlink{a00418}{phi3})
-\begin{DoxyCompactList}\small\item\em Couples the 3-\/vertices connecting phi1,phi2,\hyperlink{a00418}{phi3}. \end{DoxyCompactList}\item 
-\hypertarget{a00370_a01e88fa34516f9679d742f11856f4611}{static void \hyperlink{a00370_a01e88fa34516f9679d742f11856f4611}{decouple\-\_\-vertex} (const std\-::string \&phi1, const std\-::string \&phi2, const std\-::string \&\hyperlink{a00418}{phi3}, const std\-::string \&phi4)}\label{a00370_a01e88fa34516f9679d742f11856f4611}
-
-\begin{DoxyCompactList}\small\item\em Decouples the 4-\/vertices connecting phi1,phi2,\hyperlink{a00418}{phi3},phi4. \end{DoxyCompactList}\item 
-\hypertarget{a00370_a16c864670deb6e9310aa27712dcbdd2c}{static void \hyperlink{a00370_a16c864670deb6e9310aa27712dcbdd2c}{couple\-\_\-vertex} (const std\-::string \&phi1, const std\-::string \&phi2, const std\-::string \&\hyperlink{a00418}{phi3}, const std\-::string \&phi4)}\label{a00370_a16c864670deb6e9310aa27712dcbdd2c}
-
-\begin{DoxyCompactList}\small\item\em Couples the 4-\/vertices connecting phi1,phi2,\hyperlink{a00418}{phi3},phi4. \end{DoxyCompactList}\item 
-\hypertarget{a00370_a7f0de2091dea1d3ec92df7456a769e9d}{static void \hyperlink{a00370_a7f0de2091dea1d3ec92df7456a769e9d}{decouple\-\_\-zero\-\_\-vertices} ()}\label{a00370_a7f0de2091dea1d3ec92df7456a769e9d}
-
-\begin{DoxyCompactList}\small\item\em decouples all vertices with zero couplings and couples all vertices with nonzero couplings \end{DoxyCompactList}\item 
-\hypertarget{a00370_ac08c09a5b298e2d3abd5beb11ef94701}{{\footnotesize template$<$template$<$ class M $>$class prop\-\_\-t$>$ }\\static void \hyperlink{a00370_ac08c09a5b298e2d3abd5beb11ef94701}{set\-\_\-propagator} (const std\-::string \&phi)}\label{a00370_ac08c09a5b298e2d3abd5beb11ef94701}
-
-\begin{DoxyCompactList}\small\item\em Replaces the propagator of particle named 'phi' by prop\-\_\-t. \end{DoxyCompactList}\item 
-\hypertarget{a00370_acb0ac734ee049874616f1660013d9c52}{static std\-::ostream \& \hyperlink{a00370_acb0ac734ee049874616f1660013d9c52}{print\-\_\-fusion\-\_\-rules} (std\-::ostream \&os)}\label{a00370_acb0ac734ee049874616f1660013d9c52}
-
-\begin{DoxyCompactList}\small\item\em Outputs the model's fusion rules used in the algorithm. \end{DoxyCompactList}\item 
-\hypertarget{a00370_acbaaea84018bd272a5e50ff5a8a16d59}{static void \hyperlink{a00370_acbaaea84018bd272a5e50ff5a8a16d59}{set\-\_\-mass} (const std\-::string \&phi, void $\ast$m)}\label{a00370_acbaaea84018bd272a5e50ff5a8a16d59}
-
-\begin{DoxyCompactList}\small\item\em Assigns mass $\ast$m to the particle named phi. \end{DoxyCompactList}\item 
-\hypertarget{a00370_a75ccd0d0b23effc40e91ce86b480442a}{static void \hyperlink{a00370_a75ccd0d0b23effc40e91ce86b480442a}{set\-\_\-massless} (const std\-::string \&phi)}\label{a00370_a75ccd0d0b23effc40e91ce86b480442a}
-
-\begin{DoxyCompactList}\small\item\em Makes phi massless. \end{DoxyCompactList}\item 
-\hypertarget{a00370_ae79c4efd782a898b3e5248968f5d6238}{static void \hyperlink{a00370_ae79c4efd782a898b3e5248968f5d6238}{set\-\_\-width} (const std\-::string \&phi, void $\ast$w)}\label{a00370_ae79c4efd782a898b3e5248968f5d6238}
-
-\begin{DoxyCompactList}\small\item\em Assigns width $\ast$w to the particle named phi. \end{DoxyCompactList}\item 
-\hypertarget{a00370_a5af701e8e6e12a44184ea6e7b699c6d0}{static void \hyperlink{a00370_a5af701e8e6e12a44184ea6e7b699c6d0}{set\-\_\-widthless} (const std\-::string \&phi)}\label{a00370_a5af701e8e6e12a44184ea6e7b699c6d0}
-
-\begin{DoxyCompactList}\small\item\em Makes phi widthless. \end{DoxyCompactList}\item 
-\hypertarget{a00370_a19058cc8486cf061c09aca2e9a3b2a32}{static void \hyperlink{a00370_a19058cc8486cf061c09aca2e9a3b2a32}{set\-\_\-\-Q\-C\-D\-\_\-scale} ()}\label{a00370_a19058cc8486cf061c09aca2e9a3b2a32}
-
-\begin{DoxyCompactList}\small\item\em Sets the \hyperlink{a00449}{Q\-C\-D} scale (empty when not overloaded). \end{DoxyCompactList}\item 
-\hypertarget{a00370_ab7feace0bc1e763dfe540a84cd629b34}{static void \hyperlink{a00370_ab7feace0bc1e763dfe540a84cd629b34}{set\-\_\-alpha\-\_\-s} ()}\label{a00370_ab7feace0bc1e763dfe540a84cd629b34}
-
-\begin{DoxyCompactList}\small\item\em Sets the strong coupling (empty when not overloaded). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Returns whether the integrand is valid. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-\subsubsection*{template$<$class model\-\_\-t$>$class Camgen\-::model$<$ model\-\_\-t $>$}
+\subsubsection*{template$<$class value\+\_\+t$>$class Camgen\+::\+M\+C\+\_\+integrator\+\_\+base$<$ value\+\_\+t $>$}
 
-model base class template. 
+Abstract base class for integrator classes. 
 
-All user-\/model classes should be derived from model$<$derived-\/model-\/type$>$. This class has no data members or non-\/static member functions. It serves only as an interface between the derived model\-\_\-t implementation and the hidden model\-\_\-wrapper$<$model\-\_\-t$>$ class templte, which contains the vertex and particle content. 
-
-\subsection{Member Function Documentation}
-\hypertarget{a00370_a37ba372a5b17bbb43840f2f195b7622d}{\index{Camgen\-::model@{Camgen\-::model}!add\-\_\-auxiliary\-\_\-particle@{add\-\_\-auxiliary\-\_\-particle}}
-\index{add\-\_\-auxiliary\-\_\-particle@{add\-\_\-auxiliary\-\_\-particle}!Camgen::model@{Camgen\-::model}}
-\subsubsection[{add\-\_\-auxiliary\-\_\-particle}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t$>$ static void {\bf Camgen\-::model}$<$ model\-\_\-t $>$\-::add\-\_\-auxiliary\-\_\-particle (
-\begin{DoxyParamCaption}
-\item[{const std\-::string \&}]{str, }
-\item[{const {\bf spin} \&}]{s}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{a00370_a37ba372a5b17bbb43840f2f195b7622d}
-
-
-Inserts spin-\/s auxiliary particle with name str. 
-
-Auxiliary particles in Camgen do not propagate and have no wave functions. They can therefore not be selected as external particles. \hypertarget{a00370_aa1e50838292e002cb2997f8d34e376bf}{\index{Camgen\-::model@{Camgen\-::model}!add\-\_\-auxiliary\-\_\-particle@{add\-\_\-auxiliary\-\_\-particle}}
-\index{add\-\_\-auxiliary\-\_\-particle@{add\-\_\-auxiliary\-\_\-particle}!Camgen::model@{Camgen\-::model}}
-\subsubsection[{add\-\_\-auxiliary\-\_\-particle}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t$>$ template$<$class rep\-\_\-t $>$ static void {\bf Camgen\-::model}$<$ model\-\_\-t $>$\-::add\-\_\-auxiliary\-\_\-particle (
-\begin{DoxyParamCaption}
-\item[{const std\-::string \&}]{str, }
-\item[{const {\bf spin} \&}]{s}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{a00370_aa1e50838292e002cb2997f8d34e376bf}
-
-
-Inserts spin-\/s auxiliary multiplet with name str in representation rep\-\_\-t. 
-
-The rep\-\_\-t should be either adjoint\-\_\-rep$<$group\-\_\-t$>$ or fundamental\-\_\-rep$<$group\-\_\-t$>$ for some group type group\-\_\-t, or a composition thereof using the compose\-\_\-reps class template. Currently only the S\-U$<$\-N$>$ classes may serve as a group type. \hypertarget{a00370_a1a0e098a96a98c708e8d647e147eb9fe}{\index{Camgen\-::model@{Camgen\-::model}!add\-\_\-fast\-\_\-4g\-\_\-vertex@{add\-\_\-fast\-\_\-4g\-\_\-vertex}}
-\index{add\-\_\-fast\-\_\-4g\-\_\-vertex@{add\-\_\-fast\-\_\-4g\-\_\-vertex}!Camgen::model@{Camgen\-::model}}
-\subsubsection[{add\-\_\-fast\-\_\-4g\-\_\-vertex}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t$>$ template$<$class group\-\_\-t $>$ static void {\bf Camgen\-::model}$<$ model\-\_\-t $>$\-::add\-\_\-fast\-\_\-4g\-\_\-vertex (
-\begin{DoxyParamCaption}
-\item[{const std\-::string \&}]{phi, }
-\item[{void $\ast$}]{c0}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{a00370_a1a0e098a96a98c708e8d647e147eb9fe}
-
-
-Insert the fast 4-\/gluon vertex. 
-
-Inserts an antisymmetric tensor field in the adjoint representation and a vertex of coupling it to 2 phi-\/particles an antisymmetric tensor coupling composed with f$<$ S\-U$<$\-N$>$ $>$. This will optimize gluon process performance. \hypertarget{a00370_a8d405f13336b9e6b339c62c40b73cd2b}{\index{Camgen\-::model@{Camgen\-::model}!add\-\_\-fermions@{add\-\_\-fermions}}
-\index{add\-\_\-fermions@{add\-\_\-fermions}!Camgen::model@{Camgen\-::model}}
-\subsubsection[{add\-\_\-fermions}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t$>$ static void {\bf Camgen\-::model}$<$ model\-\_\-t $>$\-::add\-\_\-fermions (
-\begin{DoxyParamCaption}
-\item[{const std\-::string \&}]{str1, }
-\item[{const std\-::string \&}]{str2, }
-\item[{int}]{n = {\ttfamily 0}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{a00370_a8d405f13336b9e6b339c62c40b73cd2b}
-
-
-Inserts a pair of conjugate Dirac fermions with names (str1,str2) and P\-D\-G-\/ids (n,-\/n). 
-
-The first argument denotes the particle and the second one the anti-\/particle, e.\-g. add\-\_\-fermions(\char`\"{}e-\/\char`\"{},\char`\"{}e+\char`\"{},11) in \hyperlink{a00451}{Q\-E\-D}. \hypertarget{a00370_a72e2d95ddeb7b482732e86b7b45d4b9d}{\index{Camgen\-::model@{Camgen\-::model}!add\-\_\-gluon@{add\-\_\-gluon}}
-\index{add\-\_\-gluon@{add\-\_\-gluon}!Camgen::model@{Camgen\-::model}}
-\subsubsection[{add\-\_\-gluon}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t$>$ template$<$template$<$ class mod $>$class g, class group\-\_\-t $>$ static void {\bf Camgen\-::model}$<$ model\-\_\-t $>$\-::add\-\_\-gluon (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{a00370_a72e2d95ddeb7b482732e86b7b45d4b9d}
-
-
-Insert a gluon of group group\-\_\-t in gauge g (name \char`\"{}g\char`\"{}, P\-D\-G-\/id 21). 
-
-Equivalent to\-: add\-\_\-vector$<$adjoint\-\_\-rep$<$group\-\_\-t$>$,g$>$(\char`\"{}g\char`\"{},21). \hypertarget{a00370_a011d03cd0180b4b7fc6cfdee3444a43c}{\index{Camgen\-::model@{Camgen\-::model}!add\-\_\-photon@{add\-\_\-photon}}
-\index{add\-\_\-photon@{add\-\_\-photon}!Camgen::model@{Camgen\-::model}}
-\subsubsection[{add\-\_\-photon}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t$>$ template$<$template$<$ class mod $>$class g$>$ static void {\bf Camgen\-::model}$<$ model\-\_\-t $>$\-::add\-\_\-photon (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{a00370_a011d03cd0180b4b7fc6cfdee3444a43c}
-
-
-Insert a photon in gauge g (name \char`\"{}gamma\char`\"{}, P\-D\-G-\/id 22). 
-
-Equivalent to\-: add\-\_\-vector$<$g$>$(\char`\"{}gamma\char`\"{},22). \hypertarget{a00370_a3e03c5b326768183c974de1e3fa06fc1}{\index{Camgen\-::model@{Camgen\-::model}!add\-\_\-quarks@{add\-\_\-quarks}}
-\index{add\-\_\-quarks@{add\-\_\-quarks}!Camgen::model@{Camgen\-::model}}
-\subsubsection[{add\-\_\-quarks}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t$>$ template$<$class group\-\_\-t $>$ static void {\bf Camgen\-::model}$<$ model\-\_\-t $>$\-::add\-\_\-quarks (
-\begin{DoxyParamCaption}
-\item[{const std\-::string \&}]{str1, }
-\item[{const std\-::string \&}]{str2, }
-\item[{int}]{n = {\ttfamily 0}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{a00370_a3e03c5b326768183c974de1e3fa06fc1}
-
-
-Inserts massless quarks with names (str1,str2) and P\-D\-G-\/ids (n,-\/n) in the fundamental representation of group\-\_\-t. 
-
-Equivalent to\-: add\-\_\-fermions$<$ fundamental\-\_\-rep$<$group\-\_\-t$>$(str1,str2,n). \hypertarget{a00370_a865da3783727b5c5e33d3b7345eb0cf1}{\index{Camgen\-::model@{Camgen\-::model}!add\-\_\-quarks@{add\-\_\-quarks}}
-\index{add\-\_\-quarks@{add\-\_\-quarks}!Camgen::model@{Camgen\-::model}}
-\subsubsection[{add\-\_\-quarks}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t$>$ template$<$class group\-\_\-t $>$ static void {\bf Camgen\-::model}$<$ model\-\_\-t $>$\-::add\-\_\-quarks (
-\begin{DoxyParamCaption}
-\item[{const std\-::string \&}]{str1, }
-\item[{const std\-::string}]{str2, }
-\item[{void $\ast$}]{m, }
-\item[{int}]{n = {\ttfamily 0}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{a00370_a865da3783727b5c5e33d3b7345eb0cf1}
-
-
-Inserts quarks with names (str1,str2), mass $\ast$m and P\-D\-G-\/ids (n,-\/n) in the fundamental representation of group\-\_\-t. 
-
-Equivalent to\-: add\-\_\-fermions$<$ fundamental\-\_\-rep$<$group\-\_\-t$>$(str1,str2,m,n). \hypertarget{a00370_a3c1268dfedbc356a20a5fcd6febe8f3b}{\index{Camgen\-::model@{Camgen\-::model}!add\-\_\-quarks@{add\-\_\-quarks}}
-\index{add\-\_\-quarks@{add\-\_\-quarks}!Camgen::model@{Camgen\-::model}}
-\subsubsection[{add\-\_\-quarks}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t$>$ template$<$class group\-\_\-t $>$ static void {\bf Camgen\-::model}$<$ model\-\_\-t $>$\-::add\-\_\-quarks (
-\begin{DoxyParamCaption}
-\item[{const std\-::string \&}]{str1, }
-\item[{const std\-::string}]{str2, }
-\item[{void $\ast$}]{m, }
-\item[{void $\ast$}]{w, }
-\item[{int}]{n = {\ttfamily 0}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{a00370_a3c1268dfedbc356a20a5fcd6febe8f3b}
-
-
-Inserts quarks with names (str1,str2), mass $\ast$m, width $\ast$w and P\-D\-G-\/ids (n,-\/n) in the fundamental representation of group\-\_\-t. 
-
-Equivalent to\-: add\-\_\-fermions$<$ fundamental\-\_\-rep$<$group\-\_\-t$>$(str1,str2,m,n). \hypertarget{a00370_abd07d9b401653097ac2bd08865a17d2b}{\index{Camgen\-::model@{Camgen\-::model}!add\-\_\-vertex@{add\-\_\-vertex}}
-\index{add\-\_\-vertex@{add\-\_\-vertex}!Camgen::model@{Camgen\-::model}}
-\subsubsection[{add\-\_\-vertex}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t$>$ template$<$template$<$ class mod $>$class Feynrule\-\_\-t$>$ static void {\bf Camgen\-::model}$<$ model\-\_\-t $>$\-::add\-\_\-vertex (
-\begin{DoxyParamCaption}
-\item[{const std\-::string \&}]{phi1, }
-\item[{const std\-::string \&}]{phi2, }
-\item[{const std\-::string \&}]{phi3, }
-\item[{void $\ast$}]{c1, }
-\item[{void $\ast$}]{c2 = {\ttfamily NULL}, }
-\item[{void $\ast$}]{c3 = {\ttfamily NULL}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{a00370_abd07d9b401653097ac2bd08865a17d2b}
-
-
-Inserts a 3-\/vertex connecting particles phi1,phi2,\hyperlink{a00418}{phi3} by Feynman rule Feynrule\-\_\-t with couplings $\ast$c1(,$\ast$c2,$\ast$c3). 
-
-Note that the couplings in vertex insertions should be of the type std\-::complex$<$value\-\_\-type$>$$\ast$ \hypertarget{a00370_af843c90460f953d8717728aa89d70552}{\index{Camgen\-::model@{Camgen\-::model}!couple\-\_\-particle@{couple\-\_\-particle}}
-\index{couple\-\_\-particle@{couple\-\_\-particle}!Camgen::model@{Camgen\-::model}}
-\subsubsection[{couple\-\_\-particle}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t$>$ static void {\bf Camgen\-::model}$<$ model\-\_\-t $>$\-::couple\-\_\-particle (
-\begin{DoxyParamCaption}
-\item[{const std\-::string \&}]{phi}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{a00370_af843c90460f953d8717728aa89d70552}
-
-
-Couples particle named phi. 
-
-If phi is not found or not decoupled, no action is performed. \hypertarget{a00370_a1ada7c0d83308877cd41c28cf1c89be0}{\index{Camgen\-::model@{Camgen\-::model}!couple\-\_\-vertex@{couple\-\_\-vertex}}
-\index{couple\-\_\-vertex@{couple\-\_\-vertex}!Camgen::model@{Camgen\-::model}}
-\subsubsection[{couple\-\_\-vertex}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t$>$ static void {\bf Camgen\-::model}$<$ model\-\_\-t $>$\-::couple\-\_\-vertex (
-\begin{DoxyParamCaption}
-\item[{const std\-::string \&}]{phi1, }
-\item[{const std\-::string \&}]{phi2, }
-\item[{const std\-::string \&}]{phi3}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{a00370_a1ada7c0d83308877cd41c28cf1c89be0}
-
-
-Couples the 3-\/vertices connecting phi1,phi2,\hyperlink{a00418}{phi3}. 
-
-If no such vertex is found or no such vertex is decoupled, no action is performed. \hypertarget{a00370_a46c5d085b3af9acdfe0784662f572e28}{\index{Camgen\-::model@{Camgen\-::model}!decouple\-\_\-particle@{decouple\-\_\-particle}}
-\index{decouple\-\_\-particle@{decouple\-\_\-particle}!Camgen::model@{Camgen\-::model}}
-\subsubsection[{decouple\-\_\-particle}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t$>$ static void {\bf Camgen\-::model}$<$ model\-\_\-t $>$\-::decouple\-\_\-particle (
-\begin{DoxyParamCaption}
-\item[{const std\-::string \&}]{phi}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{a00370_a46c5d085b3af9acdfe0784662f572e28}
-
-
-Decouples particle named phi from the rest. 
-
-All vertices containing the particle will be disregarded during tree evaluations. If phi is not found, no action is performed. \hypertarget{a00370_ad9ef56b861b25d8f9440bd97f635cc40}{\index{Camgen\-::model@{Camgen\-::model}!decouple\-\_\-vertex@{decouple\-\_\-vertex}}
-\index{decouple\-\_\-vertex@{decouple\-\_\-vertex}!Camgen::model@{Camgen\-::model}}
-\subsubsection[{decouple\-\_\-vertex}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t$>$ static void {\bf Camgen\-::model}$<$ model\-\_\-t $>$\-::decouple\-\_\-vertex (
-\begin{DoxyParamCaption}
-\item[{const std\-::string \&}]{phi1, }
-\item[{const std\-::string \&}]{phi2, }
-\item[{const std\-::string \&}]{phi3}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{a00370_ad9ef56b861b25d8f9440bd97f635cc40}
-
-
-Decouples the 3-\/vertices connecting phi1,phi2,\hyperlink{a00418}{phi3}. 
-
-If no such vertex is found or no such vertex is coupled, no action is performed. \hypertarget{a00370_aa517bf6e9bb16ca21999b4f96039e0d5}{\index{Camgen\-::model@{Camgen\-::model}!erase\-\_\-particle@{erase\-\_\-particle}}
-\index{erase\-\_\-particle@{erase\-\_\-particle}!Camgen::model@{Camgen\-::model}}
-\subsubsection[{erase\-\_\-particle}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t$>$ static void {\bf Camgen\-::model}$<$ model\-\_\-t $>$\-::erase\-\_\-particle (
-\begin{DoxyParamCaption}
-\item[{const std\-::string \&}]{phi}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{a00370_aa517bf6e9bb16ca21999b4f96039e0d5}
-
-
-Erases a particle named phi from the static list. 
-
-If no such particle is found, no action is performed. Usage may lead to unexpected results as all previously built \hyperlink{a00070}{C\-M\-\_\-algorithm} trees become invalid. For a safer (and faster) way to omit particles, use decouple\-\_\-particle. \hypertarget{a00370_a8b0187733197a7fcbe21004033664b72}{\index{Camgen\-::model@{Camgen\-::model}!erase\-\_\-vertex@{erase\-\_\-vertex}}
-\index{erase\-\_\-vertex@{erase\-\_\-vertex}!Camgen::model@{Camgen\-::model}}
-\subsubsection[{erase\-\_\-vertex}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t$>$ static void {\bf Camgen\-::model}$<$ model\-\_\-t $>$\-::erase\-\_\-vertex (
-\begin{DoxyParamCaption}
-\item[{const std\-::string \&}]{phi1, }
-\item[{const std\-::string \&}]{phi2, }
-\item[{const std\-::string \&}]{phi3}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{a00370_a8b0187733197a7fcbe21004033664b72}
-
-
-Erases the 3-\/vertices connecting phi1,phi2,\hyperlink{a00418}{phi3}. 
-
-If no such vertex is found, no action is performed. Usage may lead to unexpected results as all previously built \hyperlink{a00070}{C\-M\-\_\-algorithm} trees become invalid. For a safer (and faster) way to omit interactions, use decouple\-\_\-vertex. \hypertarget{a00370_a761070785a66c0c840f1b08bece67b0f}{\index{Camgen\-::model@{Camgen\-::model}!erase\-\_\-vertex@{erase\-\_\-vertex}}
-\index{erase\-\_\-vertex@{erase\-\_\-vertex}!Camgen::model@{Camgen\-::model}}
-\subsubsection[{erase\-\_\-vertex}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t$>$ static void {\bf Camgen\-::model}$<$ model\-\_\-t $>$\-::erase\-\_\-vertex (
-\begin{DoxyParamCaption}
-\item[{const std\-::string \&}]{phi1, }
-\item[{const std\-::string \&}]{phi2, }
-\item[{const std\-::string \&}]{phi3, }
-\item[{const std\-::string \&}]{phi4}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{a00370_a761070785a66c0c840f1b08bece67b0f}
-
-
-Erases the 4-\/vertices connecting phi1,phi2,str3,str4. 
-
-If no such vertex is found, no action is performed. \hypertarget{a00370_addb0565969863861ecfb72877717b1e6}{\index{Camgen\-::model@{Camgen\-::model}!get\-\_\-instance@{get\-\_\-instance}}
-\index{get\-\_\-instance@{get\-\_\-instance}!Camgen::model@{Camgen\-::model}}
-\subsubsection[{get\-\_\-instance}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t$>$ static model\-\_\-t$\ast$ {\bf Camgen\-::model}$<$ model\-\_\-t $>$\-::get\-\_\-instance (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{a00370_addb0565969863861ecfb72877717b1e6}
-
-
-Returns the single instance of model\-\_\-t. 
-
-If the instance is not yet allocated, uses the default constructor of model\-\_\-t to create and return it. \hypertarget{a00370_aac3264ce0db5925641f695c1b0fdfcac}{\index{Camgen\-::model@{Camgen\-::model}!initialise@{initialise}}
-\index{initialise@{initialise}!Camgen::model@{Camgen\-::model}}
-\subsubsection[{initialise}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t$>$ static void {\bf Camgen\-::model}$<$ model\-\_\-t $>$\-::initialise (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{a00370_aac3264ce0db5925641f695c1b0fdfcac}
-
-
-Creates the single instance of model\-\_\-t. 
-
-Same functionality as the \hyperlink{a00370_addb0565969863861ecfb72877717b1e6}{get\-\_\-instance()}, but no return value. \hypertarget{a00370_abf489c248710fb84d0642590b1023db9}{\index{Camgen\-::model@{Camgen\-::model}!set\-\_\-complex\-\_\-mass\-\_\-scheme@{set\-\_\-complex\-\_\-mass\-\_\-scheme}}
-\index{set\-\_\-complex\-\_\-mass\-\_\-scheme@{set\-\_\-complex\-\_\-mass\-\_\-scheme}!Camgen::model@{Camgen\-::model}}
-\subsubsection[{set\-\_\-complex\-\_\-mass\-\_\-scheme}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t$>$ static void {\bf Camgen\-::model}$<$ model\-\_\-t $>$\-::set\-\_\-complex\-\_\-mass\-\_\-scheme (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{a00370_abf489c248710fb84d0642590b1023db9}
-
-
-Sets the complex mass scheme for all propagators (width included in spacelike propagators, allows exact gauge-\/invariance). 
-
-\hypertarget{a00370_a89e70b576cf3cb5e345bd3252dc01373}{\index{Camgen\-::model@{Camgen\-::model}!set\-\_\-fixed\-\_\-width\-\_\-scheme@{set\-\_\-fixed\-\_\-width\-\_\-scheme}}
-\index{set\-\_\-fixed\-\_\-width\-\_\-scheme@{set\-\_\-fixed\-\_\-width\-\_\-scheme}!Camgen::model@{Camgen\-::model}}
-\subsubsection[{set\-\_\-fixed\-\_\-width\-\_\-scheme}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t$>$ static void {\bf Camgen\-::model}$<$ model\-\_\-t $>$\-::set\-\_\-fixed\-\_\-width\-\_\-scheme (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{a00370_a89e70b576cf3cb5e345bd3252dc01373}
-
-
-Sets the fixed width scheme for all propagators (no width included in spacelike propagators, not gauge-\/invariant). 
-
-\hypertarget{a00370_adf237ebf4d679ef7cb395d15617a5b5b}{\index{Camgen\-::model@{Camgen\-::model}!set\-\_\-running\-\_\-width\-\_\-scheme@{set\-\_\-running\-\_\-width\-\_\-scheme}}
-\index{set\-\_\-running\-\_\-width\-\_\-scheme@{set\-\_\-running\-\_\-width\-\_\-scheme}!Camgen::model@{Camgen\-::model}}
-\subsubsection[{set\-\_\-running\-\_\-width\-\_\-scheme}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t$>$ static void {\bf Camgen\-::model}$<$ model\-\_\-t $>$\-::set\-\_\-running\-\_\-width\-\_\-scheme (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{a00370_adf237ebf4d679ef7cb395d15617a5b5b}
-
-
-Sets the running-\/width scheme (no complex masses in numerators, no widths in spacelike propagators, not gauge-\/invariant). 
-
-
-
-The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/\-Camgen/forward\-\_\-decs.\-h\item 
-include/\-Camgen/\hyperlink{a00675}{model.\-h}\end{DoxyCompactItemize}
+include/\+Camgen/\hyperlink{a00693}{M\+C\+\_\+int\+\_\+base.\+h}\end{DoxyCompactItemize}

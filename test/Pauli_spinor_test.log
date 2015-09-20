@@ -1,0 +1,164 @@
+----------------------------------------------------------
+testing spinor/vector wave functions in the Pauli basis...
+----------------------------------------------------------
+Checking u+ spinor construction....................done.
+Checking whether gL.u+=u+....................done.
+Checking whether gR.u+=0....................done.
+Checking whether pslash.u+=0....................done.
+Checking ubar+ spinor construction....................done.
+Checking whether (ubar+)gR=ubar+....................done.
+Checking whether (ubar+).gL=0....................done.
+Checking whether (ubar+).pslash=0....................done.
+Checking whether (u+)(ubar+)=PR.pslash....................done.
+Checking u- spinor construction....................done.
+Checking whether gR.u-=u-....................done.
+Checking whether gL.u-=0....................done.
+Checking whether pslash.u-=0....................done.
+Checking ubar- spinor construction....................done.
+Checking whether (ubar-)gL=ubar-....................done.
+Checking whether (ubar-).gR=0....................done.
+Checking whether (ubar-).pslash=0....................done.
+Checking whether (u-)(ubar-)=PL.pslash....................done.
+Checking massless e+ vector construction....................done.
+Checking whether massless e+ is massless....................done.
+Checking whether massless p.e+ is zero....................done.
+Checking massless e- vector construction....................done.
+Checking whether massless e- is massless....................done.
+Checking whether massless p.e- is zero....................done.
+Checking whether massless e- = e+*....................done.
+Checking whether massless e+.e- = -1....................done.
+Checking massive e+ vector construction....................done.
+Checking whether massive e+ is massless....................done.
+Checking whether massive p.e+ is zero....................done.
+Checking massive e- vector construction....................done.
+Checking whether massive e- is massless....................done.
+Checking whether massive p.e- is zero....................done.
+Checking whether massive e- = e+*....................done.
+Checking whether massive e+.e- = -1....................done.
+Checking massive e0 vector construction....................done.
+Checking whether massive e0.e0 = -1....................done.
+Checking whether massive p.e0 is zero....................done.
+Checking whether massive e0.e+ = 0....................done.
+Checking whether massive e0.e- = 0....................done.
+Checking whether u- = C.(ubar+)^T....................done.
+Checking whether u- = C.(ubar+)^T....................done.
+Checking massive helicity u+ spinor construction....................done.
+Checking whether 1/2(1+g5.$)u+=u+....................done.
+Checking whether 1/2(1-g5.$)u+=0....................done.
+Checking whether (pslash-m).u+=0....................done.
+Checking massive helicity ubar+ spinor construction....................done.
+Checking whether 1/2(ubar+)(1+g5.$)=ubar+....................done.
+Checking whether 1/2(ubar+)(1-g5.$)=0....................done.
+Checking whether (ubar+)(pslash-m)=0....................done.
+Checking whether (u+)(ubar+)=1/2(1+g5.sslash)(pslash+m)....................done
+Checking massive helicity u- spinor construction....................done.
+Checking whether (pslash-m).u-=0....................done.
+Checking massive helicity ubar- spinor construction....................done.
+Checking whether 1/2(1-g5.$)u-=u-....................done.
+Checking whether 1/2(1+g5.$)u-=0....................done.
+Checking whether (ubar-)(pslash-m)=0....................done.
+Checking whether (u-)(ubar-)=1/2(1-g5.sslash)(pslash+m)....................done
+Checking massive helicity v+ spinor construction....................done.
+Checking whether 1/2(ubar-)(1-g5.$)=ubar+....................done.
+Checking whether 1/2(ubar-)(1+g5.$)=0....................done.
+Checking whether 1/2(1+g5.$)v+=v+....................done.
+Checking whether 1/2(1-g5.$)v+=0....................done.
+Checking whether (pslash+m).v+=0....................done.
+Checking massive helicity vbar+ spinor construction....................done.
+Checking whether 1/2(vbar+)(1+g5.$)=vbar+....................done.
+Checking whether 1/2(vbar+)(1-g5.$)=0....................done.
+Checking whether (vbar+)(pslash+m)=0....................done.
+Checking whether (v+)(vbar+)=1/2(1+g5.sslash)(pslash-m)....................done
+Checking massive helicity v- spinor construction....................done.
+Checking whether 1/2(1-g5.$)v-=v-....................done.
+Checking whether 1/2(1+g5.$)v-=0....................done.
+Checking whether (pslash+m).v-=0....................done.
+Checking massive helicity vbar- spinor construction....................done.
+Checking whether 1/2(vbar-)(1-g5.$)=vbar+....................done.
+Checking whether 1/2(vbar-)(1+g5.$)=0....................done.
+Checking whether (vbar-)(pslash+m)=0....................done.
+Checking whether (v-)(vbar-)=1/2(1-g5.sslash)(pslash-m)....................done
+Checking whether u+ = C.(vbar+)^T....................done.
+Checking whether u- = C.(vbar-)^T....................done.
+Checking whether v+ = C.(ubar+)^T....................done.
+Checking whether v- = C.(ubar-)^T....................done.
+Checking massive KS_type u+ spinor construction....................done.
+Checking whether 1/2(1+g5.$)u+=u+....................done.
+Checking whether 1/2(1-g5.$)u+=0....................done.
+Checking whether (pslash-m).u+=0....................done.
+Checking massive KS_type ubar+ spinor construction....................done.
+Checking whether 1/2(ubar+)(1+g5.$)=ubar+....................done.
+Checking whether 1/2(ubar+)(1-g5.$)=0....................done.
+Checking whether (ubar+)(pslash-m)=0....................done.
+Checking whether (u+)(ubar+)=1/2(1+g5.sslash)(pslash+m)....................done
+Checking massive KS_type u- spinor construction....................done.
+Checking whether (pslash-m).u-=0....................done.
+Checking massive KS_type ubar- spinor construction....................done.
+Checking whether 1/2(1-g5.$)u-=u-....................done.
+Checking whether 1/2(1+g5.$)u-=0....................done.
+Checking whether (ubar-)(pslash-m)=0....................done.
+Checking whether (u-)(ubar-)=1/2(1-g5.sslash)(pslash+m)....................done
+Checking massive KS_type v+ spinor construction....................done.
+Checking whether 1/2(ubar-)(1-g5.$)=ubar+....................done.
+Checking whether 1/2(ubar-)(1+g5.$)=0....................done.
+Checking whether 1/2(1+g5.$)v+=v+....................done.
+Checking whether 1/2(1-g5.$)v+=0....................done.
+Checking whether (pslash+m).v+=0....................done.
+Checking massive KS_type vbar+ spinor construction....................done.
+Checking whether 1/2(vbar+)(1+g5.$)=vbar+....................done.
+Checking whether 1/2(vbar+)(1-g5.$)=0....................done.
+Checking whether (vbar+)(pslash+m)=0....................done.
+Checking whether (v+)(vbar+)=1/2(1+g5.sslash)(pslash-m)....................done
+Checking massive KS_type v- spinor construction....................done.
+Checking whether 1/2(1-g5.$)v-=v-....................done.
+Checking whether 1/2(1+g5.$)v-=0....................done.
+Checking whether (pslash+m).v-=0....................done.
+Checking massive KS_type vbar- spinor construction....................done.
+Checking whether 1/2(vbar-)(1-g5.$)=vbar+....................done.
+Checking whether 1/2(vbar-)(1+g5.$)=0....................done.
+Checking whether (vbar-)(pslash+m)=0....................done.
+Checking whether (v-)(vbar-)=1/2(1-g5.sslash)(pslash-m)....................done
+Checking whether u+ = C.(vbar+)^T....................done.
+Checking whether u- = C.(vbar-)^T....................done.
+Checking whether v+ = C.(ubar+)^T....................done.
+Checking whether v- = C.(ubar-)^T....................done.
+Checking massive z-polarised u+ spinor construction....................done.
+Checking whether 1/2(1+g5.$)u+=u+....................done.
+Checking whether 1/2(1-g5.$)u+=0....................done.
+Checking whether (pslash-m).u+=0....................done.
+Checking massive z-polarised ubar+ spinor construction....................done.
+Checking whether 1/2(ubar+)(1+g5.$)=ubar+....................done.
+Checking whether 1/2(ubar+)(1-g5.$)=0....................done.
+Checking whether (ubar+)(pslash-m)=0....................done.
+Checking whether (u+)(ubar+)=1/2(1+g5.sslash)(pslash+m)....................done
+Checking massive z-polarised u- spinor construction....................done.
+Checking whether (pslash-m).u-=0....................done.
+Checking massive z-polarised ubar- spinor construction....................done.
+Checking whether 1/2(1-g5.$)u-=u-....................done.
+Checking whether 1/2(1+g5.$)u-=0....................done.
+Checking whether (ubar-)(pslash-m)=0....................done.
+Checking whether (u-)(ubar-)=1/2(1-g5.sslash)(pslash+m)....................done
+Checking massive z-polarised v+ spinor construction....................done.
+Checking whether 1/2(ubar-)(1-g5.$)=ubar+....................done.
+Checking whether 1/2(ubar-)(1+g5.$)=0....................done.
+Checking whether 1/2(1+g5.$)v+=v+....................done.
+Checking whether 1/2(1-g5.$)v+=0....................done.
+Checking whether (pslash+m).v+=0....................done.
+Checking massive z-polarised vbar+ spinor construction....................done.
+Checking whether 1/2(vbar+)(1+g5.$)=vbar+....................done.
+Checking whether 1/2(vbar+)(1-g5.$)=0....................done.
+Checking whether (vbar+)(pslash+m)=0....................done.
+Checking whether (v+)(vbar+)=1/2(1+g5.sslash)(pslash-m)....................done
+Checking massive z-polarised v- spinor construction....................done.
+Checking whether 1/2(1-g5.$)v-=v-....................done.
+Checking whether 1/2(1+g5.$)v-=0....................done.
+Checking whether (pslash+m).v-=0....................done.
+Checking massive z-polarised vbar- spinor construction....................done.
+Checking whether 1/2(vbar-)(1-g5.$)=vbar+....................done.
+Checking whether 1/2(vbar-)(1+g5.$)=0....................done.
+Checking whether (vbar-)(pslash+m)=0....................done.
+Checking whether (v-)(vbar-)=1/2(1-g5.sslash)(pslash-m)....................done
+Checking whether u+ = C.(vbar+)^T....................done.
+Checking whether u- = C.(vbar-)^T....................done.
+Checking whether v+ = C.(ubar+)^T....................done.
+Checking whether v- = C.(ubar-)^T....................done.

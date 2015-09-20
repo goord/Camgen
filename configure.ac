@@ -8,6 +8,9 @@ AC_CONFIG_AUX_DIR([build-aux])
 
 # Checks for programs.
 
+m4_pattern_allow([AM_PROG_AR])
+AM_PROG_AR
+
 AC_PROG_CXXCPP
 AC_PROG_CXX
 AC_PROG_INSTALL
@@ -15,7 +18,7 @@ AC_PROG_LIBTOOL
 
 # Automake prequisites
 
-AM_INIT_AUTOMAKE([1.9])
+AM_INIT_AUTOMAKE([1.9 -Wall])
 
 # use the C++ compiler for the following checks
 

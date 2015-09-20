@@ -1,0 +1,13 @@
+-------------------------------------------------------------------------
+testing constrained density integrals....................................
+-------------------------------------------------------------------------
+Checking integral Breit-Wigner(81.5,2.5) * Breit-Wigner(120,5).......................done, file plots/BWBW1_int.eps written.
+Checking integral Breit-Wigner(15,200) * Breit-Wigner(100,5).......................done, file plots/BWBW2_int.eps written.
+Checking integral Breit-Wigner(91,1.5) * Breit-Wigner(91,1.5).......................done, file plots/BWBW3_int.eps written.
+Checking integral Breit-Wigner(81.5,1.5) * power-law(3,1.75).......................done, file plots/BWpl_int.eps written.
+Checking integral Breit-Wigner(81.5,1.5) * uniform().......................done, file plots/BWuni_int.eps written.
+Checking integral Breit-Wigner(81.5,1.5) * Dirac-delta(3).......................done, file plots/BWDd_int.eps written.
+Checking integral power-law(5,1.05) * power-law(2.5,1.75).......................done, file plots/plpl_int.eps written.
+Checking integral power-law(5,1.05) * uniform().......................done, file plots/pluni_int.eps written.
+Checking integral power-law(5,1.05) * Dirac_delta(120).......................done, file plots/plDd_int.eps written.
+Checking integral uniform() * Dirac_delta(120).......................done, file plots/uDd_int.eps written.

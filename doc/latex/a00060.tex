@@ -1,8 +1,62 @@
-\hypertarget{a00060}{\section{Camgen\-:\-:cfd\-\_\-evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-:\-:dd\-\_\-min$<$ fundamental\-\_\-rep$<$ S\-U$<$ N $>$ $>$, I, J, K, L $>$, Feynrule\-\_\-t $>$ $>$ Class Template Reference}
-\label{a00060}\index{Camgen\-::cfd\-\_\-evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-::dd\-\_\-min$<$ fundamental\-\_\-rep$<$ S\-U$<$ N $>$ $>$, I, J, K, L $>$, Feynrule\-\_\-t $>$ $>$@{Camgen\-::cfd\-\_\-evaluate$<$ compose\-\_\-vertices$<$ colour\-\_\-tensor\-::dd\-\_\-min$<$ fundamental\-\_\-rep$<$ S\-U$<$ N $>$ $>$, I, J, K, L $>$, Feynrule\-\_\-t $>$ $>$}}
-}
-
-
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\hypertarget{a00060}{}\section{Camgen\+:\+:chain\+\_\+interface$<$ model\+\_\+t $>$ Class Template Reference}
+\label{a00060}\index{Camgen\+::chain\+\_\+interface$<$ model\+\_\+t $>$@{Camgen\+::chain\+\_\+interface$<$ model\+\_\+t $>$}}
+Inheritance diagram for Camgen\+:\+:chain\+\_\+interface$<$ model\+\_\+t $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{a00060}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
 \item 
-include/\-Camgen/dd\-\_\-min.\-h\end{DoxyCompactItemize}
+struct \hyperlink{a00525}{sub\+\_\+interface}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00060_ac6944448a45f1281886b040b50287b8b}{}\hyperlink{a00060_ac6944448a45f1281886b040b50287b8b}{chain\+\_\+interface} (\hyperlink{a00451}{generator\+\_\+type} $\ast$gen\+\_\+, \hyperlink{a00319}{interface\+\_\+output}$<$ model\+\_\+t $>$ $\ast$output\+\_\+, \hyperlink{a00318}{interface\+\_\+engine}$<$ model\+\_\+t $>$ $\ast$engine\+\_\+=N\+U\+L\+L)\label{a00060_ac6944448a45f1281886b040b50287b8b}
+
+\begin{DoxyCompactList}\small\item\em Constructor with process generator instance. \end{DoxyCompactList}\item 
+\hypertarget{a00060_aedbfe0b70fa152c87c06b87d653bfba0}{}\hyperlink{a00060_aedbfe0b70fa152c87c06b87d653bfba0}{$\sim$chain\+\_\+interface} ()\label{a00060_aedbfe0b70fa152c87c06b87d653bfba0}
+
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+bool \hyperlink{a00060_ab02f54cbb2cf5ec5d477fbdd08f9df76}{write} ()
+\begin{DoxyCompactList}\small\item\em Writes the output file and closes this file. \end{DoxyCompactList}\item 
+\hypertarget{a00060_aa9195022d17d5b78774251d9f1ccca17}{}size\+\_\+type \hyperlink{a00060_aa9195022d17d5b78774251d9f1ccca17}{event\+\_\+size} () const \label{a00060_aa9195022d17d5b78774251d9f1ccca17}
+
+\begin{DoxyCompactList}\small\item\em Returns the event size. \end{DoxyCompactList}\item 
+\hypertarget{a00060_abad8625cf7fb9ab53d520e7e60f6f555}{}size\+\_\+type \hyperlink{a00060_abad8625cf7fb9ab53d520e7e60f6f555}{file\+\_\+size} (size\+\_\+type i) const \label{a00060_abad8625cf7fb9ab53d520e7e60f6f555}
+
+\begin{DoxyCompactList}\small\item\em Returns the size of the i-\/th output file. \end{DoxyCompactList}\item 
+\hypertarget{a00060_ace62e874a6f3da373b49c197d3998aae}{}bool \hyperlink{a00060_ace62e874a6f3da373b49c197d3998aae}{write\+\_\+statistics} () const \label{a00060_ace62e874a6f3da373b49c197d3998aae}
+
+\begin{DoxyCompactList}\small\item\em Prints statistics to a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00060_a6255dffb03938f44a967a6d72620d787}{}bool \hyperlink{a00060_a6255dffb03938f44a967a6d72620d787}{fill\+\_\+event} ()\label{a00060_a6255dffb03938f44a967a6d72620d787}
+
+\begin{DoxyCompactList}\small\item\em Reads the current event. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00060_ab02f54cbb2cf5ec5d477fbdd08f9df76}{}\index{Camgen\+::chain\+\_\+interface@{Camgen\+::chain\+\_\+interface}!write@{write}}
+\index{write@{write}!Camgen\+::chain\+\_\+interface@{Camgen\+::chain\+\_\+interface}}
+\subsubsection[{write}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t $>$ bool {\bf Camgen\+::chain\+\_\+interface}$<$ model\+\_\+t $>$\+::write (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{a00060_ab02f54cbb2cf5ec5d477fbdd08f9df76}
+
+
+Writes the output file and closes this file. 
+
+No more events can be streamed anymore. 
+
+Implements \hyperlink{a00317_a4ab5edd1d5ba146243849269ade7a199}{Camgen\+::interface\+\_\+base$<$ model\+\_\+t $>$}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Camgen/\hyperlink{a00608}{chain\+\_\+if.\+h}\end{DoxyCompactItemize}

@@ -29,7 +29,7 @@ namespace Camgen
 	    /* Type definitions: */
 
 	    typedef initial_state<model_t,N> generator_type;
-	    typedef initial_states::type generator_tag;
+	    typedef initial_states::type initial_state_type;
 
 	    /// Factory method creating an initial state generator instance from
 	    /// the static configuration data.
@@ -40,39 +40,11 @@ namespace Camgen
 		return create_instance(initial_state_type(),q);
 	    }
 
-	    /// Factory method from initial state tag. Returns NULL.
+	    /// Factory method from initial state type. Returns NULL.
 
-	    static generator_type* create_instance(generator_tag tag,bool& backward_shat)
+	    static generator_type* create_instance(initial_state_type is_type,bool& backward_shat)
 	    {
 		log(log_level::warning)<<CAMGEN_STREAMLOC<<"initial state type not defined for current spacetime type--returning NULL"<<endlog;
-		return NULL;
-	    }
-
-	    /// Factory method from input file stream. Returns NULL.
-
-	    static generator_type* create_instance(std::istream& is)
-	    {
-		std::string initflag;
-		do
-		{
-		    std::getline(is,initflag);
-		}
-		while(initflag!="<isgen>" and !is.eof());
-		if(is.eof())
-		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"end of file reached before initial data are read"<<endlog;
-		    return NULL;
-		}
-		generator_type* result;
-		std::string is_type;
-		is>>is_type;
-		log(log_level::warning)<<CAMGEN_STREAMLOC<<"initial state type "<<is_type<<" not recognised for current spacetime type--returning NULL"<<endlog;
-		std::string endflag;
-		do
-		{
-		    std::getline(is,endflag);
-		}
-		while(endflag!="</isgen>" and !is.eof());
 		return NULL;
 	    }
     };
@@ -86,7 +58,7 @@ namespace Camgen
 	    /* Type definitions: */
 
 	    typedef initial_state<model_t,1> generator_type;
-	    typedef initial_states::type generator_tag;
+	    typedef initial_states::type initial_state_type;
 
 	    /// Factory method creating an initial state generator instance from
 	    /// the static configuration data.
@@ -96,53 +68,16 @@ namespace Camgen
 		return create_instance(initial_state_type(),true);
 	    }
 
-	    /// Factory method from initial state tag. Returns NULL unless the
-	    /// tag is partonic.
+	    /// Factory method from initial state type. Returns NULL unless the
+	    /// type is partonic.
 
-	    static generator_type* create_instance(generator_tag tag,bool backward_shat=false)
+	    static generator_type* create_instance(initial_state_type is_type,bool backward_shat=false)
 	    {
-		if(tag==initial_states::partonic and !backward_shat)
+		if(is_type==initial_states::partonic and !backward_shat)
 		{
 		    return new partonic_is<model_t,1,Minkowski_type>;
 		}
 		return NULL;
-	    }
-
-	    /// Factory method from input stream.
-	    
-	    static generator_type* create_instance(std::istream& is)
-	    {
-		std::string initflag;
-		do
-		{
-		    std::getline(is,initflag);
-		}
-		while(initflag!="<isgen>" and !is.eof());
-		if(is.eof())
-		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"end of file reached before initial data are read"<<endlog;
-		    return NULL;
-		}
-		generator_type* result;
-		std::string is_type;
-		is>>is_type;
-		if(is_type=="partonic")
-		{
-		    result=new partonic_is<model_t,1>;
-		    result->load(is);
-		}
-		else
-		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"initial state type "<<is_type<<" not recognised for current spacetime type--returning NULL"<<endlog;
-		    result=NULL;
-		}
-		std::string endflag;
-		do
-		{
-		    std::getline(is,endflag);
-		}
-		while(endflag!="</isgen>" and !is.eof());
-		return result;
 	    }
     };
 
@@ -154,7 +89,7 @@ namespace Camgen
 	public:
 
 	    typedef initial_state<model_t,2> generator_type;
-	    typedef initial_states::type generator_tag;
+	    typedef initial_states::type initial_state_type;
 
 	    /// Factory method creating an initial state generator instance from
 	    /// the static configuration data.
@@ -164,11 +99,11 @@ namespace Camgen
 		return create_instance(initial_state_type(),backward_shat_sampling());
 	    }
 
-	    /// Factory method with initial state tag argument.
+	    /// Factory method with initial state type argument.
 
-	    static generator_type* create_instance(generator_tag tag,bool backward_shat)
+	    static generator_type* create_instance(initial_state_type is_type,bool backward_shat)
 	    {
-		switch(tag)
+		switch(is_type)
 		{
 		    case initial_states::partonic:
 			return new partonic_is<model_t,2,Minkowski_type>;
@@ -221,103 +156,6 @@ namespace Camgen
 		    default:
 			return NULL;
 		}
-	    }
-
-	    /// Factory method with input stream argument.
-	    
-	    static generator_type* create_instance(std::istream& is)
-	    {
-		std::string initflag;
-		do
-		{
-		    std::getline(is,initflag);
-		}
-		while(initflag!="<isgen>" and !is.eof());
-		if(is.eof())
-		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"end of file reached before initial data are read"<<endlog;
-		    return NULL;
-		}
-		generator_type* result;
-		std::string is_type;
-		is>>is_type;
-		if(is_type=="partonic")
-		{
-		    result=new partonic_is<model_t,2>;
-		    result->load(is);
-		}
-		else if(is_type=="pp_xx")
-		{
-		    result=new hadronic_is_xx<model_t,rng_t>(false,false);
-		    result->load(is);
-		}
-		else if(is_type=="ppbar_xx")
-		{
-		    result=new hadronic_is_xx<model_t,rng_t>(false,true);
-		    result->load(is);
-		}
-		else if(is_type=="pbarp_xx")
-		{
-		    result=new hadronic_is_xx<model_t,rng_t>(true,false);
-		    result->load(is);
-		}
-		else if(is_type=="pbarpbar_xx")
-		{
-		    result=new hadronic_is_xx<model_t,rng_t>(true,true);
-		    result->load(is);
-		}
-		else if(is_type=="pp_sy")
-		{
-		    result=new hadronic_is_sy<model_t,rng_t>(false,false);
-		    result->load(is);
-		}
-		else if(is_type=="ppbar_sy")
-		{
-		    result=new hadronic_is_sy<model_t,rng_t>(false,true);
-		    result->load(is);
-		}
-		else if(is_type=="pbarp_sy")
-		{
-		    result=new hadronic_is_sy<model_t,rng_t>(true,false);
-		    result->load(is);
-		}
-		else if(is_type=="pbarpbar_sy")
-		{
-		    result=new hadronic_is_sy<model_t,rng_t>(true,true);
-		    result->load(is);
-		}
-		else if(is_type=="pp_y")
-		{
-		    result=new hadronic_is_y<model_t,rng_t>(false,false);
-		    result->load(is);
-		}
-		else if(is_type=="ppbar_y")
-		{
-		    result=new hadronic_is_y<model_t,rng_t>(false,true);
-		    result->load(is);
-		}
-		else if(is_type=="pbarp_y")
-		{
-		    result=new hadronic_is_y<model_t,rng_t>(true,false);
-		    result->load(is);
-		}
-		else if(is_type=="pbarpbar_y")
-		{
-		    result=new hadronic_is_y<model_t,rng_t>(true,true);
-		    result->load(is);
-		}
-		else
-		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"initial state type "<<is_type<<" not recognised for current spacetime type--returning NULL"<<endlog;
-		    result=NULL;
-		}
-		std::string endflag;
-		do
-		{
-		    std::getline(is,endflag);
-		}
-		while(endflag!="</isgen>" and !is.eof());
-		return result;
 	    }
     };
 }

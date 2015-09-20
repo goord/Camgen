@@ -18,14 +18,16 @@
 
 #include <Camgen/Minkowski.h>
 #include <Camgen/MC_config.h>
-#include <Camgen/branching.h>
+#include <Camgen/ps_branching.h>
 #include <Camgen/uni_sphere.h>
 #include <Camgen/Lorentz.h>
 #include <Camgen/ps_vol.h>
-#include <Camgen/parni.h>
+#include <Camgen/ss_gen_fac.h>
 
 namespace Camgen
 {
+    template<class model_t,std::size_t N_in,std::size_t N_out,class rng_t,class spacetime_t>class s_branching;
+
     /* Specialisation for Minkowski spacetimes: */
     
     template<class model_t,std::size_t N_in,std::size_t N_out,class rng_t,std::size_t D>class s_branching<model_t,N_in,N_out,rng_t,typename Minkowski_type::template implementation<typename model_t::value_type,D> >: public ps_branching<model_t,N_in,N_out,rng_t>
@@ -44,67 +46,64 @@ namespace Camgen
 	    typedef typename base_type::momentum_type momentum_type;
 	    typedef typename base_type::size_type size_type;
 	    typedef typename base_type::channel_type channel_type;
-	    typedef uniform_sphere<value_type,model_t::dimension-2,rn_engine> sphere_gen_type;
+	    typedef typename base_type::ps_channel_type ps_channel_type;
+	    typedef uniform_sphere<value_type,model_t::dimension-2,rn_engine> sphere_generator_type;
+	    typedef s_pair_generator<value_type,rng_t> s_pair_generator_type;
 
 	    /* Constructor: */
 
-	    s_branching(channel_type* in,channel_type* out1,channel_type* out2):base_type(in,2),sphere_generator(new sphere_gen_type(&phat))
-	    {
-		this->channels[0]=out1;
-		this->channels[1]=out2;
-	    }
+	    s_branching(const channel_type* in,channel_type* out1,channel_type* out2):base_type(in,out1,out2),ssgen(s_pair_generator_factory<value_type,rng_t>::create(this->s_generator(out1),this->s_generator(out2),in->s())),sphere_generator(){}
 
 	    /* Destructor: */
 
-	    ~s_branching()
+	    virtual ~s_branching()
 	    {
-		delete sphere_generator;
+		delete ssgen;
 	    }
 
-	    /* Generates the invariant masses: */
+	    /* Generates the positive invariant masses: */
 
 	    bool generate_s()
 	    {
-		if(!refresh_s_bounds())
+		if(this->backward_s_sampling)
 		{
-		    sweight=(value_type)0;
-		    return false;
-		}
-		value_type sqrts=this->m_in();
-		const value_type& sqrts1=this->m_out(0);
-		const value_type& sqrts2=this->m_out(1);
-		if(this->max_s_pairs()>1)
-		{
-		    std::size_t n=0;
-		    bool q,q1,q2;
-		    do
+		    if(this->incoming_channel->get_status()==ps_channel_type::p_set)
 		    {
-			q1=this->channel(0)->generate_s();
-			q2=this->channel(1)->generate_s();
-			q=(q1 and q2 and (sqrts1+sqrts2<=sqrts));
-			++n;
+			sweight=(value_type)1;
+			return true;
 		    }
-		    while(!q and (n<this->max_s_pairs()));
-		    if(!q)
+		    value_type mmin=this->m_out(0)+this->m_out(1);
+		    if(this->incoming_channel->m_max()<mmin)
 		    {
-			log(log_level::warning)<<CAMGEN_STREAMLOC<<"no succesful s-pair generated after "<<n<<" throws--returning weight 0"<<endlog;
 			sweight=(value_type)0;
 			return false;
 		    }
-		    sweight=(integrate(this->channel(0),this->channel(1),sqrts)*(this->channel(0)->s_weight())*(this->channel(1)->s_weight()));
+		    this->incoming_channel->set_m_min(mmin);
+		    if(!this->incoming_channel->generate_s())
+		    {
+			sweight=(value_type)0;
+			return false;
+		    }
+		    this->incoming_channel->set_status_s_generated();
+		    sweight=this->incoming_channel->s_weight();
 		}
 		else
 		{
-		    bool q1=this->channel(0)->generate_s();
-		    bool q2=this->channel(1)->generate_s();
-		    if(!(q1 and q2) or ((sqrts1+sqrts2)>sqrts))
+		    if(!ssgen->generate())
 		    {
 			sweight=(value_type)0;
 			return false;
 		    }
-		    sweight=(this->channel(0)->s_weight())*(this->channel(1)->s_weight());
+		    this->channel(0)->set_status_s_generated();
+		    this->channel(1)->set_status_s_generated();
+		    sweight=ssgen->weight();
 		}
-		return (sweight>(value_type)0);
+		return true;
+	    }
+
+	    bool generate_t()
+	    {
+		return true;
 	    }
 
 	    /* Generates momenta with current invariant masses: */
@@ -115,17 +114,25 @@ namespace Camgen
 		value_type sqrts=this->m_in();
 		value_type s1=this->s_out(0);
 		value_type s2=this->s_out(1);
-		value_type lambda=std::sqrt(Kallen(s,s1,s2));
+		value_type k12=Kallen(s,s1,s2);
+		if(sqrts<=(value_type)0 or k12<(value_type)0)
+		{
+		    this->weight()=(value_type)0;
+		    return false;
+		}
+		value_type lambda=std::sqrt(k12);
 		value_type prefactor=(value_type)0.5/sqrts;
 		(this->p_out(0))[0]=prefactor*(s+s1-s2);
-		phat=prefactor*lambda;
-		sphere_generator->generate();
+		value_type phat=prefactor*lambda;
+		sphere_generator.generate();
 		for(size_type mu=1;mu<model_t::dimension;++mu)
 		{
-		    (this->p_out(0))[mu]=(sphere_generator->object())[mu-1];
+		    (this->p_out(0))[mu]=phat*(sphere_generator.object())[mu-1];
 		}
 		boost_from_restframe(this->p_out(0),this->p_in(),sqrts);
+		this->channel(0)->set_status_p_generated();
 		this->p_out(1)=this->p_in()-this->p_out(0);
+		this->channel(1)->set_status_p_generated();
 		this->weight()=massless_ps<value_type,2,model_t::dimension>::volume(sqrts)*std::pow(lambda/s,int(model_t::dimension-3))*sweight;
 		return (this->weight()>(value_type)0);
 	    }
@@ -134,38 +141,50 @@ namespace Camgen
 
             bool evaluate_branching_weight()
             {
-		if(!refresh_s_bounds())
+		if(this->backward_s_sampling)
 		{
-		    sweight=(value_type)0;
-		    this->weight()=(value_type)0;
-		    return false;
-		}
-		value_type sqrts=this->m_in();
-		if((this->m_out(0)+this->m_out(1)>sqrts) or !this->channel(0)->evaluate_s_weight() or !this->channel(1)->evaluate_s_weight())
-		{
-		    sweight=(value_type)0;
-		    this->weight()=(value_type)0;
-		    return false;
-		}
-		if(this->max_s_pairs()>1)
-		{
-		    sweight=integrate(this->channel(0),this->channel(1),sqrts)*(this->channel(0)->s_weight())*(this->channel(1)->s_weight());
+		    value_type mmin=this->m_out(0)+this->m_out(1);
+		    if(this->incoming_channel->m_max()<=mmin)
+		    {
+			sweight=(value_type)0;
+			this->weight()=(value_type)0;
+			return false;
+		    }
+		    this->incoming_channel->set_m_min(mmin);
+		    sweight=this->incoming_channel->s_weight();
 		}
 		else
 		{
-		    sweight=(this->channel(0)->s_weight())*(this->channel(1)->s_weight());
+		    if(!ssgen->evaluate_weight())
+		    {
+			sweight=(value_type)0;
+			this->weight()=(value_type)0;
+			return false;
+		    }
+		    sweight=ssgen->weight();
 		}
 		value_type s=this->s_in();
-		value_type lambda=std::sqrt(Kallen(s,this->s_out(0),this->s_out(1)));
-		this->weight()=massless_ps<value_type,2,model_t::dimension>::volume(sqrts)*std::pow(lambda/s,int(model_t::dimension-3))*sweight;
+		value_type k12=Kallen(s,this->s_out(0),this->s_out(1));
+		if(s<=0 or k12<(value_type)0)
+		{
+		    this->weight()=(value_type)0;
+		    return false;
+		}
+		value_type lambda=std::sqrt(k12);
+		this->weight()=massless_ps<value_type,2,model_t::dimension>::volume(this->m_in())*std::pow(lambda/s,int(model_t::dimension-3))*sweight;
 		return (this->weight()>(value_type)0);
             }
+
+	    bool s_type() const
+	    {
+		return true;
+	    }
 
 	    /* Returns the branching topology type string: */
 
 	    std::string type() const
 	    {
-		return "s("+this->channel(0)->s_gen_type()+","+this->channel(1)->s_gen_type()+")";
+		return "s";
 	    }
 
 	    /* Returns whether the branchings are equivalent: */
@@ -179,47 +198,19 @@ namespace Camgen
 		return false;
 	    }
 
-	protected:
-
-	    /* Updates maximal invariant masses: */
-
-	    bool refresh_s_bounds()
-	    {
-		if(this->s_in()<(value_type)0)
-		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"negative incoming invariant mass-squared "<<this->s_in()<<" encountered in s-branching"<<endlog;
-		    return false;
-		}
-		if(this->m_in()<this->channel(0)->m_min()+this->channel(1)->m_min())
-		{
-		    return false;
-		}
-		if(!(this->channel(0)->set_m_max(this->m_in()-this->channel(1)->m_min())))
-		{
-		    this->channel(0)->s_warning();
-		    return false;
-		}
-		if(!(this->channel(1)->set_m_max(this->m_in()-this->channel(0)->m_min())))
-		{
-		    this->channel(1)->s_warning();
-		    return false;
-		}
-		return true;
-	    }
-
 	private:
 
 	    /* s-generation weight: */
 
 	    value_type sweight;
 
+	    /* S-pair generator: */
+
+	    s_pair_generator_type* ssgen;
+
 	    /* Solid angle generator: */
 
-	    sphere_gen_type* sphere_generator;
-
-	    /* Rest-frame momentum of decay product: */
-
-	    value_type phat;
+	    sphere_generator_type sphere_generator;
     };
 
     /* Specialisation for 4d-Minkowski spacetimes, adapting the polar decay
@@ -240,6 +231,8 @@ namespace Camgen
 	    typedef typename base_type::momentum_type momentum_type;
 	    typedef typename base_type::size_type size_type;
 	    typedef typename base_type::channel_type channel_type;
+	    typedef typename base_type::ps_channel_type ps_channel_type;
+	    typedef s_pair_generator<value_type,rng_t> s_pair_generator_type;
 
 	    /* Static data/methods: */
 
@@ -250,14 +243,11 @@ namespace Camgen
 
 	    /* Constructor: */
 
-	    s_branching(channel_type* in,channel_type* out1,channel_type* out2):base_type(in,2),theta_grid(NULL)
+	    s_branching(channel_type* in,channel_type* out1,channel_type* out2):base_type(in,out1,out2),ssgen(s_pair_generator_factory<value_type,rng_t>::create(this->s_generator(out1),this->s_generator(out2),in->s())),theta_grid(NULL)
 	    {
-		this->channels[0]=out1;
-		this->channels[1]=out2;
-
 		if(adaptive_angles())
 		{
-		    theta_grid=new parni<value_type,1,rng_t>(&r0,0,1,grid_bins(),grid_mode());
+		    theta_grid=new parni_generator<value_type,1,rng_t>(0,1,grid_bins(),grid_mode());
 		}
 	    }
 
@@ -265,56 +255,57 @@ namespace Camgen
 
 	    ~s_branching()
 	    {
+		delete ssgen;
 		if(theta_grid!=NULL)
 		{
 		    delete theta_grid;
 		}
 	    }
 
-	    /* Generates the invariant masses: */
+	    /* Generates the positive invariant masses: */
 
 	    bool generate_s()
 	    {
-		if(!refresh_s_bounds())
+		if(this->backward_s_sampling)
 		{
-		    sweight=(value_type)0;
-		    return false;
-		}
-		value_type sqrts=this->m_in();
-		const value_type& sqrts1=this->m_out(0);
-		const value_type& sqrts2=this->m_out(1);
-		if(this->max_s_pairs()>1)
-		{
-		    std::size_t n=0;
-		    bool q,q1,q2;
-		    do
+		    if(this->incoming_channel->get_status()==ps_channel_type::p_set)
 		    {
-			q1=this->channel(0)->generate_s();
-			q2=this->channel(1)->generate_s();
-			q=(q1 and q2 and (sqrts1+sqrts2<=sqrts));
-			++n;
+			sweight=(value_type)1;
+			return true;
 		    }
-		    while(!q and (n<this->max_s_pairs()));
-		    if(!q)
+		    value_type mmin=this->m_out(0)+this->m_out(1);
+		    if(this->incoming_channel->m_max()<mmin)
 		    {
-			log(log_level::warning)<<CAMGEN_STREAMLOC<<"no succesful s-pair generated after "<<n<<" throws--returning weight 0"<<endlog;
 			sweight=(value_type)0;
 			return false;
 		    }
-		    sweight=(integrate(this->channel(0),this->channel(1),sqrts)*(this->channel(0)->s_weight())*(this->channel(1)->s_weight()));
+		    this->incoming_channel->set_m_min(mmin);
+		    if(!this->incoming_channel->generate_s())
+		    {
+			sweight=(value_type)0;
+			return false;
+		    }
+		    this->incoming_channel->set_status_s_generated();
+		    sweight=this->incoming_channel->s_weight();
+		    return true;
 		}
 		else
 		{
-		    bool q1=this->channel(0)->generate_s();
-		    bool q2=this->channel(1)->generate_s();
-		    if(!(q1 and q2) or ((sqrts1+sqrts2)>sqrts))
+		    if(!ssgen->generate())
 		    {
 			sweight=(value_type)0;
 			return false;
 		    }
-		    sweight=(this->channel(0)->s_weight())*(this->channel(1)->s_weight());
+		    this->channel(0)->set_status_s_generated();
+		    this->channel(1)->set_status_s_generated();
+		    sweight=ssgen->weight();
 		}
-		return (sweight>(value_type)0);
+		return true;
+	    }
+
+	    bool generate_t()
+	    {
+		return true;
 	    }
 
 	    /* Generation implementation: */
@@ -325,11 +316,18 @@ namespace Camgen
 		value_type sqrts=this->m_in();
 		value_type s1=this->s_out(0);
 		value_type s2=this->s_out(1);
-		value_type lambda=std::sqrt(Kallen(s,s1,s2));
+		value_type k12=Kallen(s,s1,s2);
+		if(sqrts<=(value_type)0 or k12<(value_type)0)
+		{
+		    this->weight()=(value_type)0;
+		    return false;
+		}
+		value_type lambda=std::sqrt(k12);
 		value_type prefactor=(value_type)0.5/sqrts;
 		(this->p_out(0))[0]=prefactor*(s+s1-s2);
-		phat=prefactor*lambda;
+		value_type phat=prefactor*lambda;
 		value_type thetaweight(1);
+		value_type r0(0);
 		if(theta_grid!=NULL)
 		{
 		    if(!theta_grid->generate())
@@ -338,6 +336,7 @@ namespace Camgen
 			return false;
 		    }
 		    thetaweight=theta_grid->weight();
+		    r0=theta_grid->object();
 		}
 		else
 		{
@@ -352,7 +351,10 @@ namespace Camgen
 		(this->p_out(0))[trans_dir2]=phat*sintheta*std::sin(phi);
 		
 		boost_from_restframe(this->p_out(0),this->p_in(),sqrts);
+		this->channel(0)->set_status_p_generated();
 		this->p_out(1)=this->p_in()-this->p_out(0);
+		this->channel(1)->set_status_p_generated();
+
 		this->weight()=massless_ps<value_type,2,4>::volume(sqrts)*(lambda/s)*sweight*thetaweight;
 		return (this->weight()>(value_type)0);
 	    }
@@ -361,50 +363,61 @@ namespace Camgen
 
             bool evaluate_branching_weight()
             {
-		if(!refresh_s_bounds())
+		if(this->backward_s_sampling)
 		{
-		    sweight=(value_type)0;
-		    this->weight()=(value_type)0;
-		    return false;
+		    value_type mmin=this->m_out(0)+this->m_out(1);
+		    if(this->incoming_channel->m_max()<mmin)
+		    {
+			sweight=(value_type)0;
+			this->weight()=(value_type)0;
+			return false;
+		    }
+		    this->incoming_channel->set_m_min(mmin);
+		    if(!this->incoming_channel->evaluate_s_weight())
+		    {
+			sweight=(value_type)0;
+			this->weight()=(value_type)0;
+			return false;
+		    }
+		    sweight=this->incoming_channel->s_weight();
 		}
+		else
+		{
+		    if(!ssgen->evaluate_weight())
+		    {
+			sweight=(value_type)0;
+			this->weight()=(value_type)0;
+			return false;
+		    }
+		    sweight=ssgen->weight();
+		}
+
 		value_type s=this->s_in();
 		value_type sqrts=this->m_in();
 		value_type s1=this->s_out(0);
 		value_type s2=this->s_out(1);
-		if(s1+s2+std::sqrt(s1*s2)>s)
+
+		value_type k12=Kallen(s,s1,s2);
+		if(sqrts<=(value_type)0 or k12<(value_type)0)
 		{
 		    this->weight()=(value_type)0;
 		    return false;
 		}
-		bool q1=this->channel(0)->evaluate_s_weight();
-		bool q2=this->channel(1)->evaluate_s_weight();
-		if(!(q1 and q2))
-		{
-		    sweight=(value_type)0;
-		    this->weight()=(value_type)0;
-		    return false;
-		}
-		if(this->max_s_pairs()>1)
-		{
-		    sweight=integrate(this->channel(0),this->channel(1),sqrts)*(this->channel(0)->s_weight())*(this->channel(1)->s_weight());
-		}
-		else
-		{
-		    sweight=(this->channel(0)->s_weight())*(this->channel(1)->s_weight());
-		}
-		value_type lambda=std::sqrt(Kallen(s,s1,s2));
-		phat=(value_type)0.5*lambda/sqrts;
+
+		value_type lambda=std::sqrt(k12);
+		value_type phat=(value_type)0.5*lambda/sqrts;
 		value_type rweight(1);
 		if(theta_grid!=NULL)
 		{
 		    value_type costheta=copy_boost_to_restframe(this->p_out(0),this->p_in(),sqrts)[long_dir]/phat;
-		    r0=(value_type)0.5*(costheta+(value_type)1);
+		    value_type r0=(value_type)0.5*(costheta+(value_type)1);
 		    if(r0<(value_type)0 or r0>(value_type)1)
 		    {
 			log(log_level::warning)<<CAMGEN_STREAMLOC<<"cos polar angle "<<costheta<<" out of range--returning weight 0."<<endlog;
 			this->weight()=(value_type)0;
 			return false;
 		    }
+		    theta_grid->object()=r0;
 		    if(!theta_grid->evaluate_weight())
 		    {
 			this->weight()=(value_type)0;
@@ -415,6 +428,11 @@ namespace Camgen
 		this->weight()=massless_ps<value_type,2,4>::volume(sqrts)*(lambda/s)*sweight*rweight;
 		return (this->weight()>(value_type)0);
             }
+
+	    bool s_type() const
+	    {
+		return true;
+	    }
 
 	    /* Returns the branching topology type: */
 
@@ -455,87 +473,19 @@ namespace Camgen
 		return false;
 	    }
 
-	    /* Subclass loading method: */
-
-	    std::istream& load_data(std::istream& is)
-	    {
-		if(theta_grid!=NULL)
-		{
-		    delete theta_grid;
-		}
-		is>>std::ws;
-		if(is.peek()=='N')
-		{
-		    is.ignore(1);
-		    theta_grid=NULL;
-		}
-		else
-		{
-		    theta_grid=parni<value_type,1,rng_t>::create_instance(&r0,is);
-		}
-		return is;
-	    }
-	    
-	    /* Subclass loading method: */
-
-	    std::ostream& save_data(std::ostream& os) const
-	    {
-		if(theta_grid!=NULL)
-		{
-		    theta_grid->save(os);
-		}
-		else
-		{
-		    os<<'N'<<std::endl;
-		}
-		return os;
-	    }
-
-	protected:
-
-	    /* Updates maximal invariant masses: */
-
-	    bool refresh_s_bounds()
-	    {
-		if(this->s_in()<(value_type)0)
-		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"negative incoming invariant mass-squared "<<this->s_in()<<" encountered in s-branching"<<endlog;
-		    return false;
-		}
-		if(this->m_in()<this->channel(0)->m_min()+this->channel(1)->m_min())
-		{
-		    return false;
-		}
-		if(!(this->channel(0)->set_m_max(this->m_in()-this->channel(1)->m_min())))
-		{
-		    this->channel(0)->s_warning();
-		    return false;
-		}
-		if(!(this->channel(1)->set_m_max(this->m_in()-this->channel(0)->m_min())))
-		{
-		    this->channel(1)->s_warning();
-		    return false;
-		}
-		return true;
-	    }
-
 	private:
 
 	    /* Weight of the s-pair generation: */
 
 	    value_type sweight;
 
-	    /* Rest-frame momentum of decay product: */
+	    /* s-pair generator: */
 
-	    value_type phat;
+	    s_pair_generator_type* ssgen;
 
 	    /* Polar angle adaptive grid: */
 
-	    parni<value_type,1,rng_t>* theta_grid;
-
-	    /* Polar angle random number: */
-
-	    value_type r0;
+	    parni_generator<value_type,1,rng_t>* theta_grid;
     };
     template<class model_t,std::size_t N_in,std::size_t N_out,class rng_t>const typename model_t::value_type s_branching<model_t,N_in,N_out,rng_t,typename Minkowski_type::template implementation<typename model_t::value_type,4> >::twopi=(typename model_t::value_type)2*std::acos(-(typename model_t::value_type)1);
     template<class model_t,std::size_t N_in,std::size_t N_out,class rng_t>const std::size_t s_branching<model_t,N_in,N_out,rng_t,typename Minkowski_type::template implementation<typename model_t::value_type,4> >::long_dir;

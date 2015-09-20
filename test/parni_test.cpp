@@ -9,7 +9,10 @@
 #include <Camgen/stdrand.h>
 #include <Camgen/histogram.h>
 #include <Camgen/multiplot.h>
-#include <Camgen/sgen_grid.h>
+#include <Camgen/power_law.h>
+#include <Camgen/Breit_Wigner.h>
+#include <Camgen/val_gen_grid.h>
+#include <Camgen/parni_int.h>
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Facility testing adaptive grids in parni for various intgrands in various *
@@ -47,7 +50,7 @@ int main()
 	std::cerr<<"Checking 1D parni on Cauchy distribution centered at "<<m<<" with width "<<w<<" within ["<<xmin<<","<<xmax<<"]..........";
         std::cerr.flush();
 	std::string filename("plots/parni1D_Cauchy");
-	parni<value_type,1,std::random>* gen=new parni<value_type,1,std::random>(&x,xmin,xmax,N_bins,mode);
+	parni_integrator<value_type,1,std::random>* gen=new parni_integrator<value_type,1,std::random>(&x,xmin,xmax,N_bins,mode);
 	histogram<value_type>hist(&x,&wght);
 	value_type result=(std::atan((xmax-m)/w)-std::atan((xmin-m)/w))/w;
 	value_type evt,c1,c2;
@@ -123,7 +126,7 @@ int main()
 	std::cerr<<"Checking 1D parni 1/(x(1-x)) within ["<<xmin<<","<<xmax<<"]..........";
         std::cerr.flush();
 	std::string filename("plots/parni1D_beta11");
-	parni<value_type,1,std::random>* gen=new parni<value_type,1,std::random>(&x,xmin,xmax,N_bins,mode);
+	parni_integrator<value_type,1,std::random>* gen=new parni_integrator<value_type,1,std::random>(&x,xmin,xmax,N_bins,mode);
 	histogram<value_type>hist(&x,&wght);
 	value_type result=std::log((1-xmin)*xmax/(1-xmax)/xmin);
 	value_type evt,c1,c2;
@@ -196,7 +199,7 @@ int main()
 	std::cerr<<"Checking 1D parni cos(x)^2*exp(-x^2/8) within ["<<xmin<<","<<xmax<<"]..........";
         std::cerr.flush();
 	std::string filename("plots/parni1D_cosgauss");
-	parni<value_type,1,std::random>* gen=new parni<value_type,1,std::random>(&x,xmin,xmax,N_bins,mode);
+	parni_integrator<value_type,1,std::random>* gen=new parni_integrator<value_type,1,std::random>(&x,xmin,xmax,N_bins,mode);
 	histogram<value_type>hist(&x,&wght);
 	value_type result=2.501415718;
 	value_type evt,c1,c2;
@@ -271,28 +274,29 @@ int main()
         std::cerr.flush();
 	std::string filename("plots/parni1Dpl");
 	value_type nu(1);
-	parni<value_type,1,std::random>* gen=new parni<value_type,1,std::random>(&x,xmin,xmax,N_bins,mode);
-	pl_s_generator<value_type,std::random>* genmap=new pl_s_generator<value_type,std::random>(NULL,&nu);
+	parni_integrator<value_type,1,std::random>* gen=new parni_integrator<value_type,1,std::random>(&x,xmin,xmax,N_bins,mode);
+	power_law<value_type,std::random>* genmap=new power_law<value_type,std::random>(NULL,&nu);
 	genmap->refresh_params();
-	genmap->set_s_min(smin);
-	genmap->set_s_max(smax);
-	value_type& s=genmap->s();
+	genmap->set_lower_bound(smin);
+	genmap->set_upper_bound(smax);
+	value_type& s=genmap->value();
 	histogram<value_type>hist(&s,&wght);
 	value_type result=0.3342;
 	value_type evt,c1,c2,f;
 	data_wrapper* intdata=new data_wrapper(&evt,&c1,&c2);
+	MC_integrator<value_type>* genmap_int=new MC_generator_wrapper<value_type>(genmap);
 	for(size_type n=0;n<N_events;++n)
 	{
 	    gen->generate();
 	    s=genmap->map(x);
-	    genmap->evaluate_weight();
-	    wght=gen->weight()*genmap->weight();
+	    genmap_int->evaluate_weight();
+	    wght=gen->weight()*genmap_int->weight();
 	    hist.store();
 	    f=(s-(value_type)1)/std::exp(s);
-	    gen->integrand()=genmap->weight()*f;
+	    gen->integrand()=genmap_int->weight()*f;
 	    gen->update();
-	    genmap->integrand()=gen->weight()*f;
-	    genmap->refresh_cross_section();
+	    genmap_int->integrand()=gen->weight()*f;
+	    genmap_int->refresh_cross_section();
 	    if(n%N_batch==0 and n!=0)
 	    {
 		gen->adapt();
@@ -300,7 +304,7 @@ int main()
 	    if(n%offset==0 and n!=0)
 	    {
 		evt=(value_type)n;
-		MC_integral<value_type>integral=genmap->cross_section();
+		MC_integral<value_type>integral=genmap_int->cross_section();
 		c1=std::abs(integral.value-result)/result;
 		c2=integral.error/result;
 		intdata->fill();
@@ -322,7 +326,7 @@ int main()
 	plot3->grid=true;
 	plot3->xmin=0;
 	plot3->xmax=N_events;
-	plot3->ymin=genmap->cross_section().error/result;
+	plot3->ymin=genmap_int->cross_section().error/result;
 	plot3->ymax=1;
 	plot3->autoscale=false;
 	plot3->ylog=true;
@@ -344,7 +348,7 @@ int main()
 	delete plot2;
 	delete plot3;
 	delete gen;
-	delete genmap;
+	delete genmap_int;
 	std::cerr<<"...........done, file "<<filename+fext<<" written."<<std::endl;
     }
     {
@@ -355,12 +359,13 @@ int main()
         std::cerr.flush();
 	std::string filename("plots/parni1DBW");
 	value_type m=std::sqrt(2),w=0.1/m;
-	parni<value_type,1,std::random>* gen=new parni<value_type,1,std::random>(&x,xmin,xmax,N_bins,mode);
-	BW_s_generator<value_type,std::random>* genmap=new BW_s_generator<value_type,std::random>(&m,&w);
+	parni_integrator<value_type,1,std::random>* gen=new parni_integrator<value_type,1,std::random>(&x,xmin,xmax,N_bins,mode);
+	Breit_Wigner<value_type,std::random>* genmap=new Breit_Wigner<value_type,std::random>(&m,&w);
+	MC_integrator<value_type>* genmap_int=new MC_generator_wrapper<value_type>(genmap);
 	genmap->refresh_params();
-	genmap->set_s_min(smin);
-	genmap->set_s_max(smax);
-	value_type& s=genmap->s();
+	genmap->set_lower_bound(smin);
+	genmap->set_upper_bound(smax);
+	value_type& s=genmap->value();
 	histogram<value_type>hist(&s,&wght);
 	value_type result=11.91253775;
 	value_type evt,c1,c2,f;
@@ -369,14 +374,14 @@ int main()
 	{
 	    gen->generate();
 	    s=genmap->map(x);
-	    genmap->evaluate_weight();
-	    wght=gen->weight()*genmap->weight();
+	    genmap_int->evaluate_weight();
+	    wght=gen->weight()*genmap_int->weight();
 	    hist.store();
 	    f=s/(std::pow(s-m*m,(int)2)+m*w*s);
-	    gen->integrand()=genmap->weight()*f;
+	    gen->integrand()=genmap_int->weight()*f;
 	    gen->update();
-	    genmap->integrand()=gen->weight()*f;
-	    genmap->refresh_cross_section();
+	    genmap_int->integrand()=gen->weight()*f;
+	    genmap_int->refresh_cross_section();
 	    if(n%N_batch==0 and n!=0)
 	    {
 		gen->adapt();
@@ -384,7 +389,7 @@ int main()
 	    if(n%offset==0 and n!=0)
 	    {
 		evt=(value_type)n;
-		MC_integral<value_type>integral=genmap->cross_section();
+		MC_integral<value_type>integral=genmap_int->cross_section();
 		c1=std::abs(integral.value-result)/result;
 		c2=integral.error/result;
 		intdata->fill();
@@ -406,7 +411,7 @@ int main()
 	plot3->grid=true;
 	plot3->xmin=0;
 	plot3->xmax=N_events;
-	plot3->ymin=genmap->cross_section().error/result;
+	plot3->ymin=genmap_int->cross_section().error/result;
 	plot3->ymax=1;
 	plot3->autoscale=false;
 	plot3->ylog=true;
@@ -428,7 +433,7 @@ int main()
 	delete plot2;
 	delete plot3;
 	delete gen;
-	delete genmap;
+	delete genmap_int;
 	std::cerr<<"...........done, file "<<filename+fext<<" written."<<std::endl;
     }
     {
@@ -437,7 +442,7 @@ int main()
 	std::cerr<<"Checking 1D parni subgrid on Cauchy centered at "<<m<<" with width "<<w<<" within ["<<xmin<<","<<xmax<<"]..........";
         std::cerr.flush();
 	std::string filename("plots/subparni1D_Cauchy");
-	parni<value_type,1,std::random>* gen=new parni<value_type,1,std::random>(&x,x0min,x0max,N_bins,mode);
+	parni_integrator<value_type,1,std::random>* gen=new parni_integrator<value_type,1,std::random>(&x,x0min,x0max,N_bins,mode);
 	N_batch=20;
 	for(size_type n=0;n<200;++n)
 	{
@@ -450,7 +455,8 @@ int main()
 		gen->adapt();
 	    }
 	}
-	parni_sub_grid<value_type,1,std::random>* subgen=new parni_sub_grid<value_type,1,std::random>(gen,xmin,xmax);
+
+	MC_integrator<value_type>* subgen=new MC_generator_wrapper<value_type>(gen->create_sub_grid(xmin,xmax));
 	histogram<value_type>hist(&x,&wght);
 	value_type subresult=(std::atan((xmax-m)/w)-std::atan((xmin-m)/w))/w;
 	value_type result=(std::atan((x0max-m)/w)-std::atan((x0min-m)/w))/w;
@@ -542,33 +548,35 @@ int main()
         std::cerr.flush();
 	std::string filename("plots/parni1Dplsub");
 	value_type nu(1);
-	pl_s_generator<value_type,std::random>* genmap=new pl_s_generator<value_type,std::random>(NULL,&nu);
-	adaptive_s_generator<value_type,std::random>* gen=new adaptive_s_generator<value_type,std::random>(genmap,N_bins,mode);
-	gen->set_s_min_min(s0min);
-	gen->set_s_max_max(s0max);
-	gen->set_s_range(smin,smax);
-	value_type& s=gen->s();
+	power_law<value_type,std::random>* genmap=new power_law<value_type,std::random>(NULL,&nu);
+	MC_integrator<value_type>* genmap_int=new MC_generator_wrapper<value_type>(genmap);
+	adaptive_value_generator<value_type,std::random>* gen=new adaptive_value_generator<value_type,std::random>(genmap,N_bins,mode);
+	MC_integrator<value_type>* gen_int=new MC_generator_wrapper<value_type>(gen);
+	gen->set_mapping_lower_bound(s0min);
+	gen->set_mapping_upper_bound(s0max);
+	gen->set_bounds(smin,smax);
+	value_type& s=gen->value();
 	histogram<value_type>hist(&s,&wght);
 	value_type result=0.4605;
 	value_type evt,c1,c2,f;
 	data_wrapper* intdata=new data_wrapper(&evt,&c1,&c2);
 	for(size_type n=0;n<N_events;++n)
 	{
-	    gen->generate();
-	    wght=gen->weight();
+	    gen_int->generate();
+	    wght=gen_int->weight();
 	    hist.store();
 	    f=-s*std::exp(-s*s);
-	    gen->integrand()=f;
-	    gen->update();
-	    gen->refresh_cross_section();
+	    gen_int->integrand()=f;
+	    gen_int->update();
+	    gen_int->refresh_cross_section();
 	    if(n%N_batch==0 and n!=0)
 	    {
-		gen->adapt();
+		gen_int->adapt();
 	    }
 	    if(n%offset==0 and n!=0)
 	    {
 		evt=(value_type)n;
-		MC_integral<value_type>integral=gen->cross_section();
+		MC_integral<value_type>integral=gen_int->cross_section();
 		c1=std::abs(integral.value-result)/result;
 		c2=integral.error/result;
 		intdata->fill();
@@ -590,7 +598,7 @@ int main()
 	plot3->grid=true;
 	plot3->xmin=0;
 	plot3->xmax=N_events;
-	plot3->ymin=gen->cross_section().error/result;
+	plot3->ymin=gen_int->cross_section().error/result;
 	plot3->ymax=1;
 	plot3->autoscale=false;
 	plot3->ylog=true;
@@ -611,7 +619,7 @@ int main()
 	delete plot1;
 	delete plot2;
 	delete plot3;
-	delete gen;
+	delete gen_int;
 	std::cerr<<"...........done, file "<<filename+fext<<" written."<<std::endl;
     }
     {
@@ -627,7 +635,7 @@ int main()
 	std::cerr<<"Checking 2D parni on 2D Gauss with sigma "<<sigma<<" within ["<<xmin[0]<<","<<xmax[0]<<"] x ["<<xmin[1]<<","<<xmax[1]<<"]..........";
         std::cerr.flush();
 	std::string filename("plots/parni2D_Gauss");
-	parni<value_type,2,std::random>* gen=new parni<value_type,2,std::random>(&x,xmin,xmax,N_bins,mode);
+	parni_integrator<value_type,2,std::random>* gen=new parni_integrator<value_type,2,std::random>(&x,xmin,xmax,N_bins,mode);
 	histogram<value_type>hist1(&x[0],&wght);
 	histogram<value_type>hist2(&x[1],&wght);
 	value_type evt,c1,c2;
@@ -719,7 +727,7 @@ int main()
 	std::cerr<<"Checking 2D parni on double cos^2 within ["<<xmin[0]<<","<<xmax[0]<<"] x ["<<xmin[1]<<","<<xmax[1]<<"].........";
         std::cerr.flush();
 	std::string filename("plots/parni2D_cos2");
-	parni<value_type,2,std::random>* gen=new parni<value_type,2,std::random>(&x,xmin,xmax,N_bins,mode);
+	parni_integrator<value_type,2,std::random>* gen=new parni_integrator<value_type,2,std::random>(&x,xmin,xmax,N_bins,mode);
 	histogram<value_type>hist1(&x[0],&wght);
 	histogram<value_type>hist2(&x[1],&wght);
 	value_type evt,c1,c2;
@@ -811,7 +819,7 @@ int main()
 	std::cerr<<"Checking 2D parni on 2D Cauchy with radius "<<mu<<" and width "<<w<<" within D(0,"<<rmax<<")..........";
         std::cerr.flush();
 	std::string filename("plots/parni2D_Cauchy");
-	parni<value_type,2,std::random>* gen=new parni<value_type,2,std::random>(&x,xmin,xmax,N_bins,mode);
+	parni_integrator<value_type,2,std::random>* gen=new parni_integrator<value_type,2,std::random>(&x,xmin,xmax,N_bins,mode);
 	histogram<value_type>hist1(&x[0],&wght);
 	histogram<value_type>hist2(&x[1],&wght);
 	value_type evt,c1,c2;

@@ -23,23 +23,23 @@
 #include <Camgen/vector.h>
 #include <Camgen/combs.h>
 #include <Camgen/norm_gen.h>
+#include <Camgen/obj_alloc.h>
 
 namespace Camgen
 {
     /// Uniform sphere generator class.
 
-    template<class value_t,std::size_t D,class rng_t>class uniform_sphere: public MC_object_generator<value_t,vector<value_t,D+1>,1,true>
+    template<class value_t,std::size_t D,class rng_t>class uniform_sphere: public object_allocator< vector<value_t,D+1> >, public MC_generator<value_t>
     {
-	typedef MC_object_generator<value_t,vector<value_t,D+1>,1,true> base_type;
+	typedef object_allocator< vector<value_t,D+1> > base_type;
 	
 	public:
 
 	    /* Type definitions: */
 
 	    typedef typename base_type::size_type size_type;
-	    typedef typename base_type::value_type value_type;
+	    typedef value_t value_type;
 	    typedef typename base_type::object_type object_type;
-	    typedef typename base_type::integral_type integral_type;
 	    typedef rng_t rn_engine;
 	    typedef random_number_stream<value_t,rng_t> rn_stream;
 	    
@@ -124,18 +124,17 @@ namespace Camgen
     template<class value_t,std::size_t D,class rng_t>value_t uniform_sphere<value_t,D,rng_t>::x(0);
     template<class value_t,std::size_t D,class rng_t>normal_generator<value_t,rng_t>* uniform_sphere<value_t,D,rng_t>::Gauss_gen=new normal_generator<value_t,rng_t>(&uniform_sphere<value_t,D,rng_t>::x);
     
-    template<class value_t,class rng_t>class uniform_sphere<value_t,1,rng_t>: public MC_object_generator<value_t,vector<value_t,2>,1,true>
+    template<class value_t,class rng_t>class uniform_sphere<value_t,1,rng_t>: public object_allocator< vector<value_t,2> >, public MC_generator<value_t>
     {
-	typedef MC_object_generator<value_t,vector<value_t,2>,1,true> base_type;
+	typedef object_allocator< vector<value_t,2> > base_type;
 
 	public:
 
 	    /* Type definitions: */
 
 	    typedef typename base_type::size_type size_type;
-	    typedef typename base_type::value_type value_type;
 	    typedef typename base_type::object_type object_type;
-	    typedef typename base_type::integral_type integral_type;
+	    typedef value_t value_type;
 	    typedef rng_t rn_engine;
 	    typedef random_number_stream<value_t,rng_t> rn_stream;
 	    
@@ -217,18 +216,17 @@ namespace Camgen
     };
     template<class value_t,class rng_t>const value_t uniform_sphere<value_t,1,rng_t>::unit_sphere_area=(value_t)2*std::acos(-(value_t)1);
     
-    template<class value_t,class rng_t>class uniform_sphere<value_t,2,rng_t>: public MC_object_generator<value_t,vector<value_t,3>,1,true>
+    template<class value_t,class rng_t>class uniform_sphere<value_t,2,rng_t>: public object_allocator< vector<value_t,3> >, public MC_generator<value_t>
     {
-	typedef MC_object_generator<value_t,vector<value_t,3>,1,true> base_type;
+	typedef object_allocator< vector<value_t,3> > base_type;
 
 	public:
 
 	    /* Type definitions: */
 
 	    typedef typename base_type::size_type size_type;
-	    typedef typename base_type::value_type value_type;
 	    typedef typename base_type::object_type object_type;
-	    typedef typename base_type::integral_type integral_type;
+	    typedef value_t value_type;
 	    typedef rng_t rn_engine;
 	    typedef random_number_stream<value_t,rng_t> rn_stream;
 	    
@@ -312,18 +310,17 @@ namespace Camgen
     };
     template<class value_t,class rng_t>const value_t uniform_sphere<value_t,2,rng_t>::unit_sphere_area=(value_t)4*std::acos(-(value_t)1);
     
-    template<class value_t,class rng_t>class uniform_sphere<value_t,3,rng_t>: public MC_object_generator<value_t,vector<value_t,4>,1,true>
+    template<class value_t,class rng_t>class uniform_sphere<value_t,3,rng_t>: public object_allocator< vector<value_t,4> >, public MC_generator<value_t>
     {
-	typedef MC_object_generator<value_t,vector<value_t,4>,1,true> base_type;
+	typedef object_allocator< vector<value_t,4> > base_type;
 
 	public:
 
 	    /* Type definitions: */
 
 	    typedef typename base_type::size_type size_type;
-	    typedef typename base_type::value_type value_type;
 	    typedef typename base_type::object_type object_type;
-	    typedef typename base_type::integral_type integral_type;
+	    typedef value_t value_type;
 	    typedef rng_t rn_engine;
 	    typedef random_number_stream<value_t,rng_t> rn_stream;
 	    

@@ -1,33 +1,97 @@
-\hypertarget{a00458}{\section{Camgen\-:\-:rambo$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t, Minkowski\-\_\-type $>$ Class Template Reference}
-\label{a00458}\index{Camgen\-::rambo$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t, Minkowski\-\_\-type $>$@{Camgen\-::rambo$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t, Minkowski\-\_\-type $>$}}
-}
-Inheritance diagram for Camgen\-:\-:rambo$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t, Minkowski\-\_\-type $>$\-:\begin{figure}[H]
+\hypertarget{a00458}{}\section{Camgen\+:\+:ps\+\_\+tree\+\_\+base$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$ Class Template Reference}
+\label{a00458}\index{Camgen\+::ps\+\_\+tree\+\_\+base$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$@{Camgen\+::ps\+\_\+tree\+\_\+base$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$}}
+
+
+Phase space decomposition tree base class.  
+
+
+
+
+{\ttfamily \#include $<$ps\+\_\+tree\+\_\+base.\+h$>$}
+
+Inheritance diagram for Camgen\+:\+:ps\+\_\+tree\+\_\+base$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=1.085271cm]{a00458}
+\includegraphics[height=1.357576cm]{a00458}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{a00458_a0fcb472d039e483f77b58305b4bd4986}{bool \hyperlink{a00458_a0fcb472d039e483f77b58305b4bd4986}{generate\-\_\-fs} ()}\label{a00458_a0fcb472d039e483f77b58305b4bd4986}
+\hypertarget{a00458_a10fd52abdaa96cbccbc59a79e3d74b2a}{}\hyperlink{a00458_a10fd52abdaa96cbccbc59a79e3d74b2a}{ps\+\_\+tree\+\_\+base} (\hyperlink{a00308}{init\+\_\+state\+\_\+type} $\ast$is, bool backward\+\_\+s\+\_\+gen\+\_\+)\label{a00458_a10fd52abdaa96cbccbc59a79e3d74b2a}
 
-\begin{DoxyCompactList}\small\item\em Purely virtual method generating the final state. \end{DoxyCompactList}\item 
-\hypertarget{a00458_ae6e268820d2de91b8282723f3a03eb91}{bool \hyperlink{a00458_ae6e268820d2de91b8282723f3a03eb91}{evaluate\-\_\-fs\-\_\-weight} ()}\label{a00458_ae6e268820d2de91b8282723f3a03eb91}
+\begin{DoxyCompactList}\small\item\em Constructor\+: \end{DoxyCompactList}\item 
+\hypertarget{a00458_aeadb017f285ea234712594fd9b48de43}{}virtual \hyperlink{a00458_aeadb017f285ea234712594fd9b48de43}{$\sim$ps\+\_\+tree\+\_\+base} ()\label{a00458_aeadb017f285ea234712594fd9b48de43}
 
-\begin{DoxyCompactList}\small\item\em Purely virtual method evaluating the final state weight. \end{DoxyCompactList}\item 
-\hypertarget{a00458_a8badd899251b3c0b138354e50e755aad}{std\-::string \hyperlink{a00458_a8badd899251b3c0b138354e50e755aad}{type} () const }\label{a00458_a8badd899251b3c0b138354e50e755aad}
+\begin{DoxyCompactList}\small\item\em Destructor\+: \end{DoxyCompactList}\item 
+\hypertarget{a00458_aeac7255f0abbe5f05ca1229e3d9f703c}{}bool \hyperlink{a00458_aeac7255f0abbe5f05ca1229e3d9f703c}{backward\+\_\+s\+\_\+sampling} () const \label{a00458_aeac7255f0abbe5f05ca1229e3d9f703c}
+
+\begin{DoxyCompactList}\small\item\em Returns whether the generator will sample invariants in backward order. \end{DoxyCompactList}\item 
+\hypertarget{a00458_aed1aabaa6da8c2739dc0ff4ba3b30192}{}bool \hyperlink{a00458_aed1aabaa6da8c2739dc0ff4ba3b30192}{backward\+\_\+shat\+\_\+sampling} () const \label{a00458_aed1aabaa6da8c2739dc0ff4ba3b30192}
+
+\begin{DoxyCompactList}\small\item\em Returns whether the generator will sample the total partonic invariant mass. \end{DoxyCompactList}\item 
+\hypertarget{a00458_ab777849e02b44c0ff14797c96d8c5c0e}{}void \hyperlink{a00458_ab777849e02b44c0ff14797c96d8c5c0e}{update} ()\label{a00458_ab777849e02b44c0ff14797c96d8c5c0e}
+
+\begin{DoxyCompactList}\small\item\em Overrides the update method. \end{DoxyCompactList}\item 
+\hypertarget{a00458_a5c06312d06862684d0ed0208c50c79ed}{}void \hyperlink{a00458_a5c06312d06862684d0ed0208c50c79ed}{adapt\+\_\+grids} ()\label{a00458_a5c06312d06862684d0ed0208c50c79ed}
+
+\begin{DoxyCompactList}\small\item\em Overrides the parni-\/grid adaptation method. \end{DoxyCompactList}\item 
+\hypertarget{a00458_ada36cad264a280d7a3e431ded70db380}{}void \hyperlink{a00458_ada36cad264a280d7a3e431ded70db380}{adapt\+\_\+channels} ()\label{a00458_ada36cad264a280d7a3e431ded70db380}
+
+\begin{DoxyCompactList}\small\item\em Overrides the multichannel adaptation method. \end{DoxyCompactList}\item 
+\hypertarget{a00458_a5705dfa7e9fafc6250aa4c9a46fa2817}{}bool \hyperlink{a00458_a5705dfa7e9fafc6250aa4c9a46fa2817}{refresh\+\_\+params} ()\label{a00458_a5705dfa7e9fafc6250aa4c9a46fa2817}
+
+\begin{DoxyCompactList}\small\item\em Refreshes the internal parameters. \end{DoxyCompactList}\item 
+\hypertarget{a00458_ae37d08f29d236504388d457aca77a63f}{}void \hyperlink{a00458_ae37d08f29d236504388d457aca77a63f}{reset} ()\label{a00458_ae37d08f29d236504388d457aca77a63f}
+
+\begin{DoxyCompactList}\small\item\em Resets cross-\/sections, multichannel weights and adaptive grids. \end{DoxyCompactList}\item 
+\hypertarget{a00458_a94de94ece36dbc8087f427ceb2f1846a}{}bool \hyperlink{a00458_a94de94ece36dbc8087f427ceb2f1846a}{refresh\+\_\+m\+\_\+min} ()\label{a00458_a94de94ece36dbc8087f427ceb2f1846a}
+
+\begin{DoxyCompactList}\small\item\em Refreshes the minimal invariant masses. \end{DoxyCompactList}\item 
+\hypertarget{a00458_af6da058dedb581f459056dd5a894441e}{}bool \hyperlink{a00458_af6da058dedb581f459056dd5a894441e}{refresh\+\_\+\+Ecm} ()\label{a00458_af6da058dedb581f459056dd5a894441e}
+
+\begin{DoxyCompactList}\small\item\em Refreshes the total hadronic invariant mass. \end{DoxyCompactList}\item 
+\hypertarget{a00458_a9208baae59912917f21c2c2797cdf93c}{}bool \hyperlink{a00458_a9208baae59912917f21c2c2797cdf93c}{refresh\+\_\+\+Ecm\+\_\+hat} ()\label{a00458_a9208baae59912917f21c2c2797cdf93c}
+
+\begin{DoxyCompactList}\small\item\em Refreshes the partonic invariant mass. \end{DoxyCompactList}\item 
+\hypertarget{a00458_a7321db9efda55ade5f9bf338c34fc97c}{}bool \hyperlink{a00458_a7321db9efda55ade5f9bf338c34fc97c}{set\+\_\+m\+\_\+min} (int i, int j, const value\+\_\+type $\ast$sqrts)\label{a00458_a7321db9efda55ade5f9bf338c34fc97c}
+
+\begin{DoxyCompactList}\small\item\em Sets the minimal invariant mass i,j and refreshes depending channels. \end{DoxyCompactList}\item 
+\hypertarget{a00458_a078a8aece3570dd7af51084be0ad9db1}{}bool \hyperlink{a00458_a078a8aece3570dd7af51084be0ad9db1}{empty} () const \label{a00458_a078a8aece3570dd7af51084be0ad9db1}
+
+\begin{DoxyCompactList}\small\item\em Returns whether we have branchings or not. \end{DoxyCompactList}\item 
+\hypertarget{a00458_a52a8cf9dd87c8514494a6b94baf89367}{}std\+::string \hyperlink{a00458_a52a8cf9dd87c8514494a6b94baf89367}{type} () const \label{a00458_a52a8cf9dd87c8514494a6b94baf89367}
 
 \begin{DoxyCompactList}\small\item\em Polymorphic type identifier. \end{DoxyCompactList}\item 
-\hypertarget{a00458_aa10fbc5250286a53660b70577f4303ab}{std\-::ostream \& \hyperlink{a00458_aa10fbc5250286a53660b70577f4303ab}{print\-\_\-fs\-\_\-settings} (std\-::ostream \&os) const }\label{a00458_aa10fbc5250286a53660b70577f4303ab}
+\hypertarget{a00458_aa142230016b0f94779e8dcfae9c96ecb}{}std\+::ostream \& \hyperlink{a00458_aa142230016b0f94779e8dcfae9c96ecb}{print} (std\+::ostream \&os) const \label{a00458_aa142230016b0f94779e8dcfae9c96ecb}
 
-\begin{DoxyCompactList}\small\item\em Virtual method printing the fs-\/generator settings. \end{DoxyCompactList}\item 
-\hypertarget{a00458_a9425dbba74544d2dc13b8ab4fc68068d}{std\-::istream \& \hyperlink{a00458_a9425dbba74544d2dc13b8ab4fc68068d}{load\-\_\-data} (std\-::istream \&is)}\label{a00458_a9425dbba74544d2dc13b8ab4fc68068d}
+\begin{DoxyCompactList}\small\item\em Printing method. \end{DoxyCompactList}\item 
+\hypertarget{a00458_a704355be32360cc8c4a3819ee7051422}{}std\+::ostream \& \hyperlink{a00458_a704355be32360cc8c4a3819ee7051422}{print\+\_\+channel} (std\+::ostream \&os) const \label{a00458_a704355be32360cc8c4a3819ee7051422}
 
-\begin{DoxyCompactList}\small\item\em Virtual loading method for derived types. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Generation channel printing method. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const bool \hyperlink{a00458_af8cfb50e9311bed446ab90546c5956e5}{backward\+\_\+s\+\_\+gen}
+\begin{DoxyCompactList}\small\item\em Determines whether invariant masses are generated in backward direction. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\subsection{Detailed Description}
+\subsubsection*{template$<$class model\+\_\+t, std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out, class rng\+\_\+t$>$class Camgen\+::ps\+\_\+tree\+\_\+base$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$}
+
+Phase space decomposition tree base class. 
+
+\subsection{Member Data Documentation}
+\hypertarget{a00458_af8cfb50e9311bed446ab90546c5956e5}{}\index{Camgen\+::ps\+\_\+tree\+\_\+base@{Camgen\+::ps\+\_\+tree\+\_\+base}!backward\+\_\+s\+\_\+gen@{backward\+\_\+s\+\_\+gen}}
+\index{backward\+\_\+s\+\_\+gen@{backward\+\_\+s\+\_\+gen}!Camgen\+::ps\+\_\+tree\+\_\+base@{Camgen\+::ps\+\_\+tree\+\_\+base}}
+\subsubsection[{backward\+\_\+s\+\_\+gen}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t, std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out, class rng\+\_\+t$>$ const bool {\bf Camgen\+::ps\+\_\+tree\+\_\+base}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$\+::backward\+\_\+s\+\_\+gen}\label{a00458_af8cfb50e9311bed446ab90546c5956e5}
+
+
+Determines whether invariant masses are generated in backward direction. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/\-Camgen/\hyperlink{a00728}{rambo.\-h}\end{DoxyCompactItemize}
+include/\+Camgen/\hyperlink{a00745}{ps\+\_\+tree\+\_\+base.\+h}\end{DoxyCompactItemize}

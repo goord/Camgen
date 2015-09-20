@@ -14,7 +14,7 @@
 #ifndef CAMGEN_SUM_BRANCH_H_
 #define CAMGEN_SUM_BRANCH_H_
 
-#include <Camgen/branching.h>
+#include <Camgen/ps_branching.h>
 
 namespace Camgen
 {
@@ -34,23 +34,27 @@ namespace Camgen
 	    typedef typename base_type::momentum_type momentum_type;
 	    typedef typename base_type::size_type size_type;
 	    typedef typename base_type::channel_type channel_type;
+	    typedef typename base_type::ps_channel_type ps_channel_type;
+	    typedef typename channel_type::momentum_channel_type momentum_channel_type;
 
 	    /* Second incoming momentum: */
 
-	    const channel_type* in2;
+	    const channel_type* const in2;
 
 	    /* Constructor. */
 
-	    sum_branching(channel_type* in1_,const channel_type* in2_,channel_type* out):base_type(in1_,1),in2(in2_)
-	    {
-		this->channels[0]=out;
-	    }
+	    sum_branching(channel_type* in1_,const channel_type* in2_,channel_type* out):base_type(in1_,out),in2(in2_){}
 
 	    /* Destructor. */
 
 	    ~sum_branching(){}
 
-	    /* Generates invariant mass: */
+	    /* Trivial t-generation method: */
+
+	    bool generate_t()
+	    {
+		return true;
+	    }
 
 	    bool generate_s()
 	    {
@@ -61,8 +65,16 @@ namespace Camgen
 
 	    bool generate_p()
 	    {
-		this->p_out(0)=this->p_in()+in2->p();
-		this->channel(0)->evaluate_s();
+		if(this->channel(0)->get_status()!=ps_channel_type::p_set)
+		{
+		    this->channel(0)->p()=this->p_in()+in2->p();
+		    //		if(!this->channel(0)->on_shell())
+		    //		{
+		    //		    this->channel(0)->evaluate_s();
+		    //		}
+		    this->channel(0)->set_status_p_generated();
+		}
+
 		this->weight()=(value_type)1;
 		return true;
 	    }
@@ -94,13 +106,9 @@ namespace Camgen
 		return "+";
 	    }
 
-	    /* Serialization helper: */
-
-	    std::ostream& save_channels(std::ostream& os) const
+	    momentum_type evaluate_p_in() const
 	    {
-		os<<this->incoming_channel->name<<"\t"<<in2->name<<std::endl;
-		os<<this->channel(0)->name<<std::endl;
-		return os;
+		return this->p_out(0)-in2->p();
 	    }
     };
     template<class spacetime_t,std::size_t N_out,class rng_t>class sum_branching<spacetime_t,1,N_out,rng_t>{};

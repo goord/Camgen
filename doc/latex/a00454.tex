@@ -1,15 +1,184 @@
-\hypertarget{a00454}{\section{Camgen\-:\-:R\-\_\-scalar\-\_\-gauge$<$ model\-\_\-t $>$ Class Template Reference}
-\label{a00454}\index{Camgen\-::\-R\-\_\-scalar\-\_\-gauge$<$ model\-\_\-t $>$@{Camgen\-::\-R\-\_\-scalar\-\_\-gauge$<$ model\-\_\-t $>$}}
-}
-Inheritance diagram for Camgen\-:\-:R\-\_\-scalar\-\_\-gauge$<$ model\-\_\-t $>$\-:\begin{figure}[H]
+\hypertarget{a00454}{}\section{Camgen\+:\+:ps\+\_\+generator\+\_\+viewer$<$ model\+\_\+t $>$ Class Template Reference}
+\label{a00454}\index{Camgen\+::ps\+\_\+generator\+\_\+viewer$<$ model\+\_\+t $>$@{Camgen\+::ps\+\_\+generator\+\_\+viewer$<$ model\+\_\+t $>$}}
+
+
+Viewer class for phase space generators.  
+
+
+
+
+{\ttfamily \#include $<$ps\+\_\+gen\+\_\+base.\+h$>$}
+
+Inheritance diagram for Camgen\+:\+:ps\+\_\+generator\+\_\+viewer$<$ model\+\_\+t $>$\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2.000000cm]{a00454}
+\includegraphics[height=1.609195cm]{a00454}
 \end{center}
 \end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00454_ace5212a650916d3f321e9f61f90412fb}{}bool \hyperlink{a00454_ace5212a650916d3f321e9f61f90412fb}{next\+\_\+event} (int strategy)\label{a00454_ace5212a650916d3f321e9f61f90412fb}
+
+\begin{DoxyCompactList}\small\item\em Generates new event according to the given strategy argument\+: \end{DoxyCompactList}\item 
+\hypertarget{a00454_a1b95457bf8a2786d6dd666bb9986f0ab}{}size\+\_\+type \hyperlink{a00454_a1b95457bf8a2786d6dd666bb9986f0ab}{n\+\_\+in} () const \label{a00454_a1b95457bf8a2786d6dd666bb9986f0ab}
+
+\begin{DoxyCompactList}\small\item\em Abstract method returning the number of incoming particles. \end{DoxyCompactList}\item 
+\hypertarget{a00454_a90b1baeb4917b3b94517508bb3a9e5b5}{}size\+\_\+type \hyperlink{a00454_a90b1baeb4917b3b94517508bb3a9e5b5}{n\+\_\+out} () const \label{a00454_a90b1baeb4917b3b94517508bb3a9e5b5}
+
+\begin{DoxyCompactList}\small\item\em Abstract method returning the number of outgoing particles. \end{DoxyCompactList}\item 
+\hypertarget{a00454_a6dce63f603c0edca920f9c5859a2dfb4}{}size\+\_\+type \hyperlink{a00454_a6dce63f603c0edca920f9c5859a2dfb4}{processes} () const \label{a00454_a6dce63f603c0edca920f9c5859a2dfb4}
+
+\begin{DoxyCompactList}\small\item\em Virtual method returning the number of subprocesses. \end{DoxyCompactList}\item 
+\hypertarget{a00454_a3f9fb91b7bdd56cbd786a121f8baefc3}{}size\+\_\+type \hyperlink{a00454_a3f9fb91b7bdd56cbd786a121f8baefc3}{process\+\_\+id} () const \label{a00454_a3f9fb91b7bdd56cbd786a121f8baefc3}
+
+\begin{DoxyCompactList}\small\item\em Virtual method returning the subprocess counter. \end{DoxyCompactList}\item 
+\hypertarget{a00454_aadc193b8c69d1915c55efa2e7dca0470}{}size\+\_\+type \hyperlink{a00454_aadc193b8c69d1915c55efa2e7dca0470}{process\+\_\+id} (size\+\_\+type i) const \label{a00454_aadc193b8c69d1915c55efa2e7dca0470}
+
+\begin{DoxyCompactList}\small\item\em Virtual method returning the subprocess id of the i-\/th subprocess. \end{DoxyCompactList}\item 
+\hypertarget{a00454_a185cb10de7f8354a746fd757829942f3}{}\hyperlink{a00368}{M\+C\+\_\+integral}$<$ value\+\_\+type $>$ \hyperlink{a00454_a185cb10de7f8354a746fd757829942f3}{xsec} () const \label{a00454_a185cb10de7f8354a746fd757829942f3}
+
+\begin{DoxyCompactList}\small\item\em Abstract method returning the total cross section. \end{DoxyCompactList}\item 
+\hypertarget{a00454_a8738056910322dc6906fa894b2fd07ae}{}\hyperlink{a00368}{M\+C\+\_\+integral}$<$ value\+\_\+type $>$ \hyperlink{a00454_a8738056910322dc6906fa894b2fd07ae}{xsec} (size\+\_\+type i) const \label{a00454_a8738056910322dc6906fa894b2fd07ae}
+
+\begin{DoxyCompactList}\small\item\em Virtual method returning the i-\/th subprocess cross section. \end{DoxyCompactList}\item 
+\hypertarget{a00454_a4b4e56fdc8c0ba5a64683f8290bc3349}{}const \hyperlink{a00579}{momentum\+\_\+type} \& \hyperlink{a00454_a4b4e56fdc8c0ba5a64683f8290bc3349}{p\+\_\+in} (size\+\_\+type i) const \label{a00454_a4b4e56fdc8c0ba5a64683f8290bc3349}
+
+\begin{DoxyCompactList}\small\item\em Abstract method reading out an incoming momentum. \end{DoxyCompactList}\item 
+\hypertarget{a00454_a1b7b4bf5833b12556d5dc059c0489773}{}const \hyperlink{a00579}{momentum\+\_\+type} \& \hyperlink{a00454_a1b7b4bf5833b12556d5dc059c0489773}{p\+\_\+out} (size\+\_\+type i) const \label{a00454_a1b7b4bf5833b12556d5dc059c0489773}
+
+\begin{DoxyCompactList}\small\item\em Abstract method reading out an outgoing momentum. \end{DoxyCompactList}\item 
+\hypertarget{a00454_acebe86b76743a3feef3a20adf450582c}{}value\+\_\+type \hyperlink{a00454_acebe86b76743a3feef3a20adf450582c}{M\+\_\+in} (size\+\_\+type i) const \label{a00454_acebe86b76743a3feef3a20adf450582c}
+
+\begin{DoxyCompactList}\small\item\em Abstract method reading out an incoming mass. \end{DoxyCompactList}\item 
+\hypertarget{a00454_a7539c158e77e9195f55a6e50ee54affb}{}value\+\_\+type \hyperlink{a00454_a7539c158e77e9195f55a6e50ee54affb}{M\+\_\+out} (size\+\_\+type i) const \label{a00454_a7539c158e77e9195f55a6e50ee54affb}
+
+\begin{DoxyCompactList}\small\item\em Abstract method reading out an outgoing mass. \end{DoxyCompactList}\item 
+\hypertarget{a00454_a1dc3a6e29880a81f5ea7e25f9030a88d}{}value\+\_\+type \hyperlink{a00454_a1dc3a6e29880a81f5ea7e25f9030a88d}{beam\+\_\+energy} (int i) const \label{a00454_a1dc3a6e29880a81f5ea7e25f9030a88d}
+
+\begin{DoxyCompactList}\small\item\em Abstract method returning the beam energies. \end{DoxyCompactList}\item 
+\hypertarget{a00454_ac3b9dc4b12faf73ae5e405d1abff79e1}{}value\+\_\+type \hyperlink{a00454_ac3b9dc4b12faf73ae5e405d1abff79e1}{Ecm} () const \label{a00454_ac3b9dc4b12faf73ae5e405d1abff79e1}
+
+\begin{DoxyCompactList}\small\item\em Abstract method returning the total (hadronic) invariant mass. \end{DoxyCompactList}\item 
+\hypertarget{a00454_adea6cd552284eb156717a0a426179731}{}value\+\_\+type \hyperlink{a00454_adea6cd552284eb156717a0a426179731}{s\+\_\+in} (size\+\_\+type i) const \label{a00454_adea6cd552284eb156717a0a426179731}
+
+\begin{DoxyCompactList}\small\item\em Virtual method returning the i-\/th incoming invariant mass-\/squared. \end{DoxyCompactList}\item 
+\hypertarget{a00454_aa699b69bec92a21f6839b0524a931bad}{}value\+\_\+type \hyperlink{a00454_aa699b69bec92a21f6839b0524a931bad}{s\+\_\+out} (size\+\_\+type i) const \label{a00454_aa699b69bec92a21f6839b0524a931bad}
+
+\begin{DoxyCompactList}\small\item\em Virtual method returning the i-\/th outgoing invariant mass-\/squared. \end{DoxyCompactList}\item 
+\hypertarget{a00454_ad1a3712c7a9f03af5b03bcd9c2456246}{}value\+\_\+type \hyperlink{a00454_ad1a3712c7a9f03af5b03bcd9c2456246}{m\+\_\+in} (size\+\_\+type i) const \label{a00454_ad1a3712c7a9f03af5b03bcd9c2456246}
+
+\begin{DoxyCompactList}\small\item\em Virtual method returning the i-\/th incoming invariant mass. \end{DoxyCompactList}\item 
+\hypertarget{a00454_ae0116ee1367ce23c1d298b2d46f2145f}{}value\+\_\+type \hyperlink{a00454_ae0116ee1367ce23c1d298b2d46f2145f}{m\+\_\+out} (size\+\_\+type i) const \label{a00454_ae0116ee1367ce23c1d298b2d46f2145f}
+
+\begin{DoxyCompactList}\small\item\em Virtual method returning the i-\/th outgoing invariant mass. \end{DoxyCompactList}\item 
+\hypertarget{a00454_a6f480161dcbc65da52d00028021d0bc4}{}int \hyperlink{a00454_a6f480161dcbc65da52d00028021d0bc4}{beam\+\_\+id} (int i) const \label{a00454_a6f480161dcbc65da52d00028021d0bc4}
+
+\begin{DoxyCompactList}\small\item\em Virtual method returning the i-\/th incoming beam id. \end{DoxyCompactList}\item 
+\hypertarget{a00454_a3b911ea154229ac67148cd5d54ac5b64}{}int \hyperlink{a00454_a3b911ea154229ac67148cd5d54ac5b64}{pdfg} (int i) const \label{a00454_a3b911ea154229ac67148cd5d54ac5b64}
+
+\begin{DoxyCompactList}\small\item\em Returns the cernlib pdf group number for the i-\/th incoming beam. \end{DoxyCompactList}\item 
+\hypertarget{a00454_a471032c2b3043fa0775580408dd7b468}{}int \hyperlink{a00454_a471032c2b3043fa0775580408dd7b468}{pdfs} (int i) const \label{a00454_a471032c2b3043fa0775580408dd7b468}
+
+\begin{DoxyCompactList}\small\item\em Returns the cernlib pdf set number for the i-\/th incoming beam. \end{DoxyCompactList}\item 
+\hypertarget{a00454_ab6d6385b83be901d28b7bdc5a5bed8bd}{}value\+\_\+type \hyperlink{a00454_ab6d6385b83be901d28b7bdc5a5bed8bd}{mu\+\_\+\+F} () const \label{a00454_ab6d6385b83be901d28b7bdc5a5bed8bd}
+
+\begin{DoxyCompactList}\small\item\em Returns the factorisation scale. \end{DoxyCompactList}\item 
+int \hyperlink{a00454_a7421839159915e361c59a30548cb4185}{id\+\_\+in} (size\+\_\+type i) const 
+\begin{DoxyCompactList}\small\item\em Virtual method returning the i-\/th incoming particle id (returns zero by default). \end{DoxyCompactList}\item 
+int \hyperlink{a00454_aaa5d50f406703e527ddd2db2655b0641}{id\+\_\+out} (size\+\_\+type i) const 
+\begin{DoxyCompactList}\small\item\em Virtual method returning the i-\/th outgoing particle id (returns zero by default). \end{DoxyCompactList}\item 
+\hypertarget{a00454_abebffbb041d82b15b6f73ba807d0d894}{}virtual void \hyperlink{a00454_abebffbb041d82b15b6f73ba807d0d894}{fill\+\_\+colours} (std\+::vector$<$ int $>$ \&c, std\+::vector$<$ int $>$ \&cbar) const \label{a00454_abebffbb041d82b15b6f73ba807d0d894}
+
+\begin{DoxyCompactList}\small\item\em Method determining the colour connection for the event. \end{DoxyCompactList}\item 
+\hypertarget{a00454_ac3dcfe284b1069885658f83e77cadec5}{}value\+\_\+type \hyperlink{a00454_ac3dcfe284b1069885658f83e77cadec5}{s\+\_\+tot} () const \label{a00454_ac3dcfe284b1069885658f83e77cadec5}
+
+\begin{DoxyCompactList}\small\item\em Virtual method returning the total (hadronic) invariant mass-\/squared. \end{DoxyCompactList}\item 
+\hypertarget{a00454_adc73c84a8f49e4a1e9c01021d7c88e2a}{}virtual value\+\_\+type \hyperlink{a00454_adc73c84a8f49e4a1e9c01021d7c88e2a}{w} () const \label{a00454_adc73c84a8f49e4a1e9c01021d7c88e2a}
+
+\begin{DoxyCompactList}\small\item\em Virtual method returning the total event weight (returns one by default). \end{DoxyCompactList}\item 
+\hypertarget{a00454_a2f73df9706ecf606b7736f0b83c41447}{}virtual value\+\_\+type \hyperlink{a00454_a2f73df9706ecf606b7736f0b83c41447}{max\+\_\+w} () const \label{a00454_a2f73df9706ecf606b7736f0b83c41447}
+
+\begin{DoxyCompactList}\small\item\em Virtual method returning the maximal event weight (returns one by default). \end{DoxyCompactList}\item 
+value\+\_\+type \hyperlink{a00454_a6267546a599d6429828c6924d2c3016a}{ps\+\_\+weights} (bool with\+\_\+hels, bool with\+\_\+cols) const 
+\begin{DoxyCompactList}\small\item\em Virtual method returning the event weight without flux and symmetry factors etc. \end{DoxyCompactList}\item 
+value\+\_\+type \hyperlink{a00454_ae5f3a092fb081ed7ec4250f1b8780c1d}{ps\+\_\+factors} (bool with\+\_\+hels, bool with\+\_\+cols) const 
+\begin{DoxyCompactList}\small\item\em Virtual method returning the flux, symmetry and conversion factors. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\subsection{Detailed Description}
+\subsubsection*{template$<$class model\+\_\+t$>$class Camgen\+::ps\+\_\+generator\+\_\+viewer$<$ model\+\_\+t $>$}
+
+Viewer class for phase space generators. 
+
+Redirects all variables from its argument generator. 
+
+\subsection{Member Function Documentation}
+\hypertarget{a00454_a7421839159915e361c59a30548cb4185}{}\index{Camgen\+::ps\+\_\+generator\+\_\+viewer@{Camgen\+::ps\+\_\+generator\+\_\+viewer}!id\+\_\+in@{id\+\_\+in}}
+\index{id\+\_\+in@{id\+\_\+in}!Camgen\+::ps\+\_\+generator\+\_\+viewer@{Camgen\+::ps\+\_\+generator\+\_\+viewer}}
+\subsubsection[{id\+\_\+in}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t$>$ int {\bf Camgen\+::ps\+\_\+generator\+\_\+viewer}$<$ model\+\_\+t $>$\+::id\+\_\+in (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+type}]{i}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{a00454_a7421839159915e361c59a30548cb4185}
+
+
+Virtual method returning the i-\/th incoming particle id (returns zero by default). 
+
+
+
+Reimplemented from \hyperlink{a00451_a93226df13fcf52eb52b5b8d894885462}{Camgen\+::ps\+\_\+generator\+\_\+base$<$ model\+\_\+t $>$}.
+
+\hypertarget{a00454_aaa5d50f406703e527ddd2db2655b0641}{}\index{Camgen\+::ps\+\_\+generator\+\_\+viewer@{Camgen\+::ps\+\_\+generator\+\_\+viewer}!id\+\_\+out@{id\+\_\+out}}
+\index{id\+\_\+out@{id\+\_\+out}!Camgen\+::ps\+\_\+generator\+\_\+viewer@{Camgen\+::ps\+\_\+generator\+\_\+viewer}}
+\subsubsection[{id\+\_\+out}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t$>$ int {\bf Camgen\+::ps\+\_\+generator\+\_\+viewer}$<$ model\+\_\+t $>$\+::id\+\_\+out (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+type}]{i}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{a00454_aaa5d50f406703e527ddd2db2655b0641}
+
+
+Virtual method returning the i-\/th outgoing particle id (returns zero by default). 
+
+
+
+Reimplemented from \hyperlink{a00451_a30cad3b16698c3d0d47d01b0a2d61df2}{Camgen\+::ps\+\_\+generator\+\_\+base$<$ model\+\_\+t $>$}.
+
+\hypertarget{a00454_ae5f3a092fb081ed7ec4250f1b8780c1d}{}\index{Camgen\+::ps\+\_\+generator\+\_\+viewer@{Camgen\+::ps\+\_\+generator\+\_\+viewer}!ps\+\_\+factors@{ps\+\_\+factors}}
+\index{ps\+\_\+factors@{ps\+\_\+factors}!Camgen\+::ps\+\_\+generator\+\_\+viewer@{Camgen\+::ps\+\_\+generator\+\_\+viewer}}
+\subsubsection[{ps\+\_\+factors}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t$>$ value\+\_\+type {\bf Camgen\+::ps\+\_\+generator\+\_\+viewer}$<$ model\+\_\+t $>$\+::ps\+\_\+factors (
+\begin{DoxyParamCaption}
+\item[{bool}]{with\+\_\+hels, }
+\item[{bool}]{with\+\_\+cols}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{a00454_ae5f3a092fb081ed7ec4250f1b8780c1d}
+
+
+Virtual method returning the flux, symmetry and conversion factors. 
+
+The first argument denotes whther helicities are included, the second whether colours are (returns one by default). 
+
+Reimplemented from \hyperlink{a00451_aea34ea1dada7a4cece83b42c7d50db55}{Camgen\+::ps\+\_\+generator\+\_\+base$<$ model\+\_\+t $>$}.
+
+\hypertarget{a00454_a6267546a599d6429828c6924d2c3016a}{}\index{Camgen\+::ps\+\_\+generator\+\_\+viewer@{Camgen\+::ps\+\_\+generator\+\_\+viewer}!ps\+\_\+weights@{ps\+\_\+weights}}
+\index{ps\+\_\+weights@{ps\+\_\+weights}!Camgen\+::ps\+\_\+generator\+\_\+viewer@{Camgen\+::ps\+\_\+generator\+\_\+viewer}}
+\subsubsection[{ps\+\_\+weights}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t$>$ value\+\_\+type {\bf Camgen\+::ps\+\_\+generator\+\_\+viewer}$<$ model\+\_\+t $>$\+::ps\+\_\+weights (
+\begin{DoxyParamCaption}
+\item[{bool}]{with\+\_\+hels, }
+\item[{bool}]{with\+\_\+cols}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{a00454_a6267546a599d6429828c6924d2c3016a}
+
+
+Virtual method returning the event weight without flux and symmetry factors etc. 
+
+The first argument denotes whether helicities are included, the second whether colours are (returns one by default). 
+
+Reimplemented from \hyperlink{a00451_a258fb687d61e5a0d9d12d5e1d45db8aa}{Camgen\+::ps\+\_\+generator\+\_\+base$<$ model\+\_\+t $>$}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/\-Camgen/R\-\_\-gauge.\-h\end{DoxyCompactItemize}
+include/\+Camgen/\hyperlink{a00743}{ps\+\_\+gen\+\_\+base.\+h}\end{DoxyCompactItemize}

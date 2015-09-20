@@ -1,0 +1,17 @@
+Log file for model Camgen::phi3, created on Sep 19 2015, at 16:58:15
+
+dimension:               4
+
+value type:              double
+
+spacetime type:          Camgen::Minkowski_type
+
+continuous helicities:   0
+
+colour treatment:        Camgen::unused
+
+continuous colours:      0
+
+
+particle phi added to model...
+vertex phiphiphivertex added to model...

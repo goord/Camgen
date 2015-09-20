@@ -15,7 +15,8 @@
 #include <sstream>
 #include <Camgen/rn_strm.h>
 #include <Camgen/plt_strm.h>
-#include <Camgen/MC_obj_gen.h>
+#include <Camgen/obj_alloc.h>
+#include <Camgen/MC_gen.h>
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Normally distributed random number generator. The class template uses a polar *
@@ -29,18 +30,17 @@ namespace Camgen
     /// template argument denotes the numerical type, the second parameter denotes
     /// the random number stream.
     
-    template<class value_t,class rng_t>class normal_generator: public MC_object_generator<value_t,value_t,1,true>
+    template<class value_t,class rng_t>class normal_generator: public object_allocator<value_t>, public MC_generator<value_t>
     {
-	typedef MC_object_generator<value_t,value_t,1,true> base_type;
+	typedef object_allocator<value_t> base_type;
 
 	public:
 
 	    /* Type definitions: */
 
 	    typedef typename base_type::size_type size_type;
-	    typedef typename base_type::value_type value_type;
 	    typedef typename base_type::object_type object_type;
-	    typedef typename base_type::integral_type integral_type;
+	    typedef value_t value_type;
 	    typedef rng_t rn_engine;
 	    typedef random_number_stream<value_t,rng_t> rn_stream;
 
@@ -121,15 +121,21 @@ namespace Camgen
 		return true;
 	    }
 
+	    /// Returns the Gauss mean value.
+
 	    value_type mean() const
 	    {
 		return (mu==NULL)?(value_type)0:(*mu);
 	    }
 
+	    /// Returns the standard deviation.
+
 	    value_type variance() const
 	    {
 		return (sigma==NULL)?(value_type)1:(*sigma);
 	    }
+
+	    /// TODO: get this out...
 
 	    function_stream* pdf_plot(const value_type& x) const
 	    {

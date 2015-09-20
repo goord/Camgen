@@ -1,0 +1,73 @@
+----------------------------------------------------------------------------------
+testing Parke-Taylor gluon amplitudes in QCD with continuous colours..............
+----------------------------------------------------------------------------------
+Checking (+ + + +) amplitudes for g,g > g,g...................done.
+Checking (- + + +) amplitudes for g,g > g,g...................done.
+Checking (+ - + +) amplitudes for g,g > g,g...................done.
+Checking (+ + - +) amplitudes for g,g > g,g...................done.
+Checking (+ + + -) amplitudes for g,g > g,g...................done.
+Checking (- - - -) amplitudes for g,g > g,g...................done.
+Checking (+ - - -) amplitudes for g,g > g,g...................done.
+Checking (- + - -) amplitudes for g,g > g,g...................done.
+Checking (- - + -) amplitudes for g,g > g,g...................done.
+Checking (- - - +) amplitudes for g,g > g,g...................done.
+Checking (+ + + + +) amplitudes for g,g > g,g,g...................done.
+Checking (- + + + +) amplitudes for g,g > g,g,g...................done.
+Checking (+ - + + +) amplitudes for g,g > g,g,g...................done.
+Checking (+ + - + +) amplitudes for g,g > g,g,g...................done.
+Checking (+ + + - +) amplitudes for g,g > g,g,g...................done.
+Checking (+ + + + -) amplitudes for g,g > g,g,g...................done.
+Checking (- - - - -) amplitudes for g,g > g,g,g...................done.
+Checking (+ - - - -) amplitudes for g,g > g,g,g...................done.
+Checking (- + - - -) amplitudes for g,g > g,g,g...................done.
+Checking (- - + - -) amplitudes for g,g > g,g,g...................done.
+Checking (- - - + -) amplitudes for g,g > g,g,g...................done.
+Checking (- - - - +) amplitudes for g,g > g,g,g...................done.
+Checking (+ + + + + +) amplitudes for g,g > g,g,g,g...................done.
+Checking (- + + + + +) amplitudes for g,g > g,g,g,g...................done.
+Checking (+ - + + + +) amplitudes for g,g > g,g,g,g...................done.
+Checking (+ + - + + +) amplitudes for g,g > g,g,g,g...................done.
+Checking (+ + + - + +) amplitudes for g,g > g,g,g,g...................done.
+Checking (+ + + + - +) amplitudes for g,g > g,g,g,g...................done.
+Checking (+ + + + + -) amplitudes for g,g > g,g,g,g...................done.
+Checking (- - - - - -) amplitudes for g,g > g,g,g,g...................done.
+Checking (+ - - - - -) amplitudes for g,g > g,g,g,g...................done.
+Checking (- + - - - -) amplitudes for g,g > g,g,g,g...................done.
+Checking (- - + - - -) amplitudes for g,g > g,g,g,g...................done.
+Checking (- - - + - -) amplitudes for g,g > g,g,g,g...................done.
+Checking (- - - - + -) amplitudes for g,g > g,g,g,g...................done.
+Checking (- - - - - +) amplitudes for g,g > g,g,g,g...................done.
+Checking (+ + + + + + +) amplitudes for g,g > g,g,g,g,g...................done.
+Checking (- + + + + + +) amplitudes for g,g > g,g,g,g,g...................done.
+Checking (+ - + + + + +) amplitudes for g,g > g,g,g,g,g...................done.
+Checking (+ + - + + + +) amplitudes for g,g > g,g,g,g,g...................done.
+Checking (+ + + - + + +) amplitudes for g,g > g,g,g,g,g...................done.
+Checking (+ + + + - + +) amplitudes for g,g > g,g,g,g,g...................done.
+Checking (+ + + + + - +) amplitudes for g,g > g,g,g,g,g...................done.
+Checking (+ + + + + + -) amplitudes for g,g > g,g,g,g,g...................done.
+Checking (- - - - - - -) amplitudes for g,g > g,g,g,g,g...................done.
+Checking (+ - - - - - -) amplitudes for g,g > g,g,g,g,g...................done.
+Checking (- + - - - - -) amplitudes for g,g > g,g,g,g,g...................done.
+Checking (- - + - - - -) amplitudes for g,g > g,g,g,g,g...................done.
+Checking (- - - + - - -) amplitudes for g,g > g,g,g,g,g...................done.
+Checking (- - - - + - -) amplitudes for g,g > g,g,g,g,g...................done.
+Checking (- - - - - + -) amplitudes for g,g > g,g,g,g,g...................done.
+Checking (- - - - - - +) amplitudes for g,g > g,g,g,g,g...................done.
+Checking (+ + + + + + + +) amplitudes for g,g > g,g,g,g,g,g...................done.
+Checking (- + + + + + + +) amplitudes for g,g > g,g,g,g,g,g...................done.
+Checking (+ - + + + + + +) amplitudes for g,g > g,g,g,g,g,g...................done.
+Checking (+ + - + + + + +) amplitudes for g,g > g,g,g,g,g,g...................done.
+Checking (+ + + - + + + +) amplitudes for g,g > g,g,g,g,g,g...................done.
+Checking (+ + + + - + + +) amplitudes for g,g > g,g,g,g,g,g...................done.
+Checking (+ + + + + - + +) amplitudes for g,g > g,g,g,g,g,g...................done.
+Checking (+ + + + + + - +) amplitudes for g,g > g,g,g,g,g,g...................done.
+Checking (+ + + + + + + -) amplitudes for g,g > g,g,g,g,g,g...................done.
+Checking (- - - - - - - -) amplitudes for g,g > g,g,g,g,g,g...................done.
+Checking (+ - - - - - - -) amplitudes for g,g > g,g,g,g,g,g...................done.
+Checking (- + - - - - - -) amplitudes for g,g > g,g,g,g,g,g...................done.
+Checking (- - + - - - - -) amplitudes for g,g > g,g,g,g,g,g...................done.
+Checking (- - - + - - - -) amplitudes for g,g > g,g,g,g,g,g...................done.
+Checking (- - - - + - - -) amplitudes for g,g > g,g,g,g,g,g...................done.
+Checking (- - - - - + - -) amplitudes for g,g > g,g,g,g,g,g...................done.
+Checking (- - - - - - + -) amplitudes for g,g > g,g,g,g,g,g...................done.
+Checking (- - - - - - - +) amplitudes for g,g > g,g,g,g,g,g...................done.

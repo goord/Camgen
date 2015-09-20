@@ -1,62 +1,60 @@
-\hypertarget{a00368}{\section{Camgen\-:\-:M\-C\-\_\-object\-\_\-generator$<$ value\-\_\-t, object\-\_\-t, N, true $>$ Class Template Reference}
-\label{a00368}\index{Camgen\-::\-M\-C\-\_\-object\-\_\-generator$<$ value\-\_\-t, object\-\_\-t, N, true $>$@{Camgen\-::\-M\-C\-\_\-object\-\_\-generator$<$ value\-\_\-t, object\-\_\-t, N, true $>$}}
-}
+\hypertarget{a00368}{}\section{Camgen\+:\+:M\+C\+\_\+integral$<$ value\+\_\+t $>$ Class Template Reference}
+\label{a00368}\index{Camgen\+::\+M\+C\+\_\+integral$<$ value\+\_\+t $>$@{Camgen\+::\+M\+C\+\_\+integral$<$ value\+\_\+t $>$}}
 
 
-Specialization for objects with default constructor.  
+Cross section data holder class template.  
 
 
 
 
-{\ttfamily \#include $<$M\-C\-\_\-obj\-\_\-gen.\-h$>$}
+{\ttfamily \#include $<$M\+C\+\_\+integral.\+h$>$}
 
-Inheritance diagram for Camgen\-:\-:M\-C\-\_\-object\-\_\-generator$<$ value\-\_\-t, object\-\_\-t, N, true $>$\-:\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[height=2.000000cm]{a00368}
-\end{center}
-\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{a00368_a081520a40501e311f5000aa4694964a6}{\hyperlink{a00368_a081520a40501e311f5000aa4694964a6}{M\-C\-\_\-object\-\_\-generator} ()}\label{a00368_a081520a40501e311f5000aa4694964a6}
+\hypertarget{a00368_a8caa7a907d8e8d240c8c4f40f527b928}{}\hyperlink{a00368_a8caa7a907d8e8d240c8c4f40f527b928}{M\+C\+\_\+integral} (const value\+\_\+type \&value\+\_\+=(value\+\_\+type) 0, const value\+\_\+type \&error\+\_\+=(value\+\_\+type) 0, const value\+\_\+type \&error\+\_\+error\+\_\+=(value\+\_\+type) 0)\label{a00368_a8caa7a907d8e8d240c8c4f40f527b928}
 
-\begin{DoxyCompactList}\small\item\em Default constructor, allocating the instances with default constructors. \end{DoxyCompactList}\item 
-\hypertarget{a00368_ad7a9b348190653afc8ff26feb093814b}{\hyperlink{a00368_ad7a9b348190653afc8ff26feb093814b}{M\-C\-\_\-object\-\_\-generator} (const \hyperlink{a00559}{vector}$<$ object\-\_\-type $\ast$, N $>$ \&instances\-\_\-)}\label{a00368_ad7a9b348190653afc8ff26feb093814b}
-
-\begin{DoxyCompactList}\small\item\em Constructor with input instances. \end{DoxyCompactList}\item 
-\hypertarget{a00368_a8dd90ab9da723ea5ed7691f4982a0e8e}{\hyperlink{a00368_a8dd90ab9da723ea5ed7691f4982a0e8e}{M\-C\-\_\-object\-\_\-generator} (const \hyperlink{a00364}{M\-C\-\_\-object\-\_\-generator}$<$ value\-\_\-t, object\-\_\-t, N, true $>$ \&other)}\label{a00368_a8dd90ab9da723ea5ed7691f4982a0e8e}
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hypertarget{a00368_a514bc02671485104c893c760148316f9}{}\hyperlink{a00368_a514bc02671485104c893c760148316f9}{M\+C\+\_\+integral} (const \hyperlink{a00368}{M\+C\+\_\+integral}$<$ value\+\_\+t $>$ \&other)\label{a00368_a514bc02671485104c893c760148316f9}
 
 \begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
-\hypertarget{a00368_a1a2a9d04b68f761d4f85b0eb9b3bac74}{virtual \hyperlink{a00368_a1a2a9d04b68f761d4f85b0eb9b3bac74}{$\sim$\-M\-C\-\_\-object\-\_\-generator} ()}\label{a00368_a1a2a9d04b68f761d4f85b0eb9b3bac74}
+\hypertarget{a00368_aa506af585c07d90efaf668433222640b}{}value\+\_\+type \hyperlink{a00368_aa506af585c07d90efaf668433222640b}{error\+\_\+percent} () const \label{a00368_aa506af585c07d90efaf668433222640b}
 
-\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
-\hypertarget{a00368_a3acc77d34ae0bf4c381b417a3e80d5d9}{object\-\_\-type \& \hyperlink{a00368_a3acc77d34ae0bf4c381b417a3e80d5d9}{object} (size\-\_\-type i=0)}\label{a00368_a3acc77d34ae0bf4c381b417a3e80d5d9}
+\begin{DoxyCompactList}\small\item\em Returns the error percentage. \end{DoxyCompactList}\item 
+\hypertarget{a00368_a9c6b3b3e2be84b597431b9a36a3c37c6}{}value\+\_\+type \hyperlink{a00368_a9c6b3b3e2be84b597431b9a36a3c37c6}{error\+\_\+error\+\_\+percent} () const \label{a00368_a9c6b3b3e2be84b597431b9a36a3c37c6}
 
-\begin{DoxyCompactList}\small\item\em Returns the reference to the i-\/th instance. \end{DoxyCompactList}\item 
-\hypertarget{a00368_a60dfb3cc1f04e2f2ae9ac31ed6060a3f}{const object\-\_\-type \& \hyperlink{a00368_a60dfb3cc1f04e2f2ae9ac31ed6060a3f}{object} (size\-\_\-type i=0) const }\label{a00368_a60dfb3cc1f04e2f2ae9ac31ed6060a3f}
+\begin{DoxyCompactList}\small\item\em Returns the error on the error percentage. \end{DoxyCompactList}\item 
+\hypertarget{a00368_adbf522c34eefb8c3f778ace5f43f651d}{}\hyperlink{a00368}{M\+C\+\_\+integral}$<$ value\+\_\+t $>$ \& \hyperlink{a00368_adbf522c34eefb8c3f778ace5f43f651d}{operator+=} (const \hyperlink{a00368}{M\+C\+\_\+integral}$<$ value\+\_\+t $>$ \&other)\label{a00368_adbf522c34eefb8c3f778ace5f43f651d}
 
-\begin{DoxyCompactList}\small\item\em Returns the const reference to the i-\/th instance. \end{DoxyCompactList}\item 
-\hypertarget{a00368_a3f4b394c67318d3d895cedaab6bcccb5}{object\-\_\-type $\ast$ \hyperlink{a00368_a3f4b394c67318d3d895cedaab6bcccb5}{get\-\_\-object} (size\-\_\-type i=0)}\label{a00368_a3f4b394c67318d3d895cedaab6bcccb5}
+\begin{DoxyCompactList}\small\item\em Adds a cross section to the data. \end{DoxyCompactList}\item 
+\hypertarget{a00368_aca3cdcca491ffd8942c387c2031ee75c}{}\hyperlink{a00368}{M\+C\+\_\+integral}$<$ value\+\_\+t $>$ \& \hyperlink{a00368_aca3cdcca491ffd8942c387c2031ee75c}{operator-\/=} (const \hyperlink{a00368}{M\+C\+\_\+integral}$<$ value\+\_\+t $>$ \&other)\label{a00368_aca3cdcca491ffd8942c387c2031ee75c}
 
-\begin{DoxyCompactList}\small\item\em Returns the address of the i-\/th instance. \end{DoxyCompactList}\item 
-\hypertarget{a00368_ae8da1756010b6b49bd7377cb1fd8acdc}{const object\-\_\-type $\ast$ \hyperlink{a00368_ae8da1756010b6b49bd7377cb1fd8acdc}{get\-\_\-object} (size\-\_\-type i=0) const }\label{a00368_ae8da1756010b6b49bd7377cb1fd8acdc}
+\begin{DoxyCompactList}\small\item\em Subtracts a cross section from the data. \end{DoxyCompactList}\item 
+\hypertarget{a00368_a5ae480f831de6aea00087f513dea9421}{}\hyperlink{a00368}{M\+C\+\_\+integral}$<$ value\+\_\+t $>$ \& \hyperlink{a00368_a5ae480f831de6aea00087f513dea9421}{operator$\ast$=} (const value\+\_\+t \&c)\label{a00368_a5ae480f831de6aea00087f513dea9421}
 
-\begin{DoxyCompactList}\small\item\em Returns the const pointer to the i-\/th instance. \end{DoxyCompactList}\item 
-\hypertarget{a00368_ab49eeb4159740c6c3c93d79eaff87b32}{void \hyperlink{a00368_ab49eeb4159740c6c3c93d79eaff87b32}{set\-\_\-object} (object\-\_\-type $\ast$instance\-\_\-, size\-\_\-type i=0)}\label{a00368_ab49eeb4159740c6c3c93d79eaff87b32}
+\begin{DoxyCompactList}\small\item\em Multiplies the cross section by a constant. \end{DoxyCompactList}\item 
+\hypertarget{a00368_a8829847aa62867c5edd0cf769938c712}{}\hyperlink{a00368}{M\+C\+\_\+integral}$<$ value\+\_\+t $>$ \& \hyperlink{a00368_a8829847aa62867c5edd0cf769938c712}{operator/=} (const value\+\_\+t \&c)\label{a00368_a8829847aa62867c5edd0cf769938c712}
 
-\begin{DoxyCompactList}\small\item\em Sets the address to the i-\/th instance. \end{DoxyCompactList}\item 
-\hypertarget{a00368_a35f78745c06de11a83ecbdccc0cd2945}{const object\-\_\-type \& \hyperlink{a00368_a35f78745c06de11a83ecbdccc0cd2945}{operator()} (size\-\_\-type i)}\label{a00368_a35f78745c06de11a83ecbdccc0cd2945}
+\begin{DoxyCompactList}\small\item\em Divides the cross section by a constant. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00368_af157bc06b6f02f9b493d55b2e3ed15fc}{}value\+\_\+type \hyperlink{a00368_af157bc06b6f02f9b493d55b2e3ed15fc}{value}\label{a00368_af157bc06b6f02f9b493d55b2e3ed15fc}
 
-\begin{DoxyCompactList}\small\item\em Calls the generation method and returns the i-\/th object. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Additional Inherited Members}
+\begin{DoxyCompactList}\small\item\em Value of the variable. \end{DoxyCompactList}\item 
+\hypertarget{a00368_a58f93d53de2819a07d63c2f69a512536}{}value\+\_\+type \hyperlink{a00368_a58f93d53de2819a07d63c2f69a512536}{error}\label{a00368_a58f93d53de2819a07d63c2f69a512536}
+
+\begin{DoxyCompactList}\small\item\em Error on the value. \end{DoxyCompactList}\item 
+\hypertarget{a00368_a56de2f410ea5d3702790a2c65b89f858}{}value\+\_\+type \hyperlink{a00368_a56de2f410ea5d3702790a2c65b89f858}{error\+\_\+error}\label{a00368_a56de2f410ea5d3702790a2c65b89f858}
+
+\begin{DoxyCompactList}\small\item\em Error on the error. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-\subsubsection*{template$<$class value\-\_\-t, class object\-\_\-t, std\-::size\-\_\-t N$>$class Camgen\-::\-M\-C\-\_\-object\-\_\-generator$<$ value\-\_\-t, object\-\_\-t, N, true $>$}
+\subsubsection*{template$<$class value\+\_\+t$>$class Camgen\+::\+M\+C\+\_\+integral$<$ value\+\_\+t $>$}
 
-Specialization for objects with default constructor. 
+Cross section data holder class template. 
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/\-Camgen/\hyperlink{a00673}{M\-C\-\_\-obj\-\_\-gen.\-h}\end{DoxyCompactItemize}
+include/\+Camgen/\hyperlink{a00694}{M\+C\+\_\+integral.\+h}\end{DoxyCompactItemize}

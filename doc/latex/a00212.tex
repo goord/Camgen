@@ -1,15 +1,468 @@
-\hypertarget{a00212}{\section{Camgen\-:\-:E\-W\-S\-M\-\_\-base$<$ model\-\_\-t, value\-\_\-t $>$ Class Template Reference}
-\label{a00212}\index{Camgen\-::\-E\-W\-S\-M\-\_\-base$<$ model\-\_\-t, value\-\_\-t $>$@{Camgen\-::\-E\-W\-S\-M\-\_\-base$<$ model\-\_\-t, value\-\_\-t $>$}}
-}
-Inheritance diagram for Camgen\-:\-:E\-W\-S\-M\-\_\-base$<$ model\-\_\-t, value\-\_\-t $>$\-:\begin{figure}[H]
+\hypertarget{a00212}{}\section{Camgen\+:\+:event\+\_\+generator$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$ Class Template Reference}
+\label{a00212}\index{Camgen\+::event\+\_\+generator$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$@{Camgen\+::event\+\_\+generator$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$}}
+
+
+Multi-\/process matrix-\/element Monte Carlo event generator class.  
+
+
+
+
+{\ttfamily \#include $<$evt\+\_\+gen.\+h$>$}
+
+Inheritance diagram for Camgen\+:\+:event\+\_\+generator$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2.000000cm]{a00212}
+\includegraphics[height=0.968300cm]{a00212}
 \end{center}
 \end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00212_a7221639f3475700f6558a9d553756635}{}\hyperlink{a00212_a7221639f3475700f6558a9d553756635}{$\sim$event\+\_\+generator} ()\label{a00212_a7221639f3475700f6558a9d553756635}
+
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+void \hyperlink{a00212_abdbb6535ed37872f82531bb1495c3d75}{pre\+\_\+initialise} (size\+\_\+type n\+\_\+evts, bool verbose=false)
+\begin{DoxyCompactList}\small\item\em Pre-\/initialisation method to obtain first subprocess cross section estimates, determining which subprocesses are relevant. \end{DoxyCompactList}\item 
+\hypertarget{a00212_ada359dc0810004730e2d679b3eabfd40}{}void \hyperlink{a00212_ada359dc0810004730e2d679b3eabfd40}{initialise} (size\+\_\+type channel\+\_\+iters, size\+\_\+type channel\+\_\+batch, size\+\_\+type grid\+\_\+iters, size\+\_\+type grid\+\_\+batch, size\+\_\+type sub\+\_\+proc\+\_\+evts, bool verbose=false)\label{a00212_ada359dc0810004730e2d679b3eabfd40}
+
+\begin{DoxyCompactList}\small\item\em Initialiser method. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a78129d29e1764f9b0c9f3c8d4984cca4}{}bool \hyperlink{a00212_a78129d29e1764f9b0c9f3c8d4984cca4}{set\+\_\+beam\+\_\+energy} (int n, const value\+\_\+type \&\hyperlink{a00451_a8a2e0cd9b961dcfa2eb1ac7426cf3f5f}{E})\label{a00212_a78129d29e1764f9b0c9f3c8d4984cca4}
+
+\begin{DoxyCompactList}\small\item\em Sets the i-\/th beam energy. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a0f8223d6906129931762662e2cd94bab}{}bool \hyperlink{a00212_a0f8223d6906129931762662e2cd94bab}{set\+\_\+m\+\_\+min} (int i, int j, const value\+\_\+type \&sqrts)\label{a00212_a0f8223d6906129931762662e2cd94bab}
+
+\begin{DoxyCompactList}\small\item\em Sets a minimal invariant dimass cut. \end{DoxyCompactList}\item 
+void \hyperlink{a00212_ad42b308b9ba23af048890ce001c030d2}{set\+\_\+auto\+\_\+update} (bool q)
+\begin{DoxyCompactList}\small\item\em Sets the auto-\/update flag for the event generator and all subprocesses. \end{DoxyCompactList}\item 
+void \hyperlink{a00212_a282384cafa65698ff2f83c3f44a5062c}{set\+\_\+auto\+\_\+channel\+\_\+adapt} (size\+\_\+type n)
+\begin{DoxyCompactList}\small\item\em Sets the automatic multichannel adaptation batch size for all subprocess generators. \end{DoxyCompactList}\item 
+void \hyperlink{a00212_aba9c35d889ecf3d604ffaa3351189281}{unset\+\_\+auto\+\_\+channel\+\_\+adapt} ()
+\begin{DoxyCompactList}\small\item\em Resets the automatic multichannel adaptation batch size for all subprocess generators. \end{DoxyCompactList}\item 
+void \hyperlink{a00212_a53d7227457f76185f7c53ac126fdece6}{set\+\_\+auto\+\_\+grid\+\_\+adapt} (size\+\_\+type n)
+\begin{DoxyCompactList}\small\item\em Sets the automatic grid adaptation batch size for all subprocess generators. \end{DoxyCompactList}\item 
+void \hyperlink{a00212_a5fe8988e5090b3b70aff590c1b0b2fbb}{unset\+\_\+auto\+\_\+grid\+\_\+adapt} ()
+\begin{DoxyCompactList}\small\item\em Resets the automatic grid adaptation batch size for all subprocess generators. \end{DoxyCompactList}\item 
+\hypertarget{a00212_aea8c67081c9dc3c8db030451ec44a487}{}void \hyperlink{a00212_aea8c67081c9dc3c8db030451ec44a487}{set\+\_\+auto\+\_\+proc\+\_\+adapt} (size\+\_\+type n)\label{a00212_aea8c67081c9dc3c8db030451ec44a487}
+
+\begin{DoxyCompactList}\small\item\em Sets the automatic subprocess channel adaptation batch size. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a753b23a599fe1992ef49fb61c5489293}{}void \hyperlink{a00212_a753b23a599fe1992ef49fb61c5489293}{unset\+\_\+auto\+\_\+proc\+\_\+adapt} ()\label{a00212_a753b23a599fe1992ef49fb61c5489293}
+
+\begin{DoxyCompactList}\small\item\em Resets the automatic subprocess channel adaptation batch size. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a023aec911a2b9fc2b94693325f371a0f}{}void \hyperlink{a00212_a023aec911a2b9fc2b94693325f371a0f}{insert\+\_\+cut} (\hyperlink{a00419}{phase\+\_\+space\+\_\+cut} $\ast$cut)\label{a00212_a023aec911a2b9fc2b94693325f371a0f}
+
+\begin{DoxyCompactList}\small\item\em Insert a phase space cut. \end{DoxyCompactList}\item 
+\hypertarget{a00212_ad0443bf8c289972eb5e4ed6f971d9efa}{}void \hyperlink{a00212_ad0443bf8c289972eb5e4ed6f971d9efa}{insert\+\_\+scale} (\hyperlink{a00502}{scale\+\_\+expression}$<$ value\+\_\+type $>$ $\ast$expr)\label{a00212_ad0443bf8c289972eb5e4ed6f971d9efa}
+
+\begin{DoxyCompactList}\small\item\em Inserts a scale expression. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a05eabe92d7a8c45ac8cdd75bc97055df}{}bool \hyperlink{a00212_a05eabe92d7a8c45ac8cdd75bc97055df}{generate} ()\label{a00212_a05eabe92d7a8c45ac8cdd75bc97055df}
+
+\begin{DoxyCompactList}\small\item\em Generation method with phase space cut argument. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a178f97ea294f513c157aff88b66a1046}{}void \hyperlink{a00212_a178f97ea294f513c157aff88b66a1046}{generate\+\_\+unweighted} (bool verbose=false)\label{a00212_a178f97ea294f513c157aff88b66a1046}
+
+\begin{DoxyCompactList}\small\item\em Generates an unweighted event with argument cut object. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a18c627a5357c5aea36ff59fa393c5b14}{}bool \hyperlink{a00212_a18c627a5357c5aea36ff59fa393c5b14}{next\+\_\+event} (int strategy)\label{a00212_a18c627a5357c5aea36ff59fa393c5b14}
+
+\begin{DoxyCompactList}\small\item\em Generates new event according to the given strategy argument. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a0d3e8d948540d57655b7d310cb70d8ba}{}bool \hyperlink{a00212_a0d3e8d948540d57655b7d310cb70d8ba}{pass} ()\label{a00212_a0d3e8d948540d57655b7d310cb70d8ba}
+
+\begin{DoxyCompactList}\small\item\em Returns whether the current event passes the cuts. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a513578e30af093a93581b3cd3667786f}{}void \hyperlink{a00212_a513578e30af093a93581b3cd3667786f}{reset} ()\label{a00212_a513578e30af093a93581b3cd3667786f}
+
+\begin{DoxyCompactList}\small\item\em Resets all subprocess generators. \end{DoxyCompactList}\item 
+\hypertarget{a00212_ac012b825829f4a734f7667bb8c6b0bb8}{}void \hyperlink{a00212_ac012b825829f4a734f7667bb8c6b0bb8}{reset\+\_\+cross\+\_\+section} ()\label{a00212_ac012b825829f4a734f7667bb8c6b0bb8}
+
+\begin{DoxyCompactList}\small\item\em Resets all subprocess cross sections. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a786206c05113819b08b67459225152af}{}bool \hyperlink{a00212_a786206c05113819b08b67459225152af}{refresh\+\_\+m\+\_\+min} ()\label{a00212_a786206c05113819b08b67459225152af}
+
+\begin{DoxyCompactList}\small\item\em Refreshes minimal invariant masses. \end{DoxyCompactList}\item 
+bool \hyperlink{a00212_abab5dcad611c677ee640a82a0f4020c8}{refresh\+\_\+m\+\_\+min} (const \hyperlink{a00241}{generator\+\_\+configuration}$<$ model\+\_\+t $>$ \&config)
+\begin{DoxyCompactList}\small\item\em Inserts the minimal invariant masses from the configuration instance. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a8bf0d938af278477e00b096ece4a9af1}{}bool \hyperlink{a00212_a8bf0d938af278477e00b096ece4a9af1}{refresh\+\_\+\+Ecm} ()\label{a00212_a8bf0d938af278477e00b096ece4a9af1}
+
+\begin{DoxyCompactList}\small\item\em Refreshes the collider energy. \end{DoxyCompactList}\item 
+\hypertarget{a00212_aa8ffb17e3fc087485af4e62493e299c1}{}bool \hyperlink{a00212_aa8ffb17e3fc087485af4e62493e299c1}{refresh\+\_\+params} ()\label{a00212_aa8ffb17e3fc087485af4e62493e299c1}
+
+\begin{DoxyCompactList}\small\item\em Refreshes internal parameters. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a098839f6765c509366d5b4f4db22b762}{}void \hyperlink{a00212_a098839f6765c509366d5b4f4db22b762}{update} ()\label{a00212_a098839f6765c509366d5b4f4db22b762}
+
+\begin{DoxyCompactList}\small\item\em Update method. \end{DoxyCompactList}\item 
+\hypertarget{a00212_ab6f503920b9a99fc579cb868f2678127}{}void \hyperlink{a00212_ab6f503920b9a99fc579cb868f2678127}{adapt\+\_\+grids} ()\label{a00212_ab6f503920b9a99fc579cb868f2678127}
+
+\begin{DoxyCompactList}\small\item\em Grid adaptation method. \end{DoxyCompactList}\item 
+\hypertarget{a00212_af6256418b88f029197e80ff36c176c59}{}void \hyperlink{a00212_af6256418b88f029197e80ff36c176c59}{adapt\+\_\+channels} ()\label{a00212_af6256418b88f029197e80ff36c176c59}
+
+\begin{DoxyCompactList}\small\item\em Multichannel adaptation method. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a47b3c2a1dd77d0f6537bf973e82ccab6}{}void \hyperlink{a00212_a47b3c2a1dd77d0f6537bf973e82ccab6}{adapt} ()\label{a00212_a47b3c2a1dd77d0f6537bf973e82ccab6}
+
+\begin{DoxyCompactList}\small\item\em Adaptation method. \end{DoxyCompactList}\item 
+void \hyperlink{a00212_addbfc929e753761773ff755ed3fff5dc}{adapt\+\_\+processes} ()
+\begin{DoxyCompactList}\small\item\em Adapts the process multichannel parameters to the variances of the subprocesses. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a8138a6a1c736c588f0b4298e7f118719}{}const \hyperlink{a00596}{weight\+\_\+histogrammer}$<$ value\+\_\+type $>$ $\ast$ \hyperlink{a00212_a8138a6a1c736c588f0b4298e7f118719}{bin\+\_\+weights} (size\+\_\+type bins)\label{a00212_a8138a6a1c736c588f0b4298e7f118719}
+
+\begin{DoxyCompactList}\small\item\em Sets up the weight histogram (default 1000 bins). \end{DoxyCompactList}\item 
+\hypertarget{a00212_a27e2b6a812ca5eee12c60a67a5718020}{}value\+\_\+type \hyperlink{a00212_a27e2b6a812ca5eee12c60a67a5718020}{reduce\+\_\+max\+\_\+weight} (const value\+\_\+type \&eps\+\_\+)\label{a00212_a27e2b6a812ca5eee12c60a67a5718020}
+
+\begin{DoxyCompactList}\small\item\em Sets the epsilon-\/reduction to the maximum weight. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a593a66ef9864c32e5a0b3a1637c5c19f}{}\hyperlink{a00368}{cross\+\_\+section\+\_\+type} \hyperlink{a00212_a593a66ef9864c32e5a0b3a1637c5c19f}{cross\+\_\+section\+\_\+sum} () const \label{a00212_a593a66ef9864c32e5a0b3a1637c5c19f}
+
+\begin{DoxyCompactList}\small\item\em Returns the sum of subprocess cross sections. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a7a830b9294b63b89c38d9add14b443ff}{}size\+\_\+type \hyperlink{a00212_a7a830b9294b63b89c38d9add14b443ff}{n\+\_\+in} () const \label{a00212_a7a830b9294b63b89c38d9add14b443ff}
+
+\begin{DoxyCompactList}\small\item\em Returns the number of incoming particles. \end{DoxyCompactList}\item 
+\hypertarget{a00212_aa1cafe423eddf568bd98d13ed8490a61}{}size\+\_\+type \hyperlink{a00212_aa1cafe423eddf568bd98d13ed8490a61}{n\+\_\+out} () const \label{a00212_aa1cafe423eddf568bd98d13ed8490a61}
+
+\begin{DoxyCompactList}\small\item\em Returns the number of outgoing particles. \end{DoxyCompactList}\item 
+\hypertarget{a00212_aa1c94ab0c0ae13e3276133e09bc8599a}{}size\+\_\+type \hyperlink{a00212_aa1c94ab0c0ae13e3276133e09bc8599a}{processes} () const \label{a00212_aa1c94ab0c0ae13e3276133e09bc8599a}
+
+\begin{DoxyCompactList}\small\item\em Returns the number of subprocesses. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a31ce4caa34a16c247b9d4fa2117fd600}{}size\+\_\+type \hyperlink{a00212_a31ce4caa34a16c247b9d4fa2117fd600}{process\+\_\+id} () const \label{a00212_a31ce4caa34a16c247b9d4fa2117fd600}
+
+\begin{DoxyCompactList}\small\item\em Returns the current process id. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a74a95eb0629e7bceef53c7f28dcab8a3}{}size\+\_\+type \hyperlink{a00212_a74a95eb0629e7bceef53c7f28dcab8a3}{process\+\_\+id} (size\+\_\+type i) const \label{a00212_a74a95eb0629e7bceef53c7f28dcab8a3}
+
+\begin{DoxyCompactList}\small\item\em Returns the i-\/th subprocess id. \end{DoxyCompactList}\item 
+\hypertarget{a00212_ae17439598c4f68624f978b95e9e33567}{}\hyperlink{a00368}{cross\+\_\+section\+\_\+type} \hyperlink{a00212_ae17439598c4f68624f978b95e9e33567}{xsec} () const \label{a00212_ae17439598c4f68624f978b95e9e33567}
+
+\begin{DoxyCompactList}\small\item\em Returns the total cross section. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a01a34361ecf9e40142b76a4aef80b2ae}{}\hyperlink{a00368}{M\+C\+\_\+integral}$<$ value\+\_\+type $>$ \hyperlink{a00212_a01a34361ecf9e40142b76a4aef80b2ae}{xsec} (size\+\_\+type i) const \label{a00212_a01a34361ecf9e40142b76a4aef80b2ae}
+
+\begin{DoxyCompactList}\small\item\em Returns the i-\/th subprocess cross section. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a11b1d4533738f78407dcddf13dee14b2}{}\hyperlink{a00368}{M\+C\+\_\+integral}$<$ value\+\_\+type $>$ \hyperlink{a00212_a11b1d4533738f78407dcddf13dee14b2}{sub\+\_\+xsec} () const \label{a00212_a11b1d4533738f78407dcddf13dee14b2}
+
+\begin{DoxyCompactList}\small\item\em Returns the current subprocess cross section. \end{DoxyCompactList}\item 
+const \hyperlink{a00579}{momentum\+\_\+type} \& \hyperlink{a00212_a4c3a6383c0445188ee515615b536f41d}{p\+\_\+in} (size\+\_\+type i) const 
+\begin{DoxyCompactList}\small\item\em Returns the const reference to the i-\/th incoming momentum (no range checking on i). \end{DoxyCompactList}\item 
+const \hyperlink{a00579}{momentum\+\_\+type} \& \hyperlink{a00212_affd056f9744793eef4d9cefec5d3ffb5}{p\+\_\+out} (size\+\_\+type i) const 
+\begin{DoxyCompactList}\small\item\em Returns the const reference to the i-\/th incoming momentum (no range checking on i). \end{DoxyCompactList}\item 
+value\+\_\+type \hyperlink{a00212_ae0e389444b66a76c7b22fd996cf16bd8}{M\+\_\+in} (size\+\_\+type i) const 
+\begin{DoxyCompactList}\small\item\em Returns the const reference to the i-\/th incoming mass (no range checking on i). \end{DoxyCompactList}\item 
+value\+\_\+type \hyperlink{a00212_a1aed7b697e6158749701f4fecaca42ee}{M\+\_\+out} (size\+\_\+type i) const 
+\begin{DoxyCompactList}\small\item\em Returns the const reference to the i-\/th incoming mass (no range checking on i). \end{DoxyCompactList}\item 
+\hypertarget{a00212_a6ae7fa6415e21a7cffc3dfc4dcbabeeb}{}value\+\_\+type \hyperlink{a00212_a6ae7fa6415e21a7cffc3dfc4dcbabeeb}{s\+\_\+in} (size\+\_\+type i) const \label{a00212_a6ae7fa6415e21a7cffc3dfc4dcbabeeb}
+
+\begin{DoxyCompactList}\small\item\em Returns the i-\/th incoming mass-\/squared (no range checking on i). \end{DoxyCompactList}\item 
+\hypertarget{a00212_a856af7863609bb4d14dafe1ee7024ce0}{}value\+\_\+type \hyperlink{a00212_a856af7863609bb4d14dafe1ee7024ce0}{s\+\_\+out} (size\+\_\+type i) const \label{a00212_a856af7863609bb4d14dafe1ee7024ce0}
+
+\begin{DoxyCompactList}\small\item\em Returns the i-\/th outgoing mass-\/squared (no range checking on i). \end{DoxyCompactList}\item 
+\hypertarget{a00212_aa09103ecc4bbb6bd92ce3f7c383c21ee}{}value\+\_\+type \hyperlink{a00212_aa09103ecc4bbb6bd92ce3f7c383c21ee}{m\+\_\+in} (size\+\_\+type i) const \label{a00212_aa09103ecc4bbb6bd92ce3f7c383c21ee}
+
+\begin{DoxyCompactList}\small\item\em Returns the i-\/th incoming mass (no range checking on i). \end{DoxyCompactList}\item 
+\hypertarget{a00212_a840b7af8f27e9f671ef7661e23a10204}{}value\+\_\+type \hyperlink{a00212_a840b7af8f27e9f671ef7661e23a10204}{m\+\_\+out} (size\+\_\+type i) const \label{a00212_a840b7af8f27e9f671ef7661e23a10204}
+
+\begin{DoxyCompactList}\small\item\em Returns the i-\/th outgoing mass (no range checking on i). \end{DoxyCompactList}\item 
+\hypertarget{a00212_a69d39c68698b14c8fd5abfd162b8f8ef}{}int \hyperlink{a00212_a69d39c68698b14c8fd5abfd162b8f8ef}{beam\+\_\+id} (int i) const \label{a00212_a69d39c68698b14c8fd5abfd162b8f8ef}
+
+\begin{DoxyCompactList}\small\item\em Returns the i-\/th beam id. \end{DoxyCompactList}\item 
+\hypertarget{a00212_ac24c26a9e3c14c3b650f077a595c571b}{}int \hyperlink{a00212_ac24c26a9e3c14c3b650f077a595c571b}{pdfg} (int i) const \label{a00212_ac24c26a9e3c14c3b650f077a595c571b}
+
+\begin{DoxyCompactList}\small\item\em Returns the cernlib pdf group number for the i-\/th incoming beam. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a2ca5e23a439422f77d49981a09072dee}{}int \hyperlink{a00212_a2ca5e23a439422f77d49981a09072dee}{pdfs} (int i) const \label{a00212_a2ca5e23a439422f77d49981a09072dee}
+
+\begin{DoxyCompactList}\small\item\em Returns the cernlib pdf set number for the i-\/th incoming beam. \end{DoxyCompactList}\item 
+\hypertarget{a00212_ad7eb70375dff438f73ebc5f79919279a}{}int \hyperlink{a00212_ad7eb70375dff438f73ebc5f79919279a}{id\+\_\+in} (size\+\_\+type i) const \label{a00212_ad7eb70375dff438f73ebc5f79919279a}
+
+\begin{DoxyCompactList}\small\item\em Returns the i-\/th incoming particle id. \end{DoxyCompactList}\item 
+\hypertarget{a00212_aaa6968384f596478f21840491ceabad4}{}int \hyperlink{a00212_aaa6968384f596478f21840491ceabad4}{id\+\_\+out} (size\+\_\+type i) const \label{a00212_aaa6968384f596478f21840491ceabad4}
+
+\begin{DoxyCompactList}\small\item\em Returns the i-\/th outgoing particle id. \end{DoxyCompactList}\item 
+\hypertarget{a00212_ab6c23b5b397048e7900ea14cc07f45fc}{}void \hyperlink{a00212_ab6c23b5b397048e7900ea14cc07f45fc}{fill\+\_\+colours} (std\+::vector$<$ int $>$ \&c, std\+::vector$<$ int $>$ \&cbar) const \label{a00212_ab6c23b5b397048e7900ea14cc07f45fc}
+
+\begin{DoxyCompactList}\small\item\em Method determining the colour connection for the event. \end{DoxyCompactList}\item 
+\hypertarget{a00212_ad7d0811b50df49cd86bedbcc79f05e6f}{}value\+\_\+type \hyperlink{a00212_ad7d0811b50df49cd86bedbcc79f05e6f}{Ecm} () const \label{a00212_ad7d0811b50df49cd86bedbcc79f05e6f}
+
+\begin{DoxyCompactList}\small\item\em Returns the total hadronic C\+M-\/frame energy. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a2a483bce8138485806cf5ef7d8d9ab44}{}value\+\_\+type \hyperlink{a00212_a2a483bce8138485806cf5ef7d8d9ab44}{s\+\_\+tot} () const \label{a00212_a2a483bce8138485806cf5ef7d8d9ab44}
+
+\begin{DoxyCompactList}\small\item\em Returns the total hadronic invariant mass-\/squared. \end{DoxyCompactList}\item 
+\hypertarget{a00212_acd66edc648589315d436008b7544148f}{}value\+\_\+type \hyperlink{a00212_acd66edc648589315d436008b7544148f}{Ecm\+\_\+hat} () const \label{a00212_acd66edc648589315d436008b7544148f}
+
+\begin{DoxyCompactList}\small\item\em Returns the total partonic C\+M-\/frame energy. \end{DoxyCompactList}\item 
+\hypertarget{a00212_acc0a51d8603cd16108f669c11b2c3f2b}{}value\+\_\+type \hyperlink{a00212_acc0a51d8603cd16108f669c11b2c3f2b}{s\+\_\+in} () const \label{a00212_acc0a51d8603cd16108f669c11b2c3f2b}
+
+\begin{DoxyCompactList}\small\item\em Returns the total partonic invariant mass-\/squared. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a639c007c5544b462c28c46c0fc5e0694}{}value\+\_\+type \hyperlink{a00212_a639c007c5544b462c28c46c0fc5e0694}{w} () const \label{a00212_a639c007c5544b462c28c46c0fc5e0694}
+
+\begin{DoxyCompactList}\small\item\em Returns the total event weight. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a95492c5d162bfda7859f161110692d08}{}value\+\_\+type \hyperlink{a00212_a95492c5d162bfda7859f161110692d08}{max\+\_\+w} () const \label{a00212_a95492c5d162bfda7859f161110692d08}
+
+\begin{DoxyCompactList}\small\item\em Returns the maximal event weight. \end{DoxyCompactList}\item 
+value\+\_\+type \hyperlink{a00212_abf627ab0d6ee6b3124049fd60096be54}{ps\+\_\+weights} (bool with\+\_\+hels, bool with\+\_\+cols) const 
+\begin{DoxyCompactList}\small\item\em Returns the event weight without flux and symmetry factors etc. \end{DoxyCompactList}\item 
+value\+\_\+type \hyperlink{a00212_a7dcc2b237825ce0f930c02513a31a24c}{ps\+\_\+factors} (bool with\+\_\+hels, bool with\+\_\+cols) const 
+\begin{DoxyCompactList}\small\item\em Returns the flux, symmetry and conversion factors. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a8387e14e09be662bc515d9429ef941a1}{}value\+\_\+type \hyperlink{a00212_a8387e14e09be662bc515d9429ef941a1}{beam\+\_\+energy} (int i) const \label{a00212_a8387e14e09be662bc515d9429ef941a1}
+
+\begin{DoxyCompactList}\small\item\em Returns the i-\/th beam energy. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a5f54990b04f9222933b32b8cd13ac4d8}{}value\+\_\+type \hyperlink{a00212_a5f54990b04f9222933b32b8cd13ac4d8}{mu\+\_\+\+F} () const \label{a00212_a5f54990b04f9222933b32b8cd13ac4d8}
+
+\begin{DoxyCompactList}\small\item\em Returns the current factorisation scale. \end{DoxyCompactList}\item 
+\hypertarget{a00212_abe64f2b5afc4b8a008a586fbb438d9c7}{}value\+\_\+type \hyperlink{a00212_abe64f2b5afc4b8a008a586fbb438d9c7}{F\+\_\+scale} ()\label{a00212_abe64f2b5afc4b8a008a586fbb438d9c7}
+
+\begin{DoxyCompactList}\small\item\em Returns the factorisation scale. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a8da9cf12c0989e5cdab88598b22e25bd}{}value\+\_\+type \hyperlink{a00212_a8da9cf12c0989e5cdab88598b22e25bd}{R\+\_\+scale} ()\label{a00212_a8da9cf12c0989e5cdab88598b22e25bd}
+
+\begin{DoxyCompactList}\small\item\em Returns the renormalisation scale. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a6ad3a46d7ebd0b31999c367c406bdb74}{}value\+\_\+type \hyperlink{a00212_a6ad3a46d7ebd0b31999c367c406bdb74}{Q\+C\+D\+\_\+scale} ()\label{a00212_a6ad3a46d7ebd0b31999c367c406bdb74}
+
+\begin{DoxyCompactList}\small\item\em Returns the \hyperlink{a00460}{Q\+C\+D} scale. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a2a6c913c456f562a3e464cd89553993f}{}const \hyperlink{a00406}{phase\+\_\+space\+\_\+type} $\ast$ \hyperlink{a00212_a2a6c913c456f562a3e464cd89553993f}{particle\+\_\+in} (size\+\_\+type i) const \label{a00212_a2a6c913c456f562a3e464cd89553993f}
+
+\begin{DoxyCompactList}\small\item\em Returns the const i-\/th incoming particle phase space (no bound. \end{DoxyCompactList}\item 
+\hypertarget{a00212_af775cf485839e207d09aa4fcfefac37b}{}const \hyperlink{a00406}{phase\+\_\+space\+\_\+type} $\ast$ \hyperlink{a00212_af775cf485839e207d09aa4fcfefac37b}{particle\+\_\+out} (size\+\_\+type i) const \label{a00212_af775cf485839e207d09aa4fcfefac37b}
+
+\begin{DoxyCompactList}\small\item\em Returns the const i-\/th incoming particle phase space (no bound. \end{DoxyCompactList}\item 
+const \hyperlink{a00406}{phase\+\_\+space\+\_\+type} $\ast$ \hyperlink{a00212_aad5633c6865f0dfed332a7ca31f36621}{particle} (int i) const 
+\begin{DoxyCompactList}\small\item\em Returns the i-\/th const particle phase space, where negative values enumerate the incoming particles. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a32760ad5ec0d357e0086617c77e99566}{}const \hyperlink{a00436}{process\+\_\+generator\+\_\+type} $\ast$ \hyperlink{a00212_a32760ad5ec0d357e0086617c77e99566}{process} (size\+\_\+type n) const \label{a00212_a32760ad5ec0d357e0086617c77e99566}
+
+\begin{DoxyCompactList}\small\item\em Returns the const pointer to the n-\/th subprocess generator. \end{DoxyCompactList}\item 
+\hypertarget{a00212_af4976d6c9b846daf993c28a01c3ad32c}{}const \hyperlink{a00436}{process\+\_\+generator\+\_\+type} $\ast$ \hyperlink{a00212_af4976d6c9b846daf993c28a01c3ad32c}{process} () const \label{a00212_af4976d6c9b846daf993c28a01c3ad32c}
+
+\begin{DoxyCompactList}\small\item\em Returns the lastly generated const subprocess generator. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a971bcc180427c97b86c065a52a5a3f6b}{}const\+\_\+process\+\_\+iterator \hyperlink{a00212_a971bcc180427c97b86c065a52a5a3f6b}{begin\+\_\+processes} () const \label{a00212_a971bcc180427c97b86c065a52a5a3f6b}
+
+\begin{DoxyCompactList}\small\item\em Returns the const iterator to the first process generator. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a43676ce551f831ea4df4259cfcff05c4}{}const\+\_\+process\+\_\+iterator \hyperlink{a00212_a43676ce551f831ea4df4259cfcff05c4}{end\+\_\+processes} () const \label{a00212_a43676ce551f831ea4df4259cfcff05c4}
+
+\begin{DoxyCompactList}\small\item\em Returns the const iterator past the last process generator. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a600c6463d26cb42cfb01ad2a5fa81e8a}{}std\+::ostream \& \hyperlink{a00212_a600c6463d26cb42cfb01ad2a5fa81e8a}{print\+\_\+cross\+\_\+sections} (std\+::ostream \&os=std\+::cout) const \label{a00212_a600c6463d26cb42cfb01ad2a5fa81e8a}
+
+\begin{DoxyCompactList}\small\item\em Prints the subprocess cross sections. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a7138ff23c58327dd958c5d261ab18421}{}std\+::ostream \& \hyperlink{a00212_a7138ff23c58327dd958c5d261ab18421}{print\+\_\+status} (std\+::ostream \&os=std\+::cout) const \label{a00212_a7138ff23c58327dd958c5d261ab18421}
+
+\begin{DoxyCompactList}\small\item\em Prints the status of the generator. \end{DoxyCompactList}\item 
+\hypertarget{a00212_abe047fb221ea9c4d0d4abaddd270b585}{}std\+::ostream \& \hyperlink{a00212_abe047fb221ea9c4d0d4abaddd270b585}{print\+\_\+cuts} (std\+::ostream \&os=std\+::cout) const \label{a00212_abe047fb221ea9c4d0d4abaddd270b585}
+
+\begin{DoxyCompactList}\small\item\em Prints the generator cuts. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a497a6bcd40e63046684035f933e66146}{}std\+::ostream \& \hyperlink{a00212_a497a6bcd40e63046684035f933e66146}{print\+\_\+settings} (std\+::ostream \&os=std\+::cout) const \label{a00212_a497a6bcd40e63046684035f933e66146}
+
+\begin{DoxyCompactList}\small\item\em Prints the generator settings. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00212_afcbf494bb9e50dbc2100b19e54cd7be2}{}static bool \hyperlink{a00212_afcbf494bb9e50dbc2100b19e54cd7be2}{xsec\+\_\+less} (const \hyperlink{a00436}{process\+\_\+generator\+\_\+type} $\ast$proc1, const \hyperlink{a00436}{process\+\_\+generator\+\_\+type} $\ast$proc2)\label{a00212_afcbf494bb9e50dbc2100b19e54cd7be2}
+
+\begin{DoxyCompactList}\small\item\em Process comparison according to ascending cross section. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a9e312eb4bd2665eca54566290947b298}{}static bool \hyperlink{a00212_a9e312eb4bd2665eca54566290947b298}{xsec\+\_\+more} (const \hyperlink{a00436}{process\+\_\+generator\+\_\+type} $\ast$proc1, const \hyperlink{a00436}{process\+\_\+generator\+\_\+type} $\ast$proc2)\label{a00212_a9e312eb4bd2665eca54566290947b298}
+
+\begin{DoxyCompactList}\small\item\em Process comparison class according to descending cross section. \end{DoxyCompactList}\item 
+\hypertarget{a00212_ac02c6724818fc48ded0dfb6a574ac622}{}static bool \hyperlink{a00212_ac02c6724818fc48ded0dfb6a574ac622}{alpha\+\_\+less} (const \hyperlink{a00436}{process\+\_\+generator\+\_\+type} $\ast$proc1, const \hyperlink{a00436}{process\+\_\+generator\+\_\+type} $\ast$proc2)\label{a00212_ac02c6724818fc48ded0dfb6a574ac622}
+
+\begin{DoxyCompactList}\small\item\em Process comparison according to ascending calling frequency. \end{DoxyCompactList}\item 
+\hypertarget{a00212_a53a8c44182b72722a3a8713c1815c415}{}static bool \hyperlink{a00212_a53a8c44182b72722a3a8713c1815c415}{alpha\+\_\+more} (const \hyperlink{a00436}{process\+\_\+generator\+\_\+type} $\ast$proc1, const \hyperlink{a00436}{process\+\_\+generator\+\_\+type} $\ast$proc2)\label{a00212_a53a8c44182b72722a3a8713c1815c415}
+
+\begin{DoxyCompactList}\small\item\em Process comparison class according to descending calling frequency. \end{DoxyCompactList}\item 
+\hypertarget{a00212_afca81c2263716db3729afa16f40e0b0b}{}static value\+\_\+type \hyperlink{a00212_afca81c2263716db3729afa16f40e0b0b}{throw\+\_\+number} (const value\+\_\+type \&min, const value\+\_\+type \&max)\label{a00212_afca81c2263716db3729afa16f40e0b0b}
+
+\begin{DoxyCompactList}\small\item\em Throws a random value between min and max. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00212_a2ee6a342001e0c46d2a612d05b92ac55}{}value\+\_\+type \hyperlink{a00212_a2ee6a342001e0c46d2a612d05b92ac55}{process\+\_\+adaptivity}\label{a00212_a2ee6a342001e0c46d2a612d05b92ac55}
+
+\begin{DoxyCompactList}\small\item\em Subprocess weight adaptivity. \end{DoxyCompactList}\item 
+\hypertarget{a00212_af2588f84c62c70bb8f58b7a26a03a1a3}{}value\+\_\+type \hyperlink{a00212_af2588f84c62c70bb8f58b7a26a03a1a3}{process\+\_\+threshold}\label{a00212_af2588f84c62c70bb8f58b7a26a03a1a3}
+
+\begin{DoxyCompactList}\small\item\em Subprocess weight threshold. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00212_a535119cb75b01e2a00f064da31a0140d}{}\hyperlink{a00212_a535119cb75b01e2a00f064da31a0140d}{event\+\_\+generator} (\hyperlink{a00065}{C\+M\+\_\+algorithm}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out $>$ \&algo)\label{a00212_a535119cb75b01e2a00f064da31a0140d}
+
+\begin{DoxyCompactList}\small\item\em Constructor from static configuration data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00212_a049c1020985cc0b50fc83fa719f4608d}{}\hyperlink{a00065}{C\+M\+\_\+algorithm}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out $>$ \& \hyperlink{a00212_a049c1020985cc0b50fc83fa719f4608d}{algorithm}\label{a00212_a049c1020985cc0b50fc83fa719f4608d}
+
+\begin{DoxyCompactList}\small\item\em Camgen algorithm instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\subsection{Detailed Description}
+\subsubsection*{template$<$class model\+\_\+t, std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out, class rng\+\_\+t$>$class Camgen\+::event\+\_\+generator$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$}
+
+Multi-\/process matrix-\/element Monte Carlo event generator class. 
+
+\subsection{Member Function Documentation}
+\hypertarget{a00212_addbfc929e753761773ff755ed3fff5dc}{}\index{Camgen\+::event\+\_\+generator@{Camgen\+::event\+\_\+generator}!adapt\+\_\+processes@{adapt\+\_\+processes}}
+\index{adapt\+\_\+processes@{adapt\+\_\+processes}!Camgen\+::event\+\_\+generator@{Camgen\+::event\+\_\+generator}}
+\subsubsection[{adapt\+\_\+processes}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t , std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out, class rng\+\_\+t $>$ void {\bf Camgen\+::event\+\_\+generator}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$\+::adapt\+\_\+processes (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00212_addbfc929e753761773ff755ed3fff5dc}
+
+
+Adapts the process multichannel parameters to the variances of the subprocesses. 
+
+Removes processes with cross section + error smaller than the process threshold times the total cross section. \hypertarget{a00212_ae0e389444b66a76c7b22fd996cf16bd8}{}\index{Camgen\+::event\+\_\+generator@{Camgen\+::event\+\_\+generator}!M\+\_\+in@{M\+\_\+in}}
+\index{M\+\_\+in@{M\+\_\+in}!Camgen\+::event\+\_\+generator@{Camgen\+::event\+\_\+generator}}
+\subsubsection[{M\+\_\+in}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t , std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out, class rng\+\_\+t $>$ value\+\_\+type {\bf Camgen\+::event\+\_\+generator}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$\+::M\+\_\+in (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+type}]{i}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{a00212_ae0e389444b66a76c7b22fd996cf16bd8}
+
+
+Returns the const reference to the i-\/th incoming mass (no range checking on i). 
+
+\hypertarget{a00212_a1aed7b697e6158749701f4fecaca42ee}{}\index{Camgen\+::event\+\_\+generator@{Camgen\+::event\+\_\+generator}!M\+\_\+out@{M\+\_\+out}}
+\index{M\+\_\+out@{M\+\_\+out}!Camgen\+::event\+\_\+generator@{Camgen\+::event\+\_\+generator}}
+\subsubsection[{M\+\_\+out}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t , std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out, class rng\+\_\+t $>$ value\+\_\+type {\bf Camgen\+::event\+\_\+generator}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$\+::M\+\_\+out (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+type}]{i}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{a00212_a1aed7b697e6158749701f4fecaca42ee}
+
+
+Returns the const reference to the i-\/th incoming mass (no range checking on i). 
+
+\hypertarget{a00212_a4c3a6383c0445188ee515615b536f41d}{}\index{Camgen\+::event\+\_\+generator@{Camgen\+::event\+\_\+generator}!p\+\_\+in@{p\+\_\+in}}
+\index{p\+\_\+in@{p\+\_\+in}!Camgen\+::event\+\_\+generator@{Camgen\+::event\+\_\+generator}}
+\subsubsection[{p\+\_\+in}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t , std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out, class rng\+\_\+t $>$ const {\bf momentum\+\_\+type}\& {\bf Camgen\+::event\+\_\+generator}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$\+::p\+\_\+in (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+type}]{i}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{a00212_a4c3a6383c0445188ee515615b536f41d}
+
+
+Returns the const reference to the i-\/th incoming momentum (no range checking on i). 
+
+\hypertarget{a00212_affd056f9744793eef4d9cefec5d3ffb5}{}\index{Camgen\+::event\+\_\+generator@{Camgen\+::event\+\_\+generator}!p\+\_\+out@{p\+\_\+out}}
+\index{p\+\_\+out@{p\+\_\+out}!Camgen\+::event\+\_\+generator@{Camgen\+::event\+\_\+generator}}
+\subsubsection[{p\+\_\+out}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t , std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out, class rng\+\_\+t $>$ const {\bf momentum\+\_\+type}\& {\bf Camgen\+::event\+\_\+generator}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$\+::p\+\_\+out (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+type}]{i}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{a00212_affd056f9744793eef4d9cefec5d3ffb5}
+
+
+Returns the const reference to the i-\/th incoming momentum (no range checking on i). 
+
+\hypertarget{a00212_aad5633c6865f0dfed332a7ca31f36621}{}\index{Camgen\+::event\+\_\+generator@{Camgen\+::event\+\_\+generator}!particle@{particle}}
+\index{particle@{particle}!Camgen\+::event\+\_\+generator@{Camgen\+::event\+\_\+generator}}
+\subsubsection[{particle}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t , std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out, class rng\+\_\+t $>$ const {\bf phase\+\_\+space\+\_\+type}$\ast$ {\bf Camgen\+::event\+\_\+generator}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$\+::{\bf particle} (
+\begin{DoxyParamCaption}
+\item[{int}]{i}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{a00212_aad5633c6865f0dfed332a7ca31f36621}
+
+
+Returns the i-\/th const particle phase space, where negative values enumerate the incoming particles. 
+
+\hypertarget{a00212_abdbb6535ed37872f82531bb1495c3d75}{}\index{Camgen\+::event\+\_\+generator@{Camgen\+::event\+\_\+generator}!pre\+\_\+initialise@{pre\+\_\+initialise}}
+\index{pre\+\_\+initialise@{pre\+\_\+initialise}!Camgen\+::event\+\_\+generator@{Camgen\+::event\+\_\+generator}}
+\subsubsection[{pre\+\_\+initialise}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t , std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out, class rng\+\_\+t $>$ void {\bf Camgen\+::event\+\_\+generator}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$\+::pre\+\_\+initialise (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+type}]{n\+\_\+evts, }
+\item[{bool}]{verbose = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00212_abdbb6535ed37872f82531bb1495c3d75}
+
+
+Pre-\/initialisation method to obtain first subprocess cross section estimates, determining which subprocesses are relevant. 
+
+\hypertarget{a00212_a7dcc2b237825ce0f930c02513a31a24c}{}\index{Camgen\+::event\+\_\+generator@{Camgen\+::event\+\_\+generator}!ps\+\_\+factors@{ps\+\_\+factors}}
+\index{ps\+\_\+factors@{ps\+\_\+factors}!Camgen\+::event\+\_\+generator@{Camgen\+::event\+\_\+generator}}
+\subsubsection[{ps\+\_\+factors}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t , std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out, class rng\+\_\+t $>$ value\+\_\+type {\bf Camgen\+::event\+\_\+generator}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$\+::ps\+\_\+factors (
+\begin{DoxyParamCaption}
+\item[{bool}]{with\+\_\+hels, }
+\item[{bool}]{with\+\_\+cols}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{a00212_a7dcc2b237825ce0f930c02513a31a24c}
+
+
+Returns the flux, symmetry and conversion factors. 
+
+The first argument denotes whther helicities are included, the second whether colours are. 
+
+Reimplemented from \hyperlink{a00451_aea34ea1dada7a4cece83b42c7d50db55}{Camgen\+::ps\+\_\+generator\+\_\+base$<$ model\+\_\+t $>$}.
+
+\hypertarget{a00212_abf627ab0d6ee6b3124049fd60096be54}{}\index{Camgen\+::event\+\_\+generator@{Camgen\+::event\+\_\+generator}!ps\+\_\+weights@{ps\+\_\+weights}}
+\index{ps\+\_\+weights@{ps\+\_\+weights}!Camgen\+::event\+\_\+generator@{Camgen\+::event\+\_\+generator}}
+\subsubsection[{ps\+\_\+weights}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t , std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out, class rng\+\_\+t $>$ value\+\_\+type {\bf Camgen\+::event\+\_\+generator}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$\+::ps\+\_\+weights (
+\begin{DoxyParamCaption}
+\item[{bool}]{with\+\_\+hels, }
+\item[{bool}]{with\+\_\+cols}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{a00212_abf627ab0d6ee6b3124049fd60096be54}
+
+
+Returns the event weight without flux and symmetry factors etc. 
+
+The first argument denotes whether helicities are included, the second whether colours are. 
+
+Reimplemented from \hyperlink{a00451_a258fb687d61e5a0d9d12d5e1d45db8aa}{Camgen\+::ps\+\_\+generator\+\_\+base$<$ model\+\_\+t $>$}.
+
+\hypertarget{a00212_abab5dcad611c677ee640a82a0f4020c8}{}\index{Camgen\+::event\+\_\+generator@{Camgen\+::event\+\_\+generator}!refresh\+\_\+m\+\_\+min@{refresh\+\_\+m\+\_\+min}}
+\index{refresh\+\_\+m\+\_\+min@{refresh\+\_\+m\+\_\+min}!Camgen\+::event\+\_\+generator@{Camgen\+::event\+\_\+generator}}
+\subsubsection[{refresh\+\_\+m\+\_\+min}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t , std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out, class rng\+\_\+t $>$ bool {\bf Camgen\+::event\+\_\+generator}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$\+::refresh\+\_\+m\+\_\+min (
+\begin{DoxyParamCaption}
+\item[{const {\bf generator\+\_\+configuration}$<$ model\+\_\+t $>$ \&}]{config}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00212_abab5dcad611c677ee640a82a0f4020c8}
+
+
+Inserts the minimal invariant masses from the configuration instance. 
+
+\hypertarget{a00212_a282384cafa65698ff2f83c3f44a5062c}{}\index{Camgen\+::event\+\_\+generator@{Camgen\+::event\+\_\+generator}!set\+\_\+auto\+\_\+channel\+\_\+adapt@{set\+\_\+auto\+\_\+channel\+\_\+adapt}}
+\index{set\+\_\+auto\+\_\+channel\+\_\+adapt@{set\+\_\+auto\+\_\+channel\+\_\+adapt}!Camgen\+::event\+\_\+generator@{Camgen\+::event\+\_\+generator}}
+\subsubsection[{set\+\_\+auto\+\_\+channel\+\_\+adapt}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t , std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out, class rng\+\_\+t $>$ void {\bf Camgen\+::event\+\_\+generator}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$\+::set\+\_\+auto\+\_\+channel\+\_\+adapt (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+type}]{n}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00212_a282384cafa65698ff2f83c3f44a5062c}
+
+
+Sets the automatic multichannel adaptation batch size for all subprocess generators. 
+
+\hypertarget{a00212_a53d7227457f76185f7c53ac126fdece6}{}\index{Camgen\+::event\+\_\+generator@{Camgen\+::event\+\_\+generator}!set\+\_\+auto\+\_\+grid\+\_\+adapt@{set\+\_\+auto\+\_\+grid\+\_\+adapt}}
+\index{set\+\_\+auto\+\_\+grid\+\_\+adapt@{set\+\_\+auto\+\_\+grid\+\_\+adapt}!Camgen\+::event\+\_\+generator@{Camgen\+::event\+\_\+generator}}
+\subsubsection[{set\+\_\+auto\+\_\+grid\+\_\+adapt}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t , std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out, class rng\+\_\+t $>$ void {\bf Camgen\+::event\+\_\+generator}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$\+::set\+\_\+auto\+\_\+grid\+\_\+adapt (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+type}]{n}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00212_a53d7227457f76185f7c53ac126fdece6}
+
+
+Sets the automatic grid adaptation batch size for all subprocess generators. 
+
+\hypertarget{a00212_ad42b308b9ba23af048890ce001c030d2}{}\index{Camgen\+::event\+\_\+generator@{Camgen\+::event\+\_\+generator}!set\+\_\+auto\+\_\+update@{set\+\_\+auto\+\_\+update}}
+\index{set\+\_\+auto\+\_\+update@{set\+\_\+auto\+\_\+update}!Camgen\+::event\+\_\+generator@{Camgen\+::event\+\_\+generator}}
+\subsubsection[{set\+\_\+auto\+\_\+update}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t , std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out, class rng\+\_\+t $>$ void {\bf Camgen\+::event\+\_\+generator}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$\+::set\+\_\+auto\+\_\+update (
+\begin{DoxyParamCaption}
+\item[{bool}]{q}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00212_ad42b308b9ba23af048890ce001c030d2}
+
+
+Sets the auto-\/update flag for the event generator and all subprocesses. 
+
+\hypertarget{a00212_aba9c35d889ecf3d604ffaa3351189281}{}\index{Camgen\+::event\+\_\+generator@{Camgen\+::event\+\_\+generator}!unset\+\_\+auto\+\_\+channel\+\_\+adapt@{unset\+\_\+auto\+\_\+channel\+\_\+adapt}}
+\index{unset\+\_\+auto\+\_\+channel\+\_\+adapt@{unset\+\_\+auto\+\_\+channel\+\_\+adapt}!Camgen\+::event\+\_\+generator@{Camgen\+::event\+\_\+generator}}
+\subsubsection[{unset\+\_\+auto\+\_\+channel\+\_\+adapt}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t , std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out, class rng\+\_\+t $>$ void {\bf Camgen\+::event\+\_\+generator}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$\+::unset\+\_\+auto\+\_\+channel\+\_\+adapt (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00212_aba9c35d889ecf3d604ffaa3351189281}
+
+
+Resets the automatic multichannel adaptation batch size for all subprocess generators. 
+
+\hypertarget{a00212_a5fe8988e5090b3b70aff590c1b0b2fbb}{}\index{Camgen\+::event\+\_\+generator@{Camgen\+::event\+\_\+generator}!unset\+\_\+auto\+\_\+grid\+\_\+adapt@{unset\+\_\+auto\+\_\+grid\+\_\+adapt}}
+\index{unset\+\_\+auto\+\_\+grid\+\_\+adapt@{unset\+\_\+auto\+\_\+grid\+\_\+adapt}!Camgen\+::event\+\_\+generator@{Camgen\+::event\+\_\+generator}}
+\subsubsection[{unset\+\_\+auto\+\_\+grid\+\_\+adapt}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t , std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out, class rng\+\_\+t $>$ void {\bf Camgen\+::event\+\_\+generator}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$\+::unset\+\_\+auto\+\_\+grid\+\_\+adapt (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00212_a5fe8988e5090b3b70aff590c1b0b2fbb}
+
+
+Resets the automatic grid adaptation batch size for all subprocess generators. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/\-Camgen/E\-W\-S\-M\-\_\-base.\-h\end{DoxyCompactItemize}
+include/\+Camgen/\hyperlink{a00634}{evt\+\_\+gen.\+h}\end{DoxyCompactItemize}

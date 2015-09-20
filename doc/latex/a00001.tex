@@ -1,240 +1,141 @@
-\hypertarget{a00001}{\section{Camgen\-:\-:adaptive\-\_\-s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t $>$ Class Template Reference}
-\label{a00001}\index{Camgen\-::adaptive\-\_\-s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t $>$@{Camgen\-::adaptive\-\_\-s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t $>$}}
-}
-Inheritance diagram for Camgen\-:\-:adaptive\-\_\-s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t $>$\-:\begin{figure}[H]
+\hypertarget{a00001}{}\section{Camgen\+:\+:adaptive\+\_\+value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$ Class Template Reference}
+\label{a00001}\index{Camgen\+::adaptive\+\_\+value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$@{Camgen\+::adaptive\+\_\+value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$}}
+Inheritance diagram for Camgen\+:\+:adaptive\+\_\+value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=3.000000cm]{a00001}
+\includegraphics[height=2.600619cm]{a00001}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00362_a3353150105036deac9bde097cbf1d8af}{value\-\_\-type} \hyperlink{a00001_aadb3d820ccaa228ffc634b81bc7f241f}{map} (const \hyperlink{a00362_a3353150105036deac9bde097cbf1d8af}{value\-\_\-type} \&r) const 
-\begin{DoxyCompactList}\small\item\em Maps the first argument, a random number in \mbox{[}0,1\mbox{]} to an invariant mass. \end{DoxyCompactList}\item 
-\hyperlink{a00362_a3353150105036deac9bde097cbf1d8af}{value\-\_\-type} \hyperlink{a00001_a522ceda7cca83a47f3b11178374d9749}{inverse\-\_\-map} (const \hyperlink{a00362_a3353150105036deac9bde097cbf1d8af}{value\-\_\-type} \&\hyperlink{a00482_a8bf50336c0da12a27a71eb1154a7012e}{s}) const 
-\begin{DoxyCompactList}\small\item\em Maps the argument, an invariant mass-\/squared between \mbox{[}s-\/,s+\mbox{]}, to a random number in \mbox{[}0,1\mbox{]}. \end{DoxyCompactList}\item 
-\hypertarget{a00001_a0c3524e9265bc0c1f09d7471a8e1ccb6}{bool \hyperlink{a00001_a0c3524e9265bc0c1f09d7471a8e1ccb6}{set\-\_\-s\-\_\-min\-\_\-min} (const \hyperlink{a00362_a3353150105036deac9bde097cbf1d8af}{value\-\_\-type} \&sminmin)}\label{a00001_a0c3524e9265bc0c1f09d7471a8e1ccb6}
+\hypertarget{a00001_adac0f8fb0239c625b6c1ab36d44eaaea}{}value\+\_\+type \hyperlink{a00001_adac0f8fb0239c625b6c1ab36d44eaaea}{map} (const value\+\_\+type \&r) const \label{a00001_adac0f8fb0239c625b6c1ab36d44eaaea}
 
-\begin{DoxyCompactList}\small\item\em Sets the minimal minimal invariant mass-\/squared. \end{DoxyCompactList}\item 
-\hypertarget{a00001_a6b7d84fb28397191ebbdb0b8a72be83a}{bool \hyperlink{a00001_a6b7d84fb28397191ebbdb0b8a72be83a}{set\-\_\-s\-\_\-max\-\_\-max} (const \hyperlink{a00362_a3353150105036deac9bde097cbf1d8af}{value\-\_\-type} \&smaxmax)}\label{a00001_a6b7d84fb28397191ebbdb0b8a72be83a}
+\begin{DoxyCompactList}\small\item\em Maps the first argument, a random number in \mbox{[}0,1\mbox{]} to a value. \end{DoxyCompactList}\item 
+\hypertarget{a00001_a6e4d6274ba8d71ac1b2df8b18bd3a3d1}{}value\+\_\+type \hyperlink{a00001_a6e4d6274ba8d71ac1b2df8b18bd3a3d1}{inverse\+\_\+map} (const value\+\_\+type \&s) const \label{a00001_a6e4d6274ba8d71ac1b2df8b18bd3a3d1}
 
-\begin{DoxyCompactList}\small\item\em Sets the maximal maximal invariant mass-\/squared. \end{DoxyCompactList}\item 
-bool \hyperlink{a00001_a3aea06461838774d655bd82c118c11e2}{refresh\-\_\-s\-\_\-min} ()
-\begin{DoxyCompactList}\small\item\em Re-\/evaluates all internal parameters depending on smin. \end{DoxyCompactList}\item 
-bool \hyperlink{a00001_a8bdc493b1ed0e29f9fc7ea0aa7e6e510}{refresh\-\_\-s\-\_\-max} ()
-\begin{DoxyCompactList}\small\item\em Re-\/evaluates all internal parameters depending on smax. \end{DoxyCompactList}\item 
-bool \hyperlink{a00001_af5f174e832ad6c23ecc49d4bc7018727}{refresh\-\_\-params} ()
+\begin{DoxyCompactList}\small\item\em Maps the value argument to a random number in \mbox{[}0,1\mbox{]}. \end{DoxyCompactList}\item 
+\hypertarget{a00001_aea077da74c72d6f2ba36669a95bcc99e}{}void \hyperlink{a00001_aea077da74c72d6f2ba36669a95bcc99e}{set\+\_\+value} (value\+\_\+type $\ast$x\+\_\+)\label{a00001_aea077da74c72d6f2ba36669a95bcc99e}
+
+\begin{DoxyCompactList}\small\item\em Sets the invariant mass address to the argument pointer. \end{DoxyCompactList}\item 
+bool \hyperlink{a00001_a4d4bd3b524a004dba5e01790182817cf}{refresh\+\_\+lower\+\_\+bound} ()
+\begin{DoxyCompactList}\small\item\em Re-\/evaluates all internal parameters depending on the lower bound. \end{DoxyCompactList}\item 
+bool \hyperlink{a00001_ad40f7085df9948494142cfe196ae8ffe}{refresh\+\_\+upper\+\_\+bound} ()
+\begin{DoxyCompactList}\small\item\em Re-\/evaluates all internal parameters depending on the upper bound. \end{DoxyCompactList}\item 
+bool \hyperlink{a00001_ab5f62076a8a9d79d279f99fc05d6758f}{refresh\+\_\+params} ()
 \begin{DoxyCompactList}\small\item\em Re-\/evaluates internal parameters from external pointer values. \end{DoxyCompactList}\item 
-bool \hyperlink{a00001_acccaf0f50a38cb1121bc4159e8a23ced}{refresh\-\_\-s\-\_\-bounds} ()
-\begin{DoxyCompactList}\small\item\em Re-\/evaluates all internal parameters depending on smin and smax. \end{DoxyCompactList}\item 
-\hypertarget{a00001_a67261f6037fcf42078efb5922eed328b}{bool \hyperlink{a00001_a67261f6037fcf42078efb5922eed328b}{generate} ()}\label{a00001_a67261f6037fcf42078efb5922eed328b}
+bool \hyperlink{a00001_a995493aac48a6e64d7447a51f6381014}{refresh\+\_\+bounds} ()
+\begin{DoxyCompactList}\small\item\em Re-\/evaluates all internal parameters depending on uper and lower bounds. \end{DoxyCompactList}\item 
+\hypertarget{a00001_a11e0685ef5d48c65f96a514a87be6c89}{}bool \hyperlink{a00001_a11e0685ef5d48c65f96a514a87be6c89}{generate} ()\label{a00001_a11e0685ef5d48c65f96a514a87be6c89}
 
 \begin{DoxyCompactList}\small\item\em Generation method. \end{DoxyCompactList}\item 
-\hypertarget{a00001_aa297a5927d2601b0aa2b2553c609e7ec}{bool \hyperlink{a00001_aa297a5927d2601b0aa2b2553c609e7ec}{evaluate\-\_\-weight} ()}\label{a00001_aa297a5927d2601b0aa2b2553c609e7ec}
+\hypertarget{a00001_ab64755600736633e44bcaf202f7ef5ce}{}bool \hyperlink{a00001_ab64755600736633e44bcaf202f7ef5ce}{evaluate\+\_\+weight} ()\label{a00001_ab64755600736633e44bcaf202f7ef5ce}
 
 \begin{DoxyCompactList}\small\item\em Weight evaluation method. \end{DoxyCompactList}\item 
-\hypertarget{a00001_a0398fc3f8f98c02e7ecacd139da77ade}{\hyperlink{a00362_a3353150105036deac9bde097cbf1d8af}{value\-\_\-type} \hyperlink{a00001_a0398fc3f8f98c02e7ecacd139da77ade}{mapping\-\_\-weight} () const }\label{a00001_a0398fc3f8f98c02e7ecacd139da77ade}
+\hypertarget{a00001_a30fd5b09335a0e7903555065c78d1ce8}{}void \hyperlink{a00001_a30fd5b09335a0e7903555065c78d1ce8}{update} ()\label{a00001_a30fd5b09335a0e7903555065c78d1ce8}
 
-\begin{DoxyCompactList}\small\item\em Mapping weight factor. \end{DoxyCompactList}\item 
-\hypertarget{a00001_aef58f02dd2a50d1d63da6a3f6bb84c2c}{\hyperlink{a00362_a3353150105036deac9bde097cbf1d8af}{value\-\_\-type} \hyperlink{a00001_aef58f02dd2a50d1d63da6a3f6bb84c2c}{grid\-\_\-weight} () const }\label{a00001_aef58f02dd2a50d1d63da6a3f6bb84c2c}
+\begin{DoxyCompactList}\small\item\em Trivial update method. \end{DoxyCompactList}\item 
+\hypertarget{a00001_a210613616821fb9433ee3cebaf4f5ef7}{}void \hyperlink{a00001_a210613616821fb9433ee3cebaf4f5ef7}{adapt} ()\label{a00001_a210613616821fb9433ee3cebaf4f5ef7}
 
-\begin{DoxyCompactList}\small\item\em Adaptive grid weight factor. \end{DoxyCompactList}\item 
-void \hyperlink{a00001_aaf21d07ea43dcc7556ba3fc1c6703160}{update} ()
-\begin{DoxyCompactList}\small\item\em Update method. \end{DoxyCompactList}\item 
-\hypertarget{a00001_af2ce45f4b873b79942d479ed49787103}{void \hyperlink{a00001_af2ce45f4b873b79942d479ed49787103}{update\-\_\-weight} ()}\label{a00001_af2ce45f4b873b79942d479ed49787103}
+\begin{DoxyCompactList}\small\item\em Adapts internal parameters with the current integrand value. \end{DoxyCompactList}\item 
+\hypertarget{a00001_abfdfdd22b18f9d68e0e1c9b53eac57e5}{}void \hyperlink{a00001_abfdfdd22b18f9d68e0e1c9b53eac57e5}{reset} ()\label{a00001_abfdfdd22b18f9d68e0e1c9b53eac57e5}
 
-\begin{DoxyCompactList}\small\item\em Updates adaptive grids given the total event weight. \end{DoxyCompactList}\item 
-\hypertarget{a00001_aad3d86a84f3fc66657500fa5bfeaf4c7}{void \hyperlink{a00001_aad3d86a84f3fc66657500fa5bfeaf4c7}{adapt} ()}\label{a00001_aad3d86a84f3fc66657500fa5bfeaf4c7}
-
-\begin{DoxyCompactList}\small\item\em Adaptation method. Trivial by default. \end{DoxyCompactList}\item 
-void \hyperlink{a00001_a8083f3252ded95b8f48e0d5746b34a40}{reset} ()
-\begin{DoxyCompactList}\small\item\em Resets the the state of the M\-C generator. \end{DoxyCompactList}\item 
-void \hyperlink{a00001_a58424d0ff97bded5d1f43f9314122570}{reset\-\_\-cross\-\_\-section} ()
-\begin{DoxyCompactList}\small\item\em Resets cross section and weight sums of the generator, but keeps channel weights and grids intact. \end{DoxyCompactList}\item 
-\hypertarget{a00001_abbfd2f35259aae8afd97c9da8131a602}{\hyperlink{a00362_a3353150105036deac9bde097cbf1d8af}{value\-\_\-type} \hyperlink{a00001_abbfd2f35259aae8afd97c9da8131a602}{integrate\-\_\-with} (const \hyperlink{a00482}{s\-\_\-generator}$<$ value\-\_\-t, rng\-\_\-t $>$ $\ast$other, const \hyperlink{a00362_a3353150105036deac9bde097cbf1d8af}{value\-\_\-type} \&sqrts) const }\label{a00001_abbfd2f35259aae8afd97c9da8131a602}
-
-\begin{DoxyCompactList}\small\item\em Double-\/dispatch integrator functions. \end{DoxyCompactList}\item 
-\hypertarget{a00001_a732addc9e3db0cef6f0fa49c98ebdae3}{std\-::string \hyperlink{a00001_a732addc9e3db0cef6f0fa49c98ebdae3}{type} () const }\label{a00001_a732addc9e3db0cef6f0fa49c98ebdae3}
-
-\begin{DoxyCompactList}\small\item\em Returns a string containing the type. \end{DoxyCompactList}\item 
-\hypertarget{a00001_ab94b86df443a389e480c5d7f845e6523}{std\-::string \hyperlink{a00001_ab94b86df443a389e480c5d7f845e6523}{detailed\-\_\-type} () const }\label{a00001_ab94b86df443a389e480c5d7f845e6523}
-
-\begin{DoxyCompactList}\small\item\em Returns the detailed type of the generator. \end{DoxyCompactList}\item 
-\hypertarget{a00001_a7d4a9a3ad7c7f1e076a890201a963e5f}{std\-::ostream \& \hyperlink{a00001_a7d4a9a3ad7c7f1e076a890201a963e5f}{print} (std\-::ostream \&os) const }\label{a00001_a7d4a9a3ad7c7f1e076a890201a963e5f}
-
-\begin{DoxyCompactList}\small\item\em Printing method\-: \end{DoxyCompactList}\item 
-\hypertarget{a00001_a109612e2e98a9ad3ee9dbd6d3a87c994}{std\-::istream \& \hyperlink{a00001_a109612e2e98a9ad3ee9dbd6d3a87c994}{load\-\_\-data} (std\-::istream \&is)}\label{a00001_a109612e2e98a9ad3ee9dbd6d3a87c994}
-
-\begin{DoxyCompactList}\small\item\em Loads derived class data (empty by default). \end{DoxyCompactList}\item 
-\hypertarget{a00001_a2ee0363b66b4a867bd5afc8b0a692fc0}{std\-::ostream \& \hyperlink{a00001_a2ee0363b66b4a867bd5afc8b0a692fc0}{save\-\_\-data} (std\-::ostream \&os) const }\label{a00001_a2ee0363b66b4a867bd5afc8b0a692fc0}
-
-\begin{DoxyCompactList}\small\item\em Saves derived class data (empty by default). \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Protected Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-\hypertarget{a00001_a35687e41f6569b3e20e614a7662c3bc5}{void \hyperlink{a00001_a35687e41f6569b3e20e614a7662c3bc5}{refresh\-\_\-norm} ()}\label{a00001_a35687e41f6569b3e20e614a7662c3bc5}
+\begin{DoxyCompactList}\small\item\em Resets internal parameters to default values. \end{DoxyCompactList}\item 
+\hypertarget{a00001_a905a3a132c6057621cfc1fd65f3cf7f6}{}void \hyperlink{a00001_a905a3a132c6057621cfc1fd65f3cf7f6}{refresh\+\_\+norm} ()\label{a00001_a905a3a132c6057621cfc1fd65f3cf7f6}
 
 \begin{DoxyCompactList}\small\item\em Evaluates the (private) normalisation factor. \end{DoxyCompactList}\item 
-\hyperlink{a00362_a3353150105036deac9bde097cbf1d8af}{value\-\_\-type} \hyperlink{a00001_ad6ffaf02a5104ed5c403811f75092be2}{get\-\_\-fast\-\_\-weight} () const 
-\begin{DoxyCompactList}\small\item\em Returns the weight of the current configuration without bound-\/ or norm-\/checking. \end{DoxyCompactList}\end{DoxyCompactItemize}
+value\+\_\+type \hyperlink{a00001_aac9de7a843e6d91ed6cda6758f2e19e4}{get\+\_\+fast\+\_\+weight} () const 
+\begin{DoxyCompactList}\small\item\em Returns the weight of the current configuration without bound-\/ or norm-\/checking. \end{DoxyCompactList}\item 
+\hypertarget{a00001_a629c8ce8869fca16034d0e6826795247}{}std\+::string \hyperlink{a00001_a629c8ce8869fca16034d0e6826795247}{type} () const \label{a00001_a629c8ce8869fca16034d0e6826795247}
+
+\begin{DoxyCompactList}\small\item\em Returns a string containing the type. \end{DoxyCompactList}\item 
+\hypertarget{a00001_a7ec4feef650ac1cc70d9a36c1f611be3}{}std\+::string \hyperlink{a00001_a7ec4feef650ac1cc70d9a36c1f611be3}{detailed\+\_\+type} () const \label{a00001_a7ec4feef650ac1cc70d9a36c1f611be3}
+
+\begin{DoxyCompactList}\small\item\em Returns the detailed type of the generator. \end{DoxyCompactList}\item 
+\hypertarget{a00001_a91f21661425943b9d58eedce0b75cfab}{}std\+::ostream \& \hyperlink{a00001_a91f21661425943b9d58eedce0b75cfab}{print} (std\+::ostream \&os) const \label{a00001_a91f21661425943b9d58eedce0b75cfab}
+
+\begin{DoxyCompactList}\small\item\em Printing method\+: \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00001_ad6ffaf02a5104ed5c403811f75092be2}{\index{Camgen\-::adaptive\-\_\-s\-\_\-generator@{Camgen\-::adaptive\-\_\-s\-\_\-generator}!get\-\_\-fast\-\_\-weight@{get\-\_\-fast\-\_\-weight}}
-\index{get\-\_\-fast\-\_\-weight@{get\-\_\-fast\-\_\-weight}!Camgen::adaptive_s_generator@{Camgen\-::adaptive\-\_\-s\-\_\-generator}}
-\subsubsection[{get\-\_\-fast\-\_\-weight}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\-\_\-t, class rng\-\_\-t$>$ {\bf value\-\_\-type} {\bf Camgen\-::adaptive\-\_\-s\-\_\-generator}$<$ value\-\_\-t, rng\-\_\-t $>$\-::get\-\_\-fast\-\_\-weight (
+\hypertarget{a00001_aac9de7a843e6d91ed6cda6758f2e19e4}{}\index{Camgen\+::adaptive\+\_\+value\+\_\+generator@{Camgen\+::adaptive\+\_\+value\+\_\+generator}!get\+\_\+fast\+\_\+weight@{get\+\_\+fast\+\_\+weight}}
+\index{get\+\_\+fast\+\_\+weight@{get\+\_\+fast\+\_\+weight}!Camgen\+::adaptive\+\_\+value\+\_\+generator@{Camgen\+::adaptive\+\_\+value\+\_\+generator}}
+\subsubsection[{get\+\_\+fast\+\_\+weight}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\+\_\+t, class rng\+\_\+t$>$ value\+\_\+type {\bf Camgen\+::adaptive\+\_\+value\+\_\+generator}$<$ value\+\_\+t, rng\+\_\+t $>$\+::get\+\_\+fast\+\_\+weight (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{a00001_ad6ffaf02a5104ed5c403811f75092be2}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{a00001_aac9de7a843e6d91ed6cda6758f2e19e4}
 
 
 Returns the weight of the current configuration without bound-\/ or norm-\/checking. 
 
 
 
-Implements \hyperlink{a00482_a1c77ba845ada06f770c0b80fe03354fe}{Camgen\-::s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t $>$}.
+Implements \hyperlink{a00577_a4af6e06d81d2326b48ca2b792c0a4bdb}{Camgen\+::value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$}.
 
-\hypertarget{a00001_a522ceda7cca83a47f3b11178374d9749}{\index{Camgen\-::adaptive\-\_\-s\-\_\-generator@{Camgen\-::adaptive\-\_\-s\-\_\-generator}!inverse\-\_\-map@{inverse\-\_\-map}}
-\index{inverse\-\_\-map@{inverse\-\_\-map}!Camgen::adaptive_s_generator@{Camgen\-::adaptive\-\_\-s\-\_\-generator}}
-\subsubsection[{inverse\-\_\-map}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\-\_\-t, class rng\-\_\-t$>$ {\bf value\-\_\-type} {\bf Camgen\-::adaptive\-\_\-s\-\_\-generator}$<$ value\-\_\-t, rng\-\_\-t $>$\-::inverse\-\_\-map (
-\begin{DoxyParamCaption}
-\item[{const {\bf value\-\_\-type} \&}]{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00001_a522ceda7cca83a47f3b11178374d9749}
-
-
-Maps the argument, an invariant mass-\/squared between \mbox{[}s-\/,s+\mbox{]}, to a random number in \mbox{[}0,1\mbox{]}. 
-
-
-
-Implements \hyperlink{a00482_a5853a3d32e5a0901985040914f32141c}{Camgen\-::s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t $>$}.
-
-\hypertarget{a00001_aadb3d820ccaa228ffc634b81bc7f241f}{\index{Camgen\-::adaptive\-\_\-s\-\_\-generator@{Camgen\-::adaptive\-\_\-s\-\_\-generator}!map@{map}}
-\index{map@{map}!Camgen::adaptive_s_generator@{Camgen\-::adaptive\-\_\-s\-\_\-generator}}
-\subsubsection[{map}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\-\_\-t, class rng\-\_\-t$>$ {\bf value\-\_\-type} {\bf Camgen\-::adaptive\-\_\-s\-\_\-generator}$<$ value\-\_\-t, rng\-\_\-t $>$\-::map (
-\begin{DoxyParamCaption}
-\item[{const {\bf value\-\_\-type} \&}]{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00001_aadb3d820ccaa228ffc634b81bc7f241f}
-
-
-Maps the first argument, a random number in \mbox{[}0,1\mbox{]} to an invariant mass. 
-
-
-
-Implements \hyperlink{a00482_a2b34a08ad07cf08d3d91fc6edb91eb0b}{Camgen\-::s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t $>$}.
-
-\hypertarget{a00001_af5f174e832ad6c23ecc49d4bc7018727}{\index{Camgen\-::adaptive\-\_\-s\-\_\-generator@{Camgen\-::adaptive\-\_\-s\-\_\-generator}!refresh\-\_\-params@{refresh\-\_\-params}}
-\index{refresh\-\_\-params@{refresh\-\_\-params}!Camgen::adaptive_s_generator@{Camgen\-::adaptive\-\_\-s\-\_\-generator}}
-\subsubsection[{refresh\-\_\-params}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\-\_\-t, class rng\-\_\-t$>$ bool {\bf Camgen\-::adaptive\-\_\-s\-\_\-generator}$<$ value\-\_\-t, rng\-\_\-t $>$\-::refresh\-\_\-params (
+\hypertarget{a00001_a995493aac48a6e64d7447a51f6381014}{}\index{Camgen\+::adaptive\+\_\+value\+\_\+generator@{Camgen\+::adaptive\+\_\+value\+\_\+generator}!refresh\+\_\+bounds@{refresh\+\_\+bounds}}
+\index{refresh\+\_\+bounds@{refresh\+\_\+bounds}!Camgen\+::adaptive\+\_\+value\+\_\+generator@{Camgen\+::adaptive\+\_\+value\+\_\+generator}}
+\subsubsection[{refresh\+\_\+bounds}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\+\_\+t, class rng\+\_\+t$>$ bool {\bf Camgen\+::adaptive\+\_\+value\+\_\+generator}$<$ value\+\_\+t, rng\+\_\+t $>$\+::refresh\+\_\+bounds (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00001_af5f174e832ad6c23ecc49d4bc7018727}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{a00001_a995493aac48a6e64d7447a51f6381014}
+
+
+Re-\/evaluates all internal parameters depending on uper and lower bounds. 
+
+Returns false if the input parameters are invalid. 
+
+Reimplemented from \hyperlink{a00577_a720106d300c813bb22c3f137de5b7591}{Camgen\+::value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$}.
+
+\hypertarget{a00001_a4d4bd3b524a004dba5e01790182817cf}{}\index{Camgen\+::adaptive\+\_\+value\+\_\+generator@{Camgen\+::adaptive\+\_\+value\+\_\+generator}!refresh\+\_\+lower\+\_\+bound@{refresh\+\_\+lower\+\_\+bound}}
+\index{refresh\+\_\+lower\+\_\+bound@{refresh\+\_\+lower\+\_\+bound}!Camgen\+::adaptive\+\_\+value\+\_\+generator@{Camgen\+::adaptive\+\_\+value\+\_\+generator}}
+\subsubsection[{refresh\+\_\+lower\+\_\+bound}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\+\_\+t, class rng\+\_\+t$>$ bool {\bf Camgen\+::adaptive\+\_\+value\+\_\+generator}$<$ value\+\_\+t, rng\+\_\+t $>$\+::refresh\+\_\+lower\+\_\+bound (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{a00001_a4d4bd3b524a004dba5e01790182817cf}
+
+
+Re-\/evaluates all internal parameters depending on the lower bound. 
+
+Returns false if the input parameters are invalid. 
+
+Reimplemented from \hyperlink{a00577_a606b58f4f1ce170f0c789f30887d233f}{Camgen\+::value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$}.
+
+\hypertarget{a00001_ab5f62076a8a9d79d279f99fc05d6758f}{}\index{Camgen\+::adaptive\+\_\+value\+\_\+generator@{Camgen\+::adaptive\+\_\+value\+\_\+generator}!refresh\+\_\+params@{refresh\+\_\+params}}
+\index{refresh\+\_\+params@{refresh\+\_\+params}!Camgen\+::adaptive\+\_\+value\+\_\+generator@{Camgen\+::adaptive\+\_\+value\+\_\+generator}}
+\subsubsection[{refresh\+\_\+params}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\+\_\+t, class rng\+\_\+t$>$ bool {\bf Camgen\+::adaptive\+\_\+value\+\_\+generator}$<$ value\+\_\+t, rng\+\_\+t $>$\+::refresh\+\_\+params (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{a00001_ab5f62076a8a9d79d279f99fc05d6758f}
 
 
 Re-\/evaluates internal parameters from external pointer values. 
 
 Returns false if the input parameters are invalid. 
 
-Reimplemented from \hyperlink{a00482_af6cb5ca85a519544d1e2c2cdd86e3590}{Camgen\-::s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t $>$}.
+Reimplemented from \hyperlink{a00577_ad5adee012d119632ceee3840161bb6c0}{Camgen\+::value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$}.
 
-\hypertarget{a00001_acccaf0f50a38cb1121bc4159e8a23ced}{\index{Camgen\-::adaptive\-\_\-s\-\_\-generator@{Camgen\-::adaptive\-\_\-s\-\_\-generator}!refresh\-\_\-s\-\_\-bounds@{refresh\-\_\-s\-\_\-bounds}}
-\index{refresh\-\_\-s\-\_\-bounds@{refresh\-\_\-s\-\_\-bounds}!Camgen::adaptive_s_generator@{Camgen\-::adaptive\-\_\-s\-\_\-generator}}
-\subsubsection[{refresh\-\_\-s\-\_\-bounds}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\-\_\-t, class rng\-\_\-t$>$ bool {\bf Camgen\-::adaptive\-\_\-s\-\_\-generator}$<$ value\-\_\-t, rng\-\_\-t $>$\-::refresh\-\_\-s\-\_\-bounds (
+\hypertarget{a00001_ad40f7085df9948494142cfe196ae8ffe}{}\index{Camgen\+::adaptive\+\_\+value\+\_\+generator@{Camgen\+::adaptive\+\_\+value\+\_\+generator}!refresh\+\_\+upper\+\_\+bound@{refresh\+\_\+upper\+\_\+bound}}
+\index{refresh\+\_\+upper\+\_\+bound@{refresh\+\_\+upper\+\_\+bound}!Camgen\+::adaptive\+\_\+value\+\_\+generator@{Camgen\+::adaptive\+\_\+value\+\_\+generator}}
+\subsubsection[{refresh\+\_\+upper\+\_\+bound}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\+\_\+t, class rng\+\_\+t$>$ bool {\bf Camgen\+::adaptive\+\_\+value\+\_\+generator}$<$ value\+\_\+t, rng\+\_\+t $>$\+::refresh\+\_\+upper\+\_\+bound (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00001_acccaf0f50a38cb1121bc4159e8a23ced}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{a00001_ad40f7085df9948494142cfe196ae8ffe}
 
 
-Re-\/evaluates all internal parameters depending on smin and smax. 
+Re-\/evaluates all internal parameters depending on the upper bound. 
 
 Returns false if the input parameters are invalid. 
 
-Reimplemented from \hyperlink{a00482_a1eadd2859e41a90ee631364801aeb04b}{Camgen\-::s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t $>$}.
-
-\hypertarget{a00001_a8bdc493b1ed0e29f9fc7ea0aa7e6e510}{\index{Camgen\-::adaptive\-\_\-s\-\_\-generator@{Camgen\-::adaptive\-\_\-s\-\_\-generator}!refresh\-\_\-s\-\_\-max@{refresh\-\_\-s\-\_\-max}}
-\index{refresh\-\_\-s\-\_\-max@{refresh\-\_\-s\-\_\-max}!Camgen::adaptive_s_generator@{Camgen\-::adaptive\-\_\-s\-\_\-generator}}
-\subsubsection[{refresh\-\_\-s\-\_\-max}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\-\_\-t, class rng\-\_\-t$>$ bool {\bf Camgen\-::adaptive\-\_\-s\-\_\-generator}$<$ value\-\_\-t, rng\-\_\-t $>$\-::refresh\-\_\-s\-\_\-max (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00001_a8bdc493b1ed0e29f9fc7ea0aa7e6e510}
-
-
-Re-\/evaluates all internal parameters depending on smax. 
-
-Returns false if the input parameters are invalid. 
-
-Reimplemented from \hyperlink{a00482_a2da522fd997d5c1f7da805c926b661d8}{Camgen\-::s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t $>$}.
-
-\hypertarget{a00001_a3aea06461838774d655bd82c118c11e2}{\index{Camgen\-::adaptive\-\_\-s\-\_\-generator@{Camgen\-::adaptive\-\_\-s\-\_\-generator}!refresh\-\_\-s\-\_\-min@{refresh\-\_\-s\-\_\-min}}
-\index{refresh\-\_\-s\-\_\-min@{refresh\-\_\-s\-\_\-min}!Camgen::adaptive_s_generator@{Camgen\-::adaptive\-\_\-s\-\_\-generator}}
-\subsubsection[{refresh\-\_\-s\-\_\-min}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\-\_\-t, class rng\-\_\-t$>$ bool {\bf Camgen\-::adaptive\-\_\-s\-\_\-generator}$<$ value\-\_\-t, rng\-\_\-t $>$\-::refresh\-\_\-s\-\_\-min (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00001_a3aea06461838774d655bd82c118c11e2}
-
-
-Re-\/evaluates all internal parameters depending on smin. 
-
-Returns false if the input parameters are invalid. 
-
-Reimplemented from \hyperlink{a00482_a8abba1aaf5b92db4408c3d73d288e3b2}{Camgen\-::s\-\_\-generator$<$ value\-\_\-t, rng\-\_\-t $>$}.
-
-\hypertarget{a00001_a8083f3252ded95b8f48e0d5746b34a40}{\index{Camgen\-::adaptive\-\_\-s\-\_\-generator@{Camgen\-::adaptive\-\_\-s\-\_\-generator}!reset@{reset}}
-\index{reset@{reset}!Camgen::adaptive_s_generator@{Camgen\-::adaptive\-\_\-s\-\_\-generator}}
-\subsubsection[{reset}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\-\_\-t, class rng\-\_\-t$>$ void {\bf Camgen\-::adaptive\-\_\-s\-\_\-generator}$<$ value\-\_\-t, rng\-\_\-t $>$\-::reset (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00001_a8083f3252ded95b8f48e0d5746b34a40}
-
-
-Resets the the state of the M\-C generator. 
-
-Resets adaptive channels weights and grids as well. 
-
-Reimplemented from \hyperlink{a00362_a96247247800b9db50ddf7fafb28aca42}{Camgen\-::\-M\-C\-\_\-generator$<$ value\-\_\-t $>$}.
-
-\hypertarget{a00001_a58424d0ff97bded5d1f43f9314122570}{\index{Camgen\-::adaptive\-\_\-s\-\_\-generator@{Camgen\-::adaptive\-\_\-s\-\_\-generator}!reset\-\_\-cross\-\_\-section@{reset\-\_\-cross\-\_\-section}}
-\index{reset\-\_\-cross\-\_\-section@{reset\-\_\-cross\-\_\-section}!Camgen::adaptive_s_generator@{Camgen\-::adaptive\-\_\-s\-\_\-generator}}
-\subsubsection[{reset\-\_\-cross\-\_\-section}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\-\_\-t, class rng\-\_\-t$>$ void {\bf Camgen\-::adaptive\-\_\-s\-\_\-generator}$<$ value\-\_\-t, rng\-\_\-t $>$\-::reset\-\_\-cross\-\_\-section (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00001_a58424d0ff97bded5d1f43f9314122570}
-
-
-Resets cross section and weight sums of the generator, but keeps channel weights and grids intact. 
+Reimplemented from \hyperlink{a00577_ab36b05cba8bbc97a7ace38ae7edf58d8}{Camgen\+::value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$}.
 
 
 
-Reimplemented from \hyperlink{a00362_a1ec9818cc8260e1be5c568d319cb722b}{Camgen\-::\-M\-C\-\_\-generator$<$ value\-\_\-t $>$}.
-
-\hypertarget{a00001_aaf21d07ea43dcc7556ba3fc1c6703160}{\index{Camgen\-::adaptive\-\_\-s\-\_\-generator@{Camgen\-::adaptive\-\_\-s\-\_\-generator}!update@{update}}
-\index{update@{update}!Camgen::adaptive_s_generator@{Camgen\-::adaptive\-\_\-s\-\_\-generator}}
-\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\-\_\-t, class rng\-\_\-t$>$ void {\bf Camgen\-::adaptive\-\_\-s\-\_\-generator}$<$ value\-\_\-t, rng\-\_\-t $>$\-::update (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00001_aaf21d07ea43dcc7556ba3fc1c6703160}
-
-
-Update method. 
-
-Should refresh internal parameters with information given by integrand. 
-
-Reimplemented from \hyperlink{a00362_ae5e70cee65aacbb6a556057de02ef3dd}{Camgen\-::\-M\-C\-\_\-generator$<$ value\-\_\-t $>$}.
-
-
-
-The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/\-Camgen/\hyperlink{a00735}{s\-\_\-gen.\-h}\item 
-include/\-Camgen/sgen\-\_\-grid.\-h\end{DoxyCompactItemize}
+include/\+Camgen/\hyperlink{a00830}{val\+\_\+gen\+\_\+grid.\+h}\end{DoxyCompactItemize}

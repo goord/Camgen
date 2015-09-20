@@ -17,6 +17,7 @@
 #include <Camgen/rn_strm.h>
 #include <Camgen/bipart.h>
 #include <Camgen/MC_gen.h>
+#include <Camgen/MC_int_base.h>
 
 namespace Camgen
 {
@@ -27,7 +28,7 @@ namespace Camgen
     
     /// Initial-state Monte Carlo generator base class template.
     
-    template<class model_t,std::size_t N>class initial_state: public MC_generator<typename model_t::value_type>
+    template<class model_t,std::size_t N>class initial_state: public MC_generator<typename model_t::value_type>, public MC_integrator_base<typename model_t::value_type>
     {
 	typedef MC_generator<typename model_t::value_type> base_type;
 
@@ -228,13 +229,6 @@ namespace Camgen
 
 	    virtual bool refresh_Ecm()=0;
 
-	    /// Refreshes internal parameters.
-
-	    virtual bool refresh_params()
-	    {
-		return true;
-	    }
-
 	    /* Function filling the mmin components for timelike channels: */
 
 	    template<std::size_t N_out>void assign_mmin_components(value_type mminout[N_out][N_out])
@@ -415,84 +409,6 @@ namespace Camgen
 		    os<<std::setw(30)<<std::left<<"mu_F:"<<mu_F<<std::endl;
 		    os<<std::setw(30)<<std::left<<"mhatmin:"<<m_hat_min()<<std::endl;
 		}
-		return os;
-	    }
-
-	    static initial_state<model_t,N>* create_instance(std::istream& is)
-	    {
-		std::string initflag;
-		do
-		{
-		    std::getline(is,initflag);
-		}
-		while(initflag!="<isgen>" and !is.eof());
-		if(is.eof())
-		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"end of file reached before initial data are read"<<endlog;
-		    return NULL;
-		}
-		initial_state<model_t,N>* result;
-		std::string br_id;
-		is>>br_id;
-	    }
-
-	    /// Loads derived type data.
-
-	    virtual std::istream& load_data(std::istream& is)
-	    {
-		return is;
-	    }
-
-	    /// Loading method implementation.
-
-	    std::istream& load(std::istream& is)
-	    {
-		this->base_type::load(is);
-		for(size_type i=0;i<N;++i)
-		{
-		    is>>E_beams[i];
-		}
-		safe_read(is,mhatmin);
-		safe_read(is,mu_F);
-		stot=ecm*ecm;
-		shat=ecmhat*ecmhat;
-		shatmin=mhatmin*mhatmin;
-		for(size_type i=0;i<N;++i)
-		{
-		    is>>partons[i];
-		}
-		return load_data(is);
-	    }
-
-	    /// Outputs derived type data.
-
-	    virtual std::ostream& save_data(std::ostream& os) const
-	    {
-		return os;
-	    }
-
-	    /// Serializing function.
-
-	    std::ostream& save(std::ostream& os) const
-	    {
-		os<<"<isgen>"<<std::endl;
-		os<<type()<<std::endl;
-		this->base_type::save(os);
-		for(size_type i=0;i<N;++i)
-		{
-		    safe_write(os,E_beams[i]);
-		    os<<"\t";
-		}
-		safe_write(os,mhatmin);
-		os<<"\t";
-		safe_write(os,mu_F);
-		os<<std::endl;
-		for(size_type i=0;i<N;++i)
-		{
-		    os<<partons[i]<<"\t"<<std::endl;
-		}
-		save_data(os);
-		os<<"</isgen>"<<std::endl;
 		return os;
 	    }
 	    

@@ -1,13 +1,35 @@
-\hypertarget{a00612}{
-\section{include/Camgen/uniform.h File Reference}
-\label{a00612}\index{include/Camgen/uniform.h@{include/Camgen/uniform.h}}
-}
+\hypertarget{a00612}{}\section{include/\+Camgen/col\+\_\+gen.h File Reference}
+\label{a00612}\index{include/\+Camgen/col\+\_\+gen.\+h@{include/\+Camgen/col\+\_\+gen.\+h}}
 
 
-Momentum channel generator with uniform invariant mass generation.  
+colour generator abstract base class template interface and implementation.  
 
 
+{\ttfamily \#include $<$vector$>$}\\*
+{\ttfamily \#include $<$complex$>$}\\*
+{\ttfamily \#include $<$Camgen/vector.\+h$>$}\\*
+{\ttfamily \#include $<$Camgen/tensor.\+h$>$}\\*
+{\ttfamily \#include $<$Camgen/forward\+\_\+decs.\+h$>$}\\*
+{\ttfamily \#include $<$Camgen/obj\+\_\+alloc.\+h$>$}\\*
+{\ttfamily \#include $<$Camgen/\+M\+C\+\_\+gen.\+h$>$}\\*
+{\ttfamily \#include $<$Camgen/summation.\+h$>$}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{a00077}{Camgen\+::colour\+\_\+generator$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, continuous\+\_\+colours $>$}
+\item 
+class \hyperlink{a00078}{Camgen\+::colour\+\_\+generator$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$}
+\begin{DoxyCompactList}\small\item\em Colour generator base class specialization for discrete colours. \end{DoxyCompactList}\item 
+class \hyperlink{a00079}{Camgen\+::colour\+\_\+generator$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, true $>$}
+\begin{DoxyCompactList}\small\item\em Colour generator base class specialization for continuous colours. \end{DoxyCompactList}\item 
+class \hyperlink{a00087}{Camgen\+::colour\+\_\+summer$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, cont\+\_\+cols $>$}
+\begin{DoxyCompactList}\small\item\em Colour-\/summing dummy class. \end{DoxyCompactList}\item 
+class \hyperlink{a00088}{Camgen\+::colour\+\_\+summer$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, false $>$}
+\item 
+class \hyperlink{a00089}{Camgen\+::colour\+\_\+summer$<$ value\+\_\+t, N\+\_\+in, N\+\_\+out, true $>$}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Momentum channel generator with uniform invariant mass generation. Dummy class parameterising uniform helicity/colour/momentum generators.
+colour generator abstract base class template interface and implementation. 
+

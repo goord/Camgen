@@ -1,8 +1,80 @@
-\hypertarget{a00214}{\section{Camgen\-:\-:colour\-\_\-tensor\-:\-:f$<$ S\-U$<$ N $>$, I, J, K $>$ Class Template Reference}
-\label{a00214}\index{Camgen\-::colour\-\_\-tensor\-::f$<$ S\-U$<$ N $>$, I, J, K $>$@{Camgen\-::colour\-\_\-tensor\-::f$<$ S\-U$<$ N $>$, I, J, K $>$}}
-}
+\hypertarget{a00214}{}\section{Camgen\+:\+:event\+\_\+generator\+\_\+factory\+\_\+base$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$ Class Template Reference}
+\label{a00214}\index{Camgen\+::event\+\_\+generator\+\_\+factory\+\_\+base$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$@{Camgen\+::event\+\_\+generator\+\_\+factory\+\_\+base$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$}}
 
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+Multi-\/process event generator factory base.  
+
+
+
+
+{\ttfamily \#include $<$evtgen\+\_\+fac\+\_\+base.\+h$>$}
+
+Inheritance diagram for Camgen\+:\+:event\+\_\+generator\+\_\+factory\+\_\+base$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.264108cm]{a00214}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
 \item 
-include/\-Camgen/f.\-h\end{DoxyCompactItemize}
+\hypertarget{a00214_ac9f51d2d0d13d342106dc9df13b78d58}{}\hyperlink{a00214_ac9f51d2d0d13d342106dc9df13b78d58}{event\+\_\+generator\+\_\+factory\+\_\+base} (\hyperlink{a00438}{procgen\+\_\+fac\+\_\+type} $\ast$proc\+\_\+gen\+\_\+fac)\label{a00214_ac9f51d2d0d13d342106dc9df13b78d58}
+
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hypertarget{a00214_a703621e7f685bac4bd74920ca6e82003}{}\hyperlink{a00212}{event\+\_\+generator\+\_\+type} $\ast$ \hyperlink{a00214_a703621e7f685bac4bd74920ca6e82003}{create\+\_\+generator} (\hyperlink{a00065}{amplitude\+\_\+type} \&amplitude)\label{a00214_a703621e7f685bac4bd74920ca6e82003}
+
+\begin{DoxyCompactList}\small\item\em Creates a multi-\/process event generator. \end{DoxyCompactList}\item 
+\hyperlink{a00212}{event\+\_\+generator\+\_\+type} $\ast$ \hyperlink{a00214_a8e564926e7617a84d2ada9486c506e1e}{create\+\_\+generator} (C\+M\+\_\+tree\+\_\+iterator amplitude, \hyperlink{a00241}{generator\+\_\+configuration}$<$ model\+\_\+t $>$ \&conf)
+\begin{DoxyCompactList}\small\item\em Creates a multi-\/process event generator with custom configuration. \end{DoxyCompactList}\item 
+\hypertarget{a00214_ad8b120d7b6f5edb86333c0a13715175e}{}virtual \hyperlink{a00214_ad8b120d7b6f5edb86333c0a13715175e}{$\sim$event\+\_\+generator\+\_\+factory\+\_\+base} ()\label{a00214_ad8b120d7b6f5edb86333c0a13715175e}
+
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{a00214_a599f6055f310eb8f889f6ebc9813fd75}{pre\+\_\+initialise} (\hyperlink{a00212}{event\+\_\+generator\+\_\+type} $\ast$evtgen, bool verbose=false)
+\begin{DoxyCompactList}\small\item\em Pre-\/initialises the argument generator to give a first estimate of the cross section. \end{DoxyCompactList}\item 
+\hypertarget{a00214_a926341329a43097d1f22f4093dc68b06}{}static void \hyperlink{a00214_a926341329a43097d1f22f4093dc68b06}{initialise} (\hyperlink{a00212}{event\+\_\+generator\+\_\+type} $\ast$evtgen, bool verbose=false)\label{a00214_a926341329a43097d1f22f4093dc68b06}
+
+\begin{DoxyCompactList}\small\item\em Initialises the argument generator. \end{DoxyCompactList}\item 
+\hypertarget{a00214_ab7dec611d38279a3ccf77eea6342b206}{}static void \hyperlink{a00214_ab7dec611d38279a3ccf77eea6342b206}{initialise} (\hyperlink{a00212}{event\+\_\+generator\+\_\+type} $\ast$evtgen, \hyperlink{a00241}{generator\+\_\+configuration}$<$ model\+\_\+t $>$ \&conf, bool verbose=false)\label{a00214_ab7dec611d38279a3ccf77eea6342b206}
+
+\begin{DoxyCompactList}\small\item\em Initialiser method using generator configuration data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class model\+\_\+t, std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out, class rng\+\_\+t$>$class Camgen\+::event\+\_\+generator\+\_\+factory\+\_\+base$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$}
+
+Multi-\/process event generator factory base. 
+
+\subsection{Member Function Documentation}
+\hypertarget{a00214_a8e564926e7617a84d2ada9486c506e1e}{}\index{Camgen\+::event\+\_\+generator\+\_\+factory\+\_\+base@{Camgen\+::event\+\_\+generator\+\_\+factory\+\_\+base}!create\+\_\+generator@{create\+\_\+generator}}
+\index{create\+\_\+generator@{create\+\_\+generator}!Camgen\+::event\+\_\+generator\+\_\+factory\+\_\+base@{Camgen\+::event\+\_\+generator\+\_\+factory\+\_\+base}}
+\subsubsection[{create\+\_\+generator}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t , std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out, class rng\+\_\+t $>$ {\bf event\+\_\+generator\+\_\+type}$\ast$ {\bf Camgen\+::event\+\_\+generator\+\_\+factory\+\_\+base}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$\+::create\+\_\+generator (
+\begin{DoxyParamCaption}
+\item[{C\+M\+\_\+tree\+\_\+iterator}]{amplitude, }
+\item[{{\bf generator\+\_\+configuration}$<$ model\+\_\+t $>$ \&}]{conf}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00214_a8e564926e7617a84d2ada9486c506e1e}
+
+
+Creates a multi-\/process event generator with custom configuration. 
+
+\hypertarget{a00214_a599f6055f310eb8f889f6ebc9813fd75}{}\index{Camgen\+::event\+\_\+generator\+\_\+factory\+\_\+base@{Camgen\+::event\+\_\+generator\+\_\+factory\+\_\+base}!pre\+\_\+initialise@{pre\+\_\+initialise}}
+\index{pre\+\_\+initialise@{pre\+\_\+initialise}!Camgen\+::event\+\_\+generator\+\_\+factory\+\_\+base@{Camgen\+::event\+\_\+generator\+\_\+factory\+\_\+base}}
+\subsubsection[{pre\+\_\+initialise}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t , std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out, class rng\+\_\+t $>$ static void {\bf Camgen\+::event\+\_\+generator\+\_\+factory\+\_\+base}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$\+::pre\+\_\+initialise (
+\begin{DoxyParamCaption}
+\item[{{\bf event\+\_\+generator\+\_\+type} $\ast$}]{evtgen, }
+\item[{bool}]{verbose = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{a00214_a599f6055f310eb8f889f6ebc9813fd75}
+
+
+Pre-\/initialises the argument generator to give a first estimate of the cross section. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Camgen/\hyperlink{a00634}{evt\+\_\+gen.\+h}\item 
+include/\+Camgen/\hyperlink{a00636}{evtgen\+\_\+fac\+\_\+base.\+h}\end{DoxyCompactItemize}

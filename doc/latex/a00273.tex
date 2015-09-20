@@ -1,33 +1,54 @@
-\hypertarget{a00273}{\section{Camgen\-:\-:helicity\-\_\-ps$<$ model\-\_\-t, false $>$ Class Template Reference}
-\label{a00273}\index{Camgen\-::helicity\-\_\-ps$<$ model\-\_\-t, false $>$@{Camgen\-::helicity\-\_\-ps$<$ model\-\_\-t, false $>$}}
-}
+\hypertarget{a00273}{}\section{Camgen\+:\+:helicity\+\_\+generator\+\_\+factory$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$ Class Template Reference}
+\label{a00273}\index{Camgen\+::helicity\+\_\+generator\+\_\+factory$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$@{Camgen\+::helicity\+\_\+generator\+\_\+factory$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$}}
 
 
-Helicity phase space template specialisation for discrete-\/helicity model types.  
+Helicity generator factory.  
 
 
 
 
-{\ttfamily \#include $<$phase\-\_\-space.\-h$>$}
+{\ttfamily \#include $<$helgen\+\_\+fac.\+h$>$}
 
-\subsection*{Public Member Functions}
+\subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{a00273_a30035e4fc32fe666019a33379687585f}{int \& \hyperlink{a00273_a30035e4fc32fe666019a33379687585f}{helicity} ()}\label{a00273_a30035e4fc32fe666019a33379687585f}
-
-\begin{DoxyCompactList}\small\item\em Returns a reference to the helicity integer member. \end{DoxyCompactList}\item 
-\hypertarget{a00273_af69a86b9a4a4f9a9998451e4030dee10}{const int \& \hyperlink{a00273_af69a86b9a4a4f9a9998451e4030dee10}{helicity} () const }\label{a00273_af69a86b9a4a4f9a9998451e4030dee10}
-
-\begin{DoxyCompactList}\small\item\em Returns a constant reference to the helicity integer member. \end{DoxyCompactList}\end{DoxyCompactItemize}
+static \hyperlink{a00270}{generator\+\_\+type} $\ast$ \hyperlink{a00273_a9b802d69211d42fd9123a78c11b4b1c1}{create\+\_\+generator} (typename \hyperlink{a00065}{C\+M\+\_\+algorithm}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out $>$\+::tree\+\_\+iterator it)
+\begin{DoxyCompactList}\small\item\em Factory method returning a helicity generator instance from a tree iterator. \end{DoxyCompactList}\item 
+static \hyperlink{a00270}{generator\+\_\+type} $\ast$ \hyperlink{a00273_a21a83d1a6e3d2edcfbac1533ee54ad5e}{create\+\_\+generator} (typename \hyperlink{a00065}{C\+M\+\_\+algorithm}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out $>$\+::tree\+\_\+iterator it, generator\+\_\+tag tag)
+\begin{DoxyCompactList}\small\item\em Factory method returning a helicity generator instance from a tree iterator and generator tag. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-\subsubsection*{template$<$class model\-\_\-t$>$class Camgen\-::helicity\-\_\-ps$<$ model\-\_\-t, false $>$}
+\subsubsection*{template$<$class model\+\_\+t, std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out, class rng\+\_\+t$>$class Camgen\+::helicity\+\_\+generator\+\_\+factory$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$}
 
-Helicity phase space template specialisation for discrete-\/helicity model types. 
+Helicity generator factory. 
+
+\subsection{Member Function Documentation}
+\hypertarget{a00273_a9b802d69211d42fd9123a78c11b4b1c1}{}\index{Camgen\+::helicity\+\_\+generator\+\_\+factory@{Camgen\+::helicity\+\_\+generator\+\_\+factory}!create\+\_\+generator@{create\+\_\+generator}}
+\index{create\+\_\+generator@{create\+\_\+generator}!Camgen\+::helicity\+\_\+generator\+\_\+factory@{Camgen\+::helicity\+\_\+generator\+\_\+factory}}
+\subsubsection[{create\+\_\+generator}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t , std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out, class rng\+\_\+t $>$ static {\bf generator\+\_\+type}$\ast$ {\bf Camgen\+::helicity\+\_\+generator\+\_\+factory}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$\+::create\+\_\+generator (
+\begin{DoxyParamCaption}
+\item[{typename {\bf C\+M\+\_\+algorithm}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out $>$\+::tree\+\_\+iterator}]{it}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{a00273_a9b802d69211d42fd9123a78c11b4b1c1}
+
+
+Factory method returning a helicity generator instance from a tree iterator. 
+
+\hypertarget{a00273_a21a83d1a6e3d2edcfbac1533ee54ad5e}{}\index{Camgen\+::helicity\+\_\+generator\+\_\+factory@{Camgen\+::helicity\+\_\+generator\+\_\+factory}!create\+\_\+generator@{create\+\_\+generator}}
+\index{create\+\_\+generator@{create\+\_\+generator}!Camgen\+::helicity\+\_\+generator\+\_\+factory@{Camgen\+::helicity\+\_\+generator\+\_\+factory}}
+\subsubsection[{create\+\_\+generator}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\+\_\+t , std\+::size\+\_\+t N\+\_\+in, std\+::size\+\_\+t N\+\_\+out, class rng\+\_\+t $>$ static {\bf generator\+\_\+type}$\ast$ {\bf Camgen\+::helicity\+\_\+generator\+\_\+factory}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out, rng\+\_\+t $>$\+::create\+\_\+generator (
+\begin{DoxyParamCaption}
+\item[{typename {\bf C\+M\+\_\+algorithm}$<$ model\+\_\+t, N\+\_\+in, N\+\_\+out $>$\+::tree\+\_\+iterator}]{it, }
+\item[{generator\+\_\+tag}]{tag}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{a00273_a21a83d1a6e3d2edcfbac1533ee54ad5e}
+
+
+Factory method returning a helicity generator instance from a tree iterator and generator tag. 
 
 
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/\-Camgen/\hyperlink{a00694}{phase\-\_\-space.\-h}\end{DoxyCompactItemize}
+include/\+Camgen/helgen\+\_\+fac.\+h\end{DoxyCompactItemize}

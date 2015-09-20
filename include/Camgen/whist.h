@@ -38,16 +38,6 @@ namespace Camgen
 	    typedef value_t value_type;
 	    typedef typename std::vector<value_t>::size_type size_type;
 
-	    /* Static utility methods: */
-	    /*-------------------------*/
-
-	    static weight_histogrammer<value_t>* create_instance(std::istream& is)
-	    {
-		weight_histogrammer<value_t>* result=new weight_histogrammer<value_t>();
-		result->load(is);
-		return result;
-	    }
-
 	    /* Public constructors: */
 	    /*----------------------*/
 
@@ -216,37 +206,6 @@ namespace Camgen
 		result->add_plot(dstr);
 		result->ylog=true;
 		return result;
-	    }
-
-	    /* Serialisation: */
-	    /*----------------*/
-
-	    std::istream& load(std::istream& is)
-	    {
-		safe_read(is,maxw);
-		safe_read(is,wsum);
-		size_type n;
-		is>>n;
-		freqs.resize(n);
-		for(size_type i=0;i<n;++i)
-		{
-		    safe_read(is,freqs[i]);
-		}
-		return is;
-	    }
-
-	    std::ostream& save(std::ostream& os)
-	    {
-		safe_write(os,maxw);
-		os<<"\t";
-		safe_write(os,wsum);
-		os<<"\t"<<freqs.size()<<std::endl;
-		for(size_type i=0;i<freqs.size();++i)
-		{
-		    safe_write(os,freqs[i]);
-		    os<<std::endl;
-		}
-		return os;
 	    }
 
 	protected:

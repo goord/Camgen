@@ -9,8 +9,7 @@
 #include <Camgen/plt_strm.h>
 #include <Camgen/SM.h>
 #include <Camgen/stdrand.h>
-#include <Camgen/proc_gen.h>
-#include <Camgen/MC_config.h>
+#include <Camgen/procgen_fac.h>
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Program plotting the parton density functions wrapped into the pdf_wrapper  *
@@ -171,12 +170,15 @@ int main()
 	scale_expression<value_type>* scale=new scale_wrapper<value_type>(&model_type::M_Z);
 
 	set_initial_state_type(initial_states::proton_proton_xx);
-	process_generator<model_type,2,2,rn_engine> gen_xx(amplitude.get_tree_iterator());
-	gen_xx.insert_scale(scale);
+
+	process_generator_factory<model_type,2,2,rn_engine>factory;
+
+	process_generator<model_type,2,2,rn_engine>* gen_xx=factory.create_generator(amplitude.get_tree_iterator());
+	gen_xx->insert_scale(scale);
 
 	set_initial_state_type(initial_states::proton_proton);
-	process_generator<model_type,2,2,rn_engine> gen_sy(amplitude.get_tree_iterator());
-	gen_sy.insert_scale(scale);
+	process_generator<model_type,2,2,rn_engine>* gen_sy=factory.create_generator(amplitude.get_tree_iterator());
+	gen_sy->insert_scale(scale);
 
 	int n=0;
 
@@ -185,33 +187,33 @@ int main()
 	for(double Ecm=10;Ecm<210;Ecm+=10)
 	{
 	    double Ebeam=0.5*Ecm;
-	    gen_xx.set_beam_energy(-1,Ebeam);
-	    gen_xx.set_beam_energy(-2,Ebeam);
+	    gen_xx->set_beam_energy(-1,Ebeam);
+	    gen_xx->set_beam_energy(-2,Ebeam);
 	    if(n==0)
 	    {
-		gen_xx.initialise();
+		initialise(gen_xx);
 	    }
-	    gen_sy.set_beam_energy(-1,Ebeam);
-	    gen_sy.set_beam_energy(-2,Ebeam);
+	    gen_sy->set_beam_energy(-1,Ebeam);
+	    gen_sy->set_beam_energy(-2,Ebeam);
 	    if(n==0)
 	    {
-		gen_sy.initialise();
+		initialise(gen_sy);
 	    }
 	    for(int i=0;i<100000;++i)
 	    {
-		gen_xx.generate();
-		gen_sy.generate();
+		gen_xx->generate();
+		gen_sy->generate();
 	    }
 
 	    ecm=Ecm;
-	    xsec_xx=gen_xx.cross_section().value;
-	    xsec_xx_err=gen_xx.cross_section().error;
-	    xsec_sy=gen_sy.cross_section().value;
-	    xsec_sy_err=gen_sy.cross_section().error;
+	    xsec_xx=gen_xx->cross_section().value;
+	    xsec_xx_err=gen_xx->cross_section().error;
+	    xsec_sy=gen_sy->cross_section().value;
+	    xsec_sy_err=gen_sy->cross_section().error;
 	    data->fill();
 
-	    gen_xx.reset_cross_section();
-	    gen_sy.reset_cross_section();
+	    gen_xx->reset_cross_section();
+	    gen_sy->reset_cross_section();
 
 	    ++n;
 
@@ -236,6 +238,8 @@ int main()
 	lhapdfplot->add_plot(datstr_sy);
 	lhapdfplot->plot();
 	delete scale;
+	delete gen_xx;
+	delete gen_sy;
 	std::cerr<<"done, created "<<filename<<fext<<'.'<<std::endl;
     }
 

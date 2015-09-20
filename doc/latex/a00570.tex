@@ -1,8 +1,80 @@
-\hypertarget{a00570}{\section{Camgen\-:\-:vff\-L\-R$<$ model\-\_\-t $>$ Class Template Reference}
-\label{a00570}\index{Camgen\-::vff\-L\-R$<$ model\-\_\-t $>$@{Camgen\-::vff\-L\-R$<$ model\-\_\-t $>$}}
-}
+\hypertarget{a00570}{}\section{Camgen\+:\+:uniform\+\_\+value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$ Class Template Reference}
+\label{a00570}\index{Camgen\+::uniform\+\_\+value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$@{Camgen\+::uniform\+\_\+value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$}}
 
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+Uniform scalar generator class.  
+
+
+
+
+{\ttfamily \#include $<$uni\+\_\+val\+\_\+gen.\+h$>$}
+
+Inheritance diagram for Camgen\+:\+:uniform\+\_\+value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.649842cm]{a00570}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
 \item 
-include/\-Camgen/vff\-L\-R.\-h\end{DoxyCompactItemize}
+\hypertarget{a00570_a0993c700bdc82105e49d6d5d3f994b65}{}value\+\_\+type \hyperlink{a00570_a0993c700bdc82105e49d6d5d3f994b65}{map} (const value\+\_\+type \&r) const \label{a00570_a0993c700bdc82105e49d6d5d3f994b65}
+
+\begin{DoxyCompactList}\small\item\em Maps the first argument, a random number in \mbox{[}0,1\mbox{]} to a value. \end{DoxyCompactList}\item 
+\hypertarget{a00570_acc82a718b279c88880d91ea123879783}{}value\+\_\+type \hyperlink{a00570_acc82a718b279c88880d91ea123879783}{inverse\+\_\+map} (const value\+\_\+type \&s) const \label{a00570_acc82a718b279c88880d91ea123879783}
+
+\begin{DoxyCompactList}\small\item\em Maps the value argument to a random number in \mbox{[}0,1\mbox{]}. \end{DoxyCompactList}\item 
+\hyperlink{a00570}{uniform\+\_\+value\+\_\+generator}$<$ value\+\_\+t, rng\+\_\+t $>$ $\ast$ \hyperlink{a00570_a8f41a15f1cb6ef12c60afdfa9f89469a}{clone} () const 
+\begin{DoxyCompactList}\small\item\em Instance cloning method. \end{DoxyCompactList}\item 
+\hypertarget{a00570_af2d036e9372ed3de619112e15444de65}{}void \hyperlink{a00570_af2d036e9372ed3de619112e15444de65}{refresh\+\_\+norm} ()\label{a00570_af2d036e9372ed3de619112e15444de65}
+
+\begin{DoxyCompactList}\small\item\em Evaluates the (private) normalisation factor. \end{DoxyCompactList}\item 
+value\+\_\+type \hyperlink{a00570_acbc47578d709200f3ceb70cc6544ff15}{get\+\_\+fast\+\_\+weight} () const 
+\begin{DoxyCompactList}\small\item\em Returns the weight of the current configuration without bound-\/ or norm-\/checking. \end{DoxyCompactList}\item 
+\hypertarget{a00570_a91512839a8b91f662545c8ad19883e91}{}std\+::string \hyperlink{a00570_a91512839a8b91f662545c8ad19883e91}{type} () const \label{a00570_a91512839a8b91f662545c8ad19883e91}
+
+\begin{DoxyCompactList}\small\item\em Returns a string containing the type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class value\+\_\+t, class rng\+\_\+t$>$class Camgen\+::uniform\+\_\+value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$}
+
+Uniform scalar generator class. 
+
+\subsection{Member Function Documentation}
+\hypertarget{a00570_a8f41a15f1cb6ef12c60afdfa9f89469a}{}\index{Camgen\+::uniform\+\_\+value\+\_\+generator@{Camgen\+::uniform\+\_\+value\+\_\+generator}!clone@{clone}}
+\index{clone@{clone}!Camgen\+::uniform\+\_\+value\+\_\+generator@{Camgen\+::uniform\+\_\+value\+\_\+generator}}
+\subsubsection[{clone}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\+\_\+t, class rng\+\_\+t$>$ {\bf uniform\+\_\+value\+\_\+generator}$<$value\+\_\+t,rng\+\_\+t$>$$\ast$ {\bf Camgen\+::uniform\+\_\+value\+\_\+generator}$<$ value\+\_\+t, rng\+\_\+t $>$\+::clone (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{a00570_a8f41a15f1cb6ef12c60afdfa9f89469a}
+
+
+Instance cloning method. 
+
+Returns the N\+U\+L\+L pointer if not overridden. 
+
+Reimplemented from \hyperlink{a00577_ae411860e047b0bffe64d3530e7bd742a}{Camgen\+::value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$}.
+
+\hypertarget{a00570_acbc47578d709200f3ceb70cc6544ff15}{}\index{Camgen\+::uniform\+\_\+value\+\_\+generator@{Camgen\+::uniform\+\_\+value\+\_\+generator}!get\+\_\+fast\+\_\+weight@{get\+\_\+fast\+\_\+weight}}
+\index{get\+\_\+fast\+\_\+weight@{get\+\_\+fast\+\_\+weight}!Camgen\+::uniform\+\_\+value\+\_\+generator@{Camgen\+::uniform\+\_\+value\+\_\+generator}}
+\subsubsection[{get\+\_\+fast\+\_\+weight}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\+\_\+t, class rng\+\_\+t$>$ value\+\_\+type {\bf Camgen\+::uniform\+\_\+value\+\_\+generator}$<$ value\+\_\+t, rng\+\_\+t $>$\+::get\+\_\+fast\+\_\+weight (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{a00570_acbc47578d709200f3ceb70cc6544ff15}
+
+
+Returns the weight of the current configuration without bound-\/ or norm-\/checking. 
+
+
+
+Implements \hyperlink{a00577_a4af6e06d81d2326b48ca2b792c0a4bdb}{Camgen\+::value\+\_\+generator$<$ value\+\_\+t, rng\+\_\+t $>$}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Camgen/\hyperlink{a00823}{uni\+\_\+val\+\_\+gen.\+h}\end{DoxyCompactItemize}

@@ -1,101 +1,133 @@
-\hypertarget{a00395}{\section{Camgen\-:\-:particle\-\_\-channel$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$ Class Template Reference}
-\label{a00395}\index{Camgen\-::particle\-\_\-channel$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$@{Camgen\-::particle\-\_\-channel$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$}}
-}
-Inheritance diagram for Camgen\-:\-:particle\-\_\-channel$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$\-:\begin{figure}[H]
+\hypertarget{a00395}{}\section{Camgen\+:\+:parni\+\_\+integrator$<$ value\+\_\+t, D, rng\+\_\+t, key\+\_\+t $>$ Class Template Reference}
+\label{a00395}\index{Camgen\+::parni\+\_\+integrator$<$ value\+\_\+t, D, rng\+\_\+t, key\+\_\+t $>$@{Camgen\+::parni\+\_\+integrator$<$ value\+\_\+t, D, rng\+\_\+t, key\+\_\+t $>$}}
+
+
+Parni adaptive grid for multi-\/dimensional integration.  
+
+
+
+
+{\ttfamily \#include $<$parni\+\_\+int.\+h$>$}
+
+Inheritance diagram for Camgen\+:\+:parni\+\_\+integrator$<$ value\+\_\+t, D, rng\+\_\+t, key\+\_\+t $>$\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2.000000cm]{a00395}
+\includegraphics[height=1.209503cm]{a00395}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-bool \hyperlink{a00395_a23098c7456702cce4946d0d787f5bf37}{generate} ()
-\begin{DoxyCompactList}\small\item\em 'Bare generation' method (purely virtual). \end{DoxyCompactList}\item 
-\hypertarget{a00395_a1c398ce4d7dd1aed47752d2391ae11df}{bool \hyperlink{a00395_a1c398ce4d7dd1aed47752d2391ae11df}{evaluate\-\_\-weight} ()}\label{a00395_a1c398ce4d7dd1aed47752d2391ae11df}
+\hyperlink{a00395_adf939625bbca4ef9d79d3e12b79369d1}{parni\+\_\+integrator} (const \hyperlink{a00579}{point\+\_\+type} \&xmin\+\_\+, const \hyperlink{a00579}{point\+\_\+type} \&xmax\+\_\+, size\+\_\+type n\+\_\+bins\+\_\+=500, grid\+\_\+modes\+::type mode\+\_\+=grid\+\_\+modes\+::cumulant\+\_\+weights)
+\begin{DoxyCompactList}\small\item\em Constructor with lower-\/left and upper-\/right integration domain corners and the maximal number of bins as arguments. \end{DoxyCompactList}\item 
+\hyperlink{a00395_a0ffffabca9adcd4d297ebff69ca8cc2b}{parni\+\_\+integrator} (\hyperlink{a00579}{point\+\_\+type} $\ast$point\+\_\+, const \hyperlink{a00579}{point\+\_\+type} \&xmin\+\_\+, const \hyperlink{a00579}{point\+\_\+type} \&xmax\+\_\+, size\+\_\+type n\+\_\+bins\+\_\+=500, grid\+\_\+modes\+::type mode\+\_\+=grid\+\_\+modes\+::cumulant\+\_\+weights)
+\begin{DoxyCompactList}\small\item\em Constructor with an external point address (to be filled) and lower-\/left and upper-\/right integration domain corners and the maximal number of bins as arguments. \end{DoxyCompactList}\item 
+\hypertarget{a00395_a2f50fc4c21724fbe2f6d3b5579cb5f3f}{}bool \hyperlink{a00395_a2f50fc4c21724fbe2f6d3b5579cb5f3f}{generate} ()\label{a00395_a2f50fc4c21724fbe2f6d3b5579cb5f3f}
 
-\begin{DoxyCompactList}\small\item\em Event weight calculation method. Trivial by default. \end{DoxyCompactList}\item 
-void \hyperlink{a00395_a40cc397db66b0451b6135c80645e50b9}{update} ()
-\begin{DoxyCompactList}\small\item\em Update method. \end{DoxyCompactList}\item 
-\hypertarget{a00395_a02d5211d206546de42ec20bbfbf6ecef}{void \hyperlink{a00395_a02d5211d206546de42ec20bbfbf6ecef}{adapt} ()}\label{a00395_a02d5211d206546de42ec20bbfbf6ecef}
+\begin{DoxyCompactList}\small\item\em Generation method implementation. \end{DoxyCompactList}\item 
+\hypertarget{a00395_a672ad11bb803db868f62aba828b39aca}{}bool \hyperlink{a00395_a672ad11bb803db868f62aba828b39aca}{evaluate\+\_\+weight} ()\label{a00395_a672ad11bb803db868f62aba828b39aca}
 
-\begin{DoxyCompactList}\small\item\em Adaptation method. Trivial by default. \end{DoxyCompactList}\item 
-void \hyperlink{a00395_acc228746623bfc5c6f3f1d62f3a841e6}{reset} ()
-\begin{DoxyCompactList}\small\item\em Resets the the state of the M\-C generator. \end{DoxyCompactList}\item 
-void \hyperlink{a00395_afde27e92b24ade585d066329f1181089}{reset\-\_\-cross\-\_\-section} ()
-\begin{DoxyCompactList}\small\item\em Resets cross section and weight sums of the generator, but keeps channel weights and grids intact. \end{DoxyCompactList}\item 
-\hypertarget{a00395_a55efdbc227d118580d2e4d02db4d7cc3}{std\-::istream \& \hyperlink{a00395_a55efdbc227d118580d2e4d02db4d7cc3}{load} (std\-::istream \&is)}\label{a00395_a55efdbc227d118580d2e4d02db4d7cc3}
+\begin{DoxyCompactList}\small\item\em Weight evaluation method. \end{DoxyCompactList}\item 
+\hypertarget{a00395_a62adcda41cf5916f1f8b85f385e2dc1f}{}void \hyperlink{a00395_a62adcda41cf5916f1f8b85f385e2dc1f}{update} ()\label{a00395_a62adcda41cf5916f1f8b85f385e2dc1f}
 
-\begin{DoxyCompactList}\small\item\em Loads cross section data from input stream. \end{DoxyCompactList}\item 
-\hypertarget{a00395_aba9d512ac30275f6b14922051f7b1c1c}{std\-::ostream \& \hyperlink{a00395_aba9d512ac30275f6b14922051f7b1c1c}{save} (std\-::ostream \&os) const }\label{a00395_aba9d512ac30275f6b14922051f7b1c1c}
+\begin{DoxyCompactList}\small\item\em Overridden updating method. \end{DoxyCompactList}\item 
+\hypertarget{a00395_a569621866d7d53e00a1586d12d7200c8}{}void \hyperlink{a00395_a569621866d7d53e00a1586d12d7200c8}{adapt} ()\label{a00395_a569621866d7d53e00a1586d12d7200c8}
 
-\begin{DoxyCompactList}\small\item\em Saves cross section data from input stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Overridden adaptation method. \end{DoxyCompactList}\item 
+void \hyperlink{a00395_a1ba9757b4e125032dd1dc836fec4c4fb}{reset} ()
+\begin{DoxyCompactList}\small\item\em Resets the cross section and re-\/initialises the grid to a single bin. \end{DoxyCompactList}\item 
+\hypertarget{a00395_af614bf3d946c45465e2d70e2ece2b8e0}{}\hyperlink{a00397}{parni\+\_\+sub\+\_\+grid}$<$ value\+\_\+t, D, rng\+\_\+t, key\+\_\+t $>$ $\ast$ \hyperlink{a00395_af614bf3d946c45465e2d70e2ece2b8e0}{create\+\_\+sub\+\_\+grid} (const \hyperlink{a00579}{point\+\_\+type} \&xmin, const \hyperlink{a00579}{point\+\_\+type} \&xmax)\label{a00395_af614bf3d946c45465e2d70e2ece2b8e0}
+
+\begin{DoxyCompactList}\small\item\em Creates a new sub grid generator with the current instance as parent. \end{DoxyCompactList}\item 
+\hypertarget{a00395_ac278e12caf66add9a1538210068c0992}{}bool \hyperlink{a00395_ac278e12caf66add9a1538210068c0992}{final} () const \label{a00395_ac278e12caf66add9a1538210068c0992}
+
+\begin{DoxyCompactList}\small\item\em Returns whether the maximal number of bins has been reached. \end{DoxyCompactList}\item 
+\hypertarget{a00395_a4e6418b280bdef02232b116365beb0e9}{}size\+\_\+type \hyperlink{a00395_a4e6418b280bdef02232b116365beb0e9}{count\+\_\+bins} () const \label{a00395_a4e6418b280bdef02232b116365beb0e9}
+
+\begin{DoxyCompactList}\small\item\em Returns the number of bins in the tree. \end{DoxyCompactList}\item 
+\hypertarget{a00395_aa571715ea2e83a3d1c760d431c0b8fe6}{}size\+\_\+type \hyperlink{a00395_aa571715ea2e83a3d1c760d431c0b8fe6}{count\+\_\+leaves} () const \label{a00395_aa571715ea2e83a3d1c760d431c0b8fe6}
+
+\begin{DoxyCompactList}\small\item\em Returns the number of leaves in the tree. \end{DoxyCompactList}\item 
+\hypertarget{a00395_a225e526f2d78b9f671ab045a1f7e1e5f}{}const value\+\_\+type \& \hyperlink{a00395_a225e526f2d78b9f671ab045a1f7e1e5f}{norm} () const \label{a00395_a225e526f2d78b9f671ab045a1f7e1e5f}
+
+\begin{DoxyCompactList}\small\item\em Weight normalisation. \end{DoxyCompactList}\item 
+\hypertarget{a00395_a3ba3f8bbcbc2698e93d85619fb71fcb8}{}std\+::ostream \& \hyperlink{a00395_a3ba3f8bbcbc2698e93d85619fb71fcb8}{print} (std\+::ostream \&os) const \label{a00395_a3ba3f8bbcbc2698e93d85619fb71fcb8}
+
+\begin{DoxyCompactList}\small\item\em Printing method. \end{DoxyCompactList}\item 
+\hypertarget{a00395_a4fc6028e85234e6da773f0c6379913b8}{}std\+::ostream \& \hyperlink{a00395_a4fc6028e85234e6da773f0c6379913b8}{print\+\_\+leaves} (std\+::ostream \&os) const \label{a00395_a4fc6028e85234e6da773f0c6379913b8}
+
+\begin{DoxyCompactList}\small\item\em Method printing only child bins. \end{DoxyCompactList}\item 
+\hypertarget{a00395_a769c2a70d65dbeee08d1efd854342439}{}\hyperlink{a00431}{plot\+\_\+script} $\ast$ \hyperlink{a00395_a769c2a70d65dbeee08d1efd854342439}{print\+\_\+rectangles} (\hyperlink{a00431}{plot\+\_\+script} $\ast$ps) const \label{a00395_a769c2a70d65dbeee08d1efd854342439}
+
+\begin{DoxyCompactList}\small\item\em Adds the rectangles to the plotscript pointer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00395_a33af3af600441e06f9c0cb7e21ed0603}{}const size\+\_\+type \hyperlink{a00395_a33af3af600441e06f9c0cb7e21ed0603}{n\+\_\+bins}\label{a00395_a33af3af600441e06f9c0cb7e21ed0603}
+
+\begin{DoxyCompactList}\small\item\em Maximal number of bins. \end{DoxyCompactList}\item 
+\hypertarget{a00395_a419381ed662909319d41cbb784573e1d}{}const grid\+\_\+modes\+::type \hyperlink{a00395_a419381ed662909319d41cbb784573e1d}{mode}\label{a00395_a419381ed662909319d41cbb784573e1d}
+
+\begin{DoxyCompactList}\small\item\em Splitting criterium. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
 
+\subsection{Detailed Description}
+\subsubsection*{template$<$class value\+\_\+t, std\+::size\+\_\+t D, class rng\+\_\+t, class key\+\_\+t$>$class Camgen\+::parni\+\_\+integrator$<$ value\+\_\+t, D, rng\+\_\+t, key\+\_\+t $>$}
+
+Parni adaptive grid for multi-\/dimensional integration. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00395_adf939625bbca4ef9d79d3e12b79369d1}{}\index{Camgen\+::parni\+\_\+integrator@{Camgen\+::parni\+\_\+integrator}!parni\+\_\+integrator@{parni\+\_\+integrator}}
+\index{parni\+\_\+integrator@{parni\+\_\+integrator}!Camgen\+::parni\+\_\+integrator@{Camgen\+::parni\+\_\+integrator}}
+\subsubsection[{parni\+\_\+integrator}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\+\_\+t , std\+::size\+\_\+t D, class rng\+\_\+t , class key\+\_\+t $>$ {\bf Camgen\+::parni\+\_\+integrator}$<$ value\+\_\+t, D, rng\+\_\+t, key\+\_\+t $>$\+::{\bf parni\+\_\+integrator} (
+\begin{DoxyParamCaption}
+\item[{const {\bf point\+\_\+type} \&}]{xmin\+\_\+, }
+\item[{const {\bf point\+\_\+type} \&}]{xmax\+\_\+, }
+\item[{size\+\_\+type}]{n\+\_\+bins\+\_\+ = {\ttfamily 500}, }
+\item[{grid\+\_\+modes\+::type}]{mode\+\_\+ = {\ttfamily grid\+\_\+modes\+:\+:cumulant\+\_\+weights}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00395_adf939625bbca4ef9d79d3e12b79369d1}
+
+
+Constructor with lower-\/left and upper-\/right integration domain corners and the maximal number of bins as arguments. 
+
+\hypertarget{a00395_a0ffffabca9adcd4d297ebff69ca8cc2b}{}\index{Camgen\+::parni\+\_\+integrator@{Camgen\+::parni\+\_\+integrator}!parni\+\_\+integrator@{parni\+\_\+integrator}}
+\index{parni\+\_\+integrator@{parni\+\_\+integrator}!Camgen\+::parni\+\_\+integrator@{Camgen\+::parni\+\_\+integrator}}
+\subsubsection[{parni\+\_\+integrator}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\+\_\+t , std\+::size\+\_\+t D, class rng\+\_\+t , class key\+\_\+t $>$ {\bf Camgen\+::parni\+\_\+integrator}$<$ value\+\_\+t, D, rng\+\_\+t, key\+\_\+t $>$\+::{\bf parni\+\_\+integrator} (
+\begin{DoxyParamCaption}
+\item[{{\bf point\+\_\+type} $\ast$}]{point\+\_\+, }
+\item[{const {\bf point\+\_\+type} \&}]{xmin\+\_\+, }
+\item[{const {\bf point\+\_\+type} \&}]{xmax\+\_\+, }
+\item[{size\+\_\+type}]{n\+\_\+bins\+\_\+ = {\ttfamily 500}, }
+\item[{grid\+\_\+modes\+::type}]{mode\+\_\+ = {\ttfamily grid\+\_\+modes\+:\+:cumulant\+\_\+weights}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00395_a0ffffabca9adcd4d297ebff69ca8cc2b}
+
+
+Constructor with an external point address (to be filled) and lower-\/left and upper-\/right integration domain corners and the maximal number of bins as arguments. 
+
+
+
 \subsection{Member Function Documentation}
-\hypertarget{a00395_a23098c7456702cce4946d0d787f5bf37}{\index{Camgen\-::particle\-\_\-channel@{Camgen\-::particle\-\_\-channel}!generate@{generate}}
-\index{generate@{generate}!Camgen::particle_channel@{Camgen\-::particle\-\_\-channel}}
-\subsubsection[{generate}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t, std\-::size\-\_\-t N\-\_\-in, std\-::size\-\_\-t N\-\_\-out, class rng\-\_\-t$>$ bool {\bf Camgen\-::particle\-\_\-channel}$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$\-::generate (
+\hypertarget{a00395_a1ba9757b4e125032dd1dc836fec4c4fb}{}\index{Camgen\+::parni\+\_\+integrator@{Camgen\+::parni\+\_\+integrator}!reset@{reset}}
+\index{reset@{reset}!Camgen\+::parni\+\_\+integrator@{Camgen\+::parni\+\_\+integrator}}
+\subsubsection[{reset}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\+\_\+t , std\+::size\+\_\+t D, class rng\+\_\+t , class key\+\_\+t $>$ void {\bf Camgen\+::parni\+\_\+integrator}$<$ value\+\_\+t, D, rng\+\_\+t, key\+\_\+t $>$\+::reset (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00395_a23098c7456702cce4946d0d787f5bf37}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{a00395_a1ba9757b4e125032dd1dc836fec4c4fb}
 
 
-'Bare generation' method (purely virtual). 
-
-Should update the weight data member. 
-
-Implements \hyperlink{a00362_a197b7bb66d8de5f6de401f81bea71e6c}{Camgen\-::\-M\-C\-\_\-generator$<$ model\-\_\-t\-::value\-\_\-type $>$}.
-
-\hypertarget{a00395_acc228746623bfc5c6f3f1d62f3a841e6}{\index{Camgen\-::particle\-\_\-channel@{Camgen\-::particle\-\_\-channel}!reset@{reset}}
-\index{reset@{reset}!Camgen::particle_channel@{Camgen\-::particle\-\_\-channel}}
-\subsubsection[{reset}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t, std\-::size\-\_\-t N\-\_\-in, std\-::size\-\_\-t N\-\_\-out, class rng\-\_\-t$>$ void {\bf Camgen\-::particle\-\_\-channel}$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$\-::reset (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00395_acc228746623bfc5c6f3f1d62f3a841e6}
-
-
-Resets the the state of the M\-C generator. 
-
-Resets adaptive channels weights and grids as well. 
-
-Reimplemented from \hyperlink{a00362_a96247247800b9db50ddf7fafb28aca42}{Camgen\-::\-M\-C\-\_\-generator$<$ model\-\_\-t\-::value\-\_\-type $>$}.
-
-\hypertarget{a00395_afde27e92b24ade585d066329f1181089}{\index{Camgen\-::particle\-\_\-channel@{Camgen\-::particle\-\_\-channel}!reset\-\_\-cross\-\_\-section@{reset\-\_\-cross\-\_\-section}}
-\index{reset\-\_\-cross\-\_\-section@{reset\-\_\-cross\-\_\-section}!Camgen::particle_channel@{Camgen\-::particle\-\_\-channel}}
-\subsubsection[{reset\-\_\-cross\-\_\-section}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t, std\-::size\-\_\-t N\-\_\-in, std\-::size\-\_\-t N\-\_\-out, class rng\-\_\-t$>$ void {\bf Camgen\-::particle\-\_\-channel}$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$\-::reset\-\_\-cross\-\_\-section (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00395_afde27e92b24ade585d066329f1181089}
-
-
-Resets cross section and weight sums of the generator, but keeps channel weights and grids intact. 
+Resets the cross section and re-\/initialises the grid to a single bin. 
 
 
 
-Reimplemented from \hyperlink{a00362_a1ec9818cc8260e1be5c568d319cb722b}{Camgen\-::\-M\-C\-\_\-generator$<$ model\-\_\-t\-::value\-\_\-type $>$}.
-
-\hypertarget{a00395_a40cc397db66b0451b6135c80645e50b9}{\index{Camgen\-::particle\-\_\-channel@{Camgen\-::particle\-\_\-channel}!update@{update}}
-\index{update@{update}!Camgen::particle_channel@{Camgen\-::particle\-\_\-channel}}
-\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t, std\-::size\-\_\-t N\-\_\-in, std\-::size\-\_\-t N\-\_\-out, class rng\-\_\-t$>$ void {\bf Camgen\-::particle\-\_\-channel}$<$ model\-\_\-t, N\-\_\-in, N\-\_\-out, rng\-\_\-t $>$\-::update (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00395_a40cc397db66b0451b6135c80645e50b9}
-
-
-Update method. 
-
-Should refresh internal parameters with information given by integrand. 
-
-Reimplemented from \hyperlink{a00362_ae5e70cee65aacbb6a556057de02ef3dd}{Camgen\-::\-M\-C\-\_\-generator$<$ model\-\_\-t\-::value\-\_\-type $>$}.
+Reimplemented from \hyperlink{a00369_a691b9f4c2bb21bed65a7b4ab14115b77}{Camgen\+::\+M\+C\+\_\+integrator$<$ value\+\_\+t $>$}.
 
 
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-include/\-Camgen/p\-\_\-channel.\-h\end{DoxyCompactItemize}
+include/\+Camgen/parni\+\_\+bin.\+h\item 
+include/\+Camgen/\hyperlink{a00708}{parni\+\_\+int.\+h}\end{DoxyCompactItemize}

@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 277.008310
+%%BoundingBox: 0 0 500 93.167702
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,12 +19,12 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 1.805000 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 5.366667 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
 /yspacing 0 def
-/rows 10 def
+/rows 3 def
 /cols 2 def
 /scalefactor 0 def
 /boxfont /Times-Roman findfont fontheight scalefont def
@@ -173,16 +173,10 @@
 
 boxfont setfont
 1 boundaspect scale
-(Camgen::phase_space_cut) cw
-(Camgen::event_generator< model_t, N_in, N_out, rng_t >) cw
-(Camgen::generator_configuration< model_t >) cw
-(Camgen::phase_space_cut_and) cw
-(Camgen::phase_space_cut_not) cw
-(Camgen::phase_space_cut_or) cw
-(Camgen::process_generator< model_t, N_in, N_out, rng_t >) cw
-(Camgen::ps_generator< model_t, N_in, N_out >) cw
-(Camgen::ps_generator< model_t, 1, N_out >) cw
-(Camgen::ps_generator< model_t, 2, N_out >) cw
+(Camgen::partonic_is< model_t, 1, Minkowski_type >) cw
+(Camgen::initial_state< model_t, 1 >) cw
+(Camgen::MC_generator< model_t::value_type >) cw
+(Camgen::MC_integrator_base< model_t::value_type >) cw
 /boxwidth boxwidth marginwidth 2 mul add def
 /xspacing boxwidth distx add def
 /yspacing boxheight disty add def
@@ -194,41 +188,22 @@ boundx scalefactor div boundy scalefactor div scale
 
 % ----- classes -----
 
- (Camgen::phase_space_cut) 0.000000 9.000000 box
- (Camgen::event_generator< model_t, N_in, N_out, rng_t >) 1.000000 8.000000 box
- (Camgen::generator_configuration< model_t >) 1.000000 7.000000 box
- (Camgen::phase_space_cut_and) 1.000000 6.000000 box
- (Camgen::phase_space_cut_not) 1.000000 5.000000 box
- (Camgen::phase_space_cut_or) 1.000000 4.000000 box
- (Camgen::process_generator< model_t, N_in, N_out, rng_t >) 1.000000 3.000000 box
- (Camgen::ps_generator< model_t, N_in, N_out >) 1.000000 2.000000 box
-1.000000 2.000000 mark
- (Camgen::ps_generator< model_t, 1, N_out >) 1.000000 1.000000 box
-1.000000 1.000000 mark
- (Camgen::ps_generator< model_t, 2, N_out >) 1.000000 0.000000 box
-1.000000 0.000000 mark
+ (Camgen::partonic_is< model_t, 1, Minkowski_type >) 0.500000 0.000000 box
+ (Camgen::initial_state< model_t, 1 >) 0.500000 1.000000 box
+ (Camgen::MC_generator< model_t::value_type >) 0.000000 2.000000 box
+ (Camgen::MC_integrator_base< model_t::value_type >) 1.000000 2.000000 box
 
 % ----- relations -----
 
 solid
-1 0.000000 8.250000 out
+0 0.500000 0.000000 out
 solid
-0 0.000000 8.500000 hedge
+1 0.500000 1.000000 in
 solid
-0 0.000000 7.500000 hedge
+0 0.500000 1.000000 out
 solid
-0 0.000000 6.500000 hedge
+0.000000 1.000000 2.000000 conn
 solid
-0 0.000000 5.500000 hedge
+1 0.000000 2.000000 in
 solid
-0 0.000000 4.500000 hedge
-solid
-0 0.000000 3.500000 hedge
-solid
-0 0.000000 2.500000 hedge
-solid
-0 0.000000 1.500000 hedge
-solid
-0 0.000000 0.500000 hedge
-solid
-0.000000 9.000000 0.500000 vedge
+1 1.000000 2.000000 in

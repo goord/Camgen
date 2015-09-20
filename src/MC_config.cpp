@@ -193,30 +193,6 @@ namespace Camgen
 	MC_config::auto_proc_batch=n;
     }
 
-    /* Sets the maximal number of MC throws in s-pair generation. If set to
-     * unity, the one-shot method is used. Otherwise, s-pair bound checking is
-     * performed. Returns false if the argument is invalid or incompatible with
-     * s-channel grids flag. */
-
-    bool set_max_s_pairs(std::size_t n)
-    {
-	return MC_config::set_max_s_pairs(n);
-    }
-    bool MC_config::set_max_s_pairs(std::size_t n)
-    {
-	if(n==0)
-	{
-	    return false;
-	}
-	if(MC_config::s_grids)
-	{
-	    MC_config::mx_throws=1;
-	    return (n==1);
-	}
-	MC_config::mx_throws=n;
-	return true;
-    }
-
     /* Sets the maximal number of events thrown not passing cuts before moving
      * on at initialisation of channels and grids. */
 
@@ -737,17 +713,6 @@ namespace Camgen
     {
 	return MC_config::auto_proc_batch;
     }
-
-    /* Returns the maximal number of s-pair generations per s-branching. */
-
-    std::size_t max_s_pairs()
-    {
-	return MC_config::max_s_pairs();
-    }
-    std::size_t MC_config::max_s_pairs()
-    {
-	return MC_config::mx_throws;
-    }
     
     /* Returns the maximal number of thrown points at grid/channel
      * initialisation not passing the cuts before moving on. */
@@ -1006,6 +971,17 @@ namespace Camgen
 	return MC_config::init_evts;
     }
 
+    /* Returns the s-pair generation mode: */
+
+    s_pair_generation_modes::type s_pair_generation_mode()
+    {
+	return MC_config::s_pair_generation_mode();
+    }
+    s_pair_generation_modes::type MC_config::s_pair_generation_mode()
+    {
+	return MC_config::s_pair_genmode;
+    }
+
     /* Sets the minimal invariant mass for particles (i,j). Returns the
        effectively inserted dimass. */
 
@@ -1023,6 +999,17 @@ namespace Camgen
 	    return m;
 	}
 	return 0;
+    }
+
+    /* Sets the s-pair generation mode: */
+
+    void set_s_pair_generation_mode(s_pair_generation_modes::type mode)
+    {
+	MC_config::set_s_pair_generation_mode(mode);
+    }
+    void MC_config::set_s_pair_generation_mode(s_pair_generation_modes::type mode)
+    {
+	MC_config::s_pair_genmode=mode;
     }
 
     /* Sets the minimal invariant mass-squared for particles (i,j). Returns the
@@ -1097,6 +1084,7 @@ namespace Camgen
     std::size_t MC_config::NR_iters=10;
     bool MC_config::pdf_alpha_s=true;
     std::size_t MC_config::init_evts=10000;
+    s_pair_generation_modes::type MC_config::s_pair_genmode=s_pair_generation_modes::hit_and_miss;
     
     std::map<std::pair<int,int>,double> MC_config::mmin;
     

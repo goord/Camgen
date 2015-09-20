@@ -1,0 +1,9 @@
+-----------------------------------------------------
+testing computed phase space variables...............
+-----------------------------------------------------
+Checking invariant particle mass calculations...................done.
+Checking particle momentum calculations...................done.
+Checking particle dimass calculations...................done.
+Checking particle transverse mass calculations...................done.
+Checking particle (pseudo-)rapidity calculations...................done.
+Checking particle angle calculations...................done.

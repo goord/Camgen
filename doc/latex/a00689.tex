@@ -1,61 +1,24 @@
-\hypertarget{a00689}{
-\section{include/Camorra/ps\_\-copy.h File Reference}
-\label{a00689}\index{include/Camorra/ps\_\-copy.h@{include/Camorra/ps\_\-copy.h}}
-}
+\hypertarget{a00689}{}\section{include/\+Camgen/matrix\+\_\+el.h File Reference}
+\label{a00689}\index{include/\+Camgen/matrix\+\_\+el.\+h@{include/\+Camgen/matrix\+\_\+el.\+h}}
 
 
-Classes to copy phase space variables between different CM\_\-algorithm instances.  
+Abstract base class for user-\/defined matrix elements.  
 
 
-{\ttfamily \#include $<$Camorra/CM\_\-algorithm.h$>$}\par
+{\ttfamily \#include $<$complex$>$}\\*
+{\ttfamily \#include $<$Camgen/\+M\+C\+\_\+gen.\+h$>$}\\*
+{\ttfamily \#include $<$Camgen/ps\+\_\+gen\+\_\+base.\+h$>$}\\*
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{a00341}{Camorra::momentum\_\-copy$<$ model\_\-t1, model\_\-t2, D1, D2 $>$}
-\item 
-class \hyperlink{a00342}{Camorra::momentum\_\-copy$<$ model\_\-t1, model\_\-t2, D, D $>$}
-\item 
-class \hyperlink{a00241}{Camorra::helicity\_\-copy$<$ model\_\-t1, model\_\-t2, q1, q2 $>$}
-\item 
-class \hyperlink{a00242}{Camorra::helicity\_\-copy$<$ model\_\-t1, model\_\-t2, false, false $>$}
-\item 
-class \hyperlink{a00243}{Camorra::helicity\_\-copy$<$ model\_\-t1, model\_\-t2, false, true $>$}
-\item 
-class \hyperlink{a00244}{Camorra::helicity\_\-copy$<$ model\_\-t1, model\_\-t2, true, true $>$}
-\item 
-class \hyperlink{a00068}{Camorra::colour\_\-copy\_\-helper$<$ model\_\-t1, model\_\-t2, q1, q2 $>$}
-\item 
-class \hyperlink{a00069}{Camorra::colour\_\-copy\_\-helper$<$ model\_\-t1, model\_\-t2, false, false $>$}
-\item 
-class \hyperlink{a00071}{Camorra::colour\_\-copy\_\-helper$<$ model\_\-t1, model\_\-t2, true, true $>$}
-\item 
-class \hyperlink{a00070}{Camorra::colour\_\-copy\_\-helper$<$ model\_\-t1, model\_\-t2, false, true $>$}
-\item 
-class \hyperlink{a00066}{Camorra::colour\_\-copy$<$ model\_\-t1, model\_\-t2, false $>$}
-\item 
-class \hyperlink{a00067}{Camorra::colour\_\-copy$<$ model\_\-t1, model\_\-t2, true $>$}
-\item 
-class \hyperlink{a00374}{Camorra::phase\_\-space\_\-copy$<$ model\_\-t1, model\_\-t2 $>$}
-\end{DoxyCompactItemize}
-\subsection*{Functions}
-\begin{DoxyCompactItemize}
-\item 
-\hypertarget{a00790_a979334a179f3e239cd7b3e9403bbf35a}{
-{\footnotesize template$<$class model\_\-t1 , class model\_\-t2 , std::size\_\-t N\_\-in, std::size\_\-t N\_\-out$>$ }\\void \hyperlink{a00790_a979334a179f3e239cd7b3e9403bbf35a}{Camorra::copy\_\-momenta} (typename CM\_\-algorithm$<$ model\_\-t1, N\_\-in, N\_\-out $>$::const\_\-tree\_\-iterator it1, typename CM\_\-algorithm$<$ model\_\-t2, N\_\-in, N\_\-out $>$::tree\_\-iterator it2)}
-\label{a00790_a979334a179f3e239cd7b3e9403bbf35a}
-
-\begin{DoxyCompactList}\small\item\em Function copying momenta from CM tree iterator it1 to it2. \end{DoxyCompactList}\item 
-\hypertarget{a00790_addebe2e16404cc760d50e370b86b800b}{
-{\footnotesize template$<$class model\_\-t1 , class model\_\-t2 , std::size\_\-t N\_\-in, std::size\_\-t N\_\-out$>$ }\\void \hyperlink{a00790_addebe2e16404cc760d50e370b86b800b}{Camorra::copy\_\-helicities} (typename CM\_\-algorithm$<$ model\_\-t1, N\_\-in, N\_\-out $>$::const\_\-tree\_\-iterator it1, typename CM\_\-algorithm$<$ model\_\-t2, N\_\-in, N\_\-out $>$::tree\_\-iterator it2)}
-\label{a00790_addebe2e16404cc760d50e370b86b800b}
-
-\begin{DoxyCompactList}\small\item\em Function copying helicities from CM tree iterator it1 to it2. \end{DoxyCompactList}\item 
-\hypertarget{a00790_a82d76ae94657c4c7797850f09d1ce67f}{
-{\footnotesize template$<$class model\_\-t1 , class model\_\-t2 , std::size\_\-t N\_\-in, std::size\_\-t N\_\-out$>$ }\\void \hyperlink{a00790_a82d76ae94657c4c7797850f09d1ce67f}{Camorra::copy\_\-colours} (typename CM\_\-algorithm$<$ model\_\-t1, N\_\-in, N\_\-out $>$::const\_\-tree\_\-iterator it1, typename CM\_\-algorithm$<$ model\_\-t2, N\_\-in, N\_\-out $>$::tree\_\-iterator it2)}
-\label{a00790_a82d76ae94657c4c7797850f09d1ce67f}
-
-\begin{DoxyCompactList}\small\item\em Function copying colours from CM tree iterator it1 to it2. \end{DoxyCompactList}\end{DoxyCompactItemize}
+class \hyperlink{a00363}{Camgen\+::matrix\+\_\+element$<$ model\+\_\+t $>$}
+\begin{DoxyCompactList}\small\item\em Base class for user-\/defined matrix elements. \end{DoxyCompactList}\item 
+class \hyperlink{a00571}{Camgen\+::unit\+\_\+matrix\+\_\+element$<$ model\+\_\+t $>$}
+\begin{DoxyCompactList}\small\item\em Unit matrix element, useful for computing the phase space volume. \end{DoxyCompactList}\item 
+class \hyperlink{a00364}{Camgen\+::matrix\+\_\+element\+\_\+reweighter$<$ model\+\_\+t, model\+\_\+t2 $>$}
+\begin{DoxyCompactList}\small\item\em Reweighting matrix element. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Classes to copy phase space variables between different CM\_\-algorithm instances. 
+Abstract base class for user-\/defined matrix elements. 
+

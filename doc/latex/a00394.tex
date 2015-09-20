@@ -1,9 +1,137 @@
-\hypertarget{a00394}{\section{Camgen\-:\-:particle$<$ model\-\_\-t $>$ Class Template Reference}
-\label{a00394}\index{Camgen\-::particle$<$ model\-\_\-t $>$@{Camgen\-::particle$<$ model\-\_\-t $>$}}
-}
+\hypertarget{a00394}{}\section{Camgen\+:\+:parni\+\_\+generator$<$ value\+\_\+t, 1, rng\+\_\+t, key\+\_\+t $>$ Class Template Reference}
+\label{a00394}\index{Camgen\+::parni\+\_\+generator$<$ value\+\_\+t, 1, rng\+\_\+t, key\+\_\+t $>$@{Camgen\+::parni\+\_\+generator$<$ value\+\_\+t, 1, rng\+\_\+t, key\+\_\+t $>$}}
 
 
-The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+Parni specialisation for one-\/dimensional integration.  
+
+
+
+
+{\ttfamily \#include $<$parni\+\_\+gen.\+h$>$}
+
+Inheritance diagram for Camgen\+:\+:parni\+\_\+generator$<$ value\+\_\+t, 1, rng\+\_\+t, key\+\_\+t $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=0.809834cm]{a00394}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
 \item 
-include/\-Camgen/forward\-\_\-decs.\-h\item 
-include/\-Camgen/particle.\-h\end{DoxyCompactItemize}
+\hyperlink{a00394_acda2cc3d9d1d7ea5d8d5f4716e425d16}{parni\+\_\+generator} (const point\+\_\+type \&xmin\+\_\+, const point\+\_\+type \&xmax\+\_\+, size\+\_\+type n\+\_\+bins\+\_\+=500, grid\+\_\+modes\+::type mode\+\_\+=grid\+\_\+modes\+::cumulant\+\_\+weights)
+\begin{DoxyCompactList}\small\item\em Constructor with lower-\/left and upper-\/right integration domain corners and the maximal number of bins as arguments. \end{DoxyCompactList}\item 
+\hyperlink{a00394_a5384f89b199d41078894932608aa4167}{parni\+\_\+generator} (point\+\_\+type $\ast$point\+\_\+, const point\+\_\+type \&xmin\+\_\+, const point\+\_\+type \&xmax\+\_\+, size\+\_\+type n\+\_\+bins\+\_\+=500, grid\+\_\+modes\+::type mode\+\_\+=grid\+\_\+modes\+::cumulant\+\_\+weights)
+\begin{DoxyCompactList}\small\item\em Constructor with an external point address (to be filled) and lower-\/left and upper-\/right integration domain corners and the maximal number of bins as arguments. \end{DoxyCompactList}\item 
+\hypertarget{a00394_ad46e93e63d228a0d4dc0ce0f3557766b}{}\hyperlink{a00394_ad46e93e63d228a0d4dc0ce0f3557766b}{$\sim$parni\+\_\+generator} ()\label{a00394_ad46e93e63d228a0d4dc0ce0f3557766b}
+
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\hypertarget{a00394_a7d8115145c8a1d2bc2c4ca482025c8dd}{}bool \hyperlink{a00394_a7d8115145c8a1d2bc2c4ca482025c8dd}{generate} ()\label{a00394_a7d8115145c8a1d2bc2c4ca482025c8dd}
+
+\begin{DoxyCompactList}\small\item\em Generation method implementation. \end{DoxyCompactList}\item 
+\hypertarget{a00394_a1fb09f5a92f9ba658997d8ea5911c140}{}bool \hyperlink{a00394_a1fb09f5a92f9ba658997d8ea5911c140}{evaluate\+\_\+weight} ()\label{a00394_a1fb09f5a92f9ba658997d8ea5911c140}
+
+\begin{DoxyCompactList}\small\item\em Weight evaluation method. \end{DoxyCompactList}\item 
+\hypertarget{a00394_a770b5d662eb26778e947b8520595dfc1}{}void \hyperlink{a00394_a770b5d662eb26778e947b8520595dfc1}{update} ()\label{a00394_a770b5d662eb26778e947b8520595dfc1}
+
+\begin{DoxyCompactList}\small\item\em Overridden updating method. \end{DoxyCompactList}\item 
+\hypertarget{a00394_acf415f24c29ac223a824deed030d2e21}{}void \hyperlink{a00394_acf415f24c29ac223a824deed030d2e21}{adapt} ()\label{a00394_acf415f24c29ac223a824deed030d2e21}
+
+\begin{DoxyCompactList}\small\item\em Overridden adaptation method. \end{DoxyCompactList}\item 
+\hypertarget{a00394_aa84dbbd05ef7515ae8256f545902338d}{}void \hyperlink{a00394_aa84dbbd05ef7515ae8256f545902338d}{adapt} (const point\+\_\+type \&a, const point\+\_\+type \&b)\label{a00394_aa84dbbd05ef7515ae8256f545902338d}
+
+\begin{DoxyCompactList}\small\item\em Adapts the grid between the selected boundaries. \end{DoxyCompactList}\item 
+void \hyperlink{a00394_acb562943c0312deaf243646362585fb8}{reset} ()
+\begin{DoxyCompactList}\small\item\em Resets the cross section and re-\/initialises the grid to a single bin. \end{DoxyCompactList}\item 
+\hypertarget{a00394_afdee32f35369a06bd9935e6896c9450e}{}\hyperlink{a00397}{parni\+\_\+sub\+\_\+grid}$<$ value\+\_\+t, 1, rng\+\_\+t, key\+\_\+t $>$ $\ast$ \hyperlink{a00394_afdee32f35369a06bd9935e6896c9450e}{create\+\_\+sub\+\_\+grid} (const point\+\_\+type \&xmin, const point\+\_\+type \&xmax)\label{a00394_afdee32f35369a06bd9935e6896c9450e}
+
+\begin{DoxyCompactList}\small\item\em Creates a new sub grid generator with the current instance as parent. \end{DoxyCompactList}\item 
+\hypertarget{a00394_ac83517a027bc610f89f7864a332df918}{}bool \hyperlink{a00394_ac83517a027bc610f89f7864a332df918}{final} () const \label{a00394_ac83517a027bc610f89f7864a332df918}
+
+\begin{DoxyCompactList}\small\item\em Returns whether the maximal number of bins has been reached. \end{DoxyCompactList}\item 
+\hypertarget{a00394_a70542bcc006eac32830247ba96537d53}{}size\+\_\+type \hyperlink{a00394_a70542bcc006eac32830247ba96537d53}{count\+\_\+bins} () const \label{a00394_a70542bcc006eac32830247ba96537d53}
+
+\begin{DoxyCompactList}\small\item\em Returns the number of bins in the tree. \end{DoxyCompactList}\item 
+\hypertarget{a00394_a322307f8af44150034bf2fa3ee63780a}{}size\+\_\+type \hyperlink{a00394_a322307f8af44150034bf2fa3ee63780a}{count\+\_\+leaves} () const \label{a00394_a322307f8af44150034bf2fa3ee63780a}
+
+\begin{DoxyCompactList}\small\item\em Returns the number of leaves in the tree. \end{DoxyCompactList}\item 
+\hypertarget{a00394_ae3ae2f070e1caa123773bb86dde4eeca}{}const value\+\_\+type \& \hyperlink{a00394_ae3ae2f070e1caa123773bb86dde4eeca}{norm} () const \label{a00394_ae3ae2f070e1caa123773bb86dde4eeca}
+
+\begin{DoxyCompactList}\small\item\em Weight normalisation. \end{DoxyCompactList}\item 
+\hypertarget{a00394_a85677d8ad6ee8acd768a3855c29d1fd7}{}std\+::ostream \& \hyperlink{a00394_a85677d8ad6ee8acd768a3855c29d1fd7}{print} (std\+::ostream \&os) const \label{a00394_a85677d8ad6ee8acd768a3855c29d1fd7}
+
+\begin{DoxyCompactList}\small\item\em Printing method. \end{DoxyCompactList}\item 
+\hypertarget{a00394_ad91a45d101b082fd8680e81701fe765a}{}std\+::ostream \& \hyperlink{a00394_ad91a45d101b082fd8680e81701fe765a}{print\+\_\+leaves} (std\+::ostream \&os) const \label{a00394_ad91a45d101b082fd8680e81701fe765a}
+
+\begin{DoxyCompactList}\small\item\em Method printing only child bins. \end{DoxyCompactList}\item 
+\hypertarget{a00394_acc20c7121fa2831cd931a3a38be58c09}{}\hyperlink{a00431}{plot\+\_\+script} $\ast$ \hyperlink{a00394_acc20c7121fa2831cd931a3a38be58c09}{print\+\_\+rectangles} (\hyperlink{a00431}{plot\+\_\+script} $\ast$ps) const \label{a00394_acc20c7121fa2831cd931a3a38be58c09}
+
+\begin{DoxyCompactList}\small\item\em Adds the rectangles to the plotscript pointer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{a00394_ae1d28ea0e0dd5110edcdc861ab8b963d}{}const size\+\_\+type \hyperlink{a00394_ae1d28ea0e0dd5110edcdc861ab8b963d}{n\+\_\+bins}\label{a00394_ae1d28ea0e0dd5110edcdc861ab8b963d}
+
+\begin{DoxyCompactList}\small\item\em Maximal number of bins. \end{DoxyCompactList}\item 
+\hypertarget{a00394_a31a3dc815eb9d4d57f617a3aef66c9d6}{}const grid\+\_\+modes\+::type \hyperlink{a00394_a31a3dc815eb9d4d57f617a3aef66c9d6}{mode}\label{a00394_a31a3dc815eb9d4d57f617a3aef66c9d6}
+
+\begin{DoxyCompactList}\small\item\em Parni bin-\/splitting criterium. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class value\+\_\+t, class rng\+\_\+t, class key\+\_\+t$>$class Camgen\+::parni\+\_\+generator$<$ value\+\_\+t, 1, rng\+\_\+t, key\+\_\+t $>$}
+
+Parni specialisation for one-\/dimensional integration. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00394_acda2cc3d9d1d7ea5d8d5f4716e425d16}{}\index{Camgen\+::parni\+\_\+generator$<$ value\+\_\+t, 1, rng\+\_\+t, key\+\_\+t $>$@{Camgen\+::parni\+\_\+generator$<$ value\+\_\+t, 1, rng\+\_\+t, key\+\_\+t $>$}!parni\+\_\+generator@{parni\+\_\+generator}}
+\index{parni\+\_\+generator@{parni\+\_\+generator}!Camgen\+::parni\+\_\+generator$<$ value\+\_\+t, 1, rng\+\_\+t, key\+\_\+t $>$@{Camgen\+::parni\+\_\+generator$<$ value\+\_\+t, 1, rng\+\_\+t, key\+\_\+t $>$}}
+\subsubsection[{parni\+\_\+generator}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\+\_\+t , class rng\+\_\+t , class key\+\_\+t $>$ {\bf Camgen\+::parni\+\_\+generator}$<$ value\+\_\+t, 1, rng\+\_\+t, key\+\_\+t $>$\+::{\bf parni\+\_\+generator} (
+\begin{DoxyParamCaption}
+\item[{const point\+\_\+type \&}]{xmin\+\_\+, }
+\item[{const point\+\_\+type \&}]{xmax\+\_\+, }
+\item[{size\+\_\+type}]{n\+\_\+bins\+\_\+ = {\ttfamily 500}, }
+\item[{grid\+\_\+modes\+::type}]{mode\+\_\+ = {\ttfamily grid\+\_\+modes\+:\+:cumulant\+\_\+weights}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00394_acda2cc3d9d1d7ea5d8d5f4716e425d16}
+
+
+Constructor with lower-\/left and upper-\/right integration domain corners and the maximal number of bins as arguments. 
+
+\hypertarget{a00394_a5384f89b199d41078894932608aa4167}{}\index{Camgen\+::parni\+\_\+generator$<$ value\+\_\+t, 1, rng\+\_\+t, key\+\_\+t $>$@{Camgen\+::parni\+\_\+generator$<$ value\+\_\+t, 1, rng\+\_\+t, key\+\_\+t $>$}!parni\+\_\+generator@{parni\+\_\+generator}}
+\index{parni\+\_\+generator@{parni\+\_\+generator}!Camgen\+::parni\+\_\+generator$<$ value\+\_\+t, 1, rng\+\_\+t, key\+\_\+t $>$@{Camgen\+::parni\+\_\+generator$<$ value\+\_\+t, 1, rng\+\_\+t, key\+\_\+t $>$}}
+\subsubsection[{parni\+\_\+generator}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\+\_\+t , class rng\+\_\+t , class key\+\_\+t $>$ {\bf Camgen\+::parni\+\_\+generator}$<$ value\+\_\+t, 1, rng\+\_\+t, key\+\_\+t $>$\+::{\bf parni\+\_\+generator} (
+\begin{DoxyParamCaption}
+\item[{point\+\_\+type $\ast$}]{point\+\_\+, }
+\item[{const point\+\_\+type \&}]{xmin\+\_\+, }
+\item[{const point\+\_\+type \&}]{xmax\+\_\+, }
+\item[{size\+\_\+type}]{n\+\_\+bins\+\_\+ = {\ttfamily 500}, }
+\item[{grid\+\_\+modes\+::type}]{mode\+\_\+ = {\ttfamily grid\+\_\+modes\+:\+:cumulant\+\_\+weights}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00394_a5384f89b199d41078894932608aa4167}
+
+
+Constructor with an external point address (to be filled) and lower-\/left and upper-\/right integration domain corners and the maximal number of bins as arguments. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00394_acb562943c0312deaf243646362585fb8}{}\index{Camgen\+::parni\+\_\+generator$<$ value\+\_\+t, 1, rng\+\_\+t, key\+\_\+t $>$@{Camgen\+::parni\+\_\+generator$<$ value\+\_\+t, 1, rng\+\_\+t, key\+\_\+t $>$}!reset@{reset}}
+\index{reset@{reset}!Camgen\+::parni\+\_\+generator$<$ value\+\_\+t, 1, rng\+\_\+t, key\+\_\+t $>$@{Camgen\+::parni\+\_\+generator$<$ value\+\_\+t, 1, rng\+\_\+t, key\+\_\+t $>$}}
+\subsubsection[{reset}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class value\+\_\+t , class rng\+\_\+t , class key\+\_\+t $>$ void {\bf Camgen\+::parni\+\_\+generator}$<$ value\+\_\+t, 1, rng\+\_\+t, key\+\_\+t $>$\+::reset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{a00394_acb562943c0312deaf243646362585fb8}
+
+
+Resets the cross section and re-\/initialises the grid to a single bin. 
+
+
+
+Reimplemented from \hyperlink{a00370_a003e7dad9599bf458c3cbe3d175b7e75}{Camgen\+::\+M\+C\+\_\+integrator\+\_\+base$<$ value\+\_\+t $>$}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Camgen/\hyperlink{a00707}{parni\+\_\+gen.\+h}\end{DoxyCompactItemize}

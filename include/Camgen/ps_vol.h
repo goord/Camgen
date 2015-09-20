@@ -24,7 +24,7 @@ namespace Camgen
 {
     /// Kallen phase space weight factor definition.
 
-    template<class value_type>value_type Kallen(const value_type& x,const value_type& y,const value_type& z)
+    template<class value_type>value_type Kallen(value_type x,value_type y,value_type z)
     {
 	return x*x+y*y+z*z-(value_type)2*(x*(y+z)+y*z);
     }

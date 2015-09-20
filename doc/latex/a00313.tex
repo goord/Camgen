@@ -1,94 +1,23 @@
-\hypertarget{a00313}{\section{Camgen\-:\-:interface\-\_\-base$<$ model\-\_\-t $>$ Class Template Reference}
-\label{a00313}\index{Camgen\-::interface\-\_\-base$<$ model\-\_\-t $>$@{Camgen\-::interface\-\_\-base$<$ model\-\_\-t $>$}}
-}
+\hypertarget{a00313}{}\section{Camgen\+:\+:interaction$<$ model\+\_\+t, N, decomp $>$ Class Template Reference}
+\label{a00313}\index{Camgen\+::interaction$<$ model\+\_\+t, N, decomp $>$@{Camgen\+::interaction$<$ model\+\_\+t, N, decomp $>$}}
 
 
-Abstract base class for interfaces.  
+Helicity generator abstract base class template.  
 
 
 
 
-{\ttfamily \#include $<$if\-\_\-base.\-h$>$}
+{\ttfamily \#include $<$forward\+\_\+decs.\+h$>$}
 
-Inheritance diagram for Camgen\-:\-:interface\-\_\-base$<$ model\-\_\-t $>$\-:\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[height=1.487384cm]{a00313}
-\end{center}
-\end{figure}
-\subsection*{Classes}
-\begin{DoxyCompactItemize}
-\item 
-struct \hyperlink{a00510}{stats\-\_\-entry}
-\end{DoxyCompactItemize}
-\subsection*{Public Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-\hypertarget{a00313_ad5aa280d9d5791db4c4bfa3ab21a71a0}{\hyperlink{a00313_ad5aa280d9d5791db4c4bfa3ab21a71a0}{interface\-\_\-base} (\hyperlink{a00442}{generator\-\_\-type} $\ast$gen\-\_\-)}\label{a00313_ad5aa280d9d5791db4c4bfa3ab21a71a0}
-
-\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
-\hypertarget{a00313_af811ce3f77ff217011b339a53f2507ee}{virtual \hyperlink{a00313_af811ce3f77ff217011b339a53f2507ee}{$\sim$interface\-\_\-base} ()}\label{a00313_af811ce3f77ff217011b339a53f2507ee}
-
-\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
-\hypertarget{a00313_ae5dbd7fe97bb31ed80a4d4602a963e31}{virtual bool \hyperlink{a00313_ae5dbd7fe97bb31ed80a4d4602a963e31}{fill} ()}\label{a00313_ae5dbd7fe97bb31ed80a4d4602a963e31}
-
-\begin{DoxyCompactList}\small\item\em Abstract event streaming method. \end{DoxyCompactList}\item 
-\hypertarget{a00313_a4ab5edd1d5ba146243849269ade7a199}{virtual bool \hyperlink{a00313_a4ab5edd1d5ba146243849269ade7a199}{write} ()=0}\label{a00313_a4ab5edd1d5ba146243849269ade7a199}
-
-\begin{DoxyCompactList}\small\item\em Abstract output file writing method. \end{DoxyCompactList}\item 
-\hypertarget{a00313_a2c638c7f905e650c1efda5cdabcd8896}{virtual void \hyperlink{a00313_a2c638c7f905e650c1efda5cdabcd8896}{write\-\_\-zero\-\_\-weight\-\_\-events} ()}\label{a00313_a2c638c7f905e650c1efda5cdabcd8896}
-
-\begin{DoxyCompactList}\small\item\em Sets the zero-\/weight flag. \end{DoxyCompactList}\item 
-\hypertarget{a00313_a714ae03167e9ecdb3c0c03774a191089}{virtual void \hyperlink{a00313_a714ae03167e9ecdb3c0c03774a191089}{skip\-\_\-zero\-\_\-weight\-\_\-events} ()}\label{a00313_a714ae03167e9ecdb3c0c03774a191089}
-
-\begin{DoxyCompactList}\small\item\em Unsets the zero-\/weight flag. \end{DoxyCompactList}\item 
-\hypertarget{a00313_ae6db905736d66092b9dcf8120c6e935e}{size\-\_\-type \hyperlink{a00313_ae6db905736d66092b9dcf8120c6e935e}{processes} () const }\label{a00313_ae6db905736d66092b9dcf8120c6e935e}
-
-\begin{DoxyCompactList}\small\item\em Returns the number of subprocesses. \end{DoxyCompactList}\item 
-\hypertarget{a00313_ac6c0df9fb86662d54e3b4f903a8eb831}{virtual size\-\_\-type \hyperlink{a00313_ac6c0df9fb86662d54e3b4f903a8eb831}{event\-\_\-size} () const =0}\label{a00313_ac6c0df9fb86662d54e3b4f903a8eb831}
-
-\begin{DoxyCompactList}\small\item\em Returns the event size. \end{DoxyCompactList}\item 
-\hypertarget{a00313_a83647b85147e31455f2781ad3111849e}{size\-\_\-type \hyperlink{a00313_a83647b85147e31455f2781ad3111849e}{input\-\_\-events} () const }\label{a00313_a83647b85147e31455f2781ad3111849e}
-
-\begin{DoxyCompactList}\small\item\em Returns the number of events streamed to the interface. \end{DoxyCompactList}\item 
-\hypertarget{a00313_a4be24bd2d607368c9bb95282e3d7613a}{size\-\_\-type \hyperlink{a00313_a4be24bd2d607368c9bb95282e3d7613a}{input\-\_\-events} (int i) const }\label{a00313_a4be24bd2d607368c9bb95282e3d7613a}
-
-\begin{DoxyCompactList}\small\item\em Returns the number of events streamed to the interface for process i. \end{DoxyCompactList}\item 
-\hypertarget{a00313_a3c75abe5cfc8dc7fe822006dfd860dc2}{size\-\_\-type \hyperlink{a00313_a3c75abe5cfc8dc7fe822006dfd860dc2}{output\-\_\-events} () const }\label{a00313_a3c75abe5cfc8dc7fe822006dfd860dc2}
-
-\begin{DoxyCompactList}\small\item\em Returns the number of events written to disk. \end{DoxyCompactList}\item 
-\hypertarget{a00313_a61c0d694fb6f316c47c4d4aa33c4a452}{size\-\_\-type \hyperlink{a00313_a61c0d694fb6f316c47c4d4aa33c4a452}{output\-\_\-events} (int i) const }\label{a00313_a61c0d694fb6f316c47c4d4aa33c4a452}
-
-\begin{DoxyCompactList}\small\item\em Returns the number of events written to disk for process i. \end{DoxyCompactList}\item 
-\hypertarget{a00313_a361fefe2162c65d3d895d0cd883e3a15}{size\-\_\-type \hyperlink{a00313_a361fefe2162c65d3d895d0cd883e3a15}{file\-\_\-size} () const }\label{a00313_a361fefe2162c65d3d895d0cd883e3a15}
-
-\begin{DoxyCompactList}\small\item\em Returns the total size of the output file. \end{DoxyCompactList}\item 
-\hypertarget{a00313_a05a5504030f498f12c319e1ed0d069ad}{bool \hyperlink{a00313_a05a5504030f498f12c319e1ed0d069ad}{writes\-\_\-zero\-\_\-weights} () const }\label{a00313_a05a5504030f498f12c319e1ed0d069ad}
-
-\begin{DoxyCompactList}\small\item\em Returns whether we are writing zero-\/weight events. \end{DoxyCompactList}\item 
-std\-::ostream \& \hyperlink{a00313_a176422901fb2f6fcaa5b2d52fb211387}{print\-\_\-statistics} (std\-::ostream \&os) const 
-\begin{DoxyCompactList}\small\item\em Writes the statistics file, containing a list with number of generated events, cross section and error per subprocess. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-\subsubsection*{template$<$class model\-\_\-t$>$class Camgen\-::interface\-\_\-base$<$ model\-\_\-t $>$}
+\subsubsection*{template$<$class model\+\_\+t, std\+::size\+\_\+t N, bool decomp$>$class Camgen\+::interaction$<$ model\+\_\+t, N, decomp $>$}
 
-Abstract base class for interfaces. 
+Helicity generator abstract base class template. 
 
-\subsection{Member Function Documentation}
-\hypertarget{a00313_a176422901fb2f6fcaa5b2d52fb211387}{\index{Camgen\-::interface\-\_\-base@{Camgen\-::interface\-\_\-base}!print\-\_\-statistics@{print\-\_\-statistics}}
-\index{print\-\_\-statistics@{print\-\_\-statistics}!Camgen::interface_base@{Camgen\-::interface\-\_\-base}}
-\subsubsection[{print\-\_\-statistics}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class model\-\_\-t $>$ std\-::ostream\& {\bf Camgen\-::interface\-\_\-base}$<$ model\-\_\-t $>$\-::print\-\_\-statistics (
-\begin{DoxyParamCaption}
-\item[{std\-::ostream \&}]{os}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{a00313_a176422901fb2f6fcaa5b2d52fb211387}
+The template parameter denote the model type, incoming and outgoing number of particles in the process, and a boolean denoting whether the helicities are continuous. 
 
-
-Writes the statistics file, containing a list with number of generated events, cross section and error per subprocess. 
-
-
-
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/\-Camgen/\hyperlink{a00646}{if\-\_\-base.\-h}\end{DoxyCompactItemize}
+include/\+Camgen/forward\+\_\+decs.\+h\end{DoxyCompactItemize}

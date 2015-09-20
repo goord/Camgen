@@ -1,34 +1,41 @@
-\hypertarget{a00703}{
-\section{include/Camorra/model.h File Reference}
-\label{a00703}\index{include/Camorra/model.h@{include/Camorra/model.h}}
-}
+\hypertarget{a00703}{}\section{include/\+Camgen/num\+\_\+utils.h File Reference}
+\label{a00703}\index{include/\+Camgen/num\+\_\+utils.\+h@{include/\+Camgen/num\+\_\+utils.\+h}}
 
 
-model base class template interface and implementation header.  
+Numerical general utility functions.  
 
 
-{\ttfamily \#include $<$ostream$>$}\par
-{\ttfamily \#include $<$fstream$>$}\par
-{\ttfamily \#include $<$string$>$}\par
-{\ttfamily \#include $<$cxxabi.h$>$}\par
-{\ttfamily \#include $<$Camorra/unpack\_\-vert.h$>$}\par
-{\ttfamily \#include $<$Camorra/license\_\-print.h$>$}\par
-{\ttfamily \#include $<$Camorra/mod\_\-wrapper.h$>$}\par
-{\ttfamily \#include $<$Camorra/scalar\_\-particle.h$>$}\par
-{\ttfamily \#include $<$Camorra/fermion.h$>$}\par
-{\ttfamily \#include $<$Camorra/vector\_\-particle.h$>$}\par
-{\ttfamily \#include $<$Camorra/comp\_\-vert.h$>$}\par
-{\ttfamily \#include $<$Camorra/vertex.h$>$}\par
-{\ttfamily \#include $<$Camorra/adj\_\-rep.h$>$}\par
-{\ttfamily \#include $<$Camorra/fundam\_\-rep.h$>$}\par
-{\ttfamily \#include $<$Camorra/f.h$>$}\par
-{\ttfamily \#include $<$Camorra/asymtvv.h$>$}\par
-\subsection*{Classes}
+{\ttfamily \#include $<$limits$>$}\\*
+{\ttfamily \#include $<$Camgen/num\+\_\+config.\+h$>$}\\*
+\subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{a00368}{Camorra::model$<$ model\_\-t $>$}
-\begin{DoxyCompactList}\small\item\em model base class template. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hypertarget{a00878_a50a3303ac8dce20ffe82b1caf039e939}{}{\footnotesize template$<$class T $>$ }\\bool {\bfseries Camgen\+::equals} (const T \&a, const T \&b)\label{a00878_a50a3303ac8dce20ffe82b1caf039e939}
+
+\begin{DoxyCompactList}\small\item\em Checks equality up to precision defined in \hyperlink{a00702}{num\+\_\+config.\+h}. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a8f5142b3888287470790df9e8a637536}{}{\footnotesize template$<$class T $>$ }\\bool {\bfseries Camgen\+::smaller} (const T \&a, const T \&b)\label{a00878_a8f5142b3888287470790df9e8a637536}
+
+\begin{DoxyCompactList}\small\item\em Compares less up to precision defined in \hyperlink{a00702}{num\+\_\+config.\+h}. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a42c316d086e5ade0b638aa6817c87dc7}{}{\footnotesize template$<$class T $>$ }\\bool {\bfseries Camgen\+::greater} (const T \&a, const T \&b)\label{a00878_a42c316d086e5ade0b638aa6817c87dc7}
+
+\begin{DoxyCompactList}\small\item\em Compares greater up to precision defined in \hyperlink{a00702}{num\+\_\+config.\+h}. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a0491952a9fbe9eec9bf5991e9ad03cc3}{}{\footnotesize template$<$class T $>$ }\\bool {\bfseries Camgen\+::smaller\+\_\+equal} (const T \&a, const T \&b)\label{a00878_a0491952a9fbe9eec9bf5991e9ad03cc3}
+
+\begin{DoxyCompactList}\small\item\em Compares less-\/or-\/equal up to precision defined in \hyperlink{a00702}{num\+\_\+config.\+h}. \end{DoxyCompactList}\item 
+\hypertarget{a00878_abee2ae5bcff2561082cab2e246a56b68}{}{\footnotesize template$<$class T $>$ }\\bool {\bfseries Camgen\+::greater\+\_\+equal} (const T \&a, const T \&b)\label{a00878_abee2ae5bcff2561082cab2e246a56b68}
+
+\begin{DoxyCompactList}\small\item\em Compares greater-\/or-\/equal up to precision defined in \hyperlink{a00702}{num\+\_\+config.\+h}. \end{DoxyCompactList}\item 
+\hypertarget{a00878_aff6dfdb392a7c17fcf72cdf9b09fbde8}{}{\footnotesize template$<$class T $>$ }\\bool {\bfseries Camgen\+::equal\+\_\+sequences} (const T \&first, const T \&second)\label{a00878_aff6dfdb392a7c17fcf72cdf9b09fbde8}
+
+\begin{DoxyCompactList}\small\item\em Checks equality of two sequences up to precision defined in \hyperlink{a00702}{num\+\_\+config.\+h}\+: $\ast$/. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a7218c01b067ffdd687daf7af70c4338a}{}{\footnotesize template$<$class T $>$ }\\bool {\bfseries Camgen\+::is\+\_\+number} (const T \&x)\label{a00878_a7218c01b067ffdd687daf7af70c4338a}
+
+\begin{DoxyCompactList}\small\item\em Returns whether the argument is a number. \end{DoxyCompactList}\item 
+\hypertarget{a00878_a6b33d96423eb36664c6878e8d42f2a2d}{}{\footnotesize template$<$class T $>$ }\\bool {\bfseries Camgen\+::is\+\_\+finite\+\_\+number} (const T \&x)\label{a00878_a6b33d96423eb36664c6878e8d42f2a2d}
+
+\begin{DoxyCompactList}\small\item\em Returns whether the argument is a finite number. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-model base class template interface and implementation header. 
+Numerical general utility functions. 
+

@@ -38,7 +38,11 @@ int main()
 
     //////////////////////////////////////////////////////////////////
 
-    size_type offset=N_events/N_bins;
+
+    std::cerr<<"...serialization not implemented yet..."<<std::endl;
+
+
+/*    size_type offset=N_events/N_bins;
     value_type pi=std::acos(-(value_type)1);
     std::string filename="test_output.dat";
 
@@ -153,7 +157,7 @@ int main()
     }
 
     set_initial_state_type(initial_states::partonic);
-    set_phase_space_generator_type(phase_space_generators::recursive);
+    set_phase_space_generator_type(phase_space_generators::uniform);
     
     {
 	std::string process("h0 > mu-,nu_mubar,mu+,nu_mu");
@@ -197,5 +201,5 @@ int main()
 	delete gen;
 	std::remove(filename.c_str());
 	std::cerr<<"...........done."<<std::endl;
-    }
+    }*/
 }

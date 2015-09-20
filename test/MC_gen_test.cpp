@@ -17,7 +17,7 @@
 #include <Camgen/histogram.h>
 #include <Camgen/norm_gen.h>
 #include <Camgen/uni_sphere.h>
-#include <Camgen/s_gen.h>
+#include <Camgen/val_gen_fac.h>
 
 using namespace Camgen;
 
@@ -75,7 +75,7 @@ int main()
 	histogram<value_type>hist(&rho,&p,N_events);
 	for(size_type i=0;i<N_events;++i)
 	{
-	    rho=gen();
+	    rho=gen.generate();
 	    p=gen.weight();
 	    hist.store();
 	}
@@ -98,7 +98,7 @@ int main()
 	data_wrapper* data=new data_wrapper(&pt[0],&pt[1]);
 	for(size_type n=0;n<N_events/100;++n)
 	{
-	    gen();
+	    gen.generate();
 	    data->fill();
 	}
 	data->write();
@@ -121,7 +121,7 @@ int main()
 	data_wrapper* data=new data_wrapper(&pt[0],&pt[1],&pt[2]);
 	for(size_type n=0;n<N_events/10;++n)
 	{
-	    gen();
+	    gen.generate();
 	    data->fill();
 	}
 	data->write();
@@ -143,7 +143,7 @@ int main()
 	uniform_sphere<value_type,3,std::random>gen(&pt);
 	for(size_type n=0;n<N_events;++n)
 	{
-	    gen();
+	    gen.generate();
 	    value_type radius(0);
 	    for(size_type i=0;i<pt.size();++i)
 	    {
@@ -164,7 +164,7 @@ int main()
 	uniform_sphere<value_type,4,std::random>gen(&pt);
 	for(size_type n=0;n<N_events;++n)
 	{
-	    gen();
+	    gen.generate();
 	    value_type radius(0);
 	    for(size_type i=0;i<pt.size();++i)
 	    {
@@ -185,7 +185,7 @@ int main()
 	uniform_sphere<value_type,5,std::random>gen(&pt);
 	for(size_type n=0;n<N_events;++n)
 	{
-	    gen();
+	    gen.generate();
 	    value_type radius(0);
 	    for(size_type i=0;i<pt.size();++i)
 	    {
@@ -206,7 +206,7 @@ int main()
 	uniform_sphere<value_type,6,std::random>gen(&pt);
 	for(size_type n=0;n<N_events;++n)
 	{
-	    gen();
+	    gen.generate();
 	    value_type radius(0);
 	    for(size_type i=0;i<pt.size();++i)
 	    {
@@ -227,7 +227,7 @@ int main()
 	uniform_sphere<value_type,7,std::random>gen(&pt);
 	for(size_type n=0;n<N_events;++n)
 	{
-	    gen();
+	    gen.generate();
 	    value_type radius(0);
 	    for(size_type i=0;i<pt.size();++i)
 	    {
@@ -245,8 +245,8 @@ int main()
 	std::cerr<<"Checking power-law generator with (m,nu) = ("<<m<<","<<nu<<") within range ["<<smin<<","<<smax<<"].....";
 	std::cerr.flush();
 	std::string filename="plots/pow_law1";
-	pl_s_generator<value_type,std::random>* channel=new pl_s_generator<value_type,std::random>(&m,&nu);
-	if(!channel->set_s_range(smin,smax))
+	power_law<value_type,std::random>* channel=new power_law<value_type,std::random>(&m,&nu);
+	if(!channel->set_bounds(smin,smax))
 	{
 	    return 1;
 	}
@@ -278,8 +278,8 @@ int main()
 	std::cerr<<"Checking power-law generator with (m,nu) = ("<<m<<","<<nu<<") within range ["<<smin<<","<<smax<<"].....";
 	std::cerr.flush();
 	std::string filename="plots/pow_law2";
-	pl_s_generator<value_type,std::random>* channel=new pl_s_generator<value_type,std::random>(&m,&nu);
-	if(!channel->set_s_range(smin,smax))
+	power_law<value_type,std::random>* channel=new power_law<value_type,std::random>(&m,&nu);
+	if(!channel->set_bounds(smin,smax))
 	{
 	    return 1;
 	}
@@ -309,8 +309,8 @@ int main()
 	std::cerr<<"Checking power-law generator with (m,nu) = ("<<m<<","<<nu<<") within range ["<<smin<<","<<smax<<"].....";
 	std::cerr.flush();
 	std::string filename="plots/pow_law3";
-	pl_s_generator<value_type,std::random>* channel=new pl_s_generator<value_type,std::random>(&m,&nu);
-	if(!channel->set_s_range(smin,smax))
+	power_law<value_type,std::random>* channel=new power_law<value_type,std::random>(&m,&nu);
+	if(!channel->set_bounds(smin,smax))
 	{
 	    return 1;
 	}
@@ -341,8 +341,8 @@ int main()
 	std::cerr<<"Checking power-law generator with (m,nu) = ("<<m<<","<<nu<<") within range ["<<smin<<","<<smax<<"].....";
 	std::cerr.flush();
 	std::string filename="plots/pow_law4";
-	pl_s_generator<value_type,std::random>* channel=new pl_s_generator<value_type,std::random>(&m,&nu);
-	if(!channel->set_s_range(smin,smax))
+	power_law<value_type,std::random>* channel=new power_law<value_type,std::random>(&m,&nu);
+	if(!channel->set_bounds(smin,smax))
 	{
 	    return 1;
 	}
@@ -373,8 +373,8 @@ int main()
 	std::cerr<<"Checking power-law generator with (m,nu) = ("<<m<<","<<nu<<") within range ["<<smin<<","<<smax<<"].....";
 	std::cerr.flush();
 	std::string filename="plots/pow_law5";
-	pl_s_generator<value_type,std::random>* channel=new pl_s_generator<value_type,std::random>(&m,&nu);
-	if(!channel->set_s_range(smin,smax))
+	power_law<value_type,std::random>* channel=new power_law<value_type,std::random>(&m,&nu);
+	if(!channel->set_bounds(smin,smax))
 	{
 	    return 1;
 	}
@@ -404,8 +404,8 @@ int main()
 	std::cerr<<"Checking power-law generator with (m,nu) = ("<<m<<","<<nu<<") within range ["<<smin<<","<<smax<<"].....";
 	std::cerr.flush();
 	std::string filename="plots/pow_law6";
-	pl_s_generator<value_type,std::random>* channel=new pl_s_generator<value_type,std::random>(&m,&nu);
-	if(!channel->set_s_range(smin,smax))
+	power_law<value_type,std::random>* channel=new power_law<value_type,std::random>(&m,&nu);
+	if(!channel->set_bounds(smin,smax))
 	{
 	    return 1;
 	}
@@ -436,8 +436,8 @@ int main()
 	std::cerr<<"Checking power-law generator with (m,nu) = ("<<m<<","<<nu<<") within range ["<<smin<<","<<smax<<"].....";
 	std::cerr.flush();
 	std::string filename="plots/pow_law7";
-	pl_s_generator<value_type,std::random>* channel=new pl_s_generator<value_type,std::random>(&m,&nu);
-	if(!channel->set_s_range(smin,smax))
+	power_law<value_type,std::random>* channel=new power_law<value_type,std::random>(&m,&nu);
+	if(!channel->set_bounds(smin,smax))
 	{
 	    return 1;
 	}
@@ -467,8 +467,8 @@ int main()
 	std::cerr<<"Checking power-law generator with (m,nu) = ("<<m<<","<<nu<<") within range ["<<smin<<","<<smax<<"].....";
 	std::cerr.flush();
 	std::string filename="plots/pow_law8";
-	pl_s_generator<value_type,std::random>* channel=new pl_s_generator<value_type,std::random>(&m,&nu);
-	if(!channel->set_s_range(smin,smax))
+	power_law<value_type,std::random>* channel=new power_law<value_type,std::random>(&m,&nu);
+	if(!channel->set_bounds(smin,smax))
 	{
 	    return 1;
 	}
@@ -499,7 +499,7 @@ int main()
     {
 	std::cerr<<"Checking 1M random power-law generators within random bounds.....";
 	std::cerr.flush();
-	pl_s_generator<value_type,std::random>* channel=new pl_s_generator<value_type,std::random>(&m,&nu);
+	power_law<value_type,std::random>* channel=new power_law<value_type,std::random>(&m,&nu);
 	for(size_type n=0;n<10000;++n)
 	{
 	    nu=rn_stream::throw_number(numin,numax);
@@ -525,7 +525,7 @@ int main()
 		smax=std::max(smin,x);
 		smin=std::min(smin,x);
 	    }
-	    if(!channel->set_s_range(smin,smax))
+	    if(!channel->set_bounds(smin,smax))
 	    {
 		return 1;
 	    }
@@ -564,8 +564,8 @@ int main()
 	std::cerr<<"Checking Breit-Wigner generator with (m,w) = ("<<m<<","<<w<<") within range ["<<smin<<","<<smax<<"].....";
 	std::cerr.flush();
 	std::string filename="plots/Breit_Wigner1";
-	BW_s_generator<value_type,std::random>* channel=new BW_s_generator<value_type,std::random>(&m,&w);
-	if(!channel->set_s_range(smin,smax))
+	Breit_Wigner<value_type,std::random>* channel=new Breit_Wigner<value_type,std::random>(&m,&w);
+	if(!channel->set_bounds(smin,smax))
 	{
 	    return 1;
 	}
@@ -595,8 +595,8 @@ int main()
 	std::cerr<<"Checking Breit-Wigner generator with (m,w) = ("<<m<<","<<w<<") within range ["<<smin<<","<<smax<<"].....";
 	std::cerr.flush();
 	std::string filename="plots/Breit_Wigner2";
-	BW_s_generator<value_type,std::random>* channel=new BW_s_generator<value_type,std::random>(&m,&w);
-	if(!channel->set_s_range(smin,smax))
+	Breit_Wigner<value_type,std::random>* channel=new Breit_Wigner<value_type,std::random>(&m,&w);
+	if(!channel->set_bounds(smin,smax))
 	{
 	    return 1;
 	}
@@ -625,7 +625,7 @@ int main()
 	std::cerr<<"Checking Breit-Wigner generator with (m,w) = ("<<m<<","<<w<<") within range [-inf,+inf].....";
 	std::cerr.flush();
 	std::string filename="plots/Breit_Wigner3";
-	BW_s_generator<value_type,std::random>* channel=new BW_s_generator<value_type,std::random>(&m,&w);
+	Breit_Wigner<value_type,std::random>* channel=new Breit_Wigner<value_type,std::random>(&m,&w);
 	histogram<value_type>hist=channel->testrun(N_events,N_bins);
 	plot_script* plt=hist.plot(filename,"postscript color");
 	plt->add_plot(channel->pdf_plot(N_events*hist.binsize()));

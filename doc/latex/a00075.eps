@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 32.679739
+%%BoundingBox: 0 0 500 71.258907
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,13 +19,13 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 15.300000 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 7.016667 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
 /yspacing 0 def
 /rows 3 def
-/cols 4 def
+/cols 2 def
 /scalefactor 0 def
 /boxfont /Times-Roman findfont fontheight scalefont def
 
@@ -173,12 +173,10 @@
 
 boxfont setfont
 1 boundaspect scale
-(Camorra::colour_generator< value_t, N_in, N_out, false >) cw
-(MC_object_generator< value_t, std::vector< std::size_t >, N_in+N_out, true >) cw
-(Camorra::adjoint_QCD< value_t, N_in, N_out, N_c, rng_t, false >) cw
-(Camorra::colour_flow_QCD< value_t, N_in, N_out, N_c, rng_t, false >) cw
-(Camorra::colour_summer< value_t, N_in, N_out, false >) cw
-(Camorra::uniform_colours< value_t, N_in, N_out, rng_t, false >) cw
+(Camgen::colour_flow_QCD< value_t, N_in, N_out, N_c, rng_t, false >) cw
+(Camgen::colour_generator< value_t, N_in, N_out, false >) cw
+(Camgen::MC_generator< value_t >) cw
+(Camgen::object_allocator< std::vector< std::size_t > >) cw
 /boxwidth boxwidth marginwidth 2 mul add def
 /xspacing boxwidth distx add def
 /yspacing boxheight disty add def
@@ -190,28 +188,22 @@ boundx scalefactor div boundy scalefactor div scale
 
 % ----- classes -----
 
- (Camorra::colour_generator< value_t, N_in, N_out, false >) 1.500000 1.000000 box
- (MC_object_generator< value_t, std::vector< std::size_t >, N_in+N_out, true >) 1.500000 2.000000 box
- (Camorra::adjoint_QCD< value_t, N_in, N_out, N_c, rng_t, false >) 0.000000 0.000000 box
- (Camorra::colour_flow_QCD< value_t, N_in, N_out, N_c, rng_t, false >) 1.000000 0.000000 box
- (Camorra::colour_summer< value_t, N_in, N_out, false >) 2.000000 0.000000 box
- (Camorra::uniform_colours< value_t, N_in, N_out, rng_t, false >) 3.000000 0.000000 box
+ (Camgen::colour_flow_QCD< value_t, N_in, N_out, N_c, rng_t, false >) 0.500000 0.000000 box
+ (Camgen::colour_generator< value_t, N_in, N_out, false >) 0.500000 1.000000 box
+ (Camgen::MC_generator< value_t >) 0.000000 2.000000 box
+ (Camgen::object_allocator< std::vector< std::size_t > >) 1.000000 2.000000 box
 
 % ----- relations -----
 
 solid
-0 1.500000 1.000000 out
+0 0.500000 0.000000 out
 solid
-1 1.500000 2.000000 in
+1 0.500000 1.000000 in
 solid
-1 1.500000 0.250000 out
+0 0.500000 1.000000 out
 solid
-0.000000 3.000000 1.000000 conn
+0.000000 1.000000 2.000000 conn
 solid
-0 0.000000 0.750000 in
+1 0.000000 2.000000 in
 solid
-0 1.000000 0.750000 in
-solid
-0 2.000000 0.750000 in
-solid
-0 3.000000 0.750000 in
+1 1.000000 2.000000 in

@@ -1,0 +1,18 @@
+unused.lo: ../src/unused.cpp ../include/Camgen/unused.h \
+ /usr/local/Cellar/gcc48/4.8.2/lib/gcc/x86_64-apple-darwin13.1.0/4.8.2/include/c++/cstddef \
+ /usr/local/Cellar/gcc48/4.8.2/lib/gcc/x86_64-apple-darwin13.1.0/4.8.2/include/c++/x86_64-apple-darwin13.1.0/bits/c++config.h \
+ /usr/local/Cellar/gcc48/4.8.2/lib/gcc/x86_64-apple-darwin13.1.0/4.8.2/include/c++/x86_64-apple-darwin13.1.0/bits/os_defines.h \
+ /usr/local/Cellar/gcc48/4.8.2/lib/gcc/x86_64-apple-darwin13.1.0/4.8.2/include/c++/x86_64-apple-darwin13.1.0/bits/cpu_defines.h \
+ /usr/local/Cellar/gcc48/4.8.2/lib/gcc/x86_64-apple-darwin13.1.0/4.8.2/include/stddef.h
+
+../include/Camgen/unused.h:
+
+/usr/local/Cellar/gcc48/4.8.2/lib/gcc/x86_64-apple-darwin13.1.0/4.8.2/include/c++/cstddef:
+
+/usr/local/Cellar/gcc48/4.8.2/lib/gcc/x86_64-apple-darwin13.1.0/4.8.2/include/c++/x86_64-apple-darwin13.1.0/bits/c++config.h:
+
+/usr/local/Cellar/gcc48/4.8.2/lib/gcc/x86_64-apple-darwin13.1.0/4.8.2/include/c++/x86_64-apple-darwin13.1.0/bits/os_defines.h:
+
+/usr/local/Cellar/gcc48/4.8.2/lib/gcc/x86_64-apple-darwin13.1.0/4.8.2/include/c++/x86_64-apple-darwin13.1.0/bits/cpu_defines.h:
+
+/usr/local/Cellar/gcc48/4.8.2/lib/gcc/x86_64-apple-darwin13.1.0/4.8.2/include/stddef.h:
