@@ -22,10 +22,6 @@ int main()
     typedef std::random rn_engine;
     
     license_print::disable();
-    
-    std::cout<<"-------------------------------------------------------------------------"<<std::endl;
-    std::cout<<"testing ps_tree MC modules in decays....................................."<<std::endl;
-    std::cout<<"-------------------------------------------------------------------------"<<std::endl;
 
     initial_states::type isgen_type=initial_states::partonic;
     phase_space_generators::type psgen_type=phase_space_generators::recursive_backward_s;
@@ -35,6 +31,10 @@ int main()
     
     std::size_t n_evts=10000;
     std::size_t n_bins=100;
+    
+    std::cout<<"-------------------------------------------------------------------------"<<std::endl;
+    std::cout<<"testing ps_tree MC modules in decays....................................."<<std::endl;
+    std::cout<<"-------------------------------------------------------------------------"<<std::endl;
 
     {
 	Camgen::log.enable_level=log_level::error;
@@ -576,33 +576,6 @@ int main()
 	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
 	delete helgen;
     }
-
-/*    {
-	std::string process("e+,e- > nu_e,u,dbar,mu-,nu_mubar,nu_ebar");
-	std::string fname("plots/ee_qqbarl3n");
-	double E1=500;
-	double E2=500;
-	double mmin=10;
-	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
-	std::cerr.flush();
-	CM_algorithm<model_type,2,6>algo(process);
-	algo.load();
-	algo.construct();
-	helicity_generator<value_type,2,6,true>* helgen=uniform_helicities<value_type,2,6,rn_engine,true>::create_instance<model_type>(algo.get_tree_iterator());
-	helgen->generate();
-	colour_generator<value_type,2,6,false>* colgen=colour_flow_QCD<value_type,2,6,3,rn_engine,false>::create_instance<model_type>(algo.get_tree_iterator());
-	colgen->generate();
-	ps_generator_tester<model_type,2,6,rn_engine>test(algo.get_tree_iterator(),fname,isgen_type,psgen_type);
-	test.set_beam_energy(-1,E1);
-	test.set_beam_energy(-2,E2);
-	test.set_m_min(1,6,mmin);
-	if(!test.run(n_evts,n_bins))
-	{
-	    return 1;
-	}
-	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
-	delete helgen;
-    }*/
 }
 
 

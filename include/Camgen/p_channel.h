@@ -157,9 +157,20 @@ namespace Camgen
 
 		if(dirac_delta!=NULL)
 		{
-		    const value_type* mass=dirac_delta->m;
-		    set_m_min(mass==NULL?0:(*mass));
-		    set_m_max(mass==NULL?0:(*mass));
+		    if(std::numeric_limits<value_type>::has_infinity)
+		    {
+			set_s_min_min(-std::numeric_limits<value_type>::infinity());
+			set_s_max_max(std::numeric_limits<value_type>::infinity());
+			set_s_min(-std::numeric_limits<value_type>::infinity());
+			set_s_max(std::numeric_limits<value_type>::infinity());
+		    }
+		    else
+		    {
+			set_s_min_min(std::numeric_limits<value_type>::min());
+			set_s_max_max(std::numeric_limits<value_type>::max());
+			set_s_min(std::numeric_limits<value_type>::min());
+			set_s_max(std::numeric_limits<value_type>::max());
+		    }
 		}
 	    }
 

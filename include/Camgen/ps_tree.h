@@ -141,27 +141,25 @@ namespace Camgen
 		    this->weight()=(value_type)0;
 		    return false;
 		}
-
-		if(this->backward_shat_sampling())
+		if(!this->generate_is())
 		{
-		    initialise_s_branchings();
+		    this->weight()=(value_type)0;
+		    return false;
+		}
+		if(!this->check_sufficient_shat())
+		{
+		    this->weight()=(value_type)0;
+		    return false;
+		}
+		this->incoming_particle_channels[0]->set_status_p_generated();
+		if(!this->refresh_Ecm_hat())
+		{
+		    this->weight()=(value_type)0;
+		    return false;
+		}
+		if(this->backward_s_sampling())
+		{
 		    if(!generate_s_back(selected_branchings))
-		    {
-			this->weight()=(value_type)0;
-			return false;
-		    }
-		    this->is_generator()->set_s_hat(this->incoming_particle_channels[0]->s());
-		    if(!this->generate_is())
-		    {
-			this->weight()=(value_type)0;
-			return false;
-		    }
-		    if(!this->check_sufficient_shat())
-		    {
-			this->weight()=(value_type)0;
-			return false;
-		    }
-		    if(!base_type::generate_p(selected_branchings))
 		    {
 			this->weight()=(value_type)0;
 			return false;
@@ -169,45 +167,16 @@ namespace Camgen
 		}
 		else
 		{
-		    if(!this->generate_is())
+		    if(!base_type::generate_s(selected_branchings))
 		    {
 			this->weight()=(value_type)0;
 			return false;
 		    }
-		    if(!this->check_sufficient_shat())
-		    {
-			this->weight()=(value_type)0;
-			return false;
-		    }
-		    this->incoming_particle_channels[0]->set_status_p_generated();
-		    if(this->backward_s_sampling())
-		    {
-			initialise_s_branchings();
-			if(!generate_s_back(selected_branchings))
-			{
-			    this->weight()=(value_type)0;
-			    return false;
-			}
-			if(!base_type::generate_p(selected_branchings))
-			{
-			    this->weight()=(value_type)0;
-			    return false;
-			}
-		    }
-		    else
-		    {
-			initialise_s_branchings();
-			if(!base_type::generate_s(selected_branchings))
-			{
-			    this->weight()=(value_type)0;
-			    return false;
-			}
-			if(!base_type::generate_p(selected_branchings))
-			{
-			    this->weight()=(value_type)0;
-			    return false;
-			}
-		    }
+		}
+		if(!base_type::generate_p(selected_branchings))
+		{
+		    this->weight()=(value_type)0;
+		    return false;
 		}
 		return this->evaluate_weight();
 	    }
@@ -280,22 +249,6 @@ namespace Camgen
 		    result+=(this->outgoing_particle_channels[i]->p());
 		}
 		return result;
-	    }
-
-	    /* Initializes all branchings: */
-
-	    void initialise_s_branchings()
-	    {
-		this->refresh_Ecm_hat();
-		this->incoming_particle_channels[0]->s()=this->is_generator()->s_hat();
-		for(size_type i=0;i<N_out;++i)
-		{
-		    if(this->backward_s_sampling())
-		    {
-			this->outgoing_particle_channels[i]->generate_s();
-		    }
-		    this->outgoing_particle_channels[i]->weight()=(value_type)1;
-		}
 	    }
 
 	    /* Adds a momentum channel to the list if no such with bit string bs
@@ -465,28 +418,18 @@ namespace Camgen
 
 	    bool generate_is()
 	    {
-		if(!this->is_generator()->s_hat_sampling)
+		if(!this->base_type::generate_is())
 		{
-		    //TODO: implement...
-//		    if(!this->incoming_particle_channels[0]->backward_s_recursion())
-//		    {
-//			this->is_weight()=(value_type)0;
-//			return false;
-//		    }
-		    this->is_generator()->set_s_hat(shat_channel->s());
+		    return false;
 		}
-		if(this->base_type::generate_is())
-		{
-		    this->incoming_particle_channels[0]->evaluate_s();
-		    this->incoming_particle_channels[0]->set_status_p_generated();
-		    this->incoming_particle_channels[1]->evaluate_s();
-		    this->incoming_particle_channels[1]->set_status_p_generated();
-		    shat_channel->p()=this->incoming_particle_channels[0]->p()+this->incoming_particle_channels[1]->p();
-		    shat_channel->evaluate_s();
-		    shat_channel->set_status_p_generated();
-		    return true;
-		}
-		return false;
+		this->incoming_particle_channels[0]->evaluate_s();
+		this->incoming_particle_channels[0]->set_status_p_generated();
+		this->incoming_particle_channels[1]->evaluate_s();
+		this->incoming_particle_channels[1]->set_status_p_generated();
+		shat_channel->p()=this->incoming_particle_channels[0]->p()+this->incoming_particle_channels[1]->p();
+		shat_channel->evaluate_s();
+		shat_channel->set_status_p_generated();
+		return true;
 	    }
 
 	    bool generate()
@@ -508,25 +451,23 @@ namespace Camgen
 			this->weight()=(value_type)0;
 			return false;
 		    }
-		    initialise_s_branchings();
 		    if(!generate_s_back(selected_branchings))
 		    {
 			this->weight()=(value_type)0;
 			return false;
 		    }
-		    initialise_t_branchings();
 		    if(!base_type::generate_t(selected_branchings))
 		    {
 			this->weight()=(value_type)0;
 			return false;
 		    }
-		    this->is_generator()->set_s_hat(stot_channel->s());
+		    this->is_generator()->set_s_hat(this->shat_channel->s());
 		    if(!generate_is())
 		    {
 			this->weight()=(value_type)0;
 			return false;
 		    }
-		    if(!this->check_sufficient_shat())
+		    if(!this->refresh_Ecm_hat())
 		    {
 			this->weight()=(value_type)0;
 			return false;
@@ -544,26 +485,14 @@ namespace Camgen
 			this->weight()=(value_type)0;
 			return false;
 		    }
-		    if(!this->check_sufficient_shat())
+		    if(!this->refresh_Ecm_hat())
 		    {
 			this->weight()=(value_type)0;
 			return false;
 		    }
 		    if(this->backward_s_sampling())
 		    {
-			initialise_s_branchings();
 			if(!generate_s_back(selected_branchings))
-			{
-			    this->weight()=(value_type)0;
-			    return false;
-			}
-			initialise_t_branchings();
-			if(!base_type::generate_t(selected_branchings))
-			{
-			    this->weight()=(value_type)0;
-			    return false;
-			}
-			if(!base_type::generate_p(selected_branchings))
 			{
 			    this->weight()=(value_type)0;
 			    return false;
@@ -571,24 +500,21 @@ namespace Camgen
 		    }
 		    else
 		    {
-
-			initialise_s_branchings();
 			if(!base_type::generate_s(selected_branchings))
 			{
 			    this->weight()=(value_type)0;
 			    return false;
 			}
-			initialise_t_branchings();
-			if(!base_type::generate_t(selected_branchings))
-			{
-			    this->weight()=(value_type)0;
-			    return false;
-			}
-			if(!base_type::generate_p(selected_branchings))
-			{
-			    this->weight()=(value_type)0;
-			    return false;
-			}
+		    }
+		    if(!base_type::generate_t(selected_branchings))
+		    {
+			this->weight()=(value_type)0;
+			return false;
+		    }
+		    if(!base_type::generate_p(selected_branchings))
+		    {
+			this->weight()=(value_type)0;
+			return false;
 		    }
 		}
 		bool q=this->evaluate_weight();
@@ -801,35 +727,6 @@ namespace Camgen
 		    mapping[t_branching_]=branchings;
 		}
 		return mapping;
-	    }
-
-	    /* Initializes all s-type branchings: */
-
-	    void initialise_s_branchings()
-	    {
-		this->refresh_Ecm_hat(); //TODO: get this outta here
-		if(!this->backward_shat_sampling() and shat_channel!=NULL)
-		{
-		    shat_channel->set_s_max_max(std::numeric_limits<value_type>::infinity());
-		    shat_channel->set_s_max(std::numeric_limits<value_type>::infinity());
-		    shat_channel->refresh_params();
-		}
-		
-		for(size_type i=0;i<N_out;++i)
-		{
-		    if(this->backward_s_sampling())
-		    {
-			this->outgoing_particle_channels[i]->generate_s();
-		    }
-		    this->outgoing_particle_channels[i]->weight()=(value_type)1;
-		}
-	    }
-
-	    /* Initializes all t-type branchings: */
-
-	    void initialise_t_branchings()
-	    {
-		return;
 	    }
 
 	    /* Evaluates internal momentum: */

@@ -22,10 +22,6 @@ int main()
     typedef std::random rn_engine;
     
     license_print::disable();
-    
-    std::cout<<"-------------------------------------------------------------------------"<<std::endl;
-    std::cout<<"testing ps_tree MC modules in decays....................................."<<std::endl;
-    std::cout<<"-------------------------------------------------------------------------"<<std::endl;
 
     initial_states::type isgen_type=initial_states::partonic;
     phase_space_generators::type psgen_type=phase_space_generators::recursive;
@@ -35,6 +31,10 @@ int main()
     
     std::size_t n_evts=10000;
     std::size_t n_bins=100;
+    
+    std::cout<<"-------------------------------------------------------------------------"<<std::endl;
+    std::cout<<"testing ps_tree MC modules in decays....................................."<<std::endl;
+    std::cout<<"-------------------------------------------------------------------------"<<std::endl;
 
     {
 	Camgen::log.enable_level=log_level::error;

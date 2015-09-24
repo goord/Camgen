@@ -224,10 +224,12 @@ namespace Camgen
 
 	    bool refresh_params()
 	    {
+		bool success=true;
 		for(typename momentum_channel_container::iterator it=momentum_channels.begin();it!=momentum_channels.end();++it)
 		{
-		    (*it)->refresh_params();
+		    success&=((*it)->refresh_params());
 		}
+		return success;
 	    }
 
 	    /// Resets cross-sections, multichannel weights and adaptive grids.
@@ -283,6 +285,10 @@ namespace Camgen
 		{
 		    return false;
 		}
+		if(!this->check_sufficient_s())
+		{
+		    return false;
+		}
 		value_type s=this->Ecm()*this->Ecm();
 		bool success=true;
 		for(int i=0;i<N_in;++i)
@@ -297,6 +303,10 @@ namespace Camgen
 		}
 		for(typename momentum_channel_container::iterator it=momentum_channels.begin();it!=momentum_channels.end();++it)
 		{
+		    if((*it)->shat_channel())
+		    {
+			continue;
+		    }
 		    if((*it)->on_shell())
 		    {
 			continue;
@@ -319,33 +329,51 @@ namespace Camgen
 
 	    bool refresh_Ecm_hat()
 	    {
-		value_type s=this->Ecm_hat()*this->Ecm_hat();
-		bool success=true;
-		for(int i=0;i<N_in;++i)
+		if(!this->check_sufficient_shat())
 		{
-		    success&=incoming_particle_channels[i]->set_s_max(s);
+		    return false;
+		}
+		value_type shat=this->Ecm_hat()*this->Ecm_hat();
+		bool success=true;
+		if(N_in==1)
+		{
+		    incoming_particle_channels[0]->s()=this->is_generator()->s_hat();
+		}
+		else
+		{
+		    for(int i=0;i<N_in;++i)
+		    {
+			success&=incoming_particle_channels[i]->set_s_max(shat);
+		    }
 		}
 		for(int i=0;i<N_out;++i)
 		{
-		    success&=outgoing_particle_channels[i]->set_s_max(s);
+		    success&=outgoing_particle_channels[i]->set_s_max(shat);
+		    if(backward_s_sampling())
+		    {
+			success&=outgoing_particle_channels[i]->generate_s();
+		    }
+		    outgoing_particle_channels[i]->weight()=(value_type)1;
 		}
 		for(typename momentum_channel_container::iterator it=momentum_channels.begin();it!=momentum_channels.end();++it)
 		{
 		    if((*it)->shat_channel())
 		    {
-			(*it)->s()=s;
+			success&=(*it)->refresh_params();
+			(*it)->s()=shat;
+			continue;
 		    }
 		    if((*it)->on_shell())
 		    {
 			continue;
 		    }
-		    if(!(*it)->spacelike())
+		    if((*it)->spacelike())
 		    {
-			success&=((*it)->set_s_min(-s));
+			success&=((*it)->set_s_min(-shat));
 		    }
 		    else
 		    {
-			success&=((*it)->set_s_max(s));
+			success&=((*it)->set_s_max(shat));
 		    }
 		}
 		return success;

@@ -436,12 +436,14 @@ namespace Camgen
 
 	    /* Refreshes internal parameters: */
 
-	    void refresh_params()
+	    bool refresh_params()
 	    {
+		bool success=true;
 		for(particle_channel_iterator it=particle_channels.begin();it!=particle_channels.end();++it)
 		{
-		    (*it)->refresh_params();
+		    success&=((*it)->refresh_params());
 		}
+		return success;
 	    }
 
 	    /* Set the status to s-generated: */

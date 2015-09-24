@@ -90,8 +90,8 @@ check_PROGRAMS = bitstring_test$(EXEEXT) phi3_graphs_test$(EXEEXT) \
 	susy_QCDdc_test$(EXEEXT) susy_Kunszt_test$(EXEEXT) \
 	MC_hel_test$(EXEEXT) MC_col_test$(EXEEXT) MC_gen_test$(EXEEXT) \
 	s_int_test$(EXEEXT) ps_tree_test$(EXEEXT) \
-	ps_reverse_test$(EXEEXT) parni_test$(EXEEXT) \
-	LHAPDF_test$(EXEEXT) ps_vars_test$(EXEEXT) \
+	ps_reverse_test$(EXEEXT) pstree_shat_test$(EXEEXT) \
+	parni_test$(EXEEXT) LHAPDF_test$(EXEEXT) ps_vars_test$(EXEEXT) \
 	save_load_test$(EXEEXT) speed_test$(EXEEXT)
 TESTS = bitstring_test$(EXEEXT) phi3_graphs_test$(EXEEXT) \
 	phi34_graphs_test$(EXEEXT) QCD_procs_test$(EXEEXT) \
@@ -106,8 +106,8 @@ TESTS = bitstring_test$(EXEEXT) phi3_graphs_test$(EXEEXT) \
 	susy_QCDdc_test$(EXEEXT) susy_Kunszt_test$(EXEEXT) \
 	MC_hel_test$(EXEEXT) MC_col_test$(EXEEXT) MC_gen_test$(EXEEXT) \
 	s_int_test$(EXEEXT) ps_tree_test$(EXEEXT) \
-	ps_reverse_test$(EXEEXT) parni_test$(EXEEXT) \
-	LHAPDF_test$(EXEEXT) ps_vars_test$(EXEEXT) \
+	ps_reverse_test$(EXEEXT) pstree_shat_test$(EXEEXT) \
+	parni_test$(EXEEXT) LHAPDF_test$(EXEEXT) ps_vars_test$(EXEEXT) \
 	save_load_test$(EXEEXT) speed_test$(EXEEXT)
 subdir = test
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
@@ -215,6 +215,9 @@ ps_tree_test_LDADD = $(LDADD)
 am_ps_vars_test_OBJECTS = ps_vars_test.$(OBJEXT)
 ps_vars_test_OBJECTS = $(am_ps_vars_test_OBJECTS)
 ps_vars_test_LDADD = $(LDADD)
+am_pstree_shat_test_OBJECTS = pstree_shat_test.$(OBJEXT)
+pstree_shat_test_OBJECTS = $(am_pstree_shat_test_OBJECTS)
+pstree_shat_test_LDADD = $(LDADD)
 am_s_int_test_OBJECTS = s_int_test.$(OBJEXT)
 s_int_test_OBJECTS = $(am_s_int_test_OBJECTS)
 s_int_test_LDADD = $(LDADD)
@@ -284,10 +287,10 @@ SOURCES = $(libCamtest_la_SOURCES) $(LHAPDF_test_SOURCES) \
 	$(parni_test_SOURCES) $(phi34_graphs_test_SOURCES) \
 	$(phi3_graphs_test_SOURCES) $(ps_reverse_test_SOURCES) \
 	$(ps_tree_test_SOURCES) $(ps_vars_test_SOURCES) \
-	$(s_int_test_SOURCES) $(save_load_test_SOURCES) \
-	$(speed_test_SOURCES) $(susy_Kunszt_test_SOURCES) \
-	$(susy_QCDcc_test_SOURCES) $(susy_QCDdc_test_SOURCES) \
-	$(susy_QED_test_SOURCES)
+	$(pstree_shat_test_SOURCES) $(s_int_test_SOURCES) \
+	$(save_load_test_SOURCES) $(speed_test_SOURCES) \
+	$(susy_Kunszt_test_SOURCES) $(susy_QCDcc_test_SOURCES) \
+	$(susy_QCDdc_test_SOURCES) $(susy_QED_test_SOURCES)
 DIST_SOURCES = $(libCamtest_la_SOURCES) $(LHAPDF_test_SOURCES) \
 	$(MC_col_test_SOURCES) $(MC_gen_test_SOURCES) \
 	$(MC_hel_test_SOURCES) $(Parke_Taylor_cc_test_SOURCES) \
@@ -302,10 +305,10 @@ DIST_SOURCES = $(libCamtest_la_SOURCES) $(LHAPDF_test_SOURCES) \
 	$(parni_test_SOURCES) $(phi34_graphs_test_SOURCES) \
 	$(phi3_graphs_test_SOURCES) $(ps_reverse_test_SOURCES) \
 	$(ps_tree_test_SOURCES) $(ps_vars_test_SOURCES) \
-	$(s_int_test_SOURCES) $(save_load_test_SOURCES) \
-	$(speed_test_SOURCES) $(susy_Kunszt_test_SOURCES) \
-	$(susy_QCDcc_test_SOURCES) $(susy_QCDdc_test_SOURCES) \
-	$(susy_QED_test_SOURCES)
+	$(pstree_shat_test_SOURCES) $(s_int_test_SOURCES) \
+	$(save_load_test_SOURCES) $(speed_test_SOURCES) \
+	$(susy_Kunszt_test_SOURCES) $(susy_QCDcc_test_SOURCES) \
+	$(susy_QCDdc_test_SOURCES) $(susy_QED_test_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -744,6 +747,7 @@ MC_gen_test_SOURCES = MC_gen_test.cpp
 s_int_test_SOURCES = s_int_test.cpp
 ps_tree_test_SOURCES = ps_tree_test.cpp
 ps_reverse_test_SOURCES = ps_reverse_test.cpp
+pstree_shat_test_SOURCES = pstree_shat_test.cpp
 parni_test_SOURCES = parni_test.cpp
 LHAPDF_test_SOURCES = LHAPDF_test.cpp
 ps_vars_test_SOURCES = ps_vars_test.cpp
@@ -915,6 +919,10 @@ ps_vars_test$(EXEEXT): $(ps_vars_test_OBJECTS) $(ps_vars_test_DEPENDENCIES) $(EX
 	@rm -f ps_vars_test$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(ps_vars_test_OBJECTS) $(ps_vars_test_LDADD) $(LIBS)
 
+pstree_shat_test$(EXEEXT): $(pstree_shat_test_OBJECTS) $(pstree_shat_test_DEPENDENCIES) $(EXTRA_pstree_shat_test_DEPENDENCIES) 
+	@rm -f pstree_shat_test$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(pstree_shat_test_OBJECTS) $(pstree_shat_test_LDADD) $(LIBS)
+
 s_int_test$(EXEEXT): $(s_int_test_OBJECTS) $(s_int_test_DEPENDENCIES) $(EXTRA_s_int_test_DEPENDENCIES) 
 	@rm -f s_int_test$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(s_int_test_OBJECTS) $(s_int_test_LDADD) $(LIBS)
@@ -995,6 +1003,7 @@ include ./$(DEPDIR)/phi3_graphs_test.Po
 include ./$(DEPDIR)/ps_reverse_test.Po
 include ./$(DEPDIR)/ps_tree_test.Po
 include ./$(DEPDIR)/ps_vars_test.Po
+include ./$(DEPDIR)/pstree_shat_test.Po
 include ./$(DEPDIR)/s_int_test.Po
 include ./$(DEPDIR)/save_load_test.Po
 include ./$(DEPDIR)/speed_test.Po
@@ -1427,6 +1436,13 @@ ps_tree_test.log: ps_tree_test$(EXEEXT)
 ps_reverse_test.log: ps_reverse_test$(EXEEXT)
 	@p='ps_reverse_test$(EXEEXT)'; \
 	b='ps_reverse_test'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+pstree_shat_test.log: pstree_shat_test$(EXEEXT)
+	@p='pstree_shat_test$(EXEEXT)'; \
+	b='pstree_shat_test'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \

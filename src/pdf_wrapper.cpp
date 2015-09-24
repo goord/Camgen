@@ -118,13 +118,25 @@ namespace Camgen
 
 #else
 
+#include <Camgen/debug.h>
+#include <Camgen/logstream.h>
+
 namespace Camgen
 {
-    bool pdf_wrapper::init=true;
+    bool pdf_wrapper::init=false;
     std::string pdf_wrapper::setname;
     int pdf_wrapper::setnr=0;
 
-    void pdf_wrapper::initialise(const char* setname_, int setnr_){}
+    void pdf_wrapper::initialise(const char* setname_, int setnr_)
+    {
+	setname=setname_;
+	setnr=setnr_;
+	if(!init)
+	{
+	    log(log_level::warning)<<CAMGEN_STREAMLOC<<"LHAPDF sets are not installed...using pdf stub"<<endlog;
+	    init=true;
+	}
+    }
 
     void pdf_wrapper::reset(){}
 
@@ -150,7 +162,7 @@ namespace Camgen
 
     std::string pdf_wrapper::name()
     {
-	return "pdf set not initialised";
+	return "pdf set stub";
     }
 
     int pdf_wrapper::number()
@@ -170,17 +182,24 @@ namespace Camgen
 
     double pdf_wrapper::xf(double x,int q,double mu)
     {
-	return x;
+	if(q>0)
+	{
+	    return 4*x*std::exp(-4*x*x)/q;
+	}
+	else
+	{
+	    return std::exp(-4*x*x)/x;
+	}
     }
 
     double pdf_wrapper::f(double x,int q,double mu)
     {
-	return (double)1;
+	return xf(x,q,mu)/x;
     }
 
     double pdf_wrapper::ff(double x1,double x2,int q1,int q2,double mu)
     {
-	return (double)1;
+	return xf(x1,q1,mu)*xf(x2,q2,mu)/(x1*x2);
     }
 
     double pdf_wrapper::alpha_s(double mu)
