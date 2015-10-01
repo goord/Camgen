@@ -24,6 +24,54 @@
 
 namespace Camgen
 {
+    template<class model_t,std::size_t N_out>class pT_min_cut: public phase_space_cut
+    {
+	public:
+
+	    typedef typename model_t::value_type value_type;
+
+	    ps_generator_base<model_t>* generator;
+
+	    value_type value;
+
+	    int particle;
+
+	    pT_min_cut(const value_type& value_,int i=0):generator(NULL),value(value_),particle(i){}
+
+	    bool pass()
+	    {
+		if(generator==NULL)
+		{
+		    return true;
+		}
+		if(particle==0)
+		{
+		    for(int i=1;i<=(int)N_out;++i)
+		    {
+			if(generator->pT(i)<value)
+			{
+			    return false;
+			}
+		    }
+		    return true;
+		}
+		return !(generator->pT(particle)<value);
+	    }
+
+	    std::ostream& print(std::ostream& os) const
+	    {
+		if(particle==0)
+		{
+		    os<<"pT >= "<<value;
+		}
+		else
+		{
+		    os<<"pT("<<particle<<") >= "<<value;
+		}
+		return os;
+	    }
+    };
+
     /* Monte-Carlo phase space generator class template declaration: */
 
     template<class model_t,std::size_t N_in,std::size_t N_out,class rng_t>class ps_generator_tester
@@ -63,7 +111,7 @@ namespace Camgen
 	    /* Constructor from a CM-tree iterator, an initial-state generator instance
 	     * and a file name: */
 
-	    ps_generator_tester(CM_tree_iterator amplitude_,const std::string& filename_,initial_states::type isgen_type=Camgen::initial_state_type(),phase_space_generators::type psgen_type=Camgen::phase_space_generator_type()):filename(filename_),sym_factor(amplitude_->symmetry_factor()),amplitude(amplitude_)
+	    ps_generator_tester(CM_tree_iterator amplitude_,const std::string& filename_,initial_states::type isgen_type=Camgen::initial_state_type(),phase_space_generators::type psgen_type=Camgen::phase_space_generator_type()):filename(filename_),sym_factor(amplitude_->symmetry_factor()),amplitude(amplitude_),pTcut1(NULL),pTcut2(NULL)
 	    {
 		ps_gen=gen_factory::create_generator(amplitude,isgen_type,psgen_type);
 		uni_gen=gen_factory::create_generator(amplitude,isgen_type,phase_space_generators::uniform);
@@ -143,6 +191,15 @@ namespace Camgen
 			std::cerr<<i<<": w = "<<ps_gen->weight()<<", M ="<<ps_gen->integrand()<<std::endl;
 		    }
 		    ps_gen->refresh_cross_section();
+		    if(w1!=(value_type)0)
+		    {
+			value_type w_check=ps_gen->weight();
+			if(!equals(w_check,w1))
+			{
+			    ps_gen->print(std::cerr);
+			    Camgen::log<<"Weight re-evaluation lead to different result: "<<w1<<" not equal to  "<<w_check<<endlog;
+			}
+		    }
 		    
 		    bool rambo_generated=uni_gen->generate();
 		    if(rambo_generated)
@@ -222,13 +279,24 @@ namespace Camgen
 
 		delete data;
 
-		return equals(ps_gen->cross_section(),uni_gen->cross_section());
+		MC_integral<value_type>psvol_rambo(psvol1,psvol1err);
+		MC_integral<value_type>psvol_tree(psvol2,psvol2err);
+
+		return equals(ps_gen->cross_section(),uni_gen->cross_section()) or equals(psvol_tree,psvol_rambo);
 	    }
 
 	    /* Destructor: */
 
 	    ~ps_generator_tester()
 	    {
+		if(pTcut1!=NULL)
+		{
+		    delete pTcut1;
+		}
+		if(pTcut2!=NULL)
+		{
+		    delete pTcut2;
+		}
 		delete ps_gen;
 		delete uni_gen;
 	    }
@@ -246,20 +314,25 @@ namespace Camgen
 		return false;
 	    }
 
-	    /* Sets the minimal pT for the generators */
+	    /* Sets a minimal pT: */
 
-	    void set_pT_min(int i,const value_type& pTmin)
+	    bool set_pT_min(const value_type& value,int i=0)
 	    {
-		ps_gen->set_pT_min(i,pTmin);
-		uni_gen->set_pT_min(i,pTmin);
-	    }
+		if(pTcut1!=NULL)
+		{
+		    delete pTcut1;
+		}
+		pTcut1 = new pT_min_cut<model_t,N_out>(value,i);
+		pTcut1->generator=uni_gen;
+		uni_gen->insert_cut(pTcut1);
 
-	    /* Sets the maximal angle for the generators */
-
-	    void set_ct_max(int i,const value_type& ctmax)
-	    {
-		ps_gen->set_ct_max(i,ctmax);
-		uni_gen->set_ct_max(i,ctmax);
+		if(pTcut2!=NULL)
+		{
+		    delete pTcut2;
+		}
+		pTcut2 = new pT_min_cut<model_t,N_out>(value,i);
+		pTcut2->generator=ps_gen;
+		ps_gen->insert_cut(pTcut2);
 	    }
 
 	    /* Prints the amplitude: */
@@ -286,6 +359,11 @@ namespace Camgen
 		ps_gen->print_status(std::cout);
 		return os;
 	    }
+
+	private:
+
+	    pT_min_cut<model_t,N_out>* pTcut1;
+	    pT_min_cut<model_t,N_out>* pTcut2;
     };
 }
 

@@ -147,6 +147,10 @@ namespace Camgen
 		}
 	    }
 
+	    /// Evaluates the internal momentum
+
+	    virtual momentum_type p_internal(bit_string_type bs)=0;
+
 	    /// Returns whether the generator will sample invariants in backward order.
 
 	    bool backward_s_sampling() const
@@ -159,6 +163,43 @@ namespace Camgen
 	    bool backward_shat_sampling() const
 	    {
 		return !this->is_generator()->s_hat_sampling;
+	    }
+
+	    /// Weight evaluation method.
+
+	    bool evaluate_fs_weight()
+	    {
+		for(typename momentum_channel_container::iterator it=momentum_channels.begin();it!=momentum_channels.end();++it)
+		{
+		    if((*it)->get_status()==momentum_channel_type::p_set) continue;
+
+		    (*it)->p()=p_internal((*it)->bitstring);
+		    (*it)->evaluate_s();
+		    (*it)->set_status_p_generated();
+		}
+		typename branching_container::iterator it=ps_branchings.begin();
+		const particle_channel_type* incoming_channel=(*it)->incoming_channel;
+		while(it!=ps_branchings.end())
+		{
+		    if((*it)->incoming_channel!=incoming_channel)
+		    {
+			if(!const_cast<particle_channel_type*>(incoming_channel)->evaluate_weight())
+			{
+			    this->fs_weight()=(value_type)0;
+			    return false;
+			}
+			incoming_channel=(*it)->incoming_channel;
+		    }
+		    if(!(*it)->evaluate_weight(!(*it)->generated))
+		    {
+			this->fs_weight()=(value_type)0;
+			return false;
+		    }
+		    ++it;
+		}
+		this->incoming_particle_channels[0]->evaluate_weight();
+		this->fs_weight()=this->incoming_particle_channels[0]->weight();
+		return true;
 	    }
 
 	    /// Overrides the update method.
@@ -305,6 +346,11 @@ namespace Camgen
 		{
 		    if((*it)->shat_channel())
 		    {
+			if(this->backward_shat_sampling())
+			{
+			    success&=((*it)->set_s_min_min((value_type)0));
+			    success&=((*it)->set_s_max_max(s));
+			}
 			continue;
 		    }
 		    if((*it)->on_shell())
@@ -571,8 +617,7 @@ namespace Camgen
 		}
 		if(channel->insert_branching(branching) and std::find(ps_branchings.begin(),ps_branchings.end(),branching)==ps_branchings.end())
 		{
-		    branching->backward_s_sampling=backward_s_gen;
-		    ps_branchings.push_back(branching);
+		    ps_branchings.push_back(configure_branching(branching));
 		    return true;
 		}
 		else
@@ -593,8 +638,7 @@ namespace Camgen
 		}
 		if(channel->insert_branching(branching) and std::find(ps_branchings.begin(),ps_branchings.end(),branching)==ps_branchings.end())
 		{
-		    branching->backward_s_sampling=backward_s_gen;
-		    ps_branchings.insert(it,branching);
+		    ps_branchings.insert(it,configure_branching(branching));
 		    return true;
 		}
 		else
@@ -636,8 +680,7 @@ namespace Camgen
 		
 		if(channel->replace_branching(first,second))
 		{
-		    *it=second;
-		    second->backward_s_sampling=backward_s_gen;
+		    *it=configure_branching(second);
 		    delete first;
 		    return true;
 		}
@@ -678,31 +721,6 @@ namespace Camgen
 		ps_branchings.erase(it_end,ps_branchings.end());
 	    }
 
-	    /* Queries whether the branching is the first in its multichannel: */
-
-	    bool first_branching(branching_type* branching)
-	    {
-		const particle_channel_type* incoming_channel=branching->incoming_channel;
-		if(incoming_particle_channels[0]->branching_count()>0)
-		{
-		    return branching==incoming_channel->branching(0);
-		}
-		return false;
-	    }
-
-	    /* Queries whether the branching is the last in its multichannel: */
-
-	    bool last_branching(branching_type* branching)
-	    {
-		const particle_channel_type* incoming_channel=branching->incoming_channel;
-		size_type n_branchings=incoming_channel->branching_count();
-		if(n_branchings>0)
-		{
-		    return branching==incoming_channel->branching(n_branchings-1);
-		}
-		return false;
-	    }
-
 	    /* Resets all generation flags: */
 
 	    void initialise_channels()
@@ -724,6 +742,15 @@ namespace Camgen
 		particle_type* rho=particle_type::create_auxiliary(name);
 		auxiliary_particles.push_back(rho);
 		return rho;
+	    }
+
+	    /* Stets correct flags to the given branching: */
+
+	    branching_type* configure_branching(branching_type* branching) const
+	    {
+		branching->backward_s_sampling=this->backward_s_sampling();
+		branching->shat_sampling=backward_shat_sampling();
+		return branching;
 	    }
 
 	    /* Protected data members */
@@ -818,6 +845,26 @@ namespace Camgen
 		    }
 		}
 		return true;
+	    }
+
+	    /* Sets the generation flag of the branchings: */
+
+	    static void set_generated(branching_container& selected_branchings)
+	    {
+		for(typename branching_container::iterator it=selected_branchings.begin();it!=selected_branchings.end();++it)
+		{
+		    (*it)->generated=true;
+		}
+	    }
+
+	    /* Resets the generation flag of the branchings: */
+
+	    static void reset_generated(branching_container& selected_branchings)
+	    {
+		for(typename branching_container::iterator it=selected_branchings.begin();it!=selected_branchings.end();++it)
+		{
+		    (*it)->generated=false;
+		}
 	    }
 
 	    static bool dead_end_branching(const branching_type* branching)

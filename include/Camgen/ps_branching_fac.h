@@ -49,7 +49,7 @@ namespace Camgen
 		const value_type* exponent=&(channel->s_sampling_exponent);
 
 		bool adaptive=(channel->timelike())?adaptive_s_sampling():adaptive_t_sampling();
-		
+		bool dirac_delta=false;	
 		if(channel->on_shell()) // final state particles: Dirac delta
 		{
 		    width=NULL;

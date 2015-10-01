@@ -1230,6 +1230,8 @@ namespace Camgen
 	    bool lock;
     };
 
+    //TODO: Move to test folder....
+
     template<class model_t>class momentum_collection: public ps_generator_base<model_t>
     {
 	public:

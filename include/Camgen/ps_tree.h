@@ -134,6 +134,11 @@ namespace Camgen
 	    {
 		this->initialise_channels();
 
+		for(typename branching_container::iterator it=this->ps_branchings.begin();it!=this->ps_branchings.end();++it)
+		{
+		    (*it)->weight()=(value_type)0;
+		}
+
 		branching_container selected_branchings=this->select_branchings();
 
 		if(selected_branchings.size()==0)
@@ -178,38 +183,10 @@ namespace Camgen
 		    this->weight()=(value_type)0;
 		    return false;
 		}
-		return this->evaluate_weight();
-	    }
-
-	    /// Weight evaluation method.
-
-	    bool evaluate_fs_weight()
-	    {
-		for(typename momentum_channel_container::iterator it=this->momentum_channels.begin();it!=this->momentum_channels.end();++it)
-		{
-		    if((*it)->get_status()==momentum_channel_type::p_set) continue;
-
-		    (*it)->p()=p_internal((*it)->bitstring);
-		    (*it)->evaluate_s();
-		    (*it)->set_status_p_generated();
-		}
-		for(typename branching_container::iterator it=this->ps_branchings.begin();it!=this->ps_branchings.end();++it)
-		{
-		    if(!(*it)->evaluate_weight())
-		    {
-			return false;
-		    }
-		    if(this->last_branching(*it))
-		    {
-			particle_channel_type* channel=const_cast<particle_channel_type*>((*it)->incoming_channel);
-			if(!channel->evaluate_weight())
-			{
-			    return false;
-			}
-		    }
-		}
-		this->fs_weight()=this->incoming_particle_channels[0]->weight();
-		return true;
+		base_type::set_generated(selected_branchings);
+		bool q=this->evaluate_weight();
+		base_type::reset_generated(selected_branchings);
+		return q;
 	    }
 
 	private:
@@ -436,6 +413,11 @@ namespace Camgen
 	    {
 		this->initialise_channels();
 
+		for(typename branching_container::iterator it=this->ps_branchings.begin();it!=this->ps_branchings.end();++it)
+		{
+		    (*it)->weight()=(value_type)0;
+		}
+
 		branching_container selected_branchings=this->select_branchings();
 
 		if(selected_branchings.size()==0)
@@ -517,40 +499,10 @@ namespace Camgen
 			return false;
 		    }
 		}
+		base_type::set_generated(selected_branchings);
 		bool q=this->evaluate_weight();
+		base_type::reset_generated(selected_branchings);
 		return q;
-	    }
-
-
-	    /// Weight evaluation method.
-
-	    bool evaluate_fs_weight()
-	    {
-		for(typename momentum_channel_container::iterator it=this->momentum_channels.begin();it!=this->momentum_channels.end();++it)
-		{
-		    if((*it)->get_status()==momentum_channel_type::p_set) continue;
-
-		    (*it)->p()=p_internal((*it)->bitstring);
-		    (*it)->evaluate_s();
-		    (*it)->set_status_p_generated();
-		}
-		for(typename branching_container::iterator it=this->ps_branchings.begin();it!=this->ps_branchings.end();++it)
-		{
-		    if(!(*it)->evaluate_weight())
-		    {
-			return false;
-		    }
-		    if(this->last_branching(*it))
-		    {
-			particle_channel_type* channel=const_cast<particle_channel_type*>((*it)->incoming_channel);
-			if(!channel->evaluate_weight())
-			{
-			    return false;
-			}
-		    }
-		}
-		this->fs_weight()=this->incoming_particle_channels[0]->weight();
-		return true;
 	    }
 
 	private:

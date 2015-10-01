@@ -577,6 +577,8 @@ int main()
 	delete helgen;
     }
 
+    n_evts=50000;
+
     {
 	std::string process("e+,e- > nu_e,u,dbar,mu-,nu_mubar,nu_ebar");
 	std::string fname("plots/ee_qqbarl3n");

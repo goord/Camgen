@@ -63,6 +63,14 @@ namespace Camgen
 
 	    bool backward_s_sampling;
 
+	    /* Denotes whether this branching can sample the incoming s-hat: */
+
+	    bool shat_sampling;
+
+	    /* Utility flag for generation: */
+
+	    bool generated;
+
 	    /* Public modifiers: */
 	    /*-------------------*/
 
@@ -108,9 +116,14 @@ namespace Camgen
 
 	    virtual bool evaluate_branching_weight()=0;
 
+	    bool evaluate_weight()
+	    {
+		return evaluate_weight(true);
+	    }
+
 	    /* Computes the recursive channel branching weight. */
 	    
-	    bool evaluate_weight()
+	    bool evaluate_weight(bool eval_bw)
 	    {
 		for(size_type i=0;i<channels.size();++i)
 		{
@@ -119,11 +132,12 @@ namespace Camgen
 			log(log_level::warning)<<CAMGEN_STREAMLOC<<"evaluating weight of incomplete event..."<<endlog;
 		    }
 		}
-		if(!evaluate_branching_weight())
+		if(eval_bw and !evaluate_branching_weight())
 		{
 		    this->weight()=(value_type)0;
 		    return false;
 		}
+		this->weight()=branching_weight;
 		for(size_type i=0;i<channels.size();++i)
 		{
 		    this->weight()*=channels[i]->weight();
@@ -300,6 +314,11 @@ namespace Camgen
 		return false;
 	    }
 
+	    value_type branch_weight() const
+	    {
+		return branching_weight;
+	    }
+
 	    /* Serialization: */
 	    /*----------------*/
 
@@ -324,14 +343,14 @@ namespace Camgen
 
 	    /* Constructor 1->1 branching. */
 	    
-	    ps_branching(channel_type* incoming_channel_,channel_type* channel):incoming_channel(incoming_channel_)
+	    ps_branching(channel_type* incoming_channel_,channel_type* channel):incoming_channel(incoming_channel_),backward_s_sampling(false),shat_sampling(false),generated(false)
 	    {
 		channels.push_back(channel);
 	    }
 
 	    /* Constructor 1->2 branching. */
 	    
-	    ps_branching(channel_type* incoming_channel_,channel_type* channel1,channel_type* channel2):incoming_channel(incoming_channel_)
+	    ps_branching(channel_type* incoming_channel_,channel_type* channel1,channel_type* channel2):incoming_channel(incoming_channel_),backward_s_sampling(false),shat_sampling(false),generated(false)
 	    {
 		channels.push_back(channel1);
 		channels.push_back(channel2);
@@ -377,6 +396,10 @@ namespace Camgen
 	    {
 		return (incoming_channel==other->incoming_channel);
 	    }
+
+	    /* Branching weight: */
+
+	    value_type branching_weight;
 
 	private:
 

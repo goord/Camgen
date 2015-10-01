@@ -29,6 +29,7 @@
 namespace Camgen
 {
     /* Phase space particle channel class: */
+    /* TODO: remove MC_generator base class... */
 
     template<class model_t,std::size_t N_in,std::size_t N_out,class rng_t>class particle_channel: public MC_generator<typename model_t::value_type>, public MC_integrator_base<typename model_t::value_type>
     {
@@ -559,6 +560,13 @@ namespace Camgen
 	    bool timelike() const
 	    {
 		return ps_channel->timelike();
+	    }
+
+	    /* Returns whether the channel is the total s-hat channel: */
+
+	    bool shat_channel() const
+	    {
+		return ps_channel->shat_channel();
 	    }
 
 	    /* Returns the propagator sampling type */

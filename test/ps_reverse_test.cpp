@@ -26,7 +26,6 @@ int main()
     initial_states::type isgen_type=initial_states::partonic;
     phase_space_generators::type psgen_type=phase_space_generators::recursive_backward_s;
     set_phase_space_generator_type(psgen_type);
-    set_s_pair_generation_mode(s_pair_generation_modes::hit_and_miss);
     std::string fext=plot_config::gnuplot_path==NULL?".dat/.gp":".eps";
     
     std::size_t n_evts=10000;

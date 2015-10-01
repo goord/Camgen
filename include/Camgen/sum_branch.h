@@ -68,14 +68,10 @@ namespace Camgen
 		if(this->channel(0)->get_status()!=ps_channel_type::p_set)
 		{
 		    this->channel(0)->p()=this->p_in()+in2->p();
-		    //		if(!this->channel(0)->on_shell())
-		    //		{
-		    //		    this->channel(0)->evaluate_s();
-		    //		}
 		    this->channel(0)->set_status_p_generated();
 		}
 
-		this->weight()=(value_type)1;
+		this->branching_weight=(value_type)1;
 		return true;
 	    }
 
@@ -83,7 +79,7 @@ namespace Camgen
 
 	    bool evaluate_branching_weight()
 	    {
-		this->weight()=(value_type)1;
+		this->branching_weight=(value_type)1;
 		return true;
 	    }
 

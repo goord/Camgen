@@ -67,7 +67,7 @@ namespace Camgen
 	    {
 		if(this->backward_s_sampling)
 		{
-		    if(this->incoming_channel->get_status()==ps_channel_type::p_set)
+		    if(this->incoming_channel->stot_channel() and !this->shat_sampling)
 		    {
 			sweight=(value_type)1;
 			return true;
@@ -76,12 +76,14 @@ namespace Camgen
 		    if(this->incoming_channel->m_max()<mmin)
 		    {
 			sweight=(value_type)0;
+			this->branching_weight=(value_type)0;
 			return false;
 		    }
 		    this->incoming_channel->set_m_min(mmin);
 		    if(!this->incoming_channel->generate_s())
 		    {
 			sweight=(value_type)0;
+			this->branching_weight=(value_type)0;
 			return false;
 		    }
 		    this->incoming_channel->set_status_s_generated();
@@ -92,6 +94,7 @@ namespace Camgen
 		    if(!ssgen->generate())
 		    {
 			sweight=(value_type)0;
+			this->branching_weight=(value_type)0;
 			return false;
 		    }
 		    this->channel(0)->set_status_s_generated();
@@ -117,7 +120,7 @@ namespace Camgen
 		value_type k12=Kallen(s,s1,s2);
 		if(sqrts<=(value_type)0 or k12<(value_type)0)
 		{
-		    this->weight()=(value_type)0;
+		    this->branching_weight=(value_type)0;
 		    return false;
 		}
 		value_type lambda=std::sqrt(k12);
@@ -133,46 +136,29 @@ namespace Camgen
 		this->channel(0)->set_status_p_generated();
 		this->p_out(1)=this->p_in()-this->p_out(0);
 		this->channel(1)->set_status_p_generated();
-		this->weight()=massless_ps<value_type,2,model_t::dimension>::volume(sqrts)*std::pow(lambda/s,int(model_t::dimension-3))*sweight;
-		return (this->weight()>(value_type)0);
+		this->branching_weight=massless_ps<value_type,2,model_t::dimension>::volume(sqrts)*std::pow(lambda/s,int(model_t::dimension-3))*sweight;
+		return (this->branching_weight>(value_type)0);
 	    }
 
 	    /* Overridden weight evaluation method: */
 
             bool evaluate_branching_weight()
             {
-		if(this->backward_s_sampling)
+		if(!evaluate_s_weight())
 		{
-		    value_type mmin=this->m_out(0)+this->m_out(1);
-		    if(this->incoming_channel->m_max()<=mmin)
-		    {
-			sweight=(value_type)0;
-			this->weight()=(value_type)0;
-			return false;
-		    }
-		    this->incoming_channel->set_m_min(mmin);
-		    sweight=this->incoming_channel->s_weight();
-		}
-		else
-		{
-		    if(!ssgen->evaluate_weight())
-		    {
-			sweight=(value_type)0;
-			this->weight()=(value_type)0;
-			return false;
-		    }
-		    sweight=ssgen->weight();
+		    this->branching_weight=(value_type)0;
+		    return false;
 		}
 		value_type s=this->s_in();
 		value_type k12=Kallen(s,this->s_out(0),this->s_out(1));
 		if(s<=0 or k12<(value_type)0)
 		{
-		    this->weight()=(value_type)0;
+		    this->branching_weight=(value_type)0;
 		    return false;
 		}
 		value_type lambda=std::sqrt(k12);
-		this->weight()=massless_ps<value_type,2,model_t::dimension>::volume(this->m_in())*std::pow(lambda/s,int(model_t::dimension-3))*sweight;
-		return (this->weight()>(value_type)0);
+		this->branching_weight=massless_ps<value_type,2,model_t::dimension>::volume(this->m_in())*std::pow(lambda/s,int(model_t::dimension-3))*sweight;
+		return (this->branching_weight>(value_type)0);
             }
 
 	    bool s_type() const
@@ -211,6 +197,43 @@ namespace Camgen
 	    /* Solid angle generator: */
 
 	    sphere_generator_type sphere_generator;
+
+	    /* Evaluates sweight for backward s-sampling: */
+
+	    bool evaluate_s_weight()
+	    {
+		if(this->backward_s_sampling)
+		{
+		    if(this->incoming_channel->shat_channel() and !this->shat_sampling)
+		    {
+			sweight=(value_type)1;
+			return true;
+		    }
+		    value_type mmin=this->m_out(0)+this->m_out(1);
+		    if(this->incoming_channel->m_max()<mmin)
+		    {
+			sweight=(value_type)0;
+			return false;
+		    }
+		    this->incoming_channel->set_m_min(mmin);
+		    if(!this->incoming_channel->evaluate_s_weight())
+		    {
+			sweight=(value_type)0;
+			return false;
+		    }
+		    sweight=this->incoming_channel->s_weight();
+		}
+		else
+		{
+		    if(!ssgen->evaluate_weight())
+		    {
+			sweight=(value_type)0;
+			return false;
+		    }
+		    sweight=ssgen->weight();
+		}
+		return true;
+	    }
     };
 
     /* Specialisation for 4d-Minkowski spacetimes, adapting the polar decay
@@ -268,21 +291,23 @@ namespace Camgen
 	    {
 		if(this->backward_s_sampling)
 		{
-		    if(this->incoming_channel->get_status()==ps_channel_type::p_set)
+		    if(this->incoming_channel->shat_channel() and !this->shat_sampling)
 		    {
 			sweight=(value_type)1;
 			return true;
 		    }
-		    value_type mmin=this->m_out(0)+this->m_out(1);
+		    value_type mmin=std::max(this->m_out(0)+this->m_out(1),this->incoming_channel->m_min_min());
 		    if(this->incoming_channel->m_max()<mmin)
 		    {
 			sweight=(value_type)0;
+			this->branching_weight=(value_type)0;
 			return false;
 		    }
 		    this->incoming_channel->set_m_min(mmin);
 		    if(!this->incoming_channel->generate_s())
 		    {
 			sweight=(value_type)0;
+			this->branching_weight=(value_type)0;
 			return false;
 		    }
 		    this->incoming_channel->set_status_s_generated();
@@ -294,6 +319,7 @@ namespace Camgen
 		    if(!ssgen->generate())
 		    {
 			sweight=(value_type)0;
+			this->branching_weight=(value_type)0;
 			return false;
 		    }
 		    this->channel(0)->set_status_s_generated();
@@ -319,7 +345,7 @@ namespace Camgen
 		value_type k12=Kallen(s,s1,s2);
 		if(sqrts<=(value_type)0 or k12<(value_type)0)
 		{
-		    this->weight()=(value_type)0;
+		    this->branching_weight=(value_type)0;
 		    return false;
 		}
 		value_type lambda=std::sqrt(k12);
@@ -332,7 +358,7 @@ namespace Camgen
 		{
 		    if(!theta_grid->generate())
 		    {
-			this->weight()=(value_type)0;
+			this->branching_weight=(value_type)0;
 			return false;
 		    }
 		    thetaweight=theta_grid->weight();
@@ -355,41 +381,18 @@ namespace Camgen
 		this->p_out(1)=this->p_in()-this->p_out(0);
 		this->channel(1)->set_status_p_generated();
 
-		this->weight()=massless_ps<value_type,2,4>::volume(sqrts)*(lambda/s)*sweight*thetaweight;
-		return (this->weight()>(value_type)0);
+		this->branching_weight=massless_ps<value_type,2,4>::volume(sqrts)*(lambda/s)*sweight*thetaweight;
+		return (this->branching_weight>(value_type)0);
 	    }
 
 	    /* Overridden weight evaluation method: */
 
             bool evaluate_branching_weight()
             {
-		if(this->backward_s_sampling)
+		if(!evaluate_s_weight())
 		{
-		    value_type mmin=this->m_out(0)+this->m_out(1);
-		    if(this->incoming_channel->m_max()<mmin)
-		    {
-			sweight=(value_type)0;
-			this->weight()=(value_type)0;
-			return false;
-		    }
-		    this->incoming_channel->set_m_min(mmin);
-		    if(!this->incoming_channel->evaluate_s_weight())
-		    {
-			sweight=(value_type)0;
-			this->weight()=(value_type)0;
-			return false;
-		    }
-		    sweight=this->incoming_channel->s_weight();
-		}
-		else
-		{
-		    if(!ssgen->evaluate_weight())
-		    {
-			sweight=(value_type)0;
-			this->weight()=(value_type)0;
-			return false;
-		    }
-		    sweight=ssgen->weight();
+		    this->branching_weight=(value_type)0;
+		    return false;
 		}
 
 		value_type s=this->s_in();
@@ -400,13 +403,13 @@ namespace Camgen
 		value_type k12=Kallen(s,s1,s2);
 		if(sqrts<=(value_type)0 or k12<(value_type)0)
 		{
-		    this->weight()=(value_type)0;
+		    this->branching_weight=(value_type)0;
 		    return false;
 		}
 
 		value_type lambda=std::sqrt(k12);
 		value_type phat=(value_type)0.5*lambda/sqrts;
-		value_type rweight(1);
+		value_type thetaweight(1);
 		if(theta_grid!=NULL)
 		{
 		    value_type costheta=copy_boost_to_restframe(this->p_out(0),this->p_in(),sqrts)[long_dir]/phat;
@@ -414,19 +417,19 @@ namespace Camgen
 		    if(r0<(value_type)0 or r0>(value_type)1)
 		    {
 			log(log_level::warning)<<CAMGEN_STREAMLOC<<"cos polar angle "<<costheta<<" out of range--returning weight 0."<<endlog;
-			this->weight()=(value_type)0;
+			this->branching_weight=(value_type)0;
 			return false;
 		    }
 		    theta_grid->object()=r0;
 		    if(!theta_grid->evaluate_weight())
 		    {
-			this->weight()=(value_type)0;
+			this->branching_weight=(value_type)0;
 			return false;
 		    }
-		    rweight=(theta_grid->weight());
+		    thetaweight=(theta_grid->weight());
 		}
-		this->weight()=massless_ps<value_type,2,4>::volume(sqrts)*(lambda/s)*sweight*rweight;
-		return (this->weight()>(value_type)0);
+		this->branching_weight=massless_ps<value_type,2,4>::volume(sqrts)*(lambda/s)*sweight*thetaweight;
+		return (this->branching_weight>(value_type)0);
             }
 
 	    bool s_type() const
@@ -486,6 +489,43 @@ namespace Camgen
 	    /* Polar angle adaptive grid: */
 
 	    parni_generator<value_type,1,rng_t>* theta_grid;
+
+	    /* Evaluates sweight for backward s-sampling: */
+
+	    bool evaluate_s_weight()
+	    {
+		if(this->backward_s_sampling)
+		{
+		    if(this->incoming_channel->shat_channel() and !this->shat_sampling)
+		    {
+			sweight=(value_type)1;
+			return true;
+		    }
+		    value_type mmin=this->m_out(0)+this->m_out(1);
+		    if(this->incoming_channel->m_max()<mmin)
+		    {
+			sweight=(value_type)0;
+			return false;
+		    }
+		    this->incoming_channel->set_m_min(mmin);
+		    if(!this->incoming_channel->evaluate_s_weight())
+		    {
+			sweight=(value_type)0;
+			return false;
+		    }
+		    sweight=this->incoming_channel->s_weight();
+		}
+		else
+		{
+		    if(!ssgen->evaluate_weight())
+		    {
+			sweight=(value_type)0;
+			return false;
+		    }
+		    sweight=ssgen->weight();
+		}
+		return true;
+	    }
     };
     template<class model_t,std::size_t N_in,std::size_t N_out,class rng_t>const typename model_t::value_type s_branching<model_t,N_in,N_out,rng_t,typename Minkowski_type::template implementation<typename model_t::value_type,4> >::twopi=(typename model_t::value_type)2*std::acos(-(typename model_t::value_type)1);
     template<class model_t,std::size_t N_in,std::size_t N_out,class rng_t>const std::size_t s_branching<model_t,N_in,N_out,rng_t,typename Minkowski_type::template implementation<typename model_t::value_type,4> >::long_dir;

@@ -61,6 +61,8 @@ namespace Camgen
 
 	    const bool is_final;
 
+	    /* Flag denoting whether the branching should generate s2_channel: */
+
 	    /* Constructor. First argument is the incoming spacelike channel or
 	     * first beam, second argument is the second beam, third argument is
 	     * the first outgoing timelike channel, third argument is the
@@ -90,39 +92,68 @@ namespace Camgen
 		delete ssgen;
 	    }
 
+	    bool s1_sampling() const
+	    {
+		return !this->backward_s_sampling or (s1_channel->off_shell() and s1_channel->branching_count()==0);
+	    }
+
+	    bool s2_sampling() const
+	    {
+		return !this->backward_s_sampling or (s2_channel->off_shell() and s2_channel->branching_count()==0);
+	    }
+
+	    bool stot_sampling() const
+	    {
+		return this->backward_s_sampling and this->shat_sampling and stot_channel->shat_channel();
+	    }
+
 	    /* Generates positive invariants: */
 
 	    bool generate_s()
 	    {
 		sweight=(value_type)1;
+
 		if(this->backward_s_sampling)
 		{
-		    if(stot_channel->get_status()==ps_channel_type::reset)
+		    bool q1=s1_sampling();
+		    bool q2=s2_sampling();
+		    bool q12=stot_sampling();
+
+		    if(q12)
 		    {
-			stot_channel->shortprint(std::cerr);
+			value_type mmin1=q1?s1_channel->m():s1_channel->m_min();
+			value_type mmin2=q2?s2_channel->m():s2_channel->m_min();
+			stot_channel->set_m_min(mmin1+mmin2);
+			if(!stot_channel->generate_s())
+			{
+			    sweight=(value_type)0;
+			    this->branching_weight=(value_type)0;
+			    return false;
+			}
+			stot_channel->set_status_s_generated();
+			sweight*=stot_channel->s_weight();
+		    }
+		    else if(stot_channel->get_status()==ps_channel_type::reset)
+		    {
 			log(log_level::warning)<<CAMGEN_STREAMLOC<<"sampling invariant mass without total invariant mass generated..."<<endlog;
 		    }
-		    if(!s1_channel->on_shell() and s1_channel->branching_count()==0) //auxiliary channel
+		    if(q1 and q2)
 		    {
-			s1_channel->set_m_max(stot_channel->m()-s2_channel->m());
-			if(!s1_channel->generate_s())
-			{
-			    sweight=(value_type)0;
-			    return false;
-			}
-			s1_channel->set_status_s_generated();
-			sweight*=s1_channel->s_weight();
+			log(log_level::error)<<CAMGEN_STREAMLOC<<"sampling 2 auxiliary invariant masses in t-branching is not supported yet"<<endlog;
 		    }
-		    if(!s2_channel->on_shell() and s2_channel->branching_count()==0) //auxiliary channel
+		    if(q1 or q2)
 		    {
-			s2_channel->set_m_max(stot_channel->m()-s1_channel->m());
-			if(!s2_channel->generate_s())
+			channel_type* q1_channel=q1?s1_channel:s2_channel;
+			channel_type* q2_channel=q2?s2_channel:s1_channel;
+			q1_channel->set_m_max(stot_channel->m()-q2_channel->m());
+			if(!q1_channel->generate_s())
 			{
 			    sweight=(value_type)0;
+			    this->branching_weight=(value_type)0;
 			    return false;
 			}
-			s2_channel->set_status_s_generated();
-			sweight*=s2_channel->s_weight();
+			q1_channel->set_status_s_generated();
+			sweight*=q1_channel->s_weight();
 		    }
 		}
 		else
@@ -130,6 +161,7 @@ namespace Camgen
 		    if(!ssgen->generate())
 		    {
 			sweight=(value_type)0;
+			this->branching_weight=(value_type)0;
 			return false;
 		    }
 		    s1_channel->set_status_s_generated();
@@ -154,6 +186,7 @@ namespace Camgen
 		if(l12<(value_type)0)
 		{
 		    tweight=(value_type)0;
+		    this->branching_weight=(value_type)0;
 		    return false;
 		}
 		value_type B=0.5*std::sqrt(Kallen(s,sa,sb)*l12)/s;
@@ -163,11 +196,13 @@ namespace Camgen
 		if(!(t_channel->set_s_range(tmin,tmax)))
 		{
 		    tweight=(value_type)0;
+		    this->branching_weight=(value_type)0;
 		    return false;
 		}
 		if(!t_channel->generate_s())
 		{
 		    tweight=(value_type)0;
+		    this->branching_weight=(value_type)0;
 		    return false;
 		}
 		t_channel->set_status_s_generated();
@@ -198,7 +233,7 @@ namespace Camgen
 		value_type k12=Kallen(s,s1,s2);
 		if(k12<(value_type)0)
 		{
-		    this->weight()=(value_type)0;
+		    this->branching_weight=(value_type)0;
 		    return false;
 		}
 		value_type l12=std::sqrt(k12);
@@ -237,47 +272,18 @@ namespace Camgen
 		t_channel->p()=this->p_in()-s1_channel->p();
 		t_channel->set_status_p_generated();
 
-		this->weight()=massless_ps<value_type,2,model_t::dimension>::volume(m)*std::pow(l12/s,int(model_t::dimension-4))*sweight*tweight/((value_type)2*m*pahatabs);
-		return (this->weight()>(value_type)0);
+		this->branching_weight=massless_ps<value_type,2,model_t::dimension>::volume(m)*std::pow(l12/s,int(model_t::dimension-4))*sweight*tweight/((value_type)2*m*pahatabs);
+		return (this->branching_weight>(value_type)0);
 	    }
 
 	    /* Overridden weight evaluation method: */
             
 	    bool evaluate_branching_weight()
             {
-		sweight=(value_type)1;
-		if(this->backward_s_sampling)
+		if(!evaluate_s_weight())
 		{
-		    if(!s1_channel->on_shell() and s1_channel->branching_count()==0) //auxiliary channel
-		    {
-			s1_channel->set_m_max(stot_channel->m()-s2_channel->m());
-			if(!s1_channel->evaluate_s_weight())
-			{
-			    sweight=(value_type)0;
-			    return false;
-			}
-			sweight*=s1_channel->s_weight();
-		    }
-		    if(!s2_channel->on_shell() and s2_channel->branching_count()==0) //auxiliary channel
-		    {
-			s2_channel->set_m_max(stot_channel->m()-s1_channel->m());
-			if(!s2_channel->evaluate_s_weight())
-			{
-			    sweight=(value_type)0;
-			    return false;
-			}
-			sweight*=s2_channel->s_weight();
-		    }
-
-		}
-		else
-		{
-		    if(!ssgen->evaluate_weight())
-		    { 
-			sweight=(value_type)0;
-			return false;
-		    }
-		    sweight=ssgen->weight();
+		    this->branching_weight=(value_type)0;
+		    return false;
 		}
 
 		value_type sa=this->s_in();
@@ -298,19 +304,18 @@ namespace Camgen
 		if(!t_channel->set_s_range(tmin,tmax))
 		{
 		    tweight=(value_type)0;
-		    this->weight()=(value_type)0;
+		    this->branching_weight=(value_type)0;
 		    return false;
 		}
 		if(!t_channel->evaluate_s_weight())
 		{
 		    tweight=(value_type)0;
-		    this->weight()=(value_type)0;
+		    this->branching_weight=(value_type)0;
 		    return false;
 		}
 		tweight=t_channel->s_weight();
-		this->weight()=massless_ps<value_type,2,model_t::dimension>::volume(m)*std::pow(l12/s,int(model_t::dimension-4))*sweight*tweight/lab;
-
-		return (this->weight()>(value_type)0);
+		this->branching_weight=massless_ps<value_type,2,model_t::dimension>::volume(m)*std::pow(l12/s,int(model_t::dimension-4))*sweight*tweight/lab;
+		return (this->branching_weight>(value_type)0);
             }
 
 	    /* Returns whether the branchings are equivalent: */
@@ -388,6 +393,60 @@ namespace Camgen
 	    /* Azimuthal angle generator: */
 
 	    sphere_generator_type sphere_generator;
+
+	    bool evaluate_s_weight()
+	    {
+		sweight=(value_type)1;
+		if(this->backward_s_sampling)
+		{
+		    bool q1=s1_sampling();
+		    bool q2=s2_sampling();
+		    bool q12=stot_sampling();
+
+		    if(q12)
+		    {
+			value_type mmin1=q1?s1_channel->m():s1_channel->m_min();
+			value_type mmin2=q2?s2_channel->m():s2_channel->m_min();
+			stot_channel->set_m_min(mmin1+mmin2);
+			if(!stot_channel->evaluate_s_weight())
+			{
+			    sweight=(value_type)0;
+			    return false;
+			}
+			sweight*=stot_channel->s_weight();
+		    }
+		    else if(stot_channel->get_status()==ps_channel_type::reset)
+		    {
+			log(log_level::warning)<<CAMGEN_STREAMLOC<<"sampling invariant mass without total invariant mass generated..."<<endlog;
+		    }
+		    if(q1 and q2)
+		    {
+			log(log_level::error)<<CAMGEN_STREAMLOC<<"sampling 2 auxiliary invariant masses in t-branching is not supported yet"<<endlog;
+		    }
+		    if(q1 or q2)
+		    {
+			channel_type* q1_channel=q1?s1_channel:s2_channel;
+			channel_type* q2_channel=q2?s1_channel:s2_channel;
+			q1_channel->set_m_max(stot_channel->m()-q2_channel->m());
+			if(!q1_channel->evaluate_s_weight())
+			{
+			    sweight=(value_type)0;
+			    return false;
+			}
+			sweight*=q1_channel->s_weight();
+		    }
+		}
+		else
+		{
+		    if(!ssgen->evaluate_weight())
+		    { 
+			sweight=(value_type)0;
+			return false;
+		    }
+		    sweight=ssgen->weight();
+		}
+		return true;
+	    }
     };
 }
 

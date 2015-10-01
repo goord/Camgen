@@ -11,3 +11,13 @@
 *.lai
 *.la
 *.a
+
+*.Po
+
+*.Plo
+
+*.swp
+
+*.log
+
+autom4te.cache/requests
