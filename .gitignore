@@ -1,3 +1,8 @@
+# Scripts
+aclocal.m4
+configure
+libtool
+
 # Compiled Object files
 *.slo
 *.lo
@@ -13,6 +18,12 @@
 *.a
 
 # Logs etc
+config.h
+config.h.in
+config.status
+Makefile.in
+Makefile
+stamp-h1
 *.Po
 *.Plo
 *.swp
@@ -20,7 +31,8 @@
 *.trs
 
 # Folders
-autom4te.cache/requests
+autom4te.cache/*
+build-aux/*
 test/.libs/*
 test/plots/*
 
