@@ -1,6 +1,0 @@
-lower_binom.o lower_binom.o: lower_binom.cc \
-  ../include/Camorra/lower_binom.h ../include/Camorra/combs.h
-
-../include/Camorra/lower_binom.h:
-
-../include/Camorra/combs.h:

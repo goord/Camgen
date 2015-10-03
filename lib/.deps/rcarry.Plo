@@ -1,3 +1,0 @@
-rcarry.lo: ../src/rcarry.cpp ../include/Camgen/rcarry.h
-
-../include/Camgen/rcarry.h:
