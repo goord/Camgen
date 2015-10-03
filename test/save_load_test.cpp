@@ -5,7 +5,7 @@
 // see COPYING for details.
 //
 
-#include <Camgen/parni.h>
+#include <Camgen/parni_gen.h>
 #include <Camgen/stdrand.h>
 #include <Camgen/SM.h>
 #include <Camgen/proc_gen.h>
