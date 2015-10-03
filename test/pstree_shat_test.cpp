@@ -206,5 +206,53 @@ int main()
 	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
 	delete helgen;
     }
+
+/*    {
+	std::string process("g,g > t,tbar,h0");
+	std::string fname("plots/gg_tth");
+	double E1=500;
+	double E2=500;
+	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr.flush();
+	CM_algorithm<model_type,2,3>bahba(process);
+	bahba.load();
+	bahba.construct();
+	helicity_generator<value_type,2,3,true>* helgen=uniform_helicities<value_type,2,3,rn_engine,true>::create_instance<model_type>(bahba.get_tree_iterator());
+	helgen->generate();
+	ps_generator_tester<model_type,2,3,rn_engine>test(bahba.get_tree_iterator(),fname,isgen_type,psgen_type);
+	test.set_beam_energy(-1,E1);
+	test.set_beam_energy(-2,E2);
+	if(!test.run(n_evts,n_bins))
+	{
+	    return 1;
+	}
+	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
+	delete helgen;
+    }
+
+    {
+	std::string process("u,dbar > c,sbar,mu+,mu-");
+	std::string fname("plots/qq_qqg");
+	double E1=500;
+	double E2=500;
+	double mmin=20;
+	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr.flush();
+	CM_algorithm<model_type,2,3>bahba(process);
+	bahba.load();
+	bahba.construct();
+	helicity_generator<value_type,2,3,true>* helgen=uniform_helicities<value_type,2,3,rn_engine,true>::create_instance<model_type>(bahba.get_tree_iterator());
+	helgen->generate();
+	ps_generator_tester<model_type,2,3,rn_engine>test(bahba.get_tree_iterator(),fname,isgen_type,psgen_type);
+	test.set_beam_energy(-1,E1);
+	test.set_beam_energy(-2,E2);
+	test.set_pT_min(mmin,3);
+	if(!test.run(n_evts,n_bins))
+	{
+	    return 1;
+	}
+	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
+	delete helgen;
+    }*/
 }
 

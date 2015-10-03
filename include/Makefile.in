@@ -526,6 +526,7 @@ Camgen_HEADERS = Camgen/adj_rep.h		\
 	         Camgen/vvv.h			\
 	         Camgen/vvvv.h			\
 	         Camgen/Weyl_basis.h		\
+	         Camgen/WZM.h			\
 	         Camgen/whist.h			\
 	         Camgen/width_scheme.h
 
