@@ -262,6 +262,7 @@ namespace Camgen
 
     bool plot_script::plot() const
     {
+#ifdef GNUPLOTPATH
 	FILE* gnustream=plot_config::open_pipe();
 	if(gnustream==NULL)
 	{
@@ -277,6 +278,9 @@ namespace Camgen
 	    return false;
 	}
 	return true;
+#else
+	return write();
+#endif
     }
 
     std::string plot_script::file_extension(const std::string& term_type)
