@@ -133,10 +133,16 @@ namespace Camgen
 		    (this->p_out(0))[mu]=phat*(sphere_generator.object())[mu-1];
 		}
 		boost_from_restframe(this->p_out(0),this->p_in(),sqrts);
+		this->channel(0)->evaluate_s();
 		this->channel(0)->set_status_p_generated();
+
 		this->p_out(1)=this->p_in()-this->p_out(0);
+		this->channel(1)->evaluate_s();
 		this->channel(1)->set_status_p_generated();
+
 		this->branching_weight=massless_ps<value_type,2,model_t::dimension>::volume(sqrts)*std::pow(lambda/s,int(model_t::dimension-3))*sweight;
+		
+		
 		return (this->branching_weight>(value_type)0);
 	    }
 
@@ -377,8 +383,11 @@ namespace Camgen
 		(this->p_out(0))[trans_dir2]=phat*sintheta*std::sin(phi);
 		
 		boost_from_restframe(this->p_out(0),this->p_in(),sqrts);
+		this->channel(0)->evaluate_s();
 		this->channel(0)->set_status_p_generated();
+
 		this->p_out(1)=this->p_in()-this->p_out(0);
+		this->channel(1)->evaluate_s();
 		this->channel(1)->set_status_p_generated();
 
 		this->branching_weight=massless_ps<value_type,2,4>::volume(sqrts)*(lambda/s)*sweight*thetaweight;

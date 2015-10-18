@@ -133,14 +133,14 @@ namespace Camgen
 	}
 	return qprime;
     }
-    
+
     /// Boosts a copy of the first vector q to the rest-frame of the vector p.
     
     template<class value_t,std::size_t D>vector<value_t,D> copy_boost_to_restframe(const vector<value_t,D>& q,const vector<value_t,D>& p)
     {
 	typedef typename Minkowski_type::template implementation<value_t,D> spacetime_type;
 
-	return copy_boost_from_restframe(q,p,std::sqrt(spacetime_type::dot(p,p)));
+	return copy_boost_to_restframe(q,p,std::sqrt(spacetime_type::dot(p,p)));
     }
 }
 

@@ -62,7 +62,7 @@ int main()
 	}
 	std::cerr<<"done."<<std::endl;
 	delete helgen;
-	Camgen::log.enable_level=log_level::message;
+	Camgen::log.enable_level=log_level::warning;
     }
 
     {
@@ -91,10 +91,11 @@ int main()
 	}
 	std::cerr<<"done."<<std::endl;
 	delete helgen;
-	Camgen::log.enable_level=log_level::message;
+	Camgen::log.enable_level=log_level::warning;
     }
 
     {
+	Camgen::log.enable_level=log_level::error;
 	std::string process("W- > mu-,nu_mubar");
 	std::string fname("plots/W_ln");
 	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
@@ -111,9 +112,11 @@ int main()
 	}
 	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
 	delete helgen;
+	Camgen::log.enable_level=log_level::warning;
     }
 
     {
+	Camgen::log.enable_level=log_level::error;
 	std::string process("t > b,mu+,nu_mu");
 	std::string fname("plots/t_bln");
 	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
@@ -130,9 +133,11 @@ int main()
 	}
 	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
 	delete helgen;
+	Camgen::log.enable_level=log_level::warning;
     }
 
     {
+	Camgen::log.enable_level=log_level::error;
 	model_type::M_h0=200;
 	model_type::refresh_widths();
 	std::string process("h0 > e-,nu_ebar,mu+,nu_mu");
@@ -151,9 +156,11 @@ int main()
 	}
 	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
 	delete helgen;
+	Camgen::log.enable_level=log_level::warning;
     }
 
     {
+	Camgen::log.enable_level=log_level::error;
 	model_type::M_h0=140;
 	model_type::refresh_widths();
 	std::string process("h0 > e-,nu_ebar,mu+,nu_mu");
@@ -172,9 +179,11 @@ int main()
 	}
 	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
 	delete helgen;
+	Camgen::log.enable_level=log_level::warning;
     }
 
     {
+	Camgen::log.enable_level=log_level::error;
 	model_type::M_h0=200;
 	model_type::refresh_widths();
 	std::string process("h0 > mu-,nu_mubar,mu+,nu_mu");
@@ -193,9 +202,11 @@ int main()
 	}
 	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
 	delete helgen;
+	Camgen::log.enable_level=log_level::warning;
     }
 
     {
+	Camgen::log.enable_level=log_level::error;
 	model_type::M_h0=200;
 	model_type::refresh_widths();
 	std::string process("h0 > mu-,mu+,e-,e+");
@@ -214,9 +225,11 @@ int main()
 	}
 	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
 	delete helgen;
+	Camgen::log.enable_level=log_level::warning;
     }
 
     {
+	Camgen::log.enable_level=log_level::error;
 	model_type::M_h0=140;
 	model_type::refresh_widths();
 	std::string process("h0 > mu-,mu+,e-,e+");
@@ -237,6 +250,7 @@ int main()
 	}
 	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
 	delete helgen;
+	Camgen::log.enable_level=log_level::warning;
     }
 
     std::cout<<"-------------------------------------------------------------------------"<<std::endl;
@@ -310,6 +324,7 @@ int main()
     }
     
     {
+	Camgen::log.enable_level=log_level::error;
 	std::string process("e+,e- > mu+,mu-");
 	std::string fname("plots/ee_ll");
 	double E1=250;
@@ -333,9 +348,11 @@ int main()
 	}
 	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
 	delete helgen;
+	Camgen::log.enable_level=log_level::warning;
     }
 	
     {
+	Camgen::log.enable_level=log_level::error;
 	std::string process("e+,mu- > nu_ebar,nu_mu");
 	std::string fname("plots/emu_2n");
 	double E1=250;
@@ -356,9 +373,11 @@ int main()
 	}
 	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
 	delete helgen;
+	Camgen::log.enable_level=log_level::warning;
     }
     
     {
+	Camgen::log.enable_level=log_level::error;
 	std::string process("e+,e- > nu_e,nu_ebar");
 	std::string fname("plots/ee_2n");
 	double E1=250;
@@ -379,9 +398,11 @@ int main()
 	}
 	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
 	delete helgen;
+	Camgen::log.enable_level=log_level::warning;
     }
     
     {
+	Camgen::log.enable_level=log_level::error;
 	std::string process("e+,mu- > nu_ebar,h0,nu_mu");
 	std::string fname("plots/emu_h2n");
 	double E1=500;
@@ -402,9 +423,11 @@ int main()
 	}
 	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
 	delete helgen;
+	Camgen::log.enable_level=log_level::warning;
     }
 
     {
+	Camgen::log.enable_level=log_level::error;
 	std::string process("e+,e- > nu_ebar,h0,nu_e");
 	std::string fname("plots/ee_h2n");
 	double E1=500;
@@ -425,9 +448,11 @@ int main()
 	}
 	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
 	delete helgen;
+	Camgen::log.enable_level=log_level::warning;
     }
     
     {
+	Camgen::log.enable_level=log_level::error;
 	std::string process("nu_e,nu_mu > nu_e,Z,nu_mu");
 	std::string fname("plots/nn_Z2n");
 	double E1=500;
@@ -448,9 +473,11 @@ int main()
 	}
 	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
 	delete helgen;
+	Camgen::log.enable_level=log_level::warning;
     }
 
     {
+	Camgen::log.enable_level=log_level::error;
 	std::string process("e+,e- > nu_ebar,mu+,mu-,nu_e");
 	std::string fname("plots/ee_2mu2ne");
 	double E1=500;
@@ -474,9 +501,11 @@ int main()
 	}
 	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
 	delete helgen;
+	Camgen::log.enable_level=log_level::warning;
     }
 
     {
+	Camgen::log.enable_level=log_level::error;
 	std::string process("e+,e- > nu_mubar,mu+,mu-,nu_mu");
 	std::string fname("plots/ee_2mu2nmu");
 	double E1=500;
@@ -500,9 +529,11 @@ int main()
 	}
 	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
 	delete helgen;
+	Camgen::log.enable_level=log_level::warning;
     }
 
     {
+	Camgen::log.enable_level=log_level::error;
 	std::string process("e+,e- > nu_e,W+,W-,nu_ebar");
 	std::string fname("plots/ee_2W2n");
 	double E1=500;
@@ -525,9 +556,11 @@ int main()
 	}
 	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
 	delete helgen;
+	Camgen::log.enable_level=log_level::warning;
     }
 
     {
+	Camgen::log.enable_level=log_level::error;
 	std::string process("e+,e- > nu_e,Z,Z,nu_ebar");
 	std::string fname("plots/ee_2Z2n");
 	double E1=500;
@@ -550,9 +583,11 @@ int main()
 	}
 	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
 	delete helgen;
+	Camgen::log.enable_level=log_level::warning;
     }
 
     {
+	Camgen::log.enable_level=log_level::error;
 	std::string process("e+,e- > nu_e,W+,W-,nu_ebar");
 	std::string fname("plots/ee_2W2n");
 	double E1=500;
@@ -575,11 +610,13 @@ int main()
 	}
 	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
 	delete helgen;
+	Camgen::log.enable_level=log_level::warning;
     }
 
     n_evts=50000;
 
     {
+	Camgen::log.enable_level=log_level::error;
 	std::string process("e+,e- > nu_e,u,dbar,mu-,nu_mubar,nu_ebar");
 	std::string fname("plots/ee_qqbarl3n");
 	double E1=500;
@@ -604,6 +641,7 @@ int main()
 	}
 	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
 	delete helgen;
+	Camgen::log.enable_level=log_level::warning;
     }
 }
 

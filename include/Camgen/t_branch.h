@@ -265,11 +265,15 @@ namespace Camgen
 		    (s1_channel->p())[i]=c1*pahat[i]-c2*sphere_generator.object()[i-1];
 		}
 		boost_from_restframe(s1_channel->p(),Ptot,m);
-		s1_channel->set_status_p_generated();
 		s1_channel->evaluate_s();
+		s1_channel->set_status_p_generated();
+
 		s2_channel->p()=Ptot-s1_channel->p();
+		s2_channel->evaluate_s();
 		s2_channel->set_status_p_generated();
+		
 		t_channel->p()=this->p_in()-s1_channel->p();
+		t_channel->evaluate_s();
 		t_channel->set_status_p_generated();
 
 		this->branching_weight=massless_ps<value_type,2,model_t::dimension>::volume(m)*std::pow(l12/s,int(model_t::dimension-4))*sweight*tweight/((value_type)2*m*pahatabs);
