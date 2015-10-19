@@ -41,12 +41,12 @@ int main()
 	std::string process("h0 > gamma,gamma");
 	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
 	std::cerr.flush();
-	CM_algorithm<model_type,1,2>hdecay(process);
-	hdecay.load();
-	hdecay.construct();
-	helicity_generator<value_type,1,2,true>* helgen=uniform_helicities<value_type,1,2,rn_engine,true>::create_instance<model_type>(hdecay.get_tree_iterator());
+	CM_algorithm<model_type,1,2>algo(process);
+	algo.load();
+	algo.construct();
+	helicity_generator<value_type,1,2,true>* helgen=uniform_helicities<value_type,1,2,rn_engine,true>::create_instance<model_type>(algo.get_tree_iterator());
 	helgen->generate();
-	ps_generator_tester<model_type,1,2,rn_engine>test(hdecay.get_tree_iterator(),"",isgen_type,psgen_type);
+	ps_generator_tester<model_type,1,2,rn_engine>test(algo.get_tree_iterator(),"",isgen_type,psgen_type);
 	if(!test.run(n_evts,n_bins,false,true,true))
 	{
 	    std::cerr<<test.ps_gen->cross_section()<<','<<test.uni_gen->cross_section()<<std::endl;
@@ -70,12 +70,12 @@ int main()
 	std::string process("gamma > e+,e-");
 	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
 	std::cerr.flush();
-	CM_algorithm<model_type,1,2>hdecay(process);
-	hdecay.load();
-	hdecay.construct();
-	helicity_generator<value_type,1,2,true>* helgen=uniform_helicities<value_type,1,2,rn_engine,true>::create_instance<model_type>(hdecay.get_tree_iterator());
+	CM_algorithm<model_type,1,2>algo(process);
+	algo.load();
+	algo.construct();
+	helicity_generator<value_type,1,2,true>* helgen=uniform_helicities<value_type,1,2,rn_engine,true>::create_instance<model_type>(algo.get_tree_iterator());
 	helgen->generate();
-	ps_generator_tester<model_type,1,2,rn_engine>test(hdecay.get_tree_iterator(),"",isgen_type,psgen_type);
+	ps_generator_tester<model_type,1,2,rn_engine>test(algo.get_tree_iterator(),"",isgen_type,psgen_type);
 	if(!test.run(n_evts,n_bins,false,true,true))
 	{
 	    std::cerr<<test.ps_gen->cross_section()<<','<<test.uni_gen->cross_section()<<std::endl;
@@ -100,12 +100,12 @@ int main()
 	std::string fname("plots/W_ln");
 	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
 	std::cerr.flush();
-	CM_algorithm<model_type,1,2>Wdecay(process);
-	Wdecay.load();
-	Wdecay.construct();
-	helicity_generator<value_type,1,2,true>* helgen=uniform_helicities<value_type,1,2,rn_engine,true>::create_instance<model_type>(Wdecay.get_tree_iterator());
+	CM_algorithm<model_type,1,2>algo(process);
+	algo.load();
+	algo.construct();
+	helicity_generator<value_type,1,2,true>* helgen=uniform_helicities<value_type,1,2,rn_engine,true>::create_instance<model_type>(algo.get_tree_iterator());
 	helgen->generate();
-	ps_generator_tester<model_type,1,2,rn_engine>test(Wdecay.get_tree_iterator(),fname,isgen_type,psgen_type);
+	ps_generator_tester<model_type,1,2,rn_engine>test(algo.get_tree_iterator(),fname,isgen_type,psgen_type);
 	if(!test.run(n_evts,n_bins))
 	{
 	    return 1;
@@ -121,12 +121,12 @@ int main()
 	std::string fname("plots/t_bln");
 	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
 	std::cerr.flush();
-	CM_algorithm<model_type,1,3>tdecay(process);
-	tdecay.load();
-	tdecay.construct();
-	helicity_generator<value_type,1,3,true>* helgen=uniform_helicities<value_type,1,3,rn_engine,true>::create_instance<model_type>(tdecay.get_tree_iterator());
+	CM_algorithm<model_type,1,3>algo(process);
+	algo.load();
+	algo.construct();
+	helicity_generator<value_type,1,3,true>* helgen=uniform_helicities<value_type,1,3,rn_engine,true>::create_instance<model_type>(algo.get_tree_iterator());
 	helgen->generate();
-	ps_generator_tester<model_type,1,3,rn_engine>test(tdecay.get_tree_iterator(),fname,isgen_type,psgen_type);
+	ps_generator_tester<model_type,1,3,rn_engine>test(algo.get_tree_iterator(),fname,isgen_type,psgen_type);
 	if(!test.run(n_evts,n_bins))
 	{
 	    return 1;
@@ -144,12 +144,12 @@ int main()
 	std::string fname("plots/h_WW_2l2n");
 	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
 	std::cerr.flush();
-	CM_algorithm<model_type,1,4>hdecay(process);
-	hdecay.load();
-	hdecay.construct();
-	helicity_generator<value_type,1,4,true>* helgen=uniform_helicities<value_type,1,4,rn_engine,true>::create_instance<model_type>(hdecay.get_tree_iterator());
+	CM_algorithm<model_type,1,4>algo(process);
+	algo.load();
+	algo.construct();
+	helicity_generator<value_type,1,4,true>* helgen=uniform_helicities<value_type,1,4,rn_engine,true>::create_instance<model_type>(algo.get_tree_iterator());
 	helgen->generate();
-	ps_generator_tester<model_type,1,4,rn_engine>test(hdecay.get_tree_iterator(),fname,isgen_type,psgen_type);
+	ps_generator_tester<model_type,1,4,rn_engine>test(algo.get_tree_iterator(),fname,isgen_type,psgen_type);
 	if(!test.run(n_evts,n_bins))
 	{
 	    return 1;
@@ -167,12 +167,12 @@ int main()
 	std::string fname("plots/h_WW*_2l2n");
 	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
 	std::cerr.flush();
-	CM_algorithm<model_type,1,4>hdecay(process);
-	hdecay.load();
-	hdecay.construct();
-	helicity_generator<value_type,1,4,true>* helgen=uniform_helicities<value_type,1,4,rn_engine,true>::create_instance<model_type>(hdecay.get_tree_iterator());
+	CM_algorithm<model_type,1,4>algo(process);
+	algo.load();
+	algo.construct();
+	helicity_generator<value_type,1,4,true>* helgen=uniform_helicities<value_type,1,4,rn_engine,true>::create_instance<model_type>(algo.get_tree_iterator());
 	helgen->generate();
-	ps_generator_tester<model_type,1,4,rn_engine>test(hdecay.get_tree_iterator(),fname,isgen_type,psgen_type);
+	ps_generator_tester<model_type,1,4,rn_engine>test(algo.get_tree_iterator(),fname,isgen_type,psgen_type);
 	if(!test.run(n_evts,n_bins))
 	{
 	    return 1;
@@ -190,12 +190,12 @@ int main()
 	std::string fname("plots/h_2l2n2");
 	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
 	std::cerr.flush();
-	CM_algorithm<model_type,1,4>hdecay(process);
-	hdecay.load();
-	hdecay.construct();
-	helicity_generator<value_type,1,4,true>* helgen=uniform_helicities<value_type,1,4,rn_engine,true>::create_instance<model_type>(hdecay.get_tree_iterator());
+	CM_algorithm<model_type,1,4>algo(process);
+	algo.load();
+	algo.construct();
+	helicity_generator<value_type,1,4,true>* helgen=uniform_helicities<value_type,1,4,rn_engine,true>::create_instance<model_type>(algo.get_tree_iterator());
 	helgen->generate();
-	ps_generator_tester<model_type,1,4,rn_engine>test(hdecay.get_tree_iterator(),fname,isgen_type,psgen_type);
+	ps_generator_tester<model_type,1,4,rn_engine>test(algo.get_tree_iterator(),fname,isgen_type,psgen_type);
 	if(!test.run(n_evts,n_bins))
 	{
 	    return 1;
@@ -213,12 +213,12 @@ int main()
 	std::string fname("plots/h_ZZ_4l");
 	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
 	std::cerr.flush();
-	CM_algorithm<model_type,1,4>hdecay(process);
-	hdecay.load();
-	hdecay.construct();
-	helicity_generator<value_type,1,4,true>* helgen=uniform_helicities<value_type,1,4,rn_engine,true>::create_instance<model_type>(hdecay.get_tree_iterator());
+	CM_algorithm<model_type,1,4>algo(process);
+	algo.load();
+	algo.construct();
+	helicity_generator<value_type,1,4,true>* helgen=uniform_helicities<value_type,1,4,rn_engine,true>::create_instance<model_type>(algo.get_tree_iterator());
 	helgen->generate();
-	ps_generator_tester<model_type,1,4,rn_engine>test(hdecay.get_tree_iterator(),fname,isgen_type,psgen_type);
+	ps_generator_tester<model_type,1,4,rn_engine>test(algo.get_tree_iterator(),fname,isgen_type,psgen_type);
 	if(!test.run(n_evts,n_bins))
 	{
 	    return 1;
@@ -236,12 +236,12 @@ int main()
 	std::string fname("plots/h_ZZ*_4l");
 	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
 	std::cerr.flush();
-	CM_algorithm<model_type,1,4>hdecay(process);
-	hdecay.load();
-	hdecay.construct();
-	helicity_generator<value_type,1,4,true>* helgen=uniform_helicities<value_type,1,4,rn_engine,true>::create_instance<model_type>(hdecay.get_tree_iterator());
+	CM_algorithm<model_type,1,4>algo(process);
+	algo.load();
+	algo.construct();
+	helicity_generator<value_type,1,4,true>* helgen=uniform_helicities<value_type,1,4,rn_engine,true>::create_instance<model_type>(algo.get_tree_iterator());
 	helgen->generate();
-	ps_generator_tester<model_type,1,4,rn_engine>test(hdecay.get_tree_iterator(),fname,isgen_type,psgen_type);
+	ps_generator_tester<model_type,1,4,rn_engine>test(algo.get_tree_iterator(),fname,isgen_type,psgen_type);
 	test.set_m_min(1,2,10);
 	test.set_m_min(3,4,10);
 	if(!test.run(n_evts,n_bins))
@@ -331,12 +331,12 @@ int main()
 	double E2=250;
 	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
 	std::cerr.flush();
-	CM_algorithm<model_type,2,2>bahba(process);
-	bahba.load();
-	bahba.construct();
-	helicity_generator<value_type,2,2,true>* helgen=uniform_helicities<value_type,2,2,rn_engine,true>::create_instance<model_type>(bahba.get_tree_iterator());
+	CM_algorithm<model_type,2,2>algo(process);
+	algo.load();
+	algo.construct();
+	helicity_generator<value_type,2,2,true>* helgen=uniform_helicities<value_type,2,2,rn_engine,true>::create_instance<model_type>(algo.get_tree_iterator());
 	helgen->generate();
-	ps_generator_tester<model_type,2,2,rn_engine>test(bahba.get_tree_iterator(),fname,isgen_type,psgen_type);
+	ps_generator_tester<model_type,2,2,rn_engine>test(algo.get_tree_iterator(),fname,isgen_type,psgen_type);
 	test.set_beam_energy(-1,E1);
 	test.set_beam_energy(-2,E2);
 	if(!test.run(n_evts,n_bins))

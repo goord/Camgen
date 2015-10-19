@@ -41,7 +41,7 @@ check_PROGRAMS =		bitstring_test		\
 		 		s_int_test		\
 		 		ps_tree_test		\
 		 		ps_reverse_test		\
-		 		pstree_shat_test	\
+		 		ps_tree_shat_test	\
 		 		parni_test		\
 		 		LHAPDF_test		\
 				ps_vars_test		\
@@ -130,7 +130,7 @@ MC_gen_test_SOURCES =   	MC_gen_test.cpp
 s_int_test_SOURCES =   	    	s_int_test.cpp
 ps_tree_test_SOURCES =	    	ps_tree_test.cpp
 ps_reverse_test_SOURCES =	ps_reverse_test.cpp
-pstree_shat_test_SOURCES =	pstree_shat_test.cpp
+ps_tree_shat_test_SOURCES =	ps_tree_shat_test.cpp
 parni_test_SOURCES =		parni_test.cpp
 LHAPDF_test_SOURCES =		LHAPDF_test.cpp
 ps_vars_test_SOURCES =		ps_vars_test.cpp
@@ -166,7 +166,7 @@ TESTS =			    	bitstring_test		\
 			    	s_int_test		\
 			    	ps_tree_test		\
 				ps_reverse_test		\
-				pstree_shat_test	\
+				ps_tree_shat_test	\
 				parni_test		\
 				LHAPDF_test		\
 				ps_vars_test		\
