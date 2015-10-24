@@ -2,11 +2,11 @@ AM_CPPFLAGS =		    	-O3 -pipe -I$(top_srcdir)/include
 
 EXTRA_DIST =		    	plots
 
-if USE_LHAPDF
-AM_LDFLAGS =			-L$(top_srcdir)/lib -lCamgen -lCamtest -L$(LHAPDF_DIR)/lib -lLHAPDF
-else
-AM_LDFLAGS =		    	-L$(top_srcdir)/lib -lCamgen -lCamtest
-endif
+#if USE_LHAPDF
+#AM_LDFLAGS =			-L$(top_srcdir)/lib -lCamgen -lCamtest -L$(LHAPDF_DIR)/lib -lLHAPDF
+#else
+#AM_LDFLAGS =		    	-L$(top_srcdir)/lib -lCamgen -lCamtest
+#endif
 
 check_LTLIBRARIES =	    	libCamtest.la
 
@@ -102,40 +102,110 @@ libCamtest_la_SOURCES =		QEDPbdh.cpp		\
 				susy_QCDPbdhcfcc.cpp
 
 bitstring_test_SOURCES =	bitstring_test.cpp
+bitstring_test_LDADD =		$(top_srcdir)/lib/libCamgen.la
+
 phi3_graphs_test_SOURCES = 	phi3_graphs_test.cpp
+phi3_graphs_test_LDADD =	$(top_srcdir)/lib/libCamgen.la
+
 phi34_graphs_test_SOURCES = 	phi34_graphs_test.cpp
+phi34_graphs_test_LDADD =	$(top_srcdir)/lib/libCamgen.la
+
 QCD_procs_test_SOURCES =	QCD_procs_test.cpp
+QCD_procs_test_LDADD =		$(top_srcdir)/lib/libCamgen.la
+
 Pauli_basis_test_SOURCES = 	Pauli_basis_test.cpp
+Pauli_basis_test_LDADD =	$(top_srcdir)/lib/libCamgen.la
+
 Weyl_basis_test_SOURCES =	Weyl_basis_test.cpp
+Weyl_basis_test_LDADD =		$(top_srcdir)/lib/libCamgen.la
+
 Pauli_spinor_test_SOURCES =	Pauli_spinor_test.cpp
+Pauli_spinor_test_LDADD =	$(top_srcdir)/lib/libCamgen.la
+
 Weyl_spinor_test_SOURCES =	Weyl_spinor_test.cpp
+Weyl_spinor_test_LDADD =	$(top_srcdir)/lib/libCamgen.la
+
 m_spinor_test_SOURCES =		m_spinor_test.cpp
+m_spinor_test_LDADD =		$(top_srcdir)/lib/libCamgen.la libCamtest.la
+
 discr_cols_test_SOURCES = 	discr_cols_test.cpp
+discr_cols_test_LDADD =		$(top_srcdir)/lib/libCamgen.la libCamtest.la
+
 cont_cols_test_SOURCES = 	cont_cols_test.cpp
+cont_cols_test_LDADD =		$(top_srcdir)/lib/libCamgen.la libCamtest.la
+
 QEDch_test_SOURCES = 		QEDch_test.cpp
+QEDch_test_LDADD =		$(top_srcdir)/lib/libCamgen.la libCamtest.la
+
 QEDdh_test_SOURCES = 		QEDdh_test.cpp
+QEDdh_test_LDADD =		$(top_srcdir)/lib/libCamgen.la libCamtest.la
+
 QCDcc_test_SOURCES = 		QCDcc_test.cpp
+QCDcc_test_LDADD =		$(top_srcdir)/lib/libCamgen.la libCamtest.la
+
 QCDdc_test_SOURCES = 		QCDdc_test.cpp
+QCDdc_test_LDADD =		$(top_srcdir)/lib/libCamgen.la libCamtest.la
+
 Parke_Taylor_cc_test_SOURCES = 	Parke_Taylor_cc_test.cpp
+Parke_Taylor_cc_test_LDADD =	$(top_srcdir)/lib/libCamgen.la libCamtest.la
+
 Parke_Taylor_dc_test_SOURCES = 	Parke_Taylor_dc_test.cpp
+Parke_Taylor_dc_test_LDADD =	$(top_srcdir)/lib/libCamgen.la libCamtest.la
+
 SM_test_SOURCES	=		SM_test.cpp
+SM_test_LDADD =			$(top_srcdir)/lib/libCamgen.la libCamtest.la
+
 SM_params_test_SOURCES =	SM_params_test.cpp
+SM_params_test_LDADD =		$(top_srcdir)/lib/libCamgen.la
+
 susy_QED_test_SOURCES =		susy_QED_test.cpp
+susy_QED_test_LDADD =		$(top_srcdir)/lib/libCamgen.la libCamtest.la
+
 susy_QCDcc_test_SOURCES =	susy_QCDcc_test.cpp
+susy_QCDcc_test_LDADD =		$(top_srcdir)/lib/libCamgen.la libCamtest.la
+
 susy_QCDdc_test_SOURCES =	susy_QCDdc_test.cpp
+susy_QCDdc_test_LDADD =		$(top_srcdir)/lib/libCamgen.la libCamtest.la
+
 susy_Kunszt_test_SOURCES =	susy_Kunszt_test.cpp
+susy_Kunszt_test_LDADD =	$(top_srcdir)/lib/libCamgen.la libCamtest.la
+
 MC_hel_test_SOURCES = 		MC_hel_test.cpp
+MC_hel_test_LDADD =		$(top_srcdir)/lib/libCamgen.la libCamtest.la
+
 MC_col_test_SOURCES = 		MC_col_test.cpp
+MC_col_test_LDADD =		$(top_srcdir)/lib/libCamgen.la libCamtest.la
+
 MC_gen_test_SOURCES =   	MC_gen_test.cpp
+MC_gen_test_LDADD =		$(top_srcdir)/lib/libCamgen.la
+
 s_int_test_SOURCES =   	    	s_int_test.cpp
+s_int_test_LDADD =		$(top_srcdir)/lib/libCamgen.la
+
 ps_tree_test_SOURCES =	    	ps_tree_test.cpp
+ps_tree_test_LDADD =		$(top_srcdir)/lib/libCamgen.la libCamtest.la
+
 ps_reverse_test_SOURCES =	ps_reverse_test.cpp
+ps_reverse_test_LDADD =		$(top_srcdir)/lib/libCamgen.la libCamtest.la
+
 ps_tree_shat_test_SOURCES =	ps_tree_shat_test.cpp
+ps_tree_shat_test_LDADD =	$(top_srcdir)/lib/libCamgen.la
+
 parni_test_SOURCES =		parni_test.cpp
+parni_test_LDADD =		$(top_srcdir)/lib/libCamgen.la
+
 LHAPDF_test_SOURCES =		LHAPDF_test.cpp
+LHAPDF_test_LDADD =		$(top_srcdir)/lib/libCamgen.la
+
 ps_vars_test_SOURCES =		ps_vars_test.cpp
+ps_vars_test_LDADD =		$(top_srcdir)/lib/libCamgen.la
+
 save_load_test_SOURCES =	save_load_test.cpp
+save_load_test_LDADD =		$(top_srcdir)/lib/libCamgen.la
+
 speed_test_SOURCES =		speed_test.cpp
+speed_test_LDADD =		$(top_srcdir)/lib/libCamgen.la libCamtest.la
+
 
 TESTS =			    	bitstring_test		\
 			    	phi3_graphs_test	\
