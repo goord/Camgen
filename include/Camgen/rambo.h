@@ -187,7 +187,7 @@ namespace Camgen
 
 		for(size_type i=0;i<N_out;++i)
 		{
-		    boost_from_restframe(this->p_out(i),P,Etot);
+		    boost_from_restframe(this->p_out(i),P);
 		}
 
 		return true;
@@ -217,9 +217,12 @@ namespace Camgen
 		    value_type factor=(value_type)1;
 		    value_type denom=(value_type)0;
 		    value_type num=(value_type)0;
+		    momentum_type P=this->P_in();
 		    for(size_type i=0;i<N_out;++i)
 		    {
-			value_type E=this->p(i)[0];
+			momentum_type p=this->p_out(i);
+			boost_to_restframe(p,P,Etot);
+			value_type E=p[0];
 			value_type pvec=std::sqrt(E*E-this->M2_out(i));
 			factor*=(pvec/E);
 			num+=pvec;

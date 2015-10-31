@@ -22,6 +22,8 @@
 
 namespace Camgen
 {
+    //TODO: Refactor, pass needs to get an ps-generator argument, ps generators should not be cuts, single
+    // responsability!
     /// Abstract base class for phase space cut objects.
 
     class phase_space_cut

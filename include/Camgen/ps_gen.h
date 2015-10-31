@@ -842,7 +842,6 @@ namespace Camgen
 		os<<"###############################################################################################"<<std::endl;
 		os<<"Initial state weight:				"<<std::scientific<<is_weight()<<std::endl;
 		os<<"Final state weight:				"<<std::scientific<<fs_weight()<<std::endl;
-		os<<"Flux factor:					"<<std::scientific<<flux_factor()<<std::endl;
 		os<<"Full integrand:                                    "<<std::scientific<<this->integrand()<<std::endl;
 		os<<"Full weight:                                       "<<std::scientific<<this->weight()<<std::endl;
 		os<<"###############################################################################################"<<std::endl;

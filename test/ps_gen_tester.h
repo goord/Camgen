@@ -162,7 +162,6 @@ namespace Camgen
 			}
 		    }
 		    value_type w1=(ps_generated and ps_gen->pass())?ps_gen->weight():(value_type)0;
-
 		    w1sum+=w1;
 		    w1sqsum+=(w1*w1);
 		    amplitude->reset();
@@ -207,6 +206,7 @@ namespace Camgen
 			uni_gen->check();
 		    }
 		    value_type w2=(rambo_generated and uni_gen->pass())?uni_gen->weight():(value_type)0;
+		    
 		    w2sum+=w2;
 		    w2sqsum+=(w2*w2);
 		    amplitude->reset();

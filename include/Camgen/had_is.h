@@ -612,7 +612,7 @@ namespace Camgen
 		    return false;
 		}
 		y=(value_type)0.5*std::log(x1/x2);
-		value_type ybound=std::max(ymax,-(value_type)0.5*std::log(tau));
+		value_type ybound=std::min(ymax,-(value_type)0.5*std::log(tau));
 		y_gen->set_bounds(-ybound,ybound);
 		if(!y_gen->evaluate_weight())
 		{
@@ -995,7 +995,7 @@ namespace Camgen
 		x2=P2/this->beam_energy(1);
 		tau=x1*x2;
 
-		value_type ybound=std::max(ymax,-(value_type)0.5*std::log(tau));
+		value_type ybound=std::min(ymax,-(value_type)0.5*std::log(tau));
 		y_gen->set_lower_bound(-ybound);
 		y_gen->set_upper_bound(ybound);
 		y=(value_type)0.5*std::log(x1/x2);

@@ -2,11 +2,9 @@ AM_CPPFLAGS =		    	-O3 -pipe -I$(top_srcdir)/include
 
 EXTRA_DIST =		    	plots
 
-#if USE_LHAPDF
-#AM_LDFLAGS =			-L$(top_srcdir)/lib -lCamgen -lCamtest -L$(LHAPDF_DIR)/lib -lLHAPDF
-#else
-#AM_LDFLAGS =		    	-L$(top_srcdir)/lib -lCamgen -lCamtest
-#endif
+if USE_LHAPDF
+AM_LDFLAGS =			-L$(LHAPDF_DIR)/lib -lLHAPDF
+endif
 
 check_LTLIBRARIES =	    	libCamtest.la
 
@@ -42,6 +40,7 @@ check_PROGRAMS =		bitstring_test		\
 		 		ps_tree_test		\
 		 		ps_reverse_test		\
 		 		ps_tree_shat_test	\
+		 		ps_tree_reverse_shat_test\
 		 		parni_test		\
 		 		LHAPDF_test		\
 				ps_vars_test		\
@@ -191,6 +190,9 @@ ps_reverse_test_LDADD =		$(top_srcdir)/lib/libCamgen.la libCamtest.la
 ps_tree_shat_test_SOURCES =	ps_tree_shat_test.cpp
 ps_tree_shat_test_LDADD =	$(top_srcdir)/lib/libCamgen.la
 
+ps_tree_reverse_shat_test_SOURCES = ps_tree_reverse_shat_test.cpp
+ps_tree_reverse_shat_test_LDADD = $(top_srcdir)/lib/libCamgen.la
+
 parni_test_SOURCES =		parni_test.cpp
 parni_test_LDADD =		$(top_srcdir)/lib/libCamgen.la
 
@@ -207,7 +209,9 @@ speed_test_SOURCES =		speed_test.cpp
 speed_test_LDADD =		$(top_srcdir)/lib/libCamgen.la libCamtest.la
 
 
-TESTS =			    	bitstring_test		\
+TESTS =			    	speed_test		\
+			    	Parke_Taylor_cc_test	\
+				bitstring_test		\
 			    	phi3_graphs_test	\
 			    	phi34_graphs_test	\
 				QCD_procs_test		\
@@ -222,7 +226,6 @@ TESTS =			    	bitstring_test		\
 			    	QEDdh_test		\
 			    	QCDcc_test		\
 			    	QCDdc_test		\
-			    	Parke_Taylor_cc_test	\
 			    	Parke_Taylor_dc_test	\
 			    	SM_test			\
 				SM_params_test		\
@@ -237,9 +240,9 @@ TESTS =			    	bitstring_test		\
 			    	ps_tree_test		\
 				ps_reverse_test		\
 				ps_tree_shat_test	\
+				ps_tree_reverse_shat_test\
 				parni_test		\
 				LHAPDF_test		\
 				ps_vars_test		\
-				save_load_test		\
-				speed_test
+				save_load_test
 
