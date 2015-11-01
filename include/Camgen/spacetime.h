@@ -47,9 +47,6 @@ namespace Camgen
 
 		    type::fill_metric();
 		    
-		    /* Check symmetry of the metric tensor: */
-
-		    check_symmetry();
 		    initialised=true;
 
 		}
@@ -106,32 +103,6 @@ namespace Camgen
 		}
 	    }
 
-
-	    /* Function checking whether the inner product is consistently
-	     * overloaded: */
-
-	    template<class generator>static bool check_dot_product(generator& gen)
-	    {
-		vector<value_type,dimension>p;
-		p.fill(gen);
-		vector<value_type,dimension>q;
-		q.fill(gen);
-		value_type result=0;
-		for(std::size_t mu=0;mu<dimension;++mu)
-		{
-		    for(std::size_t nu=0;nu<dimension;++nu)
-		    {
-			result+=(p[mu]*g[mu][nu]*q[nu]);
-		    }
-		}
-		if(!equals(type::dot(p,q),result))
-		{
-		    CAMGEN_MESSAGE("overloaded inner product not compatible with given metric.");
-		    return false;
-		}
-		return true;
-	    }
-
 	protected:
 	    
 	    /* Static data: the metric tensor: */
@@ -143,25 +114,6 @@ namespace Camgen
 	    /* Initialisation tag: */
 
 	    static bool initialised;
-	    
-	    /* Function checking whether the metric tensor is symmtric: */
-
-	    static bool check_symmetry()
-	    {
-		for(std::size_t i=0;i<dimension;++i)
-		{
-		    for(std::size_t j=0;j<i;++j)
-		    {
-			if(g[i][j] != g[j][i])
-			{
-			    CAMGEN_MESSAGE("metric tensor is not symmetric");
-			    std::cout<<"failed indices: " <<i<<","<<j<<std::endl;
-			    return false;
-			}
-		    }
-		}
-		return true;
-	    }
     };
     template<class value_t,class type,std::size_t dim>const std::size_t spacetime<value_t,type,dim>::dimension;
     template<class value_t,class type,std::size_t dim>const std::size_t spacetime<value_t,type,dim>::index_range;

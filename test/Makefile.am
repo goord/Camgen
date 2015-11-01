@@ -11,6 +11,7 @@ check_LTLIBRARIES =	    	libCamtest.la
 CLEANFILES =                	*.o *.dat *.plt *.log
 
 check_PROGRAMS =		bitstring_test		\
+				Lorentz_test		\
 		 	    	phi3_graphs_test	\
 		 	    	phi34_graphs_test	\
 				QCD_procs_test		\
@@ -102,6 +103,9 @@ libCamtest_la_SOURCES =		QEDPbdh.cpp		\
 
 bitstring_test_SOURCES =	bitstring_test.cpp
 bitstring_test_LDADD =		$(top_srcdir)/lib/libCamgen.la
+
+Lorentz_test_SOURCES =		Lorentz_test.cpp
+Lorentz_test_LDADD =		$(top_srcdir)/lib/libCamgen.la
 
 phi3_graphs_test_SOURCES = 	phi3_graphs_test.cpp
 phi3_graphs_test_LDADD =	$(top_srcdir)/lib/libCamgen.la
@@ -212,6 +216,7 @@ speed_test_LDADD =		$(top_srcdir)/lib/libCamgen.la libCamtest.la
 TESTS =			    	speed_test		\
 			    	Parke_Taylor_cc_test	\
 				bitstring_test		\
+				Lorentz_test		\
 			    	phi3_graphs_test	\
 			    	phi34_graphs_test	\
 				QCD_procs_test		\

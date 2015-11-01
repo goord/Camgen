@@ -30,10 +30,11 @@ namespace Camgen
     {
 	typedef typename Minkowski_type::template implementation<value_t,D> spacetime_type;
 
+	CAMGEN_ERROR_IF((sqrts!=sqrts),"attempt to boost vector from an undefined frame");
+	CAMGEN_ERROR_IF((sqrts==(value_t)0),"attempt to boost vector from a light-like frame");
+
 	value_t pdotq=spacetime_type::space_dot(p,q);
 	value_t y=(q[0]+pdotq/(p[0]+sqrts))/sqrts;
-	
-	CAMGEN_ERROR_IF((sqrts==(value_t)0),"attempt to boost vector to a light-like frame");
 	
 	q[0]=(p[0]*q[0]+pdotq)/sqrts;
 	for(std::size_t mu=1;mu<D;++mu)
@@ -50,7 +51,12 @@ namespace Camgen
     {
 	typedef typename Minkowski_type::template implementation<value_t,D> spacetime_type;
 
-	return boost_from_restframe(q,p,std::sqrt(spacetime_type::dot(p,p)));
+	value_t s=spacetime_type::dot(p,p);
+	
+	CAMGEN_ERROR_IF((s<(value_t)0),"attempt to boost vector from a space-like frame");
+	CAMGEN_ERROR_IF((s==(value_t)0),"attempt to boost vector from a light-like frame");
+	
+	return boost_from_restframe(q,p,std::sqrt(s));
     }
     
     /// Boosts a copy of the first vector q, assumed to be defined in the rest-frame of p
@@ -59,11 +65,12 @@ namespace Camgen
     template<class value_t,std::size_t D>vector<value_t,D> copy_boost_from_restframe(const vector<value_t,D>& q,const vector<value_t,D>& p,const value_t& sqrts)
     {
 	typedef typename Minkowski_type::template implementation<value_t,D> spacetime_type;
+
+	CAMGEN_ERROR_IF((sqrts!=sqrts),"attempt to boost vector from an undefined frame");
+	CAMGEN_ERROR_IF((sqrts==(value_t)0),"attempt to boost vector from a light-like frame");
 	
 	value_t pdotq=spacetime_type::space_dot(p,q);
 	value_t y=(q[0]+pdotq/(p[0]+sqrts))/sqrts;
-
-	CAMGEN_ERROR_IF((sqrts==(value_t)0),"attempt to boost vector to a light-like frame");
 
 	vector<value_t,D>qprime;
 	qprime[0]=(p[0]*q[0]+pdotq)/sqrts;
@@ -81,7 +88,12 @@ namespace Camgen
     {
 	typedef typename Minkowski_type::template implementation<value_t,D> spacetime_type;
 
-	return copy_boost_from_restframe(q,p,std::sqrt(spacetime_type::dot(p,p)));
+	value_t s=spacetime_type::dot(p,p);
+	
+	CAMGEN_ERROR_IF((s<(value_t)0),"attempt to boost vector from a space-like frame");
+	CAMGEN_ERROR_IF((s==(value_t)0),"attempt to boost vector from a light-like frame");
+
+	return copy_boost_from_restframe(q,p,std::sqrt(s));
     }
 
     /// Boosts the first vector q to the
@@ -90,11 +102,12 @@ namespace Camgen
     template<class value_t,std::size_t D>vector<value_t,D>& boost_to_restframe(vector<value_t,D>& q,const vector<value_t,D>& p,const value_t& sqrts)
     {
 	typedef typename Minkowski_type::template implementation<value_t,D> spacetime_type;
+	
+	CAMGEN_ERROR_IF((sqrts!=sqrts),"attempt to boost vector to an undefined frame");
+	CAMGEN_ERROR_IF((sqrts==(value_t)0),"attempt to boost vector to a light-like frame");
 
 	value_t pdotq=spacetime_type::space_dot(p,q);
 	value_t y=(q[0]-pdotq/(p[0]+sqrts))/sqrts;
-	
-	CAMGEN_ERROR_IF((sqrts==(value_t)0),"attempt to boost vector to a light-like frame");
 	
 	q[0]=(p[0]*q[0]-pdotq)/sqrts;
 	for(std::size_t mu=1;mu<D;++mu)
@@ -110,7 +123,12 @@ namespace Camgen
     {
 	typedef typename Minkowski_type::template implementation<value_t,D> spacetime_type;
 
-	return boost_to_restframe(q,p,std::sqrt(spacetime_type::dot(p,p)));
+	value_t s=spacetime_type::dot(p,p);
+	
+	CAMGEN_ERROR_IF((s<(value_t)0),"attempt to boost vector to a space-like frame");
+	CAMGEN_ERROR_IF((s==(value_t)0),"attempt to boost vector to a light-like frame");
+
+	return boost_to_restframe(q,p,std::sqrt(s));
     }
     
     /// Boosts a copy of the first vector q to the
@@ -120,10 +138,11 @@ namespace Camgen
     {
 	typedef typename Minkowski_type::template implementation<value_t,D> spacetime_type;
 	
+	CAMGEN_ERROR_IF((sqrts!=sqrts),"attempt to boost vector to an undefined frame");
+	CAMGEN_ERROR_IF((sqrts==(value_t)0),"attempt to boost vector to a light-like frame");
+	
 	value_t pdotq=spacetime_type::space_dot(p,q);
 	value_t y=(q[0]-pdotq/(p[0]+sqrts))/sqrts;
-
-	CAMGEN_ERROR_IF((sqrts==(value_t)0),"attempt to boost vector to a light-like frame");
 
 	vector<value_t,D>qprime;
 	qprime[0]=(p[0]*q[0]-pdotq)/sqrts;
@@ -140,7 +159,12 @@ namespace Camgen
     {
 	typedef typename Minkowski_type::template implementation<value_t,D> spacetime_type;
 
-	return copy_boost_to_restframe(q,p,std::sqrt(spacetime_type::dot(p,p)));
+	value_t s=spacetime_type::dot(p,p);
+	
+	CAMGEN_ERROR_IF((s<(value_t)0),"attempt to boost vector to a space-like frame");
+	CAMGEN_ERROR_IF((s==(value_t)0),"attempt to boost vector to a light-like frame");
+
+	return copy_boost_to_restframe(q,p,std::sqrt(s));
     }
 }
 

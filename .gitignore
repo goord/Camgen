@@ -72,3 +72,5 @@ test/susy_Kunszt_test
 test/susy_QCDcc_test
 test/susy_QCDdc_test
 test/susy_QED_test
+
+test/Lorentz_test

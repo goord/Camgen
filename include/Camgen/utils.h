@@ -21,6 +21,9 @@
  *                         *
  * * * * * * * * * * * * * */
 
+
+//TODO: Merge with num-utils...
+
 namespace Camgen
 {
     template<class T>bool equals(const std::complex<T>& a,const std::complex<T>& b)

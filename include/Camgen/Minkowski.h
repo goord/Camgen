@@ -19,7 +19,7 @@
  * complex-values Lorentz vectors. Moreover, the spacetime implementation class      *
  * contains functions for constructing the base vectors k_0 and k_1 for massles basic*
  * spinors and functions that construct spin vectors for massive spinors. The        *
- * Minkowski metric in Camgen has signature (+ - - -). 			     *
+ * Minkowski metric in Camgen has signature (+ - - -). 			     	     *
  *                               						     *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
