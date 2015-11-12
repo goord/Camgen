@@ -84,12 +84,6 @@ namespace Camgen
 		
 		for(const_interaction_iterator v_it=it->interactions_begin();v_it!=it->interactions_end();++v_it)
 		{
-		    //TODO: uncomment when cleaning tree is implemented
-/*		    if(!v_it->is_coupled())
-		    {
-			continue;
-		    }
-*/		    
 		    bit_string_type bs_in(v_it->get_produced_bit_string());
 		    std::vector< bit_string_type >bs_out(v_it->get_incoming_bit_strings());
 		    const particle_type* phi_in=v_it->get_produced_particle();

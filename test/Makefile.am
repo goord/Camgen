@@ -40,9 +40,10 @@ check_PROGRAMS =		bitstring_test		\
 		 		s_int_test		\
 				rambo_test		\
 		 		ps_tree_test		\
-		 		ps_reverse_test		\
+		 		ps_tree_reverse_test	\
 		 		ps_tree_shat_test	\
 		 		ps_tree_reverse_shat_test\
+				ps_tree_adapt_test	\
 		 		parni_test		\
 		 		LHAPDF_test		\
 				ps_vars_test		\
@@ -192,14 +193,17 @@ rambo_test_LDADD =		$(top_srcdir)/lib/libCamgen.la
 ps_tree_test_SOURCES =	    	ps_tree_test.cpp
 ps_tree_test_LDADD =		$(top_srcdir)/lib/libCamgen.la libCamtest.la
 
-ps_reverse_test_SOURCES =	ps_reverse_test.cpp
-ps_reverse_test_LDADD =		$(top_srcdir)/lib/libCamgen.la libCamtest.la
+ps_tree_reverse_test_SOURCES =	ps_tree_reverse_test.cpp
+ps_tree_reverse_test_LDADD =	$(top_srcdir)/lib/libCamgen.la libCamtest.la
 
 ps_tree_shat_test_SOURCES =	ps_tree_shat_test.cpp
 ps_tree_shat_test_LDADD =	$(top_srcdir)/lib/libCamgen.la
 
 ps_tree_reverse_shat_test_SOURCES = ps_tree_reverse_shat_test.cpp
 ps_tree_reverse_shat_test_LDADD = $(top_srcdir)/lib/libCamgen.la
+
+ps_tree_adapt_test_SOURCES = 	ps_tree_adapt_test.cpp
+ps_tree_adapt_test_LDADD = 	$(top_srcdir)/lib/libCamgen.la
 
 parni_test_SOURCES =		parni_test.cpp
 parni_test_LDADD =		$(top_srcdir)/lib/libCamgen.la
@@ -248,9 +252,10 @@ TESTS =			    	speed_test		\
 			    	s_int_test		\
 			    	rambo_test		\
 			    	ps_tree_test		\
-				ps_reverse_test		\
+				ps_tree_reverse_test	\
 				ps_tree_shat_test	\
 				ps_tree_reverse_shat_test\
+				ps_tree_adapt_test	\
 				parni_test		\
 				LHAPDF_test		\
 				ps_vars_test		\

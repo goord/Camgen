@@ -83,6 +83,8 @@ namespace Camgen
 		particle_channel_type* new_channel=new particle_channel_type(ps_channel,phi);
 		new_channel->s_sampling_exponent=sampling_exponent(new_channel);
 		new_channel->set_s_generator(create_s_generator(new_channel,Ecmhat));
+		new_channel->adaptivity()=multichannel_adaptivity();
+		new_channel->channel_threshold()=multichannel_threshold();
 		ps_channel->add_particle_channel(new_channel);
 		return new_channel;
 	    }

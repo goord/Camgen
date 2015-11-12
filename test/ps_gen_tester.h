@@ -108,10 +108,14 @@ namespace Camgen
 	    
 	    ps_generator<model_t,N_in,N_out>* uni_gen;
 
+	    /* psgen adaptation batch size: */
+
+	    size_type adapt_batch_size;
+
 	    /* Constructor from a CM-tree iterator, an initial-state generator instance
 	     * and a file name: */
 
-	    ps_generator_tester(CM_tree_iterator amplitude_,const std::string& filename_,initial_states::type isgen_type=Camgen::initial_state_type(),phase_space_generators::type psgen_type=Camgen::phase_space_generator_type()):filename(filename_),sym_factor(amplitude_->symmetry_factor()),amplitude(amplitude_),pTcut1(NULL),pTcut2(NULL)
+	    ps_generator_tester(CM_tree_iterator amplitude_,const std::string& filename_,initial_states::type isgen_type=Camgen::initial_state_type(),phase_space_generators::type psgen_type=Camgen::phase_space_generator_type()):filename(filename_),sym_factor(amplitude_->symmetry_factor()),amplitude(amplitude_),adapt_batch_size(0),pTcut1(NULL),pTcut2(NULL)
 	    {
 		ps_gen=gen_factory::create_generator(amplitude,isgen_type,psgen_type);
 		uni_gen=gen_factory::create_generator(amplitude,isgen_type,phase_space_generators::uniform);
@@ -172,12 +176,14 @@ namespace Camgen
 			{
 			    ps_gen->print(std::cerr);
 			    Camgen::log<<"Invalid phase space weight encountered: "<<ps_gen->weight()<<endlog;
+			    return false;
 			}
 			if(ps_gen->integrand()!=ps_gen->integrand())
 			{
 			    amplitude->print(std::cerr);
 			    ps_gen->print(std::cerr);
 			    Camgen::log<<"Invalid phase space integrand encountered: "<<ps_gen->integrand()<<endlog;
+			    return false;
 			}
 		    }
 		    else
@@ -188,6 +194,10 @@ namespace Camgen
 		    if(verbose)
 		    {
 			std::cerr<<i<<": w = "<<ps_gen->weight()<<", M ="<<ps_gen->integrand()<<std::endl;
+		    }
+		    if(adapt_batch_size>0 and i%adapt_batch_size==0)
+		    {
+			ps_gen->adapt();
 		    }
 		    ps_gen->refresh_cross_section();
 		    if(w1!=(value_type)0)

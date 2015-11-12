@@ -209,14 +209,22 @@ namespace Camgen
 		{
 		    return;
 		}
-		value_type w3=std::pow(this->integrand(),(int)2)*(this->weight());
+		value_type w2=std::pow(this->integrand(),(int)2);
+		value_type w3=this->weight()*w2;
 		if(w3!=(value_type)0)
 		{
 		    update_flag=true;
 		}
 		for(channel_iterator it=channels.begin();it!=channels.end();++it)
 		{
-		    it->W+=(w3/it->generator->weight());
+		    if(it->generator->weight()==(value_type)0)
+		    {
+			it->W+=w2;
+		    }
+		    else
+		    {
+			it->W+=(w3/it->generator->weight());
+		    }
 		}
 		++update_counter;
 	    }
@@ -238,6 +246,22 @@ namespace Camgen
 		normalise_channel_weights();
 		update_flag=false;
 		update_counter=0;
+	    }
+
+	    /// Removes and returns zero-weight channels
+
+	    std::vector<generator_type*> clean_channels()
+	    {
+		zero_weight_channel predicate;
+		channel_iterator it=std::remove_if(channels.begin(),channels.end(),predicate);
+		std::vector<generator_type*>result(channels.end()-it);
+		
+		for(channel_iterator it2=it;it2!=channels.end();++it2)
+		{
+		    result.push_back(it2->generator);
+		}
+		channels.erase(it,channels.end());
+		return result;
 	    }
 
 	    /// Adds a sub-channel, resets all weights if necessary.
@@ -381,6 +405,18 @@ namespace Camgen
 		    bool operator()(const channel_type& channel)
 		    {
 			return channel.generator==generator;
+		    }
+	    };
+
+	    /* Zero-weight channel predicate class: */
+
+	    class zero_weight_channel
+	    {
+		public:
+
+		    bool operator()(const channel_type& channel)
+		    {
+			return channel.alpha==(value_type)0;
 		    }
 	    };
     };

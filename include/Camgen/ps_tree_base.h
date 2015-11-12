@@ -207,15 +207,9 @@ namespace Camgen
 	    void update()
 	    {
 		this->base_type::update();
-		
 		value_type f=(this->integrand())*(this->weight());
-		for(typename momentum_channel_container::iterator it=momentum_channels.begin();it!=momentum_channels.end();++it)
-		{
-		    for(typename momentum_channel_type::particle_channel_iterator p_it=(*it)->begin_particle_channels();p_it!=(*it)->end_particle_channels();++p_it)
-		    {
-			static_cast<MC_integrator_base<value_type>*>(*p_it)->update(f);
-		    }
-		}
+		particle_channel_update update_callback(f);
+		apply_to_particle_channels(update_callback);
 		for(typename branching_container::iterator it=ps_branchings.begin();it!=ps_branchings.end();++it)
 		{
 		    static_cast<MC_integrator_base<value_type>*>(*it)->update(f);
@@ -227,14 +221,7 @@ namespace Camgen
 	    void adapt_grids()
 	    {
 		this->base_type::adapt_grids();
-		
-		for(typename momentum_channel_container::iterator it=momentum_channels.begin();it!=momentum_channels.end();++it)
-		{
-		    for(typename momentum_channel_type::particle_channel_iterator p_it=(*it)->begin_particle_channels();p_it!=(*it)->end_particle_channels();++p_it)
-		    {
-			(*p_it)->adapt_grids();
-		    }
-		}
+		apply_to_particle_channels(particle_channel_adapt_grids);
 		for(typename branching_container::iterator it=ps_branchings.begin();it!=ps_branchings.end();++it)
 		{
 		    (*it)->adapt_grids();
@@ -246,31 +233,25 @@ namespace Camgen
 	    void adapt_channels()
 	    {
 		this->base_type::adapt_channels();
+		apply_to_particle_channels(particle_channel_adapt_channels);
+		particle_channel_clean_branchings cleanup_callback;
+		apply_to_particle_channels(cleanup_callback);
 
-		for(typename momentum_channel_container::iterator it=momentum_channels.begin();it!=momentum_channels.end();++it)
+		typename branching_container::iterator end_it=ps_branchings.end();
+		for(typename branching_container::iterator it=cleanup_callback.branchings.begin();it!=cleanup_callback.branchings.end();++it)
 		{
-		    for(typename momentum_channel_type::particle_channel_iterator p_it=(*it)->begin_particle_channels();p_it!=(*it)->end_particle_channels();++p_it)
-		    {
-			(*p_it)->adapt_channels();
-		    }
+		    end_it=std::remove(ps_branchings.begin(),end_it,*it);
 		}
-		for(typename branching_container::iterator it=ps_branchings.begin();it!=ps_branchings.end();++it)
-		{
-		    (*it)->adapt_channels();
-		}
-		clean();
+		ps_branchings.erase(end_it,ps_branchings.end());
 	    }
 
 	    /// Refreshes the internal parameters.
 
 	    bool refresh_params()
 	    {
-		bool success=true;
-		for(typename momentum_channel_container::iterator it=momentum_channels.begin();it!=momentum_channels.end();++it)
-		{
-		    success&=((*it)->refresh_params());
-		}
-		return success;
+		particle_channel_refresh_params refresh_callback;
+		apply_to_particle_channels(refresh_callback);
+		return refresh_callback.result;
 	    }
 
 	    /// Resets cross-sections, multichannel weights and adaptive grids.
@@ -278,14 +259,7 @@ namespace Camgen
 	    void reset()
 	    {
 		this->base_type::reset();
-
-		for(typename momentum_channel_container::iterator it=momentum_channels.begin();it!=momentum_channels.end();++it)
-		{
-		    for(typename momentum_channel_type::particle_channel_iterator p_it=(*it)->begin_particle_channels();p_it!=(*it)->end_particle_channels();++p_it)
-		    {
-			(*p_it)->reset();
-		    }
-		}
+		apply_to_particle_channels(particle_channel_reset);
 		for(typename branching_container::iterator it=ps_branchings.begin();it!=ps_branchings.end();++it)
 		{
 		    (*it)->reset();
@@ -587,13 +561,6 @@ namespace Camgen
 
 	    virtual momentum_channel_type* find_or_add_momentum_channel(bit_string_type bs)=0;
 
-	    /* Cleans the phase space branching tree: */
-
-	    void clean()
-	    {
-		//TODO: cleanup zero-weight channels
-	    }
-
 	    /* Recursively selects a branching sequence: */
 
 	    branching_container select_branchings()
@@ -705,6 +672,9 @@ namespace Camgen
 		outgoing_particle_channels.assign(NULL);
 	    }
 
+	    /* Cleans disjoint pieces from the tree: */
+	    //TODO: make it stricter
+
 	    void clean_tree()
 	    {
 		for(typename branching_container::iterator it=ps_branchings.begin();it!=ps_branchings.end();++it)
@@ -751,6 +721,27 @@ namespace Camgen
 		branching->backward_s_sampling=this->backward_s_sampling();
 		branching->shat_sampling=backward_shat_sampling();
 		return branching;
+	    }
+
+	    /* Utility method, applies the functional to all particle channels: */
+
+	    template<class T>void apply_to_particle_channels(T& func)
+	    {
+		for(size_type i=0;i<N_in;++i)
+		{
+		    func(incoming_particle_channels[i]);
+		}
+		for(typename momentum_channel_container::iterator it=momentum_channels.begin();it!=momentum_channels.end();++it)
+		{
+		    for(typename momentum_channel_type::particle_channel_iterator p_it=(*it)->begin_particle_channels();p_it!=(*it)->end_particle_channels();++p_it)
+		    {
+			func(*p_it);
+		    }
+		}
+		for(size_type i=0;i<N_out;++i)
+		{
+		    func(outgoing_particle_channels[i]);
+		}
 	    }
 
 	    /* Protected data members */
@@ -867,6 +858,8 @@ namespace Camgen
 		}
 	    }
 
+	    /* Checks whether the branching does not continue: */
+
 	    static bool dead_end_branching(const branching_type* branching)
 	    {
 		for(typename branching_type::const_channel_iterator it=branching->begin_channels_out();it!=branching->end_channels_out();++it)
@@ -878,6 +871,74 @@ namespace Camgen
 		}
 		return false;
 	    }
+
+	    /* Callback for grid adaptation: */
+
+	    static void particle_channel_adapt_grids(particle_channel_type* p)
+	    {
+		p->adapt_grids();
+	    }
+
+	    /* Callback for channel adaptation: */
+
+	    static void particle_channel_adapt_channels(particle_channel_type* p)
+	    {
+		p->adapt_channels();
+	    }
+
+	    /* Callback for reset: */
+
+	    static void particle_channel_reset(particle_channel_type* p)
+	    {
+		p->reset();
+	    }
+
+	    /* Functor for refreshing parameters: */
+	    
+	    class particle_channel_refresh_params
+	    {
+		public:
+
+		    bool result;
+		    
+		    particle_channel_refresh_params():result(true){}
+		    
+		    void operator()(particle_channel_type* p)
+		    {
+			result&=p->refresh_params();
+		    }
+	    };
+
+	    /* Functor for updating weight sums: */
+
+	    class particle_channel_update
+	    {
+		public:
+
+		    value_type w;
+
+		    particle_channel_update(const value_type& w_):w(w_){}
+
+		    void operator()(particle_channel_type* p)
+		    {
+			static_cast<MC_integrator_base<value_type>*>(p)->update(w);
+		    }
+	    };
+
+	    /* Functor for cleaning branchings: */
+
+	    class particle_channel_clean_branchings
+	    {
+		public:
+
+		    std::vector<branching_type*> branchings;
+
+		    void operator()(particle_channel_type* p)
+		    {
+			std::vector<branching_type*>b=p->clean_branchings();
+			branchings.insert(branchings.end(),b.begin(),b.end());
+		    }
+	    };
     };
 }
 

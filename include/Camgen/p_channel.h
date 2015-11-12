@@ -351,9 +351,15 @@ namespace Camgen
 	    
 	    /* Throws out all branchings that have zero multichannel weight. */
 
-	    void clean()
+	    std::vector<branching_type*> clean_branchings()
 	    {
-		/* TODO: recursively clean up... */
+		std::vector<typename multi_channel<value_type,rn_engine>::generator_type*> generators=branching_multichannel.clean_channels();
+		std::vector<branching_type*>result(generators.size());
+		for(size_type i=0;i<generators.size();++i)
+		{
+		    result.push_back(static_cast<branching_type*>(generators[i]));
+		}
+		return result;
 	    }
 
 	    /* Evaluates the invariant mass from the momentum. */
@@ -595,6 +601,34 @@ namespace Camgen
 	    status_type get_status() const
 	    {
 		return ps_channel->get_status();
+	    }
+
+	    /* Returns the branching multichannel exponent: */
+
+	    value_type& adaptivity()
+	    {
+		return branching_multichannel.adaptive_exponent;
+	    }
+
+	    /* Returns the branching multichannel exponent: */
+
+	    const value_type& adaptivity() const
+	    {
+		return branching_multichannel.adaptive_exponent;
+	    }
+
+	    /* Returns the branching multichannel threshold: */
+
+	    value_type& channel_threshold()
+	    {
+		return branching_multichannel.channel_threshold;
+	    }
+
+	    /* Returns the branching multichannel threshold: */
+
+	    const value_type& channel_threshold() const
+	    {
+		return branching_multichannel.channel_threshold;
 	    }
 
 	    /* Printing method. */
