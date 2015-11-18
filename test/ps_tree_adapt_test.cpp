@@ -96,6 +96,29 @@ int main()
 	Camgen::log.enable_level=log_level::warning;
     }
 
+    {
+	Camgen::log.enable_level=log_level::error;
+	model_type::M_h0=200;
+	model_type::refresh_widths();
+	std::string process("h0 > e+,e-,mu+,mu-");
+	std::string fname("plots/h_4l");
+	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr.flush();
+	CM_algorithm<model_type,1,4>algo(process);
+	algo.load();
+	algo.construct();
+	helicity_generator<value_type,1,4,true>* helgen=uniform_helicities<value_type,1,4,rn_engine,true>::create_instance<model_type>(algo.get_tree_iterator());
+	helgen->generate();
+	ps_generator_tester<model_type,1,4,rn_engine>test(algo.get_tree_iterator(),fname,isgen_type,psgen_type);
+	test.adapt_batch_size=n_adapt;
+	if(!test.run(n_evts,n_bins))
+	{
+	    return 1;
+	}
+	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
+	delete helgen;
+	Camgen::log.enable_level=log_level::warning;
+    }
 
     {
 	Camgen::log.enable_level=log_level::error;
@@ -189,6 +212,33 @@ int main()
 	    return 1;
 	}
 	std::cerr<<"done."<<std::endl;
+	delete helgen;
+	Camgen::log.enable_level=log_level::warning;
+    }
+
+    {
+	Camgen::log.enable_level=log_level::error;
+	std::string process("e+,e- > e+,e-");
+	std::string fname("plots/ee_ee");
+	double E1=50;
+	double E2=50;
+	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr.flush();
+	CM_algorithm<model_type,2,2>algo(process);
+	algo.load();
+	algo.construct();
+	helicity_generator<value_type,2,2,true>* helgen=uniform_helicities<value_type,2,2,rn_engine,true>::create_instance<model_type>(algo.get_tree_iterator());
+	helgen->generate();
+	ps_generator_tester<model_type,2,2,rn_engine>test(algo.get_tree_iterator(),fname,isgen_type,psgen_type);
+	test.set_beam_energy(-1,E1);
+	test.set_beam_energy(-2,E2);
+	test.set_pT_min(10,0);
+	test.adapt_batch_size=n_adapt;
+	if(!test.run(n_evts,n_bins))
+	{
+	    return 1;
+	}
+	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
 	delete helgen;
 	Camgen::log.enable_level=log_level::warning;
     }
