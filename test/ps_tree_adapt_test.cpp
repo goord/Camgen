@@ -36,6 +36,66 @@ int main()
     std::cout<<"testing ps_tree multichannel adaptation in decays........................"<<std::endl;
     std::cout<<"-------------------------------------------------------------------------"<<std::endl;
 
+    {
+	Camgen::log.enable_level=log_level::error;
+	std::string process("h0 > gamma,gamma");
+	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr.flush();
+	CM_algorithm<model_type,1,2>algo(process);
+	algo.load();
+	algo.construct();
+	helicity_generator<value_type,1,2,true>* helgen=uniform_helicities<value_type,1,2,rn_engine,true>::create_instance<model_type>(algo.get_tree_iterator());
+	helgen->generate();
+	ps_generator_tester<model_type,1,2,rn_engine>test(algo.get_tree_iterator(),"",isgen_type,psgen_type);
+	test.adapt_batch_size=n_adapt;
+	if(!test.run(n_evts,n_bins,false,true,true))
+	{
+	    std::cerr<<test.ps_gen->cross_section()<<','<<test.uni_gen->cross_section()<<std::endl;
+	    return 1;
+	}
+	if(!(test.uni_gen->cross_section().value==0 and test.uni_gen->cross_section().error==0))
+	{
+	    return 1;
+	}
+	if(!(test.ps_gen->cross_section().value==0 and test.ps_gen->cross_section().error==0))
+	{
+	    return 1;
+	}
+	std::cerr<<"done."<<std::endl;
+	delete helgen;
+	Camgen::log.enable_level=log_level::warning;
+    }
+
+    {
+	Camgen::log.enable_level=log_level::error;
+	std::string process("gamma > e+,e-");
+	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr.flush();
+	CM_algorithm<model_type,1,2>algo(process);
+	algo.load();
+	algo.construct();
+	helicity_generator<value_type,1,2,true>* helgen=uniform_helicities<value_type,1,2,rn_engine,true>::create_instance<model_type>(algo.get_tree_iterator());
+	helgen->generate();
+	ps_generator_tester<model_type,1,2,rn_engine>test(algo.get_tree_iterator(),"",isgen_type,psgen_type);
+	test.adapt_batch_size=n_adapt;
+	if(!test.run(n_evts,n_bins,false,true,true))
+	{
+	    std::cerr<<test.ps_gen->cross_section()<<','<<test.uni_gen->cross_section()<<std::endl;
+	    return 1;
+	}
+	if(!(test.uni_gen->cross_section().value==0 and test.uni_gen->cross_section().error==0))
+	{
+	    return 1;
+	}
+	if(!(test.ps_gen->cross_section().value==0 and test.ps_gen->cross_section().error==0))
+	{
+	    return 1;
+	}
+	std::cerr<<"done."<<std::endl;
+	delete helgen;
+	Camgen::log.enable_level=log_level::warning;
+    }
+
 
     {
 	Camgen::log.enable_level=log_level::error;
@@ -56,34 +116,165 @@ int main()
 	{
 	    return 1;
 	}
-	test.print_generator(std::cerr);
 	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
+	delete helgen;
+	Camgen::log.enable_level=log_level::warning;
+    }
+
+    std::cout<<"-------------------------------------------------------------------------"<<std::endl;
+    std::cout<<"testing ps_tree multichannel adaptation in scattering...................."<<std::endl;
+    std::cout<<"-------------------------------------------------------------------------"<<std::endl;
+    
+    {
+	Camgen::log.enable_level=log_level::error;
+	std::string process("e+,e- > u,dbar");
+	double E1=500;
+	double E2=500;
+	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr.flush();
+	CM_algorithm<model_type,2,2>algo(process);
+	algo.load();
+	algo.construct();
+	helicity_generator<value_type,2,2,true>* helgen=uniform_helicities<value_type,2,2,rn_engine,true>::create_instance<model_type>(algo.get_tree_iterator());
+	helgen->generate();
+	ps_generator_tester<model_type,2,2,rn_engine>test(algo.get_tree_iterator(),"",isgen_type,psgen_type);
+	test.set_beam_energy(-1,E1);
+	test.set_beam_energy(-2,E2);
+	test.adapt_batch_size=n_adapt;
+	if(!test.run(n_evts,n_bins,false,true,true))
+	{
+	    std::cerr<<test.ps_gen->cross_section()<<','<<test.uni_gen->cross_section()<<std::endl;
+	    return 1;
+	}
+	if(!(test.uni_gen->cross_section().value==0 and test.uni_gen->cross_section().error==0))
+	{
+	    return 1;
+	}
+	if(!(test.ps_gen->cross_section().value==0 and test.ps_gen->cross_section().error==0))
+	{
+	    return 1;
+	}
+	std::cerr<<"done."<<std::endl;
 	delete helgen;
 	Camgen::log.enable_level=log_level::warning;
     }
 
     {
 	Camgen::log.enable_level=log_level::error;
-	model_type::M_h0=183;
-	model_type::refresh_widths();
-	std::string process("h0 > mu-,nu_mubar,mu+,nu_mu");
-	std::string fname("plots/h_ZZ_2l2n");
+	std::string process("e+,e- > t,tbar");
+	double E1=100;
+	double E2=100;
 	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
 	std::cerr.flush();
-	CM_algorithm<model_type,1,4>algo(process);
+	CM_algorithm<model_type,2,2>algo(process);
 	algo.load();
 	algo.construct();
-	helicity_generator<value_type,1,4,true>* helgen=uniform_helicities<value_type,1,4,rn_engine,true>::create_instance<model_type>(algo.get_tree_iterator());
+	helicity_generator<value_type,2,2,true>* helgen=uniform_helicities<value_type,2,2,rn_engine,true>::create_instance<model_type>(algo.get_tree_iterator());
 	helgen->generate();
-	ps_generator_tester<model_type,1,4,rn_engine>test(algo.get_tree_iterator(),fname,isgen_type,psgen_type);
+	ps_generator_tester<model_type,2,2,rn_engine>test(algo.get_tree_iterator(),"",isgen_type,psgen_type);
+	test.set_beam_energy(-1,E1);
+	test.set_beam_energy(-2,E2);
+	test.adapt_batch_size=n_adapt;
+	if(!test.run(n_evts,n_bins,false,true,true))
+	{
+	    std::cerr<<test.ps_gen->cross_section()<<','<<test.uni_gen->cross_section()<<std::endl;
+	    return 1;
+	}
+	if(!(test.uni_gen->cross_section().value==0 and test.uni_gen->cross_section().error==0))
+	{
+	    return 1;
+	}
+	if(!(test.ps_gen->cross_section().value==0 and test.ps_gen->cross_section().error==0))
+	{
+	    return 1;
+	}
+	std::cerr<<"done."<<std::endl;
+	delete helgen;
+	Camgen::log.enable_level=log_level::warning;
+    }
+
+    {
+	Camgen::log.enable_level=log_level::error;
+	std::string process("e+,e- > nu_ebar,h0,nu_e");
+	std::string fname("plots/ee_h2n");
+	double E1=250;
+	double E2=250;
+	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr.flush();
+	CM_algorithm<model_type,2,3>algo(process);
+	algo.load();
+	algo.construct();
+	helicity_generator<value_type,2,3,true>* helgen=uniform_helicities<value_type,2,3,rn_engine,true>::create_instance<model_type>(algo.get_tree_iterator());
+	helgen->generate();
+	ps_generator_tester<model_type,2,3,rn_engine>test(algo.get_tree_iterator(),fname,isgen_type,psgen_type);
+	test.set_beam_energy(-1,E1);
+	test.set_beam_energy(-2,E2);
 	test.adapt_batch_size=n_adapt;
 	if(!test.run(n_evts,n_bins))
 	{
 	    return 1;
 	}
-	test.print_generator(std::cerr);
+	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
+	delete helgen;
+	Camgen::log.enable_level=log_level::warning;
+    }
+
+    {
+	model_type::M_h0=165;
+	Camgen::log.enable_level=log_level::error;
+	std::string process("e+,e- > nu_e,W+,W-,nu_ebar");
+	std::string fname("plots/ee_2W2n");
+	double E1=250;
+	double E2=250;
+	double mmin=10;
+	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr.flush();
+	CM_algorithm<model_type,2,4>algo(process);
+	algo.load();
+	algo.construct();
+	ps_generator_tester<model_type,2,4,rn_engine>test(algo.get_tree_iterator(),fname,isgen_type,psgen_type);
+	helicity_generator<value_type,2,4,true>* helgen=uniform_helicities<value_type,2,4,rn_engine,true>::create_instance<model_type>(algo.get_tree_iterator());
+	helgen->generate();
+	test.set_beam_energy(-1,E1);
+	test.set_beam_energy(-2,E2);
+	test.set_m_min(1,4,mmin);
+	test.adapt_batch_size=n_adapt;
+	if(!test.run(n_evts,n_bins))
+	{
+	    return 1;
+	}
+	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
+	delete helgen;
+	Camgen::log.enable_level=log_level::warning;
+    }
+
+    {
+	model_type::M_h0=185;
+	Camgen::log.enable_level=log_level::error;
+	std::string process("e+,e- > nu_e,Z,Z,nu_ebar");
+	std::string fname("plots/ee_2Z2n");
+	double E1=250;
+	double E2=250;
+	double mmin=10;
+	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr.flush();
+	CM_algorithm<model_type,2,4>algo(process);
+	algo.load();
+	algo.construct();
+	ps_generator_tester<model_type,2,4,rn_engine>test(algo.get_tree_iterator(),fname,isgen_type,psgen_type);
+	helicity_generator<value_type,2,4,true>* helgen=uniform_helicities<value_type,2,4,rn_engine,true>::create_instance<model_type>(algo.get_tree_iterator());
+	helgen->generate();
+	test.set_beam_energy(-1,E1);
+	test.set_beam_energy(-2,E2);
+	test.set_m_min(1,4,mmin);
+	test.adapt_batch_size=n_adapt;
+	if(!test.run(n_evts,n_bins))
+	{
+	    return 1;
+	}
 	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
 	delete helgen;
 	Camgen::log.enable_level=log_level::warning;
     }
 }
+
