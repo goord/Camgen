@@ -76,3 +76,5 @@ test/susy_QED_test
 test/Lorentz_test
 
 test/ps_tree_adapt_test
+
+test/ps_tree_grid_test

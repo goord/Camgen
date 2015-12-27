@@ -93,16 +93,16 @@ namespace Camgen
 
 	    /* Sets the minimal minimal invariant mass-squared: */
 
-	    bool set_mapping_lower_bound(const value_type& xmin)
+	    bool set_min_lower_bound(const value_type& xmin)
 	    {
-		return mapping->set_lower_bound(xmin);
+		return mapping->set_lower_bound(xmin) and this->set_lower_bound(xmin);
 	    }
 
 	    /* Sets the maximal maximal invariant mass-squared: */
 
-	    bool set_mapping_upper_bound(const value_type& xmax)
+	    bool set_max_upper_bound(const value_type& xmax)
 	    {
-		return mapping->set_upper_bound(xmax);
+		return mapping->set_upper_bound(xmax) and this->set_upper_bound(xmax);
 	    }
 
 	    /* Minimal invariant mass refresher: */
@@ -214,14 +214,6 @@ namespace Camgen
 	    /* Grid update method: */
 
 	    void update()
-	    {
-		grid->integrand()=this->integrand()*mapping->weight();
-		grid->update();
-	    }
-
-	    /* Total update method: */
-
-	    void update_weight()
 	    {
 		if(grid->weight()!=(value_type)0)
 		{

@@ -552,8 +552,8 @@ int main()
 	MC_integrator<value_type>* genmap_int=new MC_generator_wrapper<value_type>(genmap);
 	adaptive_value_generator<value_type,std::random>* gen=new adaptive_value_generator<value_type,std::random>(genmap,N_bins,mode);
 	MC_integrator<value_type>* gen_int=new MC_generator_wrapper<value_type>(gen);
-	gen->set_mapping_lower_bound(s0min);
-	gen->set_mapping_upper_bound(s0max);
+	gen->set_min_lower_bound(s0min);
+	gen->set_max_upper_bound(s0max);
 	gen->set_bounds(smin,smax);
 	value_type& s=gen->value();
 	histogram<value_type>hist(&s,&wght);

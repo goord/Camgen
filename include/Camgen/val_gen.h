@@ -93,6 +93,20 @@ namespace Camgen
 		return refresh_lower_bound();
 	    }
 
+	    /// Sets the minimal lower bound (in case of adaptive generator).
+	    
+	    virtual bool set_min_lower_bound(const value_type& val_)
+	    {
+		return set_lower_bound(val_);
+	    }
+
+	    /// Sets the maximal upper bound (in case of adaptive generator).
+	    
+	    virtual bool set_max_upper_bound(const value_type& val_)
+	    {
+		return set_upper_bound(val_);
+	    }
+
 	    /// Sets the maximal generated invariant mass-squared.
 
 	    bool set_upper_bound(const value_type& max_val_)

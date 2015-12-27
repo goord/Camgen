@@ -422,18 +422,16 @@ namespace Camgen
 		ymax=LHA_ymax;
 		tau_gen=new adaptive_value_generator<value_type,rng_t>(new power_law<value_type,rng_t>(NULL,&nu_tau));
 		tau_gen->set_value(&tau);
-		tau_gen->set_mapping_lower_bound(0);
-		tau_gen->set_lower_bound(0);
-		tau_gen->set_mapping_upper_bound(1);
-		tau_gen->set_upper_bound(1);
+		tau_gen->set_min_lower_bound(0);
+		tau_gen->set_max_upper_bound(1);
+		tau_gen->set_bounds(0,1);
 		y_gen=new adaptive_value_generator<value_type,rng_t>(new inverse_cosh<value_type,rng_t>);
 		y_gen->set_value(&y);
 		if(ymax!=std::numeric_limits<value_type>::infinity())
 		{
-		    y_gen->set_mapping_lower_bound(-ymax);
-		    y_gen->set_lower_bound(-ymax);
-		    y_gen->set_mapping_upper_bound(ymax);
-		    y_gen->set_upper_bound(ymax);
+		    y_gen->set_min_lower_bound(-ymax);
+		    y_gen->set_max_upper_bound(ymax);
+		    y_gen->set_bounds(-ymax,ymax);
 		}
 	    }
 
@@ -446,18 +444,16 @@ namespace Camgen
 		ymax=LHA_ymax;
 		tau_gen=new adaptive_value_generator<value_type,rng_t>(new power_law<value_type,rng_t>(NULL,&nu_tau));
 		tau_gen->set_value(&tau);
-		tau_gen->set_mapping_lower_bound(0);
-		tau_gen->set_lower_bound(0);
-		tau_gen->set_mapping_upper_bound(1);
-		tau_gen->set_upper_bound(1);
+		tau_gen->set_min_lower_bound(0);
+		tau_gen->set_max_upper_bound(1);
+		tau_gen->set_bounds(0,1);
 		y_gen=new adaptive_value_generator<value_type,rng_t>(new inverse_cosh<value_type,rng_t>);
 		y_gen->set_value(&y);
 		if(LHA_ymax!=std::numeric_limits<value_type>::infinity())
 		{
-		    y_gen->set_mapping_lower_bound(-ymax);
-		    y_gen->set_lower_bound(-ymax);
-		    y_gen->set_mapping_upper_bound(ymax);
-		    y_gen->set_upper_bound(ymax);
+		    y_gen->set_min_lower_bound(-ymax);
+		    y_gen->set_max_upper_bound(ymax);
+		    y_gen->set_bounds(-ymax,ymax);
 		}
 	    }
 
@@ -484,13 +480,12 @@ namespace Camgen
 		value_type E2=this->beam_energy(1);
 		if(this->set_s((value_type)4*E1*E2))
 		{
-		    tau_gen->set_mapping_lower_bound((this->s_hat_min()-this->m2(0)-this->m2(1))/this->s());
+		    tau_gen->set_min_lower_bound((this->s_hat_min()-this->m2(0)-this->m2(1))/this->s());
 		    tau_gen->set_lower_bound((this->s_hat_min()-this->m2(0)-this->m2(1))/this->s());
 		    ymax=std::min(-(value_type)0.5*std::log(tau_gen->lower_bound()),LHA_ymax);
-		    y_gen->set_mapping_lower_bound(-ymax);
-		    y_gen->set_lower_bound(-ymax);
-		    y_gen->set_mapping_upper_bound(ymax);
-		    y_gen->set_upper_bound(ymax);
+		    y_gen->set_min_lower_bound(-ymax);
+		    y_gen->set_max_upper_bound(ymax);
+		    y_gen->set_bounds(-ymax,ymax);
 		    return true;
 		}
 		return false;
@@ -502,13 +497,12 @@ namespace Camgen
 	    {
 		if(this->base_type::set_s_hat_min(s))
 		{
-		    tau_gen->set_mapping_lower_bound((this->s_hat_min()-this->m2(0)-this->m2(1))/this->s());
+		    tau_gen->set_min_lower_bound((this->s_hat_min()-this->m2(0)-this->m2(1))/this->s());
 		    tau_gen->set_lower_bound((this->s_hat_min()-this->m2(0)-this->m2(1))/this->s());
 		    ymax=std::min(-(value_type)0.5*std::log(tau_gen->lower_bound()),LHA_ymax);
-		    y_gen->set_mapping_lower_bound(-ymax);
-		    y_gen->set_lower_bound(-ymax);
-		    y_gen->set_mapping_upper_bound(ymax);
-		    y_gen->set_upper_bound(ymax);
+		    y_gen->set_min_lower_bound(-ymax);
+		    y_gen->set_max_upper_bound(ymax);
+		    y_gen->set_bounds(-ymax,ymax);
 		    return true;
 		}
 		return false;
@@ -520,13 +514,12 @@ namespace Camgen
 	    {
 		if(this->base_type::set_m_hat_min(m))
 		{
-		    tau_gen->set_mapping_lower_bound((this->s_hat_min()-this->m2(0)-this->m2(1))/this->s());
+		    tau_gen->set_min_lower_bound((this->s_hat_min()-this->m2(0)-this->m2(1))/this->s());
 		    tau_gen->set_lower_bound((this->s_hat_min()-this->m2(0)-this->m2(1))/this->s());
 		    ymax=std::min(-(value_type)0.5*std::log(tau_gen->lower_bound()),LHA_ymax);
-		    y_gen->set_mapping_lower_bound(-ymax);
-		    y_gen->set_lower_bound(-ymax);
-		    y_gen->set_mapping_upper_bound(ymax);
-		    y_gen->set_upper_bound(ymax);
+		    y_gen->set_min_lower_bound(-ymax);
+		    y_gen->set_max_upper_bound(ymax);
+		    y_gen->set_bounds(-ymax,ymax);
 		    return true;
 		}
 		return false;
@@ -641,9 +634,9 @@ namespace Camgen
 	    void update()
 	    {
 		tau_gen->integrand()=this->integrand();
-		tau_gen->update_weight();
+		tau_gen->update();
 		y_gen->integrand()=this->integrand();
-		y_gen->update_weight();
+		y_gen->update();
 	    }
 	    
 	    /* Adaptor method implementation: */
@@ -837,10 +830,9 @@ namespace Camgen
 		if(xmin>(value_type)0)
 		{
 		    LHA_ymax=(value_type)0.5*std::log(static_cast<value_type>(pdf_wrapper::xmax())/xmin);
-		    y_gen->set_mapping_lower_bound(-LHA_ymax);
-		    y_gen->set_lower_bound(-LHA_ymax);
-		    y_gen->set_mapping_upper_bound(LHA_ymax);
-		    y_gen->set_upper_bound(LHA_ymax);
+		    y_gen->set_min_lower_bound(-LHA_ymax);
+		    y_gen->set_max_upper_bound(LHA_ymax);
+		    y_gen->set_bounds(-LHA_ymax,LHA_ymax);
 		}
 		else
 		{
@@ -860,10 +852,9 @@ namespace Camgen
 		if(xmin>(value_type)0)
 		{
 		    LHA_ymax=(value_type)0.5*std::log(static_cast<value_type>(pdf_wrapper::xmax())/xmin);
-		    y_gen->set_mapping_lower_bound(-LHA_ymax);
-		    y_gen->set_lower_bound(-LHA_ymax);
-		    y_gen->set_mapping_upper_bound(LHA_ymax);
-		    y_gen->set_upper_bound(LHA_ymax);
+		    y_gen->set_min_lower_bound(-LHA_ymax);
+		    y_gen->set_max_upper_bound(LHA_ymax);
+		    y_gen->set_bounds(-LHA_ymax,LHA_ymax);
 		}
 		else
 		{
@@ -896,10 +887,9 @@ namespace Camgen
 		{
 		    tau_min=(this->s_hat_min()-this->m2(0)-this->m2(1))/this->s();
 		    ymax=std::min(-(value_type)0.5*std::log(tau_min),LHA_ymax);
-		    y_gen->set_mapping_lower_bound(-ymax);
-		    y_gen->set_lower_bound(-ymax);
-		    y_gen->set_mapping_upper_bound(ymax);
-		    y_gen->set_upper_bound(ymax);
+		    y_gen->set_min_lower_bound(-ymax);
+		    y_gen->set_max_upper_bound(ymax);
+		    y_gen->set_bounds(-ymax,ymax);
 		    return true;
 		}
 		return false;
@@ -913,10 +903,9 @@ namespace Camgen
 		{
 		    tau_min=(this->s_hat_min()-this->m2(0)-this->m2(1))/this->s();
 		    ymax=std::min(-(value_type)0.5*std::log(tau_min),LHA_ymax);
-		    y_gen->set_mapping_lower_bound(-ymax);
-		    y_gen->set_lower_bound(-ymax);
-		    y_gen->set_mapping_upper_bound(ymax);
-		    y_gen->set_upper_bound(ymax);
+		    y_gen->set_min_lower_bound(-ymax);
+		    y_gen->set_max_upper_bound(ymax);
+		    y_gen->set_bounds(-ymax,ymax);
 		    return true;
 		}
 		return false;
@@ -930,10 +919,9 @@ namespace Camgen
 		{
 		    tau_min=(this->s_hat_min()-this->m2(0)-this->m2(1))/this->s();
 		    ymax=std::min(-(value_type)0.5*std::log(tau_min),LHA_ymax);
-		    y_gen->set_mapping_lower_bound(-ymax);
-		    y_gen->set_lower_bound(-ymax);
-		    y_gen->set_mapping_upper_bound(ymax);
-		    y_gen->set_upper_bound(ymax);
+		    y_gen->set_min_lower_bound(-ymax);
+		    y_gen->set_max_upper_bound(ymax);
+		    y_gen->set_bounds(-ymax,ymax);
 		    return true;
 		}
 		return false;
@@ -945,8 +933,7 @@ namespace Camgen
 	    {
 		tau=this->s_hat()/this->s();
 		value_type ybound=std::min(ymax,-(value_type)0.5*std::log(tau));
-		y_gen->set_lower_bound(-ybound);
-		y_gen->set_upper_bound(ybound);
+		y_gen->set_bounds(-ybound,ybound);
 		if(!y_gen->generate())
 		{
 		    this->weight()=(value_type)0;
@@ -996,8 +983,7 @@ namespace Camgen
 		tau=x1*x2;
 
 		value_type ybound=std::min(ymax,-(value_type)0.5*std::log(tau));
-		y_gen->set_lower_bound(-ybound);
-		y_gen->set_upper_bound(ybound);
+		y_gen->set_bounds(-ybound,ybound);
 		y=(value_type)0.5*std::log(x1/x2);
 		if(!y_gen->evaluate_weight())
 		{

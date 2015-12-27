@@ -142,7 +142,6 @@ namespace Camgen
 
 		this->branching_weight=massless_ps<value_type,2,model_t::dimension>::volume(sqrts)*std::pow(lambda/s,int(model_t::dimension-3))*sweight;
 		
-		
 		return (this->branching_weight>(value_type)0);
 	    }
 

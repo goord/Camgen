@@ -207,30 +207,14 @@ namespace Camgen
 	    
 	    bool set_s_min_min(const value_type& sminmin)
 	    {
-		adaptive_value_generator<value_type,rng_t>* s_gen_grid=dynamic_cast<adaptive_value_generator<value_type,rng_t>*>(s_gen);
-		if(s_gen_grid!=NULL)
-		{
-		    return s_gen_grid->set_mapping_lower_bound(sminmin);
-		}
-		else
-		{
-		    return s_gen->set_lower_bound(sminmin);
-		}
+		return s_gen->set_min_lower_bound(sminmin);
 	    }
 
 	    /* Sets the maximal maximal invariant mass-squared. */
 	    
 	    bool set_s_max_max(const value_type& smaxmax)
 	    {
-		adaptive_value_generator<value_type,rng_t>* s_gen_grid=dynamic_cast<adaptive_value_generator<value_type,rng_t>*>(s_gen);
-		if(s_gen_grid!=NULL)
-		{
-		    return s_gen_grid->set_mapping_upper_bound(smaxmax);
-		}
-		else
-		{
-		    return s_gen->set_upper_bound(smaxmax);
-		}
+		return s_gen->set_max_upper_bound(smaxmax);
 	    }
 
 	    /* Sets the invariant mass-squared range. */
