@@ -78,3 +78,27 @@ test/Lorentz_test
 test/ps_tree_adapt_test
 
 test/ps_tree_grid_test
+
+test/ps_tree_shat_test
+
+test/ps_tree_reverse_shat_test
+
+test/ps_tree_reverse_shat_test
+
+*.Tpo
+
+test/rambo_test
+
+nbproject/configurations.xml
+
+nbproject/private/CodeAssistancePathMapper.properties
+
+nbproject/private/configurations.xml
+
+nbproject/private/launcher.properties
+
+nbproject/private/private.xml
+
+nbproject/project.xml
+
+test/ps_tree_reverse_shat_test
