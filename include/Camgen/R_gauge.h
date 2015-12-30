@@ -106,7 +106,7 @@ namespace Camgen
 
 	    /* Evaluate function: propagates all vectors between 'first' and 'last': */
 
-	    static void evaluate(iterator first,iterator last)
+	    static void evaluate_range(iterator first,iterator last)
 	    {
 		const momentum_type* p=width_scheme<model_t>::momentum;
 		CAMGEN_ERROR_IF((p==NULL),"attempt to dereference a NULL momentum pointer");
@@ -185,7 +185,7 @@ namespace Camgen
 
 	    /* Evaluate function: propagates all scalars between 'first' and 'last': */
 
-	    static void evaluate(iterator first,iterator last)
+	    static void evaluate_range(iterator first,iterator last)
 	    {
 		CAMGEN_ERROR_IF((first.range()==0),"tensor iterator out of range");
 		CAMGEN_ERROR_IF(((last-first)<0),"bounding iterator smaller than running iterator");

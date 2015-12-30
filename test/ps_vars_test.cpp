@@ -28,6 +28,8 @@ class model_mock
 
 	static const std::size_t dimension=4;
 	static const int beam_direction=2;
+	static const bool continuous_helicities=true;
+	static const bool continuous_colours=false;
 };
 
 /* Method generating 3 momenta at the given CM momentum scale: */

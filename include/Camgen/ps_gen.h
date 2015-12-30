@@ -223,7 +223,10 @@ namespace Camgen
 
 	    /// Refreshes internal parameters.
 
-	    virtual bool refresh_params(){}
+	    virtual bool refresh_params()
+	    {
+		return true;
+	    }
 
 	    /// Inserts a phase space cut.
 

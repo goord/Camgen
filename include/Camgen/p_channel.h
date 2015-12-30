@@ -173,6 +173,7 @@ namespace Camgen
 			set_s_max(std::numeric_limits<value_type>::max());
 		    }
 		}
+		 return true;
 	    }
 
 	    /* Sets the minimal invariant mass-squared. */

@@ -91,6 +91,7 @@ namespace Camgen
 			return false;
 		    }
 		}
+		return true;
 	    }
     };
 
@@ -138,6 +139,7 @@ namespace Camgen
 			}
 		    }
 		}
+		return true;
 	    }
 
 	    static bool check_Lorentz_transform(const vector_type& u,const vector_type& v)

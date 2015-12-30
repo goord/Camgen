@@ -655,7 +655,7 @@ namespace Camgen
 		if(n>0)
 		{
 		    zero_hel=value_type(0,0);
-		    pos_hels[n-1].real()=(r_value_type)1;
+		    pos_hels[n-1].real((r_value_type)1);
 		}
 		else if(n==0)
 		{
@@ -664,7 +664,7 @@ namespace Camgen
 		else
 		{
 		    zero_hel=value_type(0,0);
-		    neg_hels[-n-1].real()=(r_value_type)1;
+		    neg_hels[-n-1].real((r_value_type)1);
 		}
 		return *this;
 	    }

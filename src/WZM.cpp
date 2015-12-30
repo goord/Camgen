@@ -72,7 +72,7 @@ namespace Camgen
 	    else
 	    {
 		m=mass;
-		phi3.imag()=-m*g;
+		phi3=std::complex<value_type>(0,-m*g);
 	    }
 	}
     }

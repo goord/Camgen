@@ -102,3 +102,5 @@ nbproject/private/private.xml
 nbproject/project.xml
 
 test/ps_tree_reverse_shat_test
+
+config.h.in~

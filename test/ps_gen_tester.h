@@ -343,6 +343,7 @@ namespace Camgen
 		pTcut2 = new pT_min_cut<model_t,N_out>(value,i);
 		pTcut2->generator=ps_gen;
 		ps_gen->insert_cut(pTcut2);
+		return true;
 	    }
 
 	    /* Prints the amplitude: */

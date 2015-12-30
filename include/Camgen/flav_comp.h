@@ -74,7 +74,7 @@ namespace Camgen
     template<class particle_t>class flavourvec_comp
     {
 	public:
-	    bool operator () (const std::vector<const particle_t*>& v1,const std::vector<const particle_t*>& v2)
+	    bool operator () (const std::vector<const particle_t*>& v1,const std::vector<const particle_t*>& v2) const
 	    {
 		return std::lexicographical_compare(v1.begin(),v1.end(),v2.begin(),v2.end(),elem_comp);				
 	    }

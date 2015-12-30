@@ -86,7 +86,7 @@ namespace Camgen
 
 	    /* Function propagating the vectors between 'first' an 'last': */
 
-	    static void evaluate(iterator first,iterator last)
+	    static void evaluate_range(iterator first,iterator last)
 	    {
 		const momentum_type* p=width_scheme<model_t>::momentum;
 

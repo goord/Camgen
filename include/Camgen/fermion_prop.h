@@ -88,7 +88,7 @@ namespace Camgen
 	     * calling the appropriate member function in the Dirac algebra
 	     * class: */
 
-	    static void evaluate(iterator first,iterator last)
+	    static void evaluate_range(iterator first,iterator last)
 	    {
 		const momentum_type* p=width_scheme<model_t>::momentum;
 		CAMGEN_ERROR_IF((p==NULL),"attempt to dereference a NULL momentum pointer");
@@ -171,7 +171,7 @@ namespace Camgen
 	     * calling the appropriate member function in the Dirac algebra
 	     * class: */
 
-	    static void evaluate(iterator first,iterator last)
+	    static void evaluate_range(iterator first,iterator last)
 	    {
 		const momentum_type* p=width_scheme<model_t>::momentum;
 		CAMGEN_ERROR_IF((p==NULL),"attempt to dereference a NULL momentum pointer");

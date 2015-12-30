@@ -882,7 +882,7 @@ namespace Camgen
 		
 		/* Copy the static propagating member function addresses: */
 		
-		propagator=&(particle_t::propagator_type::evaluate);
+		propagator=&(particle_t::propagator_type::evaluate_range);
 		refresh_prop=&(particle_t::propagator_type::refresh);
 		
 		/* Initialise contraction and charge conjugate contraction
@@ -926,7 +926,7 @@ namespace Camgen
 		
 		/* Copy the static propagating member function addresses: */
 		
-		propagator=&prop_t::evaluate;
+		propagator=&prop_t::evaluate_range;
 		refresh_prop=&prop_t::refresh;
 		return true;
 	    }

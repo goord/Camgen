@@ -107,7 +107,7 @@ namespace Camgen
 		typename event_generator_type::process_container& procs=evtgen->procs;
 		typename event_generator_type::process_iterator& sub_proc=evtgen->sub_proc;
 
-		for(sub_proc=evtgen.procs.begin();sub_proc!=evtgen.procs.end();++sub_proc)
+		for(sub_proc=evtgen->procs.begin();sub_proc!=evtgen->procs.end();++sub_proc)
 		{
 		    if(verbose)
 		    {
@@ -131,7 +131,7 @@ namespace Camgen
 	    {
 		typedef typename model_t::value_t value_type;
 
-		amplitude_type& amplitude=evtgen.algorithm;
+		amplitude_type& amplitude=evtgen->algorithm;
 		typename event_generator_type::process_container& procs=evtgen->procs;
 
 
@@ -144,7 +144,7 @@ namespace Camgen
 		    {
 			if(!amplitude.get_tree_iterator()->is_empty())
 			{
-			    procs.push_back(process_generator_factory.create_generator(amplitude.get_tree_iterator(),conf,id++));
+			    procs.push_back(process_generator_factory->create_generator(amplitude.get_tree_iterator(),conf,id++));
 			}
 		    }
 		    while(amplitude.next_process());

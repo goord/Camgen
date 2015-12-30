@@ -80,7 +80,7 @@ namespace Camgen
 
 	    /* Function propagating all vectors between 'first' and 'last': */
 
-	    static void evaluate(iterator first,iterator last)
+	    static void evaluate_range(iterator first,iterator last)
 	    {
 		CAMGEN_ERROR_IF((first.range()<model_t::dimension),"tensor iterator out of range");
 		CAMGEN_ERROR_IF(((last-first)<0),"bounding iterator smaller than running iterator");

@@ -173,7 +173,7 @@ namespace Camgen
 	    {
 		if(channels.size()==0)
 		{
-		    this->weight()==(value_type)1;
+		    this->weight()=(value_type)1;
 		    return true;
 		}
 		value_type g(0);
