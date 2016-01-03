@@ -136,7 +136,7 @@ namespace Camgen
 		size_type N_batch=N_events/N_points;
 		value_type n,psvol1,psvol1err,psvol2,psvol2err,xsec1,xsec1err,xsec2,xsec2err;
 		bool have_gp=plot_config::gnuplot_path!=NULL;
-		data_wrapper* data=have_gp?new data_wrapper(&n,&psvol1,&psvol1err):new data_wrapper(filename,&n,&psvol1,&psvol1err);
+		data_wrapper* data=have_gp?new data_wrapper(&n,&psvol1,&psvol1err):new data_wrapper(filename+".dat",&n,&psvol1,&psvol1err);
 		data->add_leaf(&psvol2);
 		data->add_leaf(&psvol2err);
 		data->add_leaf(&xsec1);

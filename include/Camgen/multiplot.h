@@ -136,6 +136,7 @@ namespace Camgen
 
 	    bool plot() const
 	    {
+#ifdef GNUPLOTPATH
 		FILE* gnustream=plot_config::open_pipe();
 		if(gnustream==NULL)
 		{
@@ -151,6 +152,9 @@ namespace Camgen
 		    return false;
 		}
 		return true;
+#else
+		return write();
+#endif
 	    }
 
 	private:

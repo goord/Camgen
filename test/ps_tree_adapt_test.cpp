@@ -299,12 +299,12 @@ int main()
     }
 
     {
-	model_type::M_h0=185;
+	model_type::M_h0=200;
 	Camgen::log.enable_level=log_level::error;
 	std::string process("e+,e- > nu_e,Z,Z,nu_ebar");
 	std::string fname("plots/ee_2Z2n");
-	double E1=250;
-	double E2=250;
+	double E1=500;
+	double E2=500;
 	double mmin=10;
 	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
 	std::cerr.flush();

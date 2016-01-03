@@ -38,6 +38,8 @@ AC_CHECK_HEADER([set])
 AC_CHECK_HEADER([vector])
 AC_CHECK_HEADER([algorithm])
 
+# TODO: Check for debug flag
+
 # Check for the LHAPDF header.
 
 AC_DEFUN([CAMGEN_CHECK_LHAPDF],[
