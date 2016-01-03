@@ -46,6 +46,7 @@ Camgen_HEADERS = Camgen/adj_rep.h		\
 	         Camgen/fermion_prop.h		\
 	         Camgen/ff_contr.h		\
 	         Camgen/ff_contr_helper.h	\
+		 Camgen/file_utils.h		\
 	         Camgen/flav_comp.h		\
 	         Camgen/forward_decs.h		\
 	         Camgen/fundam_rep.h		\

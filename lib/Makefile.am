@@ -5,6 +5,7 @@ lib_LTLIBRARIES =      libCamgen.la
 libCamgen_la_SOURCES = $(top_srcdir)/src/bipart.cpp		\
 		       $(top_srcdir)/src/Dirac_dim.cpp		\
 		       $(top_srcdir)/src/EWSM.cpp		\
+		       $(top_srcdir)/src/file_utils.cpp		\
 		       $(top_srcdir)/src/license_print.cpp	\
 		       $(top_srcdir)/src/logstream.cpp		\
 		       $(top_srcdir)/src/lower_binom.cpp	\

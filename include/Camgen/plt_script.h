@@ -129,7 +129,7 @@ namespace Camgen
 
 	    /// Writes the script to the output stream.
 
-	    std::ostream& write(std::ostream& os) const;
+	    std::ostream& write(std::ostream& os,bool strip_paths=false) const;
 
 	    /// Resets settings for multiplots.
 

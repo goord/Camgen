@@ -12,20 +12,22 @@
 #include <config.h>
 #include <Camgen/plt_config.h>
 
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__)
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
  #include <io.h>
  #define MAX_TMP_FILES  27
  #define MAKE_TMP_FILE(fname) _mktemp(fname)!=NULL
  #define FNAME_TEMPLATE "camgendataiXXXXXX"
  #define PIPE_OPEN _popen
  #define PIPE_CLOSE _pclose
-#elif defined(unix) || defined(__unix) || defined(__unix__) || defined(__APPLE__) 
+#elif defined(__APPLE__) || defined(__linux__) || defined(__unix__) 
  #include <unistd.h>
  #define MAX_TMP_FILES  64
  #define FNAME_TEMPLATE "/tmp/camgendataiXXXXXX"
  #define MAKE_TMP_FILE(fname) mkstemp(fname)!=-1
  #define PIPE_OPEN popen
  #define PIPE_CLOSE pclose
+#else
+ #error Unknown target platform
 #endif
 
 namespace Camgen

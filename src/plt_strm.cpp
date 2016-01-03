@@ -34,7 +34,7 @@ namespace Camgen
 
     /* Function stream plot command writing method: */
 
-    void function_stream::write(std::ostream& os) const
+    void function_stream::write(std::ostream& os,bool strip_paths) const
     {
 	os<<function;
 	if(style.size()!=0)
@@ -197,14 +197,14 @@ namespace Camgen
 
     /* Data stream constructor with data file: */
 
-    data_stream::data_stream(data_wrapper* data_):command("\""+data_->filename()+"\" using 1:2"),data(data_)
+    data_stream::data_stream(data_wrapper* data_):command("using 1:2"),data(data_)
     {
 	++(data->users);
     }
 
     /* Constructor with data file name and column function string: */
 
-    data_stream::data_stream(data_wrapper* data_,const std::string& col2):command("\""+data_->filename()+"\" using 1:"+col2),data(data_)
+    data_stream::data_stream(data_wrapper* data_,const std::string& col2):command("using 1:"+col2),data(data_)
     {
 	++(data->users);
     }
@@ -212,7 +212,7 @@ namespace Camgen
     /* Constructor with data file name and column function string: */
 
     data_stream::data_stream(data_wrapper* data_,const std::string& col1,
-	    					 const std::string& col2):command("\""+data_->filename()+"\" using "+col1+":"+col2),data(data_)
+	    					 const std::string& col2):command("using "+col1+":"+col2),data(data_)
     {
 	++(data->users);
     }
@@ -221,7 +221,7 @@ namespace Camgen
 
     data_stream::data_stream(data_wrapper* data_,const std::string& col1,
 	    					 const std::string& col2,
-						 const std::string& col3):command("\""+data_->filename()+"\" using "+col1+":"+col2+":"+col3),data(data_)
+						 const std::string& col3):command("using "+col1+":"+col2+":"+col3),data(data_)
     {
 	++(data->users);
     }
@@ -246,9 +246,10 @@ namespace Camgen
     
     /* Plot command writing method implementation: */
 
-    void data_stream::write(std::ostream& os) const
+    void data_stream::write(std::ostream& os,bool strip_paths) const
     {
-	os<<command;
+	std::string fpath=strip_paths?file_utils::get_file(data->filename()):data->filename();
+	os<<"\""<<fpath<<"\" "<<command;
 	if(style.size()!=0)
 	{
 	    os<<" with "<<style;

@@ -15,6 +15,7 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
+#include <Camgen/file_utils.h>
 
 namespace Camgen
 {
@@ -34,7 +35,7 @@ namespace Camgen
 
 	    /// Plot command writing method.
 
-	    virtual void write(std::ostream&) const=0;
+	    virtual void write(std::ostream& os,bool strip_paths=false) const=0;
 
 	    /// Virtual clone method.
 
@@ -69,7 +70,7 @@ namespace Camgen
 
 	    /// Streams the gnuplot command.
 
-	    void write(std::ostream&) const;
+	    void write(std::ostream& os,bool strip_paths=false) const;
 
 	    /// Clone method implementation.
 
@@ -205,7 +206,7 @@ namespace Camgen
 
 	    /// Streams the gnuplot command.
 
-	    void write(std::ostream&) const;
+	    void write(std::ostream& os,bool strip_paths=false) const;
 
 	    /// Clone method implementation.
 

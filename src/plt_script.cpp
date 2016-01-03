@@ -9,6 +9,7 @@
 #include <sstream>
 #include <locale>
 #include <algorithm>
+#include <Camgen/file_utils.h>
 #include <Camgen/plt_config.h>
 #include <Camgen/debug.h>
 #include <Camgen/logstream.h>
@@ -108,7 +109,7 @@ namespace Camgen
 
     /* Writes the plot script to the output stream argument: */
 
-    std::ostream& plot_script::write(std::ostream& os) const
+    std::ostream& plot_script::write(std::ostream& os,bool strip_paths) const
     {
 	if(terminal!=NULL)
 	{
@@ -120,15 +121,16 @@ namespace Camgen
 	    }
 	    std::string ftype(term.begin(),it);
 	    std::map<std::string,std::string>::const_iterator it2=filetypes.find(ftype);
+	    std::string outputfile=strip_paths?file_utils::get_file(file):file;
 	    if(it2!=filetypes.end())
 	    {
 		os<<"set terminal "<<term<<std::endl;
-		os<<"set output \""<<file<<'.'<<it2->second<<"\""<<std::endl;
+		os<<"set output \""<<outputfile<<'.'<<it2->second<<"\""<<std::endl;
 	    }
 	    else
 	    {
 		os<<"set terminal table"<<std::endl;
-		os<<"set output \""<<file<<".dat"<<"\""<<std::endl;
+		os<<"set output \""<<outputfile<<".dat"<<"\""<<std::endl;
 	    }
 	}
 	if(title.size()!=0)
@@ -205,11 +207,11 @@ namespace Camgen
 	    {
 		os<<"plot      ";
 	    }
-	    streams[0]->write(os);
+	    streams[0]->write(os,strip_paths);
 	    for(std::vector<const plot_stream*>::size_type i=1;i<streams.size();++i)
 	    {
 		os<<",	\\"<<std::endl<<"          ";
-		streams[i]->write(os);
+		streams[i]->write(os,strip_paths);
 	    }
 	}
 	return os;
@@ -255,7 +257,7 @@ namespace Camgen
 	    log(log_level::warning)<<CAMGEN_STREAMLOC<<"failed to open new file "<<file<<".gp--ignoring call"<<endlog;
 	    return false;
 	}
-	write(fs);
+	write(fs,true);
 	fs.close();
 	return true;
     }

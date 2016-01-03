@@ -16,6 +16,7 @@
 #include <sstream>
 #include <Camgen/debug.h>
 #include <Camgen/logstream.h>
+#include <Camgen/file_utils.h>
 #include <Camgen/plt_config.h>
 #include <Camgen/plt_script.h>
 
@@ -64,7 +65,7 @@ namespace Camgen
 
 	    /// Writes the multiplot script
 
-	    std::ostream& write(std::ostream& os) const
+	    std::ostream& write(std::ostream& os,bool strip_paths=false) const
 	    {
 		if(terminal!=NULL)
 		{
@@ -75,15 +76,16 @@ namespace Camgen
 			++it;
 		    }
 		    std::string file_ext=plot_script::file_extension(std::string(term.begin(),it));
+		    std::string outputfile=strip_paths?file_utils::get_file(file):file;
 		    if(file_ext.size()>0)
 		    {
 			os<<"set terminal "<<term<<std::endl;
-			os<<"set output \""<<file<<'.'<<file_ext<<"\""<<std::endl;
+			os<<"set output \""<<outputfile<<'.'<<file_ext<<"\""<<std::endl;
 		    }
 		    else
 		    {
 			os<<"set terminal table"<<std::endl;
-			os<<"set output \""<<file<<".dat"<<"\""<<std::endl;
+			os<<"set output \""<<outputfile<<".dat"<<"\""<<std::endl;
 		    }
 		}
 		os<<"set multiplot layout "<<M<<","<<N;
@@ -104,7 +106,7 @@ namespace Camgen
 			{
 			    os<<"set size "<<colsize<<","<<rowsize<<std::endl;
 			    os<<"set origin "<<origin[0]<<","<<origin[1]<<std::endl;
-			    plots[m][n]->write(os);
+			    plots[m][n]->write(os,strip_paths);
 			    os<<std::endl;
 			    plots[m][n]->reset(os);
 			    os<<std::endl;
@@ -127,7 +129,7 @@ namespace Camgen
 		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"failed to open new file "<<file<<".gp...ignoring call."<<endlog;
 		    return false;
 		}
-		write(fs);
+		write(fs,true);
 		fs.close();
 		return true;
 	    }
