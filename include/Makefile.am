@@ -100,7 +100,7 @@ Camgen_HEADERS = Camgen/adj_rep.h		\
 	         Camgen/model.h			\
 	         Camgen/model_wrapper.h		\
 	         Camgen/multi_channel.h		\
-	         Camgen/multiplot.h		\
+	         Camgen/multi_plot.h		\
 	         Camgen/name_comp.h		\
 	         Camgen/norm_gen.h		\
 	         Camgen/num_config.h		\

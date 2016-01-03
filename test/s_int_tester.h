@@ -15,7 +15,7 @@
  *                                                                               *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#include <Camgen/multiplot.h>
+#include <Camgen/multi_plot.h>
 #include <Camgen/ss_gen.h>
 #include <Camgen/Dirac_delta.h>
 #include <Camgen/uni_val_gen.h>
@@ -260,7 +260,7 @@ namespace Camgen
 		intplot->add_plot(mcstr5);
 		intplot->add_plot(mcstr6);
 
-		multi_plot<1,2>plt(filename,term);
+		multi_plot plt(1,2,filename,term);
 		plt.add_plot(psplot,0,0);
 		plt.add_plot(intplot,0,1);
 		plt.plot();

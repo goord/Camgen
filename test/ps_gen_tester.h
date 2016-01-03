@@ -20,7 +20,7 @@
 #include <Camgen/type_holders.h>
 #include <Camgen/isgen_fac.h>
 #include <Camgen/psgen_fac.h>
-#include <Camgen/multiplot.h>
+#include <Camgen/multi_plot.h>
 
 namespace Camgen
 {
@@ -279,7 +279,7 @@ namespace Camgen
 			xsecplot->add_x_tic(i*dx);
 		    }
 
-		    multi_plot<1,2>plotall(filename,"postscript enhanced color");
+		    multi_plot plotall(1,2,filename,"postscript enhanced color");
 		    plotall.add_plot(psvolplot,0,0);
 		    plotall.add_plot(xsecplot,0,1);
 		    plotall.plot();

@@ -8,7 +8,7 @@
 #include <Camgen/plt_config.h>
 #include <Camgen/stdrand.h>
 #include <Camgen/histogram.h>
-#include <Camgen/multiplot.h>
+#include <Camgen/multi_plot.h>
 #include <Camgen/power_law.h>
 #include <Camgen/Breit_Wigner.h>
 #include <Camgen/val_gen_grid.h>
@@ -108,7 +108,7 @@ int main()
 	interr->title="MC error";
 	interr->style="lines";
 	plot3->add_plot(interr);
-	multi_plot<3,1>plotall(filename,"postscript enhanced color");
+	multi_plot plotall(3,1,filename,"postscript enhanced color");
 	plotall.add_plot(plot3,0,0);
 	plotall.add_plot(plot2,1,0);
 	plotall.add_plot(plot1,2,0);
@@ -182,7 +182,7 @@ int main()
 	interr->title="MC error";
 	interr->style="lines";
 	plot3->add_plot(interr);
-	multi_plot<3,1>plotall(filename,"postscript enhanced color");
+	multi_plot plotall(3,1,filename,"postscript enhanced color");
 	plotall.add_plot(plot3,0,0);
 	plotall.add_plot(plot2,1,0);
 	plotall.add_plot(plot1,2,0);
@@ -255,7 +255,7 @@ int main()
 	interr->title="MC error";
 	interr->style="lines";
 	plot3->add_plot(interr);
-	multi_plot<3,1>plotall(filename,"postscript enhanced color");
+	multi_plot plotall(3,1,filename,"postscript enhanced color");
 	plotall.add_plot(plot3,0,0);
 	plotall.add_plot(plot2,1,0);
 	plotall.add_plot(plot1,2,0);
@@ -339,7 +339,7 @@ int main()
 	interr->title="MC error";
 	interr->style="lines";
 	plot3->add_plot(interr);
-	multi_plot<3,1>plotall(filename,"postscript enhanced color");
+	multi_plot plotall(3,1,filename,"postscript enhanced color");
 	plotall.add_plot(plot3,0,0);
 	plotall.add_plot(plot2,1,0);
 	plotall.add_plot(plot1,2,0);
@@ -424,7 +424,7 @@ int main()
 	interr->title="MC error";
 	interr->style="lines";
 	plot3->add_plot(interr);
-	multi_plot<3,1>plotall(filename,"postscript enhanced color");
+	multi_plot plotall(3,1,filename,"postscript enhanced color");
 	plotall.add_plot(plot3,0,0);
 	plotall.add_plot(plot2,1,0);
 	plotall.add_plot(plot1,2,0);
@@ -529,7 +529,7 @@ int main()
 	interr->title="totMC error";
 	interr->style="lines";
 	plot3->add_plot(interr);
-	multi_plot<3,1>plotall(filename,"postscript enhanced color");
+	multi_plot plotall(3,1,filename,"postscript enhanced color");
 	plotall.add_plot(plot3,0,0);
 	plotall.add_plot(plot2,1,0);
 	plotall.add_plot(plot1,2,0);
@@ -611,7 +611,7 @@ int main()
 	interr->title="MC error";
 	interr->style="lines";
 	plot3->add_plot(interr);
-	multi_plot<3,1>plotall(filename,"postscript enhanced color");
+	multi_plot plotall(3,1,filename,"postscript enhanced color");
 	plotall.add_plot(plot3,0,0);
 	plotall.add_plot(plot2,1,0);
 	plotall.add_plot(plot1,2,0);
@@ -700,7 +700,7 @@ int main()
 	interr->style="lines";
 	plot4->add_plot(interr);
 	
-	multi_plot<2,2>plotall(filename,"postscript enhanced color");
+	multi_plot plotall(2,2,filename,"postscript enhanced color");
 	plotall.add_plot(plot2,0,0);
 	plotall.add_plot(plot3,0,1);
 	plotall.add_plot(plot1,1,0);
@@ -791,7 +791,7 @@ int main()
 	interr->style="lines";
 	plot4->add_plot(interr);
 	
-	multi_plot<2,2>plotall(filename,"postscript enhanced color");
+	multi_plot plotall(2,2,filename,"postscript enhanced color");
 	plotall.add_plot(plot2,0,0);
 	plotall.add_plot(plot3,0,1);
 	plotall.add_plot(plot1,1,0);
@@ -887,7 +887,7 @@ int main()
 	interr->style="lines";
 	plot4->add_plot(interr);
 	
-	multi_plot<2,2>plotall(filename,"postscript enhanced color");
+	multi_plot plotall(2,2,filename,"postscript enhanced color");
 	plotall.add_plot(plot2,0,0);
 	plotall.add_plot(plot3,0,1);
 	plotall.add_plot(plot1,1,0);
