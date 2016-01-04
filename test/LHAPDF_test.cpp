@@ -7,6 +7,7 @@
 
 #include <config.h>
 #include <Camgen/plt_strm.h>
+#include <Camgen/file_utils.h>
 #include <Camgen/SM.h>
 #include <Camgen/stdrand.h>
 #include <Camgen/procgen_fac.h>
@@ -33,13 +34,15 @@ int main()
     std::cout<<"-------------------------------------------"<<std::endl;
     std::cout<<"testing hadronic initial states............"<<std::endl;
     std::cout<<"-------------------------------------------"<<std::endl;
+
+    file_utils::create_directory("test_output/LHAPDF_test");
     
     set_pdfs("cteq6l.LHpdf",1);
     pdf_wrapper::initialise(pdf_name(),pdf_number());
     bool have_gp=plot_config::gnuplot_path!=NULL;
 
     {
-	std::string filename("plots/LHAPDF");
+	std::string filename("test_output/LHAPDF_test/LHAPDF");
 	std::string fext=have_gp?".eps":".dat/.gp";
 	value_type x,g,u,ubar,d,dbar,s,sbar,c,cbar,b,bbar;
 
@@ -146,7 +149,7 @@ int main()
     }
 
     {
-	std::string filename("plots/had_is");
+	std::string filename("test_output/LHAPDF_test/had_is");
 	std::string fext=have_gp?".eps":".dat/.gp";
 	value_type ecm,xsec_xx,xsec_xx_err,xsec_sy,xsec_sy_err;
 

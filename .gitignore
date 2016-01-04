@@ -104,3 +104,9 @@ nbproject/project.xml
 test/ps_tree_reverse_shat_test
 
 config.h.in~
+
+*.dat
+
+*.gp
+
+test/ps_tree_reverse_test

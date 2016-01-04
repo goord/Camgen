@@ -1,14 +1,15 @@
 AM_CPPFLAGS =		    	-O3 -pipe -I$(top_srcdir)/include
 
-EXTRA_DIST =		    	plots
-
 if USE_LHAPDF
 AM_LDFLAGS =			-L$(LHAPDF_DIR)/lib -lLHAPDF
 endif
 
 check_LTLIBRARIES =	    	libCamtest.la
 
-CLEANFILES =                	*.o *.dat *.plt *.log
+CLEANFILES =                	*.o *.dat *.plt *.log *.trs libCamtest.*
+
+clean-local:			
+	-rm -rf test_output
 
 check_PROGRAMS =		bitstring_test		\
 				Lorentz_test		\

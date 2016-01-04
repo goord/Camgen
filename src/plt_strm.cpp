@@ -187,7 +187,7 @@ namespace Camgen
 	datastream.open(fname.c_str());
 	if(!datastream.is_open())
 	{
-	    log(log_level::warning)<<CAMGEN_STREAMLOC<<"error opening temporary data stream--no data will be written."<<endlog;
+	    log(log_level::warning)<<CAMGEN_STREAMLOC<<"error opening temporary data stream to file "<<fname<<"--no data will be written."<<endlog;
 	    valid=false;
 	    return;
 	}

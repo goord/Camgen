@@ -6,11 +6,18 @@
 //
 
 #include <Camgen/plt_config.h>
+#include <Camgen/file_utils.h>
 #include <Camgen/SM.h>
 #include <Camgen/stdrand.h>
 #include <Camgen/uni_hels.h>
 #include <Camgen/qcd_cols.h>
 #include <ps_gen_tester.h>
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* Tests for adaptive invariant sampling grids within the recursive * 
+* Monte Carlo trees.                                               *
+*                                                                  *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 using namespace Camgen;
 
@@ -27,6 +34,8 @@ int main()
     set_phase_space_generator_type(psgen_type);
     set_s_pair_generation_mode(s_pair_generation_modes::hit_and_miss);
     std::string fext=plot_config::gnuplot_path==NULL?".dat/.gp":".eps";
+    file_utils::create_directory("test_output/ps_tree_grid_tree");
+
     set_adaptive_s_sampling(true);
     	
     std::size_t n_evts=10000;
@@ -102,7 +111,7 @@ int main()
 	model_type::M_h0=200;
 	model_type::refresh_widths();
 	std::string process("h0 > e+,e-,mu+,mu-");
-	std::string fname("plots/h_4l");
+	std::string fname("test_output/ps_tree_grid_test/h_4l");
 	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,1,4>algo(process);
@@ -126,7 +135,7 @@ int main()
 	model_type::M_h0=165;
 	model_type::refresh_widths();
 	std::string process("h0 > mu-,nu_mubar,mu+,nu_mu");
-	std::string fname("plots/h_WW_2l2n");
+	std::string fname("test_output/ps_tree_grid_test/h_WW_2l2n");
 	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,1,4>algo(process);
@@ -220,7 +229,7 @@ int main()
     {
 	Camgen::log.enable_level=log_level::error;
 	std::string process("e+,e- > e+,e-");
-	std::string fname("plots/ee_ee");
+	std::string fname("test_output/ps_tree_grid_test/ee_ee");
 	double E1=50;
 	double E2=50;
 	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
@@ -247,7 +256,7 @@ int main()
     {
 	Camgen::log.enable_level=log_level::error;
 	std::string process("e+,e- > nu_ebar,h0,nu_e");
-	std::string fname("plots/ee_h2n");
+	std::string fname("test_output/ps_tree_grid_test/ee_h2n");
 	double E1=250;
 	double E2=250;
 	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
@@ -274,7 +283,7 @@ int main()
 	model_type::M_h0=165;
 	Camgen::log.enable_level=log_level::error;
 	std::string process("e+,e- > nu_e,W+,W-,nu_ebar");
-	std::string fname("plots/ee_2W2n");
+	std::string fname("test_output/ps_tree_grid_test/ee_2W2n");
 	double E1=250;
 	double E2=250;
 	double mmin=10;
@@ -303,7 +312,7 @@ int main()
 	model_type::M_h0=185;
 	Camgen::log.enable_level=log_level::error;
 	std::string process("e+,e- > nu_e,Z,Z,nu_ebar");
-	std::string fname("plots/ee_2Z2n");
+	std::string fname("test_output/ps_tree_grid_test/ee_2Z2n");
 	double E1=250;
 	double E2=250;
 	double mmin=10;

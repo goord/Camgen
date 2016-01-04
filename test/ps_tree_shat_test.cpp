@@ -6,11 +6,18 @@
 //
 
 #include <Camgen/plt_config.h>
+#include <Camgen/file_utils.h>
 #include <Camgen/SM.h>
 #include <Camgen/stdrand.h>
 #include <Camgen/uni_hels.h>
 #include <Camgen/qcd_cols.h>
 #include <ps_gen_tester.h>
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * *
+* Tests for invariant mass sampling within recursive *
+* Monte Carlo trees.                                 *
+*                                                    *
+* * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 using namespace Camgen;
 
@@ -26,6 +33,7 @@ int main()
     phase_space_generators::type psgen_type;
     set_s_pair_generation_mode(s_pair_generation_modes::asymmetric);
     std::string fext=plot_config::gnuplot_path==NULL?".dat/.gp":".eps";
+    file_utils::create_directory("test_output/ps_tree_shat_test");
     
     std::size_t n_evts=20000;
     std::size_t n_bins=100;
@@ -106,7 +114,7 @@ int main()
     {
 	Camgen::log.enable_level=log_level::error;
 	std::string process("u,dbar > c,sbar");
-	std::string fname("plots/qq_qq");
+	std::string fname("test_output/ps_tree_shat_test/qq_qq");
 	double E1=500;
 	double E2=500;
 	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
@@ -132,7 +140,7 @@ int main()
     {
 	Camgen::log.enable_level=log_level::error;
 	std::string process("u,ubar > g,g");
-	std::string fname("plots/qq_gg");
+	std::string fname("test_output/ps_tree_shat_test/qq_gg");
 	double E1=500;
 	double E2=500;
 	double mmin=20;
@@ -163,7 +171,7 @@ int main()
     {
 	Camgen::log.enable_level=log_level::error;
 	std::string process("u,ubar > d,dbar");
-	std::string fname("plots/uubar_ddbar");
+	std::string fname("test_output/ps_tree_shat_test/uubar_ddbar");
 	double E1=500;
 	double E2=500;
 	double mmin=20;
@@ -193,7 +201,7 @@ int main()
     {
 	Camgen::log.enable_level=log_level::error;
 	std::string process("u,dbar > c,sbar,g");
-	std::string fname("plots/qq_qqg");
+	std::string fname("test_output/ps_tree_shat_test/qq_qqg");
 	double E1=500;
 	double E2=500;
 	double mmin=20;
@@ -220,7 +228,7 @@ int main()
     {
 	Camgen::log.enable_level=log_level::error;
 	std::string process("u,dbar > c,sbar,mu+,mu-");
-	std::string fname("plots/qq_qqll");
+	std::string fname("test_output/ps_tree_shat_test/qq_qqll");
 	set_beam_energy(-1,500);
 	set_beam_energy(-2,500);
 	double mmin=20;
@@ -245,7 +253,7 @@ int main()
     {
 	Camgen::log.enable_level=log_level::error;
 	std::string process("g,g > t,tbar,h0");
-	std::string fname("plots/gg_tth");
+	std::string fname("test_output/ps_tree_shat_test/gg_tth");
 	set_beam_energy(-1,500);
 	set_beam_energy(-2,500);
 	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
@@ -269,7 +277,7 @@ int main()
     {
 	Camgen::log.enable_level=log_level::error;
 	std::string process("g,g > t,tbar,b,bbar");
-	std::string fname("plots/gg_ttbb");
+	std::string fname("test_output/ps_tree_shat_test/gg_ttbb");
 	set_beam_energy(-1,500);
 	set_beam_energy(-2,500);
 	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
@@ -292,7 +300,7 @@ int main()
     {
 	Camgen::log.enable_level=log_level::error;
 	std::string process("g,g > t,tbar,e-,nu_ebar,mu+,nu_mu");
-	std::string fname("plots/gg_ttllnn");
+	std::string fname("test_output/ps_tree_shat_test/gg_ttllnn");
 	set_beam_energy(-1,500);
 	set_beam_energy(-2,500);
 	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
@@ -321,7 +329,7 @@ int main()
     {
 	Camgen::log.enable_level=log_level::error;
 	std::string process("u,dbar > c,sbar");
-	std::string fname("plots/qqxx_qq");
+	std::string fname("test_output/ps_tree_shat_test/qqxx_qq");
 	double E1=500;
 	double E2=500;
 	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
@@ -347,7 +355,7 @@ int main()
     {
 	Camgen::log.enable_level=log_level::error;
 	std::string process("u,ubar > g,g");
-	std::string fname("plots/qqxx_gg");
+	std::string fname("test_output/ps_tree_shat_test/qqxx_gg");
 	double E1=500;
 	double E2=500;
 	double mmin=20;
@@ -378,7 +386,7 @@ int main()
     {
 	Camgen::log.enable_level=log_level::error;
 	std::string process("u,ubar > d,dbar");
-	std::string fname("plots/uubarxx_ddbar");
+	std::string fname("test_output/ps_tree_shat_test/uubarxx_ddbar");
 	double E1=500;
 	double E2=500;
 	double mmin=20;
@@ -408,7 +416,7 @@ int main()
     {
 	Camgen::log.enable_level=log_level::error;
 	std::string process("u,dbar > c,sbar,g");
-	std::string fname("plots/qqxx_qqg");
+	std::string fname("test_output/ps_tree_shat_test/qqxx_qqg");
 	double E1=500;
 	double E2=500;
 	double mmin=20;
@@ -435,7 +443,7 @@ int main()
     {
 	Camgen::log.enable_level=log_level::error;
 	std::string process("u,dbar > c,sbar,mu+,mu-");
-	std::string fname("plots/qqxx_qqll");
+	std::string fname("test_output/ps_tree_shat_test/qqxx_qqll");
 	set_beam_energy(-1,500);
 	set_beam_energy(-2,500);
 	double mmin=20;
@@ -460,7 +468,7 @@ int main()
     {
 	Camgen::log.enable_level=log_level::error;
 	std::string process("g,g > t,tbar,h0");
-	std::string fname("plots/ggxx_tth");
+	std::string fname("test_output/ps_tree_shat_test/ggxx_tth");
 	set_beam_energy(-1,500);
 	set_beam_energy(-2,500);
 	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
@@ -484,7 +492,7 @@ int main()
     {
 	Camgen::log.enable_level=log_level::error;
 	std::string process("g,g > t,tbar,b,bbar");
-	std::string fname("plots/ggxx_ttbb");
+	std::string fname("test_output/ps_tree_shat_test/ggxx_ttbb");
 	set_beam_energy(-1,500);
 	set_beam_energy(-2,500);
 	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
@@ -507,7 +515,7 @@ int main()
     {
 	Camgen::log.enable_level=log_level::error;
 	std::string process("g,g > t,tbar,e-,nu_ebar,mu+,nu_mu");
-	std::string fname("plots/ggxx_ttllnn");
+	std::string fname("test_output/ps_tree_shat_test/ggxx_ttllnn");
 	set_beam_energy(-1,500);
 	set_beam_energy(-2,500);
 	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";

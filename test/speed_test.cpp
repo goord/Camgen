@@ -8,11 +8,17 @@
 #include <ctime>
 #include <Camgen/plt_config.h>
 #include <Camgen/plt_script.h>
+#include <Camgen/file_utils.h>
 #include <Camgen/CM_algo.h>
 #include <test_gen.h>
 #include <QCDPbchabcc.h>
 #include <QCDPbchcfcc.h>
 #include <QCDPbchcfdc.h>
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Performance tests using multi-gluon amplitudes  *
+ *                                                 *
+ * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 using namespace Camgen;
 
@@ -27,7 +33,8 @@ int main()
     std::cout<<"-----------------------------------------------------"<<std::endl;
     
     bool have_gp=plot_config::gnuplot_path!=NULL;
-    std::string filename("plots/qcd_speed_test");
+    file_utils::create_directory("test_output/speed_test");
+    std::string filename("test_output/speed_test/speed_test");
     std::string fext=have_gp?".eps":".dat/.gp";
     value_type nglu,qcdadj,qcdcf,qcddc;
     
@@ -803,12 +810,12 @@ int main()
     data_ccf->write();
     data_stream* datastr_ccf=new data_stream(data_ccf,"1","2");
     datastr_ccf->style="lines";
-    datastr_ccf->title="adjoint";
+    datastr_ccf->title="cont. color flow";
 
     data_dcf->write();
     data_stream* datastr_dcf=new data_stream(data_dcf,"1","2");
     datastr_dcf->style="lines";
-    datastr_dcf->title="adjoint";
+    datastr_dcf->title="color flow";
 
     plot_script* plot=new plot_script(filename,"postscript color");
     plot->add_plot(datastr_adj);

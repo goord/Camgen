@@ -7,7 +7,13 @@
 
 #include <Camgen/plt_config.h>
 #include <Camgen/plt_script.h>
+#include <Camgen/file_utils.h>
 #include <Camgen/SM.h>
+
+/* * * * * * * * * * * * * * * * * * * * *
+ * Tests for standard-model parameters.  *
+ *                                       *
+ * * * * * * * * * * * * * * * * * * * * */
 
 using namespace Camgen;
 
@@ -21,10 +27,11 @@ int main()
     
     bool have_gp=plot_config::gnuplot_path!=NULL;
     std::string fext=have_gp?".eps":".dat/.gp";
+    file_utils::create_directory("test_output/SM_params_tests");
 
     {
 	std::cerr<<"Checking standard model LO Higgs width..........";
-	std::string filename("plots/Higgs_width");
+	std::string filename("test_output/SM_params_tests/Higgs_width");
 	double mass,width;
 	data_wrapper* data=have_gp?new data_wrapper(&mass,&width):new data_wrapper(filename+".dat",&mass,&width);
 	std::cerr.flush();
@@ -50,7 +57,7 @@ int main()
 
     {
 	std::cerr<<"Checking standard model strong coupling..........";
-	std::string filename("plots/alpha_s");
+	std::string filename("test_output/SM_params_tests/alpha_s");
 	double mu,alpha;
 	data_wrapper* data=have_gp?new data_wrapper(&mu,&alpha):new data_wrapper(filename+".dat",&mu,&alpha);
 	for(mu=5;mu<500;mu+=10)

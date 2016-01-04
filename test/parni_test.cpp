@@ -13,6 +13,7 @@
 #include <Camgen/Breit_Wigner.h>
 #include <Camgen/val_gen_grid.h>
 #include <Camgen/parni_int.h>
+#include <Camgen/file_utils.h>
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Facility testing adaptive grids in parni for various intgrands in various *
@@ -27,6 +28,8 @@ int main()
     std::cout<<"-------------------------------------------------------------------------"<<std::endl;
     std::cout<<"testing adaptive integration algorithm..................................."<<std::endl;
     std::cout<<"-------------------------------------------------------------------------"<<std::endl;
+
+    file_utils::create_directory("test_output/parni_test");
 
     typedef double value_type;
     typedef std::size_t size_type;
@@ -43,13 +46,13 @@ int main()
 
     size_type offset=N_events/N_bins;
     value_type pi=std::acos(-(value_type)1);
-    
+
     {
 	value_type x=1,xmin=0,xmax=10,m=5,w=0.75;
 	value_type wght;
 	std::cerr<<"Checking 1D parni on Cauchy distribution centered at "<<m<<" with width "<<w<<" within ["<<xmin<<","<<xmax<<"]..........";
         std::cerr.flush();
-	std::string filename("plots/parni1D_Cauchy");
+	std::string filename("test_output/parni_test/parni1D_Cauchy");
 	parni_integrator<value_type,1,std::random>* gen=new parni_integrator<value_type,1,std::random>(&x,xmin,xmax,N_bins,mode);
 	histogram<value_type>hist(&x,&wght);
 	value_type result=(std::atan((xmax-m)/w)-std::atan((xmin-m)/w))/w;
@@ -125,7 +128,7 @@ int main()
 	value_type wght;
 	std::cerr<<"Checking 1D parni 1/(x(1-x)) within ["<<xmin<<","<<xmax<<"]..........";
         std::cerr.flush();
-	std::string filename("plots/parni1D_beta11");
+	std::string filename("test_output/parni_test/parni1D_beta11");
 	parni_integrator<value_type,1,std::random>* gen=new parni_integrator<value_type,1,std::random>(&x,xmin,xmax,N_bins,mode);
 	histogram<value_type>hist(&x,&wght);
 	value_type result=std::log((1-xmin)*xmax/(1-xmax)/xmin);
@@ -198,7 +201,7 @@ int main()
 	value_type wght;
 	std::cerr<<"Checking 1D parni cos(x)^2*exp(-x^2/8) within ["<<xmin<<","<<xmax<<"]..........";
         std::cerr.flush();
-	std::string filename("plots/parni1D_cosgauss");
+	std::string filename("test_output/parni_test/parni1D_cosgauss");
 	parni_integrator<value_type,1,std::random>* gen=new parni_integrator<value_type,1,std::random>(&x,xmin,xmax,N_bins,mode);
 	histogram<value_type>hist(&x,&wght);
 	value_type result=2.501415718;
@@ -272,7 +275,7 @@ int main()
 	value_type wght;
 	std::cerr<<"Checking power-law(1D parni) on (x-1)e^{-x} within ["<<smin<<","<<smax<<"]..........";
         std::cerr.flush();
-	std::string filename("plots/parni1Dpl");
+	std::string filename("test_output/parni_test/parni1Dpl");
 	value_type nu(1);
 	parni_integrator<value_type,1,std::random>* gen=new parni_integrator<value_type,1,std::random>(&x,xmin,xmax,N_bins,mode);
 	power_law<value_type,std::random>* genmap=new power_law<value_type,std::random>(NULL,&nu);
@@ -357,7 +360,7 @@ int main()
 	value_type wght;
 	std::cerr<<"Checking Breit-Wigner(1D parni) on x/((x-2)^2+0.1*x) within ["<<smin<<","<<smax<<"]..........";
         std::cerr.flush();
-	std::string filename("plots/parni1DBW");
+	std::string filename("test_output/parni_test/parni1DBW");
 	value_type m=std::sqrt(2),w=0.1/m;
 	parni_integrator<value_type,1,std::random>* gen=new parni_integrator<value_type,1,std::random>(&x,xmin,xmax,N_bins,mode);
 	Breit_Wigner<value_type,std::random>* genmap=new Breit_Wigner<value_type,std::random>(&m,&w);
@@ -441,7 +444,7 @@ int main()
 	value_type wght;
 	std::cerr<<"Checking 1D parni subgrid on Cauchy centered at "<<m<<" with width "<<w<<" within ["<<xmin<<","<<xmax<<"]..........";
         std::cerr.flush();
-	std::string filename("plots/subparni1D_Cauchy");
+	std::string filename("test_output/parni_test/subparni1D_Cauchy");
 	parni_integrator<value_type,1,std::random>* gen=new parni_integrator<value_type,1,std::random>(&x,x0min,x0max,N_bins,mode);
 	N_batch=20;
 	for(size_type n=0;n<200;++n)
@@ -546,7 +549,7 @@ int main()
 	value_type wght;
 	std::cerr<<"Checking power-law(1D parni) on -x*exp(-x^2) within ["<<smin<<","<<smax<<"]..........";
         std::cerr.flush();
-	std::string filename("plots/parni1Dplsub");
+	std::string filename("test_output/parni_test/parni1Dplsub");
 	value_type nu(1);
 	power_law<value_type,std::random>* genmap=new power_law<value_type,std::random>(NULL,&nu);
 	MC_integrator<value_type>* genmap_int=new MC_generator_wrapper<value_type>(genmap);
@@ -634,7 +637,7 @@ int main()
 	value_type sigma=0.5;
 	std::cerr<<"Checking 2D parni on 2D Gauss with sigma "<<sigma<<" within ["<<xmin[0]<<","<<xmax[0]<<"] x ["<<xmin[1]<<","<<xmax[1]<<"]..........";
         std::cerr.flush();
-	std::string filename("plots/parni2D_Gauss");
+	std::string filename("test_output/parni_test/parni2D_Gauss");
 	parni_integrator<value_type,2,std::random>* gen=new parni_integrator<value_type,2,std::random>(&x,xmin,xmax,N_bins,mode);
 	histogram<value_type>hist1(&x[0],&wght);
 	histogram<value_type>hist2(&x[1],&wght);
@@ -726,7 +729,7 @@ int main()
 	value_type wght;
 	std::cerr<<"Checking 2D parni on double cos^2 within ["<<xmin[0]<<","<<xmax[0]<<"] x ["<<xmin[1]<<","<<xmax[1]<<"].........";
         std::cerr.flush();
-	std::string filename("plots/parni2D_cos2");
+	std::string filename("test_output/parni_test/parni2D_cos2");
 	parni_integrator<value_type,2,std::random>* gen=new parni_integrator<value_type,2,std::random>(&x,xmin,xmax,N_bins,mode);
 	histogram<value_type>hist1(&x[0],&wght);
 	histogram<value_type>hist2(&x[1],&wght);
@@ -818,7 +821,7 @@ int main()
 	value_type rmax=1,w=0.1,mu=0.5;
 	std::cerr<<"Checking 2D parni on 2D Cauchy with radius "<<mu<<" and width "<<w<<" within D(0,"<<rmax<<")..........";
         std::cerr.flush();
-	std::string filename("plots/parni2D_Cauchy");
+	std::string filename("test_output/parni_test/parni2D_Cauchy");
 	parni_integrator<value_type,2,std::random>* gen=new parni_integrator<value_type,2,std::random>(&x,xmin,xmax,N_bins,mode);
 	histogram<value_type>hist1(&x[0],&wght);
 	histogram<value_type>hist2(&x[1],&wght);

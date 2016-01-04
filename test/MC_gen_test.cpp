@@ -5,19 +5,20 @@
 // see COPYING for details.
 //
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* Testing facility for momentum channel sampling algorithms.                     *
-*                                                                                *
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
 #include <iostream>
 #include <Camgen/plt_config.h>
+#include <Camgen/file_utils.h>
 #include <Camgen/Minkowski.h>
 #include <Camgen/stdrand.h>
 #include <Camgen/histogram.h>
 #include <Camgen/norm_gen.h>
 #include <Camgen/uni_sphere.h>
 #include <Camgen/val_gen_fac.h>
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* Testing facility for momentum channel sampling algorithms.                     *
+*                                                                                *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 using namespace Camgen;
 
@@ -64,11 +65,12 @@ int main()
     ///////////////////////////////////////////////////////////////
     
     bool have_gp=plot_config::gnuplot_path!=NULL;
+    file_utils::create_directory("test_output/MC_gen_test");
     
     {
 	std::cerr<<"Checking normally distributed numbers.....";
 	std::cerr.flush();
-	std::string filename="plots/Gauss";
+	std::string filename="test_output/MC_gen_test/Gauss";
 	normal_generator<value_type,std::random>gen;
 	value_type rho;
 	value_type p;
@@ -92,7 +94,7 @@ int main()
     {
 	std::cerr<<"Checking uniform circle generation.....";
 	std::cerr.flush();
-	std::string filename="plots/circle";
+	std::string filename="test_output/MC_gen_test/circle";
 	vector<value_type,2>pt;
 	uniform_sphere<value_type,1,std::random>gen(&pt);
 	data_wrapper* data=new data_wrapper(&pt[0],&pt[1]);
@@ -115,7 +117,7 @@ int main()
     {
 	std::cerr<<"Checking uniform sphere generation..........";
 	std::cerr.flush();
-	std::string filename="plots/sphere";
+	std::string filename="test_output/MC_gen_test/sphere";
 	vector<value_type,3>pt;
 	uniform_sphere<value_type,2,std::random>gen(&pt);
 	data_wrapper* data=new data_wrapper(&pt[0],&pt[1],&pt[2]);
@@ -244,7 +246,7 @@ int main()
     {
 	std::cerr<<"Checking power-law generator with (m,nu) = ("<<m<<","<<nu<<") within range ["<<smin<<","<<smax<<"].....";
 	std::cerr.flush();
-	std::string filename="plots/pow_law1";
+	std::string filename="test_output/MC_gen_test/pow_law1";
 	power_law<value_type,std::random>* channel=new power_law<value_type,std::random>(&m,&nu);
 	if(!channel->set_bounds(smin,smax))
 	{
@@ -277,7 +279,7 @@ int main()
     {
 	std::cerr<<"Checking power-law generator with (m,nu) = ("<<m<<","<<nu<<") within range ["<<smin<<","<<smax<<"].....";
 	std::cerr.flush();
-	std::string filename="plots/pow_law2";
+	std::string filename="test_output/MC_gen_test/pow_law2";
 	power_law<value_type,std::random>* channel=new power_law<value_type,std::random>(&m,&nu);
 	if(!channel->set_bounds(smin,smax))
 	{
@@ -308,7 +310,7 @@ int main()
     {
 	std::cerr<<"Checking power-law generator with (m,nu) = ("<<m<<","<<nu<<") within range ["<<smin<<","<<smax<<"].....";
 	std::cerr.flush();
-	std::string filename="plots/pow_law3";
+	std::string filename="test_output/MC_gen_test/pow_law3";
 	power_law<value_type,std::random>* channel=new power_law<value_type,std::random>(&m,&nu);
 	if(!channel->set_bounds(smin,smax))
 	{
@@ -340,7 +342,7 @@ int main()
     {
 	std::cerr<<"Checking power-law generator with (m,nu) = ("<<m<<","<<nu<<") within range ["<<smin<<","<<smax<<"].....";
 	std::cerr.flush();
-	std::string filename="plots/pow_law4";
+	std::string filename="test_output/MC_gen_test/pow_law4";
 	power_law<value_type,std::random>* channel=new power_law<value_type,std::random>(&m,&nu);
 	if(!channel->set_bounds(smin,smax))
 	{
@@ -372,7 +374,7 @@ int main()
     {
 	std::cerr<<"Checking power-law generator with (m,nu) = ("<<m<<","<<nu<<") within range ["<<smin<<","<<smax<<"].....";
 	std::cerr.flush();
-	std::string filename="plots/pow_law5";
+	std::string filename="test_output/MC_gen_test/pow_law5";
 	power_law<value_type,std::random>* channel=new power_law<value_type,std::random>(&m,&nu);
 	if(!channel->set_bounds(smin,smax))
 	{
@@ -403,7 +405,7 @@ int main()
     {
 	std::cerr<<"Checking power-law generator with (m,nu) = ("<<m<<","<<nu<<") within range ["<<smin<<","<<smax<<"].....";
 	std::cerr.flush();
-	std::string filename="plots/pow_law6";
+	std::string filename="test_output/MC_gen_test/pow_law6";
 	power_law<value_type,std::random>* channel=new power_law<value_type,std::random>(&m,&nu);
 	if(!channel->set_bounds(smin,smax))
 	{
@@ -435,7 +437,7 @@ int main()
     {
 	std::cerr<<"Checking power-law generator with (m,nu) = ("<<m<<","<<nu<<") within range ["<<smin<<","<<smax<<"].....";
 	std::cerr.flush();
-	std::string filename="plots/pow_law7";
+	std::string filename="test_output/MC_gen_test/pow_law7";
 	power_law<value_type,std::random>* channel=new power_law<value_type,std::random>(&m,&nu);
 	if(!channel->set_bounds(smin,smax))
 	{
@@ -466,7 +468,7 @@ int main()
     {
 	std::cerr<<"Checking power-law generator with (m,nu) = ("<<m<<","<<nu<<") within range ["<<smin<<","<<smax<<"].....";
 	std::cerr.flush();
-	std::string filename="plots/pow_law8";
+	std::string filename="test_output/MC_gen_test/pow_law8";
 	power_law<value_type,std::random>* channel=new power_law<value_type,std::random>(&m,&nu);
 	if(!channel->set_bounds(smin,smax))
 	{
@@ -563,7 +565,7 @@ int main()
     {
 	std::cerr<<"Checking Breit-Wigner generator with (m,w) = ("<<m<<","<<w<<") within range ["<<smin<<","<<smax<<"].....";
 	std::cerr.flush();
-	std::string filename="plots/Breit_Wigner1";
+	std::string filename="test_output/MC_gen_test/Breit_Wigner1";
 	Breit_Wigner<value_type,std::random>* channel=new Breit_Wigner<value_type,std::random>(&m,&w);
 	if(!channel->set_bounds(smin,smax))
 	{
@@ -594,7 +596,7 @@ int main()
     {
 	std::cerr<<"Checking Breit-Wigner generator with (m,w) = ("<<m<<","<<w<<") within range ["<<smin<<","<<smax<<"].....";
 	std::cerr.flush();
-	std::string filename="plots/Breit_Wigner2";
+	std::string filename="test_output/MC_gen_test/Breit_Wigner2";
 	Breit_Wigner<value_type,std::random>* channel=new Breit_Wigner<value_type,std::random>(&m,&w);
 	if(!channel->set_bounds(smin,smax))
 	{
@@ -624,7 +626,7 @@ int main()
     {
 	std::cerr<<"Checking Breit-Wigner generator with (m,w) = ("<<m<<","<<w<<") within range [-inf,+inf].....";
 	std::cerr.flush();
-	std::string filename="plots/Breit_Wigner3";
+	std::string filename="test_output/MC_gen_test/Breit_Wigner3";
 	Breit_Wigner<value_type,std::random>* channel=new Breit_Wigner<value_type,std::random>(&m,&w);
 	histogram<value_type>hist=channel->testrun(N_events,N_bins);
 	plot_script* plt=hist.plot(filename,"postscript color");

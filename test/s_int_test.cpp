@@ -5,16 +5,17 @@
 // see COPYING for details.
 //
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * Testing facility for s-branching phase space integrals. *
- *                                                         *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
 #include <Camgen/plt_config.h>
+#include <Camgen/file_utils.h>
 #include <Camgen/stdrand.h>
 #include <Camgen/rn_strm.h>
 #include <Camgen/val_gen_fac.h>
 #include <s_int_tester.h>
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Testing facility for s-branching phase space integrals. *
+ *                                                         *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 using namespace Camgen;
 
@@ -33,6 +34,8 @@ int main()
     typedef power_law<value_type,std::random> power_law_type;
     typedef uniform_value_generator<value_type,std::random> uniform_type;
     typedef Dirac_delta<value_type,std::random> Dirac_delta_type;
+
+    file_utils::create_directory("test_output/s_int_test");
     
     //////////////////////////////////////////////////////////////////////////////
 
@@ -63,7 +66,7 @@ int main()
     {
 	std::cerr<<"Checking integral Breit-Wigner("<<M1<<","<<W1<<") * Breit-Wigner("<<M2<<","<<W2<<")............";
 	std::cerr.flush();
-	std::string file("plots/BWBW1_int");
+	std::string file("test_output/s_int_test/BWBW1_int");
 	Breit_Wigner_type* channel1=new Breit_Wigner_type(&M1,&W1);
 	channel1->set_lower_bound(M_min1*M_min1);
 	Breit_Wigner_type* channel2=new Breit_Wigner_type(&M2,&W2);
@@ -88,7 +91,7 @@ int main()
     {
 	std::cerr<<"Checking integral Breit-Wigner("<<M1<<","<<W1<<") * Breit-Wigner("<<M2<<","<<W2<<")............";
 	std::cerr.flush();
-	std::string file("plots/BWBW2_int");
+	std::string file("test_output/s_int_test/BWBW2_int");
 	Breit_Wigner_type* channel1=new Breit_Wigner_type(&M1,&W1);
 	channel1->set_lower_bound(M_min1*M_min1);
 	Breit_Wigner_type* channel2=new Breit_Wigner_type(&M2,&W2);
@@ -113,7 +116,7 @@ int main()
     {
 	std::cerr<<"Checking integral Breit-Wigner("<<M1<<","<<W1<<") * Breit-Wigner("<<M2<<","<<W2<<")............";
 	std::cerr.flush();
-	std::string file("plots/BWBW3_int");
+	std::string file("test_output/s_int_test/BWBW3_int");
 	Breit_Wigner_type* channel1=new Breit_Wigner_type(&M1,&W1);
 	channel1->set_lower_bound(0.25*M1*M1);
 	Breit_Wigner_type* channel2=new Breit_Wigner_type(&M2,&W2);
@@ -136,7 +139,7 @@ int main()
     {
 	std::cerr<<"Checking integral Breit-Wigner("<<M1<<","<<W1<<") * power-law("<<M2<<","<<nu2<<")............";
 	std::cerr.flush();
-	std::string file("plots/BWpl_int");
+	std::string file("test_output/s_int_test/BWpl_int");
 	Breit_Wigner_type* channel1=new Breit_Wigner_type(&M1,&W1);
 	channel1->set_lower_bound(M_min1*M_min1);
 	power_law_type* channel2=new power_law_type(&M2,&nu2);
@@ -152,7 +155,7 @@ int main()
     {
 	std::cerr<<"Checking integral Breit-Wigner("<<M1<<","<<W1<<") * uniform()............";
 	std::cerr.flush();
-	std::string file("plots/BWuni_int");
+	std::string file("test_output/s_int_test/BWuni_int");
 	Breit_Wigner_type* channel1=new Breit_Wigner_type(&M1,&W1);
 	channel1->set_lower_bound(M_min1*M_min1);
 	uniform_type* channel2=new uniform_type();
@@ -168,7 +171,7 @@ int main()
     {
 	std::cerr<<"Checking integral Breit-Wigner("<<M1<<","<<W1<<") * Dirac-delta("<<M2<<")............";
 	std::cerr.flush();
-	std::string file("plots/BWDd_int");
+	std::string file("test_output/s_int_test/BWDd_int");
 	Breit_Wigner_type* channel1=new Breit_Wigner_type(&M1,&W1);
 	channel1->set_lower_bound(M_min1*M_min1);
 	Dirac_delta_type* channel2=new Dirac_delta_type(&M2);
@@ -192,7 +195,7 @@ int main()
     {
 	std::cerr<<"Checking integral power-law("<<M1<<","<<nu1<<") * power-law("<<M2<<","<<nu2<<")............";
 	std::cerr.flush();
-	std::string file("plots/plpl_int");
+	std::string file("test_output/s_int_test/plpl_int");
 	power_law_type* channel1=new power_law_type(&M1,&nu1);
 	channel1->set_lower_bound(M_min1*M_min1);
 	power_law_type* channel2=new power_law_type(&M2,&nu2);
@@ -214,7 +217,7 @@ int main()
     {
 	std::cerr<<"Checking integral power-law("<<M1<<","<<nu1<<") * uniform()............";
 	std::cerr.flush();
-	std::string file("plots/pluni_int");
+	std::string file("test_output/s_int_test/pluni_int");
 	power_law_type* channel1=new power_law_type(&M1,&nu1);
 	channel1->set_lower_bound(M_min1*M_min1);
 	uniform_type* channel2=new uniform_type();
@@ -230,7 +233,7 @@ int main()
     {
 	std::cerr<<"Checking integral power-law("<<M1<<","<<nu1<<") * Dirac_delta("<<M2<<")............";
 	std::cerr.flush();
-	std::string file("plots/plDd_int");
+	std::string file("test_output/s_int_test/plDd_int");
 	power_law_type* channel1=new power_law_type(&M1,&nu1);
 	channel1->set_lower_bound(M_min1*M_min1);
 	Dirac_delta_type* channel2=new Dirac_delta_type(&M2);
@@ -245,7 +248,7 @@ int main()
     {
 	std::cerr<<"Checking integral uniform() * Dirac_delta("<<M2<<")............";
 	std::cerr.flush();
-	std::string file("plots/uDd_int");
+	std::string file("test_output/s_int_test/uDd_int");
 	uniform_type* channel1=new uniform_type();
 	channel1->set_lower_bound(M_min1*M_min1);
 	Dirac_delta_type* channel2=new Dirac_delta_type(&M2);

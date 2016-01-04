@@ -15,11 +15,17 @@
 #include <Camgen/qcd_cols.h>
 #include <Camgen/plt_config.h>
 #include <Camgen/plt_script.h>
+#include <Camgen/file_utils.h>
 #include <Camgen/QCD.h>
 #include <Camgen/SM.h>
 #include <QCDPbchcfcc.h>
 #include <QCDPbchabcc.h>
 #include <QCDPbchabdc.h>
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* Testing facility for QCD colour sampling algorithms. *
+*                                                      *
+* * * * * * * * * * * * * * *  * * * * * * * * * * * * */
 
 using namespace Camgen;
 
@@ -549,6 +555,7 @@ int main()
     std::cout<<"-------------------------------------------------------------------------"<<std::endl;
     
     bool have_gp=plot_config::gnuplot_path!=NULL;
+    file_utils::create_directory("test_output/MC_col_test");
     
     {
 	typedef QCDPbchabdc model_type;
@@ -557,7 +564,7 @@ int main()
 	typedef helicity_generator_factory<model_type,2,2,std::random> hel_factory;
 	
 	std::string process("g,g > dbar,d");
-	std::string filename("plots/colMC1");
+	std::string filename("test_output/MC_col_test/colMC1");
 	std::cerr<<"Checking adjoint vs. colour flow generation in QCD for "<<process<<"..........";
 	CM_algorithm<model_type,2,2>algo(process);
 	algo.load();
@@ -627,7 +634,7 @@ int main()
 	typedef helicity_generator_factory<model_type,2,3,std::random> hel_factory;
 	
 	std::string process("u,ubar > d,dbar,g");
-	std::string filename("plots/colMC2");
+	std::string filename("test_output/MC_col_test/colMC2");
 	std::cerr<<"Checking adjoint colour generation in QCD for "<<process<<"..........";
 	CM_algorithm<model_type,2,3>algo(process);
 	algo.load();
@@ -695,7 +702,7 @@ int main()
 	typedef helicity_generator_factory<model_type,2,4,std::random> hel_factory;
 	
 	std::string process("g,g > d,dbar,u,ubar");
-	std::string filename("plots/colMC3");
+	std::string filename("test_output/MC_col_test/colMC3");
 	std::cerr<<"Checking colour-flow colour generation in QCD for "<<process<<"...........";
 	CM_algorithm<model_type,2,4>algo(process);
 	algo.load();

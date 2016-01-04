@@ -70,18 +70,18 @@ namespace Camgen
 	{
 	    if(it2!=it1)
 	    {
-		status=file_utils::mkdir(std::string(path.begin(),it2),mode);
+		status=file_utils::makedir(std::string(path.begin(),it2),mode);
 	    }
-	    it1=++it2;
+	    it1=it2+1;
 	}
 	if(status==0)
 	{
-	    status=file_utils::mkdir(path,mode);
+	    status=file_utils::makedir(path,mode);
 	}
 	return status;
     }
 
-    int file_utils::mkdir(const std::string& path,int mode)
+    int file_utils::makedir(const std::string& path,int mode)
     {
 	struct STATSTRUCT status;
 	int retval=0;

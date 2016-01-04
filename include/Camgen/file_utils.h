@@ -40,7 +40,7 @@ namespace Camgen
 
 	private:
 
-	    static int mkdir(const std::string& s,int m);
+	    static int makedir(const std::string& s,int m);
 
 	    static bool match_directory_separator(char c);
 

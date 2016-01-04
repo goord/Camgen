@@ -13,9 +13,15 @@
 #include <Camgen/uni_hels.h>
 #include <Camgen/plt_config.h>
 #include <Camgen/plt_script.h>
+#include <Camgen/file_utils.h>
 #include <Camgen/SM.h>
 #include <QEDPbdh.h>
 #include <QEDPbch.h>
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * *
+* Testing facility for helicity sampling algorithms. *
+*                                                    *
+* * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 using namespace Camgen;
 
@@ -327,6 +333,7 @@ int main()
     std::cout<<"-------------------------------------------------------------------------"<<std::endl;
     
     bool have_gp=plot_config::gnuplot_path!=NULL;
+    file_utils::create_directory("test_output/MC_hel_test");
     
     {
 	typedef QEDPbdh model_type;
@@ -334,7 +341,7 @@ int main()
 	typedef uniform_ps_generator_factory<model_type,2,2,std::random> factory_type;
 	
 	std::string process("e+,e- > e+,e-");
-	std::string filename("plots/helMC1");
+	std::string filename("test_output/MC_hel_test/helMC1");
 	std::cerr<<"Checking uniform helicity generation in QED for "<<process<<"...........";
 	CM_algorithm<model_type,2,2>algo(process);
 	algo.load();
@@ -398,7 +405,7 @@ int main()
 	typedef uniform_ps_generator_factory<model_type,2,3,std::random> factory_type;
 	
 	std::string process("e+,e- > e+,e-,gamma");
-	std::string filename("plots/helMC2");
+	std::string filename("test_output/MC_hel_test/helMC2");
 	std::cerr<<"Checking uniform helicity generation in QED for "<<process<<"...........";
 	CM_algorithm<model_type,2,3>algo(process);
 	algo.load();
@@ -462,7 +469,7 @@ int main()
 	typedef uniform_ps_generator_factory<model_type,2,4,std::random> factory_type;
 	
 	std::string process("e+,e- > e+,e-,gamma,gamma");
-	std::string filename("plots/helMC3");
+	std::string filename("test_output/MC_hel_test/helMC3");
 	std::cerr<<"Checking uniform helicity generation in QED for "<<process<<"...........";
 	CM_algorithm<model_type,2,4>algo(process);
 	algo.load();
