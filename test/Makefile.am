@@ -1,8 +1,4 @@
-AM_CPPFLAGS =		    	-O3 -pipe -I$(top_srcdir)/include
-
-if USE_LHAPDF
-AM_LDFLAGS =			-L$(LHAPDF_DIR)/lib -lLHAPDF
-endif
+AM_CXXFLAGS =		    	-I$(top_srcdir)/include @AM_CXXFLAGS@
 
 check_LTLIBRARIES =	    	libCamtest.la
 
@@ -106,7 +102,7 @@ libCamtest_la_SOURCES =		QEDPbdh.cpp		\
 				susy_QCDPbdhcfcc.cpp
 
 bitstring_test_SOURCES =	bitstring_test.cpp
-bitstring_test_LDADD =		-L$(top_srcdir)/lib/libCamgen.la $(AM_LDFLAGS)
+bitstring_test_LDADD =		$(top_srcdir)/lib/libCamgen.la $(AM_LDFLAGS)
 
 Lorentz_test_SOURCES =		Lorentz_test.cpp
 Lorentz_test_LDADD =		$(top_srcdir)/lib/libCamgen.la $(AM_LDFLAGS)

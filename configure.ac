@@ -24,7 +24,7 @@ AM_INIT_AUTOMAKE([1.9 -Wall])
 
 AC_LANG([C++])
 
-# Checks for header files
+# Checks for standard header files
 
 AC_HEADER_STDC
 AC_CHECK_HEADER([string])
@@ -40,40 +40,13 @@ AC_CHECK_HEADER([algorithm])
 
 # TODO: Check for debug flag
 
-# Check for the LHAPDF header.
-
-AC_DEFUN([CAMGEN_CHECK_LHAPDF],[
-WITHLHAPDF="yes"
-LHAPDF_DIR="/usr/local"
-AC_MSG_CHECKING([for LHAPDF])
-AC_ARG_WITH([LHAPDF],
-	    AC_HELP_STRING([--with-LHAPDF=DIR],[location of LHAPDF installation (/usr/local by default).]),
-	    [if test "x$with_LHAPDF" = "xno"; then
-	     WITHLHAPDF="no"
-	     elif test "x$with_LHAPDF" != "xyes"; then
-	     LHAPDF_DIR="$with_LHAPDF";
-	     fi],[WITHLHAPDF="no"])
-AC_MSG_RESULT($WITHLHAPDF)
-if test "x$WITHLHAPDF" = "xyes"; then
-LDFLAGS="-L${LHAPDF_DIR}/lib $LDFLAGS";
-CPPFLAGS="-I${LHAPDF_DIR}/include $CPPFLAGS";
-AC_CHECK_HEADER([$LHAPDF_DIR/include/LHAPDF/LHAPDF.h],
-		 AC_DEFINE([HAVE_LHAPDF_H_],[1],[Define 1 if you have the LHAPDF header installed.]),
-		 AC_MSG_NOTICE(LHAPDF.h not found in $LHAPDF_DIR/include/LHAPDF/ 
-			       or not compilable with flags $CPPFLAGS...configuring without.),[])
-fi
-])
-CAMGEN_CHECK_LHAPDF
-AM_CONDITIONAL([USE_LHAPDF],[test x$WITHLHAPDF = xyes])
-AC_SUBST(LHAPDF_DIR)
-
 # Checks for typedefs, structures, and compiler characteristics.
 
 AC_C_INLINE
 AC_TYPE_SIZE_T
 AC_CHECK_TYPES([ptrdiff_t])
 
-# Checks for library functions.
+# Checks for standard library functions.
 
 AC_FUNC_ERROR_AT_LINE
 AC_CHECK_FUNCS([floor pow sqrt])
@@ -102,7 +75,43 @@ AC_MSG_NOTICE(gnuplot not found in $GNUPLOT_DIR...configuring without.)
 fi
 fi
 ])
+
 CAMGEN_CHECK_GNUPLOT
+
+# Check for the LHAPDF header and library
+
+AC_DEFUN([CAMGEN_CHECK_LHAPDF],[
+WITHLHAPDF="yes"
+LHAPDF_DIR="/usr/local"
+AC_MSG_CHECKING([for LHAPDF])
+AC_ARG_WITH([LHAPDF],
+	    AC_HELP_STRING([--with-LHAPDF=DIR],[location of LHAPDF installation (/usr/local by default).]),
+	    [if test "x$with_LHAPDF" = "xno"; then
+	     WITHLHAPDF="no"
+	     elif test "x$with_LHAPDF" != "xyes"; then
+	     LHAPDF_DIR="$with_LHAPDF";
+	     fi],[WITHLHAPDF="no"])
+if test "x$WITHLHAPDF" = "xyes"; then
+AC_CHECK_HEADER([$LHAPDF_DIR/include/LHAPDF/LHAPDF.h],[WITHLHAPDF="yes"],[WITHLHAPDF="no"])
+AC_CHECK_LIB([$LHAPDF_DIR/lib/LHAPDF],initPDFSet,[WITHLHAPDF="yes"],[WITHLHAPDF="no"])
+AC_CHECK_LIB([$LHAPDF_DIR/lib/LHAPDF],initPDF,[WITHLHAPDF="yes"],[WITHLHAPDF="no"])
+AC_CHECK_LIB([$LHAPDF_DIR/lib/LHAPDF],getXmin,[WITHLHAPDF="yes"],[WITHLHAPDF="no"])
+AC_CHECK_LIB([$LHAPDF_DIR/lib/LHAPDF],getXmax,[WITHLHAPDF="yes"],[WITHLHAPDF="no"])
+AC_CHECK_LIB([$LHAPDF_DIR/lib/LHAPDF],xfx,[WITHLHAPDF="yes"],[WITHLHAPDF="no"])
+fi
+AC_MSG_RESULT($WITHLHAPDF)
+])
+
+CAMGEN_CHECK_LHAPDF
+
+if test "x$WITHLHAPDF"="xyes"; then
+AM_CXXFLAGS="$AM_CXXFLAGS -I${LHAPDF_DIR}/include";
+AM_LDFLAGS="$AM_LDFLAGS -L${LHAPDF_DIR}/lib";
+fi
+
+AC_SUBST([AM_CXXFLAGS])
+AC_SUBST([AM_LDFLAGS])
+AC_SUBST([LIBS])
 
 # Makefiles to configure.
 
