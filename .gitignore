@@ -110,3 +110,5 @@ config.h.in~
 *.gp
 
 test/ps_tree_reverse_test
+
+*.eps

@@ -5,6 +5,7 @@
 // see COPYING for details.
 //
 
+#include <config.h>
 #include <cstdio>
 #include <sstream>
 #include <locale>
@@ -272,7 +273,7 @@ namespace Camgen
 	    return write();
 	}
 	std::ostringstream ss;
-	write(ss);
+	write(ss,false);
 	std::fputs(ss.str().c_str(),gnustream);
 	if(plot_config::close_pipe(gnustream)==-1)
 	{
