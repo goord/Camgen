@@ -8,13 +8,16 @@ AC_CONFIG_AUX_DIR([build-aux])
 
 # Checks for programs.
 
+OLD_CXXFLAGS=$CXXFLAGS
+
 m4_pattern_allow([AM_PROG_AR])
 AM_PROG_AR
-
 AC_PROG_CXXCPP
 AC_PROG_CXX
 AC_PROG_INSTALL
 AC_PROG_LIBTOOL
+
+CXXFLAGS=$OLD_CXXFLAGS
 
 # Automake prequisites
 
@@ -38,8 +41,6 @@ AC_CHECK_HEADER([set])
 AC_CHECK_HEADER([vector])
 AC_CHECK_HEADER([algorithm])
 
-# TODO: Check for debug flag
-
 # Checks for typedefs, structures, and compiler characteristics.
 
 AC_C_INLINE
@@ -50,6 +51,24 @@ AC_CHECK_TYPES([ptrdiff_t])
 
 AC_FUNC_ERROR_AT_LINE
 AC_CHECK_FUNCS([floor pow sqrt])
+
+# Debug support (taken from http://www.bioinf.uni-freiburg.de/~mmann/HowTo/automake.html)
+
+AC_MSG_CHECKING([whether to build with debug information])
+AC_ARG_ENABLE([debug],
+    [AS_HELP_STRING([--enable-debug],
+        [enable debug data generation (default=no)])],
+    [withdbg="$enableval"],
+    [withdbg=no])
+AC_MSG_RESULT([$withdbg])
+
+if test "x$withdbg" = "xyes"; then
+    AC_DEFINE([DEBUG],[],[Debug Mode])
+    AM_CXXFLAGS="$AM_CXXFLAGS -g -Wall -Werror -Wno-uninitialized -O0"
+else
+    AC_DEFINE([NDEBUG],[],[No-debug Mode])
+    AM_CXXFLAGS="$AM_CXXFLAGS -O3"
+fi
 
 # Check for gnuplot
 
@@ -105,8 +124,8 @@ AC_MSG_RESULT($WITHLHAPDF)
 CAMGEN_CHECK_LHAPDF
 
 if test "x$WITHLHAPDF"="xyes"; then
-AM_CXXFLAGS="$AM_CXXFLAGS -I${LHAPDF_DIR}/include";
-AM_LDFLAGS="$AM_LDFLAGS -L${LHAPDF_DIR}/lib";
+    AM_CXXFLAGS="$AM_CXXFLAGS -I${LHAPDF_DIR}/include";
+    AM_LDFLAGS="$AM_LDFLAGS -L${LHAPDF_DIR}/lib";
 fi
 
 AC_SUBST([AM_CXXFLAGS])
