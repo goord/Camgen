@@ -44,6 +44,7 @@ int main()
     
     value_type Ecm=500;
     value_type waiting_t=(value_type)10*CLOCKS_PER_SEC;
+    unsigned Nmax=100;
     std::string process;
 
     process="g,g > g,g";
@@ -59,7 +60,7 @@ int main()
 	long unsigned n=0;
 	long unsigned N=0;
 	std::clock_t start=std::clock();
-	while((std::clock()-start)<waiting_t)
+	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
 	    if((std::clock()-start)>n)
 	    {
@@ -71,8 +72,9 @@ int main()
 	    algo.evaluate();
 	    ++N;
 	}
-	std::cout<<"done. Nr of events:"<<N<<std::endl;
-	qcdadj=(value_type)10/(value_type)N;
+	double timsec=((double)(std::clock()-start))/CLOCKS_PER_SEC;
+	std::cout<<"done. Nr of events:"<<N<<", wall time: "<<timsec<<std::endl;
+	qcdadj=timsec/N;
 	data_adj->fill();
     }
 
@@ -86,7 +88,7 @@ int main()
 	long unsigned n=0;
 	long unsigned N=0;
 	std::clock_t start=std::clock();
-	while((std::clock()-start)<waiting_t)
+	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
 	    if((std::clock()-start)>n)
 	    {
@@ -98,8 +100,9 @@ int main()
 	    algo.evaluate();
 	    ++N;
 	}
-	std::cout<<"done. Nr of events:"<<N<<std::endl;
-	qcdcf=(value_type)10/(value_type)N;
+	double timsec=((double)(std::clock()-start))/CLOCKS_PER_SEC;
+	std::cout<<"done. Nr of events:"<<N<<", wall time: "<<timsec<<std::endl;
+	qcdcf=timsec/N;
 	data_ccf->fill();
     }
 
@@ -113,7 +116,7 @@ int main()
 	long unsigned n=0;
 	long unsigned N=0;
 	std::clock_t start=std::clock();
-	while((std::clock()-start)<waiting_t)
+	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
 	    if((std::clock()-start)>n)
 	    {
@@ -125,8 +128,9 @@ int main()
 	    algo.evaluate();
 	    ++N;
 	}
-	std::cout<<"done. Nr of events:"<<N<<std::endl;
-	qcddc=(value_type)10/(value_type)N;
+	double timsec=((double)(std::clock()-start))/CLOCKS_PER_SEC;
+	std::cout<<"done. Nr of events:"<<N<<", wall time: "<<timsec<<std::endl;
+	qcddc=timsec/N;
 	data_dcf->fill();
     }
 
@@ -143,7 +147,7 @@ int main()
 	long unsigned n=0;
 	long unsigned N=0;
 	std::clock_t start=std::clock();
-	while((std::clock()-start)<waiting_t)
+	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
 	    if((std::clock()-start)>n)
 	    {
@@ -155,8 +159,9 @@ int main()
 	    algo.evaluate();
 	    ++N;
 	}
-	std::cout<<"done. Nr of events:"<<N<<std::endl;
-	qcdadj=(value_type)10/(value_type)N;
+	double timsec=((double)(std::clock()-start))/CLOCKS_PER_SEC;
+	std::cout<<"done. Nr of events:"<<N<<", wall time: "<<timsec<<std::endl;
+	qcdadj=timsec/N;
 	data_adj->fill();
     }
 
@@ -170,7 +175,7 @@ int main()
 	long unsigned n=0;
 	long unsigned N=0;
 	std::clock_t start=std::clock();
-	while((std::clock()-start)<waiting_t)
+	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
 	    if((std::clock()-start)>n)
 	    {
@@ -182,8 +187,9 @@ int main()
 	    algo.evaluate();
 	    ++N;
 	}
-	std::cout<<"done. Nr of events:"<<N<<std::endl;
-	qcdcf=(value_type)10/(value_type)N;
+	double timsec=((double)(std::clock()-start))/CLOCKS_PER_SEC;
+	std::cout<<"done. Nr of events:"<<N<<", wall time: "<<timsec<<std::endl;
+	qcdcf=timsec/N;
 	data_ccf->fill();
     }
 
@@ -197,7 +203,7 @@ int main()
 	long unsigned n=0;
 	long unsigned N=0;
 	std::clock_t start=std::clock();
-	while((std::clock()-start)<waiting_t)
+	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
 	    if((std::clock()-start)>n)
 	    {
@@ -209,8 +215,9 @@ int main()
 	    algo.evaluate();
 	    ++N;
 	}
-	std::cout<<"done. Nr of events:"<<N<<std::endl;
-	qcddc=(value_type)10/(value_type)N;
+	double timsec=((double)(std::clock()-start))/CLOCKS_PER_SEC;
+	std::cout<<"done. Nr of events:"<<N<<", wall time: "<<timsec<<std::endl;
+	qcddc=timsec/N;
 	data_dcf->fill();
     }
 
@@ -227,7 +234,7 @@ int main()
 	long unsigned n=0;
 	long unsigned N=0;
 	std::clock_t start=std::clock();
-	while((std::clock()-start)<waiting_t)
+	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
 	    if((std::clock()-start)>n)
 	    {
@@ -239,8 +246,9 @@ int main()
 	    algo.evaluate();
 	    ++N;
 	}
-	std::cout<<"done. Nr of events:"<<N<<std::endl;
-	qcdadj=(value_type)10/(value_type)N;
+	double timsec=((double)(std::clock()-start))/CLOCKS_PER_SEC;
+	std::cout<<"done. Nr of events:"<<N<<", wall time: "<<timsec<<std::endl;
+	qcdadj=timsec/N;
 	data_adj->fill();
     }
 
@@ -254,7 +262,7 @@ int main()
 	long unsigned n=0;
 	long unsigned N=0;
 	std::clock_t start=std::clock();
-	while((std::clock()-start)<waiting_t)
+	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
 	    if((std::clock()-start)>n)
 	    {
@@ -266,8 +274,9 @@ int main()
 	    algo.evaluate();
 	    ++N;
 	}
-	std::cout<<"done. Nr of events:"<<N<<std::endl;
-	qcdcf=(value_type)10/(value_type)N;
+	double timsec=((double)(std::clock()-start))/CLOCKS_PER_SEC;
+	std::cout<<"done. Nr of events:"<<N<<", wall time: "<<timsec<<std::endl;
+	qcdcf=timsec/N;
 	data_ccf->fill();
     }
 
@@ -281,7 +290,7 @@ int main()
 	long unsigned n=0;
 	long unsigned N=0;
 	std::clock_t start=std::clock();
-	while((std::clock()-start)<waiting_t)
+	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
 	    if((std::clock()-start)>n)
 	    {
@@ -293,8 +302,9 @@ int main()
 	    algo.evaluate();
 	    ++N;
 	}
-	std::cout<<"done. Nr of events:"<<N<<std::endl;
-	qcddc=(value_type)10/(value_type)N;
+	double timsec=((double)(std::clock()-start))/CLOCKS_PER_SEC;
+	std::cout<<"done. Nr of events:"<<N<<", wall time: "<<timsec<<std::endl;
+	qcddc=timsec/N;
 	data_ccf->fill();
     }
 
@@ -311,7 +321,7 @@ int main()
 	long unsigned n=0;
 	long unsigned N=0;
 	std::clock_t start=std::clock();
-	while((std::clock()-start)<waiting_t)
+	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
 	    if((std::clock()-start)>n)
 	    {
@@ -323,8 +333,9 @@ int main()
 	    algo.evaluate();
 	    ++N;
 	}
-	std::cout<<"done. Nr of events:"<<N<<std::endl;
-	qcdadj=(value_type)10/(value_type)N;
+	double timsec=((double)(std::clock()-start))/CLOCKS_PER_SEC;
+	std::cout<<"done. Nr of events:"<<N<<", wall time: "<<timsec<<std::endl;
+	qcdadj=timsec/N;
 	data_adj->fill();
     }
 
@@ -338,7 +349,7 @@ int main()
 	long unsigned n=0;
 	long unsigned N=0;
 	std::clock_t start=std::clock();
-	while((std::clock()-start)<waiting_t)
+	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
 	    if((std::clock()-start)>n)
 	    {
@@ -350,8 +361,9 @@ int main()
 	    algo.evaluate();
 	    ++N;
 	}
-	std::cout<<"done. Nr of events:"<<N<<std::endl;
-	qcdcf=(value_type)10/(value_type)N;
+	double timsec=((double)(std::clock()-start))/CLOCKS_PER_SEC;
+	std::cout<<"done. Nr of events:"<<N<<", wall time: "<<timsec<<std::endl;
+	qcdcf=timsec/N;
 	data_ccf->fill();
     }
 
@@ -365,7 +377,7 @@ int main()
 	long unsigned n=0;
 	long unsigned N=0;
 	std::clock_t start=std::clock();
-	while((std::clock()-start)<waiting_t)
+	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
 	    if((std::clock()-start)>n)
 	    {
@@ -377,8 +389,9 @@ int main()
 	    algo.evaluate();
 	    ++N;
 	}
-	std::cout<<"done. Nr of events:"<<N<<std::endl;
-	qcddc=(value_type)10/(value_type)N;
+	double timsec=((double)(std::clock()-start))/CLOCKS_PER_SEC;
+	std::cout<<"done. Nr of events:"<<N<<", wall time: "<<timsec<<std::endl;
+	qcddc=timsec/N;
 	data_dcf->fill();
     }
 
@@ -395,7 +408,7 @@ int main()
 	long unsigned n=0;
 	long unsigned N=0;
 	std::clock_t start=std::clock();
-	while((std::clock()-start)<waiting_t)
+	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
 	    if((std::clock()-start)>n)
 	    {
@@ -407,8 +420,9 @@ int main()
 	    algo.evaluate();
 	    ++N;
 	}
-	std::cout<<"done. Nr of events:"<<N<<std::endl;
-	qcdadj=(value_type)10/(value_type)N;
+	double timsec=((double)(std::clock()-start))/CLOCKS_PER_SEC;
+	std::cout<<"done. Nr of events:"<<N<<", wall time: "<<timsec<<std::endl;
+	qcdadj=timsec/N;
 	data_adj->fill();
     }
 
@@ -422,7 +436,7 @@ int main()
 	long unsigned n=0;
 	long unsigned N=0;
 	std::clock_t start=std::clock();
-	while((std::clock()-start)<waiting_t)
+	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
 	    if((std::clock()-start)>n)
 	    {
@@ -434,8 +448,9 @@ int main()
 	    algo.evaluate();
 	    ++N;
 	}
-	std::cout<<"done. Nr of events:"<<N<<std::endl;
-	qcdcf=(value_type)10/(value_type)N;
+	double timsec=((double)(std::clock()-start))/CLOCKS_PER_SEC;
+	std::cout<<"done. Nr of events:"<<N<<", wall time: "<<timsec<<std::endl;
+	qcdcf=timsec/N;
 	data_ccf->fill();
     }
 
@@ -449,7 +464,7 @@ int main()
 	long unsigned n=0;
 	long unsigned N=0;
 	std::clock_t start=std::clock();
-	while((std::clock()-start)<waiting_t)
+	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
 	    if((std::clock()-start)>n)
 	    {
@@ -461,8 +476,9 @@ int main()
 	    algo.evaluate();
 	    ++N;
 	}
-	std::cout<<"done. Nr of events:"<<N<<std::endl;
-	qcddc=(value_type)10/(value_type)N;
+	double timsec=((double)(std::clock()-start))/CLOCKS_PER_SEC;
+	std::cout<<"done. Nr of events:"<<N<<", wall time: "<<timsec<<std::endl;
+	qcddc=timsec/N;
 	data_dcf->fill();
     }
 
@@ -479,7 +495,7 @@ int main()
 	long unsigned n=0;
 	long unsigned N=0;
 	std::clock_t start=std::clock();
-	while((std::clock()-start)<waiting_t)
+	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
 	    if((std::clock()-start)>n)
 	    {
@@ -491,8 +507,9 @@ int main()
 	    algo.evaluate();
 	    ++N;
 	}
-	std::cout<<"done. Nr of events:"<<N<<std::endl;
-	qcdadj=(value_type)10/(value_type)N;
+	double timsec=((double)(std::clock()-start))/CLOCKS_PER_SEC;
+	std::cout<<"done. Nr of events:"<<N<<", wall time: "<<timsec<<std::endl;
+	qcdadj=timsec/N;
 	data_adj->fill();
     }
 
@@ -506,7 +523,7 @@ int main()
 	long unsigned n=0;
 	long unsigned N=0;
 	std::clock_t start=std::clock();
-	while((std::clock()-start)<waiting_t)
+	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
 	    if((std::clock()-start)>n)
 	    {
@@ -518,8 +535,9 @@ int main()
 	    algo.evaluate();
 	    ++N;
 	}
-	std::cout<<"done. Nr of events:"<<N<<std::endl;
-	qcdcf=(value_type)10/(value_type)N;
+	double timsec=((double)(std::clock()-start))/CLOCKS_PER_SEC;
+	std::cout<<"done. Nr of events:"<<N<<", wall time: "<<timsec<<std::endl;
+	qcdcf=timsec/N;
 	data_ccf->fill();
     }
 
@@ -533,7 +551,7 @@ int main()
 	long unsigned n=0;
 	long unsigned N=0;
 	std::clock_t start=std::clock();
-	while((std::clock()-start)<waiting_t)
+	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
 	    if((std::clock()-start)>n)
 	    {
@@ -545,8 +563,9 @@ int main()
 	    algo.evaluate();
 	    ++N;
 	}
-	std::cout<<"done. Nr of events:"<<N<<std::endl;
-	qcddc=(value_type)10/(value_type)N;
+	double timsec=((double)(std::clock()-start))/CLOCKS_PER_SEC;
+	std::cout<<"done. Nr of events:"<<N<<", wall time: "<<timsec<<std::endl;
+	qcddc=timsec/N;
 	data_dcf->fill();
     }
 
@@ -563,7 +582,7 @@ int main()
 	long unsigned n=0;
 	long unsigned N=0;
 	std::clock_t start=std::clock();
-	while((std::clock()-start)<waiting_t)
+	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
 	    if((std::clock()-start)>n)
 	    {
@@ -575,8 +594,9 @@ int main()
 	    algo.evaluate();
 	    ++N;
 	}
-	std::cout<<"done. Nr of events:"<<N<<std::endl;
-	qcdadj=(value_type)10/(value_type)N;
+	double timsec=((double)(std::clock()-start))/CLOCKS_PER_SEC;
+	std::cout<<"done. Nr of events:"<<N<<", wall time: "<<timsec<<std::endl;
+	qcdadj=timsec/N;
 	data_adj->fill();
     }
 
@@ -590,7 +610,7 @@ int main()
 	long unsigned n=0;
 	long unsigned N=0;
 	std::clock_t start=std::clock();
-	while((std::clock()-start)<waiting_t)
+	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
 	    if((std::clock()-start)>n)
 	    {
@@ -602,8 +622,9 @@ int main()
 	    algo.evaluate();
 	    ++N;
 	}
-	std::cout<<"done. Nr of events:"<<N<<std::endl;
-	qcdcf=(value_type)10/(value_type)N;
+	double timsec=((double)(std::clock()-start))/CLOCKS_PER_SEC;
+	std::cout<<"done. Nr of events:"<<N<<", wall time: "<<timsec<<std::endl;
+	qcdcf=timsec/N;
 	data_ccf->fill();
     }
 
@@ -617,7 +638,7 @@ int main()
 	long unsigned n=0;
 	long unsigned N=0;
 	std::clock_t start=std::clock();
-	while((std::clock()-start)<waiting_t)
+	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
 	    if((std::clock()-start)>n)
 	    {
@@ -629,8 +650,9 @@ int main()
 	    algo.evaluate();
 	    ++N;
 	}
-	std::cout<<"done. Nr of events:"<<N<<std::endl;
-	qcddc=(value_type)10/(value_type)N;
+	double timsec=((double)(std::clock()-start))/CLOCKS_PER_SEC;
+	std::cout<<"done. Nr of events:"<<N<<", wall time: "<<timsec<<std::endl;
+	qcddc=timsec/N;
 	data_dcf->fill();
     }
 
@@ -647,7 +669,7 @@ int main()
 	long unsigned n=0;
 	long unsigned N=0;
 	std::clock_t start=std::clock();
-	while((std::clock()-start)<waiting_t)
+	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
 	    if((std::clock()-start)>n)
 	    {
@@ -659,8 +681,9 @@ int main()
 	    algo.evaluate();
 	    ++N;
 	}
-	std::cout<<"done. Nr of events:"<<N<<std::endl;
-	qcdadj=(value_type)10/(value_type)N;
+	double timsec=((double)(std::clock()-start))/CLOCKS_PER_SEC;
+	std::cout<<"done. Nr of events:"<<N<<", wall time: "<<timsec<<std::endl;
+	qcdadj=timsec/N;
 	data_adj->fill();
     }
 
@@ -674,7 +697,7 @@ int main()
 	long unsigned n=0;
 	long unsigned N=0;
 	std::clock_t start=std::clock();
-	while((std::clock()-start)<waiting_t)
+	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
 	    if((std::clock()-start)>n)
 	    {
@@ -686,8 +709,9 @@ int main()
 	    algo.evaluate();
 	    ++N;
 	}
-	std::cout<<"done. Nr of events:"<<N<<std::endl;
-	qcdcf=(value_type)10/(value_type)N;
+	double timsec=((double)(std::clock()-start))/CLOCKS_PER_SEC;
+	std::cout<<"done. Nr of events:"<<N<<", wall time: "<<timsec<<std::endl;
+	qcdcf=timsec/N;
 	data_ccf->fill();
     }
 
@@ -701,7 +725,7 @@ int main()
 	long unsigned n=0;
 	long unsigned N=0;
 	std::clock_t start=std::clock();
-	while((std::clock()-start)<waiting_t)
+	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
 	    if((std::clock()-start)>n)
 	    {
@@ -713,8 +737,9 @@ int main()
 	    algo.evaluate();
 	    ++N;
 	}
-	std::cout<<"done. Nr of events:"<<N<<std::endl;
-	qcddc=(value_type)10/(value_type)N;
+	double timsec=((double)(std::clock()-start))/CLOCKS_PER_SEC;
+	std::cout<<"done. Nr of events:"<<N<<", wall time: "<<timsec<<std::endl;
+	qcddc=timsec/N;
 	data_dcf->fill();
     }
 
@@ -731,7 +756,7 @@ int main()
 	long unsigned n=0;
 	long unsigned N=0;
 	std::clock_t start=std::clock();
-	while((std::clock()-start)<waiting_t)
+	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
 	    if((std::clock()-start)>n)
 	    {
@@ -743,8 +768,9 @@ int main()
 	    algo.evaluate();
 	    ++N;
 	}
-	std::cout<<"done. Nr of events:"<<N<<std::endl;
-	qcdadj=(value_type)10/(value_type)N;
+	double timsec=((double)(std::clock()-start))/CLOCKS_PER_SEC;
+	std::cout<<"done. Nr of events:"<<N<<", wall time: "<<timsec<<std::endl;
+	qcdadj=timsec/N;
 	data_adj->fill();
     }
 
@@ -758,7 +784,7 @@ int main()
 	long unsigned n=0;
 	long unsigned N=0;
 	std::clock_t start=std::clock();
-	while((std::clock()-start)<waiting_t)
+	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
 	    if((std::clock()-start)>n)
 	    {
@@ -770,8 +796,9 @@ int main()
 	    algo.evaluate();
 	    ++N;
 	}
-	std::cout<<"done. Nr of events:"<<N<<std::endl;
-	qcdcf=(value_type)10/(value_type)N;
+	double timsec=((double)(std::clock()-start))/CLOCKS_PER_SEC;
+	std::cout<<"done. Nr of events:"<<N<<", wall time: "<<timsec<<std::endl;
+	qcdcf=timsec/N;
 	data_ccf->fill();
     }
 
@@ -785,7 +812,7 @@ int main()
 	long unsigned n=0;
 	long unsigned N=0;
 	std::clock_t start=std::clock();
-	while((std::clock()-start)<waiting_t)
+	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
 	    if((std::clock()-start)>n)
 	    {
@@ -797,8 +824,9 @@ int main()
 	    algo.evaluate();
 	    ++N;
 	}
-	std::cout<<"done. Nr of events:"<<N<<std::endl;
-	qcddc=(value_type)10/(value_type)N;
+	double timsec=((double)(std::clock()-start))/CLOCKS_PER_SEC;
+	std::cout<<"done. Nr of events:"<<N<<", wall time: "<<timsec<<std::endl;
+	qcddc=timsec/N;
 	data_dcf->fill();
     }
 

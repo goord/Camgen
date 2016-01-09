@@ -25,7 +25,7 @@ int main()
     typedef QCDPbdhcfcc::value_type value_type;
     license_print::disable();
 
-    unsigned N_events=1000;
+    unsigned N_events=500;
     value_type Ecm=500;
 
     std::cout<<"----------------------------------------------------------------------------------"<<std::endl;
