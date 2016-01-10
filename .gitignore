@@ -112,3 +112,5 @@ config.h.in~
 test/ps_tree_reverse_test
 
 *.eps
+
+test/proc_gen_test

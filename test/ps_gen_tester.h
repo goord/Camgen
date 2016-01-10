@@ -202,6 +202,7 @@ namespace Camgen
 		    ps_gen->refresh_cross_section();
 		    if(w1!=(value_type)0)
 		    {
+			ps_gen->evaluate_weight();
 			value_type w_check=ps_gen->weight();
 			if(!equals(w_check,w1))
 			{
@@ -213,7 +214,10 @@ namespace Camgen
 		    bool rambo_generated=uni_gen->generate();
 		    if(rambo_generated)
 		    {
-			uni_gen->check();
+			if(!skip_check and !uni_gen->check())
+			{
+			    return false;
+			}
 		    }
 		    value_type w2=(rambo_generated and uni_gen->pass())?uni_gen->weight():(value_type)0;
 		    
