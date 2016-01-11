@@ -332,7 +332,6 @@ namespace Camgen
 		    typedef evaluate<compose_vertices<coltens1,Feynrule_t<testadjQCD> > > eval_type;
 		    typedef typename eval_type::size_type size_type;
 		    typedef typename eval_type::value_type value_type;
-		    typedef typename eval_type::momentum_type adj_momentum_type;
 		    typedef typename eval_type::iterator iterator;
 		    eval_type::initialise();
 

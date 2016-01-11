@@ -66,6 +66,8 @@ namespace Camgen
 	    {
 		return colour_generator_factory<model_t,N_in,N_out,rng_t>::create_generator(amplitude);
 	    }
+
+	    virtual ~process_generator_factory(){}
     };
 }
 

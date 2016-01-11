@@ -16,7 +16,7 @@
 
 namespace Camgen
 {
-    multi_plot::multi_plot(std::size_t rows_,std::size_t cols_,const std::string& file_,const char* term):rows(rows_),cols(cols_),file(file_),terminal(term)
+    multi_plot::multi_plot(std::size_t rows_,std::size_t cols_,const std::string& file_,const char* term):file(file_),terminal(term),rows(rows_),cols(cols_)
     {
 	plots.resize(rows*cols,NULL);
     }

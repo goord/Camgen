@@ -78,11 +78,11 @@ namespace Camgen
 			channel_type* out13_,
 			bool is_final_):base_type(in1_,out1_,is_final_?out3_:out2_),
 					sb_channel(in2_),
+					stot_channel(out13_),
+					is_final(is_final_),
 					s1_channel(out1_),
 					t_channel(out2_),
 					s2_channel(out3_),
-					stot_channel(out13_),
-					is_final(is_final_),
 					ssgen(s_pair_generator_factory<value_type,rng_t>::create(this->s_generator(out1_),this->s_generator(out3_),stot_channel->s())){}
 
 	    /* Destructor: */

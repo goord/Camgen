@@ -24,17 +24,17 @@ int main()
     std::cout<<"testing saving/loading MC generators..................................."<<std::endl;
     std::cout<<"-----------------------------------------------------------------------"<<std::endl;
 
-    typedef SM model_type;
-    typedef SM::value_type value_type;
-    typedef std::size_t size_type;
-    typedef std::random rng_type;
+//    typedef SM model_type;
+//    typedef SM::value_type value_type;
+//    typedef std::size_t size_type;
+//    typedef std::random rng_type;
     
     //////////////////////////////////////////////////////////////////
 
-    size_type N_events = 100000;
-    size_type N_batch  = 100;
-    size_type N_bins   = 100;
-    grid_modes::type mode = grid_modes::maximum_weights;
+//    size_type N_events = 100000;
+//    size_type N_batch  = 100;
+//    size_type N_bins   = 100;
+//    grid_modes::type mode = grid_modes::maximum_weights;
 
     //////////////////////////////////////////////////////////////////
 

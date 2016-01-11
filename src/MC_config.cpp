@@ -260,7 +260,12 @@ namespace Camgen
     }
     bool MC_config::set_grid_bins(std::size_t n)
     {
-	return MC_config::grd_bins=n;
+	if(n!=0)
+	{
+	    MC_config::grd_bins=n;
+	    return true;
+	}
+	return false;
     }
     
     /* Sets the grid bin splitting criterium. */

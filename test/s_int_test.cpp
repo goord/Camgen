@@ -30,10 +30,10 @@ int main()
     typedef double value_type;
     typedef std::random rng_type;
 
-    typedef Breit_Wigner<value_type,std::random> Breit_Wigner_type;
-    typedef power_law<value_type,std::random> power_law_type;
-    typedef uniform_value_generator<value_type,std::random> uniform_type;
-    typedef Dirac_delta<value_type,std::random> Dirac_delta_type;
+    typedef Breit_Wigner<value_type,rng_type> Breit_Wigner_type;
+    typedef power_law<value_type,rng_type> power_law_type;
+    typedef uniform_value_generator<value_type,rng_type> uniform_type;
+    typedef Dirac_delta<value_type,rng_type> Dirac_delta_type;
 
     file_utils::create_directory("test_output/s_int_test");
     

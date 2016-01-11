@@ -59,7 +59,6 @@ template<class model_t,std::size_t N_in,std::size_t N_out>bool check_generator(p
 int main()
 {
     typedef SM model_type;
-    typedef SM::value_type value_type;
     typedef std::random rn_engine;
     
     license_print::disable();

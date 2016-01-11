@@ -908,6 +908,7 @@ namespace Camgen
 		os<<"Monte Carlo efficiency (%):                        "<<std::scientific<<efficiency<<std::endl;
 		os<<"Cross section (pb):                                "<<std::scientific<<cross_section_sum()<<std::endl;
 		os<<"###############################################################################################"<<std::endl;
+		return os;
 	    }
 
 	    /// Prints the generator cuts.

@@ -483,7 +483,6 @@ int main()
 	typedef QCD model_type;
 	typedef model_type::value_type value_type;
 	typedef uniform_ps_generator_factory<model_type,2,3,std::random> ps_factory;
-	typedef helicity_generator_factory<model_type,2,3,std::random> hel_factory;
 	
 	std::string process("u,ubar > u,ubar,g");
 	std::cerr<<"Checking partial colour+helicity summation in QCD for "<<process<<"..........";

@@ -19,20 +19,20 @@ using namespace Camgen;
 int main()
 {
     typedef SM model_type;
-    typedef SM::value_type value_type;
     typedef std::random rn_engine;
     
     license_print::disable();
 
     initial_states::type isgen_type=initial_states::partonic;
     phase_space_generators::type psgen_type=phase_space_generators::recursive;
+    
+    set_initial_state_type(isgen_type);
     set_phase_space_generator_type(psgen_type);
     set_s_pair_generation_mode(s_pair_generation_modes::hit_and_miss);
     std::string fext=plot_config::gnuplot_path==NULL?".dat/.gp":".eps";
     file_utils::create_directory("test_output/proc_gen_test");
     
     std::size_t n_evts=10000;
-    std::size_t n_adapt=100;
     std::size_t n_bins=100;
     
     std::cout<<"-----------------------------------------------------------"<<std::endl;

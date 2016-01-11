@@ -23,13 +23,13 @@ using namespace Camgen;
 
 int main()
 {
-    typedef SM model_type;
-    typedef SM::value_type value_type;
-    typedef std::random rn_engine;
-
     license_print::disable();
 
 #if HAVE_LHAPDF_H_
+
+    typedef SM model_type;
+    typedef SM::value_type value_type;
+    typedef std::random rn_engine;
 
     std::cout<<"-------------------------------------------"<<std::endl;
     std::cout<<"testing hadronic initial states............"<<std::endl;

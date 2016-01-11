@@ -13,7 +13,7 @@
 #define CAMGEN_PS_GEN_H_
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * *
- * Base class for momentum generators in Camgen.  *
+ * Base class for momentum generators in Camgen.   *
  *                                                 *
  * * * * * * * * * * * * * * * * * * * * * * * * * */
 
@@ -56,7 +56,7 @@ namespace Camgen
 
 	    /// Constructor with initial state argument.
 
-	    ps_generator(init_state_type* is_):fsw(0),is(is_),isw(0),ps_cut(NULL),scale(NULL)
+	    ps_generator(init_state_type* is_):is(is_),isw(0),fsw(0),ps_cut(NULL),scale(NULL)
 	    {
 		for(size_type i=0;i<N_in;++i)
 		{

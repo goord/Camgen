@@ -51,7 +51,7 @@ namespace Camgen
 
 	    // Constructor. Takes an amplitude subprocess iterator as argument.
 	    
-	    process_generator_tester(CM_tree_iterator amplitude, const std::string& fname):proc_gen_fac(new process_generator_factory_type()),filename(fname)
+	    process_generator_tester(CM_tree_iterator amplitude, const std::string& fname):filename(fname),proc_gen_fac(new process_generator_factory_type())
 	    {
 		proc_gen=proc_gen_fac->create_generator(amplitude);
 		proc_gen->set_auto_update(true);

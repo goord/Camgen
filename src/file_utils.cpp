@@ -31,7 +31,7 @@ namespace Camgen
 {
     std::string file_utils::get_file(const std::string& path)
     {
-	typename std::string::const_reverse_iterator it=std::find_if(path.rbegin(),path.rend(),file_utils::match_directory_separator);
+	std::string::const_reverse_iterator it=std::find_if(path.rbegin(),path.rend(),file_utils::match_directory_separator);
 	if(it==path.rend())
 	{
 	    return path;
@@ -42,7 +42,7 @@ namespace Camgen
     std::string file_utils::get_file_name(const std::string& path)
     {
 	std::string file=get_file(path);
-	typename std::string::reverse_iterator it=std::find_if(file.rbegin(),file.rend(),file_utils::match_extension_separator);
+	std::string::reverse_iterator it=std::find_if(file.rbegin(),file.rend(),file_utils::match_extension_separator);
 	if(it==file.rend())
 	{
 	    return file;
@@ -52,7 +52,7 @@ namespace Camgen
 
     std::string file_utils::get_directory(const std::string& path)
     {
-	typename std::string::const_reverse_iterator it=std::find_if(path.rbegin(),path.rend(),file_utils::match_directory_separator);
+	std::string::const_reverse_iterator it=std::find_if(path.rbegin(),path.rend(),file_utils::match_directory_separator);
 	if(it==path.rend())
 	{
 	    return "";
@@ -63,8 +63,8 @@ namespace Camgen
     int file_utils::create_directory(const std::string& path, int mode)
     {
 	int status=0;
-	typename std::string::const_iterator it1=path.begin();
-	typename std::string::const_iterator it2;
+	std::string::const_iterator it1=path.begin();
+	std::string::const_iterator it2;
 
 	while(status==0 and (it2=std::find_if(it1,path.end(),file_utils::match_directory_separator))!=path.end())
 	{

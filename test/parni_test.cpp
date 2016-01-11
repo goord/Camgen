@@ -552,7 +552,6 @@ int main()
 	std::string filename("test_output/parni_test/parni1Dplsub");
 	value_type nu(1);
 	power_law<value_type,std::random>* genmap=new power_law<value_type,std::random>(NULL,&nu);
-	MC_integrator<value_type>* genmap_int=new MC_generator_wrapper<value_type>(genmap);
 	adaptive_value_generator<value_type,std::random>* gen=new adaptive_value_generator<value_type,std::random>(genmap,N_bins,mode);
 	MC_integrator<value_type>* gen_int=new MC_generator_wrapper<value_type>(gen);
 	gen->set_min_lower_bound(s0min);

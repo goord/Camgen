@@ -71,7 +71,6 @@ namespace Camgen
 		typedef CM_algorithm<model_t,1,N_out> CM_algorithm_type;
 		typedef typename CM_algorithm_type::tree_type current_tree_type;
 		typedef typename current_tree_type::const_interaction_iterator const_interaction_iterator;
-		typedef typename current_tree_type::current_type current_type;
 		typedef typename current_tree_type::particle_type particle_type;
 
 		this->delete_tree();
@@ -326,7 +325,6 @@ namespace Camgen
 		typedef CM_algorithm<model_t,2,N_out> CM_algorithm_type;
 		typedef typename CM_algorithm_type::tree_type current_tree_type;
 		typedef typename current_tree_type::const_interaction_iterator const_interaction_iterator;
-		typedef typename current_tree_type::current_type current_type;
 		typedef typename current_tree_type::particle_type particle_type;
 
 		this->delete_tree();
@@ -593,7 +591,6 @@ namespace Camgen
 
 			// find or add the total outgoing s-channel
 			bit_string_type b_out4=ch_out1->bitstring()|ch_out3->bitstring();
-			momentum_channel_type* p_ch_out4=find_or_add_momentum_channel(b_out4);
 			particle_channel_type* ch_out4=this->find_or_add_particle_channel(b_out4,NULL);
 
 			branching_type* t_branching=branching_factory_type::create_t_branching(ch_in,this->incoming_particle_channels[1],ch_out1,ch_out2,ch_out3,ch_out4);

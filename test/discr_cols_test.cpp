@@ -27,7 +27,6 @@
 #include <Camgen/TT_min.h>
 #include <Camgen/TT_plus.h>
 #include <Camgen/TT_contr.h>
-#include <Camgen/def_args.h>
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Testing facility for discrete-colours versions of Camgen's colour        *
@@ -68,6 +67,7 @@ namespace Camgen
 		typedef VALUE_T r_value_type;
 		typedef std::complex<r_value_type> value_type;
 		typedef tensor<value_type> tensor_type;
+		typedef typename tensor_type::size_type size_type;
 		typedef typename tensor_type::iterator iterator;
 		typedef typename tensor_type::const_iterator const_iterator;
 		typedef vector<r_value_type,4> momentum_type;
@@ -229,7 +229,7 @@ namespace Camgen
 
 		    /* The usual type definitions: */
 
-		    DEFINE_BASIC_TYPES(testQCD);
+		    //DEFINE_BASIC_TYPES(testQCD);
 
 		    /* Initialisation: */
 
@@ -546,8 +546,6 @@ namespace Camgen
 	};
     }
 }
-
-#include <Camgen/undef_args.h>
 
 /* Testing program: */
 
