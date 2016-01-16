@@ -22,15 +22,34 @@
 
 namespace Camgen
 {
+    /// Checks equality up to given absolute and relative precision
+
+    template<class T>bool equals(const T& a,const T& b,const T& eps_rel,const T& eps_abs)
+    {
+	if(std::abs(a-b)<eps_abs)
+	{
+	    return true;
+	}
+	return std::abs(a-b)<=eps_rel*std::max(std::abs(a),std::abs(b));
+    }
+    template<class T>bool equals(const std::complex<T>& a,const std::complex<T>& b, const T& eps_rel, const T& eps_abs)
+    {
+	if(std::abs(a-b)<eps_abs)
+	{
+	    return true;
+	}
+	return std::abs(a-b)<=eps_rel*std::max(std::abs(a),std::abs(b));
+    }
+
     /// Checks equality up to precision defined in num_config.h
 
     template<class T>bool equals(const T& a,const T& b)
     {
-	if(std::abs(a-b)<numeric_configuration<T>::epsilon_abs)
-	{
-	    return true;
-	}
-	return std::abs(a-b)<=numeric_configuration<T>::epsilon_rel*std::max(std::abs(a),std::abs(b));
+	return equals(a,b,numeric_configuration<T>::epsilon_rel,numeric_configuration<T>::epsilon_abs);
+    }
+    template<class T>bool equals(const std::complex<T>& a,const std::complex<T>& b)
+    {
+	return equals(a,b,numeric_configuration<T>::epsilon_rel,numeric_configuration<T>::epsilon_abs);
     }
 
     /// Compares less up to precision defined in num_config.h

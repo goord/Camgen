@@ -22,18 +22,11 @@
  * * * * * * * * * * * * * */
 
 
-//TODO: Merge with num-utils...
+//TODO: Rename to c_utils.h
 
 namespace Camgen
 {
-    template<class T>bool equals(const std::complex<T>& a,const std::complex<T>& b)
-    {
-	if(std::abs(a-b)<numeric_configuration<T>::epsilon_abs)
-	{
-	    return true;
-	}
-	return std::abs(a-b)<=numeric_configuration<T>::epsilon_rel*std::max(std::abs(a),std::abs(b));
-    }
+
     /* Optimised multiplication by the imaginary unit: */
 
     template<class T>std::complex<T>times_i(const std::complex<T>& z)

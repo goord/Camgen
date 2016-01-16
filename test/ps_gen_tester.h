@@ -175,14 +175,14 @@ namespace Camgen
 			if(ps_gen->weight()!=ps_gen->weight())
 			{
 			    ps_gen->print(std::cerr);
-			    Camgen::log<<"Invalid phase space weight encountered: "<<ps_gen->weight()<<endlog;
+			    Camgen::log(log_level::error)<<"Invalid phase space weight encountered: "<<ps_gen->weight()<<endlog;
 			    return false;
 			}
 			if(ps_gen->integrand()!=ps_gen->integrand())
 			{
 			    amplitude->print(std::cerr);
 			    ps_gen->print(std::cerr);
-			    Camgen::log<<"Invalid phase space integrand encountered: "<<ps_gen->integrand()<<endlog;
+			    Camgen::log(log_level::error)<<"Invalid phase space integrand encountered: "<<ps_gen->integrand()<<endlog;
 			    return false;
 			}
 		    }
@@ -204,10 +204,11 @@ namespace Camgen
 		    {
 			ps_gen->evaluate_weight();
 			value_type w_check=ps_gen->weight();
-			if(!equals(w_check,w1))
+			if(!equals(w_check,w1,(value_type)1,(value_type)0.1))
 			{
 			    ps_gen->print(std::cerr);
-			    Camgen::log<<"Weight re-evaluation lead to different result: "<<w1<<" not equal to  "<<w_check<<endlog;
+			    Camgen::log(log_level::error)<<"Weight re-evaluation lead to different result: "<<w1<<" not equal to  "<<w_check<<endlog;
+			    return false;
 			}
 		    }
 		    
