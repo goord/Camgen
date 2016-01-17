@@ -401,6 +401,8 @@ namespace Camgen
 		return true;
 	    }
 
+	    /// Generation method.
+
 	    bool generate()
 	    {
 		this->initialise_channels();
@@ -604,6 +606,8 @@ namespace Camgen
 		    this->try_insert_branching_or_delete(ch_in,s_branching);
 		}
 	    }
+
+	    /* Checks whether the branching is at the end of a channel: */
 
 	    bool static final_t_channel_sum(branching_type* branching)
 	    {

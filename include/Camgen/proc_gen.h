@@ -474,7 +474,10 @@ namespace Camgen
 
 	    bool generate()
 	    {
-		throw_event();
+		if(!throw_event())
+		{
+		    return false;
+		}
 		if(auto_update)
 		{
 		    update();

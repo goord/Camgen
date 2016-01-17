@@ -96,6 +96,7 @@ namespace Camgen
 		    {
 			if(!skip_check and !proc_gen->get_momentum_generator()->check())
 			{
+			    proc_gen->get_momentum_generator()->print(std::cerr);
 			    return false;
 			}
 			if(proc_gen->weight()!=proc_gen->weight())
@@ -119,7 +120,7 @@ namespace Camgen
 			value_type w=proc_gen->weight();
 			proc_gen->evaluate_weight();
 			value_type w_check=proc_gen->weight();
-			if(!equals(w_check,w))
+			if(!equals(w_check,w,(value_type)1,(value_type)0.1))
 			{
 			    Camgen::log<<"Weight re-evaluation lead to different result: "<<w<<" not equal to  "<<w_check<<endlog;
 			}
@@ -156,7 +157,8 @@ namespace Camgen
 		    data_stream* datstr2=new data_stream(data,"1","4","5");
 		    datstr2->title="RAMBO";
 		    datstr2->style="yerrorbars";
-		    plot_script* plot=new plot_script("Cross section");
+		    plot_script* plot=new plot_script("Cross section","postscript enhanced color");
+		    plot->file=filename;
 		    plot->add_plot(datstr1);
 		    plot->add_plot(datstr2);
 		    double dx=N_events/5;
@@ -167,8 +169,6 @@ namespace Camgen
 		    plot->plot();
 		    delete plot;
 		}
-
-		delete data;
 
 		return equals(proc_gen->cross_section(),uni_gen->cross_section());
 	    }

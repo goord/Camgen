@@ -42,16 +42,14 @@ int main()
     {
 	Camgen::log.enable_level=log_level::error;
 	std::string process("h0 > gamma,gamma");
-	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr<<"Checking process generation for "<<process<<"............";
 	std::cerr.flush();
-
 	CM_algorithm<model_type,1,2>algo(process);
 	algo.load();
 	algo.construct();
 	process_generator_tester<model_type,1,2,rn_engine> tester(algo.get_tree_iterator(),"");
 	if(!tester.run(n_evts,n_bins,false,true,true))
 	{
-	    std::cerr<<tester.proc_gen->cross_section()<<','<<tester.uni_gen->cross_section()<<std::endl;
 	    return 1;
 	}
 	if(!(tester.uni_gen->cross_section().value==0 and tester.uni_gen->cross_section().error==0))
@@ -65,6 +63,165 @@ int main()
 	std::cerr<<"done."<<std::endl;
 	Camgen::log.enable_level=log_level::warning;
     }
-    
 
+    {
+	Camgen::log.enable_level=log_level::error;
+	std::string process("gamma > e+,e-");
+	std::cerr<<"Checking process generation for "<<process<<"............";
+	std::cerr.flush();
+	CM_algorithm<model_type,1,2>algo(process);
+	algo.load();
+	algo.construct();
+	process_generator_tester<model_type,1,2,rn_engine> tester(algo.get_tree_iterator(),"");
+	if(!tester.run(n_evts,n_bins,false,true,true))
+	{
+	    return 1;
+	}
+	if(!(tester.uni_gen->cross_section().value==0 and tester.uni_gen->cross_section().error==0))
+	{
+	    return 1;
+	}
+	if(!(tester.proc_gen->cross_section().value==0 and tester.proc_gen->cross_section().error==0))
+	{
+	    return 1;
+	}
+	std::cerr<<"done."<<std::endl;
+	Camgen::log.enable_level=log_level::warning;
+    }
+
+    {
+	Camgen::log.enable_level=log_level::error;
+	std::string process("W- > mu-,nu_mubar");
+	std::string fname("test_output/proc_gen_test/W_ln");
+	std::cerr<<"Checking process generation for "<<process<<"............";
+	std::cerr.flush();
+	CM_algorithm<model_type,1,2>algo(process);
+	algo.load();
+	algo.construct();
+	process_generator_tester<model_type,1,2,rn_engine> tester(algo.get_tree_iterator(),fname);
+	if(!tester.run(n_evts,n_bins))
+	{
+	    return 1;
+	}
+	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
+	Camgen::log.enable_level=log_level::warning;
+    }
+
+    {
+	Camgen::log.enable_level=log_level::error;
+	std::string process("t > b,mu+,nu_mu");
+	std::string fname("test_output/proc_gen_test/t_bln");
+	std::cerr<<"Checking process generation for "<<process<<"............";
+	std::cerr.flush();
+	CM_algorithm<model_type,1,3>algo(process);
+	algo.load();
+	algo.construct();
+	process_generator_tester<model_type,1,3,rn_engine> tester(algo.get_tree_iterator(),fname);
+	if(!tester.run(n_evts,n_bins))
+	{
+	    return 1;
+	}
+	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
+	Camgen::log.enable_level=log_level::warning;
+    }
+
+    {
+	Camgen::log.enable_level=log_level::error;
+	model_type::M_h0=200;
+	model_type::refresh_widths();
+	std::string process("h0 > e-,nu_ebar,mu+,nu_mu");
+	std::string fname("test_output/proc_gen_test/h_WW_2l2n");
+	std::cerr<<"Checking process generation for "<<process<<"............";
+	std::cerr.flush();
+	CM_algorithm<model_type,1,4>algo(process);
+	algo.load();
+	algo.construct();
+	process_generator_tester<model_type,1,4,rn_engine> tester(algo.get_tree_iterator(),fname);
+	if(!tester.run(n_evts,n_bins))
+	{
+	    return 1;
+	}
+	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
+	Camgen::log.enable_level=log_level::warning;
+    }
+
+    {
+	Camgen::log.enable_level=log_level::error;
+	model_type::M_h0=140;
+	model_type::refresh_widths();
+	std::string process("h0 > e-,nu_ebar,mu+,nu_mu");
+	std::string fname("test_output/proc_gen_test/h_WW*_2l2n");
+	std::cerr<<"Checking process generation for "<<process<<"............";
+	std::cerr.flush();
+	CM_algorithm<model_type,1,4>algo(process);
+	algo.load();
+	algo.construct();
+	process_generator_tester<model_type,1,4,rn_engine> tester(algo.get_tree_iterator(),fname);
+	if(!tester.run(n_evts,n_bins))
+	{
+	    return 1;
+	}
+	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
+	Camgen::log.enable_level=log_level::warning;
+    }
+
+    {
+	Camgen::log.enable_level=log_level::error;
+	model_type::M_h0=200;
+	model_type::refresh_widths();
+	std::string process("h0 > mu-,nu_mubar,mu+,nu_mu");
+	std::string fname("test_output/proc_gen_test/h_2l2n2");
+	std::cerr<<"Checking process generation for "<<process<<"............";
+	std::cerr.flush();
+	CM_algorithm<model_type,1,4>algo(process);
+	algo.load();
+	algo.construct();
+	process_generator_tester<model_type,1,4,rn_engine> tester(algo.get_tree_iterator(),fname);
+	if(!tester.run(n_evts,n_bins))
+	{
+	    return 1;
+	}
+	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
+	Camgen::log.enable_level=log_level::warning;
+    }
+
+    {
+	Camgen::log.enable_level=log_level::error;
+	model_type::M_h0=200;
+	model_type::refresh_widths();
+	std::string process("h0 > mu-,mu+,e-,e+");
+	std::string fname("test_output/proc_gen_test/h_ZZ_4l");
+	std::cerr<<"Checking process generation for "<<process<<"............";
+	std::cerr.flush();
+	CM_algorithm<model_type,1,4>algo(process);
+	algo.load();
+	algo.construct();
+	process_generator_tester<model_type,1,4,rn_engine> tester(algo.get_tree_iterator(),fname);
+	if(!tester.run(n_evts,n_bins))
+	{
+	    return 1;
+	}
+	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
+	Camgen::log.enable_level=log_level::warning;
+    }
+
+    {
+	Camgen::log.enable_level=log_level::error;
+	model_type::M_h0=140;
+	model_type::refresh_widths();
+	std::string process("h0 > mu-,mu+,e-,e+");
+	std::string fname("test_output/proc_gen_test/h_ZZ*_4l");
+	std::cerr<<"Checking process generation for "<<process<<"............";
+	std::cerr.flush();
+	CM_algorithm<model_type,1,4>algo(process);
+	algo.load();
+	algo.construct();
+	process_generator_tester<model_type,1,4,rn_engine> tester(algo.get_tree_iterator(),fname);
+	if(!tester.run(n_evts,n_bins))
+	{
+	    return 1;
+	}
+	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
+	Camgen::log.enable_level=log_level::warning;
+    }
 }

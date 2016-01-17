@@ -39,7 +39,7 @@ int main()
     std::size_t n_bins=100;
 
     std::cout<<"--------------------------------------------------------------------------"<<std::endl;
-    std::cout<<"testing hadronic tree MC with forward shat/y-sampling....................."<<std::endl;
+    std::cout<<"testing recursive phase space MC with forward shat/y-sampling............."<<std::endl;
     std::cout<<"--------------------------------------------------------------------------"<<std::endl;
 
     psgen_type=phase_space_generators::recursive;
@@ -50,7 +50,7 @@ int main()
 	std::string process("u,dbar > e+,e-");
 	double E1=500;
 	double E2=500;
-	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr<<"Checking "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,2,2>algo(process);
 	algo.load();
@@ -83,7 +83,7 @@ int main()
 	std::string process("u,ubar > t,tbar");
 	double E1=100;
 	double E2=100;
-	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr<<"Checking "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,2,2>algo(process);
 	algo.load();
@@ -117,7 +117,7 @@ int main()
 	std::string fname("test_output/ps_tree_shat_test/qq_qq");
 	double E1=500;
 	double E2=500;
-	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr<<"Checking "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,2,2>algo(process);
 	algo.load();
@@ -144,7 +144,7 @@ int main()
 	double E1=500;
 	double E2=500;
 	double mmin=20;
-	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr<<"Checking "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,2,2>algo(process);
 	algo.load();
@@ -175,7 +175,7 @@ int main()
 	double E1=500;
 	double E2=500;
 	double mmin=20;
-	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr<<"Checking "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,2,2>algo(process);
 	algo.load();
@@ -205,7 +205,7 @@ int main()
 	double E1=500;
 	double E2=500;
 	double mmin=20;
-	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr<<"Checking "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,2,3>algo(process);
 	algo.load();
@@ -232,7 +232,7 @@ int main()
 	set_beam_energy(-1,500);
 	set_beam_energy(-2,500);
 	double mmin=20;
-	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr<<"Checking "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,2,4>algo(process);
 	algo.load();
@@ -256,7 +256,7 @@ int main()
 	std::string fname("test_output/ps_tree_shat_test/gg_tth");
 	set_beam_energy(-1,500);
 	set_beam_energy(-2,500);
-	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr<<"Checking "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,2,3>algo(process);
 	algo.load();
@@ -280,7 +280,7 @@ int main()
 	std::string fname("test_output/ps_tree_shat_test/gg_ttbb");
 	set_beam_energy(-1,500);
 	set_beam_energy(-2,500);
-	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr<<"Checking "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,2,4>algo(process);
 	algo.load();
@@ -303,7 +303,7 @@ int main()
 	std::string fname("test_output/ps_tree_shat_test/gg_ttllnn");
 	set_beam_energy(-1,500);
 	set_beam_energy(-2,500);
-	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr<<"Checking "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,2,6>algo(process);
 	algo.load();
@@ -320,7 +320,7 @@ int main()
 	Camgen::log.enable_level=log_level::warning;
     }
     std::cout<<"--------------------------------------------------------------------------"<<std::endl;
-    std::cout<<"testing hadronic tree MC with forward xx-sampling........................."<<std::endl;
+    std::cout<<"testing recursive phase space MC with forward xx-sampling................."<<std::endl;
     std::cout<<"--------------------------------------------------------------------------"<<std::endl;
 
     isgen_type=initial_states::proton_proton_xx;
@@ -332,7 +332,7 @@ int main()
 	std::string fname("test_output/ps_tree_shat_test/qqxx_qq");
 	double E1=500;
 	double E2=500;
-	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr<<"Checking "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,2,2>algo(process);
 	algo.load();
@@ -359,7 +359,7 @@ int main()
 	double E1=500;
 	double E2=500;
 	double mmin=20;
-	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr<<"Checking "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,2,2>algo(process);
 	algo.load();
@@ -390,7 +390,7 @@ int main()
 	double E1=500;
 	double E2=500;
 	double mmin=20;
-	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr<<"Checking "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,2,2>algo(process);
 	algo.load();
@@ -420,7 +420,7 @@ int main()
 	double E1=500;
 	double E2=500;
 	double mmin=20;
-	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr<<"Checking "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,2,3>algo(process);
 	algo.load();
@@ -447,7 +447,7 @@ int main()
 	set_beam_energy(-1,500);
 	set_beam_energy(-2,500);
 	double mmin=20;
-	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr<<"Checking "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,2,4>algo(process);
 	algo.load();
@@ -471,7 +471,7 @@ int main()
 	std::string fname("test_output/ps_tree_shat_test/ggxx_tth");
 	set_beam_energy(-1,500);
 	set_beam_energy(-2,500);
-	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr<<"Checking "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,2,3>algo(process);
 	algo.load();
@@ -495,7 +495,7 @@ int main()
 	std::string fname("test_output/ps_tree_shat_test/ggxx_ttbb");
 	set_beam_energy(-1,500);
 	set_beam_energy(-2,500);
-	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr<<"Checking "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,2,4>algo(process);
 	algo.load();
@@ -518,7 +518,7 @@ int main()
 	std::string fname("test_output/ps_tree_shat_test/ggxx_ttllnn");
 	set_beam_energy(-1,500);
 	set_beam_energy(-2,500);
-	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr<<"Checking "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,2,6>algo(process);
 	algo.load();

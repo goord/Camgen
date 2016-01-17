@@ -49,7 +49,7 @@ int main()
     {
 	Camgen::log.enable_level=log_level::error;
 	std::string process("h0 > gamma,gamma");
-	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr<<"Checking "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,1,2>algo(process);
 	algo.load();
@@ -79,7 +79,7 @@ int main()
     {
 	Camgen::log.enable_level=log_level::error;
 	std::string process("gamma > e+,e-");
-	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr<<"Checking "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,1,2>algo(process);
 	algo.load();
@@ -112,7 +112,7 @@ int main()
 	model_type::refresh_widths();
 	std::string process("h0 > e+,e-,mu+,mu-");
 	std::string fname("test_output/ps_tree_grid_test/h_4l");
-	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr<<"Checking "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,1,4>algo(process);
 	algo.load();
@@ -136,7 +136,7 @@ int main()
 	model_type::refresh_widths();
 	std::string process("h0 > mu-,nu_mubar,mu+,nu_mu");
 	std::string fname("test_output/ps_tree_grid_test/h_WW_2l2n");
-	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr<<"Checking "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,1,4>algo(process);
 	algo.load();
@@ -155,7 +155,7 @@ int main()
     }
 
     std::cout<<"-------------------------------------------------------------------------"<<std::endl;
-    std::cout<<"testing ps_tree multichannel adaptation in scattering...................."<<std::endl;
+    std::cout<<"testing ps_tree grid adaptation in scattering............................"<<std::endl;
     std::cout<<"-------------------------------------------------------------------------"<<std::endl;
     
     {
@@ -163,7 +163,7 @@ int main()
 	std::string process("e+,e- > u,dbar");
 	double E1=500;
 	double E2=500;
-	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr<<"Checking "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,2,2>algo(process);
 	algo.load();
@@ -197,7 +197,7 @@ int main()
 	std::string process("e+,e- > t,tbar");
 	double E1=100;
 	double E2=100;
-	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr<<"Checking "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,2,2>algo(process);
 	algo.load();
@@ -232,7 +232,7 @@ int main()
 	std::string fname("test_output/ps_tree_grid_test/ee_ee");
 	double E1=50;
 	double E2=50;
-	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr<<"Checking "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,2,2>algo(process);
 	algo.load();
@@ -259,7 +259,7 @@ int main()
 	std::string fname("test_output/ps_tree_grid_test/ee_h2n");
 	double E1=250;
 	double E2=250;
-	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr<<"Checking "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,2,3>algo(process);
 	algo.load();
@@ -287,7 +287,7 @@ int main()
 	double E1=250;
 	double E2=250;
 	double mmin=10;
-	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr<<"Checking "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,2,4>algo(process);
 	algo.load();
@@ -316,7 +316,7 @@ int main()
 	double E1=250;
 	double E2=250;
 	double mmin=10;
-	std::cerr<<"Checking phase space tree decomposition for "<<process<<"............";
+	std::cerr<<"Checking "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,2,4>algo(process);
 	algo.load();
