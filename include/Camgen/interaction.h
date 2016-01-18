@@ -8,7 +8,7 @@
 #ifndef CAMGEN_INTERACTION_H_
 #define CAMGEN_INTERACTION_H_
 
-#include <Camgen/utils.h>
+#include <Camgen/c_utils.h>
 #include <Camgen/curr_iter_comp.h>
 #include <Camgen/vertex.h>
 #include <Camgen/def_args.h>

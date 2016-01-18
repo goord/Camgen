@@ -5,8 +5,8 @@
 // see COPYING for details.
 //
 
-#ifndef CAMGEN_UTILS_H_
-#define CAMGEN_UTILS_H_
+#ifndef CAMGEN_C_UTILS_H_
+#define CAMGEN_C_UTILS_H_
 
 #include <string>
 #include <sstream>
@@ -15,14 +15,10 @@
 #include <complex>
 #include <Camgen/num_utils.h>
 
-
-/* * * * * * * * * * * * * *
- * Utilities for Camgen... *
- *                         *
- * * * * * * * * * * * * * */
-
-
-//TODO: Rename to c_utils.h
+/* * * * * * * * * * * * * * * * * * * * * *
+ * Utilities for complex numbers in Camgen *
+ *                                         *
+ * * * * * * * * * * * * * * * * * * * * * */
 
 namespace Camgen
 {
@@ -59,20 +55,6 @@ namespace Camgen
     template<class T>std::complex<T>make_zbar(const std::complex<T>& z1,const std::complex<T>& z2)
     {
 	return std::complex<T>(z1.real()+z2.imag(),z1.imag()-z2.real());
-    }
-
-    /* Evaluates the signed root of a real number: */
-
-    template<class T>T sgn_sqrt(const T& x)
-    {
-	return (x<(T)0)?(-std::sqrt(-x)):(std::sqrt(x));
-    }
-
-    /* Evaluates the signed square of a real number: */
-
-    template<class T>T sgn_sq(const T& x)
-    {
-	return (x<(T)0)?(-x*x):(x*x);
     }
 
     /* Output utilities for simple complex numbers appearing in algebraic
@@ -235,6 +217,7 @@ namespace Camgen
     /* String-producing function for object types for which the streaming
      * operator is overloaded: */
 
+    //TODO: move to general utils...
     template<class T>std::string make_string(const T& object)
     {
 	std::stringstream ss;
@@ -243,5 +226,5 @@ namespace Camgen
     }
 }
 
-#endif /*CAMGEN_UTILS_H_*/
+#endif /*CAMGEN_C_UTILS_H_*/
 

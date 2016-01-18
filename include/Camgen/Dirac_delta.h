@@ -14,7 +14,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * */
 
 #include <sstream>
-#include <Camgen/utils.h>
+#include <Camgen/num_utils.h>
 #include <Camgen/val_gen.h>
 
 namespace Camgen

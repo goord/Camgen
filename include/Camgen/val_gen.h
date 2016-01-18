@@ -13,7 +13,7 @@
 #define CAMGEN_VAL_GEN_H_
 
 #include <limits>
-#include <Camgen/utils.h>
+#include <Camgen/num_utils.h>
 #include <Camgen/logstream.h>
 #include <Camgen/debug.h>
 #include <Camgen/MC_gen.h>

@@ -11,7 +11,6 @@
 #include <vector>
 #include <Camgen/debug.h>
 #include <Camgen/vector.h>
-#include <Camgen/utils.h>
 #include <Camgen/product_type.h>
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

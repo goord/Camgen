@@ -17,7 +17,7 @@
  *                                                     *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#include <Camgen/utils.h>
+#include <Camgen/num_utils.h>
 #include <Camgen/logstream.h>
 #include <Camgen/MC_int.h>
 #include <Camgen/whist.h>

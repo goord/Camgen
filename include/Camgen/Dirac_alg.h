@@ -8,6 +8,7 @@
 #ifndef CAMGEN_DIRAC_ALG_H_
 #define CAMGEN_DIRAC_ALG_H_
 
+#include <Camgen/c_utils.h>
 #include <Camgen/Dirac_dim.h>
 #include <Camgen/vector.h>
 #include <Camgen/tensor.h>

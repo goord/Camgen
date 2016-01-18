@@ -20,7 +20,7 @@
 #include <iomanip>
 #include <sstream>
 #include <Camgen/vector.h>
-#include <Camgen/utils.h>
+#include <Camgen/num_utils.h>
 #include <Camgen/debug.h>
 #include <Camgen/logstream.h>
 #include <Camgen/MC_config.h>

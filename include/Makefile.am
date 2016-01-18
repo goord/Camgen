@@ -8,6 +8,7 @@ Camgen_HEADERS = Camgen/adj_rep.h		\
 	         Camgen/bit_string.h		\
 	         Camgen/Breit_Wigner.h		\
 	         Camgen/bspart.h		\
+	         Camgen/c_utils.h		\
 	         Camgen/chain_if.h		\
 	         Camgen/charge_conj.h		\
 	         Camgen/CM_algo.h		\
@@ -228,7 +229,6 @@ Camgen_HEADERS = Camgen/adj_rep.h		\
 	         Camgen/uniform.h		\
 	         Camgen/unpack_vert.h		\
 	         Camgen/unused.h		\
-	         Camgen/utils.h			\
 	         Camgen/val_gen.h		\
 	         Camgen/val_gen_fac.h		\
 	         Camgen/val_gen_grid.h		\

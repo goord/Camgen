@@ -116,6 +116,20 @@ namespace Camgen
     {
 	return (is_number(x) and x!=std::numeric_limits<T>::infinity() and x!=-std::numeric_limits<T>::infinity());
     }
+
+    /// Evaluates the signed root of a real number.
+
+    template<class T>T sgn_sqrt(const T& x)
+    {
+	return (x<(T)0)?(-std::sqrt(-x)):(std::sqrt(x));
+    }
+
+    /// Evaluates the signed square of a real number.
+
+    template<class T>T sgn_sq(const T& x)
+    {
+	return (x<(T)0)?(-x*x):(x*x);
+    }
 }
 
 #endif /*CAMGEN_NUM_UTILS_H_*/

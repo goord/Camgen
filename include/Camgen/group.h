@@ -10,7 +10,7 @@
 
 #include <Camgen/debug.h>
 #include <Camgen/logstream.h>
-#include <Camgen/utils.h>
+#include <Camgen/c_utils.h>
 #include <vector>
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

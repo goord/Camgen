@@ -10,7 +10,7 @@
 
 #include <Camgen/forward_decs.h>
 #include <Camgen/debug.h>
-#include <Camgen/utils.h>
+#include <Camgen/c_utils.h>
 #include <Camgen/tensor.h>
 #include <Camgen/vector.h>
 
