@@ -8,7 +8,7 @@
 #include <Camgen/SM.h>
 #include <Camgen/stdrand.h>
 #include <Camgen/rambo.h>
-#include <Camgen/utils.h>
+#include <Camgen/num_utils.h>
 #include <Camgen/psgen_fac.h>
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

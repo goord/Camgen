@@ -673,7 +673,6 @@ namespace Camgen
 	    }
 
 	    /* Cleans disjoint pieces from the tree: */
-	    //TODO: make it stricter
 
 	    void clean_tree()
 	    {
@@ -688,6 +687,31 @@ namespace Camgen
 		    }
 		}
 		typename branching_container::iterator it_end=std::remove(ps_branchings.begin(),ps_branchings.end(),static_cast<branching_type*>(NULL));
+		ps_branchings.erase(it_end,ps_branchings.end());
+		for(typename branching_container::iterator it=ps_branchings.begin();it!=ps_branchings.end();++it)
+		{
+		    particle_channel_type* channel=(*it)->incoming_channel;
+		    if(channel->on_shell())
+		    {
+			continue;
+		    }
+		    bool disconnected=true;
+		    for(typename branching_container::iterator it2=ps_branchings.begin();it2!=ps_branchings.end();++it2)
+		    {
+			if(*it2!=NULL and std::find((*it2)->begin_channels_out(),(*it2)->end_channels_out(),channel)!=(*it2)->end_channels_out())
+			{
+			    disconnected=false;
+			    break;
+			}
+		    }
+		    if(disconnected)
+		    {
+			channel->remove_branching(*it);
+			delete *it;
+			*it=NULL;
+		    }
+		}
+		it_end=std::remove(ps_branchings.begin(),ps_branchings.end(),static_cast<branching_type*>(NULL));
 		ps_branchings.erase(it_end,ps_branchings.end());
 	    }
 

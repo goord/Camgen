@@ -137,6 +137,7 @@ namespace Camgen
 	    {
 		value_type s1max=this->s2_min()+this->s-2*std::sqrt(this->s2_min()*this->s);
 		this->s1_generator->set_upper_bound(s1max);
+		this->s1_generator->refresh_bounds();
 		if(!this->s1_generator->generate())
 		{
 		    this->weight()=(value_type)0;
@@ -266,7 +267,7 @@ namespace Camgen
     /// Generates a constrained pair of invariant masses with multichannel
     /// adaptive symmetry.
 
-    template<class value_t,class rng_t>class symmetric_s_generator_composition: public s_pair_generator<value_t,rng_t>, multi_channel<value_t,rng_t>
+    template<class value_t,class rng_t>class symmetric_s_generator_composition: public virtual s_pair_generator<value_t,rng_t>, multi_channel<value_t,rng_t>
     {
 	public:
 

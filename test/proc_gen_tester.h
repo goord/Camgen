@@ -94,6 +94,10 @@ namespace Camgen
 
 		    if(ps_generated)
 		    {
+			if(proc_gen->integrand()==0)
+			{
+			    proc_gen->print_amplitude(std::cerr);
+			}
 			if(!skip_check and !proc_gen->get_momentum_generator()->check())
 			{
 			    proc_gen->get_momentum_generator()->print(std::cerr);
@@ -109,6 +113,10 @@ namespace Camgen
 			    Camgen::log<<"Invalid phase space integrand encountered: "<<proc_gen->integrand()<<endlog;
 			    return false;
 			}
+		    }
+		    else
+		    {
+//			proc_gen->get_momentum_generator()->print(std::cerr);
 		    }
 		    if(verbose)
 		    {

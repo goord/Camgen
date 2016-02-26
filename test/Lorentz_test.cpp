@@ -7,7 +7,7 @@
 
 #include <iostream>
 #include <Camgen/license_print.h>
-#include <Camgen/utils.h>
+#include <Camgen/num_utils.h>
 #include <Camgen/vector.h>
 #include <Camgen/Lorentz.h>
 #include <Camgen/Minkowski.h>

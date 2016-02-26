@@ -164,7 +164,7 @@ namespace Camgen
 	    
 	    bool evaluate_weight()
 	    {
-		return evaluate_weight(false);
+		return evaluate_weight(true);
 	    }
 
 	    /// Weight evaluation method with recursion flag.

@@ -28,7 +28,7 @@ int main()
     
     set_initial_state_type(isgen_type);
     set_phase_space_generator_type(psgen_type);
-    set_s_pair_generation_mode(s_pair_generation_modes::hit_and_miss);
+    set_s_pair_generation_mode(s_pair_generation_modes::symmetric);
     std::string fext=plot_config::gnuplot_path==NULL?".dat/.gp":".eps";
     file_utils::create_directory("test_output/proc_gen_test");
     
@@ -82,6 +82,44 @@ int main()
 	    return 1;
 	}
 	if(!(tester.proc_gen->cross_section().value==0 and tester.proc_gen->cross_section().error==0))
+	{
+	    return 1;
+	}
+	std::cerr<<"done."<<std::endl;
+	Camgen::log.enable_level=log_level::warning;
+    }
+
+    {
+	Camgen::log.enable_level=log_level::error;
+	std::string process("h0 > e-,nu_ebar,mu+,nu_mu");
+	std::cerr<<"Checking event correlation for "<<process<<"............";
+	std::cerr.flush();
+	CM_algorithm<model_type,1,4>algo(process);
+	algo.load();
+	algo.construct();
+	process_generator_factory<model_type,1,4,rn_engine> proc_gen_fac;
+	process_generator<model_type,1,4,rn_engine>* proc_gen=proc_gen_fac.create_generator(algo.get_tree_iterator());
+	random_number_stream<model_type::value_type,rn_engine>::reset_engine();
+	model_type::value_type w1(0);
+	std::size_t n1(0);
+	do
+	{
+	    proc_gen->generate();
+	    w1=proc_gen->weight();
+	    n1++;
+	}
+	while(w1==0);
+	random_number_stream<model_type::value_type,rn_engine>::reset_engine();
+	model_type::value_type w2(0);
+	std::size_t n2(0);
+	do
+	{
+	    proc_gen->generate();
+	    w2=proc_gen->weight();
+	    n2++;
+	}
+	while(w2==0);
+	if(n1!=n2 or w1!=w2)
 	{
 	    return 1;
 	}
@@ -145,7 +183,7 @@ int main()
 	Camgen::log.enable_level=log_level::warning;
     }
 
-    {
+	    {
 	Camgen::log.enable_level=log_level::error;
 	model_type::M_h0=140;
 	model_type::refresh_widths();
@@ -159,6 +197,7 @@ int main()
 	process_generator_tester<model_type,1,4,rn_engine> tester(algo.get_tree_iterator(),fname);
 	if(!tester.run(n_evts,n_bins))
 	{
+	    tester.proc_gen->print_ps(std::cerr);
 	    return 1;
 	}
 	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
@@ -179,6 +218,7 @@ int main()
 	process_generator_tester<model_type,1,4,rn_engine> tester(algo.get_tree_iterator(),fname);
 	if(!tester.run(n_evts,n_bins))
 	{
+	    tester.proc_gen->print_ps(std::cerr);
 	    return 1;
 	}
 	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
@@ -209,8 +249,8 @@ int main()
 	Camgen::log.enable_level=log_level::error;
 	model_type::M_h0=140;
 	model_type::refresh_widths();
-	std::string process("h0 > mu-,mu+,e-,e+");
-	std::string fname("test_output/proc_gen_test/h_ZZ*_4l");
+	std::string process("h0 > nu_mu,nu_mubar,nu_e,nu_ebar");
+	std::string fname("test_output/proc_gen_test/h_ZZ*_4n");
 	std::cerr<<"Checking process generation for "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,1,4>algo(process);

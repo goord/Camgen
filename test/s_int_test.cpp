@@ -122,7 +122,7 @@ int main()
 	Breit_Wigner_type* channel2=new Breit_Wigner_type(&M2,&W2);
 	channel2->set_lower_bound(0.25*M1*M1);
 	s_int_tester<value_type,std::random>tester(channel1,channel2);
-	tester.run(M_min1+M_min2,M_max,N_samples,N_MC,file,"postscript color");
+	tester.run(M_min1+M_min2,M1+M2+50.,N_samples,N_MC,file,"postscript color");
 	delete channel1;
 	delete channel2;
 	std::string output=plot_config::gnuplot_path==NULL?file+".dat/.gp":file+".eps";

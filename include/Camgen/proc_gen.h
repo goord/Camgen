@@ -1071,20 +1071,6 @@ namespace Camgen
 		return ps_factor;
 	    }
 
-	    /// Returns the initial-state phase space weight.
-
-	    value_type is_weight() const
-	    {
-		return (ps_gen==NULL)?0:(ps_gen->is_weight());
-	    }
-
-	    /// Returns the final-state phase space weight.
-
-	    value_type fs_weight() const
-	    {
-		return (ps_gen==NULL)?0:(ps_gen->fs_weight());
-	    }
-
 	    /// Returns the helicity weight.
 
 	    const value_type& helicity_weight() const
@@ -1167,6 +1153,12 @@ namespace Camgen
 	    std::ostream& print_process(std::ostream& os=std::cout) const
 	    {
 		amplitude->print_process(os);
+		return os;
+	    }
+
+	    std::ostream& print_amplitude(std::ostream& os=std::cout) const
+	    {
+		amplitude->print(os);
 		return os;
 	    }
 
