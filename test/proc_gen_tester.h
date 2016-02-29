@@ -51,7 +51,7 @@ namespace Camgen
 
 	    // Constructor. Takes an amplitude subprocess iterator as argument.
 	    
-	    process_generator_tester(CM_tree_iterator amplitude, const std::string& fname):filename(fname),proc_gen_fac(new process_generator_factory_type())
+	    process_generator_tester(CM_tree_iterator amplitude, const std::string& fname):filename(fname),proc_gen_fac(new process_generator_factory_type()),pTcut1(NULL),pTcut2(NULL)
 	    {
 		proc_gen=proc_gen_fac->create_generator(amplitude);
 		proc_gen->set_auto_update(true);
@@ -94,10 +94,6 @@ namespace Camgen
 
 		    if(ps_generated)
 		    {
-			if(proc_gen->integrand()==0)
-			{
-			    proc_gen->print_amplitude(std::cerr);
-			}
 			if(!skip_check and !proc_gen->get_momentum_generator()->check())
 			{
 			    proc_gen->get_momentum_generator()->print(std::cerr);
@@ -116,7 +112,7 @@ namespace Camgen
 		    }
 		    else
 		    {
-//			proc_gen->get_momentum_generator()->print(std::cerr);
+			//proc_gen->get_momentum_generator()->print(std::cerr);
 		    }
 		    if(verbose)
 		    {
@@ -189,6 +185,39 @@ namespace Camgen
 		delete proc_gen;
 		delete uni_gen;
 	    }
+
+	    /* Sets a minimal pT: */
+
+	    bool set_pT_min(const value_type& value,int i=0)
+	    {
+		if(pTcut1!=NULL)
+		{
+		    pTcut1->value=value;
+		}
+		else
+		{
+		    pTcut1 = new pT_min_cut<model_t,N_out>(value,i);
+		    pTcut1->generator=uni_gen->get_momentum_generator();
+		    uni_gen->insert_cut(pTcut1);
+		}
+
+		if(pTcut2!=NULL)
+		{
+		    pTcut2->value=value;
+		}
+		else
+		{
+		    pTcut2 = new pT_min_cut<model_t,N_out>(value,i);
+		    pTcut2->generator=proc_gen->get_momentum_generator();
+		    proc_gen->insert_cut(pTcut2);
+		}
+		return true;
+	    }
+
+	private:
+
+	    pT_min_cut<model_t,N_out>* pTcut1;
+	    pT_min_cut<model_t,N_out>* pTcut2;
     };
 
 }

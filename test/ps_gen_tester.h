@@ -30,7 +30,7 @@ namespace Camgen
 
 	    typedef typename model_t::value_type value_type;
 
-	    ps_generator_base<model_t>* generator;
+	    const ps_generator_base<model_t>* generator;
 
 	    value_type value;
 
@@ -335,19 +335,25 @@ namespace Camgen
 	    {
 		if(pTcut1!=NULL)
 		{
-		    delete pTcut1;
+		    pTcut1->value=value;
 		}
-		pTcut1 = new pT_min_cut<model_t,N_out>(value,i);
-		pTcut1->generator=uni_gen;
-		uni_gen->insert_cut(pTcut1);
+		else
+		{
+		    pTcut1 = new pT_min_cut<model_t,N_out>(value,i);
+		    pTcut1->generator=uni_gen;
+		    uni_gen->insert_cut(pTcut1);
+		}
 
 		if(pTcut2!=NULL)
 		{
-		    delete pTcut2;
+		    pTcut2->value=value;
 		}
-		pTcut2 = new pT_min_cut<model_t,N_out>(value,i);
-		pTcut2->generator=ps_gen;
-		ps_gen->insert_cut(pTcut2);
+		else
+		{
+		    pTcut2 = new pT_min_cut<model_t,N_out>(value,i);
+		    pTcut2->generator=ps_gen;
+		    ps_gen->insert_cut(pTcut2);
+		}
 		return true;
 	    }
 
