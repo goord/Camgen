@@ -457,11 +457,11 @@ int main()
 	Camgen::log.enable_level=log_level::warning;
     }
 
-/*    {
+    {
 	Camgen::log.enable_level=log_level::error;
 	std::string process("e+,e- > mu-,nu_mubar,W+");
-	double E1=100;
-	double E2=100;
+	double E1=250;
+	double E2=250;
 	std::string fname("test_output/proc_gen_test/ee_lnuW");
 	std::cerr<<"Checking process generation for "<<process<<"............";
 	std::cerr.flush();
@@ -477,5 +477,71 @@ int main()
 	}
 	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
 	Camgen::log.enable_level=log_level::warning;
-    }*/
+    }
+
+    {
+	Camgen::log.enable_level=log_level::error;
+	std::string process("e+,e- > mu-,nu_mubar,u,dbar");
+	double E1=100;
+	double E2=100;
+	std::string fname("test_output/proc_gen_test/ee_lnuqq");
+	std::cerr<<"Checking process generation for "<<process<<"............";
+	std::cerr.flush();
+	CM_algorithm<model_type,2,4>algo(process);
+	algo.load();
+	algo.construct();
+	process_generator_tester<model_type,2,4,rn_engine> tester(algo.get_tree_iterator(),fname);
+	tester.set_beam_energy(-1,E1);
+	tester.set_beam_energy(-2,E2);
+	if(!tester.run(n_evts,n_bins))
+	{
+	    return 1;
+	}
+	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
+	Camgen::log.enable_level=log_level::warning;
+    }
+
+    {
+	Camgen::log.enable_level=log_level::error;
+	std::string process("e+,e- > mu-,nu_mubar,W+,Z");
+	double E1=500;
+	double E2=500;
+	std::string fname("test_output/proc_gen_test/ee_munWZ");
+	std::cerr<<"Checking process generation for "<<process<<"............";
+	std::cerr.flush();
+	CM_algorithm<model_type,2,4>algo(process);
+	algo.load();
+	algo.construct();
+	process_generator_tester<model_type,2,4,rn_engine> tester(algo.get_tree_iterator(),fname);
+	tester.set_beam_energy(-1,E1);
+	tester.set_beam_energy(-2,E2);
+	if(!tester.run(n_evts,n_bins))
+	{
+	    return 1;
+	}
+	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
+	Camgen::log.enable_level=log_level::warning;
+    }
+
+    {
+	Camgen::log.enable_level=log_level::error;
+	std::string process("e+,e- > nu_e,nu_ebar,Z,Z");
+	double E1=500;
+	double E2=500;
+	std::string fname("test_output/proc_gen_test/ee_nnZZ");
+	std::cerr<<"Checking process generation for "<<process<<"............";
+	std::cerr.flush();
+	CM_algorithm<model_type,2,4>algo(process);
+	algo.load();
+	algo.construct();
+	process_generator_tester<model_type,2,4,rn_engine> tester(algo.get_tree_iterator(),fname);
+	tester.set_beam_energy(-1,E1);
+	tester.set_beam_energy(-2,E2);
+	if(!tester.run(n_evts,n_bins))
+	{
+	    return 1;
+	}
+	std::cerr<<"done, files "<<fname+fext<<" written."<<std::endl;
+	Camgen::log.enable_level=log_level::warning;
+    }
 }
