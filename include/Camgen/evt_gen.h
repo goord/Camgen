@@ -35,6 +35,14 @@ namespace Camgen
 
 	public:
 
+            struct subprocess_type
+            {
+                typedef process_generator<model_t,N_in,N_out,rng_t> generator_type;
+
+                generator_type* generator;
+                typename generator_type::value_type alpha;
+            };
+
 	    /* Type definitions: */
 
 	    typedef model_t model_type;
@@ -46,12 +54,9 @@ namespace Camgen
 	    typedef random_number_stream<value_type,rng_t> random_number_generator;
 	    typedef typename CM_algorithm<model_t,N_in,N_out>::tree_iterator CM_tree_iterator;
 	    typedef process_generator<model_t,N_in,N_out,rng_t> process_generator_type;
-	    typedef std::vector<process_generator_type*> process_container;
+	    typedef std::vector<subprocess_type> process_container;
 	    typedef typename process_container::iterator process_iterator;
 	    typedef typename process_container::const_iterator const_process_iterator;
-	    typedef typename process_generator_type::ps_generator_type ps_generator_type;
-	    typedef typename process_generator_type::helicity_generator_type helicity_generator_type;
-	    typedef typename process_generator_type::colour_generator_type colour_generator_type;
 	    typedef MC_integral<value_type> cross_section_type;
 	    typedef typename CM_algorithm<model_t,N_in,N_out>::phase_space_type phase_space_type;
 
@@ -60,30 +65,30 @@ namespace Camgen
 
 	    /// Process comparison according to ascending cross section.
 
-	    static bool xsec_less(const process_generator_type* proc1,const process_generator_type* proc2)
+	    static bool xsec_less(const subprocess_type& proc1,const subprocess_type& proc2)
 	    {
-		return proc1->cross_section().value<proc2->cross_section().value;
+		return proc1.generator->cross_section().value<proc2.generator->cross_section().value;
 	    }
 
 	    /// Process comparison class according to descending cross section.
 
-	    static bool xsec_more(const process_generator_type* proc1,const process_generator_type* proc2)
+	    static bool xsec_more(const subprocess_type& proc1,const subprocess_type& proc2)
 	    {
-		return proc1->cross_section().value>=proc2->cross_section().value;
+		return proc1.generator->cross_section().value>=proc2.generator->cross_section().value;
 	    }
 
 	    /// Process comparison according to ascending calling frequency.
 
-	    static bool alpha_less(const process_generator_type* proc1,const process_generator_type* proc2)
+	    static bool alpha_less(const subprocess_type& proc1,const subprocess_type& proc2)
 	    {
-		return proc1->alpha<proc2->alpha;
+		return proc1.alpha<proc2.alpha;
 	    }
 
 	    /// Process comparison class according to descending calling frequency.
 
-	    static bool alpha_more(const process_generator_type* proc1,const process_generator_type* proc2)
+	    static bool alpha_more(const subprocess_type& proc1,const subprocess_type& proc2)
 	    {
-		return proc1->alpha>proc2->alpha;
+		return proc1.alpha>proc2.alpha;
 	    }
 
 	    /// Throws a random value between min and max.
@@ -113,7 +118,7 @@ namespace Camgen
 	    {
 		for(size_type i=0;i<procs.size();++i)
 		{
-		    delete procs[i];
+		    delete procs[i].generator;
 		}
 	    }
 
@@ -124,7 +129,7 @@ namespace Camgen
 	    {
 		for(sub_proc=procs.begin();sub_proc!=procs.end();++sub_proc)
 		{
-		    (*sub_proc)->pre_initialise(n_evts,verbose);
+		    sub_proc->generator->pre_initialise(n_evts,verbose);
 		}
 		this->refresh_cross_section();
 		adapt_processes();
@@ -139,10 +144,10 @@ namespace Camgen
 		    if(verbose)
 		    {
 			std::stringstream ss;
-			(*sub_proc)->print_process(ss);
+			sub_proc->generator->print_process(ss);
 			std::cout<<std::endl<<ss.str()<<std::endl;
 		    }
-		    (*sub_proc)->initialise(channel_iters,channel_batch,grid_iters,grid_batch,verbose);
+		    sub_proc->generator->initialise(channel_iters,channel_batch,grid_iters,grid_batch,verbose);
 		    loop_process(sub_proc_evts,verbose);
 		}
 		this->refresh_cross_section();
@@ -154,9 +159,9 @@ namespace Camgen
 	    bool set_beam_energy(int n,const value_type& E)
 	    {
 		bool q=true;
-		for(size_type i=0;i<procs.size();++i)
+		for(process_iterator it=procs.begin();it!=procs.end();++it)
 		{
-		    q&=(procs[i]->set_beam_energy(n,E));
+		    q&=(it->generator->set_beam_energy(n,E));
 		}
 		return q;
 	    }
@@ -168,7 +173,7 @@ namespace Camgen
 		bool q=true;
 		for(process_iterator it=procs.begin();it!=procs.end();++it)
 		{
-		    q&=(*it)->set_m_min(i,j,sqrts);
+		    q&=it->generator->set_m_min(i,j,sqrts);
 		}
 		return q;
 	    }
@@ -179,9 +184,9 @@ namespace Camgen
 	    void set_auto_update(bool q)
 	    {
 		auto_update=q;
-		for(size_type i=0;i<procs.size();++i)
+		for(process_iterator it=procs.begin();it!=procs.end();++it)
 		{
-		    procs[i]->set_auto_update(q);
+		    it->generator->set_auto_update(q);
 		}
 	    }
 
@@ -190,9 +195,9 @@ namespace Camgen
 
 	    void set_auto_channel_adapt(size_type n)
 	    {
-		for(size_type i=0;i<procs.size();++i)
+		for(process_iterator it=procs.begin();it!=procs.end();++it)
 		{
-		    procs[i]->set_auto_channel_adapt(n);
+		    it->generator->set_auto_channel_adapt(n);
 		}
 	    }
 
@@ -209,9 +214,9 @@ namespace Camgen
 
 	    void set_auto_grid_adapt(size_type n)
 	    {
-		for(size_type i=0;i<procs.size();++i)
+		for(process_iterator it=procs.begin();it!=procs.end();++it)
 		{
-		    procs[i]->set_auto_grid_adapt(n);
+		    it->generator->set_auto_grid_adapt(n);
 		}
 	    }
 
@@ -246,9 +251,9 @@ namespace Camgen
 	    void insert_cut(phase_space_cut* cut)
 	    {
 		ps_cut=cut;
-		for(size_type i=0;i<procs.size();++i)
+		for(process_iterator it=procs.begin();it!=procs.end();++it)
 		{
-		    procs[i]->insert_cut(cut);
+		    it->generator->insert_cut(cut);
 		}
 	    }
 
@@ -257,9 +262,9 @@ namespace Camgen
 	    void insert_scale(scale_expression<value_type>* expr)
 	    {
 		scale=expr;
-		for(size_type i=0;i<procs.size();++i)
+		for(process_iterator it=procs.begin();it!=procs.end();++it)
 		{
-		    procs[i]->insert_scale(expr);
+		    it->generator->insert_scale(expr);
 		}
 	    }
 
@@ -270,14 +275,14 @@ namespace Camgen
 		if(procs.size()==0)
 		{
 		    this->weight()=(value_type)0;
-		    return false;
+		    return true;
 		}
 		value_type rho=throw_number((value_type)0,(value_type)1);
 		sub_proc=procs.begin();
 		value_type r(0);
 		while(r<=rho and sub_proc!=procs.end())
 		{
-		    r+=(*sub_proc)->alpha;
+		    r+=sub_proc->alpha;
 		    ++sub_proc;
 		}
 		--sub_proc;
@@ -286,16 +291,27 @@ namespace Camgen
 		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"subprocess iterator overflow detected--no generation performed"<<endlog;
 		    return false;
 		}
-		bool q=(*sub_proc)->generate();
-		(*sub_proc)->refresh_cross_section();
-		this->integrand()=(*sub_proc)->integrand();
-		this->weight()=(*sub_proc)->weight()/(*sub_proc)->alpha;
+		bool q=sub_proc->generator->generate();
+		sub_proc->generator->refresh_cross_section();
+		this->integrand()=sub_proc->generator->integrand();
+		this->weight()=sub_proc->generator->weight()/sub_proc->alpha;
 		if(update_counter!=0 and auto_proc_adapt!=0 and update_counter%auto_proc_adapt==0)
 		{
 		    adapt_processes();
 		}
 		return q;
 	    }
+
+            /// Evaluates the weight of the current sub-process.
+
+            bool evaluate_weight()
+            {
+                if(sub_proc!=procs.end())
+                {
+                    return sub_proc->generator->evaluate_weight();
+                }
+                return false;
+            }
 
 	    /// Generates an unweighted event with argument cut object.
 
@@ -306,7 +322,7 @@ namespace Camgen
 		value_type r(0);
 		while(r<rho and sub_proc!=procs.end())
 		{
-		    r+=((*sub_proc)->cross_section().value);
+		    r+=(sub_proc->generator->cross_section().value);
 		    ++sub_proc;
 		}
 		--sub_proc;
@@ -315,12 +331,21 @@ namespace Camgen
 		    log(log_level::warning)<<"Subprocesses iterator overflow detected...no generation performed"<<endlog;
 		    return;
 		}
-		(*sub_proc)->generate_unweighted(verbose);
+		sub_proc->generator->generate_unweighted(verbose);
 		if(update_counter!=0 and auto_proc_adapt!=0 and update_counter%auto_proc_adapt==0)
 		{
 		    adapt_processes();
 		}
 	    }
+
+            void refresh_cross_section(bool with_integrand=true)
+            {
+                if(sub_proc!=procs.end())
+                {
+                    sub_proc->generator->refresh_cross_section(with_integrand);
+                }
+                this->cross_section()=cross_section_sum();
+            }
 
 	    /// Generates new event according to the given strategy argument.
 
@@ -338,7 +363,7 @@ namespace Camgen
 
 	    bool pass()
 	    {
-		return (sub_proc==procs.end())?false:((*sub_proc)->pass()); 
+		return (sub_proc==procs.end())?false:(sub_proc->generator->pass()); 
 	    }
 
 	    /// Resets all subprocess generators.
@@ -348,8 +373,8 @@ namespace Camgen
 		this->base_type::reset();
 		for(process_iterator it=procs.begin();it!=procs.end();++it)
 		{
-		    (*it)->reset();
-		    (*it)->alpha=(value_type)1/procs.size();
+		    it->generator->reset();
+		    it->alpha=(value_type)1/procs.size();
 		}
 		update_counter=0;
 	    }
@@ -361,7 +386,7 @@ namespace Camgen
 		this->base_type::reset_cross_section();
 		for(process_iterator it=procs.begin();it!=procs.end();++it)
 		{
-		    (*it)->reset_cross_section();
+		    it->generator->reset_cross_section();
 		}
 	    }
 
@@ -372,7 +397,7 @@ namespace Camgen
 		bool q=true;
 		for(process_iterator it=procs.begin();it!=procs.end();++it)
 		{
-		    q&=(*it)->refresh_m_min();
+		    q&=it->generator->refresh_m_min();
 		}
 		return q;
 	    }
@@ -385,7 +410,7 @@ namespace Camgen
 		bool q=true;
 		for(process_iterator it=procs.begin();it!=procs.end();++it)
 		{
-		    q&=(*it)->refresh_m_min(config);
+		    q&=it->generator->refresh_m_min(config);
 		}
 		return q;
 	    }
@@ -397,7 +422,7 @@ namespace Camgen
 		bool q=true;
 		for(process_iterator it=procs.begin();it!=procs.end();++it)
 		{
-		    q&=(*it)->refresh_Ecm();
+		    q&=it->generator->refresh_Ecm();
 		}
 		return q;
 	    }
@@ -409,7 +434,7 @@ namespace Camgen
 		bool q=true;
 		for(process_iterator it=procs.begin();it!=procs.end();++it)
 		{
-		    q&=(*it)->refresh_params();
+		    q&=it->generator->refresh_params();
 		}
 		return q;
 	    }
@@ -418,7 +443,10 @@ namespace Camgen
 
 	    void update()
 	    {
-		(*sub_proc)->update();
+                if(sub_proc!=procs.end())
+                {
+                    sub_proc->generator->update();
+                }
 		++update_counter;
 	    }
 
@@ -428,7 +456,7 @@ namespace Camgen
 	    {
 		for(process_iterator it=procs.begin();it!=procs.end();++it)
 		{
-		    (*it)->adapt_grids();
+		    it->generator->adapt_grids();
 		}
 	    }
 
@@ -438,7 +466,7 @@ namespace Camgen
 	    {
 		for(process_iterator it=procs.begin();it!=procs.end();++it)
 		{
-		    (*it)->adapt_channels();
+		    it->generator->adapt_channels();
 		}
 	    }
 
@@ -448,7 +476,7 @@ namespace Camgen
 	    {
 		for(process_iterator it=procs.begin();it!=procs.end();++it)
 		{
-		    (*it)->adapt();
+		    it->generator->adapt();
 		}
 		adapt_processes();
 	    }
@@ -465,25 +493,25 @@ namespace Camgen
 		value_type q=process_threshold*sigma/procs.size();
 		for(process_iterator it=procs.begin();it!=procs.end();++it)
 		{
-		    proc_xsec=(*it)->cross_section();
+		    proc_xsec=it->generator->cross_section();
 		    if((proc_xsec.value+proc_xsec.error)>q)
 		    {
-			(*it)->alpha=std::pow((*it)->cross_section().error,process_adaptivity);
-			norm+=(*it)->alpha;
+			it->alpha=std::pow(it->generator->cross_section().error,process_adaptivity);
+			norm+=it->alpha;
 		    }
 		    else
 		    {
 			std::cout<<"deleting process with xsec "<<proc_xsec<<" smaller than "<<q<<std::endl;
-			(*it)->alpha=(value_type)0;
+			it->alpha=(value_type)0;
 		    }
 		}
 		for(process_iterator it=procs.begin();it!=procs.end();++it)
 		{
-		    (*it)->alpha/=norm;
+		    it->alpha/=norm;
 		}
 		std::sort(procs.begin(),procs.end(),alpha_more);
 		process_iterator it=procs.begin();
-		while(it!=procs.end() and (*it)->alpha!=(value_type)0)
+		while(it!=procs.end() and it->alpha!=(value_type)0)
 		{
 		    ++it;
 		}
@@ -495,9 +523,9 @@ namespace Camgen
 		process_iterator it2;
 		while(it!=procs.end())
 		{
-		    algorithm.set_process((*it)->amplitude);
+		    algorithm.set_process(it->generator->amplitude);
 		    algorithm.remove_process();
-		    delete (*it);
+		    delete it->generator;
 		    ++it;
 		}
 		procs.resize(newsize);
@@ -510,7 +538,7 @@ namespace Camgen
 	    {
 		for(process_iterator it=procs.begin();it!=procs.end();++it)
 		{
-		    (*it)->bin_weights(bins);
+		    it->generator->bin_weights(bins);
 		}
 		return NULL;
 	    }
@@ -521,7 +549,7 @@ namespace Camgen
 	    {
 		for(process_iterator it=procs.begin();it!=procs.end();++it)
 		{
-		    (*it)->base_type::reduce_max_weight(eps_);
+		    it->generator->base_type::reduce_max_weight(eps_);
 		}
 		return 0;
 	    }
@@ -541,7 +569,7 @@ namespace Camgen
 
 		    for(const_process_iterator it=procs.begin();it!=procs.end();++it)
 		    {
-			MC_integral<value_type>xsect((*it)->cross_section());
+			MC_integral<value_type>xsect(it->generator->cross_section());
 			summed_xsec+=xsect.value;
 			summed_xsec.error+=(xsect.error*xsect.error);
 			summed_xsec.error_error+=(xsect.error_error*xsect.error_error);
@@ -579,14 +607,14 @@ namespace Camgen
 
 	    size_type process_id() const
 	    {
-		return ((*sub_proc)->id);
+		return sub_proc->generator->id;
 	    }
 
 	    /// Returns the i-th subprocess id.
 
 	    size_type process_id(size_type i) const
 	    {
-		return (procs[i]->id);
+		return procs[i].generator->id;
 	    }
 
 	    /// Returns the total cross section.
@@ -600,14 +628,14 @@ namespace Camgen
 
 	    MC_integral<value_type> xsec(size_type i) const
 	    {
-		return procs[i]->cross_section();
+		return procs[i].generator->cross_section();
 	    }
 
 	    /// Returns the current subprocess cross section.
 
 	    MC_integral<value_type> sub_xsec() const
 	    {
-		return (*sub_proc)->cross_section();
+		return sub_proc->generator->cross_section();
 	    }
 
 	    /// Returns the const reference to the i-th incoming momentum (no
@@ -615,7 +643,7 @@ namespace Camgen
 
 	    const momentum_type& p_in(size_type i) const
 	    {
-		return (*sub_proc)->p_in(i);
+		return sub_proc->generator->p_in(i);
 	    }
 
 	    /// Returns the const reference to the i-th incoming momentum (no
@@ -623,7 +651,7 @@ namespace Camgen
 
 	    const momentum_type& p_out(size_type i) const
 	    {
-		return (*sub_proc)->p_out(i);
+		return sub_proc->generator->p_out(i);
 	    }
 
 	    /// Returns the const reference to the i-th incoming mass (no
@@ -631,7 +659,7 @@ namespace Camgen
 
 	    value_type M_in(size_type i) const
 	    {
-		return (*sub_proc)->M_in(i);
+		return sub_proc->generator->M_in(i);
 	    }
 
 	    /// Returns the const reference to the i-th incoming mass (no
@@ -639,112 +667,112 @@ namespace Camgen
 
 	    value_type M_out(size_type i) const
 	    {
-		return (*sub_proc)->M_out(i);
+		return sub_proc->generator->M_out(i);
 	    }
 
 	    /// Returns the i-th incoming mass-squared (no range checking on i).
 
 	    value_type s_in(size_type i) const
 	    {
-		return (*sub_proc)->s_in(i);
+		return sub_proc->generator->s_in(i);
 	    }
 
 	    /// Returns the i-th outgoing mass-squared (no range checking on i).
 
 	    value_type s_out(size_type i) const
 	    {
-		return (*sub_proc)->s_out(i);
+		return sub_proc->generator->s_out(i);
 	    }
 	    
 	    /// Returns the i-th incoming mass (no range checking on i).
 
 	    value_type m_in(size_type i) const
 	    {
-		return (*sub_proc)->m_in(i);
+		return sub_proc->generator->m_in(i);
 	    }
 
 	    /// Returns the i-th outgoing mass (no range checking on i).
 
 	    value_type m_out(size_type i) const
 	    {
-		return (*sub_proc)->m_out(i);
+		return sub_proc->generator->m_out(i);
 	    }
 
 	    /// Returns the i-th beam id.
 
 	    int beam_id(int i) const
 	    {
-		return (*sub_proc)->beam_id(i);
+		return sub_proc->generator->beam_id(i);
 	    }
 
 	    /// Returns the cernlib pdf group number for the i-th incoming beam.
 
 	    int pdfg(int i) const
 	    {
-		return (*sub_proc)->pdfg(i);
+		return sub_proc->generator->pdfg(i);
 	    }
 
 	    /// Returns the cernlib pdf set number for the i-th incoming beam.
 
 	    int pdfs(int i) const
 	    {
-		return (*sub_proc)->pdfs(i);
+		return sub_proc->generator->pdfs(i);
 	    }
 
 	    /// Returns the i-th incoming particle id.
 
 	    int id_in(size_type i) const
 	    {
-		return (*sub_proc)->id_in(i);
+		return sub_proc->generator->id_in(i);
 	    }
 
 	    /// Returns the i-th outgoing particle id.
 
 	    int id_out(size_type i) const
 	    {
-		return (*sub_proc)->id_out(i);
+		return sub_proc->generator->id_out(i);
 	    }
 
 	    /// Method determining the colour connection for the event.
 
 	    void fill_colours(std::vector<int>& c,std::vector<int>& cbar) const
 	    {
-		(*sub_proc)->fill_colours(c,cbar);
+		sub_proc->generator->fill_colours(c,cbar);
 	    }
 
 	    /// Returns the total hadronic CM-frame energy.
 
 	    value_type Ecm() const
 	    {
-		return (*sub_proc)->Ecm();
+		return sub_proc->generator->Ecm();
 	    }
 
 	    /// Returns the total hadronic invariant mass-squared.
 
 	    value_type s_tot() const
 	    {
-		return (*sub_proc)->s_tot();
+		return sub_proc->generator->s_tot();
 	    }
 
 	    /// Returns the total partonic CM-frame energy.
 
 	    value_type Ecm_hat() const
 	    {
-		return (*sub_proc)->Ecm_hat();
+		return sub_proc->generator->Ecm_hat();
 	    }
 
 	    /// Returns the total partonic invariant mass-squared.
 
 	    value_type s_in() const
 	    {
-		return (*sub_proc)->s_in();
+		return sub_proc->generator->s_in();
 	    }
 
 	    /// Returns the total event weight.
 
 	    value_type w() const
 	    {
-		return (*sub_proc)->w();
+		return sub_proc->generator->w();
 	    }
 
 	    /// Returns the maximal event weight.
@@ -760,7 +788,7 @@ namespace Camgen
 
 	    value_type ps_weights(bool with_hels,bool with_cols) const
 	    {
-		return (*sub_proc)->ps_weights(with_hels,with_cols);
+		return sub_proc->generator->ps_weights(with_hels,with_cols);
 	    }
 
 	    /// Returns the flux, symmetry and conversion factors. The first
@@ -769,42 +797,42 @@ namespace Camgen
 
 	    value_type ps_factors(bool with_hels,bool with_cols) const
 	    {
-		return (*sub_proc)->ps_factors(with_hels,with_cols);
+		return sub_proc->generator->ps_factors(with_hels,with_cols);
 	    }
 
 	    /// Returns the i-th beam energy.
 
 	    value_type beam_energy(int i) const
 	    {
-		return (*sub_proc)->beam_energy(i);
+		return sub_proc->generator->beam_energy(i);
 	    }
 
 	    /// Returns the current factorisation scale.
 
 	    value_type mu_F() const
 	    {
-		return (*sub_proc)->mu_F();
+		return sub_proc->generator->mu_F();
 	    }
 
 	    /// Returns the factorisation scale.
 
 	    value_type F_scale()
 	    {
-		return (*sub_proc)->F_scale();
+		return sub_proc->generator->F_scale();
 	    }
 
 	    /// Returns the renormalisation scale.
 
 	    value_type R_scale()
 	    {
-		return (*sub_proc)->R_scale();
+		return sub_proc->generator->R_scale();
 	    }
 
 	    /// Returns the QCD scale.
 
 	    value_type QCD_scale()
 	    {
-		return (*sub_proc)->QCD_scale();
+		return sub_proc->generator->QCD_scale();
 	    }
 
 	    /// Returns the const i-th incoming particle phase space (no bound
@@ -812,7 +840,7 @@ namespace Camgen
 
 	    const phase_space_type* particle_in(size_type i) const
 	    {
-		return (*sub_proc)->particle_in(i);
+		return sub_proc->generator->particle_in(i);
 	    }
 
 	    /// Returns the const i-th incoming particle phase space (no bound
@@ -820,7 +848,7 @@ namespace Camgen
 
 	    const phase_space_type* particle_out(size_type i) const
 	    {
-		return (*sub_proc)->particle_out(i);
+		return sub_proc->generator->particle_out(i);
 	    }
 
 	    /// Returns the i-th const particle phase space, where negative values
@@ -828,21 +856,21 @@ namespace Camgen
 
 	    const phase_space_type* particle(int i) const
 	    {
-		return (*sub_proc)->particle(i);
+		return sub_proc->generator->particle(i);
 	    }
 
 	    /// Returns the const pointer to the n-th subprocess generator.
 
 	    const process_generator_type* process(size_type n) const
 	    {
-		return procs[n];
+		return procs[n].generator;
 	    }
 
 	    /// Returns the lastly generated const subprocess generator.
 
 	    const process_generator_type* process() const
 	    {
-		return *sub_proc;
+		return sub_proc->generator;
 	    }
 
 	    /// Returns the const iterator to the first process generator.
@@ -869,13 +897,13 @@ namespace Camgen
 		for(const_process_iterator it=procs.begin();it!=procs.end();++it)
 		{
 		    std::stringstream ss;
-		    (*it)->print_process(ss);
+		    it->generator->print_process(ss);
 		    os<<std::setw(60)<<ss.str();
-		    os<<std::setw(15)<<(*it)->cross_section().value;
-		    os<<std::setw(15)<<(*it)->cross_section().error;
-		    os<<std::setw(15)<<(*it)->cross_section().error_error;
-		    os<<std::setw(15)<<(*it)->alpha;
-		    os<<std::setw(10)<<(*it)->calls()<<std::endl;
+		    os<<std::setw(15)<<it->generator->cross_section().value;
+		    os<<std::setw(15)<<it->generator->cross_section().error;
+		    os<<std::setw(15)<<it->generator->cross_section().error_error;
+		    os<<std::setw(15)<<it->generator->alpha;
+		    os<<std::setw(10)<<it->generator->calls()<<std::endl;
 		}
 		os<<"--------------------------------------------------------------------------"<<std::endl;
 		os<<"Total: "<<cross_section_sum()<<std::endl;
@@ -890,12 +918,12 @@ namespace Camgen
 		value_type efficiency=0;
 		for(const_process_iterator it=procs.begin();it!=procs.end();++it)
 		{
-		    evt_counter+=((*it)->evt_counter);
-		    pos_evt_counter+=((*it)->pos_evt_counter);
-		    calls+=((*it)->calls());
-		    grid_adaptations+=((*it)->grid_adaptations);
-		    channel_adaptations+=((*it)->channel_adaptations);
-		    efficiency+=((*it)->efficiency()/procs.size());
+		    evt_counter+=(it->generator->evt_counter);
+		    pos_evt_counter+=(it->generator->pos_evt_counter);
+		    calls+=(it->generator->calls());
+		    grid_adaptations+=(it->generator->grid_adaptations);
+		    channel_adaptations+=(it->generator->channel_adaptations);
+		    efficiency+=(it->generator->efficiency()/procs.size());
 		}
 		os<<"###############################################################################################"<<std::endl;
 		os<<"Nr of subprocesses:                                "<<std::scientific<<procs.size()<<std::endl;
@@ -939,7 +967,7 @@ namespace Camgen
 		}
 		else
 		{
-		    (*(procs.begin()))->print_settings(os);
+		    procs.begin()->generator->print_settings(os);
 		}
 		return os;
 	    }
@@ -999,11 +1027,11 @@ namespace Camgen
 		    size_type batch=sub_proc_evts/10;
 		    for(size_type i=0;i<sub_proc_evts;++i)
 		    {
-			(*sub_proc)->throw_event();
-			(*sub_proc)->update();
-			(*sub_proc)->refresh_cross_section();
-			this->integrand()=(*sub_proc)->integrand();
-			this->weight()=(*sub_proc)->weight()/(*sub_proc)->alpha;
+			sub_proc->generator->throw_event();
+			sub_proc->generator->update();
+			sub_proc->generator->refresh_cross_section();
+			this->integrand()=sub_proc->generator->integrand();
+			this->weight()=sub_proc->generator->weight()/sub_proc->generator->alpha;
 			if(i%batch==0)
 			{
 			    std::cout<<'.';
@@ -1016,19 +1044,19 @@ namespace Camgen
 		{
 		    for(size_type i=0;i<sub_proc_evts;++i)
 		    {
-			(*sub_proc)->generate();
-			(*sub_proc)->update();
-			(*sub_proc)->refresh_cross_section();
-			this->integrand()=(*sub_proc)->integrand();
-			this->weight()=(*sub_proc)->weight()/(*sub_proc)->alpha;
+			sub_proc->generator->generate();
+			sub_proc->generator->update();
+			sub_proc->generator->refresh_cross_section();
+			this->integrand()=sub_proc->generator->integrand();
+			this->weight()=sub_proc->generator->weight()/sub_proc->alpha;
 		    }
 		}
 		if(verbose)
 		{
-		    std::cout<<std::setw(15)<<(*sub_proc)->cross_section().value;
-		    std::cout<<std::setw(15)<<(*sub_proc)->cross_section().error;
-		    std::cout<<std::setw(15)<<(*sub_proc)->cross_section().error_error;
-		    std::cout<<std::setw(10)<<(*sub_proc)->calls()<<std::endl;
+		    std::cout<<std::setw(15)<<sub_proc->generator->cross_section().value;
+		    std::cout<<std::setw(15)<<sub_proc->generator->cross_section().error;
+		    std::cout<<std::setw(15)<<sub_proc->generator->cross_section().error_error;
+		    std::cout<<std::setw(10)<<sub_proc->generator->calls()<<std::endl;
 		}
 	    }
     };

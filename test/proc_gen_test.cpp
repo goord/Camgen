@@ -183,7 +183,7 @@ int main()
 	Camgen::log.enable_level=log_level::warning;
     }
 
-	    {
+    {
 	Camgen::log.enable_level=log_level::error;
 	model_type::M_h0=140;
 	model_type::refresh_widths();

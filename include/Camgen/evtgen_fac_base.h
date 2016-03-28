@@ -55,7 +55,7 @@ namespace Camgen
 
 	    event_generator_type* create_generator(amplitude_type& amplitude)
 	    {
-		event_generator_type result=new event_generator_type(amplitude);
+		event_generator_type* result=new event_generator_type(amplitude);
 		configure(result,NULL);
 		return result;
 	    }
@@ -65,7 +65,7 @@ namespace Camgen
 
 	    event_generator_type* create_generator(CM_tree_iterator amplitude, generator_configuration<model_t>& conf)
 	    {
-		event_generator_type result=new event_generator_type(amplitude);
+		event_generator_type* result=new event_generator_type(amplitude);
 		configure(result,&conf);
 		return result;
 	    }
@@ -129,7 +129,7 @@ namespace Camgen
 
 	    void configure(event_generator_type* evtgen,generator_configuration<model_t>* conf)
 	    {
-		typedef typename model_t::value_t value_type;
+		typedef typename model_t::value_type value_type;
 
 		amplitude_type& amplitude=evtgen->algorithm;
 		typename event_generator_type::process_container& procs=evtgen->procs;
@@ -144,16 +144,21 @@ namespace Camgen
 		    {
 			if(!amplitude.get_tree_iterator()->is_empty())
 			{
-			    procs.push_back(process_generator_factory->create_generator(amplitude.get_tree_iterator(),conf,id++));
+                            process_generator_type* proc_gen=process_generator_factory->create_generator(amplitude.get_tree_iterator(),*conf,id++);
+			    typename event_generator_type::subprocess_type subproc={proc_gen,1.0};
+                            procs.push_back(subproc);
 			}
 		    }
 		    while(amplitude.next_process());
+
+
+                    //TODO: Get this code to evt-gen
 		    if(procs.size()!=0)
 		    {
 			value_type alpha=(value_type)1/(value_type)procs.size();
 			for(std::size_t i=0;i<procs.size();++i)
 			{
-			    procs[i]->alpha=alpha;
+			    procs[i].alpha=alpha;
 			}
 			evtgen->sub_proc=procs.begin();
 		    }

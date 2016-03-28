@@ -43,6 +43,7 @@ check_PROGRAMS =		bitstring_test           \
 				ps_tree_adapt_test       \
 				ps_tree_grid_test        \
 				proc_gen_test            \
+				evt_gen_test		 \
 		 		parni_test               \
 		 		LHAPDF_test              \
 				ps_vars_test             \
@@ -211,6 +212,9 @@ ps_tree_grid_test_LDADD = 	$(top_srcdir)/lib/libCamgen.la $(AM_LDFLAGS)
 proc_gen_test_SOURCES = 	proc_gen_test.cpp
 proc_gen_test_LDADD = 		$(top_srcdir)/lib/libCamgen.la $(AM_LDFLAGS)
 
+evt_gen_test_SOURCES = 		evt_gen_test.cpp
+evt_gen_test_LDADD = 		$(top_srcdir)/lib/libCamgen.la $(AM_LDFLAGS)
+
 parni_test_SOURCES =		parni_test.cpp
 parni_test_LDADD =		$(top_srcdir)/lib/libCamgen.la $(AM_LDFLAGS)
 
@@ -264,6 +268,7 @@ TESTS =			    	speed_test               \
 				ps_tree_adapt_test       \
 				ps_tree_grid_test        \
 				proc_gen_test            \
+				evt_gen_test		 \
 				parni_test               \
 				LHAPDF_test              \
 				ps_vars_test             \

@@ -26,7 +26,7 @@ namespace Camgen
     
     template<class model_t,std::size_t N_in,std::size_t N_out,class rng_t>class event_generator_factory: public event_generator_factory_base<model_t,N_in,N_out,rng_t>
     {
-	typedef typename event_generator_factory_base<model_t,N_in,N_out,rng_t> base_type;
+	typedef event_generator_factory_base<model_t,N_in,N_out,rng_t> base_type;
 
 	public:
 
