@@ -200,7 +200,7 @@ int main()
 
     {
 	Camgen::log.enable_level=log_level::error;
-	std::string process("e+,e- > h0,nu,nu_bar");
+	std::string process("e+,e- > h0,nu,nubar");
 	std::cerr<<"Checking event correlation for "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,2,3>algo(process);
