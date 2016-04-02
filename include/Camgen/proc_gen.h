@@ -1274,7 +1274,7 @@ namespace Camgen
 
 	    /* Private constructor, no configuration performed: */
 
-	    process_generator(CM_tree_iterator it,size_type id_=0):id(id_),symmetry_factor(it->symmetry_factor()),evt_counter(0),pos_evt_counter(0),tot_weight(0),amplitude(it),zero_me(it->count_diagrams()==(long long unsigned)0),me(1),ps_gen(NULL),ps_weight(1),ps_factor(1),hel_gen(NULL),hel_weight(1),hel_factor(1),col_gen(NULL),col_weight(1),col_factor(1),update_counter(0),auto_update(false),grid_adaptations(0),auto_grid_adapt(0),channel_adaptations(0),auto_channel_adapt(0),max_rejects(std::numeric_limits<size_type>::max()),ps_cut(NULL),scale(NULL),alpha_pdf(true)
+	    process_generator(CM_tree_iterator it,size_type id_=0):id(id_),symmetry_factor(it->symmetry_factor()),amplitude(it),evt_counter(0),pos_evt_counter(0),tot_weight(0),zero_me(it->count_diagrams()==(long long unsigned)0),me(1),ps_gen(NULL),ps_weight(1),ps_factor(1),hel_gen(NULL),hel_weight(1),hel_factor(1),col_gen(NULL),col_weight(1),col_factor(1),update_counter(0),auto_update(false),grid_adaptations(0),auto_grid_adapt(0),channel_adaptations(0),auto_channel_adapt(0),max_rejects(std::numeric_limits<size_type>::max()),ps_cut(NULL),scale(NULL),alpha_pdf(true)
 	    {
 		summed_spins.reset();
 		summed_colours.reset();

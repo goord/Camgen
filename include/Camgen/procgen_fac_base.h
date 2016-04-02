@@ -56,6 +56,10 @@ namespace Camgen
 	    
 	    virtual colour_generator_type* create_colour_generator(CM_tree_iterator amplitude)=0;
 
+	    /// Virtual destructor
+
+	    virtual ~process_generator_factory_base(){}
+
 	    /// Creates a single process generator.
 
 	    process_generator_type* create_generator(CM_tree_iterator amplitude, int id=0)

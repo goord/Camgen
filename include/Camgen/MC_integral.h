@@ -70,6 +70,7 @@ namespace Camgen
 		value+=other.value;
 		error=std::sqrt(error*error+other.error*other.error);
 		error_error=std::sqrt(error_error*error_error+other.error_error*other.error_error);
+		return *this;
 	    }
 
 	    /// Subtracts a cross section from the data
@@ -79,6 +80,7 @@ namespace Camgen
 		value-=other.value;
 		error=std::sqrt(error*error+other.error*other.error);
 		error_error=std::sqrt(error_error*error_error+other.error_error*other.error_error);
+		return *this;
 	    }
 
 	    /// Multiplies the cross section by a constant.
@@ -88,6 +90,7 @@ namespace Camgen
 		value*=c;
 		error*=c;
 		error_error*=c;
+		return *this;
 	    }
 
 	    /// Divides the cross section by a constant.
@@ -97,6 +100,7 @@ namespace Camgen
 		value/=c;
 		error/=c;
 		error_error/=c;
+		return *this;
 	    }
     };
 

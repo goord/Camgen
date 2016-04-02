@@ -34,7 +34,7 @@ int main()
     
     std::size_t n_init_evts=1000;
     std::size_t n_evts=10000;
-    std::size_t n_bins=100;
+//    std::size_t n_bins=100;
 
     set_subprocess_events(n_init_evts);
     
