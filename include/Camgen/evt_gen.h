@@ -902,7 +902,7 @@ namespace Camgen
 		    os<<std::setw(15)<<it->generator->cross_section().value;
 		    os<<std::setw(15)<<it->generator->cross_section().error;
 		    os<<std::setw(15)<<it->generator->cross_section().error_error;
-		    os<<std::setw(15)<<it->generator->alpha;
+		    os<<std::setw(15)<<it->alpha;
 		    os<<std::setw(10)<<it->generator->calls()<<std::endl;
 		}
 		os<<"--------------------------------------------------------------------------"<<std::endl;
