@@ -327,15 +327,6 @@ namespace Camgen
 
 	    virtual void set_optimal_multichannel(){}
 
-	    /// Resets cross section, multichannel weights and adaptive grids of
-	    /// initial and final state generators.
-
-	    virtual void reset()
-	    {
-		this->base_type::reset();
-		is->reset();
-	    }
-
 	    /// Sets all momentum and mass addresses to the current tree's
 	    /// external legs momenta and masses.
 

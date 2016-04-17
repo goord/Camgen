@@ -30,6 +30,8 @@ namespace Camgen
 
 	    typedef value_t value_type;
 
+            static const value_t tolerance;
+
 	    /// Value of the variable.
 
 	    value_type value;
@@ -104,6 +106,8 @@ namespace Camgen
 	    }
     };
 
+    template<class value_t>const value_t MC_integral<value_t>::tolerance=2.575829303549;
+
     /// Addition operator.
 
     template<class value_t> MC_integral<value_t> operator + (const MC_integral<value_t>& xs1,const MC_integral<value_t>& xs2)
@@ -153,10 +157,9 @@ namespace Camgen
 
     template<class value_t>bool equals(const MC_integral<value_t>& first,const MC_integral<value_t>& second)
     {
-	value_t tolerance(2.575829303549);
-	value_t first_error=std::abs(first.error)+tolerance*std::abs(first.error_error);
-	value_t second_error=std::abs(second.error)+tolerance*std::abs(second.error_error);
-	if(std::abs(first.value-second.value)<=tolerance*(first_error+second_error))
+	value_t first_error=std::abs(first.error)+MC_integral<value_t>::tolerance*std::abs(first.error_error);
+	value_t second_error=std::abs(second.error)+MC_integral<value_t>::tolerance*std::abs(second.error_error);
+	if(std::abs(first.value-second.value)<=MC_integral<value_t>::tolerance*(first_error+second_error))
 	{
 	    return true;
 	}

@@ -13,6 +13,7 @@
 #define CAMGEN_MC_INT_BASE_H_
 
 #include <Camgen/num_utils.h>
+#include <Camgen/MC_integral.h>
 
 namespace Camgen
 {

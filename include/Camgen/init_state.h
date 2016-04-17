@@ -28,7 +28,8 @@ namespace Camgen
     
     /// Initial-state Monte Carlo generator base class template.
     
-    template<class model_t,std::size_t N>class initial_state: public MC_generator<typename model_t::value_type>, public MC_integrator_base<typename model_t::value_type>
+    template<class model_t,std::size_t N>class initial_state: public MC_generator<typename model_t::value_type>,
+                                                              public MC_integrator_base<typename model_t::value_type>
     {
 	typedef MC_generator<typename model_t::value_type> base_type;
 

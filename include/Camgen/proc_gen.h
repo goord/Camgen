@@ -485,7 +485,7 @@ namespace Camgen
 		if(auto_update)
 		{
 		    update();
-		    this->refresh_cross_section();
+		    //this->refresh_cross_section();
 		}
 		if(update_counter==0)
 		{
