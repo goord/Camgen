@@ -136,6 +136,35 @@ int main()
 
     {
         Camgen::log.enable_level=log_level::error;
+        std::string process("h0 > l+,l-,l+,l-");
+        std::cerr<<"Checking call counting for "<<process<<"............";
+        std::cerr.flush();
+        CM_algorithm<model_type,1,4>algo(process);
+        algo.load();
+        algo.construct_trees();
+        event_generator_factory<model_type,1,4,rn_engine> factory;
+        event_generator<model_type,1,4,rn_engine>* evt_gen=factory.create_generator(algo);
+        for(size_type i=0;i<n_evts;++i)
+        {
+            evt_gen->generate();
+            evt_gen->refresh_cross_section();
+        }
+        size_type calls=0;
+        typename event_generator<model_type,1,4,rn_engine>::const_process_iterator it;
+        for(it=evt_gen->begin_processes();it!=evt_gen->end_processes();++it)
+        {
+            calls+=it->generator->calls();
+        }
+        if(calls!=n_evts)
+        {
+            return 1;
+        }
+        std::cerr<<"done."<<std::endl;
+        Camgen::log.enable_level=log_level::warning;
+    }
+
+    {
+        Camgen::log.enable_level=log_level::error;
         std::string process("h0 > l+,l-,nu,nubar");
         std::cerr<<"Checking process ordering for "<<process<<"............";
         std::cerr.flush();
@@ -228,7 +257,6 @@ int main()
                 evt_gen->refresh_cross_section();
             }
         }
-        evt_gen->refresh_cross_section();
         if(!(evt_gen->cross_section().value==0 and evt_gen->cross_section().error==0))
         {
             return 1;
@@ -270,6 +298,8 @@ int main()
     {
         Camgen::log.enable_level=log_level::error;
         std::string process("e+,e- > h0,nu,nubar");
+        value_type E1=250;
+        value_type E2=250;
         std::cerr<<"Checking event correlation for "<<process<<"............";
         std::cerr.flush();
         CM_algorithm<model_type,2,3>algo(process);
@@ -277,6 +307,8 @@ int main()
         algo.construct_trees();
         event_generator_factory<model_type,2,3,rn_engine> factory;
         event_generator<model_type,2,3,rn_engine>* evt_gen=factory.create_generator(algo);
+        evt_gen->set_beam_energy(-1,E1);
+        evt_gen->set_beam_energy(-2,E2);
         random_number_stream<model_type::value_type,rn_engine>::reset_engine();
         model_type::value_type w1(0);
         size_type n1(0);
@@ -308,6 +340,8 @@ int main()
     {
         Camgen::log.enable_level=log_level::error;
         std::string process("u,ubar > l+,l-,nu,nubar");
+        value_type E1=250;
+        value_type E2=250;
         std::cerr<<"Checking process ordering for "<<process<<"............";
         std::cerr.flush();
         CM_algorithm<model_type,2,4>algo(process);
@@ -315,13 +349,14 @@ int main()
         algo.construct_trees();
         event_generator_factory<model_type,2,4,rn_engine> factory;
         event_generator<model_type,2,4,rn_engine>* evt_gen=factory.create_generator(algo);
+        evt_gen->set_beam_energy(-1,E1);
+        evt_gen->set_beam_energy(-2,E2);
         for(size_type i=0;i<n_evts;++i)
         {
             evt_gen->generate();
             evt_gen->update();
             evt_gen->refresh_cross_section();
         }
-        evt_gen->refresh_cross_section();
         evt_gen->adapt_processes();
         value_type alpha(1);
         typename event_generator<model_type,2,4,rn_engine>::const_process_iterator it;
@@ -344,6 +379,8 @@ int main()
     {
         Camgen::log.enable_level=log_level::error;
         std::string process("e+,e- > l+,l-,nu,nubar");
+        value_type E1=250;
+        value_type E2=250;
         std::cerr<<"Checking process sampling frequency for "<<process<<"..........";
         std::cerr.flush();
         CM_algorithm<model_type,2,4>algo(process);
@@ -351,6 +388,8 @@ int main()
         algo.construct_trees();
         event_generator_factory<model_type,2,4,rn_engine> factory;
         event_generator<model_type,2,4,rn_engine>* evt_gen=factory.create_generator(algo);
+        evt_gen->set_beam_energy(-1,E1);
+        evt_gen->set_beam_energy(-2,E2);
         evt_gen->pre_initialise(n_evts);
         for(size_type i=0;i<n_evts;++i)
         {
@@ -369,6 +408,40 @@ int main()
             {
                 return 1;
             }
+        }
+        std::cerr<<"done."<<std::endl;
+        Camgen::log.enable_level=log_level::warning;
+    }
+
+    {
+        Camgen::log.enable_level=log_level::error;
+        std::string process("e+,e- > l+,l-,nu,nubar");
+        value_type E1=250;
+        value_type E2=250;
+        std::cerr<<"Checking call counting for "<<process<<"............";
+        std::cerr.flush();
+        CM_algorithm<model_type,2,4>algo(process);
+        algo.load();
+        algo.construct_trees();
+        event_generator_factory<model_type,2,4,rn_engine> factory;
+        event_generator<model_type,2,4,rn_engine>* evt_gen=factory.create_generator(algo);
+        evt_gen->set_beam_energy(-1,E1);
+        evt_gen->set_beam_energy(-2,E2);
+        for(size_type i=0;i<n_evts;++i)
+        {
+            evt_gen->generate();
+            evt_gen->refresh_cross_section();
+        }
+        size_type calls=0;
+        typename event_generator<model_type,2,4,rn_engine>::const_process_iterator it;
+        for(it=evt_gen->begin_processes();it!=evt_gen->end_processes();++it)
+        {
+            calls+=it->generator->calls();
+        }
+        if(calls!=n_evts)
+        {
+            std::cerr<<std::endl<<calls<<"!="<<n_evts<<std::endl;
+            return 1;
         }
         std::cerr<<"done."<<std::endl;
         Camgen::log.enable_level=log_level::warning;

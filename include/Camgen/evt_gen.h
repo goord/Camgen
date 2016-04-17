@@ -99,6 +99,13 @@ namespace Camgen
             return random_number_generator::throw_number(min,max);
         }
 
+        /// Selects the maximal weight of a subprocess.
+
+        static value_type get_max_weight(const subprocess_type& p)
+        {
+            return p.generator->max_weight();
+        }
+
         /* Public data: */
         /*--------------*/
 
@@ -299,7 +306,6 @@ namespace Camgen
                 return false;
             }
             bool q=sub_proc->generator->generate();
-//            sub_proc->generator->refresh_cross_section();
             this->integrand()=sub_proc->generator->integrand();
             this->weight()=sub_proc->generator->weight()/sub_proc->alpha;
             if(update_counter!=0 and auto_proc_adapt!=0 and update_counter%auto_proc_adapt==0)
@@ -802,11 +808,6 @@ namespace Camgen
             typename std::vector<value_type>::iterator it1=maxwts.begin();
             typename std::vector<value_type>::iterator it2=std::transform(begin_processes(),end_processes(),it1,get_max_weight);
             return *(std::max_element(it1,it2));
-        }
-
-        static value_type get_max_weight(const subprocess_type& p)
-        {
-            return p.generator->max_weight();
         }
 
         /// Returns the event weight without flux and symmetry factors etc.
