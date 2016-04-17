@@ -14,6 +14,8 @@
  *                             *
  * * * * * * * * * * * * * * * */
 
+// TODO: add test for auto_update...
+
 using namespace Camgen;
 
 int main()

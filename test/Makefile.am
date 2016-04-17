@@ -46,6 +46,7 @@ check_PROGRAMS =		bitstring_test           \
 				evt_gen_test		 \
 		 		parni_test               \
 		 		LHAPDF_test              \
+				ROOT_test		 \
 				ps_vars_test             \
 				save_load_test           \
 		 		speed_test		
@@ -221,6 +222,9 @@ parni_test_LDADD =		$(top_srcdir)/lib/libCamgen.la $(AM_LDFLAGS)
 LHAPDF_test_SOURCES =		LHAPDF_test.cpp
 LHAPDF_test_LDADD =		$(top_srcdir)/lib/libCamgen.la $(AM_LDFLAGS)
 
+ROOT_test_SOURCES =		ROOT_test.cpp
+ROOT_test_LDADD =		$(top_srcdir)/lib/libCamgen.la $(AM_LDFLAGS)
+
 ps_vars_test_SOURCES =		ps_vars_test.cpp
 ps_vars_test_LDADD =		$(top_srcdir)/lib/libCamgen.la $(AM_LDFLAGS)
 
@@ -271,5 +275,6 @@ TESTS =			    	speed_test               \
 				evt_gen_test		 \
 				parni_test               \
 				LHAPDF_test              \
+				ROOT_test		 \
 				ps_vars_test             \
 				save_load_test
