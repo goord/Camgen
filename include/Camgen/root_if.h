@@ -18,72 +18,15 @@
  *                                                                               *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#include <climits>
 #include <Camgen/if_output.h>
-
-/* External component, should be in the c-flags when compiling this code: */
-
-#include <TFile.h>
-#include <TTree.h>
+#include <Camgen/root_tree.h>
 
 namespace Camgen
 {
-    /* Numerical type conversion to root type identifyer utility class template: */
-
-    template<class value_type,std::size_t bits=sizeof(value_type)*CHAR_BIT>class root_type_id;
-    template<std::size_t N>class root_type_id<bool,N>
-    {
-	public:
-
-	    static const char* id;
-    };
-    template<std::size_t N>const char* root_type_id<bool,N>::id="/O";
-    template<>class root_type_id<int,16>
-    {
-	public:
-
-	    static const char* id;
-    };
-    const char* root_type_id<int,16>::id="/S";
-    template<>class root_type_id<int,32>
-    {
-	public:
-
-	    static const char* id;
-    };
-    const char* root_type_id<int,32>::id="/I";
-    template<>class root_type_id<int,64>
-    {
-	public:
-
-	    static const char* id;
-    };
-    const char* root_type_id<int,64>::id="/L";
-    template<>class root_type_id<float,32>
-    {
-	public:
-
-	    static const char* id;
-    };
-    const char* root_type_id<float,32>::id="/F";
-    template<>class root_type_id<float,64>
-    {
-	public:
-
-	    static const char* id;
-    };
-    const char* root_type_id<float,64>::id="/D";
-    template<>class root_type_id<double,64>
-    {
-	public:
-
-	    static const char* id;
-    };
-    const char* root_type_id<double,64>::id="/D";
     
     /// ROOT TTree output interface class.
     
-    template<class model_t>class root_tree: public interface_output<model_t>
+    template<class model_t>class root_interface: public interface_output<model_t>
     {
 	typedef interface_output<model_t> base_type;
 
@@ -101,155 +44,69 @@ namespace Camgen
 
 	    /// Constructor with file name, tree name and tree description arguments.
 
-	    root_tree(const std::string& file_name_="output",
-		      const std::string tree_name_="output_tree",
-		      const std::string description_="no description available"):base_type(file_name_,description_),tree_name(tree_name_),rootfile(NULL),roottree(NULL){}
-
-	    /* Destructor. */
-
-	    ~root_tree()
-	    {
-		if(rootfile!=NULL)
-		{
-		    std::cout<<"Root file was not written to disk...do you wish to write the output file? (y/n)";
-		    char answer='n';
-		    std::cin>>answer;
-		    if(answer=='y')
-		    {
-			rootfile->Write();
-			rootfile->Close();
-		    }
-		    delete rootfile;
-		}
-	    }
+	    root_interface(const std::string& file_name_="output",
+		           const std::string tree_name_="output_tree",
+		           const std::string description_="no description available"):base_type(file_name_,description_),tree_name(tree_name_){}
 
 	    /* Factory method implementation: */
 
 	    base_type* create(const std::string& file_name_) const
 	    {
-		return new root_tree<model_t>(file_name_,tree_name,this->description);
+		return new root_interface<model_t>(file_name_,tree_name,this->description);
 	    }
 
 	    /* Opens the root file. */
 
 	    bool open_file()
 	    {
-		if(rootfile==NULL)
-		{
-		    std::string fname=this->file_name+".root";
-		    rootfile=new TFile(fname.c_str(),"RECREATE");
-		}
-		if(roottree==NULL)
-		{
-		    roottree=new TTree(tree_name.c_str(),(this->description).c_str());
-		}
-		return rootfile->IsOpen();
+                return tree.open(this->file_name,tree_name,this->description);
 	    }
 
 	    /* Closes the .root file. */
 
 	    bool close_file()
 	    {
-		if(rootfile!=NULL)
-		{
-		    rootfile->Write();
-		    rootfile->Close();
-		    delete rootfile;
-		    rootfile=NULL;
-		}
-		return true;
+                return tree.close();
 	    }
 
 	    /* Inserts a branch holding a momentum: */
 
 	    bool branch(const momentum_type* p,const std::string& name)
 	    {
-		if(rootfile==NULL)
-		{
-		    return false;
-		}
-		if(!rootfile->IsOpen() or roottree==NULL)
-		{
-		    return false;
-		}
-		std::stringstream ss;
-		ss<<name<<'['<<p->size()<<']'<<(root_type_id<typename momentum_type::value_type>::id);
-		std::string leafname=ss.str();
-		roottree->Branch(name.c_str(),const_cast<value_type*>(p->data),leafname.c_str());
-		return true;
+                return tree.branch(p->data,p->size(),name);
 	    }
 
 	    /* Inserts a branch holding a floating-point number: */
 
 	    bool branch(const value_type* x,const std::string& name)
 	    {
-		if(rootfile==NULL)
-		{
-		    return false;
-		}
-		if(!rootfile->IsOpen() or roottree==NULL)
-		{
-		    return false;
-		}
-		std::string leafname(name+root_type_id<value_type>::id);
-		roottree->Branch(name.c_str(),const_cast<value_type*>(x),leafname.c_str());
-		return true;
+                return tree.branch(x,name);
 	    }
 
 	    /* Inserts a branch holding an integer: */
 
 	    bool branch(const int* n,const std::string& name)
 	    {
-		if(rootfile==NULL)
-		{
-		    return false;
-		}
-		if(!rootfile->IsOpen() or roottree==NULL)
-		{
-		    return false;
-		}
-		std::string leafname(name+root_type_id<int>::id);
-		roottree->Branch(name.c_str(),const_cast<int*>(n),leafname.c_str());
-		return true;
+                return tree.branch(n,name);
 	    }
 
 	    /* Inserts a branch holding a boolean: */
 
 	    bool branch(const bool* n,const std::string& name)
 	    {
-		if(rootfile==NULL)
-		{
-		    return false;
-		}
-		if(!rootfile->IsOpen() or roottree==NULL)
-		{
-		    return false;
-		}
-		std::string leafname(name+root_type_id<bool>::id);
-		roottree->Branch(name.c_str(),const_cast<bool*>(n),leafname.c_str());
-		return true;
+                return tree.branch(n,name);
 	    }
 
 	    /* Writes the event to the ROOT tree. */
 
 	    bool write_event()
 	    {
-		if(rootfile==NULL)
-		{
-		    return false;
-		}
-		if(!rootfile->IsOpen() or roottree==NULL)
-		{
-		    return false;
-		}
-		roottree->Fill();
-		return true;
+                return tree.fill();
 	    }
 
 	private:
 
-	    TFile* rootfile;
-	    TTree* roottree;
+            root_tree tree;
     };
 }
 

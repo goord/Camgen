@@ -126,6 +126,38 @@ CAMGEN_CHECK_LHAPDF
 if test "x$WITHLHAPDF"="xyes"; then
     AM_CXXFLAGS="$AM_CXXFLAGS -I${LHAPDF_DIR}/include";
     AM_LDFLAGS="$AM_LDFLAGS -L${LHAPDF_DIR}/lib";
+    LIBS = "$LIBS -lLHAPDF";
+fi
+
+# Check for the ROOT headers. TODO: check for library functions using custom test progs.
+
+AC_DEFUN([CAMGEN_CHECK_ROOT],[
+WITHROOT="yes"
+ROOTSYS_DIR="/usr/local"
+AC_MSG_CHECKING([for ROOT])
+AC_ARG_WITH([ROOT],
+	    AC_HELP_STRING([--with-ROOT=DIR],[location of ROOT installation (/usr/local by default).]),
+	    [if test "x$with_ROOT" = "xno"; then
+	     WITHROOT="no"
+	     elif test "x$with_ROOT" != "xyes"; then
+	     ROOTSYS_DIR="$with_ROOT";
+	     fi],[WITHROOT="no"])
+if test "x$WITHROOT" = "xyes"; then
+    CPPFLAGS="$CPPFLAGS -I${ROOTSYS_DIR}/include -std=c++11"
+    CXXFLAGS="$CXXFLAGS -std=c++11"
+    LDFLAGS="$LDFLAGS -L${ROOTSYS_DIR}/lib";
+    AC_CHECK_HEADER([TFile.h],[WITHROOT="yes"],[WITHROOT="no"])
+    AC_CHECK_HEADER([TTree.h],[WITHROOT="yes"],[WITHROOT="no"])
+fi
+AC_MSG_RESULT($WITHROOT)
+])
+
+CAMGEN_CHECK_ROOT
+
+if test "x$WITHROOT"="xyes"; then
+    AM_CXXFLAGS="$AM_CXXFLAGS -I${ROOTSYS_DIR}/include";
+    AM_LDFLAGS="$AM_LDFLAGS -L${ROOTSYS_DIR}/lib";
+    LIBS="$LIBS -lCore -lTree";
 fi
 
 AC_SUBST([AM_CXXFLAGS])

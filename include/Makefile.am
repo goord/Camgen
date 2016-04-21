@@ -163,6 +163,7 @@ Camgen_HEADERS = Camgen/adj_rep.h		\
 	         Camgen/rep.h			\
 	         Camgen/rn_strm.h		\
 	         Camgen/root_if.h		\
+	         Camgen/root_tree.h		\
 	         Camgen/s_branch.h		\
 	         Camgen/scalar_contr.h		\
 	         Camgen/scalar_particle.h	\
