@@ -12,7 +12,8 @@
 #include <Camgen/root_tree.h>
 #include <config.h>
 
-#if HAVE_ROOT_H_
+#if HAVE_ROOT_H
+#include <sstream>
 #include <TFile.h>
 #include <TTree.h>
 #endif
@@ -37,30 +38,31 @@ namespace Camgen
 
     bool root_tree::open(const std::string& fname,const std::string& tname)
     {
-        return open(fname.c_str(),tname.c_str(),NULL);
+        return open_core(fname.c_str(),tname.c_str(),NULL);
     }
 
     bool root_tree::open(const std::string& fname,const std::string& tname, const std::string& descr)
     {
-        return open(fname.c_str(),tname.c_str(),descr.c_str());
+        return open_core(fname.c_str(),tname.c_str(),descr.c_str());
     }
 
-    bool root_tree::open(const char* fname,const char* tname,const char* descr)
+    bool root_tree::open_core(const char* fname,const char* tname,const char* descr)
     {
         if(is_open())
         {
             close();
         }
-#if HAVE_ROOT_H_
+#if HAVE_ROOT_H
         std::string filename(fname);
-        std::size_t n=filename.find_last_of('.');
-        if(n!=filename.size()-5 and filename.substr(n+1,5)!="root")
+        std::string::size_type n=filename.find_last_of('.');
+        if(n!=filename.size()-5 or filename.substr(n+1,5)!="root")
         {
             filename+=".root";
         }
+
         rootfile=new TFile(filename.c_str(),"RECREATE");
         roottree=new TTree(tname,descr);
-        return rootfile->IsOpen();
+        return static_cast<TFile*>(rootfile)->IsOpen();
 #else
         return false;
 #endif
@@ -68,7 +70,7 @@ namespace Camgen
 
     bool root_tree::is_open() const
     {
-#if HAVE_ROOT_H_
+#if HAVE_ROOT_H
         if(rootfile!=NULL)
         {
             return static_cast<TFile*>(rootfile)->IsOpen();
@@ -79,14 +81,14 @@ namespace Camgen
 
     void root_tree::close()
     {
-#if HAVE_ROOT_H_
+#if HAVE_ROOT_H
         if(rootfile!=NULL)
         {
             static_cast<TFile*>(rootfile)->Write();
             static_cast<TFile*>(rootfile)->Close();
-            delete rootfile;
+//            delete static_cast<TTree*>(roottree);
+            delete static_cast<TFile*>(rootfile);
             rootfile=NULL;
-            delete roottree;
             roottree=NULL;
         }
 #endif
@@ -103,7 +105,7 @@ namespace Camgen
        {
            return false;
        }
-#if HAVE_ROOT_H_
+#if HAVE_ROOT_H
        std::string id;
        if(n==1)
        {
@@ -112,12 +114,12 @@ namespace Camgen
        else
        {
            std::stringstream ss;
-           ss<<name<<'['<<n<<']'<<root_tree::id_bool;
+           ss<<varname<<'['<<n<<']'<<root_tree::id_bool;
            id=ss.str();
        }
        if(roottree!=NULL)
        {
-           static_cast<TTree*>(roottree)->Branch(varname.c_str(),const_cast<bool*>(data),id.c_str());
+           static_cast<TTree*>(roottree)->Branch(varname.c_str(),const_cast<bool*>(data),create_var_id(varname,n,root_tree::id_bool).c_str());
            return true;
        }
 #endif
@@ -135,21 +137,10 @@ namespace Camgen
        {
            return false;
        }
-#if HAVE_ROOT_H_
-       std::string id;
-       if(n==1)
-       {
-           id=std::string(root_tree::id_int);
-       }
-       else
-       {
-           std::stringstream ss;
-           ss<<name<<'['<<n<<']'<<root_tree::id_int;
-           id=ss.str();
-       }
+#if HAVE_ROOT_H
        if(roottree!=NULL)
        {
-           static_cast<TTree*>(roottree)->Branch(varname.c_str(),const_cast<int*>(data),id.c_str());
+           static_cast<TTree*>(roottree)->Branch(varname.c_str(),const_cast<int*>(data),create_var_id(varname,n,root_tree::id_int).c_str());
            return true;
        }
 #endif
@@ -167,21 +158,10 @@ namespace Camgen
        {
            return false;
        }
-#if HAVE_ROOT_H_
-       std::string id;
-       if(n==1)
-       {
-           id=std::string(root_tree::id_long);
-       }
-       else
-       {
-           std::stringstream ss;
-           ss<<name<<'['<<n<<']'<<root_tree::id_long;
-           id=ss.str();
-       }
+#if HAVE_ROOT_H
        if(roottree!=NULL)
        {
-           static_cast<TTree*>(roottree)->Branch(varname.c_str(),const_cast<long int*>(data),id.c_str());
+           static_cast<TTree*>(roottree)->Branch(varname.c_str(),const_cast<long int*>(data),create_var_id(varname,n,root_tree::id_long).c_str());
            return true;
        }
 #endif
@@ -199,21 +179,10 @@ namespace Camgen
        {
            return false;
        }
-#if HAVE_ROOT_H_
-       std::string id;
-       if(n==1)
-       {
-           id=std::string(root_tree::id_float);
-       }
-       else
-       {
-           std::stringstream ss;
-           ss<<name<<'['<<n<<']'<<root_tree::id_float;
-           id=ss.str();
-       }
+#if HAVE_ROOT_H
        if(roottree!=NULL)
        {
-           static_cast<TTree*>(roottree)->Branch(varname.c_str(),const_cast<float*>(data),id.c_str());
+           static_cast<TTree*>(roottree)->Branch(varname.c_str(),const_cast<float*>(data),create_var_id(varname,n,root_tree::id_float).c_str());
            return true;
        }
 #endif
@@ -231,21 +200,10 @@ namespace Camgen
        {
            return false;
        }
-#if HAVE_ROOT_H_
-       std::string id;
-       if(n==1)
-       {
-           id=std::string(root_tree::id_double);
-       }
-       else
-       {
-           std::stringstream ss;
-           ss<<name<<'['<<n<<']'<<root_tree::id_double;
-           id=ss.str();
-       }
+#if HAVE_ROOT_H
        if(roottree!=NULL)
        {
-           static_cast<TTree*>(roottree)->Branch(varname.c_str(),const_cast<double*>(data),id.c_str());
+           static_cast<TTree*>(roottree)->Branch(varname.c_str(),const_cast<double*>(data),create_var_id(varname,n,root_tree::id_double).c_str());
            return true;
        }
 #endif
@@ -258,7 +216,7 @@ namespace Camgen
         {
             return false;
         }
-#if HAVE_ROOT_H_
+#if HAVE_ROOT_H
         if(roottree!=NULL)
         {
             static_cast<TTree*>(roottree)->Fill();
@@ -266,5 +224,23 @@ namespace Camgen
         }
 #endif
         return false;
+    }
+
+    std::string root_tree::create_var_id(const std::string& name,size_type n,const char* type)
+    {
+#if HAVE_ROOT_H
+        std::stringstream ss;
+        if(n==1)
+        {
+            ss<<name<<type;
+        }
+        else
+        {
+            ss<<name<<'['<<n<<']'<<type;
+        }
+        return ss.str();
+#else
+        return "";
+#endif
     }
 }

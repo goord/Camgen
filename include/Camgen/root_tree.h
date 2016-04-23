@@ -123,7 +123,11 @@ namespace Camgen
 
             /* Helper function for opening the file: */
 
-            bool open(const char*,const char*,const char*);
+            bool open_core(const char*,const char*,const char*);
+
+            /* Helper function for creating leaf list strings: */
+
+            static std::string create_var_id(const std::string&,size_type,const char*);
 
             /* ROOT TTree, or NULL: */
 

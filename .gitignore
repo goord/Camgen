@@ -83,7 +83,6 @@ test/ps_tree_shat_test
 
 test/ps_tree_reverse_shat_test
 
-test/ps_tree_reverse_shat_test
 
 *.Tpo
 
@@ -101,7 +100,6 @@ nbproject/private/private.xml
 
 nbproject/project.xml
 
-test/ps_tree_reverse_shat_test
 
 config.h.in~
 
@@ -114,3 +112,4 @@ test/ps_tree_reverse_test
 *.eps
 
 test/proc_gen_test
+/.syntastic_config

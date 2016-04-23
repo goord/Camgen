@@ -74,23 +74,23 @@ fi
 
 AC_DEFUN([CAMGEN_CHECK_GNUPLOT],[
 WITHGNUPLOT="yes"
-GNUPLOT_DIR="/usr/local/bin"
+GNUPLOTPATH="/usr/local/bin/gnuplot"
 AC_ARG_WITH([gnuplot],
-	    AC_HELP_STRING([--with-gnuplot=DIR],[location of gnuplot
-			    installation (/usr/local/bin by default)]),
+	    AC_HELP_STRING([--with-gnuplot=path-to-gnuplot],[location of gnuplot
+			    program (/usr/local/bin/gnuplot by default)]),
 	    [if test "x$with_gnuplot" = "xno"; then
 	     WITHGNUPLOT="no"
 	     elif test "x$with_gnuplot" != "xyes"; then
-	     GNUPLOT_DIR="$with_gnuplot"
+	     GNUPLOTPATH="$with_gnuplot"
 	     fi],[WITHGNUPLOT="no"])
 AC_MSG_CHECKING([for gnuplot location])
 AC_MSG_RESULT($WITHGNUPLOT)
 if test "x$WITHGNUPLOT" = "xyes"; then
-AC_CHECK_PROG(HAVE_GNUPLOT,gnuplot,"yes","no","$GNUPLOT_DIR")
+AC_CHECK_PROG(HAVE_GNUPLOT,gnuplot,"$GNUPLOTPATH","yes","no")
 if test "x$HAVE_GNUPLOT" = "xyes"; then
-AC_DEFINE_UNQUOTED([GNUPLOTPATH],["$GNUPLOT_DIR/gnuplot"],[The gnuplot binary location])
+AC_DEFINE_UNQUOTED([GNUPLOTPATH],["$GNUPLOTPATH"],[The gnuplot binary location])
 else
-AC_MSG_NOTICE(gnuplot not found in $GNUPLOT_DIR...configuring without.)
+AC_MSG_NOTICE(gnuplot not found...configuring without.)
 fi
 fi
 ])
@@ -126,28 +126,28 @@ CAMGEN_CHECK_LHAPDF
 if test "x$WITHLHAPDF"="xyes"; then
     AM_CXXFLAGS="$AM_CXXFLAGS -I${LHAPDF_DIR}/include";
     AM_LDFLAGS="$AM_LDFLAGS -L${LHAPDF_DIR}/lib";
-    LIBS = "$LIBS -lLHAPDF";
+    LIBS = "-lLHAPDF $LIBS";
 fi
 
 # Check for the ROOT headers. TODO: check for library functions using custom test progs.
 
 AC_DEFUN([CAMGEN_CHECK_ROOT],[
 WITHROOT="yes"
-ROOTSYS_DIR="/usr/local"
+ROOT_DIR="/usr/local"
 AC_MSG_CHECKING([for ROOT])
 AC_ARG_WITH([ROOT],
 	    AC_HELP_STRING([--with-ROOT=DIR],[location of ROOT installation (/usr/local by default).]),
 	    [if test "x$with_ROOT" = "xno"; then
 	     WITHROOT="no"
 	     elif test "x$with_ROOT" != "xyes"; then
-	     ROOTSYS_DIR="$with_ROOT";
+	     ROOT_DIR="$with_ROOT";
 	     fi],[WITHROOT="no"])
 if test "x$WITHROOT" = "xyes"; then
-    CPPFLAGS="$CPPFLAGS -I${ROOTSYS_DIR}/include -std=c++11"
-    CXXFLAGS="$CXXFLAGS -std=c++11"
-    LDFLAGS="$LDFLAGS -L${ROOTSYS_DIR}/lib";
+    CPPFLAGS_CACHE="$CPPFLAGS"
+    CPPFLAGS="$CPPFLAGS -I${ROOT_DIR}/include -std=c++11"
     AC_CHECK_HEADER([TFile.h],[WITHROOT="yes"],[WITHROOT="no"])
     AC_CHECK_HEADER([TTree.h],[WITHROOT="yes"],[WITHROOT="no"])
+    CPPFLAGS="$CPPFLAGS_CACHE"
 fi
 AC_MSG_RESULT($WITHROOT)
 ])
@@ -155,15 +155,23 @@ AC_MSG_RESULT($WITHROOT)
 CAMGEN_CHECK_ROOT
 
 if test "x$WITHROOT"="xyes"; then
-    AM_CXXFLAGS="$AM_CXXFLAGS -I${ROOTSYS_DIR}/include";
-    AM_LDFLAGS="$AM_LDFLAGS -L${ROOTSYS_DIR}/lib";
-    LIBS="$LIBS -lCore -lTree";
+    AC_DEFINE([HAVE_ROOT_H],[1],[Linking against a valid ROOT installation])
+    AM_CXXFLAGS_ROOT="$AM_CXXFLAGS -std=c++11 -I${ROOT_DIR}/include";
+    AM_LDFLAGS_ROOT="$AM_LDFLAGS -L${ROOT_DIR}/lib -Wl,-rpath,${ROOT_DIR}/lib";
+    AM_LIBS_ROOT="-lCore -lTree -lNet -lRIO -lThread $LIBS";
+else
+    AM_CXXFLAGS_ROOT="$AM_CXXFLAGS";
+    AM_LDFLAGS_ROOT="$AM_LDFLAGS";
+    AM_LIBS_ROOT="$LIBS";
 fi
+
+AC_SUBST([AM_CXXFLAGS_ROOT])
+AC_SUBST([AM_LDFLAGS_ROOT])
+AC_SUBST([AM_LIBS_ROOT])
 
 AC_SUBST([AM_CXXFLAGS])
 AC_SUBST([AM_LDFLAGS])
 AC_SUBST([LIBS])
-
 # Makefiles to configure.
 
 AC_CONFIG_FILES([Makefile
