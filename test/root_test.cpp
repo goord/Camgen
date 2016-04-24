@@ -5,6 +5,7 @@
 // see COPYING for details.
 //
 
+#include <config.h>
 #include <Camgen/SM.h>
 #include <Camgen/stdrand.h>
 #include <Camgen/evtgen_fac.h>
@@ -19,6 +20,8 @@ using namespace Camgen;
 
 int main()
 {
+#if HAVE_ROOT_H
+
     typedef SM model_type;
     typedef std::random rn_engine;
     typedef typename model_type::value_type value_type;
@@ -81,6 +84,8 @@ int main()
         std::cerr<<"done."<<std::endl;
         Camgen::log.enable_level=log_level::warning;
     }
+
+#endif
 
     return 0;
 }
