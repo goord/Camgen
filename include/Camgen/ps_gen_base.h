@@ -127,7 +127,7 @@ namespace Camgen
 	    static momentum_type vec(const momentum_type& v)
 	    {
 		momentum_type result(v);
-		result[kL]=(value_type)0;
+		result[k0]=(value_type)0;
 		return v;
 	    }
 

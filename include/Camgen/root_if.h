@@ -66,7 +66,8 @@ namespace Camgen
 
 	    bool close_file()
 	    {
-                return tree.close();
+                tree.close();
+                return true;
 	    }
 
 	    /* Inserts a branch holding a momentum: */

@@ -86,7 +86,6 @@ namespace Camgen
         {
             static_cast<TFile*>(rootfile)->Write();
             static_cast<TFile*>(rootfile)->Close();
-//            delete static_cast<TTree*>(roottree);
             delete static_cast<TFile*>(rootfile);
             rootfile=NULL;
             roottree=NULL;

@@ -18,6 +18,7 @@
 #include <Camgen/vector.h>
 #include <Camgen/bit_string.h>
 #include <Camgen/type_holders.h>
+#include <Camgen/ps_channel.h>
 #include <Camgen/rn_strm.h>
 #include <Camgen/MC_gen.h>
 #include <Camgen/val_gen.h>
