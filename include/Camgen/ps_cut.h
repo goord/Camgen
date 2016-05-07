@@ -19,12 +19,59 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #include <iostream>
+#include <Camgen/event.h>
 
 namespace Camgen
 {
-    //TODO: Refactor, pass needs to get an ps-generator argument, ps generators should not be cuts, single
-    // responsability!
-    /// Abstract base class for phase space cut objects.
+    /// Abstract base class for phase space cuts.
+
+    template<class model_t,std::size_t N_in,std::size_t N_out> class ps_cut
+    {
+        public:
+
+            /* Type definitions: */
+            
+            typedef event<model_t,N_in,N_out> event_type;
+
+            /// Virtual destructor.
+
+            virtual ~ps_cut(){}
+
+            /// Abstract function for passing the imposed cuts.
+
+            virtual bool operator()(const event_type&)=0;
+    };
+
+    /// Phase space cut implementation wrapping a function pointer.
+
+    template<class model_t,std::size_t N_in,std::size_t N_out> class ps_cut_wrapper
+    {
+        public:
+
+            /* Type definitions: */
+            
+            typedef event<model_t,N_in,N_out> event_type;
+            typedef bool (*function_type)(const event_type&);
+
+            /// Constructor, taking a function pointer as argument.
+
+            ps_cut_wrapper(function_type function_):function(function_){}
+
+            /// Abstract function for passing the imposed cuts.
+
+            virtual bool operator()(const event_type& evt)
+            {
+                return function(evt);
+            }
+
+        protected:
+
+            /* Wrapped function pointer: */
+
+            function_type function;
+    };
+
+    // TODO: Remove!
 
     class phase_space_cut
     {
@@ -144,5 +191,3 @@ namespace Camgen
 }
 
 #endif /*CAMGEN_PS_CUT_H_*/
-
-

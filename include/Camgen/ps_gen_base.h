@@ -21,32 +21,11 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #include <Camgen/vector.h>
-#include <Camgen/type_holders.h>
+#include <Camgen/event.h>
 #include <Camgen/MC_int.h>
 
 namespace Camgen
 {
-    template<std::size_t N>class directions_3d;
-
-    template<>class directions_3d<1>
-    {
-	public:
-	    static const std::size_t kT1=2;
-	    static const std::size_t kT2=3;
-    };
-    template<>class directions_3d<2>
-    {
-	public:
-	    static const std::size_t kT1=3;
-	    static const std::size_t kT2=1;
-    };
-    template<>class directions_3d<3>
-    {
-	public:
-	    static const std::size_t kT1=1;
-	    static const std::size_t kT2=2;
-    };
-
     /// Abstract interface for phase space generators, used by output interfaces
     /// and cut objects.
     

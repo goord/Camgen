@@ -35,6 +35,7 @@ Camgen_HEADERS = Camgen/adj_rep.h		\
 	         Camgen/Dirac_dim.h		\
 	         Camgen/Euclidean.h		\
 	         Camgen/eval.h			\
+	         Camgen/event.h			\
 	         Camgen/evt_gen.h		\
 		 Camgen/evtgen_fac.h		\
 		 Camgen/evtgen_fac_base.h	\
@@ -144,6 +145,7 @@ Camgen_HEADERS = Camgen/adj_rep.h		\
 		 Camgen/ps_branching_fac.h	\
 	         Camgen/ps_copy.h		\
 	         Camgen/ps_cut.h		\
+	         Camgen/ps_func.h		\
 	         Camgen/ps_gen.h		\
 	         Camgen/ps_gen_base.h		\
 	         Camgen/ps_tree.h		\
@@ -196,6 +198,7 @@ Camgen_HEADERS = Camgen/adj_rep.h		\
 	         Camgen/static_comp.h		\
 	         Camgen/stdrand.h		\
 	         Camgen/su(n).h			\
+	         Camgen/sub_proc.h		\
 	         Camgen/sum_branch.h		\
 	         Camgen/summation.h		\
 	         Camgen/susy_params.h		\
