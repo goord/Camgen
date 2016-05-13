@@ -36,6 +36,7 @@ Camgen_HEADERS = Camgen/adj_rep.h		\
 	         Camgen/Euclidean.h		\
 	         Camgen/eval.h			\
 	         Camgen/event.h			\
+	         Camgen/evt_data.h		\
 	         Camgen/evt_gen.h		\
 		 Camgen/evtgen_fac.h		\
 		 Camgen/evtgen_fac_base.h	\
