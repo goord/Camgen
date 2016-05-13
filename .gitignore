@@ -113,3 +113,4 @@ test/ps_tree_reverse_test
 
 test/proc_gen_test
 /.syntastic_config
+/tags
