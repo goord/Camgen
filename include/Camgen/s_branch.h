@@ -23,6 +23,7 @@
 #include <Camgen/Lorentz.h>
 #include <Camgen/ps_vol.h>
 #include <Camgen/ss_gen_fac.h>
+#include <Camgen/parni_gen.h>
 
 namespace Camgen
 {

@@ -20,6 +20,7 @@
 #include <Camgen/s_branch.h>
 #include <Camgen/t_branch.h>
 #include <Camgen/sum_branch.h>
+#include <Camgen/val_gen_fac.h>
 
 namespace Camgen
 {

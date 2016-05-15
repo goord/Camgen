@@ -134,6 +134,7 @@ namespace Camgen
 
 	    bool generate()
 	    {
+                this->evt->reset();
 		this->initialise_channels();
 
 		for(typename branching_container::iterator it=this->ps_branchings.begin();it!=this->ps_branchings.end();++it)
@@ -188,6 +189,7 @@ namespace Camgen
 		base_type::set_generated(selected_branchings);
 		bool q=this->evaluate_weight();
 		base_type::reset_generated(selected_branchings);
+                this->copy_event_data();
 		return q;
 	    }
 
@@ -414,6 +416,8 @@ namespace Camgen
 
 	    bool generate()
 	    {
+                this->evt->reset();
+
 		this->initialise_channels();
 
 		for(typename branching_container::iterator it=this->ps_branchings.begin();it!=this->ps_branchings.end();++it)
@@ -505,6 +509,7 @@ namespace Camgen
 		base_type::set_generated(selected_branchings);
 		bool q=this->evaluate_weight();
 		base_type::reset_generated(selected_branchings);
+                this->copy_event_data();
 		return q;
 	    }
 

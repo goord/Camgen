@@ -17,13 +17,13 @@
  *                                                                                       *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#include <Camgen/event.h>
+#include <Camgen/evt_fill.h>
 
 namespace Camgen
 {
     /// Event interface implementation containing arrays of incoming and outgoing momenta, owned by the instance.
 
-    template<class model_t,std::size_t N_in,std::size_t N_out>class event_data: public event<model_t,N_in,N_out>
+    template<class model_t,std::size_t N_in,std::size_t N_out>class event_data: public fillable_event<model_t,N_in,N_out>
     {
         public:
 

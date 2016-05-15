@@ -19,6 +19,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #include <Camgen/ss_gen.h>
+#include <Camgen/Dirac_delta.h>
 #include <Camgen/MC_config.h>
 
 namespace Camgen
