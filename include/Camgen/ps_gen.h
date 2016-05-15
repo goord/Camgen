@@ -1061,11 +1061,11 @@ namespace Camgen
             {
                 for(size_type i=0;i<N_in;++i)
                 {
-                    evt->set_p_in(*(pin[i]));
+                    evt->set_p_in(*(pin[i]),i);
                 }
                 for(size_type i=0;i<N_out;++i)
                 {
-                    evt->set_p_out(*(pout[i]));
+                    evt->set_p_out(*(pout[i]),i);
                 }
             }
 	    

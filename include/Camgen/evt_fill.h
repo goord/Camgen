@@ -39,9 +39,9 @@ namespace Camgen
 
             /// Sets the current sub-process.
 
-            virtual void set_process(const sub_process<model_t,N_in,N_out>* sub_proc)
+            virtual void set_process(const sub_process<model_t,N_in,N_out>* sub_proc_)
             {
-                this->sub_process=sub_proc;
+                this->sub_proc=sub_proc_;
             }
 
             /// Copies the argument vector to the i-th incoming momentum.
