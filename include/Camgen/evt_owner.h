@@ -33,10 +33,7 @@ namespace Camgen
 
             /// Constructor. Creates the owned event.
 
-            event_owner():alloc_evt(true)
-            {
-                evt=create_event();
-            }
+            event_owner():alloc_evt(false),evt(NULL){}
 
             /// Destructor. Deletes the event if necessary.
 
@@ -52,7 +49,9 @@ namespace Camgen
 
             /// Event factory method.
 
-            fillable_event<model_t,N_in,N_out>* create_event() const=0;
+            virtual fillable_event<model_t,N_in,N_out>* create_event() const=0;
+
+            /// Allocates the owned event.
 
             /// Returns the event (read-only).
 
@@ -86,9 +85,9 @@ namespace Camgen
                 after_event_set(evt);
             }
 
-            /// Re-allocates the event instance.
+            /// Allocates the event by calling the create_event implementation.
 
-            void reset_event()
+            void allocate_event()
             {
                 set_event(NULL);
             }

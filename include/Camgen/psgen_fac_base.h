@@ -78,6 +78,7 @@ namespace Camgen
 			}
 		    }
 		    result->refresh_m_min();
+                    result->allocate_event();
 		}
 		return result;
 	    }

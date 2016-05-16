@@ -370,7 +370,7 @@ namespace Camgen
 		return true;
 	    }
 
-            fillable_event<model_t,N_in,N_out>* create_event()
+            fillable_event<model_t,N_in,N_out>* create_event() const
             {
                 return new event_data<model_t,N_in,N_out>();
             }
