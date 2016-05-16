@@ -21,6 +21,7 @@
 #include <Camgen/init_state.h>
 #include <Camgen/gen_conf.h>
 #include <Camgen/MC_int.h>
+#include <Camgen/evt_owner.h>
 #include <Camgen/evt_data.h>
 
 namespace Camgen
@@ -30,7 +31,8 @@ namespace Camgen
     template<class model_t,std::size_t N_in,std::size_t N_out>class ps_generator: public MC_integrator<typename model_t::value_type>,
     										  public ps_generator_base<model_t>,
 										  public phase_space_cut,
-										  public scale_expression<typename model_t::value_type>
+										  public scale_expression<typename model_t::value_type>,
+                                                                                  public event_owner<model_t,N_in,N_out>
     {
 	typedef MC_integrator<typename model_t::value_type> base_type;
 
@@ -57,9 +59,8 @@ namespace Camgen
 
 	    /// Constructor with initial state argument.
 
-	    ps_generator(init_state_type* is_):alloc_evt(true),is(is_),isw(0),fsw(0),ps_cut(NULL),scale(NULL)
+	    ps_generator(init_state_type* is_):is(is_),isw(0),fsw(0),ps_cut(NULL),scale(NULL)
 	    {
-                evt=new event_data<model_t,N_in,N_out>();
 		for(size_type i=0;i<N_in;++i)
 		{
 		    pin[i]=new momentum_type;
@@ -102,10 +103,6 @@ namespace Camgen
 			delete pout[i];
 		    }
 		}
-                if(alloc_evt)
-                {
-                    delete evt;
-                }
 		if(is!=NULL)
 		{
 		    delete is;
@@ -220,36 +217,6 @@ namespace Camgen
 		return true;
 	    }
 
-            /// Sets the event pointer to the argument instance.
-
-            void set_event(fillable_event<model_t,N_in,N_out>* evt_)
-            {
-                if(evt_==NULL)
-                {
-                    if(!alloc_evt)
-                    {
-                        evt=new event_data<model_t,N_in,N_out>();
-                        alloc_evt=true;
-                    }
-                }
-                else
-                {
-                    if(alloc_evt)
-                    {
-                        delete evt;
-                        alloc_evt=false;
-                    }
-                    evt=evt_;
-                }
-            }
-
-            /// Re-allocates the event instance whenever external.
-
-            void reset_event()
-            {
-                set_event(NULL);
-            }
-
 	    /// Refreshes the total hadronic invariant mass.
 
 	    virtual bool refresh_Ecm()
@@ -282,7 +249,7 @@ namespace Camgen
 
 	    virtual bool generate()
 	    {
-                evt->reset();
+                this->get_event()->reset();
 		if(!generate_is())
 		{
 		    this->weight()=(value_type)0;
@@ -403,15 +370,13 @@ namespace Camgen
 		return true;
 	    }
 
+            fillable_event<model_t,N_in,N_out>* create_event()
+            {
+                return new event_data<model_t,N_in,N_out>();
+            }
+
 	    /* Public readout methods */
 	    /*------------------------*/
-
-            /// Returns the event pointer.
-            
-            const event<model_t,N_in,N_out>* get_event() const
-            {
-                return evt;
-            }
 
 	    /// Returns the number of incoming particles.
 
@@ -897,14 +862,6 @@ namespace Camgen
 
 	    value_type eff_mmin[N_out][N_out];
 
-            /* Event data: */
-
-            fillable_event<model_t,N_in,N_out>* evt;
-
-            /* Flag denoting whether the event is owned by this instance: */
-
-            bool alloc_evt;
-
 	    /// Calls the initial state generator.
 
 	    virtual bool generate_is()
@@ -1061,11 +1018,11 @@ namespace Camgen
             {
                 for(size_type i=0;i<N_in;++i)
                 {
-                    evt->set_p_in(*(pin[i]),i);
+                    this->get_event()->set_p_in(*(pin[i]),i);
                 }
                 for(size_type i=0;i<N_out;++i)
                 {
-                    evt->set_p_out(*(pout[i]),i);
+                    this->get_event()->set_p_out(*(pout[i]),i);
                 }
             }
 	    

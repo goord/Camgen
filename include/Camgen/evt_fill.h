@@ -23,6 +23,8 @@
 
 namespace Camgen
 {
+    /// Editable event class. Contains methods for copying momenta to the event.
+
     template<class model_t,std::size_t N_in,std::size_t N_out>class fillable_event: public event<model_t,N_in,N_out>
     {
         public:
