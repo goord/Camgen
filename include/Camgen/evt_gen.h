@@ -283,6 +283,23 @@ namespace Camgen
                 }
             }
 
+            /// Creates an event instance.
+
+            fillable_event<model_t,N_in,N_out>* create_event() const
+            {
+                return new event_data<model_t,N_in,N_out>();
+            }
+
+            /// Event insertion side-effect.
+
+            void after_event_set(fillable_event<model_t,N_in,N_out>* evt_)
+            {
+                for(process_iterator it=procs.begin();it!=procs.end();++it)
+                {
+                    it->generator->set_event(evt_);
+                }
+            }
+
             /// Generation method with phase space cut argument.
 
             bool generate()
