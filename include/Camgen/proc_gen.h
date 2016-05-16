@@ -52,7 +52,8 @@ namespace Camgen
     template<class model_t,std::size_t N_in,std::size_t N_out, class rng_t>class process_generator: public MC_integrator<typename model_t::value_type>,
     												    public ps_generator_base<model_t>,
 												    public phase_space_cut,
-												    public scale_expression<typename model_t::value_type>
+												    public scale_expression<typename model_t::value_type>,
+                                                                                                    public event_owner<model_t,N_in,N_out>
     {
 	friend class process_generator_factory_base<model_t,N_in,N_out,rng_t>;
 
@@ -790,8 +791,21 @@ namespace Camgen
 		}
 	    }
 
+            void after_event_set(fillable_event<model_t,N_in,N_out>* evt_)
+            {
+                ps_gen->set_event(evt_);
+            }
+
+
 	    /* Public readout methods */
 	    /*------------------------*/
+
+            /// Creates the event.
+
+            fillable_event<model_t,N_in,N_out>* create_event() const
+            {
+                return new event_data<model_t,N_in,N_out>();
+            }
 
 	    /// Returns the number of incoming particles.
 
