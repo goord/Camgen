@@ -44,8 +44,8 @@ namespace Camgen
 	    typedef typename base_type::momentum_type momentum_type;
 	    typedef typename base_type::value_type value_type;
 	    typedef typename base_type::size_type size_type;
-	    typedef typename base_type::spacetime_type spacetime_type;
 	    typedef typename base_type::init_state_type init_state_type;
+	    typedef typename base_type::event_type::spacetime_type spacetime_type;
 
 	    typedef rng_t rn_engine;
 	    typedef random_number_stream<value_type,rng_t> rn_stream;
@@ -86,9 +86,9 @@ namespace Camgen
 		    return false;
 		}
 		value_type Etot=std::sqrt(stot);
-		if(Etot<this->ps_generator_base<model_type>::M_out_sum())
+		if(Etot<this->M_out())
 		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"total energy "<<Etot<<" too small to create final state with M = "<<this->ps_generator_base<model_type>::M_out_sum()<<endlog;
+		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"total energy "<<Etot<<" too small to create final state with M = "<<this->M_out()<<endlog;
 		    this->fs_weight()=(value_type)0;
 		    return false;
 		}
@@ -153,7 +153,7 @@ namespace Camgen
 			df=(value_type)0;
 			for(size_type j=0;j<N_out;++j)
 			{
-			    d=std::sqrt(xi*xi*Esq[j]+this->M2_out(j));
+			    d=std::sqrt(xi*xi*Esq[j]+this->M_out(j)*this->M_out(j));
 			    f+=d;
 			    df+=Esq[j]/d;
 			}
@@ -161,7 +161,7 @@ namespace Camgen
 		    }
 		    for(size_type i=0;i<N_out;++i)
 		    {
-			this->p_out(i)[0]=std::sqrt(xi*xi*Esq[i]+this->M2_out(i));
+			this->p_out(i)[0]=std::sqrt(xi*xi*Esq[i]+this->M_out(i)*this->M_out(i));
 			for(size_type mu=1;mu<D;++mu)
 			{
 			    this->p_out(i)[mu]*=xi;
@@ -176,7 +176,7 @@ namespace Camgen
 		    for(size_type i=0;i<N_out;++i)
 		    {
 			value_type e=this->p_out(i)[0];
-			value_type psq=e*e-this->M2_out(i);
+			value_type psq=e*e-this->M_out(i)*this->M_out(i);
 			factor*=(std::sqrt(psq)/e);
 			denom+=(psq/e);
 		    }
@@ -205,7 +205,7 @@ namespace Camgen
 		    return false;
 		}
 		value_type Etot=std::sqrt(stot);
-		if(Etot<this->ps_generator_base<model_type>::M_out_sum())
+		if(Etot<this->M_out())
 		{
 		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"total energy too small to create final state"<<endlog;
 		    this->fs_weight()=(value_type)0;
@@ -223,7 +223,7 @@ namespace Camgen
 			momentum_type p=this->p_out(i);
 			boost_to_restframe(p,P,Etot);
 			value_type E=p[0];
-			value_type pvec=std::sqrt(E*E-this->M2_out(i));
+			value_type pvec=std::sqrt(E*E-this->M_out(i)*this->M_out(i));
 			factor*=(pvec/E);
 			num+=pvec;
 			denom+=(pvec*pvec/E);
