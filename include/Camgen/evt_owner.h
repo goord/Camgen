@@ -5,12 +5,12 @@
 // see COPYING for details.
 //
 
-/*! \file evt_owner.h
-    \brief Abstract base class for event-filling (-owning) objects in Camgen
+/*! \file evt_container.h
+    \brief Abstract base class for event-containing objects in Camgen
  */
 
-#ifndef CAMGEN_EVT_OWNER_H_
-#define CAMGEN_EVT_OWNER_H_
+#ifndef CAMGEN_EVT_CONTAINER_H_
+#define CAMGEN_EVT_CONTAINER_H_
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Utility abstract base class for event-owning (phase space) generators *
@@ -21,9 +21,9 @@
 
 namespace Camgen
 {
-    /// Utility abstract base class for event owners. Implementors must provide a default event creation method.
+    /// Utility abstract base class for event containers. Implementors must provide a default event creation method.
 
-    template<class model_t,std::size_t N_in,std::size_t N_out> class event_owner
+    template<class model_t,std::size_t N_in,std::size_t N_out> class event_container
     {
         public:
 
@@ -33,11 +33,11 @@ namespace Camgen
 
             /// Constructor. Creates the owned event.
 
-            event_owner():alloc_evt(false),evt(NULL){}
+            event_container():evt(NULL),alloc_evt(false){}
 
             /// Destructor. Deletes the event if necessary.
 
-            virtual ~event_owner()
+            virtual ~event_container()
             {
                 if(alloc_evt)
                 {
@@ -107,15 +107,17 @@ namespace Camgen
 
         private:
 
-            /* Flag denoting whether the evt pointer is owned by this class instance. */
-
-            bool alloc_evt;
+            //TODO: Use smart pointers!
 
             /* Event pointer. */
 
             fillable_event<model_t,N_in,N_out>* evt;
+
+            /* Flag denoting whether the evt pointer is owned by this class instance. */
+
+            bool alloc_evt;
     };
 }
 
-#endif /*CAMGEN_EVT_OWNER_H_*/
+#endif /*CAMGEN_EVT_CONTAINER_H_*/
 

@@ -27,6 +27,8 @@
 
 namespace Camgen
 {
+    /// Default factorisation/renormalisation scale expression class.
+
     template<class model_t,std::size_t N_in,std::size_t N_out>class pT_scale: public ps_function<model_t,N_in,N_out>
     {
         public:
@@ -35,6 +37,9 @@ namespace Camgen
             typedef typename base_type::event_type event_type;
             typedef typename base_type::value_type value_type;
             typedef typename event_type::size_type size_type;
+
+            /// Operator returning the qcd scale for the argument event, the square root of the average pT-squared of
+            /// the outgoing particles.
 
             value_type operator()(const event_type& evt) const
             {

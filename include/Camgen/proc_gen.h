@@ -50,9 +50,6 @@ namespace Camgen
     /// Single-process matrix-element Monte Carlo event generator class.
 
     template<class model_t,std::size_t N_in,std::size_t N_out, class rng_t>class process_generator: public MC_integrator<typename model_t::value_type>,
-    												    public ps_generator_base<model_t>,
-												    public phase_space_cut,
-												    public scale_expression<typename model_t::value_type>,
                                                                                                     public event_owner<model_t,N_in,N_out>
     {
 	friend class process_generator_factory_base<model_t,N_in,N_out,rng_t>;

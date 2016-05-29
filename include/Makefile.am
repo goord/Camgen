@@ -23,6 +23,7 @@ Camgen_HEADERS = Camgen/adj_rep.h		\
 	         Camgen/curr_iter_comp.h	\
 	         Camgen/current.h		\
 	         Camgen/current_tree.h		\
+	         Camgen/cut_container.h		\
 	         Camgen/d.h			\
 	         Camgen/dd.h			\
 	         Camgen/dd_min.h		\
@@ -39,7 +40,7 @@ Camgen_HEADERS = Camgen/adj_rep.h		\
 	         Camgen/evt_fill.h		\
 	         Camgen/evt_data.h		\
 	         Camgen/evt_gen.h		\
-		 Camgen/evt_owner.h		\
+		 Camgen/evt_container.h		\
 		 Camgen/evtgen_fac.h		\
 		 Camgen/evtgen_fac_base.h	\
 	         Camgen/EWSM.h			\
@@ -174,7 +175,7 @@ Camgen_HEADERS = Camgen/adj_rep.h		\
 	         Camgen/scalar_particle.h	\
 	         Camgen/scalar_prop.h		\
 	         Camgen/scalar_QED.h		\
-	         Camgen/scale_expr.h		\
+	         Camgen/scale_container.h	\
 	         Camgen/sff.h			\
 	         Camgen/sff5.h			\
 	         Camgen/sffL.h			\
