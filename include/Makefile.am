@@ -40,6 +40,7 @@ Camgen_HEADERS = Camgen/adj_rep.h		\
 	         Camgen/evt_fill.h		\
 	         Camgen/evt_data.h		\
 	         Camgen/evt_gen.h		\
+	         Camgen/evt_gen_base.h		\
 		 Camgen/evt_container.h		\
 		 Camgen/evtgen_fac.h		\
 		 Camgen/evtgen_fac_base.h	\
