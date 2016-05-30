@@ -21,42 +21,14 @@
 #include <Camgen/init_state.h>
 #include <Camgen/gen_conf.h>
 #include <Camgen/MC_int.h>
-#include <Camgen/evt_owner.h>
-#include <Camgen/evt_data.h>
-#include <Camgen/ps_func.h>
+#include <Camgen/evt_gen_base.h>
 
 namespace Camgen
 {
-    /// Default factorisation/renormalisation scale expression class.
-
-    template<class model_t,std::size_t N_in,std::size_t N_out>class pT_scale: public ps_function<model_t,N_in,N_out>
-    {
-        public:
-
-            typedef ps_function<model_t,N_in,N_out> base_type;
-            typedef typename base_type::event_type event_type;
-            typedef typename base_type::value_type value_type;
-            typedef typename event_type::size_type size_type;
-
-            /// Operator returning the qcd scale for the argument event, the square root of the average pT-squared of
-            /// the outgoing particles.
-
-            value_type operator()(const event_type& evt) const
-            {
-		value_type s(0);
-		for(size_type i=0;i<N_out;++i)
-		{
-		    s+=(evt.pT2_out(i));
-		}
-		return std::sqrt(s/N_out);
-            }
-    };
-
-
     /// Phase space generator base class template.
 
     template<class model_t,std::size_t N_in,std::size_t N_out>class ps_generator: public MC_integrator<typename model_t::value_type>,
-                                                                                  public event_owner<model_t,N_in,N_out>
+                                                                                  public event_generator_base<model_t,N_in,N_out>
     {
 	typedef MC_integrator<typename model_t::value_type> base_type;
 
@@ -65,7 +37,7 @@ namespace Camgen
 	    /* Type definitions: */
 
 	    typedef model_t model_type;
-            typedef typename event_owner<model_t,N_in,N_out>::event_type event_type;
+            typedef typename event_generator_base<model_t,N_in,N_out>::event_type event_type;
 	    typedef typename event_type::momentum_type momentum_type;
 	    typedef typename event_type::value_type value_type;
 	    typedef typename event_type::size_type size_type;
@@ -83,7 +55,7 @@ namespace Camgen
 
 	    /// Constructor with initial state argument.
 
-	    ps_generator(init_state_type* is_):is(is_),isw(0),fsw(0),mu_F(new pT_scale<model_t,N_in,N_out>()),mu_R(new pT_scale<model_t,N_in,N_out>()),mu_QCD(new pT_scale<model_t,N_in,N_out>())
+	    ps_generator(init_state_type* is_):is(is_),isw(0),fsw(0)
 	    {
 		for(size_type i=0;i<N_in;++i)
 		{
@@ -131,22 +103,6 @@ namespace Camgen
 		{
 		    delete is;
 		}
-                for(size_type i=0;i<ps_cuts.size();++i)
-                {
-                    delete ps_cuts[i];
-                }
-                if(mu_F!=NULL)
-                {
-                    delete mu_F;
-                }
-                if(mu_R!=NULL)
-                {
-                    delete mu_R;
-                }
-                if(mu_QCD!=NULL)
-                {
-                    delete mu_QCD;
-                }
 	    }
 
 	    /* Public modifiers */
@@ -259,62 +215,6 @@ namespace Camgen
 	    {
 		return true;
 	    }
-
-	    /// Inserts a phase space cut.
-
-	    void insert_cut(ps_cut<model_t,N_in,N_out>* c)
-	    {
-		ps_cuts.push_back(c);
-	    }
-
-	    /// Inserts a phase space cut function.
-
-	    void insert_cut(typename ps_cut_wrapper<model_t,N_in,N_out>::function_type f)
-	    {
-		ps_cuts.push_back(new ps_cut_wrapper<model_t,N_in,N_out>(f));
-	    }
-
-	    /// Inserts a factorisation scale expression.
-
-	    void set_factorisation_scale(ps_function<model_t,N_in,N_out>* expr)
-	    {
-		mu_F=expr;
-	    }
-
-            /// Inserts a factorisation scale function.
-
-            void set_factorisation_scale(typename ps_function_wrapper<model_t,N_in,N_out>::function_type f)
-            {
-                mu_F=new ps_function_wrapper<model_t,N_in,N_out>(f);
-            }
-
-	    /// Inserts a renormalisation scale expression.
-
-	    void set_renormalisation_scale(ps_function<model_t,N_in,N_out>* expr)
-	    {
-		mu_R=expr;
-	    }
-
-            /// Inserts a renormalisation scale function.
-
-            void set_renormalisation_scale(typename ps_function_wrapper<model_t,N_in,N_out>::function_type f)
-            {
-                mu_R=new ps_function_wrapper<model_t,N_in,N_out>(f);
-            }
-
-	    /// Inserts a QCD scale expression.
-
-	    void set_qcd_scale(ps_function<model_t,N_in,N_out>* expr)
-	    {
-		mu_QCD=expr;
-	    }
-
-            /// Inserts a QCD scale function.
-
-            void set_QCD_scale(typename ps_function_wrapper<model_t,N_in,N_out>::function_type f)
-            {
-                mu_QCD=new ps_function_wrapper<model_t,N_in,N_out>(f);
-            }
 
 	    /// Generation method.
 
@@ -604,41 +504,8 @@ namespace Camgen
 
 	    value_type flux_factor()
 	    {
-		is->mu_F=F_scale();
+		is->mu_F=this->event_generator_base<model_t,N_in,N_out>::F_scale();
 		return is->flux_factor();
-	    }
-
-	    /// Implementation of the factorisation scale.
-
-	    value_type F_scale() const
-	    {
-		if(mu_F!=NULL)
-		{
-		    return (value_type)1;
-		}
-                return (*mu_F)(*(this->get_event()));
-	    }
-
-	    /// Implementation of the renormalisation scale.
-
-	    value_type R_scale() const
-	    {
-		if(mu_R!=NULL)
-		{
-		    return (value_type)1;
-		}
-                return (*mu_R)(*(this->get_event()));
-	    }
-
-	    /// Implementation of the QCD scale.
-
-	    value_type QCD_scale() const
-	    {
-		if(mu_QCD!=NULL)
-		{
-		    return (value_type)1;
-		}
-                return (*mu_QCD)(*(this->get_event()));
 	    }
 
 	    /// Returns the const pointer to the total hadronic invariant mass
@@ -659,13 +526,6 @@ namespace Camgen
 	    {
 		return is->alpha_s();
 	    }
-
-            /// Creates a new event.
-
-            fillable_event<model_t,N_in,N_out>* create_event() const
-            {
-                return new event_data<model_t,N_in,N_out>();
-            }
 
 	    /// Checks whether momentum is conserved.
 
@@ -761,14 +621,7 @@ namespace Camgen
 			}
 		    }
 		}
-                for(size_type i=0;i<ps_cuts.size();++i)
-                {
-                    if(!(*ps_cuts[i])(*(this->get_event())))
-                    {
-                        return false;
-                    }
-                }
-		return true;
+		return this->event_generator_base<model_t,N_in,N_out>::pass_cuts();
 	    }
 
 	    /* Serialization: */
@@ -1099,22 +952,6 @@ namespace Camgen
 	    /* Outgoing masses: */
 	    
 	    const value_type* mout[N_out];
-
-	    /* Phase space cuts depending on this instance: */
-
-            std::vector<ps_cut<model_t,N_in,N_out>*> ps_cuts;
-
-	    /* Factorization scale expression: */
-
-	    ps_function<model_t,N_in,N_out>* mu_F;
-
-	    /* Renormalization scale expression: */
-
-	    ps_function<model_t,N_in,N_out>* mu_R;
-
-            /* QCD scale expression: */
-
-	    ps_function<model_t,N_in,N_out>* mu_QCD;
     };
     template<class model_t,std::size_t N_in,std::size_t N_out>typename ps_generator<model_t,N_in,N_out>::value_type ps_generator<model_t,N_in,N_out>::ps_factor=std::pow((typename model_t::value_type)2*std::acos(-(typename model_t::value_type)1),(int)model_t::dimension-(int)(model_t::dimension-1)*(int)N_out);
 }

@@ -47,12 +47,6 @@ namespace Camgen
                 }
             }
 
-            /// Event factory method.
-
-            virtual fillable_event<model_t,N_in,N_out>* create_event() const=0;
-
-            /// Allocates the owned event.
-
             /// Returns the event (read-only).
 
             const event_type* get_event() const
@@ -97,6 +91,10 @@ namespace Camgen
             virtual void after_event_set(fillable_event<model_t,N_in,N_out>* evt_){}
 
         protected:
+
+            /// Abstract event factory method.
+
+            virtual fillable_event<model_t,N_in,N_out>* create_event() const=0;
 
             /// Returns the event (read/write)
 

@@ -21,13 +21,10 @@
 
 #include <Camgen/ps_cut.h>
 #include <Camgen/ps_gen_base.h>
-#include <Camgen/scale_expr.h>
 
 namespace Camgen
 {
-    template<class model_t>class generator_configuration: public phase_space_cut,
-    							  public scale_expression<typename model_t::value_type>,
-    							  public ps_generator_viewer<model_t>
+    template<class model_t>class generator_configuration: public ps_generator_viewer<model_t>
     {
 	public:
 
