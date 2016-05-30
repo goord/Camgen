@@ -161,7 +161,7 @@ Camgen_HEADERS = Camgen/adj_rep.h		\
 	         Camgen/Pythia_if.h		\
 	         Camgen/QCD.h			\
 	         Camgen/QCD_base.h		\
-	         Camgen/qcd_cols.h		\
+	         Camgen/QCD_cols.h		\
 	         Camgen/QED.h			\
 	         Camgen/QED_base.h		\
 	         Camgen/R_gauge.h		\

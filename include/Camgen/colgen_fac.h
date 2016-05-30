@@ -17,7 +17,7 @@
 #include <Camgen/static_comp.h>
 #include <Camgen/MC_config.h>
 #include <Camgen/uni_cols.h>
-#include <Camgen/qcd_cols.h>
+#include <Camgen/QCD_cols.h>
 
 namespace Camgen
 {
