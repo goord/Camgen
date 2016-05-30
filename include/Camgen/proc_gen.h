@@ -50,7 +50,7 @@ namespace Camgen
     /// Single-process matrix-element Monte Carlo event generator class.
 
     template<class model_t,std::size_t N_in,std::size_t N_out, class rng_t>class process_generator: public MC_integrator<typename model_t::value_type>,
-                                                                                                    public event_owner<model_t,N_in,N_out>
+                                                                                                    public event_generator_base<model_t,N_in,N_out>
     {
 	friend class process_generator_factory_base<model_t,N_in,N_out,rng_t>;
 
@@ -249,28 +249,6 @@ namespace Camgen
 		return false;
 	    }
 
-	    /// Inserts a phase space cut.
-
-	    void insert_cut(phase_space_cut* cut)
-	    {
-		ps_cut=cut;
-		if(ps_gen!=NULL)
-		{
-		    ps_gen->insert_cut(cut);
-		}
-	    }
-
-	    /// Inserts a scale expression.
-
-	    void insert_scale(scale_expression<value_type>* expr)
-	    {
-		scale=expr;
-		if(ps_gen!=NULL)
-		{
-		    ps_gen->insert_scale(expr);
-		}
-	    }
-
 	    /// Refreshes minimal invariant mass generation parameters.
 
 	    bool refresh_m_min()
@@ -454,14 +432,14 @@ namespace Camgen
 		    {
 			model_type::set_alpha_s(as);
 		    }
-		    else if(scale!=NULL)
+		    else
 		    {
-			model_type::set_QCD_scale(scale->R_scale());
+			model_type::set_QCD_scale(this->R_scale());
 		    }
 		}
-		else if(scale!=NULL)
+		else
 		{
-		    model_type::set_QCD_scale(scale->R_scale());
+		    model_type::set_QCD_scale(this->R_scale());
 		}
 		if(summed_spins.any() or summed_colours.any())
 		{
@@ -868,7 +846,7 @@ namespace Camgen
 
 	    value_type s_in(size_type i) const
 	    {
-		return static_cast<ps_generator_base<model_type>*>(ps_gen)->s_in(i);
+		return ps_gen->s_in(i);
 	    }
 
 	    /// Returns the i-th outgoing mass-squared (no range checking on i).
@@ -1021,34 +999,6 @@ namespace Camgen
 	    value_type beam_energy(int i) const
 	    {
 		return ps_gen->beam_energy(i);
-	    }
-
-	    /// Returns the current factorisation scale.
-
-	    value_type mu_F() const
-	    {
-		return ps_gen->mu_F();
-	    }
-
-	    /// Returns the factorisation scale.
-
-	    value_type F_scale()
-	    {
-		return ps_gen->F_scale();
-	    }
-
-	    /// Returns the renormalisation scale.
-
-	    value_type R_scale()
-	    {
-		return ps_gen->R_scale();
-	    }
-
-	    /// Returns the QCD scale.
-
-	    value_type QCD_scale()
-	    {
-		return ps_gen->QCD_scale();
 	    }
 
 	    /// Returns the phase space generator.
@@ -1227,13 +1177,6 @@ namespace Camgen
 		return os;
 	    }
 
-	    /// Prints the generator cuts.
-
-	    std::ostream& print_cuts(std::ostream& os=std::cout) const
-	    {
-		return (ps_cut==NULL)?os:(ps_cut->print(os));
-	    }
-
 	    /// Prints the generator settings.
 
 	    std::ostream& print_settings(std::ostream& os=std::cout) const
@@ -1285,7 +1228,7 @@ namespace Camgen
 
 	    /* Private constructor, no configuration performed: */
 
-	    process_generator(CM_tree_iterator it,size_type id_=0):id(id_),symmetry_factor(it->symmetry_factor()),amplitude(it),evt_counter(0),pos_evt_counter(0),tot_weight(0),zero_me(it->count_diagrams()==(long long unsigned)0),me(1),ps_gen(NULL),ps_weight(1),ps_factor(1),hel_gen(NULL),hel_weight(1),hel_factor(1),col_gen(NULL),col_weight(1),col_factor(1),update_counter(0),auto_update(false),grid_adaptations(0),auto_grid_adapt(0),channel_adaptations(0),auto_channel_adapt(0),max_rejects(std::numeric_limits<size_type>::max()),ps_cut(NULL),scale(NULL),alpha_pdf(true)
+	    process_generator(CM_tree_iterator it,size_type id_=0):id(id_),symmetry_factor(it->symmetry_factor()),amplitude(it),evt_counter(0),pos_evt_counter(0),tot_weight(0),zero_me(it->count_diagrams()==(long long unsigned)0),me(1),ps_gen(NULL),ps_weight(1),ps_factor(1),hel_gen(NULL),hel_weight(1),hel_factor(1),col_gen(NULL),col_weight(1),col_factor(1),update_counter(0),auto_update(false),grid_adaptations(0),auto_grid_adapt(0),channel_adaptations(0),auto_channel_adapt(0),max_rejects(std::numeric_limits<size_type>::max()),alpha_pdf(true)
 	    {
 		summed_spins.reset();
 		summed_colours.reset();
@@ -1490,14 +1433,6 @@ namespace Camgen
 	    /* Maximal nr of rejections for positive event generation: */
 
 	    size_type max_rejects;
-
-	    /* Phase space cuts depending on this instance: */
-
-	    phase_space_cut* ps_cut;
-
-	    /* QCD scale expression instance: */
-
-	    scale_expression<value_type>* scale;
 
 	    /* Boolean denoting whether to adopt pdf's alpha: */
 

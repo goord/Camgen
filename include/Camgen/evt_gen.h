@@ -24,10 +24,7 @@ namespace Camgen
 
     template<class model_t,std::size_t N_in,std::size_t N_out,class rng_t>class event_generator: public MC_generator<typename model_t::value_type>,
                                                                                                  public MC_integrator_base<typename model_t::value_type>,
-                                                                                                 public ps_generator_base<model_t>,
-                                                                                                 public phase_space_cut,
-                                                                                                 public scale_expression<typename model_t::value_type>,
-                                                                                                 public event_owner<model_t,N_in,N_out>
+                                                                                                 public event_generator_base<model_t,N_in,N_out>
     {
         /* Forward declaration of process generator factory base: */
 
@@ -259,35 +256,6 @@ namespace Camgen
             void unset_auto_proc_adapt()
             {
                 auto_proc_adapt=0;
-            }
-
-            /// Insert a phase space cut.
-
-            void insert_cut(phase_space_cut* cut)
-            {
-                ps_cut=cut;
-                for(process_iterator it=procs.begin();it!=procs.end();++it)
-                {
-                    it->generator->insert_cut(cut);
-                }
-            }
-
-            /// Inserts a scale expression.
-
-            void insert_scale(scale_expression<value_type>* expr)
-            {
-                scale=expr;
-                for(process_iterator it=procs.begin();it!=procs.end();++it)
-                {
-                    it->generator->insert_scale(expr);
-                }
-            }
-
-            /// Creates an event instance.
-
-            fillable_event<model_t,N_in,N_out>* create_event() const
-            {
-                return new event_data<model_t,N_in,N_out>();
             }
 
             /// Event insertion side-effect.
@@ -985,13 +953,6 @@ namespace Camgen
                 return os;
             }
 
-            /// Prints the generator cuts.
-
-            std::ostream& print_cuts(std::ostream& os=std::cout) const
-            {
-                return (ps_cut==NULL)?os:(ps_cut->print(os));
-            }
-
             /// Prints the generator settings.
 
             std::ostream& print_settings(std::ostream& os=std::cout) const
@@ -1026,7 +987,7 @@ namespace Camgen
 
             /// Constructor from static configuration data.
 
-            event_generator(CM_algorithm<model_t,N_in,N_out>& algo):process_adaptivity(1),process_threshold(0),algorithm(algo),up_to_date(false),n_calls(0),update_counter(0),auto_update(false),auto_proc_adapt(0),ps_cut(NULL),scale(NULL){}
+            event_generator(CM_algorithm<model_t,N_in,N_out>& algo):process_adaptivity(1),process_threshold(0),algorithm(algo),up_to_date(false),n_calls(0),update_counter(0),auto_update(false),auto_proc_adapt(0){}
 
         private:
 
@@ -1061,14 +1022,6 @@ namespace Camgen
             /* Automatic process channel adaptation flag: */
 
             size_type auto_proc_adapt;
-
-            /* Phase space cut: */
-
-            phase_space_cut* ps_cut;
-
-            /* QCD scale expression object: */
-
-            scale_expression<value_type>* scale;
 
             /* Helper function for initialisation: */
 

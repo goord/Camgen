@@ -552,7 +552,7 @@ namespace Camgen
 		bool q=true;
 		for(size_type i=0;i<N_in;++i)
 		{
-		    value_type s=this->ps_generator_base<model_t>::s_in(i);
+		    value_type s=this->get_event()->s_in(i);
 		    if(!equals(s/Ecm_hat(),this->M2_in(i)/Ecm_hat()))
 		    {
 			log(log_level::warning)<<CAMGEN_STREAMLOC<<"incoming momentum "<<i<<": "<<p_in(i)<<" with invariant mass "<<s<<" not equal to "<<this->M2_in(i)<<" detected"<<endlog;
@@ -614,7 +614,7 @@ namespace Camgen
 		    {
 			if(eff_mmin[i][j]>(value_type)0)
 			{
-			    if(ps_generator_base<model_t>::s(q+p_out(j))<eff_mmin[i][j]*eff_mmin[i][j])
+			    if(event<model_t,N_in,N_out>::s(q+p_out(j))<eff_mmin[i][j]*eff_mmin[i][j])
 			    {
 				return false;
 			    }
