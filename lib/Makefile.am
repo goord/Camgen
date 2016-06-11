@@ -19,7 +19,6 @@ libCamgen_la_SOURCES = $(top_srcdir)/src/bipart.cpp		\
 		       $(top_srcdir)/src/plt_script.cpp		\
 		       $(top_srcdir)/src/plt_strm.cpp		\
 		       $(top_srcdir)/src/multi_plot.cpp		\
-		       $(top_srcdir)/src/ps_cut.cpp		\
 		       $(top_srcdir)/src/QED.cpp		\
 		       $(top_srcdir)/src/QCD.cpp		\
 		       $(top_srcdir)/src/rcarry.cpp		\
