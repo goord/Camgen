@@ -24,52 +24,35 @@
 
 namespace Camgen
 {
-    template<class model_t,std::size_t N_out>class pT_min_cut: public phase_space_cut
+    template<class model_t,std::size_t N_out>class pT_min_cut: public ps_cut<model_t,2,N_out>
     {
 	public:
 
+            typedef ps_cut<model_t,2,N_out> base_type;
+            typedef typename base_type::event_type event_type;
 	    typedef typename model_t::value_type value_type;
-
-	    const ps_generator_base<model_t>* generator;
 
 	    value_type value;
 
 	    int particle;
 
-	    pT_min_cut(const value_type& value_,int i=0):generator(NULL),value(value_),particle(i){}
+	    pT_min_cut(const value_type& value_,int i=0):value(value_),particle(i){}
 
-	    bool pass()
-	    {
-		if(generator==NULL)
-		{
-		    return true;
-		}
+            bool operator()(const event_type& evt) const
+            {
 		if(particle==0)
 		{
 		    for(int i=1;i<=(int)N_out;++i)
 		    {
-			if(generator->pT(i)<value)
+			if(evt.pT(i)<value)
 			{
 			    return false;
 			}
 		    }
 		    return true;
 		}
-		return !(generator->pT(particle)<value);
-	    }
-
-	    std::ostream& print(std::ostream& os) const
-	    {
-		if(particle==0)
-		{
-		    os<<"pT >= "<<value;
-		}
-		else
-		{
-		    os<<"pT("<<particle<<") >= "<<value;
-		}
-		return os;
-	    }
+		return !(evt.pT(particle)<value);
+            }
     };
 
     /* Monte-Carlo phase space generator class template declaration: */
@@ -165,7 +148,7 @@ namespace Camgen
 			    return false;
 			}
 		    }
-		    value_type w1=(ps_generated and ps_gen->pass())?ps_gen->weight():(value_type)0;
+		    value_type w1=(ps_generated and ps_gen->pass_cuts())?ps_gen->weight():(value_type)0;
 		    w1sum+=w1;
 		    w1sqsum+=(w1*w1);
 		    amplitude->reset();
@@ -220,7 +203,7 @@ namespace Camgen
 			    return false;
 			}
 		    }
-		    value_type w2=(rambo_generated and uni_gen->pass())?uni_gen->weight():(value_type)0;
+		    value_type w2=(rambo_generated and uni_gen->pass_cuts())?uni_gen->weight():(value_type)0;
 		    
 		    w2sum+=w2;
 		    w2sqsum+=(w2*w2);
@@ -340,8 +323,7 @@ namespace Camgen
 		else
 		{
 		    pTcut1 = new pT_min_cut<model_t,N_out>(value,i);
-		    pTcut1->generator=uni_gen;
-		    uni_gen->insert_cut(pTcut1);
+		    uni_gen->add_cut(pTcut1);
 		}
 
 		if(pTcut2!=NULL)
@@ -351,8 +333,7 @@ namespace Camgen
 		else
 		{
 		    pTcut2 = new pT_min_cut<model_t,N_out>(value,i);
-		    pTcut2->generator=ps_gen;
-		    ps_gen->insert_cut(pTcut2);
+		    ps_gen->add_cut(pTcut2);
 		}
 		return true;
 	    }

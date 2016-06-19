@@ -47,11 +47,18 @@ namespace Camgen
                 }
             }
 
-            /// Returns the event (read-only).
+            /// Returns the event pointer (read-only).
 
-            const event_type* get_event() const
+            const event_type* get_event_ptr() const
             {
                 return evt;
+            }
+
+            /// Returns the event reference (read-only).
+
+            const event_type& get_event() const
+            {
+                return *evt;
             }
 
             /// Sets the event instance to the argument pointer, deleting the current instance whenever necessary. 
@@ -98,7 +105,7 @@ namespace Camgen
 
             /// Returns the event (read/write)
 
-            fillable_event<model_t,N_in,N_out>* get_event()
+            fillable_event<model_t,N_in,N_out>* get_event_ptr()
             {
                 return evt;
             }

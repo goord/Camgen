@@ -41,9 +41,10 @@ namespace Camgen
 
             /// Sets the current sub-process.
 
-            virtual void set_process(const sub_process<model_t,N_in,N_out>* sub_proc_)
+            virtual void set_process(const sub_process<model_t,N_in,N_out>* sub_proc_,int i=1)
             {
                 this->sub_proc=sub_proc_;
+                this->procid=i;
             }
 
             /// Copies the argument vector to the i-th incoming momentum.
@@ -53,6 +54,14 @@ namespace Camgen
             /// Copies the argument vector to the i-th outgoing momentum.
 
             virtual void set_p_out(const momentum_type&,size_type)=0;
+
+            /// Sets the event weight.
+
+            virtual void set_w(const value_type&)=0;
+
+            /// Sets the cross section.
+
+            virtual void set_xsec(const MC_integral<value_type>)=0;
 
             /// Resets to default (zero)momenta.
 
@@ -68,6 +77,8 @@ namespace Camgen
                 {
                     set_p_out(p,i);
                 }
+                set_w((value_type)1);
+                set_xsec(MC_integral<value_type>(0));
             }
     };
 }

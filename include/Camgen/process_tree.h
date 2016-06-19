@@ -870,6 +870,30 @@ namespace Camgen
 		return false;
 	    }
 
+	    /* Function returning the vector of incoming particles: */
+
+	    vector<const particle_type*,N_in> get_phi_in()
+	    {
+		vector<const particle_type*,N_in>p;
+		for(size_type i=0;i<N_in;++i)
+		{
+		    p[i]=get_phase_space(i)->particle_type;
+		}
+		return p;
+	    }
+
+	    /* Function returning the vector of outgoing particles: */
+
+	    vector<const particle_type*,N_out> get_phi_out()
+	    {
+		vector<const particle_type*,N_out>p;
+		for(size_type i=N_in;i<N_in+N_out;++i)
+		{
+		    p[i-N_in]=get_phase_space(i)->particle_type;
+		}
+		return p;
+	    }
+
 	    /* Function returning the vector of incoming mass pointers: */
 
 	    vector<const r_value_type*,N_in> get_m_in()

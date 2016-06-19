@@ -14,6 +14,7 @@
 
 #include <Camgen/sub_proc.h>
 #include <Camgen/type_holders.h>
+#include <Camgen/MC_integral.h>
 
 namespace Camgen
 {
@@ -126,7 +127,7 @@ namespace Camgen
 
 	    /* Default constructor: */
 
-	    event():sub_proc(NULL){}
+	    event():sub_proc(NULL),procid(1){}
 
 	    /* Destructor: */
 
@@ -139,6 +140,27 @@ namespace Camgen
             /// Abstract method returning outgoing momenta.
 
             virtual momentum_type p_out(size_type i) const=0;
+
+            /// Virtual method returning the process id.
+
+            virtual int process_id() const
+            {
+                return procid;
+            }
+
+            /// Virtual method returning the event weight.
+
+            virtual value_type w() const
+            {
+                return (value_type)1;
+            }
+
+            /// Virtual method returning the process cross sesction.
+
+            virtual MC_integral<value_type> xsec() const
+            {
+                return MC_integral<value_type>(0);
+            }
 
 	    /// Returns the i-th momentum, where i<0 means incoming momenta and
 	    /// i>0 outgoing ones. If i==0,i<-N_in or i>N_out, an error will
@@ -362,14 +384,14 @@ namespace Camgen
 
             /// Returns the total incoming partonic invariant mass.
 
-            value_type s_tot_in() const
+            virtual value_type s_tot_in() const
             {
                 return s(p_tot_in());
             }
 
             /// Returns the total outgoing partonic invariant mass.
 
-            value_type s_tot_out() const
+            virtual value_type s_tot_out() const
             {
                 return s(p_tot_out());
             }
@@ -379,6 +401,13 @@ namespace Camgen
             value_type s_tot() const
             {
                 return s_tot_in();
+            }
+
+            /// Returns the total incoming center-of-mass energy.
+
+            virtual value_type Ecm_hat() const
+            {
+                return std::sqrt(s_tot());
             }
 
 	    /// Takes the invariant mass-squared of the sum of the argument external
@@ -672,9 +701,63 @@ namespace Camgen
 		return space_dot(p(i1),p(i2));
 	    }
 
+            /// Returns the sub-process.
+
+            const sub_process<model_type,N_in,N_out>& get_process() const
+            {
+                return *sub_proc;
+            } 
+            
+            /* Predefined event validation functions. */
+            
+	    /// Checks whether momentum is conserved.
+
+	    bool check_p_conservation() const
+	    {
+		momentum_type Pin=p_tot_in();
+		momentum_type Pout=p_tot_out();
+		bool q=true;
+		for(size_type mu=0;mu!=model_t::dimension;++mu)
+		{
+		    q&=equals(Pin[mu]/Ecm_hat(),Pout[mu]/Ecm_hat());
+		}
+		if(!q)
+		{
+		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"momentum conservation violation detected "<<Pin<<" not equal to "<<Pout<<endlog;
+		}
+		return q;
+	    }
+
+	    /// Checks whether momenta are on-shell.
+
+	    bool check_p_on_shell() const
+	    {
+		bool q=true;
+		for(size_type i=0;i<N_in;++i)
+		{
+		    value_type s=s_in(i);
+		    if(!equals(s/Ecm_hat(),M2_in(i)/Ecm_hat()))
+		    {
+			log(log_level::warning)<<CAMGEN_STREAMLOC<<"incoming momentum "<<i<<": "<<p_in(i)<<" with invariant mass "<<s<<" not equal to "<<M2_in(i)<<" detected"<<endlog;
+			q=false;
+		    }
+		}
+		for(size_type i=0;i<N_out;++i)
+		{
+		    value_type s=s_out(i);
+		    if(!equals(s/Ecm_hat(),M2_out(i)/Ecm_hat()))
+		    {
+			log(log_level::warning)<<CAMGEN_STREAMLOC<<"outgoing momentum "<<i<<": "<<p_out(i)<<" with mass-squared "<<s<<" not equal to "<<M2_out(i)<<" detected"<<endlog;
+			q=false;
+		    }
+		}
+		return q;
+	    }
+
         protected:
 
             const sub_process<model_type,N_in,N_out>* sub_proc;
+            int procid;
     };
 
     /* Helper template class for transverse directions of 2-particle initial states in 3d: */
@@ -902,11 +985,32 @@ namespace Camgen
 
 	    /* Default constructor: */
 
-	    event():sub_proc(NULL){}
+	    event():sub_proc(NULL),procid(1){}
 
 	    /* Destructor: */
 
 	    virtual ~event(){}
+
+            /// Virtual method returning the process id.
+
+            virtual int process_id() const
+            {
+                return procid;
+            }
+
+            /// Virtual method returning the event weight.
+
+            virtual value_type w() const
+            {
+                return (value_type)1;
+            }
+
+            /// Virtual method returning the process cross sesction.
+
+            virtual MC_integral<value_type> xsec() const
+            {
+                return MC_integral<value_type>(0);
+            }
 
             /// Abstract method returning incoming momenta.
 
@@ -1127,14 +1231,14 @@ namespace Camgen
 
             /// Returns the total incoming partonic invariant mass.
 
-            value_type s_tot_in() const
+            virtual value_type s_tot_in() const
             {
                 return s(p_tot_in());
             }
 
             /// Returns the total outgoing partonic invariant mass.
 
-            value_type s_tot_out() const
+            virtual value_type s_tot_out() const
             {
                 return s(p_tot_out());
             }
@@ -1144,6 +1248,13 @@ namespace Camgen
             value_type s_tot() const
             {
                 return s_tot_in();
+            }
+
+            /// Returns the total incoming center-of-mass energy.
+
+            virtual value_type Ecm_hat() const
+            {
+                return std::sqrt(s_tot());
             }
 
 	    /// Takes the invariant mass-squared of the sum of the argument external
@@ -1610,9 +1721,63 @@ namespace Camgen
 		return d_R(p(i1),p(i2));
 	    }
 
+            /// Returns the sub-process.
+
+            const sub_process<model_type,2,N_out>& get_process() const
+            {
+                return *sub_proc;
+            } 
+            
+            /* Predefined event validation functions. */
+            
+	    /// Checks whether momentum is conserved.
+
+	    bool check_p_conservation() const
+	    {
+		momentum_type Pin=p_tot_in();
+		momentum_type Pout=p_tot_out();
+		bool q=true;
+		for(size_type mu=0;mu!=model_t::dimension;++mu)
+		{
+		    q&=equals(Pin[mu]/Ecm_hat(),Pout[mu]/Ecm_hat());
+		}
+		if(!q)
+		{
+		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"momentum conservation violation detected "<<Pin<<" not equal to "<<Pout<<endlog;
+		}
+		return q;
+	    }
+
+	    /// Checks whether momenta are on-shell.
+
+	    bool check_p_on_shell() const
+	    {
+		bool q=true;
+		for(size_type i=0;i<2;++i)
+		{
+		    value_type s=s_in(i);
+		    if(!equals(s/Ecm_hat(),M2_in(i)/Ecm_hat()))
+		    {
+			log(log_level::warning)<<CAMGEN_STREAMLOC<<"incoming momentum "<<i<<": "<<p_in(i)<<" with invariant mass "<<s<<" not equal to "<<M2_in(i)<<" detected"<<endlog;
+			q=false;
+		    }
+		}
+		for(size_type i=0;i<N_out;++i)
+		{
+		    value_type s=s_out(i);
+		    if(!equals(s/Ecm_hat(),M2_out(i)/Ecm_hat()))
+		    {
+			log(log_level::warning)<<CAMGEN_STREAMLOC<<"outgoing momentum "<<i<<": "<<p_out(i)<<" with mass-squared "<<s<<" not equal to "<<M2_out(i)<<" detected"<<endlog;
+			q=false;
+		    }
+		}
+		return q;
+	    }
+
         protected:
 
             const sub_process<model_type,2,N_out>* sub_proc;
+            int procid;
     };
 }
 

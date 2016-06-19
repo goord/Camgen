@@ -12,7 +12,7 @@
 #include <Camgen/uni_psgen_fac.h>
 #include <Camgen/helgen_fac.h>
 #include <Camgen/uni_cols.h>
-#include <Camgen/qcd_cols.h>
+#include <Camgen/QCD_cols.h>
 #include <Camgen/plt_config.h>
 #include <Camgen/plt_script.h>
 #include <Camgen/file_utils.h>

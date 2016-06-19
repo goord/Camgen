@@ -63,7 +63,7 @@ namespace Camgen
 	    /// Creates a multi-process event generator with custom
 	    /// configuration.
 
-	    event_generator_type* create_generator(CM_tree_iterator amplitude, generator_configuration<model_t>& conf)
+	    event_generator_type* create_generator(CM_tree_iterator amplitude, generator_configuration<model_t,N_in,N_out>& conf)
 	    {
 		event_generator_type* result=new event_generator_type(amplitude);
 		configure(result,&conf);
@@ -97,7 +97,7 @@ namespace Camgen
 
 	    /// Initialiser method using generator configuration data.
 
-	    static void initialise(event_generator_type* evtgen,generator_configuration<model_t>& conf,bool verbose=false)
+	    static void initialise(event_generator_type* evtgen,generator_configuration<model_t,N_in,N_out>& conf,bool verbose=false)
 	    {
 		if(evtgen==NULL)
 		{
@@ -127,7 +127,7 @@ namespace Camgen
 
 	    /* Configures the argument generator: */
 
-	    void configure(event_generator_type* evtgen,generator_configuration<model_t>* conf)
+	    void configure(event_generator_type* evtgen,generator_configuration<model_t,N_in,N_out>* conf)
 	    {
 		typedef typename model_t::value_type value_type;
 
@@ -176,7 +176,6 @@ namespace Camgen
 		evtgen->sub_proc=procs.begin();
 		if(conf!=NULL)
 		{
-		    conf->lock_generator(evtgen);
 		    conf->configure();
 		}
 	    }
@@ -194,7 +193,7 @@ namespace Camgen
 	return evtgen;
     }
 
-    template<class model_t,std::size_t N_in,std::size_t N_out,class rng_t>event_generator<model_t,N_in,N_out,rng_t>& initialise(event_generator<model_t,N_in,N_out,rng_t>* evtgen,generator_configuration<model_t>& conf,bool verbose=false)
+    template<class model_t,std::size_t N_in,std::size_t N_out,class rng_t>event_generator<model_t,N_in,N_out,rng_t>& initialise(event_generator<model_t,N_in,N_out,rng_t>* evtgen,generator_configuration<model_t,N_in,N_out>& conf,bool verbose=false)
     {
 	event_generator_factory_base<model_t,N_in,N_out,rng_t>::initialise(evtgen,conf,verbose);
 	return evtgen;

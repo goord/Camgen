@@ -51,6 +51,20 @@ namespace Camgen
                 }
             }
 
+            /// Implementation of the weight accessor.
+
+            value_type w() const
+            {
+                return weight;
+            }
+
+            /// Implementation of the cross section accessor.
+
+            MC_integral<value_type> xsec() const
+            {
+                return cross_section;
+            }
+
             /// Implementation of the incoming momentum accessor.
 
             momentum_type p_in(size_type i) const
@@ -63,6 +77,20 @@ namespace Camgen
             momentum_type p_out(size_type i) const
             {
                 return pout[i];
+            }
+
+            /// Sets the event weight.
+
+            void set_w(const value_type& weight_)
+            {
+                weight=weight_;
+            }
+
+            /// Updates the process cross_section.
+
+            void set_xsec(const MC_integral<value_type> cross_section_)
+            {
+                cross_section=cross_section_;
             }
 
             /// Copies the argument vector to the i-th incoming momentum.
@@ -85,6 +113,14 @@ namespace Camgen
 
             vector<momentum_type,N_in> pin;
             vector<momentum_type,N_out> pout;
+
+            /* Event weight: */
+
+            value_type weight;
+
+            /* Process cross_section: */
+
+            MC_integral<value_type> cross_section;
     };
 }
 

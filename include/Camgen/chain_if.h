@@ -25,23 +25,23 @@
 
 namespace Camgen
 {
-    template<class model_t>class chain_interface: public interface_base<model_t>
+    template<class model_t,std::size_t N_in,std::size_t N_out>class chain_interface: public interface_base<model_t,N_in,N_out>
     {
-	typedef interface_base<model_t> base_type;
+	typedef interface_base<model_t,N_in,N_out> base_type;
 
 	public:
 
 	    /* Type definitions: */
 
-	    typedef typename base_type::generator_type generator_type;
+	    typedef event_generator_base<model_t,N_in,N_out> generator_type;
 	    typedef typename base_type::momentum_type momentum_type;
 	    typedef typename base_type::value_type value_type;
 	    typedef typename base_type::size_type size_type;
 
 	    struct sub_interface
 	    {
-		interface_output<model_t>* output;
-		interface_engine<model_t>* engine;
+		interface_output<model_t,N_in,N_out>* output;
+		interface_engine<model_t,N_in,N_out>* engine;
 	    };
 
 	    /* Public constructors/destructors: */
@@ -49,7 +49,7 @@ namespace Camgen
 
 	    /// Constructor with process generator instance.
 
-	    chain_interface(generator_type* gen_,interface_output<model_t>* output_,interface_engine<model_t>* engine_=NULL):base_type(gen_),output(output_),engine(engine_)
+	    chain_interface(generator_type* gen,interface_output<model_t,N_in,N_out>* output_,interface_engine<model_t,N_in,N_out>* engine_=NULL):output(output_),engine(engine_)
 	    {
 		std::string namebase(output->file_name);
 		if(namebase.size()==0)
@@ -59,7 +59,7 @@ namespace Camgen
 		namebase.append("_");
 		int digits=0;
 		int step=1;
-		while(step<this->processes())
+		while(step<gen->processes())
 		{
 		    ++digits;
 		    step*=10;
@@ -68,19 +68,18 @@ namespace Camgen
 		{
 		    digits=1;
 		}
-		for(size_type i=0;i<this->processes();++i)
+		for(size_type i=0;i<gen->processes;++i)
 		{
-		    size_type n=this->gen->process_id(i);
+		    size_type n=gen->process_id(i);
 		    std::stringstream ss;
 		    ss<<namebase<<std::setw(digits)<<std::setfill('0')<<n;
 		    std::string fname(ss.str());
-		    interface_output<model_t>* sub_output=output->create(fname);
+		    interface_output<model_t,N_in,N_out>* sub_output=output->create(fname);
 		    sub_output->open_file();
-		    interface_engine<model_t>* sub_engine=NULL;
+		    interface_engine<model_t,N_in,N_out>* sub_engine=NULL;
 		    if(engine!=NULL)
 		    {
 			sub_engine=engine->clone();
-			sub_engine->set_generator(gen_);
 			sub_engine->add_branches(sub_output);
 		    }
 		    sub_output->branch(&(this->w),"weight");
@@ -137,7 +136,7 @@ namespace Camgen
 		{
 		    return 0;
 		}
-		interface_engine<model_t>* e=it->second.engine;
+		interface_engine<model_t,N_in,N_out>* e=it->second.engine;
 		if(e==NULL)
 		{
 		    return 0;
@@ -154,7 +153,7 @@ namespace Camgen
 		{
 		    return 0;
 		}
-		interface_engine<model_t>* e=it->second.engine;
+		interface_engine<model_t,N_in,N_out>* e=it->second.engine;
 		if(e==NULL)
 		{
 		    return 0;
@@ -209,11 +208,11 @@ namespace Camgen
 
 	    /* Interface output object (unused): */
 
-	    interface_output<model_t>* output;
+	    interface_output<model_t,N_in,N_out>* output;
 
 	    /* Interface engine instance: */
 
-	    interface_engine<model_t>* engine;
+	    interface_engine<model_t,N_in,N_out>* engine;
 
 	    /* Collection of sub-process interfaces: */
 

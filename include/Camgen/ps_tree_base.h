@@ -111,7 +111,7 @@ namespace Camgen
 	    typedef typename base_type::momentum_type momentum_type;
 	    typedef typename base_type::value_type value_type;
 	    typedef typename base_type::size_type size_type;
-	    typedef typename base_type::spacetime_type spacetime_type;
+            typedef typename base_type::spacetime_type spacetime_type;
 	    typedef typename base_type::init_state_type init_state_type;
 
 	    typedef rng_t rn_engine;
@@ -274,8 +274,12 @@ namespace Camgen
 		{
 		    return false;
 		}
-		value_type sa=(this->m_in(0))*(this->m_in(0));
-		value_type sb=N_in>1?(this->m_in(1))*(this->m_in(1)):sa;
+                value_type min0=this->get_event().M_in(0);
+                value_type min1=N_in>1?this->get_event().M_in(1):min0;
+
+		value_type sa=min0*min0;
+		value_type sb=min1*min1;
+
 		bool success=true;
 		for(typename momentum_channel_container::iterator it=momentum_channels.begin();it!=momentum_channels.end();++it)
 		{
@@ -405,9 +409,13 @@ namespace Camgen
 	    {
 		if(!this->base_type::set_m_min(i,j,sqrts)) return false;
 
-		value_type sa=(this->m_in(0))*(this->m_in(0));
-		value_type sb=N_in>1?(this->m_in(1))*(this->m_in(1)):sa;
-		bool success=true;
+                value_type min0=this->get_event().M_in(0);
+                value_type min1=N_in>1?this->get_event().M_in(1):min0;
+
+		value_type sa=min0*min0;
+		value_type sb=min1*min1;
+		
+                bool success=true;
 		for(typename momentum_channel_container::iterator it=momentum_channels.begin();it!=momentum_channels.end();++it)
 		{
 		    if((*it)->on_shell())

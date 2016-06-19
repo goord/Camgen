@@ -134,7 +134,7 @@ namespace Camgen
 
 	    bool generate()
 	    {
-                this->get_event()->reset();
+                this->get_event_ptr()->reset();
 		this->initialise_channels();
 
 		for(typename branching_container::iterator it=this->ps_branchings.begin();it!=this->ps_branchings.end();++it)
@@ -416,7 +416,7 @@ namespace Camgen
 
 	    bool generate()
 	    {
-                this->get_event()->reset();
+                this->get_event_ptr()->reset();
 
 		this->initialise_channels();
 

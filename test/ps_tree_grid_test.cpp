@@ -10,7 +10,7 @@
 #include <Camgen/SM.h>
 #include <Camgen/stdrand.h>
 #include <Camgen/uni_hels.h>
-#include <Camgen/qcd_cols.h>
+#include <Camgen/QCD_cols.h>
 #include <ps_gen_tester.h>
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

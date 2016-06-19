@@ -197,8 +197,7 @@ namespace Camgen
 		else
 		{
 		    pTcut1 = new pT_min_cut<model_t,N_out>(value,i);
-		    pTcut1->generator=uni_gen->get_momentum_generator();
-		    uni_gen->insert_cut(pTcut1);
+		    uni_gen->add_cut(pTcut1);
 		}
 
 		if(pTcut2!=NULL)
@@ -208,8 +207,7 @@ namespace Camgen
 		else
 		{
 		    pTcut2 = new pT_min_cut<model_t,N_out>(value,i);
-		    pTcut2->generator=proc_gen->get_momentum_generator();
-		    proc_gen->insert_cut(pTcut2);
+		    proc_gen->add_cut(pTcut2);
 		}
 		return true;
 	    }

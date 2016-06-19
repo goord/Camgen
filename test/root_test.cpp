@@ -20,11 +20,46 @@
 
 using namespace Camgen;
 
-template<class model_t>class test_output: public interface_engine<model_t>
+template<class model_t,std::size_t N_in,std::size_t N_out>class test_output: public interface_engine<model_t,N_in,N_out>
 {
     public:
 
-        typedef interface_engine<model_t> base_type;
+        typedef interface_engine<model_t,N_in,N_out> base_type;
+        typedef typename base_type::event_type event_type;
+        typedef typename base_type::size_type size_type;
+        typedef typename base_type::value_type value_type;
+        typedef typename base_type::momentum_type momentum_type;
+
+        momentum_type p1;
+        value_type M12;
+
+        interface_engine<model_t,N_in,N_out>* clone() const
+        {
+            return new test_output(*this);
+        }
+
+        void fill(const event_type& evt)
+        {
+            p1=evt.p(1);
+            M12=evt.s(1,2);
+        }
+
+    protected:
+
+        void add_variables()
+        {
+            this->add_variable(p1,"p1");
+            this->add_variable(M12,"M12");
+        }
+};
+
+template<class model_t,std::size_t N_out>class test_output<model_t,2,N_out>: public interface_engine<model_t,2,N_out>
+{
+    public:
+
+        typedef interface_engine<model_t,2,N_out> base_type;
+        typedef typename base_type::event_type event_type;
+        typedef typename base_type::size_type size_type;
         typedef typename base_type::value_type value_type;
         typedef typename base_type::momentum_type momentum_type;
 
@@ -33,17 +68,17 @@ template<class model_t>class test_output: public interface_engine<model_t>
         value_type eta2;
         value_type M12;
 
-        interface_engine<model_t>* clone() const
+        interface_engine<model_t,2,N_out>* clone() const
         {
             return new test_output(*this);
         }
 
-        void fill()
+        void fill(const event_type& evt)
         {
-            p1=this->p(1);
-            pT2=this->pT(2);
-            eta2=this->eta(2);
-            M12=this->s(1,2);
+            p1=evt.p(1);
+            pT2=evt.pT(2);
+            eta2=evt.eta(2);
+            M12=evt.s(1,2);
         }
 
     protected:
@@ -134,11 +169,11 @@ int main()
         process_generator_factory<model_type,1,4,rn_engine> factory;
         process_generator<model_type,1,4,rn_engine>* proc_gen=factory.create_generator(algo.get_tree_iterator());
         proc_gen->refresh_Ecm();
-        generator_interface<model_type>* gen_if=new generator_interface<model_type>(proc_gen,new root_interface<model_type>(fname,"test-tree"),new test_output<model_type>());
+        generator_interface<model_type,1,4>* gen_if=new generator_interface<model_type,1,4>(new root_interface<model_type,1,4>(fname,"test-tree"),new test_output<model_type,1,4>());
         for(size_type i=0;i<n_evts;++i)
         {
             proc_gen->generate();
-            gen_if->fill();
+            gen_if->fill(proc_gen->get_event());
         }
         gen_if->write_statistics();
         gen_if->write();

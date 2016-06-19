@@ -69,7 +69,7 @@ namespace Camgen
 
 	    /// Creates a single process generator with custom configuration.
 
-	    process_generator_type* create_generator(CM_tree_iterator amplitude, generator_configuration<model_t>& conf, int id=0)
+	    process_generator_type* create_generator(CM_tree_iterator amplitude, generator_configuration<model_t,N_in,N_out>& conf, int id=0)
 	    {
 		return create_generator(amplitude,&conf,id);
 	    }
@@ -93,9 +93,9 @@ namespace Camgen
 	    /// Initialises with the number of channel and grid iterations/batch
 	    /// sizes defined in the configuration object.
 
-	    static void initialise(process_generator_type* procgen,generator_configuration<model_t>& conf,bool verbose=false)
+	    static void initialise(process_generator_type* procgen,generator_configuration<model_t,N_in,N_out>& conf,bool verbose=false)
 	    {
-		conf.configure();
+		conf.configure(procgen->get_process());
 		initialise(procgen,verbose);
 	    }
 
@@ -104,7 +104,7 @@ namespace Camgen
 	    /* Utility method creating a process generator with configuration
 	     * pointer argument: */
 
-	    process_generator_type* create_generator(CM_tree_iterator amplitude, generator_configuration<model_t>* conf, int id=0)
+	    process_generator_type* create_generator(CM_tree_iterator amplitude, generator_configuration<model_t,N_in,N_out>* conf, int id=0)
 	    {
 		process_generator_type* result=new process_generator_type(amplitude,id);
 		configure(result,conf);
@@ -114,13 +114,12 @@ namespace Camgen
 	    /* Adopts parameters and generator instances from the configuration object. 
 	     * Sets the phase space, helicity and colour generators to the given arguments: */
 	    
-	    void configure(process_generator_type* procgen,generator_configuration<model_t>* conf)
+	    void configure(process_generator_type* procgen,generator_configuration<model_t,N_in,N_out>* conf)
 	    {
 		if(conf!=NULL)
 		{
-		    conf->lock_generator(procgen);
 		    basic_cuts::clear();
-		    conf->configure();
+		    conf->configure(procgen->get_process());
 		}
 
 		procgen->set_ps_generator(create_momentum_generator(procgen->amplitude));
@@ -148,8 +147,6 @@ namespace Camgen
 			procgen->set_m_min(i,j,basic_cuts::m_min(i,j));
 		    }
 		}
-		procgen->insert_scale(conf);
-		procgen->insert_cut(conf);
 		procgen->set_pdf_alpha_s(use_pdf_alpha_s());
 	    }
     };
@@ -170,7 +167,7 @@ namespace Camgen
 	return procgen;
     }
 
-    template<class model_t,std::size_t N_in,std::size_t N_out,class rng_t>process_generator<model_t,N_in,N_out,rng_t>* initialise(process_generator<model_t,N_in,N_out,rng_t>* procgen,generator_configuration<model_t>& conf,bool verbose=false)
+    template<class model_t,std::size_t N_in,std::size_t N_out,class rng_t>process_generator<model_t,N_in,N_out,rng_t>* initialise(process_generator<model_t,N_in,N_out,rng_t>* procgen,generator_configuration<model_t,N_in,N_out>& conf,bool verbose=false)
     {
 	process_generator_factory_base<model_t,N_in,N_out,rng_t>::initialise(procgen,conf,verbose);
 	return procgen;

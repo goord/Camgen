@@ -26,15 +26,16 @@ namespace Camgen
     
     /// ROOT TTree output interface class.
     
-    template<class model_t>class root_interface: public interface_output<model_t>
+    template<class model_t,std::size_t N_in,std::size_t N_out>class root_interface: public interface_output<model_t,N_in,N_out>
     {
-	typedef interface_output<model_t> base_type;
+	typedef interface_output<model_t,N_in,N_out> base_type;
 
 	public:
 
 	    /* Type definitions: */
 
-	    typedef model_t model_type;
+	    typedef typename base_type::event_type event_type;
+	    typedef typename base_type::size_type size_type;
 	    typedef typename base_type::value_type value_type;
 	    typedef typename base_type::momentum_type momentum_type;
 
@@ -52,7 +53,7 @@ namespace Camgen
 
 	    base_type* create(const std::string& file_name_) const
 	    {
-		return new root_interface<model_t>(file_name_,tree_name,this->description);
+		return new root_interface<model_t,N_in,N_out>(file_name_,tree_name,this->description);
 	    }
 
 	    /* Opens the root file. */

@@ -40,6 +40,24 @@ namespace Camgen
 
             value_type operator()(const event_type& evt) const
             {
+                return (value_type)91.1876;
+            }
+    };
+
+    template<class model_t,std::size_t N_out>class pT_scale<model_t,2,N_out>: public ps_function<model_t,2,N_out>
+    {
+        public:
+
+            typedef ps_function<model_t,2,N_out> base_type;
+            typedef typename base_type::event_type event_type;
+            typedef typename base_type::value_type value_type;
+            typedef typename event_type::size_type size_type;
+
+            /// Operator returning the qcd scale for the argument event, the square root of the average pT-squared of
+            /// the outgoing particles.
+
+            value_type operator()(const event_type& evt) const
+            {
 		value_type s(0);
 		for(size_type i=0;i<N_out;++i)
 		{
@@ -66,21 +84,21 @@ namespace Camgen
 
             virtual bool pass_cuts() const
             {
-                return this->pass(*(this->get_event()));
+                return this->pass(this->get_event());
             }
 
             /// Returns the factorization scale for the current event.
 
             bool F_scale() const
             {
-                return this->F_scale(*(this->get_event()));
+                return this->scale_container<model_t,N_in,N_out>::F_scale(this->get_event());
             }
 
             /// Returns the renormalization scale for the current event.
 
             bool R_scale() const
             {
-                return this->R_scale(*(this->get_event()));
+                return this->scale_container<model_t,N_in,N_out>::R_scale(this->get_event());
             }
 
         protected:

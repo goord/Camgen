@@ -38,6 +38,7 @@ namespace Camgen
 
 	    typedef model_t model_type;
             typedef typename event_generator_base<model_t,N_in,N_out>::event_type event_type;
+            typedef typename event_type::spacetime_type spacetime_type;
 	    typedef typename event_type::momentum_type momentum_type;
 	    typedef typename event_type::value_type value_type;
 	    typedef typename event_type::size_type size_type;
@@ -220,7 +221,7 @@ namespace Camgen
 
 	    virtual bool generate()
 	    {
-                this->get_event()->reset();
+                this->get_event_ptr()->reset();
 		if(!generate_is())
 		{
 		    this->weight()=(value_type)0;
@@ -527,57 +528,14 @@ namespace Camgen
 		return is->alpha_s();
 	    }
 
-	    /// Checks whether momentum is conserved.
-
-	    bool check_p_conservation() const
-	    {
-		momentum_type Pin=this->P_in();
-		momentum_type Pout=this->P_out();
-		bool q=true;
-		for(size_type mu=0;mu!=model_t::dimension;++mu)
-		{
-		    q&=equals(Pin[mu]/Ecm_hat(),Pout[mu]/Ecm_hat());
-		}
-		if(!q)
-		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"momentum conservation violation detected "<<Pin<<" not equal to "<<Pout<<endlog;
-		}
-		return q;
-	    }
-
-	    /// Checks whether momenta are on-shell.
-
-	    bool check_p_on_shell() const
-	    {
-		bool q=true;
-		for(size_type i=0;i<N_in;++i)
-		{
-		    value_type s=this->get_event()->s_in(i);
-		    if(!equals(s/Ecm_hat(),this->M2_in(i)/Ecm_hat()))
-		    {
-			log(log_level::warning)<<CAMGEN_STREAMLOC<<"incoming momentum "<<i<<": "<<p_in(i)<<" with invariant mass "<<s<<" not equal to "<<this->M2_in(i)<<" detected"<<endlog;
-			q=false;
-		    }
-		}
-		for(size_type i=0;i<N_out;++i)
-		{
-		    value_type s=this->s_out(i);
-		    if(!equals(s/Ecm_hat(),this->M2_out(i)/Ecm_hat()))
-		    {
-			log(log_level::warning)<<CAMGEN_STREAMLOC<<"outgoing momentum "<<i<<": "<<p_out(i)<<" with mass-squared "<<s<<" not equal to "<<this->M2_out(i)<<" detected"<<endlog;
-			q=false;
-		    }
-		}
-		return q;
-	    }
-
 	    /// Checks parton level momentum conservation condition
 
 	    bool check_sufficient_shat() const
 	    {
-		if(Ecm_hat()<=this->M_out_sum())
+                value_type msum=this->get_event().M_out_sum();
+		if(Ecm_hat()<=msum)
 		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"total CM-energy "<<Ecm_hat()<<" insufficient to accomodate outgoing particles with total mass "<<this->M_out_sum()<<endlog;
+		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"total CM-energy "<<Ecm_hat()<<" insufficient to accomodate outgoing particles with total mass "<<msum<<endlog;
 		    return false;
 		}
 		return true;
@@ -587,9 +545,10 @@ namespace Camgen
 
 	    bool check_sufficient_s() const
 	    {
-		if(Ecm()<=this->M_out_sum())
+                value_type msum=this->get_event().M_out_sum();
+		if(Ecm()<=msum)
 		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"total CM-energy "<<Ecm()<<" insufficient to accomodate outgoing particles with total mass "<<this->M_out_sum()<<endlog;
+		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"total CM-energy "<<Ecm()<<" insufficient to accomodate outgoing particles with total mass "<<msum<<endlog;
 		    return false;
 		}
 		return true;
@@ -599,7 +558,7 @@ namespace Camgen
 
 	    bool check() const
 	    {
-		return check_p_on_shell() and check_p_conservation();
+		return this->get_event().check_p_on_shell() and this->get_event().check_p_conservation();
 	    }
 
 	    /// Checks whether the minimal dimass constraints are fulfilled (no
@@ -904,13 +863,15 @@ namespace Camgen
 
             void copy_event_data()
             {
+                this->get_event_ptr()->set_w(this->weight());
+                this->get_event_ptr()->set_xsec(this->cross_section());
                 for(size_type i=0;i<N_in;++i)
                 {
-                    this->get_event()->set_p_in(*(pin[i]),i);
+                    this->get_event_ptr()->set_p_in(*(pin[i]),i);
                 }
                 for(size_type i=0;i<N_out;++i)
                 {
-                    this->get_event()->set_p_out(*(pout[i]),i);
+                    this->get_event_ptr()->set_p_out(*(pout[i]),i);
                 }
             }
 	    

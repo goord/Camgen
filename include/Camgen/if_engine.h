@@ -24,18 +24,16 @@ namespace Camgen
 {
     /// Interface engine base class:
 
-    template<class model_t>class interface_engine: public ps_generator_viewer<model_t>
+    template<class model_t,std::size_t N_in,std::size_t N_out>class interface_engine
     {
 	public:
 
 	    /* Type definitions: */
 
-	    typedef model_t model_type;
-	    typedef ps_generator_viewer<model_t> base_type;
-	    typedef typename base_type::momentum_type momentum_type;
-	    typedef typename base_type::value_type value_type;
-	    typedef typename base_type::size_type size_type;
-	    typedef typename base_type::spacetime_type spacetime_type;
+	    typedef event<model_t,N_in,N_out> event_type;
+	    typedef typename event_type::momentum_type momentum_type;
+	    typedef typename event_type::value_type value_type;
+	    typedef typename event_type::size_type size_type;
 
 	    /* Public constructors: */
 	    /*----------------------*/
@@ -44,13 +42,9 @@ namespace Camgen
 
 	    interface_engine():output(NULL),evt_size(0){}
 
-	    /// Constructor with generator instance argument.
-
-	    interface_engine(const ps_generator_base<model_t>* gen_):base_type(gen_),output(NULL),evt_size(0){}
-
 	    /// Constructor with generator and output instance arguments.
 
-	    interface_engine(const ps_generator_base<model_t>* gen_,interface_output<model_t>* output_):base_type(gen_),output(output_),evt_size(0){}
+	    interface_engine(interface_output<model_t,N_in,N_out>* output_):output(output_),evt_size(0){}
 
 	    /* Public destructors: */
 	    /*---------------------*/
@@ -62,7 +56,7 @@ namespace Camgen
 
 	    /// Copies the output variable addresses to the output object
 
-	    void add_branches(interface_output<model_t>* output_)
+	    void add_branches(interface_output<model_t,N_in,N_out>* output_)
 	    {
 		output=output_;
 		add_variables();
@@ -70,11 +64,11 @@ namespace Camgen
 
 	    /// Abstract clone method.
 
-	    virtual interface_engine<model_t>* clone() const=0;
+	    virtual interface_engine<model_t,N_in,N_out>* clone() const=0;
 
 	    /// Abstract method filling the output variables.
 
-	    virtual void fill()=0;
+	    virtual void fill(const event_type&)=0;
 
 	    /* Public readout functions: */
 	    /*---------------------------*/
@@ -144,7 +138,7 @@ namespace Camgen
 
 	    /* Output file object: */
 
-	    interface_output<model_t>* output;
+	    interface_output<model_t,N_in,N_out>* output;
 
 	    /* event size: */
 

@@ -25,15 +25,16 @@ namespace Camgen
 {
     /// Base class for output interface engines.
 
-    template<class model_t>class interface_output
+    template<class model_t,std::size_t N_in,std::size_t N_out>class interface_output
     {
 	public:
 
 	    /* Type definitions: */
 
-	    typedef model_t model_type;
-	    typedef typename model_type::value_type value_type;
-	    typedef vector<value_type,model_t::dimension> momentum_type;
+	    typedef event<model_t,N_in,N_out> event_type;
+	    typedef typename event_type::size_type size_type;
+	    typedef typename event_type::value_type value_type;
+	    typedef typename event_type::momentum_type momentum_type;
 	    typedef typename std::vector<value_type>::iterator weight_iterator;
 	    typedef typename std::vector<value_type>::const_iterator const_weight_iterator;
 
@@ -59,7 +60,7 @@ namespace Camgen
 
 	    /// Creation method, no data copying expected.
 
-	    virtual interface_output<model_t>* create(const std::string& file_name_) const=0;
+	    virtual interface_output<model_t,N_in,N_out>* create(const std::string& file_name_) const=0;
 
 	    /// Abstract method opening the file.
 
@@ -92,9 +93,9 @@ namespace Camgen
 	    /// Virtual method writing the event to the output file, with process
 	    /// generator instance argument.
 
-	    virtual bool write_event(const ps_generator_base<model_t>* gen)
+	    virtual bool write_event(const event_type& evt)
 	    {
-		return write_event();
+	    	return write_event();
 	    }
     };
 }

@@ -25,15 +25,15 @@
 
 namespace Camgen
 {
-    template<class model_t>class generator_interface: public interface_base<model_t>
+    template<class model_t,std::size_t N_in,std::size_t N_out>class generator_interface: public interface_base<model_t,N_in,N_out>
     {
-	typedef interface_base<model_t> base_type;
+	typedef interface_base<model_t,N_in,N_out> base_type;
 
 	public:
 
 	    /* Type definitions: */
 
-	    typedef typename base_type::generator_type generator_type;
+	    typedef typename base_type::event_type event_type;
 	    typedef typename base_type::momentum_type momentum_type;
 	    typedef typename base_type::value_type value_type;
 	    typedef typename base_type::size_type size_type;
@@ -43,17 +43,16 @@ namespace Camgen
 
 	    /// Constructor with process generator instance.
 
-	    generator_interface(generator_type* gen_,interface_output<model_t>* output_,interface_engine<model_t>* engine_=NULL):base_type(gen_),output(output_),engine(engine_)
-	    {
+	    generator_interface(interface_output<model_t,N_in,N_out>* output_,interface_engine<model_t,N_in,N_out>* engine_=NULL):output(output_),engine(engine_)
+            {
 		output->open_file();
 		if(engine!=NULL)
 		{
-		    engine->set_generator(gen_);
 		    engine->add_branches(output);
 		}
 		output->branch(&(this->w),"weight");
 		output->branch(&(this->proc_id),"proc_id");
-	    }
+            }
 
 	    /// Destructor.
 
@@ -118,30 +117,26 @@ namespace Camgen
 	protected:
 
 
-	    /// Reads the current event.
+	    /// Reads the event.
 
-	    bool fill_event()
+	    bool fill_event(const event_type& evt)
 	    {
 		if(engine!=NULL)
 		{
-		    engine->fill();
+		    engine->fill(evt);
 		}
-		return output->write_event(this->gen);
+		return output->write_event(evt);
 	    }
 
 	private:
 
-	    /* Generator instance: */
-
-	    generator_type* gen;
-
 	    /* Interface output instance: */
 
-	    interface_output<model_t>* output;
+	    interface_output<model_t,N_in,N_out>* output;
 
 	    /* Interface engine instance: */
 
-	    interface_engine<model_t>* engine;
+	    interface_engine<model_t,N_in,N_out>* engine;
     };
 }
 

@@ -128,7 +128,7 @@ namespace Camgen
             value_type m_in(size_type i) const
             {
                 const particle<model_t>* p=get_particle_in(i);
-                return p==NULL?"":p->get_mass();
+                return p==NULL?(value_type)0:p->get_mass();
             }
 
             /// Returns the i-th outgoing particle mass.
@@ -136,7 +136,7 @@ namespace Camgen
             value_type m_out(size_type i) const
             {
                 const particle<model_t>* p=get_particle_out(i);
-                return p==NULL?"":p->get_mass();
+                return p==NULL?(value_type)0:p->get_mass();
             }
 
             /// Returns the i-th particle mass.

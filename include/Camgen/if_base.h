@@ -21,23 +21,24 @@
 
 #include <cstdlib>
 #include <vector>
-#include <Camgen/ps_gen_base.h>
+#include <map>
+#include <Camgen/evt_gen_base.h>
 
 namespace Camgen
 {
     /// Abstract base class for interfaces.
 
-    template<class model_t>class interface_base
+    template<class model_t,std::size_t N_in,std::size_t N_out>class interface_base
     {
 	public:
 
 	    /* Type definitions: */
 	    /*-------------------*/
 
-	    typedef ps_generator_base<model_t> generator_type;
-	    typedef typename generator_type::momentum_type momentum_type;
-	    typedef typename generator_type::value_type value_type;
-	    typedef typename generator_type::size_type size_type;
+	    typedef event<model_t,N_in,N_out> event_type;
+            typedef typename event_type::size_type size_type;
+            typedef typename event_type::value_type value_type;
+            typedef typename event_type::momentum_type momentum_type;
 
 	    struct stats_entry
 	    {
@@ -53,7 +54,7 @@ namespace Camgen
 
 	    /// Constructor.
 
-	    interface_base(generator_type* gen_):gen(gen_),input_evts(0),output_evts(0),zero_weight_flag(false){}
+	    interface_base():w(0),proc_id(0),input_evts(0),output_evts(0),zero_weight_flag(false){}
 
 	    /// Destructor.
 
@@ -64,14 +65,14 @@ namespace Camgen
 
 	    /// Abstract event streaming method.
 
-	    virtual bool fill()
+	    virtual bool fill(const event_type& evt)
 	    {
-		proc_id=gen->process_id();
+		proc_id=evt.process_id();
 		++input_evts;
 		stats_entry& stats=proc_stats[proc_id];
 		++(stats.input_evts);
-		stats.xsec=gen->sub_xsec();
-		w=gen->w();
+		stats.xsec=evt.xsec();
+		w=evt.w();
 		if(w<(value_type)0)
 		{
 		    return false;
@@ -80,7 +81,7 @@ namespace Camgen
 		{
 		    return false;
 		}
-		if(fill_event())
+		if(fill_event(evt))
 		{
 		    ++output_evts;
 		    ++stats.output_evts;
@@ -109,13 +110,6 @@ namespace Camgen
 
 	    /* Public readout methods: */
 	    /*-------------------------*/
-
-	    /// Returns the number of subprocesses.
-
-	    size_type processes() const
-	    {
-		return (gen==NULL)?0:(gen->processes());
-	    }
 
 	    /// Returns the event size.
 
@@ -182,10 +176,6 @@ namespace Camgen
 
 	protected:
 
-	    /* Generator instance: */
-
-	    generator_type* gen;
-
 	    /* Event weight: */
 
 	    value_type w;
@@ -196,7 +186,7 @@ namespace Camgen
 
 	    /* Abstract method filling the event variables: */
 
-	    virtual bool fill_event()=0;
+	    virtual bool fill_event(const event_type&)=0;
 
 	private:
 

@@ -775,11 +775,20 @@ namespace Camgen
 	    /* Public readout methods */
 	    /*------------------------*/
 
+            /// Returns the sub-process. TODO: Implement
+
+            const sub_process<model_t,N_in,N_out>& get_process() const
+            {
+                return *subproc;
+            }
+
             /// Creates the event.
 
             fillable_event<model_t,N_in,N_out>* create_event() const
             {
-                return new event_data<model_t,N_in,N_out>();
+                fillable_event<model_t,N_in,N_out>* e=new event_data<model_t,N_in,N_out>();
+                e->set_process(subproc);
+                return e;
             }
 
 	    /// Returns the number of incoming particles.
@@ -1228,7 +1237,7 @@ namespace Camgen
 
 	    /* Private constructor, no configuration performed: */
 
-	    process_generator(CM_tree_iterator it,size_type id_=0):id(id_),symmetry_factor(it->symmetry_factor()),amplitude(it),evt_counter(0),pos_evt_counter(0),tot_weight(0),zero_me(it->count_diagrams()==(long long unsigned)0),me(1),ps_gen(NULL),ps_weight(1),ps_factor(1),hel_gen(NULL),hel_weight(1),hel_factor(1),col_gen(NULL),col_weight(1),col_factor(1),update_counter(0),auto_update(false),grid_adaptations(0),auto_grid_adapt(0),channel_adaptations(0),auto_channel_adapt(0),max_rejects(std::numeric_limits<size_type>::max()),alpha_pdf(true)
+	    process_generator(CM_tree_iterator it,size_type id_=0):id(id_),symmetry_factor(it->symmetry_factor()),amplitude(it),evt_counter(0),pos_evt_counter(0),tot_weight(0),zero_me(it->count_diagrams()==(long long unsigned)0),me(1),subproc(create_sub_proc(it)),ps_gen(NULL),ps_weight(1),ps_factor(1),hel_gen(NULL),hel_weight(1),hel_factor(1),col_gen(NULL),col_weight(1),col_factor(1),update_counter(0),auto_update(false),grid_adaptations(0),auto_grid_adapt(0),channel_adaptations(0),auto_channel_adapt(0),max_rejects(std::numeric_limits<size_type>::max()),alpha_pdf(true)
 	    {
 		summed_spins.reset();
 		summed_colours.reset();
@@ -1349,6 +1358,11 @@ namespace Camgen
 		return (tot_weight!=(value_type)0);
 	    }
 
+            static sub_process<model_t,N_in,N_out>* create_sub_proc(CM_tree_iterator it)
+            {
+                return new sub_process<model_t,N_in,N_out>(it->get_phi_in(),it->get_phi_out());
+            }
+
 	private:
 
 	    /* Private data members */
@@ -1381,6 +1395,10 @@ namespace Camgen
 	    /* Matrix element, final state symmetry factor: */
 
 	    value_type me;
+
+            /* Subprocess pointer: */
+
+            const sub_process<model_t,N_in,N_out>* subproc;
 
 	    /* Momentum generator instance: */
 	    

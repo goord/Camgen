@@ -405,7 +405,7 @@ namespace Camgen
             /// Inserts the minimal invariant masses from the configuration
             /// instance.
 
-            bool refresh_m_min(const generator_configuration<model_t>& config)
+            bool refresh_m_min(const generator_configuration<model_t,N_in,N_out>& config)
             {
                 bool q=true;
                 for(process_iterator it=procs.begin();it!=procs.end();++it)

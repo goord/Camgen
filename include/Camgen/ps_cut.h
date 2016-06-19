@@ -39,7 +39,7 @@ namespace Camgen
 
             /// Abstract function for passing the imposed cuts.
 
-            virtual bool operator()(const event_type&)=0;
+            virtual bool operator()(const event_type&) const=0;
     };
 
     /// Phase space cut implementation wrapping a function pointer.
@@ -59,7 +59,7 @@ namespace Camgen
 
             /// Abstract function for passing the imposed cuts.
 
-            virtual bool operator()(const event_type& evt)
+            virtual bool operator()(const event_type& evt) const
             {
                 return function(evt);
             }
