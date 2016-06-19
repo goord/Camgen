@@ -1302,6 +1302,8 @@ namespace Camgen
 		{
 		    ps_gen->integrand()=f*hel_weight*col_weight;
 		}
+                this->get_event_ptr()->set_w(tot_weight);
+                this->get_event_ptr()->set_xsec(this->cross_section());
 	    }
 
 	    /* Event generation helper: */
