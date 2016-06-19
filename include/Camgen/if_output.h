@@ -72,23 +72,38 @@ namespace Camgen
 
 	    /// Virtual method adding a branch holding a Lorentz vector.
 
-	    virtual bool branch(const momentum_type*,const std::string&){}
+	    virtual bool branch(const momentum_type*,const std::string&)
+            {
+                return true;
+            }
 
 	    /// Virtual method adding a branch holding a floating-point number.
 
-	    virtual bool branch(const value_type*,const std::string&){}
+	    virtual bool branch(const value_type*,const std::string&)
+            {
+                return true;
+            }
 
 	    /// Virtual method adding a branch holding an integer.
 
-	    virtual bool branch(const int*,const std::string&){}
+	    virtual bool branch(const int*,const std::string&)
+            {
+                return true;
+            }
 
 	    /// Virtual method adding a branch holding a boolean.
 
-	    virtual bool branch(const bool*,const std::string&){}
+	    virtual bool branch(const bool*,const std::string&)
+            {
+                return true;
+            }
 
 	    /// Virtual method writing the event to the output file.
 
-	    virtual bool write_event(){}
+	    virtual bool write_event()
+            {
+                return true;
+            }
 
 	    /// Virtual method writing the event to the output file, with process
 	    /// generator instance argument.

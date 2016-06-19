@@ -107,7 +107,11 @@ namespace Camgen
 	    process_generator_type* create_generator(CM_tree_iterator amplitude, generator_configuration<model_t,N_in,N_out>* conf, int id=0)
 	    {
 		process_generator_type* result=new process_generator_type(amplitude,id);
-		configure(result,conf);
+                if(result!=NULL)
+                {
+                    result->allocate_event();
+                    configure(result,conf);
+                }
 		return result;
 	    }
 

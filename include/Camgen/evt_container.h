@@ -110,6 +110,11 @@ namespace Camgen
                 return evt;
             }
 
+            bool allocated_event() const
+            {
+                return alloc_evt;
+            }
+
         private:
 
             //TODO: Use smart pointers!

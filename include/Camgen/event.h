@@ -131,7 +131,13 @@ namespace Camgen
 
 	    /* Destructor: */
 
-	    virtual ~event(){}
+	    virtual ~event()
+            {
+                if(sub_proc!=NULL)
+                {
+                    delete sub_proc;
+                }
+            }
 
             /// Abstract method returning incoming momenta.
 
@@ -754,6 +760,34 @@ namespace Camgen
 		return q;
 	    }
 
+	    /// Checks parton level momentum conservation condition
+
+	    bool check_sufficient_shat() const
+	    {
+                value_type msum=M_out_sum();
+		if(Ecm_hat()<=msum)
+		{
+		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"total CM-energy "<<Ecm_hat()<<" insufficient to accomodate outgoing particles with total mass "<<msum<<endlog;
+		    return false;
+		}
+		return true;
+	    }
+
+	    /// Checks hadron level momentum conservation condition
+
+            //TODO: Add hadronic information...
+	    bool check_sufficient_s() const
+	    {
+                return check_sufficient_shat();
+//                value_type msum=M_out_sum();
+//		if(Ecm()<=msum)
+//		{
+//		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"total CM-energy "<<Ecm()<<" insufficient to accomodate outgoing particles with total mass "<<msum<<endlog;
+//		    return false;
+//		}
+//		return true;
+	    }
+
         protected:
 
             const sub_process<model_type,N_in,N_out>* sub_proc;
@@ -989,7 +1023,13 @@ namespace Camgen
 
 	    /* Destructor: */
 
-	    virtual ~event(){}
+	    virtual ~event()
+            {
+                if(sub_proc!=NULL)
+                {
+                    delete sub_proc;
+                }
+            }
 
             /// Virtual method returning the process id.
 
@@ -1772,6 +1812,34 @@ namespace Camgen
 		    }
 		}
 		return q;
+	    }
+
+	    /// Checks parton level momentum conservation condition
+
+	    bool check_sufficient_shat() const
+	    {
+                value_type msum=M_out_sum();
+		if(Ecm_hat()<=msum)
+		{
+		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"total CM-energy "<<Ecm_hat()<<" insufficient to accomodate outgoing particles with total mass "<<msum<<endlog;
+		    return false;
+		}
+		return true;
+	    }
+
+	    /// Checks hadron level momentum conservation condition
+
+            //TODO: Add hadronic information...
+	    bool check_sufficient_s() const
+	    {
+                return check_sufficient_shat();
+//                value_type msum=M_out_sum();
+//		if(Ecm()<=msum)
+//		{
+//		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"total CM-energy "<<Ecm()<<" insufficient to accomodate outgoing particles with total mass "<<msum<<endlog;
+//		    return false;
+//		}
+//		return true;
 	    }
 
         protected:

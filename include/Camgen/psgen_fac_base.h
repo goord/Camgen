@@ -61,6 +61,7 @@ namespace Camgen
 		generator_type* result=fs_factory_type::create_instance(isgen,fs_type_);
 		if(result!=NULL)
 		{
+                    result->allocate_event();
 		    if(!result->set_amplitude(it))
 		    {
 			return NULL;
@@ -78,7 +79,6 @@ namespace Camgen
 			}
 		    }
 		    result->refresh_m_min();
-                    result->allocate_event();
 		}
 		return result;
 	    }

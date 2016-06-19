@@ -302,6 +302,10 @@ namespace Camgen
 
 	    virtual bool set_amplitude(typename CM_algorithm<model_t,N_in,N_out>::tree_iterator it)
 	    {
+                if(this->get_event_ptr()!=NULL and this->allocated_event())
+                {
+                    this->get_event_ptr()->set_process(new sub_process<model_t,N_in,N_out>(it->get_phi_in(),it->get_phi_out()));
+                }
 		for(size_type i=0;i<N_in;++i)
 		{
 		    if(it->get_phase_space(i)==NULL)
@@ -532,26 +536,14 @@ namespace Camgen
 
 	    bool check_sufficient_shat() const
 	    {
-                value_type msum=this->get_event().M_out_sum();
-		if(Ecm_hat()<=msum)
-		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"total CM-energy "<<Ecm_hat()<<" insufficient to accomodate outgoing particles with total mass "<<msum<<endlog;
-		    return false;
-		}
-		return true;
+                return this->get_event().check_sufficient_shat();
 	    }
 
 	    /// Checks hadron level momentum conservation condition
 
 	    bool check_sufficient_s() const
 	    {
-                value_type msum=this->get_event().M_out_sum();
-		if(Ecm()<=msum)
-		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"total CM-energy "<<Ecm()<<" insufficient to accomodate outgoing particles with total mass "<<msum<<endlog;
-		    return false;
-		}
-		return true;
+                return this->get_event().check_sufficient_s();
 	    }
 
 	    /// Checks momentum conservation and masses.

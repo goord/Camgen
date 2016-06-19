@@ -62,7 +62,7 @@ int main()
 	std::clock_t start=std::clock();
 	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
-	    if((std::clock()-start)>n)
+	    if((long unsigned)(std::clock()-start)>n)
 	    {
 		std::cout<<".";
 		std::cout.flush();
@@ -90,7 +90,7 @@ int main()
 	std::clock_t start=std::clock();
 	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
-	    if((std::clock()-start)>n)
+	    if((long unsigned)(std::clock()-start)>n)
 	    {
 		std::cout<<".";
 		std::cout.flush();
@@ -118,7 +118,7 @@ int main()
 	std::clock_t start=std::clock();
 	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
-	    if((std::clock()-start)>n)
+	    if((long unsigned)(std::clock()-start)>n)
 	    {
 		std::cout<<".";
 		std::cout.flush();
@@ -149,7 +149,7 @@ int main()
 	std::clock_t start=std::clock();
 	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
-	    if((std::clock()-start)>n)
+	    if((long unsigned)(std::clock()-start)>n)
 	    {
 		std::cout<<".";
 		std::cout.flush();
@@ -177,7 +177,7 @@ int main()
 	std::clock_t start=std::clock();
 	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
-	    if((std::clock()-start)>n)
+	    if((long unsigned)(std::clock()-start)>n)
 	    {
 		std::cout<<".";
 		std::cout.flush();
@@ -205,7 +205,7 @@ int main()
 	std::clock_t start=std::clock();
 	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
-	    if((std::clock()-start)>n)
+	    if((long unsigned)(std::clock()-start)>n)
 	    {
 		std::cout<<".";
 		std::cout.flush();
@@ -236,7 +236,7 @@ int main()
 	std::clock_t start=std::clock();
 	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
-	    if((std::clock()-start)>n)
+	    if((long unsigned)(std::clock()-start)>n)
 	    {
 		std::cout<<".";
 		std::cout.flush();
@@ -264,7 +264,7 @@ int main()
 	std::clock_t start=std::clock();
 	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
-	    if((std::clock()-start)>n)
+	    if((long unsigned)(std::clock()-start)>n)
 	    {
 		std::cout<<".";
 		std::cout.flush();
@@ -292,7 +292,7 @@ int main()
 	std::clock_t start=std::clock();
 	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
-	    if((std::clock()-start)>n)
+	    if((long unsigned)(std::clock()-start)>n)
 	    {
 		std::cout<<".";
 		std::cout.flush();
@@ -323,7 +323,7 @@ int main()
 	std::clock_t start=std::clock();
 	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
-	    if((std::clock()-start)>n)
+	    if((long unsigned)(std::clock()-start)>n)
 	    {
 		std::cout<<".";
 		std::cout.flush();
@@ -351,7 +351,7 @@ int main()
 	std::clock_t start=std::clock();
 	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
-	    if((std::clock()-start)>n)
+	    if((long unsigned)(std::clock()-start)>n)
 	    {
 		std::cout<<".";
 		std::cout.flush();
@@ -379,7 +379,7 @@ int main()
 	std::clock_t start=std::clock();
 	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
-	    if((std::clock()-start)>n)
+	    if((long unsigned)(std::clock()-start)>n)
 	    {
 		std::cout<<".";
 		std::cout.flush();
@@ -410,7 +410,7 @@ int main()
 	std::clock_t start=std::clock();
 	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
-	    if((std::clock()-start)>n)
+	    if((long unsigned)(std::clock()-start)>n)
 	    {
 		std::cout<<".";
 		std::cout.flush();
@@ -438,7 +438,7 @@ int main()
 	std::clock_t start=std::clock();
 	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
-	    if((std::clock()-start)>n)
+	    if((long unsigned)(std::clock()-start)>n)
 	    {
 		std::cout<<".";
 		std::cout.flush();
@@ -466,7 +466,7 @@ int main()
 	std::clock_t start=std::clock();
 	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
-	    if((std::clock()-start)>n)
+	    if((long unsigned)(std::clock()-start)>n)
 	    {
 		std::cout<<".";
 		std::cout.flush();
@@ -497,7 +497,7 @@ int main()
 	std::clock_t start=std::clock();
 	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
-	    if((std::clock()-start)>n)
+	    if((long unsigned)(std::clock()-start)>n)
 	    {
 		std::cout<<".";
 		std::cout.flush();
@@ -525,7 +525,7 @@ int main()
 	std::clock_t start=std::clock();
 	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
-	    if((std::clock()-start)>n)
+	    if((long unsigned)(std::clock()-start)>n)
 	    {
 		std::cout<<".";
 		std::cout.flush();
@@ -553,7 +553,7 @@ int main()
 	std::clock_t start=std::clock();
 	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
-	    if((std::clock()-start)>n)
+	    if((long unsigned)(std::clock()-start)>n)
 	    {
 		std::cout<<".";
 		std::cout.flush();
@@ -584,7 +584,7 @@ int main()
 	std::clock_t start=std::clock();
 	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
-	    if((std::clock()-start)>n)
+	    if((long unsigned)(std::clock()-start)>n)
 	    {
 		std::cout<<".";
 		std::cout.flush();
@@ -612,7 +612,7 @@ int main()
 	std::clock_t start=std::clock();
 	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
-	    if((std::clock()-start)>n)
+	    if((long unsigned)(std::clock()-start)>n)
 	    {
 		std::cout<<".";
 		std::cout.flush();
@@ -640,7 +640,7 @@ int main()
 	std::clock_t start=std::clock();
 	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
-	    if((std::clock()-start)>n)
+	    if((long unsigned)(std::clock()-start)>n)
 	    {
 		std::cout<<".";
 		std::cout.flush();
@@ -671,7 +671,7 @@ int main()
 	std::clock_t start=std::clock();
 	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
-	    if((std::clock()-start)>n)
+	    if((long unsigned)(std::clock()-start)>n)
 	    {
 		std::cout<<".";
 		std::cout.flush();
@@ -699,7 +699,7 @@ int main()
 	std::clock_t start=std::clock();
 	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
-	    if((std::clock()-start)>n)
+	    if((long unsigned)(std::clock()-start)>n)
 	    {
 		std::cout<<".";
 		std::cout.flush();
@@ -727,7 +727,7 @@ int main()
 	std::clock_t start=std::clock();
 	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
-	    if((std::clock()-start)>n)
+	    if((long unsigned)(std::clock()-start)>n)
 	    {
 		std::cout<<".";
 		std::cout.flush();
@@ -758,7 +758,7 @@ int main()
 	std::clock_t start=std::clock();
 	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
-	    if((std::clock()-start)>n)
+	    if((long unsigned)(std::clock()-start)>n)
 	    {
 		std::cout<<".";
 		std::cout.flush();
@@ -786,7 +786,7 @@ int main()
 	std::clock_t start=std::clock();
 	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
-	    if((std::clock()-start)>n)
+	    if((long unsigned)(std::clock()-start)>n)
 	    {
 		std::cout<<".";
 		std::cout.flush();
@@ -814,7 +814,7 @@ int main()
 	std::clock_t start=std::clock();
 	while((std::clock()-start)<waiting_t and N<Nmax)
 	{
-	    if((std::clock()-start)>n)
+	    if((long unsigned)(std::clock()-start)>n)
 	    {
 		std::cout<<".";
 		std::cout.flush();

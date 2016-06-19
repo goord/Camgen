@@ -127,6 +127,10 @@ namespace Camgen
 		{
 		    delete col_gen;
 		}
+                if(subproc!=NULL)
+                {
+                    delete subproc;
+                }
 	    }
 
 	    /// Pre-initialisation method. Used by event_generator class to get
@@ -768,7 +772,10 @@ namespace Camgen
 
             void after_event_set(fillable_event<model_t,N_in,N_out>* evt_)
             {
-                ps_gen->set_event(evt_);
+                if(ps_gen!=NULL)
+                {
+                    ps_gen->set_event(evt_);
+                }
             }
 
 
@@ -787,7 +794,7 @@ namespace Camgen
             fillable_event<model_t,N_in,N_out>* create_event() const
             {
                 fillable_event<model_t,N_in,N_out>* e=new event_data<model_t,N_in,N_out>();
-                e->set_process(subproc);
+                e->set_process(subproc->clone());
                 return e;
             }
 
@@ -1290,6 +1297,7 @@ namespace Camgen
 		    delete ps_gen;
 		}
 		ps_gen=ps_gen_;
+                ps_gen->set_event(this->get_event_ptr());
 	    }
 
 	    /* Integrand definition helper: */

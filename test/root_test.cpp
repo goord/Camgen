@@ -98,7 +98,6 @@ int main()
 
     typedef SM model_type;
     typedef std::random rn_engine;
-    typedef typename model_type::value_type value_type;
     typedef std::size_t size_type;
 
     license_print::disable();
@@ -136,7 +135,7 @@ int main()
         {
             return 1;
         }
-        if(!tree.branch(p.data,"sign"))
+        if(!tree.branch(&q,"sign"))
         {
             return 1;
         }

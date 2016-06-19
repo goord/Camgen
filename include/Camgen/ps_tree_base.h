@@ -274,8 +274,8 @@ namespace Camgen
 		{
 		    return false;
 		}
-                value_type min0=this->get_event().M_in(0);
-                value_type min1=N_in>1?this->get_event().M_in(1):min0;
+                value_type min0=this->M_in(0);
+                value_type min1=N_in>1?this->M_in(1):min0;
 
 		value_type sa=min0*min0;
 		value_type sb=min1*min1;
@@ -310,12 +310,12 @@ namespace Camgen
 		}
 		value_type s=this->Ecm()*this->Ecm();
 		bool success=true;
-		for(int i=0;i<N_in;++i)
+		for(size_type i=0;i<N_in;++i)
 		{
 		    success&=incoming_particle_channels[i]->set_s_max_max(s);
 		    success&=incoming_particle_channels[i]->refresh_params();
 		}
-		for(int i=0;i<N_out;++i)
+		for(size_type i=0;i<N_out;++i)
 		{
 		    success&=outgoing_particle_channels[i]->set_s_max_max(s);
 		    success&=outgoing_particle_channels[i]->refresh_params();
@@ -365,12 +365,12 @@ namespace Camgen
 		}
 		else
 		{
-		    for(int i=0;i<N_in;++i)
+		    for(size_type i=0;i<N_in;++i)
 		    {
 			success&=incoming_particle_channels[i]->set_s_max(shat);
 		    }
 		}
-		for(int i=0;i<N_out;++i)
+		for(size_type i=0;i<N_out;++i)
 		{
 		    success&=outgoing_particle_channels[i]->set_s_max(shat);
 		    if(backward_s_sampling())

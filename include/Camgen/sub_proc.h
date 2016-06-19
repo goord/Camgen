@@ -51,7 +51,7 @@ namespace Camgen
 
             /// Cloning method.
 
-            virtual sub_process<model_t,N_in,N_out>* clone() const
+            sub_process<model_t,N_in,N_out>* clone() const
             {
                 return new sub_process<model_t,N_in,N_out>(incoming_particles,outgoing_particles);
             }

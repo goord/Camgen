@@ -55,7 +55,7 @@ namespace Camgen
 		    static void fill_metric()
 		    {
 			base_type::g[0][0]=(value_t)(1);
-			for(int i=1;i<dim;++i)
+			for(std::size_t i=1;i<dim;++i)
 			{
 			    base_type::g[i][i]=(value_t)(-1);
 			}
@@ -196,7 +196,7 @@ namespace Camgen
 			{
 			    s[0]=p[beam_dir]/m;
 			    value_t a=s[0]/(p[0]+m);
-			    for(int i=1;i<dim;++i)
+			    for(std::size_t i=1;i<dim;++i)
 			    {
 				s[i]=a*p[i];
 			    }
@@ -206,7 +206,7 @@ namespace Camgen
 			{
 			    s[0]=-p[-beam_dir]/m;
 			    value_t a=s[0]/(p[0]+m);
-			    for(int i=1;i<dim;++i)
+			    for(std::size_t i=1;i<dim;++i)
 			    {
 				s[i]=a*p[i];
 			    }
@@ -227,7 +227,7 @@ namespace Camgen
 			value_t pvec=std::sqrt(p[0]*p[0]-msq);
 			value_t a=0.5*msq/(pvec*(p[0]-pvec));
 			p1[0]=a*pvec;
-			for(int i=1;i<dim;++i)
+			for(std::size_t i=1;i<dim;++i)
 			{
 			    p1[i]=a*p[i];
 			}
