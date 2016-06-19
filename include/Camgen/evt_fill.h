@@ -63,6 +63,10 @@ namespace Camgen
 
             virtual void set_xsec(const MC_integral<value_type>)=0;
 
+            /// Sets the partonic invariant mass
+
+            virtual void set_Ecm_hat(const value_type&)=0;
+
             /// Resets to default (zero)momenta.
 
             void reset()

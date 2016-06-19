@@ -227,6 +227,8 @@ namespace Camgen
 		    this->weight()=(value_type)0;
 		    return false;
 		}
+                //TODO: This is not very clear...
+                this->get_event_ptr()->set_Ecm_hat(Ecm_hat());
 		if(!check_sufficient_shat())
 		{
 		    this->weight()=(value_type)0;

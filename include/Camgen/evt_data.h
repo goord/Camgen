@@ -65,6 +65,13 @@ namespace Camgen
                 return cross_section;
             }
 
+            /// Returns the partonic invariant mass.
+
+            value_type Ecm_hat() const
+            {
+                return ecm;
+            }
+
             /// Implementation of the incoming momentum accessor.
 
             momentum_type p_in(size_type i) const
@@ -77,6 +84,13 @@ namespace Camgen
             momentum_type p_out(size_type i) const
             {
                 return pout[i];
+            }
+
+            /// Sets the partonic invariant mass.
+
+            void set_Ecm_hat(const value_type& e)
+            {
+               ecm=e;
             }
 
             /// Sets the event weight.
@@ -113,6 +127,10 @@ namespace Camgen
 
             vector<momentum_type,N_in> pin;
             vector<momentum_type,N_out> pout;
+
+            /* Invariant mass: */
+
+            value_type ecm;
 
             /* Event weight: */
 
