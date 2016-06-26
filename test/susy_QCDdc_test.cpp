@@ -251,6 +251,7 @@ int main()
 		    }
 		}
 	    }
+            susy_QCDPbchcfcc::set_QCD_scale(susy_QCDPbchcfdc::QCD_scale);
 	    std::complex<value_type>ampfg=algo.evaluate();
 	    std::complex<value_type>ampcheck=algocheck.evaluate();
 	    if(!equals(ampfg.real(),ampcheck.real()))
@@ -458,6 +459,7 @@ int main()
 		    }
 		}
 	    }
+            susy_QCDPbchcfcc::set_QCD_scale(susy_QCDPbchcfdc::QCD_scale);
 	    std::complex<value_type>ampfg=algo.evaluate();
 	    std::complex<value_type>ampcheck=algocheck.evaluate();
 	    if(!equals(ampfg.real(),ampcheck.real()))
@@ -642,6 +644,7 @@ int main()
 		    }
 		}
 	    }
+            susy_QCDPbchcfcc::set_QCD_scale(susy_QCDPbchcfdc::QCD_scale);
 	    std::complex<value_type>ampfg=algo.evaluate();
 	    std::complex<value_type>ampcheck=algocheck.evaluate();
 	    if(!equals(ampfg.real(),ampcheck.real()))
@@ -858,6 +861,7 @@ int main()
 		    }
 		}
 	    }
+            susy_QCDPbchcfcc::set_QCD_scale(susy_QCDPbchcfdc::QCD_scale);
 	    std::complex<value_type>ampfg=algo.evaluate();
 	    std::complex<value_type>ampcheck=algocheck.evaluate();
 	    if(!equals(ampfg.real(),ampcheck.real()))
@@ -1092,6 +1096,7 @@ int main()
 		    }
 		}
 	    }
+            susy_QCDPbchcfcc::set_QCD_scale(susy_QCDPbchcfdc::QCD_scale);
 	    std::complex<value_type>ampfg=algo.evaluate();
 	    std::complex<value_type>ampcheck=algocheck.evaluate();
 	    if(!equals(ampfg.real(),ampcheck.real()))
@@ -1324,6 +1329,7 @@ int main()
 	    {
 		algocheck.get_phase_space(4)->colour_entry(J*N+I)=(value_type)1;
 	    }
+            susy_QCDPbchcfcc::set_QCD_scale(susy_QCDPbchcfdc::QCD_scale);
 	    std::complex<value_type>ampfg=algo.evaluate();
 	    std::complex<value_type>ampcheck=algocheck.evaluate();
 	    if(!equals(ampfg.real(),ampcheck.real()))
@@ -1567,6 +1573,7 @@ int main()
 		    }
 		}
 	    }
+            susy_QCDPbchcfcc::set_QCD_scale(susy_QCDPbchcfdc::QCD_scale);
 	    std::complex<value_type>ampfg=algo.evaluate();
 	    std::complex<value_type>ampcheck=algocheck.evaluate();
 	    if(!equals(ampfg.real(),ampcheck.real()))
@@ -1828,6 +1835,7 @@ int main()
 		    }
 		}
 	    }
+            susy_QCDPbchcfcc::set_QCD_scale(susy_QCDPbchcfdc::QCD_scale);
 	    std::complex<value_type>ampfg=algo.evaluate();
 	    std::complex<value_type>ampcheck=algocheck.evaluate();
 	    if(!equals(ampfg.real(),ampcheck.real()))
@@ -2066,6 +2074,7 @@ int main()
 		    }
 		}
 	    }
+            susy_QCDPbchcfcc::set_QCD_scale(susy_QCDPbchcfdc::QCD_scale);
 	    std::complex<value_type>ampfg=algo.evaluate();
 	    std::complex<value_type>ampcheck=algocheck.evaluate();
 	    if(!equals(ampfg.real(),ampcheck.real()))
@@ -2305,6 +2314,7 @@ int main()
 		    }
 		}
 	    }
+            susy_QCDPbchcfcc::set_QCD_scale(susy_QCDPbchcfdc::QCD_scale);
 	    std::complex<value_type>ampfg=algo.evaluate();
 	    std::complex<value_type>ampcheck=algocheck.evaluate();
 	    if(!equals(ampfg.real(),ampcheck.real()))

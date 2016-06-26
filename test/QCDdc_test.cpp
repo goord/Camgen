@@ -290,6 +290,7 @@ int main()
 		    }
 		}
 	    }
+            QCDPbchcfcc::set_QCD_scale(QCDPbchcfdc::QCD_scale);
 	    std::complex<value_type>ampfg=algo.evaluate();
 	    std::complex<value_type>ampcheck=algocheck.evaluate();
 	    if(!equals(ampfg.real(),ampcheck.real()))
@@ -629,6 +630,7 @@ int main()
 		    }
 		}
 	    }
+            QCDPbchcfcc::set_QCD_scale(QCDPbchcfdc::QCD_scale);
 	    std::complex<value_type>ampfg=algo.evaluate();
 	    std::complex<value_type>ampcheck=algocheck.evaluate();
 	    if(!equals(ampfg.real(),ampcheck.real()))
@@ -1058,6 +1060,7 @@ int main()
 		    }
 		}
 	    }
+            QCDPbchcfcc::set_QCD_scale(QCDPbchcfdc::QCD_scale);
 	    std::complex<value_type>ampfg=algo.evaluate();
 	    std::complex<value_type>ampcheck=algocheck.evaluate();
 	    if(!equals(ampfg.real(),ampcheck.real()))
@@ -1235,6 +1238,7 @@ int main()
 		    }
 		}
 	    }
+            QCDPbchcfcc::set_QCD_scale(QCDPbchcfdc::QCD_scale);
 	    std::complex<value_type>ampfg=algo.evaluate();
 	    std::complex<value_type>ampcheck=algocheck.evaluate();
 	    if(!equals(ampfg.real(),ampcheck.real()))
@@ -1470,6 +1474,7 @@ int main()
 		    }
 		}
 	    }
+            QCDPbchcfcc::set_QCD_scale(QCDPbchcfdc::QCD_scale);
 	    std::complex<value_type>ampfg=algo.evaluate();
 	    std::complex<value_type>ampcheck=algocheck.evaluate();
 	    if(!equals(ampfg.real(),ampcheck.real()))
@@ -1753,6 +1758,7 @@ int main()
 		    }
 		}
 	    }
+            QCDPbchcfcc::set_QCD_scale(QCDPbchcfdc::QCD_scale);
 	    std::complex<value_type>ampfg=algo.evaluate();
 	    std::complex<value_type>ampcheck=algocheck.evaluate();
 	    if(!equals(ampfg.real(),ampcheck.real()))
