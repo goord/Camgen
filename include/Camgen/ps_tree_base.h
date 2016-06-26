@@ -353,7 +353,7 @@ namespace Camgen
 
 	    bool refresh_Ecm_hat()
 	    {
-		if(!this->check_sufficient_shat())
+		if(!this->base_type::refresh_Ecm_hat())
 		{
 		    return false;
 		}

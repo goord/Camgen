@@ -154,11 +154,6 @@ namespace Camgen
 		    this->weight()=(value_type)0;
 		    return false;
 		}
-		if(!this->check_sufficient_shat())
-		{
-		    this->weight()=(value_type)0;
-		    return false;
-		}
 		this->incoming_particle_channels[0]->set_status_p_generated();
 		if(!this->refresh_Ecm_hat())
 		{
