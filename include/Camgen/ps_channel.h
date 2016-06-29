@@ -248,7 +248,7 @@ namespace Camgen
 		bool q=true;
 		for(particle_channel_iterator it=particle_channels.begin();it!=particle_channels.end();++it)
 		{
-		    q&=((*it)->set_s_min_min(sminmin));
+		    q&=(*it)->set_s_min_min(sminmin);
 		}
 		return q;
 	    }
@@ -261,10 +261,24 @@ namespace Camgen
 		bool q=true;
 		for(particle_channel_iterator it=particle_channels.begin();it!=particle_channels.end();++it)
 		{
-		    q&=((*it)->set_s_max_max(smaxmax));
+		    q&=(*it)->set_s_max_max(smaxmax);
 		}
 		return q;
 	    }
+
+            /* Sets the maximal invariant mass-squared bounds for all channels: */
+
+            bool set_max_s_range(const value_type& sminmin_,const value_type& smaxmax_)
+            {
+                smaxmax=std::max(sminmin_,smaxmax_);
+                sminmin=std::min(sminmin_,smaxmax_);
+		bool q=true;
+		for(particle_channel_iterator it=particle_channels.begin();it!=particle_channels.end();++it)
+		{
+		    q&=(*it)->set_max_s_range(sminmin,smaxmax);
+		}
+		return q;
+            }
 
 	    /* Sets the minimal minimal invariant mass and updates all particle
 	     * channels: */
@@ -281,16 +295,22 @@ namespace Camgen
 		return set_s_max_max(sgn_sq(mmaxmax_));
 	    }
 
+            /* Sets the maximal invariant mass-squared bounds for all channels: */
+
+            bool set_max_m_range(const value_type& mminmin_,const value_type& mmaxmax_)
+            {
+                return set_max_s_range(sgn_sq(mminmin_),sgn_sq(mmaxmax_));
+            }
+
 	    /* Sets the minimal invariant mass-squared for all particle
 	     * channels: */
 	    
 	    bool set_s_min(const value_type& smin_)
 	    {
 		bool q=true;
-		value_type sm=std::max(sminmin,smin_);
 		for(particle_channel_iterator it=particle_channels.begin();it!=particle_channels.end();++it)
 		{
-		    q&=((*it)->set_s_min(sm));
+		    q&=((*it)->set_s_min(smin_));
 		}
 		return q;
 	    }
@@ -301,13 +321,24 @@ namespace Camgen
 	    bool set_s_max(const value_type& smax_)
 	    {
 		bool q=true;
-		value_type sm=std::min(smaxmax,smax_);
 		for(particle_channel_iterator it=particle_channels.begin();it!=particle_channels.end();++it)
 		{
-		    q&=((*it)->set_s_max(sm));
+		    q&=((*it)->set_s_max(smax_));
 		}
 		return q;
 	    }
+
+            /* Sets the invariant mass generation range: */
+
+            bool set_s_range(const value_type& smin_,const value_type& smax_)
+            {
+		bool q=true;
+		for(particle_channel_iterator it=particle_channels.begin();it!=particle_channels.end();++it)
+		{
+		    q&=((*it)->set_s_range(smin_,smax_));
+		}
+		return q;
+            }
 
 	    /* Sets the minimal invariant mass for all particle channels: */
 	    
@@ -322,6 +353,13 @@ namespace Camgen
 	    {
 		return set_s_max(sgn_sq(mmax_));
 	    }
+
+            /* Sets the invariant mass generation range: */
+
+            bool set_m_range(const value_type& mmin_,const value_type& mmax_)
+            {
+                return set_s_range(sgn_sq(mmin_),sgn_sq(mmax_));
+            }
 
 	    /* Function filling the mmin components for timelike channels: */
 

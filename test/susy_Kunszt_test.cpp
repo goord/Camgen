@@ -64,6 +64,7 @@ int main()
 		}
 	    }
 	}
+        susy_QCDPbdhcfcc::set_QCD_scale(QCDPbdhcfcc::QCD_scale);
 	
 	std::complex<value_type> factor=spinfac::s(qcd_algo.get_phase_space(3)->momentum(),qcd_algo.get_phase_space(4)->momentum())/spinfac::s(qcd_algo.get_phase_space(3)->momentum(),qcd_algo.get_phase_space(5)->momentum());
 	

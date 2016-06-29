@@ -182,9 +182,9 @@ namespace Camgen
 		    return false;
 		}
 		base_type::set_generated(selected_branchings);
+                this->copy_event_data();
 		bool q=this->evaluate_weight();
 		base_type::reset_generated(selected_branchings);
-                this->copy_event_data();
 		return q;
 	    }
 
@@ -502,9 +502,9 @@ namespace Camgen
 		    }
 		}
 		base_type::set_generated(selected_branchings);
+                this->copy_event_data();
 		bool q=this->evaluate_weight();
 		base_type::reset_generated(selected_branchings);
-                this->copy_event_data();
 		return q;
 	    }
 

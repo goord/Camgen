@@ -156,6 +156,8 @@ int main()
     }
 
     {
+        set_initial_state_type(initial_states::partonic);
+        set_phase_space_generator_type(phase_space_generators::recursive);
 	model_type::M_h0=200;
 	model_type::refresh_widths();
 	std::string process("h0 > e-,nu_ebar,mu+,nu_mu");
@@ -176,6 +178,7 @@ int main()
         }
         gen_if->write_statistics();
         gen_if->write();
+        std::cerr<<"done, file "<<fname<<".root written."<<std::endl;
     }
 
 #endif

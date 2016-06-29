@@ -1297,7 +1297,10 @@ namespace Camgen
 		    delete ps_gen;
 		}
 		ps_gen=ps_gen_;
-                ps_gen->set_event(this->get_event_ptr());
+                if(ps_gen!=NULL)
+                {
+                    ps_gen->set_event(this->get_event_ptr());
+                }
 	    }
 
 	    /* Integrand definition helper: */

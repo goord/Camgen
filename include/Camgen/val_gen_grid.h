@@ -95,15 +95,27 @@ namespace Camgen
 
 	    bool set_min_lower_bound(const value_type& xmin)
 	    {
-		return mapping->set_lower_bound(xmin) and this->set_lower_bound(xmin);
+                this->min_val=xmin;
+		mapping->set_lower_bound(xmin);
+                return refresh_lower_bound();
 	    }
 
 	    /* Sets the maximal maximal invariant mass-squared: */
 
 	    bool set_max_upper_bound(const value_type& xmax)
 	    {
-		return mapping->set_upper_bound(xmax) and this->set_upper_bound(xmax);
+                this->max_val=xmax;
+		mapping->set_upper_bound(xmax);
+                return refresh_upper_bound();
 	    }
+
+            bool set_max_bounds(const value_type& xmin,const value_type& xmax)
+            {
+                this->min_val=xmin;
+                this->max_val=xmax;
+                mapping->set_bounds(xmin,xmax);
+                return refresh_bounds();
+            }
 
 	    /* Minimal invariant mass refresher: */
 
@@ -132,7 +144,8 @@ namespace Camgen
 		rmax=(this->upper_bound()==mapping->upper_bound())?1:(mapping->inverse_map(this->upper_bound()));
 		subgrid->set_x_max(rmax);
 		refresh_norm();
-		return this->normalisable();
+		bool q=this->normalisable();
+                return q;
 	    }
 
 	    /* Parameter refresher function: */

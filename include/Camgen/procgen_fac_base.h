@@ -118,7 +118,7 @@ namespace Camgen
 	    /* Adopts parameters and generator instances from the configuration object. 
 	     * Sets the phase space, helicity and colour generators to the given arguments: */
 	    
-	    void configure(process_generator_type* procgen,generator_configuration<model_t,N_in,N_out>* conf)
+	    bool configure(process_generator_type* procgen,generator_configuration<model_t,N_in,N_out>* conf)
 	    {
 		if(conf!=NULL)
 		{
@@ -126,7 +126,13 @@ namespace Camgen
 		    conf->configure(procgen->get_process());
 		}
 
-		procgen->set_ps_generator(create_momentum_generator(procgen->amplitude));
+                momentum_generator_type* psgen=create_momentum_generator(procgen->amplitude);
+                if(psgen==NULL)
+                {
+                    log(log_level::warning)<<CAMGEN_STREAMLOC<<"momentum generator could not be created..."<<endlog;
+                }
+
+		procgen->set_ps_generator(psgen);
 		procgen->set_helicity_generator(create_helicity_generator(procgen->amplitude));
 		procgen->set_colour_generator(create_colour_generator(procgen->amplitude));
 
@@ -152,15 +158,12 @@ namespace Camgen
 		    }
 		}
 		procgen->set_pdf_alpha_s(use_pdf_alpha_s());
+                return true;
 	    }
     };
 
     template<class model_t,std::size_t N_in,std::size_t N_out,class rng_t>process_generator<model_t,N_in,N_out,rng_t>* pre_initialise(process_generator<model_t,N_in,N_out,rng_t>* procgen,bool verbose=false)
     {
-	if(procgen==NULL)
-	{
-	    return NULL;
-	}
 	process_generator_factory_base<model_t,N_in,N_out,rng_t>::pre_initialise(procgen,verbose);
 	return procgen;
     }

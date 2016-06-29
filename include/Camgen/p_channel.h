@@ -156,24 +156,30 @@ namespace Camgen
 		
 		Dirac_delta<value_type,rng_t>* dirac_delta=dynamic_cast<Dirac_delta<value_type,rng_t>*>(s_gen);
 
+                value_type maxval,minval;
+                if(std::numeric_limits<value_type>::has_infinity)
+                {
+                    maxval=std::numeric_limits<value_type>::infinity();
+                    minval=-std::numeric_limits<value_type>::infinity();
+                }
+                else
+                {
+                    maxval=std::numeric_limits<value_type>::min();
+                    minval=std::numeric_limits<value_type>::min();
+                }
 		if(dirac_delta!=NULL)
 		{
-		    if(std::numeric_limits<value_type>::has_infinity)
-		    {
-			set_s_min_min(-std::numeric_limits<value_type>::infinity());
-			set_s_max_max(std::numeric_limits<value_type>::infinity());
-			set_s_min(-std::numeric_limits<value_type>::infinity());
-			set_s_max(std::numeric_limits<value_type>::infinity());
-		    }
-		    else
-		    {
-			set_s_min_min(std::numeric_limits<value_type>::min());
-			set_s_max_max(std::numeric_limits<value_type>::max());
-			set_s_min(std::numeric_limits<value_type>::min());
-			set_s_max(std::numeric_limits<value_type>::max());
-		    }
+                    set_max_s_range(minval,maxval);
 		}
-		 return true;
+                else if(timelike())
+                {
+                    set_max_s_range((value_type)0,maxval);
+                }
+                else if(spacelike())
+                {
+                    set_max_s_range(minval,(value_type)0);
+                }
+                return true;
 	    }
 
 	    /* Sets the minimal invariant mass-squared. */
@@ -225,11 +231,25 @@ namespace Camgen
 		return s_gen->set_bounds(std::max(s_min_min(),smin),std::min(s_max_max(),smax));
 	    }
 
+	    /* Sets the maximal invariant mass-squared range. */
+	    
+	    bool set_max_s_range(const value_type& sminmin,const value_type& smaxmax)
+	    {
+		return s_gen->set_max_bounds(std::min(sminmin,smaxmax),std::max(sminmin,smaxmax));
+	    }
+
 	    /* Sets the invariant mass range. */
 	    
 	    bool set_m_range(const value_type& mmin,const value_type& mmax)
 	    {
 		return set_s_range(sgn_sq(mmin),sgn_sq(mmax));
+	    }
+
+	    /* Sets the maximal invariant mass range. */
+	    
+	    bool set_max_m_range(const value_type& mminmin,const value_type& mmaxmax)
+	    {
+		return set_max_s_range(sgn_sq(mminmin),sgn_sq(mmaxmax));
 	    }
 
 	    /* Selects a branching: */

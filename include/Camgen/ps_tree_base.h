@@ -304,7 +304,7 @@ namespace Camgen
 		{
 		    return false;
 		}
-		if(!this->check_sufficient_s())
+		if(N_in==2 and !this->check_sufficient_s())
 		{
 		    return false;
 		}
@@ -326,8 +326,7 @@ namespace Camgen
 		    {
 			if(this->backward_shat_sampling())
 			{
-			    success&=((*it)->set_s_min_min((value_type)0));
-			    success&=((*it)->set_s_max_max(s));
+                            success&=((*it)->set_max_s_range((value_type)0,s));
 			}
 			continue;
 		    }
@@ -337,13 +336,11 @@ namespace Camgen
 		    }
 		    if((*it)->spacelike())
 		    {
-			success&=((*it)->set_s_min_min(-s));
-			success&=((*it)->set_s_max_max((value_type)0));
+                        success&=((*it)->set_max_s_range(-s,(value_type)0));
 		    }
 		    else
 		    {
-			success&=((*it)->set_s_min_min((value_type)0));
-			success&=((*it)->set_s_max_max(s));
+                        success&=((*it)->set_max_s_range((value_type)0,s));
 		    }
 		}
 		return success;

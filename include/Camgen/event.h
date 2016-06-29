@@ -775,17 +775,9 @@ namespace Camgen
 
 	    /// Checks hadron level momentum conservation condition
 
-            //TODO: Add hadronic information...
 	    bool check_sufficient_s() const
 	    {
                 return check_sufficient_shat();
-//                value_type msum=M_out_sum();
-//		if(Ecm()<=msum)
-//		{
-//		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"total CM-energy "<<Ecm()<<" insufficient to accomodate outgoing particles with total mass "<<msum<<endlog;
-//		    return false;
-//		}
-//		return true;
 	    }
 
         protected:
@@ -1283,18 +1275,32 @@ namespace Camgen
                 return s(p_tot_out());
             }
 
-            /// Returns the total incoming partonic invariant mass (s-hat).
+            /// Returns the total partonic invariant mass (s-hat).
 
-            value_type s_tot() const
+            virtual value_type s_hat() const
             {
                 return s_tot_in();
             }
 
-            /// Returns the total incoming center-of-mass energy.
+            /// Returns the total partonic center-of-mass energy.
 
             virtual value_type Ecm_hat() const
             {
-                return std::sqrt(s_tot());
+                return std::sqrt(s_hat());
+            }
+
+            /// Returns the total hadronic invariant mass-squared.
+
+            virtual value_type s_beams() const
+            {
+                return s_hat();
+            }
+
+            /// Returns the total hadronic center-of-mass energy.
+
+            virtual value_type Ecm_beams() const
+            {
+                return std::sqrt(s_beams());
             }
 
 	    /// Takes the invariant mass-squared of the sum of the argument external
@@ -1829,17 +1835,15 @@ namespace Camgen
 
 	    /// Checks hadron level momentum conservation condition
 
-            //TODO: Add hadronic information...
 	    bool check_sufficient_s() const
 	    {
-                return check_sufficient_shat();
-//                value_type msum=M_out_sum();
-//		if(Ecm()<=msum)
-//		{
-//		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"total CM-energy "<<Ecm()<<" insufficient to accomodate outgoing particles with total mass "<<msum<<endlog;
-//		    return false;
-//		}
-//		return true;
+                value_type msum=M_out_sum();
+		if(Ecm_beams()<=msum)
+		{
+		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"total CM-energy "<<Ecm_beams()<<" insufficient to accomodate outgoing particles with total mass "<<msum<<endlog;
+		    return false;
+		}
+		return true;
 	    }
 
         protected:

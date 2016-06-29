@@ -1054,7 +1054,7 @@ namespace Camgen
 
     helicity_generators::type MC_config::helgen=helicity_generators::uniform;
     colour_generators::type MC_config::colgen=colour_generators::flow_sampling;
-    initial_states::type MC_config::isgen=initial_states::eplus_eminus;
+    initial_states::type MC_config::isgen=initial_states::partonic;
     phase_space_generators::type MC_config::psgen=phase_space_generators::recursive;
     double MC_config::E1=104.5;
     double MC_config::E2=104.5;

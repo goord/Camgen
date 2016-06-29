@@ -34,7 +34,7 @@ int main()
     set_phase_space_generator_type(psgen_type);
     set_s_pair_generation_mode(s_pair_generation_modes::hit_and_miss);
     std::string fext=plot_config::gnuplot_path==NULL?".dat/.gp":".eps";
-    file_utils::create_directory("test_output/ps_tree_grid_tree");
+    file_utils::create_directory("test_output/ps_tree_grid_test");
 
     set_adaptive_s_sampling(true);
     	

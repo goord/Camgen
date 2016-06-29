@@ -65,11 +65,32 @@ namespace Camgen
                 return cross_section;
             }
 
+            /// Returns the partonic invariant mass-squared.
+
+            value_type s_hat() const
+            {
+                return std::sqrt(ecm);
+            }
+
             /// Returns the partonic invariant mass.
 
             value_type Ecm_hat() const
             {
                 return ecm;
+            }
+
+            /// Returns the hadronic invariant mass-squared.
+
+            value_type s_beams() const
+            {
+                return std::sqrt(ecmc);
+            }
+
+            /// Returns the hadronic invariant mass.
+
+            value_type Ecm_beams() const
+            {
+                return ecmc;
             }
 
             /// Implementation of the incoming momentum accessor.
@@ -91,6 +112,13 @@ namespace Camgen
             void set_Ecm_hat(const value_type& e)
             {
                ecm=e;
+            }
+
+            /// Sets the hadronic invariant mass.
+
+            void set_Ecm_beams(const value_type& e)
+            {
+               ecmc=e;
             }
 
             /// Sets the event weight.
@@ -131,6 +159,10 @@ namespace Camgen
             /* Invariant mass: */
 
             value_type ecm;
+
+            /* Collider invariant mass: */
+
+            value_type ecmc;
 
             /* Event weight: */
 

@@ -56,6 +56,7 @@ namespace Camgen
 		is_generator_type* isgen=is_factory_type::create_instance(is_type_,backward_shat);
 		if(isgen==NULL)
 		{
+                    log(log_level::error)<<CAMGEN_STREAMLOC<<"initial state generator could not be constructed -- returning NULL"<<endlog;
 		    return NULL;
 		}
 		generator_type* result=fs_factory_type::create_instance(isgen,fs_type_);

@@ -77,6 +77,7 @@ namespace Camgen
 		{
 		    return new partonic_is<model_t,1,Minkowski_type>;
 		}
+		log(log_level::error)<<CAMGEN_STREAMLOC<<"initial state type "<<is_type<<" is not a valid single-particle initial state"<<endlog;
 		return NULL;
 	    }
     };
@@ -154,6 +155,7 @@ namespace Camgen
 		    case initial_states::antiproton_antiproton_xx:
 			return new hadronic_is_xx<model_t,rng_t,Minkowski_type>(true,true);
 		    default:
+                        log(log_level::error)<<CAMGEN_STREAMLOC<<"initial state type "<<is_type<<" is not a valid two-particle initial state"<<endlog;
 			return NULL;
 		}
 	    }

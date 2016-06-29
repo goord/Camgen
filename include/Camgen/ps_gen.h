@@ -207,6 +207,7 @@ namespace Camgen
 
 	    virtual bool refresh_Ecm()
 	    {
+                this->get_event_ptr()->set_Ecm_beams(Ecm());
 		return is->refresh_Ecm();
 	    }
 

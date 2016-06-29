@@ -85,34 +85,20 @@ namespace Camgen
 		val=val_;
 	    }
 
-	    /// Sets the minimal generated invariant mass-squared.
-
-	    bool set_lower_bound(const value_type& min_val_)
-	    {
-		min_val=min_val_;
-		return refresh_lower_bound();
-	    }
-
-	    /// Sets the minimal lower bound (in case of adaptive generator).
-	    
-	    virtual bool set_min_lower_bound(const value_type& val_)
-	    {
-		return set_lower_bound(val_);
-	    }
-
-	    /// Sets the maximal upper bound (in case of adaptive generator).
-	    
-	    virtual bool set_max_upper_bound(const value_type& val_)
-	    {
-		return set_upper_bound(val_);
-	    }
-
 	    /// Sets the maximal generated invariant mass-squared.
 
 	    bool set_upper_bound(const value_type& max_val_)
 	    {
 		max_val=max_val_;
 		return refresh_upper_bound();
+	    }
+
+	    /// Sets the minimal generated invariant mass-squared.
+
+	    bool set_lower_bound(const value_type& min_val_)
+	    {
+		min_val=min_val_;
+		return refresh_lower_bound();
 	    }
 
 	    /// Sets the invariant mass-squared range.
@@ -123,6 +109,27 @@ namespace Camgen
 		max_val=max_val_;
 		return refresh_bounds();
 	    }
+
+	    /// Sets the maximal upper bound (in case of adaptive generator).
+	    
+	    virtual bool set_max_upper_bound(const value_type& val_)
+	    {
+		return set_upper_bound(val_);
+	    }
+
+	    /// Sets the minimal lower bound (in case of adaptive generator).
+	    
+	    virtual bool set_min_lower_bound(const value_type& val_)
+	    {
+		return set_lower_bound(val_);
+	    }
+
+            /// Sets the minimal and maximal bounds.
+
+            virtual bool set_max_bounds(const value_type& min_val_,const value_type& max_val_)
+            {
+                return set_bounds(min_val_,max_val_);
+            }
 
 	    /// Generation method.
 
@@ -373,6 +380,8 @@ namespace Camgen
 	    value_type norm;
 
 	private:
+
+            //TODO: Use shared pointers!
 
 	    /* Pointer to the generated invariant mass: */
 
