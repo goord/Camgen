@@ -124,7 +124,8 @@ AC_MSG_RESULT($WITHLHAPDF)
 
 CAMGEN_CHECK_LHAPDF
 
-if test "x$WITHLHAPDF"="xyes"; then
+if test "x$WITHLHAPDF" = "xyes"; then
+    AC_DEFINE([HAVE_LHAPDF_H],[1],[Linking against a valid LHAPDF installation])
     AM_CXXFLAGS="$AM_CXXFLAGS -I${LHAPDF_DIR}/include";
     AM_LDFLAGS="$AM_LDFLAGS -L${LHAPDF_DIR}/lib";
     LIBS = "-lLHAPDF $LIBS";
@@ -155,7 +156,7 @@ AC_MSG_RESULT($WITHROOT)
 
 CAMGEN_CHECK_ROOT
 
-if test "x$WITHROOT"="xyes"; then
+if test "x$WITHROOT" = "xyes"; then
     AC_DEFINE([HAVE_ROOT_H],[1],[Linking against a valid ROOT installation])
     AM_CXXFLAGS_ROOT="$AM_CXXFLAGS -std=c++11 -I${ROOT_DIR}/include";
     AM_LDFLAGS_ROOT="$AM_LDFLAGS -L${ROOT_DIR}/lib -Wl,-rpath,${ROOT_DIR}/lib";
@@ -179,7 +180,7 @@ AC_CONFIG_FILES([Makefile
                  include/Makefile
                  lib/Makefile
                  src/Makefile
-		 examples/Makefile
+                 examples/Makefile
                  test/Makefile])
 AC_OUTPUT
 
