@@ -68,7 +68,7 @@ namespace Camgen
 		{
 		    digits=1;
 		}
-		for(size_type i=0;i<gen->processes;++i)
+		for(size_type i=0;i<gen->processes();++i)
 		{
 		    size_type n=gen->process_id(i);
 		    std::stringstream ss;
