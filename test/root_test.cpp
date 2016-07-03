@@ -99,6 +99,7 @@ int main()
     typedef SM model_type;
     typedef std::random rn_engine;
     typedef std::size_t size_type;
+    typedef double value_type;
 
     license_print::disable();
 
@@ -169,8 +170,59 @@ int main()
 	algo.construct();
         process_generator_factory<model_type,1,4,rn_engine> factory;
         process_generator<model_type,1,4,rn_engine>* proc_gen=factory.create_generator(algo.get_tree_iterator());
-        proc_gen->refresh_Ecm();
         generator_interface<model_type,1,4>* gen_if=new generator_interface<model_type,1,4>(new root_interface<model_type,1,4>(fname,"test-tree"),new test_output<model_type,1,4>());
+        for(size_type i=0;i<n_evts;++i)
+        {
+            proc_gen->generate();
+            gen_if->fill(proc_gen->get_event());
+        }
+        gen_if->write_statistics();
+        gen_if->write();
+        std::cerr<<"done, file "<<fname<<".root written."<<std::endl;
+    }
+
+    {
+        set_initial_state_type(initial_states::partonic);
+        set_phase_space_generator_type(phase_space_generators::recursive);
+	model_type::M_h0=170;
+	model_type::refresh_widths();
+	std::string process("h0 > l+,l-,l+,l-");
+	std::string fname("test_output/root_test/h_WW_4l");
+	std::cerr<<"Checking root interface for "<<process<<"............";
+	std::cerr.flush();
+	CM_algorithm<model_type,1,4>algo(process);
+	algo.load();
+	algo.construct();
+        event_generator_factory<model_type,1,4,rn_engine> factory;
+        event_generator<model_type,1,4,rn_engine>* evt_gen=factory.create_generator(algo);
+        generator_interface<model_type,1,4>* gen_if=new generator_interface<model_type,1,4>(new root_interface<model_type,1,4>(fname,"test-tree"),new test_output<model_type,1,4>());
+        for(size_type i=0;i<n_evts;++i)
+        {
+            evt_gen->generate();
+            gen_if->fill(evt_gen->get_event());
+        }
+        gen_if->write_statistics();
+        gen_if->write();
+        std::cerr<<"done, file "<<fname<<".root written."<<std::endl;
+    }
+
+    {
+        set_initial_state_type(initial_states::partonic);
+        set_phase_space_generator_type(phase_space_generators::recursive);
+	std::string process("u,ubar > e-,nu_ebar,mu+,nu_mu");
+	std::string fname("test_output/root_test/uubar_2l2n");
+        value_type E1=100;
+        value_type E2=100;
+	std::cerr<<"Checking root interface for "<<process<<"............";
+	std::cerr.flush();
+	CM_algorithm<model_type,2,4>algo(process);
+	algo.load();
+	algo.construct();
+        set_beam_energy(-1,E1);
+        set_beam_energy(-2,E2);
+        process_generator_factory<model_type,2,4,rn_engine> factory;
+        process_generator<model_type,2,4,rn_engine>* proc_gen=factory.create_generator(algo.get_tree_iterator());
+        generator_interface<model_type,2,4>* gen_if=new generator_interface<model_type,2,4>(new root_interface<model_type,2,4>(fname,"test-tree"),new test_output<model_type,2,4>());
         for(size_type i=0;i<n_evts;++i)
         {
             proc_gen->generate();
