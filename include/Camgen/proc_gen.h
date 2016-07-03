@@ -782,7 +782,7 @@ namespace Camgen
 	    /* Public readout methods */
 	    /*------------------------*/
 
-            /// Returns the sub-process. TODO: Implement
+            /// Returns the sub-process.
 
             const sub_process<model_t,N_in,N_out>& get_process() const
             {

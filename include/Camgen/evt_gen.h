@@ -278,14 +278,15 @@ namespace Camgen
                     return true;
                 }
                 value_type rho=throw_number((value_type)0,(value_type)1);
-                sub_proc=procs.begin();
+                process_iterator p_it=procs.begin();
                 value_type r(0);
-                while(r<=rho and sub_proc!=procs.end())
+                while(r<=rho and p_it!=procs.end())
                 {
-                    r+=sub_proc->alpha;
-                    ++sub_proc;
+                    r+=p_it->alpha;
+                    ++p_it;
                 }
-                --sub_proc;
+                --p_it;
+                set_sub_process(p_it);
                 if(sub_proc==procs.end())
                 {
                     log(log_level::warning)<<CAMGEN_STREAMLOC<<"subprocess iterator overflow detected--no generation performed"<<endlog;
@@ -317,14 +318,15 @@ namespace Camgen
             void generate_unweighted(bool verbose=false)
             {
                 value_type rho=throw_number(0,this->cross_section().value);
-                sub_proc=procs.begin();
+                process_iterator p_it=procs.begin();
                 value_type r(0);
-                while(r<rho and sub_proc!=procs.end())
+                while(r<rho and p_it!=procs.end())
                 {
                     r+=(sub_proc->generator->cross_section().value);
-                    ++sub_proc;
+                    ++p_it;
                 }
-                --sub_proc;
+                --p_it;
+                set_sub_process(p_it);
                 if(sub_proc==procs.end())
                 {
                     log(log_level::warning)<<"Subprocesses iterator overflow detected...no generation performed"<<endlog;
@@ -1064,6 +1066,17 @@ namespace Camgen
                     std::cout<<std::setw(15)<<sub_proc->generator->cross_section().error;
                     std::cout<<std::setw(15)<<sub_proc->generator->cross_section().error_error;
                     std::cout<<std::setw(10)<<sub_proc->generator->calls()<<std::endl;
+                }
+            }
+
+            /* Helper function for sub-process setting: */
+
+            void set_sub_process(process_iterator it)
+            {
+                sub_proc=it;
+                if(sub_proc!=procs.end())
+                {
+                    this->get_event_ptr()->set_process(&(sub_proc->generator->get_process()),sub_proc-procs.begin());
                 }
             }
     };

@@ -153,6 +153,7 @@ namespace Camgen
 
 
                     //TODO: Get this code to evt-gen
+                    evtgen->allocate_event();
 		    if(procs.size()!=0)
 		    {
 			value_type alpha=(value_type)1/(value_type)procs.size();
@@ -160,20 +161,20 @@ namespace Camgen
 			{
 			    procs[i].alpha=alpha;
 			}
-			evtgen->sub_proc=procs.begin();
+			evtgen->set_sub_process(procs.begin());
 		    }
 		    else
 		    {
-			evtgen->sub_proc=procs.end();
+			evtgen->set_sub_process(procs.end());
 			return;
 		    }
 		}
 		else
 		{
-		    evtgen->sub_proc=procs.end();
+                    evtgen->allocate_event();
+                    evtgen->set_sub_process(procs.end());
 		    return;
 		}
-		evtgen->sub_proc=procs.begin();
 		if(conf!=NULL)
 		{
 		    conf->configure();
