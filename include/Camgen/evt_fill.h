@@ -43,6 +43,10 @@ namespace Camgen
 
             virtual void set_process(const sub_process<model_t,N_in,N_out>* sub_proc_,int i=1)
             {
+                if(this->sub_proc!=NULL)
+                {
+                    delete this->sub_proc;
+                }
                 this->sub_proc=sub_proc_;
                 this->procid=i;
             }

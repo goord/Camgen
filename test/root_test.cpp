@@ -10,6 +10,7 @@
 #include <Camgen/stdrand.h>
 #include <Camgen/evtgen_fac.h>
 #include <Camgen/root_if.h>
+#include <Camgen/proc_split_if.h>
 #include <Camgen/if_engine.h>
 #include <Camgen/gen_if.h>
 
@@ -179,6 +180,8 @@ int main()
         gen_if->write_statistics();
         gen_if->write();
         std::cerr<<"done, file "<<fname<<".root written."<<std::endl;
+        delete gen_if;
+        delete proc_gen;
     }
 
     {
@@ -204,6 +207,8 @@ int main()
         gen_if->write_statistics();
         gen_if->write();
         std::cerr<<"done, file "<<fname<<".root written."<<std::endl;
+        delete gen_if;
+        delete evt_gen;
     }
 
     {
@@ -231,6 +236,8 @@ int main()
         gen_if->write_statistics();
         gen_if->write();
         std::cerr<<"done, file "<<fname<<".root written."<<std::endl;
+        delete gen_if;
+        delete proc_gen;
     }
 
     {
@@ -258,6 +265,34 @@ int main()
         gen_if->write_statistics();
         gen_if->write();
         std::cerr<<"done, file "<<fname<<".root written."<<std::endl;
+        delete gen_if;
+        delete evt_gen;
+    }
+
+    {
+        set_initial_state_type(initial_states::partonic);
+        set_phase_space_generator_type(phase_space_generators::recursive);
+	model_type::M_h0=170;
+	model_type::refresh_widths();
+	std::string process("h0 > l+,l-,nu,nubar");
+	std::string fname("test_output/root_test/h_WW_4l");
+	std::cerr<<"Checking process-split root interface for "<<process<<"............";
+	std::cerr.flush();
+	CM_algorithm<model_type,1,4>algo(process);
+	algo.load();
+	algo.construct();
+        event_generator_factory<model_type,1,4,rn_engine> factory;
+        event_generator<model_type,1,4,rn_engine>* evt_gen=factory.create_generator(algo);
+        interface_base<model_type,1,4>* gen_if=new process_split_interface<model_type,1,4>(evt_gen,new root_interface<model_type,1,4>(fname,"test-tree"),new test_output<model_type,1,4>());
+        for(size_type i=0;i<n_evts;++i)
+        {
+            evt_gen->generate();
+            gen_if->fill(evt_gen->get_event());
+        }
+        gen_if->write();
+        std::cerr<<"done, files "<<fname<<"_x.root written."<<std::endl;
+        delete gen_if;
+        delete evt_gen;
     }
 
 #endif

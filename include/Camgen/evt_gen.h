@@ -618,14 +618,14 @@ namespace Camgen
 
             /// Returns the current process id.
 
-            size_type process_id() const
+            int process_id() const
             {
                 return sub_proc->generator->id;
             }
 
             /// Returns the i-th subprocess id.
 
-            size_type process_id(size_type i) const
+            int process_id(size_type i) const
             {
                 return procs[i].generator->id;
             }
@@ -1076,7 +1076,7 @@ namespace Camgen
                 sub_proc=it;
                 if(sub_proc!=procs.end())
                 {
-                    this->get_event_ptr()->set_process(&(sub_proc->generator->get_process()),sub_proc-procs.begin());
+                    this->get_event_ptr()->set_process(sub_proc->generator->get_process().clone(),sub_proc-procs.begin());
                 }
             }
     };

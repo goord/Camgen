@@ -42,9 +42,9 @@ namespace Camgen
                 if(alloc_evt)
                 {
                     delete evt;
-                    evt=NULL;
-                    alloc_evt=false;
                 }
+                evt=NULL;
+                alloc_evt=false;
             }
 
             /// Returns the event pointer (read-only).

@@ -9,7 +9,6 @@ Camgen_HEADERS = Camgen/adj_rep.h		\
 	         Camgen/Breit_Wigner.h		\
 	         Camgen/bspart.h		\
 	         Camgen/c_utils.h		\
-	         Camgen/chain_if.h		\
 	         Camgen/charge_conj.h		\
 	         Camgen/CM_algo.h		\
 	         Camgen/col_flow.h		\
@@ -139,6 +138,7 @@ Camgen_HEADERS = Camgen/adj_rep.h		\
 	         Camgen/power_law.h		\
 	         Camgen/ppranknum.h		\
 	         Camgen/proc_gen.h		\
+	         Camgen/proc_split_if.h		\
 	         Camgen/process.h		\
 	         Camgen/process_tree.h		\
 		 Camgen/procgen_fac.h		\

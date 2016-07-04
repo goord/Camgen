@@ -79,6 +79,10 @@ namespace Camgen
             typedef typename cut_container<model_t,N_in,N_out>::ps_cut_type ps_cut_type;
             typedef typename scale_container<model_t,N_in,N_out>::functor_type functor_type;
             typedef typename scale_container<model_t,N_in,N_out>::function_type function_type;
+            typedef typename event_type::size_type size_type;
+            typedef typename event_type::value_type value_type;
+
+            virtual ~event_generator_base(){}
 
             /// Returns true if the current event passes the cuts.
 
@@ -99,6 +103,16 @@ namespace Camgen
             bool R_scale() const
             {
                 return this->scale_container<model_t,N_in,N_out>::R_scale(this->get_event());
+            }
+
+            virtual size_type processes() const
+            {
+                return 1;
+            }
+
+            virtual int process_id(size_type i) const
+            {
+                return i==0?1:-1;
             }
 
         protected:

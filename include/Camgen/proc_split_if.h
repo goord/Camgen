@@ -5,18 +5,18 @@
 // see COPYING for details.
 //
 
-/*! \file chain_if.h
-  \brief File chain event generator output interface.
+/*! \file process_split_if.h
+  \brief Per-process file event generator output interface.
   */
 
-#ifndef CAMGEN_CHAIN_IF_H_
-#define CAMGEN_CHAIN_IF_H_
+#ifndef CAMGEN_PROCESS_SPLIT_IF_H_
+#define CAMGEN_PROCESS_SPLIT_IF_H_
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * File chain event generator output interface. Creates a process generator with *
- * separate file for each subprocess.                                            *
- *                                                                               *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * File process-split event generator output interface. Creates a process  *
+ * generator with separate file for each subprocess.                       *
+ *                                                                         *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #include <map>
 #include <Camgen/if_base.h>
@@ -25,7 +25,7 @@
 
 namespace Camgen
 {
-    template<class model_t,std::size_t N_in,std::size_t N_out>class chain_interface: public interface_base<model_t,N_in,N_out>
+    template<class model_t,std::size_t N_in,std::size_t N_out>class process_split_interface: public interface_base<model_t,N_in,N_out>
     {
 	typedef interface_base<model_t,N_in,N_out> base_type;
 
@@ -34,7 +34,7 @@ namespace Camgen
 	    /* Type definitions: */
 
 	    typedef event_generator_base<model_t,N_in,N_out> generator_type;
-	    typedef typename base_type::momentum_type momentum_type;
+	    typedef typename base_type::event_type event_type;
 	    typedef typename base_type::value_type value_type;
 	    typedef typename base_type::size_type size_type;
 
@@ -49,7 +49,7 @@ namespace Camgen
 
 	    /// Constructor with process generator instance.
 
-	    chain_interface(generator_type* gen,interface_output<model_t,N_in,N_out>* output_,interface_engine<model_t,N_in,N_out>* engine_=NULL):output(output_),engine(engine_)
+	    process_split_interface(generator_type* gen,interface_output<model_t,N_in,N_out>* output_,interface_engine<model_t,N_in,N_out>* engine_=NULL):output(output_),engine(engine_)
 	    {
 		std::string namebase(output->file_name);
 		if(namebase.size()==0)
@@ -58,7 +58,7 @@ namespace Camgen
 		}
 		namebase.append("_");
 		int digits=0;
-		int step=1;
+		size_type step=1;
 		while(step<gen->processes())
 		{
 		    ++digits;
@@ -91,7 +91,7 @@ namespace Camgen
 
 	    /// Destructor.
 
-	    ~chain_interface()
+	    ~process_split_interface()
 	    {
 		for(typename std::map<int,sub_interface>::iterator it=sub_interfaces.begin();it!=sub_interfaces.end();++it)
 		{
@@ -189,19 +189,19 @@ namespace Camgen
 
 	    /// Reads the current event.
 
-	    bool fill_event()
+	    bool fill_event(const event_type& evt)
 	    {
-		typename std::map<int,sub_interface>::iterator it=sub_interfaces.find(this->proc_id);
+		typename std::map<int,sub_interface>::iterator it=sub_interfaces.find(evt.process_id());
 		if(it==sub_interfaces.end())
 		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"process id "<<this->proc_id<<" not found in map"<<endlog;
+		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"process id "<<evt.process_id()<<" not found in map"<<endlog;
 		    return false;
 		}
 		if(it->second.engine!=NULL)
 		{
-		    it->second.engine->fill();
+		    it->second.engine->fill(evt);
 		}
-		return it->second.output->write_event(this->gen);
+		return it->second.output->write_event(evt);
 	    }
 
 	private:
