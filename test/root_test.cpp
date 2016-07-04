@@ -222,7 +222,7 @@ int main()
 	std::cerr.flush();
 	CM_algorithm<model_type,2,4>algo(process);
 	algo.load();
-	algo.construct();
+	algo.construct_trees();
         set_beam_energy(-1,E1);
         set_beam_energy(-2,E2);
         process_generator_factory<model_type,2,4,rn_engine> factory;
@@ -280,7 +280,7 @@ int main()
 	std::cerr.flush();
 	CM_algorithm<model_type,1,4>algo(process);
 	algo.load();
-	algo.construct();
+	algo.construct_trees();
         event_generator_factory<model_type,1,4,rn_engine> factory;
         event_generator<model_type,1,4,rn_engine>* evt_gen=factory.create_generator(algo);
         interface_base<model_type,1,4>* gen_if=new process_split_interface<model_type,1,4>(evt_gen,new root_interface<model_type,1,4>(fname,"test-tree"),new test_output<model_type,1,4>());

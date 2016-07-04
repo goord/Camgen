@@ -139,7 +139,7 @@ namespace Camgen
 		procs.reserve(amplitude.n_trees());
 		if(amplitude.reset_process())
 		{
-		    std::size_t id=0;
+		    int id=0;
 		    do
 		    {
 			if(!amplitude.get_tree_iterator()->is_empty())
