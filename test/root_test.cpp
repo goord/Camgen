@@ -233,6 +233,33 @@ int main()
         std::cerr<<"done, file "<<fname<<".root written."<<std::endl;
     }
 
+    {
+        set_initial_state_type(initial_states::partonic);
+        set_phase_space_generator_type(phase_space_generators::recursive);
+	std::string process("p,p > e-,nu_ebar,mu+,nu_mu");
+	std::string fname("test_output/root_test/pp_2l2n");
+        value_type E1=300;
+        value_type E2=300;
+	std::cerr<<"Checking root interface for "<<process<<"............";
+	std::cerr.flush();
+	CM_algorithm<model_type,2,4>algo(process);
+	algo.load();
+	algo.construct();
+        set_beam_energy(-1,E1);
+        set_beam_energy(-2,E2);
+        event_generator_factory<model_type,2,4,rn_engine> factory;
+        event_generator<model_type,2,4,rn_engine>* evt_gen=factory.create_generator(algo);
+        generator_interface<model_type,2,4>* gen_if=new generator_interface<model_type,2,4>(new root_interface<model_type,2,4>(fname,"test-tree"),new test_output<model_type,2,4>());
+        for(size_type i=0;i<n_evts;++i)
+        {
+            evt_gen->generate();
+            gen_if->fill(evt_gen->get_event());
+        }
+        gen_if->write_statistics();
+        gen_if->write();
+        std::cerr<<"done, file "<<fname<<".root written."<<std::endl;
+    }
+
 #endif
 
     return 0;
