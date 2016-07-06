@@ -65,6 +65,13 @@ namespace Camgen
                 return cross_section;
             }
 
+            /// Implementation of the cross section accessor.
+
+            MC_integral<value_type> process_xsec() const
+            {
+                return process_cross_section;
+            }
+
             /// Returns the partonic invariant mass-squared.
 
             value_type s_hat() const
@@ -128,11 +135,18 @@ namespace Camgen
                 weight=weight_;
             }
 
-            /// Updates the process cross_section.
+            /// Updates the total cross_section.
 
             void set_xsec(const MC_integral<value_type> cross_section_)
             {
                 cross_section=cross_section_;
+            }
+
+            /// Updates the process cross_section.
+
+            void set_process_xsec(const MC_integral<value_type> cross_section_)
+            {
+                process_cross_section=cross_section_;
             }
 
             /// Copies the argument vector to the i-th incoming momentum.
@@ -168,9 +182,13 @@ namespace Camgen
 
             value_type weight;
 
-            /* Process cross_section: */
+            /* Total cross_section: */
 
             MC_integral<value_type> cross_section;
+
+            /* Process cross_section: */
+
+            MC_integral<value_type> process_cross_section;
     };
 }
 

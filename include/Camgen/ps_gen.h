@@ -870,6 +870,7 @@ namespace Camgen
             {
                 this->get_event_ptr()->set_w(this->weight());
                 this->get_event_ptr()->set_xsec(this->cross_section());
+                this->get_event_ptr()->set_process_xsec(this->cross_section());
                 for(size_type i=0;i<N_in;++i)
                 {
                     this->get_event_ptr()->set_p_in(*(pin[i]),i);

@@ -268,7 +268,7 @@ namespace Camgen
                 }
             }
 
-            /// Generation method with phase space cut argument.
+            /// Generation method.
 
             bool generate()
             {
@@ -295,6 +295,7 @@ namespace Camgen
                 bool q=sub_proc->generator->generate();
                 this->integrand()=sub_proc->generator->integrand();
                 this->weight()=sub_proc->generator->weight()/sub_proc->alpha;
+                copy_event_data();
                 if(update_counter!=0 and auto_proc_adapt!=0 and update_counter%auto_proc_adapt==0)
                 {
                     adapt_processes();
@@ -1078,6 +1079,13 @@ namespace Camgen
                 {
                     this->get_event_ptr()->set_process(sub_proc->generator->get_process().clone(),sub_proc-procs.begin());
                 }
+            }
+
+            /* Copies process generator data to event: */
+
+            void copy_event_data()
+            {
+                this->get_event_ptr()->set_xsec(this->cross_section());
             }
     };
 }

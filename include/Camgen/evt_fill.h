@@ -63,9 +63,13 @@ namespace Camgen
 
             virtual void set_w(const value_type&)=0;
 
-            /// Sets the cross section.
+            /// Sets the total cross section.
 
             virtual void set_xsec(const MC_integral<value_type>)=0;
+
+            /// Sets the subprocess cross section.
+
+            virtual void set_process_xsec(const MC_integral<value_type>)=0;
 
             /// Sets the partonic invariant mass.
 

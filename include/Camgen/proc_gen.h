@@ -1326,6 +1326,7 @@ namespace Camgen
 		{
 		    this->weight()=(value_type)0;
 		    set_integrands(0);
+                    copy_event_data();
 		    return false;
 		}
 		else
@@ -1348,6 +1349,7 @@ namespace Camgen
 		    {
 			set_integrands(0);
 		    }
+                    copy_event_data();
 		}
 		if(tot_weight!=(value_type)0)
 		{
@@ -1468,6 +1470,15 @@ namespace Camgen
 	    /* Boolean denoting whether to adopt pdf's alpha: */
 
 	    bool alpha_pdf;
+
+            /* Copies process generator data to event: */
+
+            void copy_event_data()
+            {
+                this->get_event_ptr()->set_w(this->weight());
+                this->get_event_ptr()->set_xsec(this->cross_section());
+                this->get_event_ptr()->set_process_xsec(this->cross_section());
+            }
     };
     template<class model_t,std::size_t N_in,std::size_t N_out,class rng_t>const typename process_generator<model_t,N_in,N_out,rng_t>::value_type process_generator<model_t,N_in,N_out,rng_t>::pb_conversion=0.389e+09;
 }

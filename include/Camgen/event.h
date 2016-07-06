@@ -161,9 +161,16 @@ namespace Camgen
                 return (value_type)1;
             }
 
-            /// Virtual method returning the process cross sesction.
+            /// Virtual method returning the total cross sesction.
 
             virtual MC_integral<value_type> xsec() const
+            {
+                return MC_integral<value_type>(0);
+            }
+
+            /// Virtual method returning the subprocess cross sesction.
+
+            virtual MC_integral<value_type> process_xsec() const
             {
                 return MC_integral<value_type>(0);
             }
