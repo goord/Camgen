@@ -1051,6 +1051,13 @@ namespace Camgen
                 return MC_integral<value_type>(0);
             }
 
+            /// Virtual method returning the subprocess cross sesction.
+
+            virtual MC_integral<value_type> process_xsec() const
+            {
+                return MC_integral<value_type>(0);
+            }
+
             /// Abstract method returning incoming momenta.
 
             virtual momentum_type p_in(size_type i) const=0;
