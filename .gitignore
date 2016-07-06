@@ -20,6 +20,7 @@ libtool
 # Logs etc
 config.h
 config.h.in
+config.h.in~
 config.status
 Makefile.in
 Makefile
@@ -29,12 +30,18 @@ stamp-h1
 *.swp
 *.log
 *.trs
+*.dat
+*.gp
+*.eps
+*.Tpo
 
 # Folders
 autom4te.cache/*
 build-aux/*
 test/.libs/*
 test/plots/*
+test/test_output/*
+lib/.libs/*
 
 # Executables
 test/bitstring_test
@@ -72,45 +79,17 @@ test/susy_Kunszt_test
 test/susy_QCDcc_test
 test/susy_QCDdc_test
 test/susy_QED_test
-
 test/Lorentz_test
-
 test/ps_tree_adapt_test
-
 test/ps_tree_grid_test
-
 test/ps_tree_shat_test
-
+test/ps_tree_reverse_test
 test/ps_tree_reverse_shat_test
-
-
-*.Tpo
-
+test/proc_gen_test
+test/evt_gen_test
+test/root_test
 test/rambo_test
 
-nbproject/configurations.xml
-
-nbproject/private/CodeAssistancePathMapper.properties
-
-nbproject/private/configurations.xml
-
-nbproject/private/launcher.properties
-
-nbproject/private/private.xml
-
-nbproject/project.xml
-
-
-config.h.in~
-
-*.dat
-
-*.gp
-
-test/ps_tree_reverse_test
-
-*.eps
-
-test/proc_gen_test
+# Editor utilities
 /.syntastic_config
 /tags
