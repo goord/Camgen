@@ -49,6 +49,10 @@ namespace Camgen
                 {
                     pout[i].assign((value_type)0);
                 }
+                bids.assign(0);
+                pdfgs.assign(-1);
+                pdfss.assign(-1);
+                muF=(value_type)0;
             }
 
             /// Implementation of the weight accessor.
@@ -76,7 +80,7 @@ namespace Camgen
 
             value_type s_hat() const
             {
-                return std::sqrt(ecm);
+                return ecm*ecm;
             }
 
             /// Returns the partonic invariant mass.
@@ -112,6 +116,34 @@ namespace Camgen
             momentum_type p_out(size_type i) const
             {
                 return pout[i];
+            }
+
+            /// Implementation of the beam id accessor.
+
+            int beam_id(int i) const
+            {
+                return (i<0 and i>=-(int)N_in)?bids[-i-1]:0;
+            }
+
+            /// Implementation of the pdf group id accessor.
+
+            int pdfg(int i) const
+            {
+                return (i<0 and i>=-(int)N_in)?pdfgs[-i-1]:-1;
+            }
+
+            /// Implementation of the pdf set id accessor.
+
+            int pdfs(int i) const
+            {
+                return (i<0 and i>=-(int)N_in)?pdfss[-i-1]:-1;
+            }
+
+            /// Implementation of the factorization scale accessor.
+
+            value_type mu_F() const
+            {
+                return muF;
             }
 
             /// Sets the partonic invariant mass.
@@ -163,12 +195,57 @@ namespace Camgen
                 pout[i]=p;
             }
 
+            /// Implementation of the beam id setter.
+
+            void set_beam_id(int i,int id)
+            {
+                if(i<0 and i>=-(int)N_in)
+                {
+                    bids[-i-1]=id;
+                }
+            }
+
+            /// Implementation of the pdf group id setter.
+
+            void set_pdfg(int i,int id)
+            {
+                if(i<0 and i>=-(int)N_in)
+                {
+                    pdfgs[-i-1]=id;
+                }
+            }
+
+            /// Implementation of the pdf set id setter.
+
+            void set_pdfs(int i,int id)
+            {
+                if(i<0 and i>=-(int)N_in)
+                {
+                    pdfss[-i-1]=id;
+                }
+            }
+
+            /// Implementation of the factorization scale accessor.
+
+            void set_mu_F(const value_type& mu)
+            {
+                muF=mu;
+            }
+
         private:
 
             /* Momentum collections: */
 
             vector<momentum_type,N_in> pin;
             vector<momentum_type,N_out> pout;
+
+            /* Beam ids: */
+            
+            vector<int,N_in> bids;
+
+            /* Cernlib pd group and set numbers: */
+
+            vector<int,N_in> pdfgs,pdfss;
 
             /* Invariant mass: */
 
@@ -189,6 +266,10 @@ namespace Camgen
             /* Process cross_section: */
 
             MC_integral<value_type> process_cross_section;
+
+            /* Factorization scale: */
+
+            value_type muF;
     };
 }
 

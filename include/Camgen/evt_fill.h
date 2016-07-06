@@ -25,6 +25,7 @@ namespace Camgen
 {
     /// Editable event class. Contains methods for copying momenta to the event.
 
+    //TODO: Merge with event class.
     template<class model_t,std::size_t N_in,std::size_t N_out>class fillable_event: public event<model_t,N_in,N_out>
     {
         public:
@@ -79,6 +80,22 @@ namespace Camgen
 
             virtual void set_Ecm_beams(const value_type&)=0;
 
+	    /// Virtual method setting the i-th incoming beam id.
+
+	    virtual void set_beam_id(int i,int id)=0;
+
+	    /// Sets the cernlib pdf group number for the i-th incoming beam.
+
+	    virtual void set_pdfg(int i,int gid)=0;
+
+	    /// Sets the cernlib pdf set number for the i-th incoming beam.
+
+	    virtual void set_pdfs(int i,int sid)=0;
+
+	    /// Virtual method returning the factorisation scale.
+
+	    virtual void set_mu_F(const value_type& mu)=0;
+
             /// Resets to default (zero)momenta.
 
             void reset()
@@ -88,6 +105,9 @@ namespace Camgen
                 for(size_type i=0;i<N_in;++i)
                 {
                     set_p_in(p,i);
+                    set_beam_id(i,0);
+                    set_pdfg(i,-1);
+                    set_pdfs(i,-1);
                 }
                 for(size_type i=0;i<N_out;++i)
                 {
@@ -95,6 +115,10 @@ namespace Camgen
                 }
                 set_w((value_type)1);
                 set_xsec(MC_integral<value_type>(0));
+                set_process_xsec(MC_integral<value_type>(0));
+                set_Ecm_hat((value_type)0);
+                set_Ecm_beams((value_type)0);
+                set_mu_F((value_type)0);
             }
     };
 }
