@@ -70,8 +70,7 @@ test/MC_hel_test
 test/parni_test
 test/ps_tree_test
 test/ps_reverse_test
-test/ps_vars_test
-test/pstree_shat_test
+test/event_test
 test/s_int_test
 test/save_load_test
 test/speed_test
