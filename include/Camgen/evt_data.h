@@ -94,7 +94,7 @@ namespace Camgen
 
             value_type s_beams() const
             {
-                return std::sqrt(ecmc);
+                return ecmc*ecmc;
             }
 
             /// Returns the hadronic invariant mass.

@@ -114,10 +114,7 @@ namespace Camgen
                     set_p_out(p,i);
                 }
                 set_w((value_type)1);
-                set_xsec(MC_integral<value_type>(0));
-                set_process_xsec(MC_integral<value_type>(0));
                 set_Ecm_hat((value_type)0);
-                set_Ecm_beams((value_type)0);
                 set_mu_F((value_type)0);
             }
     };
