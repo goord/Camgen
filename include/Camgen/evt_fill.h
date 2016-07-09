@@ -42,23 +42,23 @@ namespace Camgen
 
             /// Sets the current sub-process.
 
-            virtual void set_process(const sub_process<model_t,N_in,N_out>* sub_proc_,int i=1)
+            virtual void set_process(const sub_process<model_t,N_in,N_out>* sub_proc_,int id=1)
             {
                 if(this->sub_proc!=NULL)
                 {
                     delete this->sub_proc;
                 }
                 this->sub_proc=sub_proc_;
-                this->procid=i;
+                this->procid=id;
             }
 
             /// Copies the argument vector to the i-th incoming momentum.
 
-            virtual void set_p_in(const momentum_type&,size_type)=0;
+            virtual void set_p_in(size_type,const momentum_type&)=0;
 
             /// Copies the argument vector to the i-th outgoing momentum.
 
-            virtual void set_p_out(const momentum_type&,size_type)=0;
+            virtual void set_p_out(size_type,const momentum_type&)=0;
 
             /// Sets the event weight.
 
@@ -104,14 +104,14 @@ namespace Camgen
                 p.assign((value_type)0);
                 for(size_type i=0;i<N_in;++i)
                 {
-                    set_p_in(p,i);
+                    set_p_in(i,p);
                     set_beam_id(i,0);
                     set_pdfg(i,-1);
                     set_pdfs(i,-1);
                 }
                 for(size_type i=0;i<N_out;++i)
                 {
-                    set_p_out(p,i);
+                    set_p_out(i,p);
                 }
                 set_w((value_type)1);
                 set_Ecm_hat((value_type)0);

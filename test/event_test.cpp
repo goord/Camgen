@@ -83,11 +83,11 @@ template<class model_t>event<model_mock,2,3>* generate_event(typename model_t::v
     q2=q1;
     q2[model_t::beam_direction]=-q1[0];
     event_data<model_t,2,3>* e=new event_data<model_t,2,3>();
-    e->set_p_in(q1,0);
-    e->set_p_in(q2,1);
-    e->set_p_out(p1,0);
-    e->set_p_out(p2,1);
-    e->set_p_out(p3,2);
+    e->set_p_in(0,q1);
+    e->set_p_in(1,q2);
+    e->set_p_out(0,p1);
+    e->set_p_out(1,p2);
+    e->set_p_out(2,p3);
     e->set_Ecm_hat(scale);
     return e;
 }

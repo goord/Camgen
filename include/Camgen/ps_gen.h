@@ -873,11 +873,11 @@ namespace Camgen
                 this->get_event_ptr()->set_process_xsec(this->cross_section());
                 for(size_type i=0;i<N_in;++i)
                 {
-                    this->get_event_ptr()->set_p_in(*(pin[i]),i);
+                    this->get_event_ptr()->set_p_in(i,*(pin[i]));
                 }
                 for(size_type i=0;i<N_out;++i)
                 {
-                    this->get_event_ptr()->set_p_out(*(pout[i]),i);
+                    this->get_event_ptr()->set_p_out(i,*(pout[i]));
                 }
             }
 	    

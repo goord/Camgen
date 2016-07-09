@@ -183,14 +183,14 @@ namespace Camgen
 
             /// Copies the argument vector to the i-th incoming momentum.
 
-            void set_p_in(const momentum_type& p,size_type i)
+            void set_p_in(size_type i,const momentum_type& p)
             {
                 pin[i]=p;
             }
 
             /// Copies the argument vector to the i-th outgoing momentum.
 
-            void set_p_out(const momentum_type& p,size_type i)
+            void set_p_out(size_type i,const momentum_type& p)
             {
                 pout[i]=p;
             }
