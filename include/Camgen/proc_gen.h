@@ -1478,6 +1478,12 @@ namespace Camgen
                 this->get_event_ptr()->set_w(this->weight());
                 this->get_event_ptr()->set_xsec(this->cross_section());
                 this->get_event_ptr()->set_process_xsec(this->cross_section());
+                if(col_gen!=NULL)
+                {
+                    vector<int,N_in+N_out> c,cbar;
+                    col_gen->LH_output(c,cbar);
+                    this->get_event_ptr()->set_colour_connection(c,cbar);
+                }
             }
     };
     template<class model_t,std::size_t N_in,std::size_t N_out,class rng_t>const typename process_generator<model_t,N_in,N_out,rng_t>::value_type process_generator<model_t,N_in,N_out,rng_t>::pb_conversion=0.389e+09;

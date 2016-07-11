@@ -53,6 +53,8 @@ namespace Camgen
                 pdfgs.assign(-1);
                 pdfss.assign(-1);
                 muF=(value_type)0;
+                cols.assign(0);
+                anticols.assign(0);
             }
 
             /// Implementation of the weight accessor.
@@ -146,6 +148,34 @@ namespace Camgen
                 return muF;
             }
 
+            /// Implementation of the incoming colour connection accessor.
+
+            int c_in(size_type i) const
+            {
+                return (i<N_in)?cols[i]:0;
+            }
+
+            /// Implementation of the outgoing colour connection accessor.
+
+            int c_out(size_type i) const
+            {
+                return (i<N_out)?cols[i+N_in]:0;
+            }
+
+            /// Implementation of the incoming anti-colour connection accessor.
+
+            int cbar_in(size_type i) const
+            {
+                return (i<N_in)?anticols[i]:0;
+            }
+
+            /// Implementation of the outgoing anti-colour connection accessor.
+
+            int cbar_out(size_type i) const
+            {
+                return (i<N_out)?anticols[i+N_in]:0;
+            }
+
             /// Sets the partonic invariant mass.
 
             void set_Ecm_hat(const value_type& e)
@@ -225,11 +255,19 @@ namespace Camgen
                 }
             }
 
-            /// Implementation of the factorization scale accessor.
+            /// Implementation of the factorization scale setter.
 
             void set_mu_F(const value_type& mu)
             {
                 muF=mu;
+            }
+
+            /// Implementation of the colour connection setter.
+
+            void set_colour_connection(const vector<int,N_in+N_out>& c,const vector<int,N_in+N_out>& cbar)
+            {
+                cols=c;
+                anticols=cbar;
             }
 
         private:
@@ -270,6 +308,10 @@ namespace Camgen
             /* Factorization scale: */
 
             value_type muF;
+
+            /* Color connection: */
+
+            vector<int,N_in+N_out> cols,anticols;
     };
 }
 

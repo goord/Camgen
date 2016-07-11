@@ -92,9 +92,13 @@ namespace Camgen
 
 	    virtual void set_pdfs(int i,int sid)=0;
 
-	    /// Virtual method returning the factorisation scale.
+	    /// Sets the factorisation scale.
 
 	    virtual void set_mu_F(const value_type& mu)=0;
+
+            /// Sets the colour connection.
+
+            virtual void set_colour_connection(const vector<int,N_in+N_out>&,const vector<int,N_in+N_out>&)=0;
 
             /// Resets to default (zero)momenta.
 
@@ -116,6 +120,9 @@ namespace Camgen
                 set_w((value_type)1);
                 set_Ecm_hat((value_type)0);
                 set_mu_F((value_type)0);
+                vector<int,N_in+N_out>c;
+                c.assign(0);
+                set_colour_connection(c,c);
             }
     };
 }

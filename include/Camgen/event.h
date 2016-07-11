@@ -139,14 +139,6 @@ namespace Camgen
                 }
             }
 
-            /// Abstract method returning incoming momenta.
-
-            virtual momentum_type p_in(size_type i) const=0;
-
-            /// Abstract method returning outgoing momenta.
-
-            virtual momentum_type p_out(size_type i) const=0;
-
             /// Virtual method returning the process id.
 
             virtual int process_id() const
@@ -174,6 +166,14 @@ namespace Camgen
             {
                 return MC_integral<value_type>(0);
             }
+
+            /// Abstract method returning incoming momenta.
+
+            virtual momentum_type p_in(size_type i) const=0;
+
+            /// Abstract method returning outgoing momenta.
+
+            virtual momentum_type p_out(size_type i) const=0;
 
 	    /// Returns the i-th momentum, where i<0 means incoming momenta and
 	    /// i>0 outgoing ones. If i==0,i<-N_in or i>N_out, an error will
@@ -712,6 +712,52 @@ namespace Camgen
 	    value_type space_dot(int i1,int i2) const
 	    {
 		return space_dot(p(i1),p(i2));
+	    }
+
+            /// Virtual method returing the i-th incoming color connection index.
+
+            virtual int c_in(size_type i) const
+            {
+                return 0;
+            }
+
+            /// Virtual method returing the i-th incoming anti-color connection index.
+
+            virtual int cbar_in(size_type i) const
+            {
+                return 0;
+            }
+
+            /// Virtual method returing the i-th outgoing color connection index.
+
+            virtual int c_out(size_type i) const
+            {
+                return 0;
+            }
+
+            /// Virtual method returing the i-th outgoing anti-color connection index.
+
+            virtual int cbar_out(size_type i) const
+            {
+                return 0;
+            }
+
+	    /// Returns the i-th color connection index, where i<0 means incoming parton and
+	    /// i>0 outgoing ones. If i==0,i<-N_in or i>N_out, an error will
+	    /// occur.
+
+	    int c(int i) const
+	    {
+		return (i<0)?c_in(-i-1):c_out(i-1);
+	    }
+
+	    /// Returns the i-th anti-color connection index, where i<0 means incoming parton and
+	    /// i>0 outgoing ones. If i==0,i<-N_in or i>N_out, an error will
+	    /// occur.
+
+	    int cbar(int i) const
+	    {
+		return (i<0)?cbar_in(-i-1):cbar_out(i-1);
 	    }
 
             /// Returns the sub-process.
@@ -1779,6 +1825,52 @@ namespace Camgen
 	    value_type d_R(int i1,int i2) const
 	    {
 		return d_R(p(i1),p(i2));
+	    }
+
+            /// Virtual method returing the i-th incoming color connection index.
+
+            virtual int c_in(size_type i) const
+            {
+                return 0;
+            }
+
+            /// Virtual method returing the i-th incoming anti-color connection index.
+
+            virtual int cbar_in(size_type i) const
+            {
+                return 0;
+            }
+
+            /// Virtual method returing the i-th outgoing color connection index.
+
+            virtual int c_out(size_type i) const
+            {
+                return 0;
+            }
+
+            /// Virtual method returing the i-th outgoing anti-color connection index.
+
+            virtual int cbar_out(size_type i) const
+            {
+                return 0;
+            }
+
+	    /// Returns the i-th color connection index, where i<0 means incoming parton and
+	    /// i>0 outgoing ones. If i==0,i<-N_in or i>N_out, an error will
+	    /// occur.
+
+	    int c(int i) const
+	    {
+		return (i<0)?c_in(-i-1):c_out(i-1);
+	    }
+
+	    /// Returns the i-th anti-color connection index, where i<0 means incoming parton and
+	    /// i>0 outgoing ones. If i==0,i<-N_in or i>N_out, an error will
+	    /// occur.
+
+	    int cbar(int i) const
+	    {
+		return (i<0)?cbar_in(-i-1):cbar_out(i-1);
 	    }
 
             /// Returns the sub-process.
