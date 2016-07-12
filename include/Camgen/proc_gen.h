@@ -1322,7 +1322,10 @@ namespace Camgen
 	    bool throw_event()
 	    {
 		++evt_counter;
-		if(!(generate_momenta() and generate_helicities() and generate_colours()))
+                bool q1=generate_momenta();
+                bool q2=generate_helicities();
+                bool q3=generate_colours();
+		if(!(q1 and q2 and q3))
 		{
 		    this->weight()=(value_type)0;
 		    set_integrands(0);

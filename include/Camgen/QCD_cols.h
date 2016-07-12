@@ -480,6 +480,7 @@ namespace Camgen
 			    break;
 		    }
 		}
+                shuffled_anti_colours=anti_colours;
 		if(colours.size()!=anti_colours.size())
 		{
 		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"process allows no colour-conserving flows: all returned weight will be 0"<<endlog;
@@ -717,9 +718,9 @@ namespace Camgen
 
 	    void shuffle_partons()
 	    {
-		if(anti_colours.size()>0)
+                shuffled_anti_colours=anti_colours;
+		if(shuffled_anti_colours.size()>0)
 		{
-		    shuffled_anti_colours=anti_colours;
 		    for(size_type i=shuffled_anti_colours.size()-1;i!=0;--i)
 		    {
 			std::swap(shuffled_anti_colours[i],shuffled_anti_colours[rn_stream::throw_dice(i+1)]);
