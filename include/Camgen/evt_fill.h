@@ -64,6 +64,10 @@ namespace Camgen
 
             virtual void set_w(const value_type&)=0;
 
+            /// Sets the maximal event weight.
+
+            virtual void set_max_w(const value_type&)=0;
+
             /// Sets the total cross section.
 
             virtual void set_xsec(const MC_integral<value_type>)=0;
@@ -117,7 +121,8 @@ namespace Camgen
                 {
                     set_p_out(i,p);
                 }
-                set_w((value_type)1);
+                set_w((value_type)0);
+                set_max_w((value_type)1);
                 set_Ecm_hat((value_type)0);
                 set_mu_F((value_type)0);
                 vector<int,N_in+N_out>c;

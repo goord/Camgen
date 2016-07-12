@@ -869,6 +869,7 @@ namespace Camgen
             void copy_event_data()
             {
                 this->get_event_ptr()->set_w(this->weight());
+                this->get_event_ptr()->set_max_w(this->max_weight());
                 this->get_event_ptr()->set_xsec(this->cross_section());
                 this->get_event_ptr()->set_process_xsec(this->cross_section());
                 for(size_type i=0;i<N_in;++i)

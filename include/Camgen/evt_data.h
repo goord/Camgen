@@ -64,6 +64,13 @@ namespace Camgen
                 return weight;
             }
 
+            /// Implementation of the maximal weight accessor.
+
+            value_type max_w() const
+            {
+                return max_weight;
+            }
+
             /// Implementation of the cross section accessor.
 
             MC_integral<value_type> xsec() const
@@ -197,6 +204,13 @@ namespace Camgen
                 weight=weight_;
             }
 
+            /// Sets the event weight.
+
+            void set_max_w(const value_type& max_weight_)
+            {
+                max_weight=max_weight_;
+            }
+
             /// Updates the total cross_section.
 
             void set_xsec(const MC_integral<value_type> cross_section_)
@@ -296,6 +310,10 @@ namespace Camgen
             /* Event weight: */
 
             value_type weight;
+
+            /* Maximal event weight: */
+
+            value_type max_weight;
 
             /* Total cross_section: */
 

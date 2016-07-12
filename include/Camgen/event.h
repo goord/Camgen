@@ -150,6 +150,13 @@ namespace Camgen
 
             virtual value_type w() const
             {
+                return (value_type)0;
+            }
+
+            /// Virtual method returning the maximally expected event weight.
+
+            virtual value_type max_w() const
+            {
                 return (value_type)1;
             }
 
@@ -1086,6 +1093,13 @@ namespace Camgen
             /// Virtual method returning the event weight.
 
             virtual value_type w() const
+            {
+                return (value_type)0;
+            }
+
+            /// Virtual method returning the maximally expected event weight.
+
+            virtual value_type max_w() const
             {
                 return (value_type)1;
             }

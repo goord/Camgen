@@ -169,7 +169,7 @@ namespace Camgen
 
 	    /// Initialisation block writing.
 
-            //TODO: Read version from 
+            //TODO: Read version from config.h 
 	    void write_init(const event_type& evt)
 	    {
 		ofs<<"<LesHouchesEvents version=\"1.0\">"<<std::endl;
