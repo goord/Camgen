@@ -34,6 +34,7 @@ namespace Camgen
             typedef particle<model_t> particle_type;
 	    
 	    static const size_type k0=spacetime_type::timelike_direction;
+	    static const size_type kL=(model_type::beam_direction<0)?(-model_type::beam_direction):(model_type::beam_direction);
 
 	    /* Static utility methods: */
 	    /*-------------------------*/
@@ -430,6 +431,27 @@ namespace Camgen
                 return std::sqrt(s_tot());
             }
 
+            /// Returns the total hadronic invariant mass-squared.
+
+            virtual value_type s_beams() const
+            {
+                return 0;
+            }
+
+            /// Returns the total hadronic center-of-mass energy.
+
+            virtual value_type Ecm_beams() const
+            {
+                return 0;
+            }
+
+            /// Returns the i-th incoming beam energy.
+
+            virtual value_type E_beam(size_type i) const
+            {
+                return E_in(i);
+            }
+
 	    /// Takes the invariant mass-squared of the sum of the argument external
 	    /// momenta.
 
@@ -693,18 +715,18 @@ namespace Camgen
 		return -1;
 	    }
 
+            /// Returns the beam energy for the i-th (<0) incoming beam.
+
+            value_type beam_energy(int i) const
+            {
+                return E_beam(-i-1);
+            }
+
 	    /// Virtual method returning the factorisation scale.
 
 	    virtual value_type mu_F() const
 	    {
 		return 0;
-	    }
-
-	    /// Method determining the colour connection for the event.
-
-	    virtual void fill_colours(std::vector<int>& c,std::vector<int>& cbar) const
-	    {
-		return;
 	    }
 
 	    /// Contracts the argument external momenta.
@@ -1367,7 +1389,7 @@ namespace Camgen
 
             virtual value_type s_beams() const
             {
-                return s_hat();
+                return 4*E_beam(0)*E_beam(1);
             }
 
             /// Returns the total hadronic center-of-mass energy.
@@ -1375,6 +1397,13 @@ namespace Camgen
             virtual value_type Ecm_beams() const
             {
                 return std::sqrt(s_beams());
+            }
+
+            /// Returns the i-th incoming beam energy.
+
+            virtual value_type E_beam(size_type i) const
+            {
+                return E_in(i);
             }
 
 	    /// Takes the invariant mass-squared of the sum of the argument external
@@ -1620,18 +1649,18 @@ namespace Camgen
 		return -1;
 	    }
 
+            /// Returns the beam energy for the i-th (<0) incoming beam.
+
+            value_type beam_energy(int i) const
+            {
+                return E_beam(-i-1);
+            }
+
 	    /// Virtual method returning the factorisation scale.
 
 	    virtual value_type mu_F() const
 	    {
 		return 0;
-	    }
-
-	    /// Method determining the colour connection for the event.
-
-	    virtual void fill_colours(std::vector<int>& c,std::vector<int>& cbar) const
-	    {
-		return;
 	    }
 
 	    /// Contracts the argument external momenta.

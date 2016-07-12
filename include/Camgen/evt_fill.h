@@ -60,6 +60,10 @@ namespace Camgen
 
             virtual void set_p_out(size_type,const momentum_type&)=0;
 
+            /// Sets the incoming hadronic beam energy.
+
+            virtual void set_E_beam(size_type,const value_type&)=0;
+
             /// Sets the event weight.
 
             virtual void set_w(const value_type&)=0;
@@ -79,10 +83,6 @@ namespace Camgen
             /// Sets the partonic invariant mass.
 
             virtual void set_Ecm_hat(const value_type&)=0;
-
-            /// Sets the partonic invariant mass.
-
-            virtual void set_Ecm_beams(const value_type&)=0;
 
 	    /// Virtual method setting the i-th incoming beam id.
 

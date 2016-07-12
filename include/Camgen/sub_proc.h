@@ -82,7 +82,7 @@ namespace Camgen
             int id_in(size_type i) const
             {
                 const particle<model_t>* p=get_particle_in(i);
-                return p==NULL?0:p->pdg_id();
+                return p==NULL?0:p->get_pdg_id();
             }
 
             /// Returns the i-th outgoing particle pdg id.
@@ -90,7 +90,7 @@ namespace Camgen
             int id_out(size_type i) const
             {
                 const particle<model_t>* p=get_particle_out(i);
-                return p==NULL?0:p->pdg_id();
+                return p==NULL?0:p->get_pdg_id();
             }
 
             /// Returns the i-th particle pdg id.

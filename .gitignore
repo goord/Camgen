@@ -87,6 +87,7 @@ test/ps_tree_reverse_shat_test
 test/proc_gen_test
 test/evt_gen_test
 test/root_test
+test/LHE_if_test
 test/rambo_test
 
 # Editor utilities

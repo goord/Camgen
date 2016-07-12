@@ -126,7 +126,7 @@ namespace Camgen
 		    ofs<<std::setw(20)<<evt.p_in(i,2);
 		    ofs<<std::setw(20)<<evt.p_in(i,3);
 		    ofs<<std::setw(20)<<evt.p_in(i,0);
-		    ofs<<std::setw(20)<<evt.m_in(i);
+		    ofs<<std::setw(20)<<evt.M_in(i);
 		    ofs<<std::setw(6)<<"0.";
 		    ofs<<std::setw(6)<<"9.";
 		    ofs<<std::endl;
@@ -143,7 +143,7 @@ namespace Camgen
 		    ofs<<std::setw(20)<<evt.p_out(i,2);
 		    ofs<<std::setw(20)<<evt.p_out(i,3);
 		    ofs<<std::setw(20)<<evt.p_out(i,0);
-		    ofs<<std::setw(20)<<evt.m_out(i);
+		    ofs<<std::setw(20)<<evt.M_out(i);
 		    ofs<<std::setw(6)<<"0.";
 		    ofs<<std::setw(6)<<"9.";
 		    ofs<<std::endl;

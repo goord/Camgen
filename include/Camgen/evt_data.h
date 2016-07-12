@@ -99,18 +99,11 @@ namespace Camgen
                 return ecm;
             }
 
-            /// Returns the hadronic invariant mass-squared.
-
-            value_type s_beams() const
-            {
-                return ecmc*ecmc;
-            }
-
             /// Returns the hadronic invariant mass.
 
-            value_type Ecm_beams() const
+            value_type E_beam(size_type i) const
             {
-                return ecmc;
+                return ebeam[i];
             }
 
             /// Implementation of the incoming momentum accessor.
@@ -190,11 +183,11 @@ namespace Camgen
                ecm=e;
             }
 
-            /// Sets the hadronic invariant mass.
+            /// Sets the incoming beam energy.
 
-            void set_Ecm_beams(const value_type& e)
+            void set_E_beam(size_type i,const value_type& e)
             {
-               ecmc=e;
+               ebeam[i]=e;
             }
 
             /// Sets the event weight.
@@ -305,7 +298,7 @@ namespace Camgen
 
             /* Collider invariant mass: */
 
-            value_type ecmc;
+            vector<value_type,N_in> ebeam;
 
             /* Event weight: */
 

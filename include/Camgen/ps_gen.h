@@ -209,7 +209,10 @@ namespace Camgen
 	    {
 		if(is->refresh_Ecm())
                 {
-                    this->get_event_ptr()->set_Ecm_beams(Ecm());
+                    for(size_type i=0;i<N_in;++i)
+                    {
+                        this->get_event_ptr()->set_E_beam(i,is->beam_energy(i));
+                    }
                     return true;
                 }
                 return false;
