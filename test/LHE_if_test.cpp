@@ -30,6 +30,7 @@ int main()
     size_type n_evts=100;
 
     {
+	Camgen::log.enable_level=log_level::error;
         set_initial_state_type(initial_states::partonic);
         set_phase_space_generator_type(phase_space_generators::recursive);
 	model_type::M_h0=200;
@@ -40,7 +41,7 @@ int main()
 	std::cerr.flush();
 	CM_algorithm<model_type,1,4>algo(process);
 	algo.load();
-	algo.construct();
+	algo.construct_trees();
         process_generator_factory<model_type,1,4,rn_engine> factory;
         process_generator<model_type,1,4,rn_engine>* proc_gen=factory.create_generator(algo.get_tree_iterator());
         interface_base<model_type,1,4>* lh_if=new LHE_interface<model_type,1,4>(fname,1);
@@ -53,9 +54,11 @@ int main()
         std::cerr<<"done, file "<<fname<<".LHE written."<<std::endl;
         delete lh_if;
         delete proc_gen;
+        Camgen::log.enable_level=log_level::warning;
     }
 
     {
+	Camgen::log.enable_level=log_level::error;
         set_initial_state_type(initial_states::partonic);
         set_phase_space_generator_type(phase_space_generators::recursive);
 	model_type::M_h0=170;
@@ -66,7 +69,7 @@ int main()
 	std::cerr.flush();
 	CM_algorithm<model_type,1,4>algo(process);
 	algo.load();
-	algo.construct();
+	algo.construct_trees();
         event_generator_factory<model_type,1,4,rn_engine> factory;
         event_generator<model_type,1,4,rn_engine>* evt_gen=factory.create_generator(algo);
         interface_base<model_type,1,4>* lh_if=new LHE_interface<model_type,1,4>(fname,2);
@@ -79,9 +82,11 @@ int main()
         std::cerr<<"done, file "<<fname<<".LHE written."<<std::endl;
         delete lh_if;
         delete evt_gen;
+        Camgen::log.enable_level=log_level::warning;
     }
 
     {
+	Camgen::log.enable_level=log_level::error;
         set_initial_state_type(initial_states::partonic);
         set_phase_space_generator_type(phase_space_generators::recursive);
 	std::string process("e+,e- > q,qbar,Z");
@@ -92,7 +97,7 @@ int main()
 	std::cerr.flush();
 	CM_algorithm<model_type,2,3>algo(process);
 	algo.load();
-	algo.construct();
+	algo.construct_trees();
         set_beam_energy(-1,E1);
         set_beam_energy(-2,E2);
         event_generator_factory<model_type,2,3,rn_engine> factory;
@@ -107,13 +112,11 @@ int main()
         std::cerr<<"done, file "<<fname<<".LHE written."<<std::endl;
         delete lh_if;
         delete evt_gen;
+        Camgen::log.enable_level=log_level::warning;
     }
 
-    return 0;
-
-    //TODO: fix the test below...
-
     {
+	Camgen::log.enable_level=log_level::error;
         set_initial_state_type(initial_states::proton_proton);
         set_phase_space_generator_type(phase_space_generators::recursive);
 	std::string process("p,p > q,qbar,t,tbar");
@@ -124,7 +127,7 @@ int main()
 	std::cerr.flush();
 	CM_algorithm<model_type,2,4>algo(process);
 	algo.load();
-	algo.construct();
+	algo.construct_trees();
         set_beam_energy(-1,E1);
         set_beam_energy(-2,E2);
         event_generator_factory<model_type,2,4,rn_engine> factory;
@@ -139,6 +142,7 @@ int main()
         std::cerr<<"done, file "<<fname<<".LHE written."<<std::endl;
         delete lh_if;
         delete evt_gen;
+        Camgen::log.enable_level=log_level::warning;
     }
 }
 

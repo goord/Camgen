@@ -34,6 +34,8 @@ stamp-h1
 *.gp
 *.eps
 *.Tpo
+*.root
+*.LHE
 
 # Folders
 autom4te.cache/*

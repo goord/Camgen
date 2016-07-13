@@ -158,6 +158,7 @@ int main()
     }
 
     {
+	Camgen::log.enable_level=log_level::error;
         set_initial_state_type(initial_states::partonic);
         set_phase_space_generator_type(phase_space_generators::recursive);
 	model_type::M_h0=200;
@@ -182,9 +183,11 @@ int main()
         std::cerr<<"done, file "<<fname<<".root written."<<std::endl;
         delete gen_if;
         delete proc_gen;
+        Camgen::log.enable_level=log_level::warning;
     }
 
     {
+	Camgen::log.enable_level=log_level::error;
         set_initial_state_type(initial_states::partonic);
         set_phase_space_generator_type(phase_space_generators::recursive);
 	model_type::M_h0=170;
@@ -209,9 +212,11 @@ int main()
         std::cerr<<"done, file "<<fname<<".root written."<<std::endl;
         delete gen_if;
         delete evt_gen;
+        Camgen::log.enable_level=log_level::warning;
     }
 
     {
+	Camgen::log.enable_level=log_level::error;
         set_initial_state_type(initial_states::partonic);
         set_phase_space_generator_type(phase_space_generators::recursive);
 	std::string process("u,ubar > e-,nu_ebar,mu+,nu_mu");
@@ -238,9 +243,11 @@ int main()
         std::cerr<<"done, file "<<fname<<".root written."<<std::endl;
         delete gen_if;
         delete proc_gen;
+        Camgen::log.enable_level=log_level::warning;
     }
 
     {
+	Camgen::log.enable_level=log_level::error;
         set_initial_state_type(initial_states::partonic);
         set_phase_space_generator_type(phase_space_generators::recursive);
 	std::string process("p,p > e-,nu_ebar,mu+,nu_mu");
@@ -267,9 +274,11 @@ int main()
         std::cerr<<"done, file "<<fname<<".root written."<<std::endl;
         delete gen_if;
         delete evt_gen;
+        Camgen::log.enable_level=log_level::warning;
     }
 
     {
+	Camgen::log.enable_level=log_level::error;
         set_initial_state_type(initial_states::partonic);
         set_phase_space_generator_type(phase_space_generators::recursive);
 	model_type::M_h0=170;
@@ -293,9 +302,11 @@ int main()
         std::cerr<<"done, files "<<fname<<"_x.root written."<<std::endl;
         delete gen_if;
         delete evt_gen;
+        Camgen::log.enable_level=log_level::warning;
     }
 
     {
+	Camgen::log.enable_level=log_level::error;
         set_initial_state_type(initial_states::partonic);
         set_phase_space_generator_type(phase_space_generators::recursive);
 	std::string process("e+,e- > l+,l-,nu,nubar");
@@ -321,6 +332,7 @@ int main()
         std::cerr<<"done, files "<<fname<<"_x.root written."<<std::endl;
         delete gen_if;
         delete evt_gen;
+        Camgen::log.enable_level=log_level::warning;
     }
 
 #endif
