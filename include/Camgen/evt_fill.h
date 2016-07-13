@@ -113,16 +113,12 @@ namespace Camgen
                 for(size_type i=0;i<N_in;++i)
                 {
                     set_p_in(i,p);
-                    set_beam_id(i,0);
-                    set_pdfg(i,-1);
-                    set_pdfs(i,-1);
                 }
                 for(size_type i=0;i<N_out;++i)
                 {
                     set_p_out(i,p);
                 }
                 set_w((value_type)0);
-                set_max_w((value_type)1);
                 set_Ecm_hat((value_type)0);
                 set_mu_F((value_type)0);
                 vector<int,N_in+N_out>c;

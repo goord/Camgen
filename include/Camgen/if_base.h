@@ -54,7 +54,7 @@ namespace Camgen
 
 	    /// Constructor.
 
-	    interface_base():w(0),proc_id(0),input_evts(0),output_evts(0),zero_weight_flag(false){}
+	    interface_base():w(0),proc_id(0),evt_ptr(NULL),input_evts(0),output_evts(0),zero_weight_flag(false){}
 
 	    /// Destructor.
 
@@ -63,7 +63,7 @@ namespace Camgen
 	    /* Public modifiers: */
 	    /*-------------------*/
 
-	    /// Abstract event streaming method.
+	    /// Streams the argument event pointer.
 
 	    virtual bool fill(const event_type& evt)
 	    {
@@ -90,6 +90,24 @@ namespace Camgen
 		return false;
 	    }
 
+            /// Streams the current event pointer.
+
+            bool fill()
+            {
+                if(evt_ptr!=NULL)
+                {
+                    return fill(*evt_ptr);
+                }
+                return false;
+            }
+
+            /// Sets the current event instance for future streaming.
+
+            void set_event(const event_type& e)
+            {
+                evt_ptr=&e;
+            }
+
 	    /// Abstract output file writing method.
 
 	    virtual bool write()=0;
@@ -114,6 +132,13 @@ namespace Camgen
 	    /// Returns the event size.
 
 	    virtual size_type event_size() const=0;
+
+            /// Returns the current event instance.
+
+            const event_type& get_event() const
+            {
+                return *evt_ptr;
+            }
 
 	    /// Returns the number of events streamed to the interface.
 
@@ -189,6 +214,10 @@ namespace Camgen
 	    virtual bool fill_event(const event_type&)=0;
 
 	private:
+
+            /* Event pointer, for calling fill without event instance: */
+
+            event_type* const evt_ptr;
 
 	    /* Number of events streamed to the interface. */
 

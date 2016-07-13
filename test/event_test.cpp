@@ -105,6 +105,241 @@ int main()
     const int N_events=100000;
 
     {
+	std::cerr<<"Checking event reset method..........";
+	random_number_stream<value_type,std::random>rng;
+	for(int i=0;i<N_events;++i)
+	{
+	    int beam_id1=rng.throw_dice(-10,10);
+	    int beam_id2=rng.throw_dice(-10,10);
+            int pdfg1=rng.throw_dice(10);
+            int pdfg2=rng.throw_dice(10);
+            int pdfs1=rng.throw_dice(1000);
+            int pdfs2=rng.throw_dice(1000);
+            value_type maxw=(value_type)1.e+6;
+            value_type w=rng.throw_number(0,maxw);
+            value_type fs=rng.throw_number(0,100);
+            int c1=rng.throw_dice(-10,10);
+            int c2=rng.throw_dice(-10,10);
+            int c3=rng.throw_dice(-10,10);
+            int c4=rng.throw_dice(-10,10);
+            int c5=rng.throw_dice(-10,10);
+            vector<int,5>c={c1,c2,c3,c4,c5};
+            vector<int,5>cbar={-c1,-c2,-c3,-c4,-c5};
+
+            value_type scale=rng(0.0001,10000);
+	    fillable_event<model_type,2,3>* e=static_cast<fillable_event<model_type,2,3>*>(generate_event<model_type>(scale));
+            e->set_beam_id(-1,beam_id1);
+            e->set_beam_id(-2,beam_id2);
+            e->set_pdfg(-1,pdfg1);
+            e->set_pdfg(-2,pdfg2);
+            e->set_pdfs(-1,pdfs1);
+            e->set_pdfs(-2,pdfs2);
+            e->set_mu_F(fs);
+            e->set_max_w(maxw);
+            e->set_w(w);
+            e->set_colour_connection(c,cbar);
+
+            e->reset();
+
+            for(int i=-2;i<3;i++)
+            {
+                if(i==0)
+                {
+                    continue;
+                }
+                momentum_type p=e->p(i);
+                for(std::size_t mu=0;mu<p.size();++mu)
+                {
+                    if(p[mu]!=(value_type)0)
+                    {
+                        std::cerr<<"After reset, momentum "<<i<<" has component "<<mu<<": "<<p[mu]<<" not equal to zero"<<std::endl;
+                        return 1;
+                    }
+                }
+                if(e->c(i)!=0)
+                {
+                    std::cerr<<"After reset, color connection index "<<i<<" has component "<<e->c(i)<<" not equal to zero"<<std::endl;
+                    return 1;
+                }
+                if(e->cbar(i)!=0)
+                {
+                    std::cerr<<"After reset, anti-color connection index "<<i<<" has component "<<e->cbar(i)<<" not equal to zero"<<std::endl;
+                    return 1;
+                }
+            }
+            if(e->Ecm_hat()!=(value_type)0)
+            {
+                std::cerr<<"After reset, partonic invariant mass "<<e->Ecm_hat()<<" not equal to zero"<<std::endl;
+                return 1;
+            }
+            if(e->beam_id(-1)!=beam_id1)
+            {
+                std::cerr<<"After reset, beam id 1 was reset to "<<e->beam_id(-1)<<std::endl;
+                return 1;
+            }
+            if(e->beam_id(-2)!=beam_id2)
+            {
+                std::cerr<<"After reset, beam id 2 was reset to "<<e->beam_id(-2)<<std::endl;
+                return 1;
+            }
+            if(e->pdfg(-1)!=pdfg1)
+            {
+                std::cerr<<"After reset, pdf group 1 was reset to "<<e->pdfg(-1)<<std::endl;
+                return 1;
+            }
+            if(e->pdfg(-2)!=pdfg2)
+            {
+                std::cerr<<"After reset, pdf group 2 was reset to "<<e->pdfg(-2)<<std::endl;
+                return 1;
+            }
+            if(e->pdfs(-1)!=pdfs1)
+            {
+                std::cerr<<"After reset, pdf set 1 was reset to "<<e->pdfs(-1)<<std::endl;
+                return 1;
+            }
+            if(e->pdfs(-2)!=pdfs2)
+            {
+                std::cerr<<"After reset, pdf set 2 was reset to "<<e->pdfs(-2)<<std::endl;
+                return 1;
+            }
+            if(e->max_w()!=maxw)
+            {
+                std::cerr<<"After reset, max weight was reset to "<<e->max_w()<<std::endl;
+                return 1;
+            }
+            if(e->w()!=(value_type)0)
+            {
+                std::cerr<<"After reset, weight was "<<e->w()<<" not equal to zero"<<std::endl;
+                return 1;
+            }
+            if(e->mu_F()!=(value_type)0)
+            {
+                std::cerr<<"After reset, factorisation scale was "<<e->mu_F()<<" not equal to zero"<<std::endl;
+                return 1;
+            }
+
+            delete e;
+	}
+	std::cerr<<".........done."<<std::endl;
+    }
+
+    {
+	std::cerr<<"Checking event assignment method..........";
+	random_number_stream<value_type,std::random>rng;
+	for(int i=0;i<N_events;++i)
+	{
+	    int beam_id1=rng.throw_dice(-10,10);
+	    int beam_id2=rng.throw_dice(-10,10);
+            int pdfg1=rng.throw_dice(10);
+            int pdfg2=rng.throw_dice(10);
+            int pdfs1=rng.throw_dice(1000);
+            int pdfs2=rng.throw_dice(1000);
+            value_type maxw=(value_type)1.e+6;
+            value_type w=rng.throw_number(0,maxw);
+            value_type fs=rng.throw_number(0,100);
+            int c1=rng.throw_dice(-10,10);
+            int c2=rng.throw_dice(-10,10);
+            int c3=rng.throw_dice(-10,10);
+            int c4=rng.throw_dice(-10,10);
+            int c5=rng.throw_dice(-10,10);
+            vector<int,5>c={c1,c2,c3,c4,c5};
+            vector<int,5>cbar={-c1,-c2,-c3,-c4,-c5};
+
+            value_type scale=rng(0.0001,10000);
+	    event_data<model_type,2,3>* e=static_cast<event_data<model_type,2,3>*>(generate_event<model_type>(scale));
+            e->set_beam_id(-1,beam_id1);
+            e->set_beam_id(-2,beam_id2);
+            e->set_pdfg(-1,pdfg1);
+            e->set_pdfg(-2,pdfg2);
+            e->set_pdfs(-1,pdfs1);
+            e->set_pdfs(-2,pdfs2);
+            e->set_mu_F(fs);
+            e->set_max_w(maxw);
+            e->set_w(w);
+            e->set_colour_connection(c,cbar);
+
+            event_data<model_type,2,3> e_copy;
+            e_copy=*e;
+
+            for(int i=-2;i<3;i++)
+            {
+                if(i==0)
+                {
+                    continue;
+                }
+                if(e_copy.p(i)!=e->p(i))
+                {
+                    std::cerr<<"After assignment, momentum "<<i<<" "<<e_copy.p(i)<<" differs from rhs "<<e->p(i)<<std::endl;
+                    return 1;
+                }
+                if(e_copy.c(i)!=e->c(i))
+                {
+                    std::cerr<<"After assignment, color connection index "<<i<<" has component "<<e_copy.c(i)<<" not equal to rhs "<<e->c(i)<<std::endl;
+                    return 1;
+                }
+                if(e_copy.cbar(i)!=e->cbar(i))
+                {
+                    std::cerr<<"After assignment, anti-color connection index "<<i<<" has component "<<e_copy.cbar(i)<<" not equal to rhs "<<e->cbar(i)<<std::endl;
+                    return 1;
+                }
+            }
+            if(e_copy.Ecm_hat()!=e->Ecm_hat())
+            {
+                std::cerr<<"After assignment, partonic invariant mass "<<e_copy.Ecm_hat()<<" not equal to rhs "<<e->Ecm_hat()<<std::endl;
+                return 1;
+            }
+            if(e_copy.beam_id(-1)!=e->beam_id(-1))
+            {
+                std::cerr<<"After assignment, beam id 1 "<<e_copy.beam_id(-1)<<" not equal to rhs "<<e->beam_id(-1)<<std::endl;
+                return 1;
+            }
+            if(e_copy.beam_id(-2)!=e->beam_id(-2))
+            {
+                std::cerr<<"After assignment, beam id 2 "<<e_copy.beam_id(-2)<<" not equal to rhs "<<e->beam_id(-2)<<std::endl;
+                return 1;
+            }
+            if(e_copy.pdfg(-1)!=e->pdfg(-1))
+            {
+                std::cerr<<"After assignment, pdf group 1 "<<e_copy.pdfg(-1)<<" not equal to rhs "<<e->pdfg(-1)<<std::endl;
+                return 1;
+            }
+            if(e_copy.pdfg(-2)!=e->pdfg(-2))
+            {
+                std::cerr<<"After assignment, pdf group 2 "<<e_copy.pdfg(-2)<<" not equal to rhs "<<e->pdfg(-2)<<std::endl;
+                return 1;
+            }
+            if(e_copy.pdfs(-1)!=e->pdfs(-1))
+            {
+                std::cerr<<"After assignment, pdf set 1 "<<e_copy.pdfs(-1)<<" not equal to rhs "<<e->pdfs(-1)<<std::endl;
+                return 1;
+            }
+            if(e_copy.pdfs(-2)!=e->pdfs(-2))
+            {
+                std::cerr<<"After assignment, pdf set 2 "<<e_copy.pdfs(-2)<<" not equal to rhs "<<e->pdfs(-2)<<std::endl;
+                return 1;
+            }
+            if(e_copy.max_w()!=e->max_w())
+            {
+                std::cerr<<"After assignment, max weight "<<e_copy.max_w()<<" not equal to rhs "<<e->max_w()<<std::endl;
+                return 1;
+            }
+            if(e_copy.w()!=e->w())
+            {
+                std::cerr<<"After assignment, weight "<<e_copy.w()<<" not equal to rhs "<<e->w()<<std::endl;
+                return 1;
+            }
+            if(e_copy.mu_F()!=e->mu_F())
+            {
+                std::cerr<<"After assignment, factorisation "<<e_copy.mu_F()<<" not equal to rhs "<<e->mu_F()<<std::endl;
+                return 1;
+            }
+
+            delete e;
+	}
+	std::cerr<<".........done."<<std::endl;
+    }
+
+    {
 	std::cerr<<"Checking invariant particle mass calculations..........";
 	random_number_stream<value_type,std::random>rng;
 	for(int i=0;i<N_events;++i)
@@ -531,6 +766,8 @@ int main()
 		std::cerr<<"incorrect pseudo-rapidity difference calculated for p2,p3 "<<p2<<','<<p3<<": "<<deta23<<" not equal to checked value "<<deta23_check<<std::endl;
 		return 1;
 	    }
+
+            delete e;
 	}
 	std::cerr<<".........done."<<std::endl;
     }
@@ -673,6 +910,8 @@ int main()
 		std::cerr<<"incorrect angle calculated for p2 "<<p1<<", p3 "<<p3<<": "<<alpha23<<" not equal to checked value "<<alpha23_check<<std::endl;
 		return 1;
 	    }
+
+            delete e;
 	}
 	std::cerr<<".........done."<<std::endl;
     }

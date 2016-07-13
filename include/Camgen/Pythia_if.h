@@ -28,19 +28,20 @@ namespace Camgen
 {
     /// Les-Houches event file output interface class.
 
-    template<class model_t>class Pythia_interface: public Pythia8::LHAup
+    template<class model_t,std::size_t N_out>class Pythia_interface: public Pythia8::LHAup, 
+                                                                     public interface_base<model_t,2,N_out>
     {
-	typedef interface_base<model_t> base_type;
+	typedef interface_base<model_t,2,N_out> base_type;
 
 	public:
 
 	    /* Type definitions: */
 
 	    typedef model_t model_type;
-	    typedef ps_generator_base<model_t> generator_type;
-	    typedef typename model_type::value_type value_type;
-	    typedef typename generator_type::size_type size_type;
-	    typedef vector<value_type,model_t::dimension> momentum_type;
+	    typedef typename base_type::event_type event_type;
+	    typedef typename event_type::value_type value_type;
+	    typedef typename event_type::size_type size_type;
+	    typedef typename event_type::momentum_type momentum_type;
 
 	    /// Process id.
 
@@ -62,11 +63,14 @@ namespace Camgen
 
 	    /// Constructor.
 
-	    Pythia_interface(generator_type* gen_,int weight_switch_,unsigned proc_id_=1):proc_id(proc_id_),weight_switch(weight_switch_),generation_switch(true),gen(gen_){}
+	    Pythia_interface(const event_type& e,int weight_switch_,unsigned proc_id_=1):proc_id(proc_id_),weight_switch(weight_switch_),generation_switch(true)
+            {
+                this->set_event(e);
+            }
 
 	    /// Constructor with description.
 
-	    Pythia_interface(generator_type* gen_,int weight_switch_,const std::string& descr_,unsigned proc_id_=1):proc_id(proc_id_),weight_switch(weight_switch_),generation_switch(true),gen(gen_){}
+	    Pythia_interface(const event_type& e,int weight_switch_,const std::string& descr_,unsigned proc_id_=1):proc_id(proc_id_),weight_switch(weight_switch_),generation_switch(true),gen(gen_){}
 
 	    /// Destructor.
 
