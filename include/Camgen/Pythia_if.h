@@ -17,8 +17,7 @@
  *                                                                     *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#include <fstream>
-#include <Camgen/if_output.h>
+#include <Camgen/if_base.h>
 
 /* External component, should be in the c-flags when compiling this code: */
 
@@ -70,7 +69,10 @@ namespace Camgen
 
 	    /// Constructor with description.
 
-	    Pythia_interface(const event_type& e,int weight_switch_,const std::string& descr_,unsigned proc_id_=1):proc_id(proc_id_),weight_switch(weight_switch_),generation_switch(true),gen(gen_){}
+	    Pythia_interface(const event_type& e,int weight_switch_,const std::string& descr_,unsigned proc_id_=1):proc_id(proc_id_),weight_switch(weight_switch_),generation_switch(true)
+            {
+                this->set_event(e);
+            }
 
 	    /// Destructor.
 
