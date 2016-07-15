@@ -5,12 +5,12 @@
 // see COPYING for details.
 //
 
-/*! \file root_if.h
+/*! \file root_file.h
     \brief Root TTree output interface for phase space generators.
  */
 
-#ifndef CAMGEN_ROOT_IF_H_
-#define CAMGEN_ROOT_IF_H_
+#ifndef CAMGEN_ROOT_FILE_H_
+#define CAMGEN_ROOT_FILE_H_
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Root TTree output interface class implementation. It creates a root file and  *
@@ -26,7 +26,7 @@ namespace Camgen
     
     /// ROOT TTree output interface class.
     
-    template<class model_t,std::size_t N_in,std::size_t N_out>class root_interface: public interface_output<model_t,N_in,N_out>
+    template<class model_t,std::size_t N_in,std::size_t N_out>class root_file: public interface_output<model_t,N_in,N_out>
     {
 	typedef interface_output<model_t,N_in,N_out> base_type;
 
@@ -45,15 +45,15 @@ namespace Camgen
 
 	    /// Constructor with file name, tree name and tree description arguments.
 
-	    root_interface(const std::string& file_name_="output",
-		           const std::string tree_name_="output_tree",
-		           const std::string description_="no description available"):base_type(file_name_,description_),tree_name(tree_name_){}
+	    root_file(const std::string& file_name_="output",
+		      const std::string tree_name_="output_tree",
+		      const std::string description_="no description available"):base_type(file_name_,description_),tree_name(tree_name_){}
 
 	    /* Factory method implementation: */
 
 	    base_type* create(const std::string& file_name_) const
 	    {
-		return new root_interface<model_t,N_in,N_out>(file_name_,tree_name,this->description);
+		return new root_file<model_t,N_in,N_out>(file_name_,tree_name,this->description);
 	    }
 
 	    /* Opens the root file. */

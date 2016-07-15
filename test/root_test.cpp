@@ -9,7 +9,7 @@
 #include <Camgen/SM.h>
 #include <Camgen/stdrand.h>
 #include <Camgen/evtgen_fac.h>
-#include <Camgen/root_if.h>
+#include <Camgen/root_file.h>
 #include <Camgen/proc_split_if.h>
 #include <Camgen/if_engine.h>
 #include <Camgen/gen_if.h>
@@ -172,7 +172,7 @@ int main()
 	algo.construct();
         process_generator_factory<model_type,1,4,rn_engine> factory;
         process_generator<model_type,1,4,rn_engine>* proc_gen=factory.create_generator(algo.get_tree_iterator());
-        generator_interface<model_type,1,4>* gen_if=new generator_interface<model_type,1,4>(new root_interface<model_type,1,4>(fname,"test-tree"),new test_output<model_type,1,4>());
+        generator_interface<model_type,1,4>* gen_if=new generator_interface<model_type,1,4>(new root_file<model_type,1,4>(fname,"test-tree"),new test_output<model_type,1,4>());
         for(size_type i=0;i<n_evts;++i)
         {
             proc_gen->generate();
@@ -201,7 +201,7 @@ int main()
 	algo.construct();
         event_generator_factory<model_type,1,4,rn_engine> factory;
         event_generator<model_type,1,4,rn_engine>* evt_gen=factory.create_generator(algo);
-        generator_interface<model_type,1,4>* gen_if=new generator_interface<model_type,1,4>(new root_interface<model_type,1,4>(fname,"test-tree"),new test_output<model_type,1,4>());
+        generator_interface<model_type,1,4>* gen_if=new generator_interface<model_type,1,4>(new root_file<model_type,1,4>(fname,"test-tree"),new test_output<model_type,1,4>());
         for(size_type i=0;i<n_evts;++i)
         {
             evt_gen->generate();
@@ -232,7 +232,7 @@ int main()
         set_beam_energy(-2,E2);
         process_generator_factory<model_type,2,4,rn_engine> factory;
         process_generator<model_type,2,4,rn_engine>* proc_gen=factory.create_generator(algo.get_tree_iterator());
-        generator_interface<model_type,2,4>* gen_if=new generator_interface<model_type,2,4>(new root_interface<model_type,2,4>(fname,"test-tree"),new test_output<model_type,2,4>());
+        generator_interface<model_type,2,4>* gen_if=new generator_interface<model_type,2,4>(new root_file<model_type,2,4>(fname,"test-tree"),new test_output<model_type,2,4>());
         for(size_type i=0;i<n_evts;++i)
         {
             proc_gen->generate();
@@ -263,7 +263,7 @@ int main()
         set_beam_energy(-2,E2);
         event_generator_factory<model_type,2,4,rn_engine> factory;
         event_generator<model_type,2,4,rn_engine>* evt_gen=factory.create_generator(algo);
-        generator_interface<model_type,2,4>* gen_if=new generator_interface<model_type,2,4>(new root_interface<model_type,2,4>(fname,"test-tree"),new test_output<model_type,2,4>());
+        generator_interface<model_type,2,4>* gen_if=new generator_interface<model_type,2,4>(new root_file<model_type,2,4>(fname,"test-tree"),new test_output<model_type,2,4>());
         for(size_type i=0;i<n_evts;++i)
         {
             evt_gen->generate();
@@ -292,7 +292,7 @@ int main()
 	algo.construct_trees();
         event_generator_factory<model_type,1,4,rn_engine> factory;
         event_generator<model_type,1,4,rn_engine>* evt_gen=factory.create_generator(algo);
-        interface_base<model_type,1,4>* gen_if=new process_split_interface<model_type,1,4>(evt_gen,new root_interface<model_type,1,4>(fname,"test-tree"),new test_output<model_type,1,4>());
+        interface_base<model_type,1,4>* gen_if=new process_split_interface<model_type,1,4>(evt_gen,new root_file<model_type,1,4>(fname,"test-tree"),new test_output<model_type,1,4>());
         for(size_type i=0;i<n_evts;++i)
         {
             evt_gen->generate();
@@ -322,7 +322,7 @@ int main()
         set_beam_energy(-2,E2);
         event_generator_factory<model_type,2,4,rn_engine> factory;
         event_generator<model_type,2,4,rn_engine>* evt_gen=factory.create_generator(algo);
-        interface_base<model_type,2,4>* gen_if=new process_split_interface<model_type,2,4>(evt_gen,new root_interface<model_type,2,4>(fname,"test-tree"),new test_output<model_type,2,4>());
+        interface_base<model_type,2,4>* gen_if=new process_split_interface<model_type,2,4>(evt_gen,new root_file<model_type,2,4>(fname,"test-tree"),new test_output<model_type,2,4>());
         for(size_type i=0;i<n_evts;++i)
         {
             evt_gen->generate();
