@@ -5,16 +5,16 @@
 // see COPYING for details.
 //
 
-/*! \file ascii_if.h
-    \brief ASCII interface output for phase space generators.
+/*! \file ascii_file.h
+    \brief ASCII file containng event information
  */
 
-#ifndef CAMGEN_ASCII_IF_H_
-#define CAMGEN_ASCII_IF_H_
+#ifndef CAMGEN_ASCII_FILE_H_
+#define CAMGEN_ASCII_FILE_H_
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * ASCII datafile output interface class implementation. Creates a datafile  *
- * where each row represents an event.                                       *
+ * ASCII datafile output event tree class implementation. Creates a datafile *
+ * where each row contains event information.                                *
  *                                                                           *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
@@ -25,9 +25,9 @@ namespace Camgen
 {
     /// ACII-file output interface class.
     
-    template<class model_t>class ascii_file: public interface_output<model_t>
+    template<class model_t,std::size_t N_in,std::size_t N_out>class ascii_file: public interface_output<model_t,N_in,N_out>
     {
-	typedef interface_output<model_t> base_type;
+	typedef interface_output<model_t,N_in,N_out> base_type;
 
 	public:
 
@@ -58,9 +58,9 @@ namespace Camgen
 
 	    /* Creation method implementation: */
 
-	    interface_output<model_t>* create(const std::string& file_name_) const
+	    interface_output<model_t,N_in,N_out>* create(const std::string& file_name_) const
 	    {
-		return new ascii_file<model_t>(file_name_,this->description);
+		return new ascii_file<model_t,N_in,N_out>(file_name_,this->description);
 	    }
 
 	    /* Opens the (temporary) datafile. */

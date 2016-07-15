@@ -2,7 +2,7 @@ Camgendir=$(includedir)/Camgen
 
 Camgen_HEADERS = Camgen/adj_rep.h		\
 	         Camgen/adjoint.h		\
-	         Camgen/ascii_if.h		\
+	         Camgen/ascii_file.h		\
 	         Camgen/asymtvv.h		\
 	         Camgen/bipart.h		\
 	         Camgen/bit_string.h		\
