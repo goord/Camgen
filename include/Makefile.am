@@ -41,6 +41,7 @@ Camgen_HEADERS = Camgen/adj_rep.h		\
 	         Camgen/evt_gen.h		\
 	         Camgen/evt_gen_base.h		\
 		 Camgen/evt_container.h		\
+		 Camgen/evt_ostream.h		\
 		 Camgen/evt_output.h		\
 		 Camgen/evt_output_conf.h	\
 		 Camgen/evt_queue.h		\
@@ -63,7 +64,6 @@ Camgen_HEADERS = Camgen/adj_rep.h		\
 	         Camgen/fusion_class.h		\
 	         Camgen/fusion_cont.h		\
 	         Camgen/gen_conf.h		\
-	         Camgen/gen_if.h		\
 	         Camgen/ggg.h			\
 	         Camgen/gggg.h			\
 	         Camgen/group.h			\

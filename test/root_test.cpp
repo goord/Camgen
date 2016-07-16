@@ -11,7 +11,7 @@
 #include <Camgen/evtgen_fac.h>
 #include <Camgen/root_file.h>
 #include <Camgen/proc_split_if.h>
-#include <Camgen/gen_if.h>
+#include <Camgen/evt_ostream.h>
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Tests for ROOT interface to event/process generators  *
@@ -171,16 +171,16 @@ int main()
 	algo.construct();
         process_generator_factory<model_type,1,4,rn_engine> factory;
         process_generator<model_type,1,4,rn_engine>* proc_gen=factory.create_generator(algo.get_tree_iterator());
-        generator_interface<model_type,1,4>* gen_if=new generator_interface<model_type,1,4>(new root_file<model_type,1,4>(fname,"test-tree"),new test_output<model_type,1,4>());
+        event_output_stream<model_type,1,4>* evt_os=new event_output_stream<model_type,1,4>(new root_file<model_type,1,4>(fname,"test-tree"),new test_output<model_type,1,4>());
         for(size_type i=0;i<n_evts;++i)
         {
             proc_gen->generate();
-            gen_if->fill(proc_gen->get_event());
+            evt_os->fill(proc_gen->get_event());
         }
-        gen_if->write_statistics();
-        gen_if->write();
+        evt_os->write_statistics();
+        evt_os->write();
         std::cerr<<"done, file "<<fname<<".root written."<<std::endl;
-        delete gen_if;
+        delete evt_os;
         delete proc_gen;
         Camgen::log.enable_level=log_level::warning;
     }
@@ -200,16 +200,16 @@ int main()
 	algo.construct();
         event_generator_factory<model_type,1,4,rn_engine> factory;
         event_generator<model_type,1,4,rn_engine>* evt_gen=factory.create_generator(algo);
-        generator_interface<model_type,1,4>* gen_if=new generator_interface<model_type,1,4>(new root_file<model_type,1,4>(fname,"test-tree"),new test_output<model_type,1,4>());
+        event_output_stream<model_type,1,4>* evt_os=new event_output_stream<model_type,1,4>(new root_file<model_type,1,4>(fname,"test-tree"),new test_output<model_type,1,4>());
         for(size_type i=0;i<n_evts;++i)
         {
             evt_gen->generate();
-            gen_if->fill(evt_gen->get_event());
+            evt_os->fill(evt_gen->get_event());
         }
-        gen_if->write_statistics();
-        gen_if->write();
+        evt_os->write_statistics();
+        evt_os->write();
         std::cerr<<"done, file "<<fname<<".root written."<<std::endl;
-        delete gen_if;
+        delete evt_os;
         delete evt_gen;
         Camgen::log.enable_level=log_level::warning;
     }
@@ -231,16 +231,16 @@ int main()
         set_beam_energy(-2,E2);
         process_generator_factory<model_type,2,4,rn_engine> factory;
         process_generator<model_type,2,4,rn_engine>* proc_gen=factory.create_generator(algo.get_tree_iterator());
-        generator_interface<model_type,2,4>* gen_if=new generator_interface<model_type,2,4>(new root_file<model_type,2,4>(fname,"test-tree"),new test_output<model_type,2,4>());
+        event_output_stream<model_type,2,4>* evt_os=new event_output_stream<model_type,2,4>(new root_file<model_type,2,4>(fname,"test-tree"),new test_output<model_type,2,4>());
         for(size_type i=0;i<n_evts;++i)
         {
             proc_gen->generate();
-            gen_if->fill(proc_gen->get_event());
+            evt_os->fill(proc_gen->get_event());
         }
-        gen_if->write_statistics();
-        gen_if->write();
+        evt_os->write_statistics();
+        evt_os->write();
         std::cerr<<"done, file "<<fname<<".root written."<<std::endl;
-        delete gen_if;
+        delete evt_os;
         delete proc_gen;
         Camgen::log.enable_level=log_level::warning;
     }
@@ -262,16 +262,16 @@ int main()
         set_beam_energy(-2,E2);
         event_generator_factory<model_type,2,4,rn_engine> factory;
         event_generator<model_type,2,4,rn_engine>* evt_gen=factory.create_generator(algo);
-        generator_interface<model_type,2,4>* gen_if=new generator_interface<model_type,2,4>(new root_file<model_type,2,4>(fname,"test-tree"),new test_output<model_type,2,4>());
+        event_output_stream<model_type,2,4>* evt_os=new event_output_stream<model_type,2,4>(new root_file<model_type,2,4>(fname,"test-tree"),new test_output<model_type,2,4>());
         for(size_type i=0;i<n_evts;++i)
         {
             evt_gen->generate();
-            gen_if->fill(evt_gen->get_event());
+            evt_os->fill(evt_gen->get_event());
         }
-        gen_if->write_statistics();
-        gen_if->write();
+        evt_os->write_statistics();
+        evt_os->write();
         std::cerr<<"done, file "<<fname<<".root written."<<std::endl;
-        delete gen_if;
+        delete evt_os;
         delete evt_gen;
         Camgen::log.enable_level=log_level::warning;
     }
@@ -291,15 +291,15 @@ int main()
 	algo.construct_trees();
         event_generator_factory<model_type,1,4,rn_engine> factory;
         event_generator<model_type,1,4,rn_engine>* evt_gen=factory.create_generator(algo);
-        event_stream<model_type,1,4>* gen_if=new process_split_interface<model_type,1,4>(evt_gen,new root_file<model_type,1,4>(fname,"test-tree"),new test_output<model_type,1,4>());
+        event_stream<model_type,1,4>* evt_os=new process_split_interface<model_type,1,4>(evt_gen,new root_file<model_type,1,4>(fname,"test-tree"),new test_output<model_type,1,4>());
         for(size_type i=0;i<n_evts;++i)
         {
             evt_gen->generate();
-            gen_if->fill(evt_gen->get_event());
+            evt_os->fill(evt_gen->get_event());
         }
-        gen_if->write();
+        evt_os->write();
         std::cerr<<"done, files "<<fname<<"_x.root written."<<std::endl;
-        delete gen_if;
+        delete evt_os;
         delete evt_gen;
         Camgen::log.enable_level=log_level::warning;
     }
@@ -321,15 +321,15 @@ int main()
         set_beam_energy(-2,E2);
         event_generator_factory<model_type,2,4,rn_engine> factory;
         event_generator<model_type,2,4,rn_engine>* evt_gen=factory.create_generator(algo);
-        event_stream<model_type,2,4>* gen_if=new process_split_interface<model_type,2,4>(evt_gen,new root_file<model_type,2,4>(fname,"test-tree"),new test_output<model_type,2,4>());
+        event_stream<model_type,2,4>* evt_os=new process_split_interface<model_type,2,4>(evt_gen,new root_file<model_type,2,4>(fname,"test-tree"),new test_output<model_type,2,4>());
         for(size_type i=0;i<n_evts;++i)
         {
             evt_gen->generate();
-            gen_if->fill(evt_gen->get_event());
+            evt_os->fill(evt_gen->get_event());
         }
-        gen_if->write();
+        evt_os->write();
         std::cerr<<"done, files "<<fname<<"_x.root written."<<std::endl;
-        delete gen_if;
+        delete evt_os;
         delete evt_gen;
         Camgen::log.enable_level=log_level::warning;
     }

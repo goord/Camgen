@@ -5,17 +5,17 @@
 // see COPYING for details.
 //
 
-/*! \file gen_if.h
-  \brief Phase space/event generator output interface.
+/*! \file evt_ostream.h
+  \brief Event output streaming class.
   */
 
-#ifndef CAMGEN_GEN_IF_H_
-#define CAMGEN_GEN_IF_H_
+#ifndef CAMGEN_EVT_OSTREAM_H_
+#define CAMGEN_EVT_OSTREAM_H_
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * Generic interface for event generators. Takes a generator base instance,  *
- * interface config instance and interface output instance as constructor    *
- * arguments.                                                                *
+ * Eevent output stream implementation. Takes an output config instance and  * 
+ * event output instance as constructor arguments and streams according to   *
+ * joint behaviour.                                                          *
  *                                                                           *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
@@ -24,7 +24,7 @@
 
 namespace Camgen
 {
-    template<class model_t,std::size_t N_in,std::size_t N_out>class generator_interface: public event_stream<model_t,N_in,N_out>
+    template<class model_t,std::size_t N_in,std::size_t N_out>class event_output_stream: public event_stream<model_t,N_in,N_out>
     {
 	typedef event_stream<model_t,N_in,N_out> base_type;
 
@@ -42,7 +42,7 @@ namespace Camgen
 
 	    /// Constructor with process generator instance.
 
-	    generator_interface(event_output<model_t,N_in,N_out>* output_,event_output_configuration<model_t,N_in,N_out>* config_=NULL):output(output_),config(config_)
+	    event_output_stream(event_output<model_t,N_in,N_out>* output_,event_output_configuration<model_t,N_in,N_out>* config_=NULL):output(output_),config(config_)
             {
 		output->open_file();
 		if(config!=NULL)
@@ -55,7 +55,7 @@ namespace Camgen
 
 	    /// Destructor.
 
-	    ~generator_interface()
+	    ~event_output_stream()
 	    {
 		if(config!=NULL)
 		{
@@ -139,5 +139,5 @@ namespace Camgen
     };
 }
 
-#endif /*CAMGEN_GEN_IF_H_*/
+#endif /*CAMGEN_EVT_OSTREAM_H_*/
 
