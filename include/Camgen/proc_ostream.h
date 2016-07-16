@@ -5,27 +5,26 @@
 // see COPYING for details.
 //
 
-/*! \file process_split_if.h
-  \brief Per-process file event generator output interface.
+/*! \file proc_ostream.h
+  \brief Per-process event output stream.
   */
 
-#ifndef CAMGEN_PROCESS_SPLIT_IF_H_
-#define CAMGEN_PROCESS_SPLIT_IF_H_
+#ifndef CAMGEN_PROC_OSTREAM_H_
+#define CAMGEN_PROC_OSTREAM_H_
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * File process-split event generator output interface. Creates a process  *
- * generator with separate file for each subprocess.                       *
- *                                                                         *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * File process-split event output stream. Creates a process *
+ * generator with separate file for each subprocess.         *
+ *                                                           *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #include <map>
-#include <Camgen/evt_gen_base.h>
 #include <Camgen/evt_stream.h>
 #include <Camgen/evt_output_conf.h>
 
 namespace Camgen
 {
-    template<class model_t,std::size_t N_in,std::size_t N_out>class process_split_interface: public event_stream<model_t,N_in,N_out>
+    template<class model_t,std::size_t N_in,std::size_t N_out>class process_output_stream: public event_stream<model_t,N_in,N_out>
     {
 	typedef event_stream<model_t,N_in,N_out> base_type;
 
@@ -33,12 +32,11 @@ namespace Camgen
 
 	    /* Type definitions: */
 
-	    typedef event_generator_base<model_t,N_in,N_out> generator_type;
 	    typedef typename base_type::event_type event_type;
 	    typedef typename base_type::value_type value_type;
 	    typedef typename base_type::size_type size_type;
 
-	    struct sub_interface
+	    struct proc_stream
 	    {
 		event_output<model_t,N_in,N_out>* output;
 		event_output_configuration<model_t,N_in,N_out>* config;
@@ -49,51 +47,14 @@ namespace Camgen
 
 	    /// Constructor with process generator instance.
 
-	    process_split_interface(generator_type* gen,event_output<model_t,N_in,N_out>* output_,event_output_configuration<model_t,N_in,N_out>* config_=NULL):output(output_),config(config_)
-	    {
-		std::string namebase(output->file_name);
-		if(namebase.size()==0)
-		{
-		    namebase="proc";
-		}
-		namebase.append("_");
-		int digits=0;
-		size_type step=1;
-		while(step<gen->processes())
-		{
-		    ++digits;
-		    step*=10;
-		}
-		if(digits==0)
-		{
-		    digits=1;
-		}
-		for(size_type i=0;i<gen->processes();++i)
-		{
-		    size_type n=gen->process_id(i);
-		    std::stringstream ss;
-		    ss<<namebase<<std::setw(digits)<<std::setfill('0')<<n;
-		    std::string fname(ss.str());
-		    event_output<model_t,N_in,N_out>* sub_output=output->create(fname);
-		    sub_output->open_file();
-		    event_output_configuration<model_t,N_in,N_out>* sub_config=NULL;
-		    if(config!=NULL)
-		    {
-			sub_config=config->clone();
-			sub_config->add_branches(sub_output);
-		    }
-		    sub_output->branch(&(this->w),"weight");
-		    sub_output->branch(&(this->proc_id),"proc_id");
-		    sub_interface sub_int={sub_output,sub_config};
-		    sub_interfaces[n]=sub_int;
-		}
-	    }
+	    process_output_stream(event_output<model_t,N_in,N_out>* output_,event_output_configuration<model_t,N_in,N_out>* config_=NULL):output(output_),config(config_){}
+
 
 	    /// Destructor.
 
-	    ~process_split_interface()
+	    ~process_output_stream()
 	    {
-		for(typename std::map<int,sub_interface>::iterator it=sub_interfaces.begin();it!=sub_interfaces.end();++it)
+		for(typename std::map<int,proc_stream>::iterator it=sub_streams.begin();it!=sub_streams.end();++it)
 		{
 		    if((it->second).config!=NULL)
 		    {
@@ -117,7 +78,7 @@ namespace Camgen
 	    bool write()
 	    {
 		bool q=true;
-		for(typename std::map<int,sub_interface>::iterator it=sub_interfaces.begin();it!=sub_interfaces.end();++it)
+		for(typename std::map<int,proc_stream>::iterator it=sub_streams.begin();it!=sub_streams.end();++it)
 		{
 		    q&=(it->second.output->close_file());
 		}
@@ -131,8 +92,8 @@ namespace Camgen
 
 	    size_type event_size() const
 	    {
-		typename std::map<int,sub_interface>::const_iterator it=sub_interfaces.begin();
-		if(it==sub_interfaces.end())
+		typename std::map<int,proc_stream>::const_iterator it=sub_streams.begin();
+		if(it==sub_streams.end())
 		{
 		    return 0;
 		}
@@ -148,8 +109,8 @@ namespace Camgen
 
 	    size_type file_size(size_type i) const
 	    {
-		typename std::map<int,sub_interface>::const_iterator it=sub_interfaces.find(i);
-		if(it==sub_interfaces.end())
+		typename std::map<int,proc_stream>::const_iterator it=sub_streams.find(i);
+		if(it==sub_streams.end())
 		{
 		    return 0;
 		}
@@ -191,11 +152,15 @@ namespace Camgen
 
 	    bool fill_event(const event_type& evt)
 	    {
-		typename std::map<int,sub_interface>::iterator it=sub_interfaces.find(evt.process_id());
-		if(it==sub_interfaces.end())
+		typename std::map<int,proc_stream>::iterator it=sub_streams.find(evt.process_id());
+		if(it==sub_streams.end())
 		{
-		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"process id "<<evt.process_id()<<" not found in map"<<endlog;
-		    return false;
+                    proc_stream ps=add_process(evt.process_id());
+                    if(ps.config!=NULL)
+                    {
+                        ps.config->fill(evt);
+                    }
+                    return ps.output->write_event(evt);
 		}
 		if(it->second.config!=NULL)
 		{
@@ -216,7 +181,35 @@ namespace Camgen
 
 	    /* Collection of sub-process interfaces: */
 
-	    std::map<int,sub_interface> sub_interfaces;
+	    std::map<int,proc_stream> sub_streams;
+
+            /* Adds a sub-process stream: */
+
+            proc_stream& add_process(size_type id)
+            {
+		std::string namebase(output->file_name);
+		if(namebase.size()==0)
+		{
+		    namebase="proc";
+		}
+                std::stringstream ss;
+                ss<<namebase<<'_'<<id;
+                std::string fname(ss.str());
+                
+                event_output<model_t,N_in,N_out>* sub_output=output->create(fname);
+                sub_output->open_file();
+                event_output_configuration<model_t,N_in,N_out>* sub_config=NULL;
+                if(config!=NULL)
+                {
+                    sub_config=config->clone();
+                    sub_config->add_branches(sub_output);
+                }
+                sub_output->branch(&(this->w),"weight");
+                sub_output->branch(&(this->proc_id),"proc_id");
+                proc_stream sub_int={sub_output,sub_config};
+                sub_streams[id]=sub_int;
+                return sub_streams[id];
+            }
     };
 }
 

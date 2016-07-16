@@ -139,7 +139,7 @@ Camgen_HEADERS = Camgen/adj_rep.h		\
 	         Camgen/power_law.h		\
 	         Camgen/ppranknum.h		\
 	         Camgen/proc_gen.h		\
-	         Camgen/proc_split_if.h		\
+	         Camgen/proc_ostream.h		\
 	         Camgen/process.h		\
 	         Camgen/process_tree.h		\
 		 Camgen/procgen_fac.h		\

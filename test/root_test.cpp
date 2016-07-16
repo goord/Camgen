@@ -10,7 +10,7 @@
 #include <Camgen/stdrand.h>
 #include <Camgen/evtgen_fac.h>
 #include <Camgen/root_file.h>
-#include <Camgen/proc_split_if.h>
+#include <Camgen/proc_ostream.h>
 #include <Camgen/evt_ostream.h>
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -291,7 +291,7 @@ int main()
 	algo.construct_trees();
         event_generator_factory<model_type,1,4,rn_engine> factory;
         event_generator<model_type,1,4,rn_engine>* evt_gen=factory.create_generator(algo);
-        event_stream<model_type,1,4>* evt_os=new process_split_interface<model_type,1,4>(evt_gen,new root_file<model_type,1,4>(fname,"test-tree"),new test_output<model_type,1,4>());
+        event_stream<model_type,1,4>* evt_os=new process_output_stream<model_type,1,4>(new root_file<model_type,1,4>(fname,"test-tree"),new test_output<model_type,1,4>());
         for(size_type i=0;i<n_evts;++i)
         {
             evt_gen->generate();
@@ -321,7 +321,7 @@ int main()
         set_beam_energy(-2,E2);
         event_generator_factory<model_type,2,4,rn_engine> factory;
         event_generator<model_type,2,4,rn_engine>* evt_gen=factory.create_generator(algo);
-        event_stream<model_type,2,4>* evt_os=new process_split_interface<model_type,2,4>(evt_gen,new root_file<model_type,2,4>(fname,"test-tree"),new test_output<model_type,2,4>());
+        event_stream<model_type,2,4>* evt_os=new process_output_stream<model_type,2,4>(new root_file<model_type,2,4>(fname,"test-tree"),new test_output<model_type,2,4>());
         for(size_type i=0;i<n_evts;++i)
         {
             evt_gen->generate();
