@@ -42,8 +42,9 @@ Camgen_HEADERS = Camgen/adj_rep.h		\
 	         Camgen/evt_gen_base.h		\
 		 Camgen/evt_container.h		\
 		 Camgen/evt_output.h		\
-		 Camgen/evt_output_conf.h		\
+		 Camgen/evt_output_conf.h	\
 		 Camgen/evt_queue.h		\
+		 Camgen/evt_stream.h		\
 		 Camgen/evtgen_fac.h		\
 		 Camgen/evtgen_fac_base.h	\
 	         Camgen/EWSM.h			\
@@ -76,7 +77,6 @@ Camgen_HEADERS = Camgen/adj_rep.h		\
 	         Camgen/helspinWb.h		\
 	         Camgen/Herwig_if.h		\
 	         Camgen/histogram.h		\
-	         Camgen/if_base.h		\
 	         Camgen/init_state.h		\
 	         Camgen/interaction.h		\
 	         Camgen/inv_cosh.h		\

@@ -5,30 +5,30 @@
 // see COPYING for details.
 //
 
-/*! \file if_base.h
-  \brief Abstract base class for output interfaces.
+/*! \file evt_stream.h
+  \brief Abstract base class for event output streams.
   */
 
-#ifndef CAMGEN_IF_BASE_H_
-#define CAMGEN_IF_BASE_H_
+#ifndef CAMGEN_EVT_STREAM_H_
+#define CAMGEN_EVT_STREAM_H_
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * Abstract base class for event generator interface classes. The base class   *
- * contains the abstract fill()/write()/reset() methods, plus some common data *
- * members such as the number of streamed events.                              *
- *                                                                             *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Abstract base class for event output streams. The base class    *
+ * contains the abstract fill()/write()/reset() methods, plus some * 
+ * common data members such as the number of streamed events.      *
+ *                                                                 *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #include <cstdlib>
 #include <vector>
 #include <map>
-#include <Camgen/evt_gen_base.h>
+#include <Camgen/event.h>
 
 namespace Camgen
 {
     /// Abstract base class for interfaces.
 
-    template<class model_t,std::size_t N_in,std::size_t N_out>class interface_base
+    template<class model_t,std::size_t N_in,std::size_t N_out>class event_stream
     {
 	public:
 
@@ -54,11 +54,11 @@ namespace Camgen
 
 	    /// Constructor.
 
-	    interface_base():w(0),proc_id(0),evt_ptr(NULL),input_evts(0),output_evts(0),zero_weight_flag(false){}
+	    event_stream():w(0),proc_id(0),evt_ptr(NULL),input_evts(0),output_evts(0),zero_weight_flag(false){}
 
 	    /// Destructor.
 
-	    virtual ~interface_base(){}
+	    virtual ~event_stream(){}
 
 	    /* Public modifiers: */
 	    /*-------------------*/
@@ -237,5 +237,5 @@ namespace Camgen
     };
 }
 
-#endif /*CAMGEN_IF_BASE_H_*/
+#endif /*CAMGEN_EVT_STREAM_H_*/
 

@@ -18,16 +18,16 @@
  *                                                           *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#include <Camgen/if_base.h>
+#include <Camgen/evt_stream.h>
 #include <queue>
 
 namespace Camgen
 {
     /// Partial event interface implementation copying events to a queue in memory.
 
-    template<class model_t,std::size_t N_in,std::size_t N_out>class event_queue: public interface_base<model_t,N_in,N_out>
+    template<class model_t,std::size_t N_in,std::size_t N_out>class event_queue: public event_stream<model_t,N_in,N_out>
     {
-        typedef interface_base<model_t,N_in,N_out> base_type;
+        typedef event_stream<model_t,N_in,N_out> base_type;
 
         public:
 

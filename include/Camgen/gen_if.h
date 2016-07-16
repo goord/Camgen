@@ -19,14 +19,14 @@
  *                                                                           *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#include <Camgen/if_base.h>
+#include <Camgen/evt_stream.h>
 #include <Camgen/evt_output_conf.h>
 
 namespace Camgen
 {
-    template<class model_t,std::size_t N_in,std::size_t N_out>class generator_interface: public interface_base<model_t,N_in,N_out>
+    template<class model_t,std::size_t N_in,std::size_t N_out>class generator_interface: public event_stream<model_t,N_in,N_out>
     {
-	typedef interface_base<model_t,N_in,N_out> base_type;
+	typedef event_stream<model_t,N_in,N_out> base_type;
 
 	public:
 

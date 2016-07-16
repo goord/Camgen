@@ -44,7 +44,7 @@ int main()
 	algo.construct_trees();
         process_generator_factory<model_type,1,4,rn_engine> factory;
         process_generator<model_type,1,4,rn_engine>* proc_gen=factory.create_generator(algo.get_tree_iterator());
-        interface_base<model_type,1,4>* lh_if=new LHE_interface<model_type,1,4>(fname,1);
+        event_stream<model_type,1,4>* lh_if=new LHE_interface<model_type,1,4>(fname,1);
         for(size_type i=0;i<n_evts;++i)
         {
             proc_gen->generate();
@@ -72,7 +72,7 @@ int main()
 	algo.construct_trees();
         event_generator_factory<model_type,1,4,rn_engine> factory;
         event_generator<model_type,1,4,rn_engine>* evt_gen=factory.create_generator(algo);
-        interface_base<model_type,1,4>* lh_if=new LHE_interface<model_type,1,4>(fname,2);
+        event_stream<model_type,1,4>* lh_if=new LHE_interface<model_type,1,4>(fname,2);
         for(size_type i=0;i<n_evts;++i)
         {
             evt_gen->generate();
@@ -102,7 +102,7 @@ int main()
         set_beam_energy(-2,E2);
         event_generator_factory<model_type,2,3,rn_engine> factory;
         event_generator<model_type,2,3,rn_engine>* evt_gen=factory.create_generator(algo);
-        interface_base<model_type,2,3>* lh_if=new LHE_interface<model_type,2,3>(fname,2);
+        event_stream<model_type,2,3>* lh_if=new LHE_interface<model_type,2,3>(fname,2);
         for(size_type i=0;i<n_evts;++i)
         {
             evt_gen->generate();
@@ -132,7 +132,7 @@ int main()
         set_beam_energy(-2,E2);
         event_generator_factory<model_type,2,4,rn_engine> factory;
         event_generator<model_type,2,4,rn_engine>* evt_gen=factory.create_generator(algo);
-        interface_base<model_type,2,4>* lh_if=new LHE_interface<model_type,2,4>(fname,2);
+        event_stream<model_type,2,4>* lh_if=new LHE_interface<model_type,2,4>(fname,2);
         for(size_type i=0;i<n_evts;++i)
         {
             evt_gen->generate();

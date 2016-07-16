@@ -29,14 +29,11 @@ namespace Camgen
 
     template<class model_t>class Herwig_interface: public ThePEG::LesHouchesReader
     {
-	typedef interface_base<model_t> base_type;
-
 	public:
 
 	    /* Type definitions: */
 
 	    typedef model_t model_type;
-	    typedef ps_generator_base<model_t> generator_type;
 	    typedef typename model_type::value_type value_type;
 	    typedef typename generator_type::size_type size_type;
 	    typedef vector<value_type,model_t::dimension> momentum_type;

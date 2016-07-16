@@ -239,7 +239,7 @@ int main()
 	algo.construct_trees();
         event_generator_factory<model_type,1,4,rn_engine> factory;
         event_generator<model_type,1,4,rn_engine>* evt_gen=factory.create_generator(algo);
-        interface_base<model_type,1,4>* gen_if=new process_split_interface<model_type,1,4>(evt_gen,new ascii_file<model_type,1,4>(fname,"test tree"),new test_output<model_type,1,4>());
+        event_stream<model_type,1,4>* gen_if=new process_split_interface<model_type,1,4>(evt_gen,new ascii_file<model_type,1,4>(fname,"test tree"),new test_output<model_type,1,4>());
         for(size_type i=0;i<n_evts;++i)
         {
             evt_gen->generate();
@@ -269,7 +269,7 @@ int main()
         set_beam_energy(-2,E2);
         event_generator_factory<model_type,2,4,rn_engine> factory;
         event_generator<model_type,2,4,rn_engine>* evt_gen=factory.create_generator(algo);
-        interface_base<model_type,2,4>* gen_if=new process_split_interface<model_type,2,4>(evt_gen,new ascii_file<model_type,2,4>(fname,"test tree"),new test_output<model_type,2,4>());
+        event_stream<model_type,2,4>* gen_if=new process_split_interface<model_type,2,4>(evt_gen,new ascii_file<model_type,2,4>(fname,"test tree"),new test_output<model_type,2,4>());
         for(size_type i=0;i<n_evts;++i)
         {
             evt_gen->generate();

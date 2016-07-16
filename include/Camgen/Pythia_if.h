@@ -17,8 +17,6 @@
  *                                                                     *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#include <Camgen/if_base.h>
-
 /* External component, should be in the c-flags when compiling this code: */
 
 #include <LesHouches.h>
@@ -27,17 +25,13 @@ namespace Camgen
 {
     /// Les-Houches event file output interface class.
 
-    template<class model_t,std::size_t N_out>class Pythia_interface: public Pythia8::LHAup, 
-                                                                     public interface_base<model_t,2,N_out>
+    template<class model_t,std::size_t N_out>class Pythia_interface: public Pythia8::LHAup 
     {
-	typedef interface_base<model_t,2,N_out> base_type;
-
 	public:
 
 	    /* Type definitions: */
 
 	    typedef model_t model_type;
-	    typedef typename base_type::event_type event_type;
 	    typedef typename event_type::value_type value_type;
 	    typedef typename event_type::size_type size_type;
 	    typedef typename event_type::momentum_type momentum_type;
