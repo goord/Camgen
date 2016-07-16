@@ -21,7 +21,7 @@
 #include <map>
 #include <Camgen/if_base.h>
 #include <Camgen/if_engine.h>
-#include <Camgen/if_output.h>
+#include <Camgen/evt_output.h>
 
 namespace Camgen
 {
@@ -40,7 +40,7 @@ namespace Camgen
 
 	    struct sub_interface
 	    {
-		interface_output<model_t,N_in,N_out>* output;
+		event_output<model_t,N_in,N_out>* output;
 		interface_engine<model_t,N_in,N_out>* engine;
 	    };
 
@@ -49,7 +49,7 @@ namespace Camgen
 
 	    /// Constructor with process generator instance.
 
-	    process_split_interface(generator_type* gen,interface_output<model_t,N_in,N_out>* output_,interface_engine<model_t,N_in,N_out>* engine_=NULL):output(output_),engine(engine_)
+	    process_split_interface(generator_type* gen,event_output<model_t,N_in,N_out>* output_,interface_engine<model_t,N_in,N_out>* engine_=NULL):output(output_),engine(engine_)
 	    {
 		std::string namebase(output->file_name);
 		if(namebase.size()==0)
@@ -74,7 +74,7 @@ namespace Camgen
 		    std::stringstream ss;
 		    ss<<namebase<<std::setw(digits)<<std::setfill('0')<<n;
 		    std::string fname(ss.str());
-		    interface_output<model_t,N_in,N_out>* sub_output=output->create(fname);
+		    event_output<model_t,N_in,N_out>* sub_output=output->create(fname);
 		    sub_output->open_file();
 		    interface_engine<model_t,N_in,N_out>* sub_engine=NULL;
 		    if(engine!=NULL)
@@ -208,7 +208,7 @@ namespace Camgen
 
 	    /* Interface output object (unused): */
 
-	    interface_output<model_t,N_in,N_out>* output;
+	    event_output<model_t,N_in,N_out>* output;
 
 	    /* Interface engine instance: */
 

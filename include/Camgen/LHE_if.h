@@ -20,7 +20,6 @@
 
 #include <fstream>
 #include <Camgen/if_base.h>
-#include <Camgen/if_output.h>
 
 namespace Camgen
 {

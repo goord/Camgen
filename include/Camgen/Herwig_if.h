@@ -18,7 +18,6 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #include <fstream>
-#include <Camgen/if_output.h>
 
 /* External component, should be in the c-flags when compiling this code: */
 

@@ -18,7 +18,7 @@
  *                                                                               *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#include <Camgen/if_output.h>
+#include <Camgen/evt_output.h>
 
 namespace Camgen
 {
@@ -44,7 +44,7 @@ namespace Camgen
 
 	    /// Constructor with generator and output instance arguments.
 
-	    interface_engine(interface_output<model_t,N_in,N_out>* output_):output(output_),evt_size(0){}
+	    interface_engine(event_output<model_t,N_in,N_out>* output_):output(output_),evt_size(0){}
 
 	    /* Public destructors: */
 	    /*---------------------*/
@@ -56,7 +56,7 @@ namespace Camgen
 
 	    /// Copies the output variable addresses to the output object
 
-	    void add_branches(interface_output<model_t,N_in,N_out>* output_)
+	    void add_branches(event_output<model_t,N_in,N_out>* output_)
 	    {
 		output=output_;
 		add_variables();
@@ -138,7 +138,7 @@ namespace Camgen
 
 	    /* Output file object: */
 
-	    interface_output<model_t,N_in,N_out>* output;
+	    event_output<model_t,N_in,N_out>* output;
 
 	    /* event size: */
 

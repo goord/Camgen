@@ -18,7 +18,7 @@
  *                                                                               *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#include <Camgen/if_output.h>
+#include <Camgen/evt_output.h>
 #include <Camgen/root_tree.h>
 
 namespace Camgen
@@ -26,9 +26,9 @@ namespace Camgen
     
     /// ROOT TTree output interface class.
     
-    template<class model_t,std::size_t N_in,std::size_t N_out>class root_file: public interface_output<model_t,N_in,N_out>
+    template<class model_t,std::size_t N_in,std::size_t N_out>class root_file: public event_output<model_t,N_in,N_out>
     {
-	typedef interface_output<model_t,N_in,N_out> base_type;
+	typedef event_output<model_t,N_in,N_out> base_type;
 
 	public:
 

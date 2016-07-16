@@ -19,15 +19,15 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #include <fstream>
-#include <Camgen/if_output.h>
+#include <Camgen/evt_output.h>
 
 namespace Camgen
 {
     /// ACII-file output interface class.
     
-    template<class model_t,std::size_t N_in,std::size_t N_out>class ascii_file: public interface_output<model_t,N_in,N_out>
+    template<class model_t,std::size_t N_in,std::size_t N_out>class ascii_file: public event_output<model_t,N_in,N_out>
     {
-	typedef interface_output<model_t,N_in,N_out> base_type;
+	typedef event_output<model_t,N_in,N_out> base_type;
 
 	public:
 
@@ -58,7 +58,7 @@ namespace Camgen
 
 	    /* Creation method implementation: */
 
-	    interface_output<model_t,N_in,N_out>* create(const std::string& file_name_) const
+	    event_output<model_t,N_in,N_out>* create(const std::string& file_name_) const
 	    {
 		return new ascii_file<model_t,N_in,N_out>(file_name_,this->description);
 	    }

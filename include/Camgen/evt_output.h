@@ -5,27 +5,28 @@
 // see COPYING for details.
 //
 
-/*! \file if_output.h
-  \brief Abstract base class for interface output types.
+/*! \file evt_output.h
+  \brief Abstract base class for event output classes.
   */
 
-#ifndef CAMGEN_IF_OUTPUT_H_
-#define CAMGEN_IF_OUTPUT_H_
+#ifndef CAMGEN_EVT_OUTPUT_H_
+#define CAMGEN_EVT_OUTPUT_H_
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * Abstract base class for interface output types. Derived classes should  *
- * implement methods adding branches holding variables, opening closing    *
- * files and writing an event to disk.                                     *
- *                                                                         *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Abstract base class for event output classes. Derived classes should  *
+ * implement methods adding branches holding variables, opening closing  *
+ * files and writing an event to disk.                                   *
+ *                                                                       *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#include <Camgen/ps_gen_base.h>
+#include <string>
+#include <Camgen/event.h>
 
 namespace Camgen
 {
     /// Base class for output interface engines.
 
-    template<class model_t,std::size_t N_in,std::size_t N_out>class interface_output
+    template<class model_t,std::size_t N_in,std::size_t N_out>class event_output
     {
 	public:
 
@@ -48,19 +49,19 @@ namespace Camgen
 
 	    /// Constructor with file name argument.
 
-	    interface_output(const std::string& file_name_):file_name(file_name_){}
+	    event_output(const std::string& file_name_):file_name(file_name_){}
 
 	    /// Constructor with file name and description arguments.
 
-	    interface_output(const std::string& file_name_,const std::string description_):file_name(file_name_),description(description_){}
+	    event_output(const std::string& file_name_,const std::string description_):file_name(file_name_),description(description_){}
 
 	    /// Destructor.
 
-	    virtual ~interface_output(){}
+	    virtual ~event_output(){}
 
 	    /// Creation method, no data copying expected.
 
-	    virtual interface_output<model_t,N_in,N_out>* create(const std::string& file_name_) const=0;
+	    virtual event_output<model_t,N_in,N_out>* create(const std::string& file_name_) const=0;
 
 	    /// Abstract method opening the file.
 
@@ -115,5 +116,5 @@ namespace Camgen
     };
 }
 
-#endif /*CAMGEN_IF_OUTPUT_H_*/
+#endif /*CAMGEN_EVT_OUTPUT_H_*/
 

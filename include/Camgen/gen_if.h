@@ -21,7 +21,7 @@
 
 #include <Camgen/if_base.h>
 #include <Camgen/if_engine.h>
-#include <Camgen/if_output.h>
+#include <Camgen/evt_output.h>
 
 namespace Camgen
 {
@@ -43,7 +43,7 @@ namespace Camgen
 
 	    /// Constructor with process generator instance.
 
-	    generator_interface(interface_output<model_t,N_in,N_out>* output_,interface_engine<model_t,N_in,N_out>* engine_=NULL):output(output_),engine(engine_)
+	    generator_interface(event_output<model_t,N_in,N_out>* output_,interface_engine<model_t,N_in,N_out>* engine_=NULL):output(output_),engine(engine_)
             {
 		output->open_file();
 		if(engine!=NULL)
@@ -132,7 +132,7 @@ namespace Camgen
 
 	    /* Interface output instance: */
 
-	    interface_output<model_t,N_in,N_out>* output;
+	    event_output<model_t,N_in,N_out>* output;
 
 	    /* Interface engine instance: */
 
