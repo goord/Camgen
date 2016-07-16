@@ -14,14 +14,13 @@
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Generic interface for event generators. Takes a generator base instance,  *
- * interface engine instance and interface output instance as constructor    *
+ * interface config instance and interface output instance as constructor    *
  * arguments.                                                                *
  *                                                                           *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #include <Camgen/if_base.h>
-#include <Camgen/if_engine.h>
-#include <Camgen/evt_output.h>
+#include <Camgen/evt_output_conf.h>
 
 namespace Camgen
 {
@@ -43,12 +42,12 @@ namespace Camgen
 
 	    /// Constructor with process generator instance.
 
-	    generator_interface(event_output<model_t,N_in,N_out>* output_,interface_engine<model_t,N_in,N_out>* engine_=NULL):output(output_),engine(engine_)
+	    generator_interface(event_output<model_t,N_in,N_out>* output_,event_output_configuration<model_t,N_in,N_out>* config_=NULL):output(output_),config(config_)
             {
 		output->open_file();
-		if(engine!=NULL)
+		if(config!=NULL)
 		{
-		    engine->add_branches(output);
+		    config->add_branches(output);
 		}
 		output->branch(&(this->w),"weight");
 		output->branch(&(this->proc_id),"proc_id");
@@ -58,9 +57,9 @@ namespace Camgen
 
 	    ~generator_interface()
 	    {
-		if(engine!=NULL)
+		if(config!=NULL)
 		{
-		    delete engine;
+		    delete config;
 		}
 		delete output;
 	    }
@@ -83,9 +82,9 @@ namespace Camgen
 
 	    size_type event_size() const
 	    {
-		if(engine!=NULL)
+		if(config!=NULL)
 		{
-		    return (engine->event_size()+sizeof(value_type));
+		    return (config->event_size()+sizeof(value_type));
 		}
 		return 0;
 	    }
@@ -121,9 +120,9 @@ namespace Camgen
 
 	    bool fill_event(const event_type& evt)
 	    {
-		if(engine!=NULL)
+		if(config!=NULL)
 		{
-		    engine->fill(evt);
+		    config->fill(evt);
 		}
 		return output->write_event(evt);
 	    }
@@ -134,9 +133,9 @@ namespace Camgen
 
 	    event_output<model_t,N_in,N_out>* output;
 
-	    /* Interface engine instance: */
+	    /* Interface config instance: */
 
-	    interface_engine<model_t,N_in,N_out>* engine;
+	    event_output_configuration<model_t,N_in,N_out>* config;
     };
 }
 

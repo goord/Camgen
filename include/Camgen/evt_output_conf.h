@@ -5,18 +5,18 @@
 // see COPYING for details.
 //
 
-/*! \file if_engine.h
-  \brief Abstract base class for output interface engines.
+/*! \file evt_output_conf.h
+  \brief Abstract base class for event output configurations.
   */
 
-#ifndef CAMGEN_IF_ENGINE_H_
-#define CAMGEN_IF_ENGINE_H_
+#ifndef CAMGEN_EVT_OUTPUT_CONF_H_
+#define CAMGEN_EVT_OUTPUT_CONF_H_
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * Abstract for base class for output interface engines, which should implement  *
- * the fill() method to evaluate the variables that need to be written to disk.  *
- *                                                                               *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Abstract for base class for event output configurations, which should implement *
+ * the fill() method to evaluate the variables that need to be written to disk.    *
+ *                                                                                 *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #include <Camgen/evt_output.h>
 
@@ -24,7 +24,7 @@ namespace Camgen
 {
     /// Interface engine base class:
 
-    template<class model_t,std::size_t N_in,std::size_t N_out>class interface_engine
+    template<class model_t,std::size_t N_in,std::size_t N_out>class event_output_configuration
     {
 	public:
 
@@ -40,16 +40,16 @@ namespace Camgen
 
 	    /// Default constructor.
 
-	    interface_engine():output(NULL),evt_size(0){}
+	    event_output_configuration():output(NULL),evt_size(0){}
 
 	    /// Constructor with generator and output instance arguments.
 
-	    interface_engine(event_output<model_t,N_in,N_out>* output_):output(output_),evt_size(0){}
+	    event_output_configuration(event_output<model_t,N_in,N_out>* output_):output(output_),evt_size(0){}
 
 	    /* Public destructors: */
 	    /*---------------------*/
 
-	    virtual ~interface_engine(){}
+	    virtual ~event_output_configuration(){}
 
 	    /* Public modifiers: */
 	    /*-------------------*/
@@ -64,7 +64,7 @@ namespace Camgen
 
 	    /// Abstract clone method.
 
-	    virtual interface_engine<model_t,N_in,N_out>* clone() const=0;
+	    virtual event_output_configuration<model_t,N_in,N_out>* clone() const=0;
 
 	    /// Abstract method filling the output variables.
 
@@ -146,5 +146,5 @@ namespace Camgen
     };
 }
 
-#endif /*CAMGEN_IF_ENGINE_H_*/
+#endif /*CAMGEN_EVT_OUTPUT_CONF_H_*/
 

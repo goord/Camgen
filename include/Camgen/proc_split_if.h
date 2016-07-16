@@ -20,8 +20,7 @@
 
 #include <map>
 #include <Camgen/if_base.h>
-#include <Camgen/if_engine.h>
-#include <Camgen/evt_output.h>
+#include <Camgen/evt_output_conf.h>
 
 namespace Camgen
 {
@@ -41,7 +40,7 @@ namespace Camgen
 	    struct sub_interface
 	    {
 		event_output<model_t,N_in,N_out>* output;
-		interface_engine<model_t,N_in,N_out>* engine;
+		event_output_configuration<model_t,N_in,N_out>* config;
 	    };
 
 	    /* Public constructors/destructors: */
@@ -49,7 +48,7 @@ namespace Camgen
 
 	    /// Constructor with process generator instance.
 
-	    process_split_interface(generator_type* gen,event_output<model_t,N_in,N_out>* output_,interface_engine<model_t,N_in,N_out>* engine_=NULL):output(output_),engine(engine_)
+	    process_split_interface(generator_type* gen,event_output<model_t,N_in,N_out>* output_,event_output_configuration<model_t,N_in,N_out>* config_=NULL):output(output_),config(config_)
 	    {
 		std::string namebase(output->file_name);
 		if(namebase.size()==0)
@@ -76,15 +75,15 @@ namespace Camgen
 		    std::string fname(ss.str());
 		    event_output<model_t,N_in,N_out>* sub_output=output->create(fname);
 		    sub_output->open_file();
-		    interface_engine<model_t,N_in,N_out>* sub_engine=NULL;
-		    if(engine!=NULL)
+		    event_output_configuration<model_t,N_in,N_out>* sub_config=NULL;
+		    if(config!=NULL)
 		    {
-			sub_engine=engine->clone();
-			sub_engine->add_branches(sub_output);
+			sub_config=config->clone();
+			sub_config->add_branches(sub_output);
 		    }
 		    sub_output->branch(&(this->w),"weight");
 		    sub_output->branch(&(this->proc_id),"proc_id");
-		    sub_interface sub_int={sub_output,sub_engine};
+		    sub_interface sub_int={sub_output,sub_config};
 		    sub_interfaces[n]=sub_int;
 		}
 	    }
@@ -95,15 +94,15 @@ namespace Camgen
 	    {
 		for(typename std::map<int,sub_interface>::iterator it=sub_interfaces.begin();it!=sub_interfaces.end();++it)
 		{
-		    if((it->second).engine!=NULL)
+		    if((it->second).config!=NULL)
 		    {
-			delete (it->second).engine;
+			delete (it->second).config;
 		    }
 		    delete (it->second).output;
 		}
-		if(engine!=NULL)
+		if(config!=NULL)
 		{
-		    delete engine;
+		    delete config;
 		}
 		delete output;
 	    }
@@ -136,7 +135,7 @@ namespace Camgen
 		{
 		    return 0;
 		}
-		interface_engine<model_t,N_in,N_out>* e=it->second.engine;
+		event_output_configuration<model_t,N_in,N_out>* e=it->second.config;
 		if(e==NULL)
 		{
 		    return 0;
@@ -153,7 +152,7 @@ namespace Camgen
 		{
 		    return 0;
 		}
-		interface_engine<model_t,N_in,N_out>* e=it->second.engine;
+		event_output_configuration<model_t,N_in,N_out>* e=it->second.config;
 		if(e==NULL)
 		{
 		    return 0;
@@ -197,9 +196,9 @@ namespace Camgen
 		    log(log_level::warning)<<CAMGEN_STREAMLOC<<"process id "<<evt.process_id()<<" not found in map"<<endlog;
 		    return false;
 		}
-		if(it->second.engine!=NULL)
+		if(it->second.config!=NULL)
 		{
-		    it->second.engine->fill(evt);
+		    it->second.config->fill(evt);
 		}
 		return it->second.output->write_event(evt);
 	    }
@@ -210,9 +209,9 @@ namespace Camgen
 
 	    event_output<model_t,N_in,N_out>* output;
 
-	    /* Interface engine instance: */
+	    /* Interface config instance: */
 
-	    interface_engine<model_t,N_in,N_out>* engine;
+	    event_output_configuration<model_t,N_in,N_out>* config;
 
 	    /* Collection of sub-process interfaces: */
 

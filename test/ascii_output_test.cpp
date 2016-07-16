@@ -11,7 +11,6 @@
 #include <Camgen/evtgen_fac.h>
 #include <Camgen/ascii_file.h>
 #include <Camgen/proc_split_if.h>
-#include <Camgen/if_engine.h>
 #include <Camgen/gen_if.h>
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -21,11 +20,11 @@
 
 using namespace Camgen;
 
-template<class model_t,std::size_t N_in,std::size_t N_out>class test_output: public interface_engine<model_t,N_in,N_out>
+template<class model_t,std::size_t N_in,std::size_t N_out>class test_output: public event_output_configuration<model_t,N_in,N_out>
 {
     public:
 
-        typedef interface_engine<model_t,N_in,N_out> base_type;
+        typedef event_output_configuration<model_t,N_in,N_out> base_type;
         typedef typename base_type::event_type event_type;
         typedef typename base_type::size_type size_type;
         typedef typename base_type::value_type value_type;
@@ -34,7 +33,7 @@ template<class model_t,std::size_t N_in,std::size_t N_out>class test_output: pub
         momentum_type p2;
         value_type alpha12;
 
-        interface_engine<model_t,N_in,N_out>* clone() const
+        event_output_configuration<model_t,N_in,N_out>* clone() const
         {
             return new test_output(*this);
         }
@@ -54,11 +53,11 @@ template<class model_t,std::size_t N_in,std::size_t N_out>class test_output: pub
         }
 };
 
-template<class model_t,std::size_t N_out>class test_output<model_t,2,N_out>: public interface_engine<model_t,2,N_out>
+template<class model_t,std::size_t N_out>class test_output<model_t,2,N_out>: public event_output_configuration<model_t,2,N_out>
 {
     public:
 
-        typedef interface_engine<model_t,2,N_out> base_type;
+        typedef event_output_configuration<model_t,2,N_out> base_type;
         typedef typename base_type::event_type event_type;
         typedef typename base_type::size_type size_type;
         typedef typename base_type::value_type value_type;
@@ -69,7 +68,7 @@ template<class model_t,std::size_t N_out>class test_output<model_t,2,N_out>: pub
         value_type eta1;
         value_type alpha12;
 
-        interface_engine<model_t,2,N_out>* clone() const
+        event_output_configuration<model_t,2,N_out>* clone() const
         {
             return new test_output(*this);
         }
