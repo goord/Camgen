@@ -13,7 +13,7 @@
 #define CAMGEN_EVT_OSTREAM_H_
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * Eevent output stream implementation. Takes an output config instance and  * 
+ * Event output stream implementation. Takes an output config instance and   * 
  * event output instance as constructor arguments and streams according to   *
  * joint behaviour.                                                          *
  *                                                                           *
@@ -24,6 +24,9 @@
 
 namespace Camgen
 {
+    /// Event output stream class. Based upon the event output class and output configuration class, writes event data
+    /// to disk.
+    
     template<class model_t,std::size_t N_in,std::size_t N_out>class event_output_stream: public event_stream<model_t,N_in,N_out>
     {
 	typedef event_stream<model_t,N_in,N_out> base_type;
@@ -40,15 +43,24 @@ namespace Camgen
 	    /* Public constructors/destructors: */
 	    /*----------------------------------*/
 
-	    /// Constructor with process generator instance.
+	    /// Constructor with event output and configuration instances.
 
-	    event_output_stream(event_output<model_t,N_in,N_out>* output_,event_output_configuration<model_t,N_in,N_out>* config_=NULL):output(output_),config(config_)
+	    event_output_stream(event_output<model_t,N_in,N_out>* output_,event_output_configuration<model_t,N_in,N_out>* config_):output(output_),config(config_)
             {
 		output->open_file();
 		if(config!=NULL)
 		{
 		    config->add_branches(output);
 		}
+		output->branch(&(this->w),"weight");
+		output->branch(&(this->proc_id),"proc_id");
+            }
+
+	    /// Constructor with event output class. Uses the standard configuration.
+
+	    event_output_stream(event_output<model_t,N_in,N_out>* output_):output(output_)
+            {
+                config=new standard_output_configuration<model_t,N_in,N_out>();
 		output->branch(&(this->w),"weight");
 		output->branch(&(this->proc_id),"proc_id");
             }

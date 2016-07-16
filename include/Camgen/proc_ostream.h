@@ -24,6 +24,9 @@
 
 namespace Camgen
 {
+    /// Per-process event output streaming class. Creates separate files for each sub-process encountered in the event
+    /// stream.
+    
     template<class model_t,std::size_t N_in,std::size_t N_out>class process_output_stream: public event_stream<model_t,N_in,N_out>
     {
 	typedef event_stream<model_t,N_in,N_out> base_type;
@@ -36,6 +39,8 @@ namespace Camgen
 	    typedef typename base_type::value_type value_type;
 	    typedef typename base_type::size_type size_type;
 
+            /* Utility struct: */
+
 	    struct proc_stream
 	    {
 		event_output<model_t,N_in,N_out>* output;
@@ -45,10 +50,13 @@ namespace Camgen
 	    /* Public constructors/destructors: */
 	    /*----------------------------------*/
 
-	    /// Constructor with process generator instance.
+	    /// Constructor with output definintion instance and configuration object:
 
-	    process_output_stream(event_output<model_t,N_in,N_out>* output_,event_output_configuration<model_t,N_in,N_out>* config_=NULL):output(output_),config(config_){}
+	    process_output_stream(event_output<model_t,N_in,N_out>* output_,event_output_configuration<model_t,N_in,N_out>* config_):output(output_),config(config_){}
 
+	    /// Constructor with output definition. Uses the default configuration.
+
+	    process_output_stream(event_output<model_t,N_in,N_out>* output_):output(output_),config(new standard_output_configuration<model_t,N_in,N_out>()){}
 
 	    /// Destructor.
 

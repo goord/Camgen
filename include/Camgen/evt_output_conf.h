@@ -18,11 +18,13 @@
  *                                                                                 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+#include <sstream>
 #include <Camgen/evt_output.h>
 
 namespace Camgen
 {
-    /// Interface engine base class:
+    /// Event output configuration class. Implementors should add variables (branches in the output) and fill the
+    /// corresponding pointers with event kinematic variables.
 
     template<class model_t,std::size_t N_in,std::size_t N_out>class event_output_configuration
     {
@@ -86,7 +88,7 @@ namespace Camgen
 
 	    virtual void add_variables()=0;
 
-	    /// Adds an momentum-valued output variable to the interface engine.
+	    /// Adds a momentum-valued output variable branch to the output tree.
 
 	    bool add_variable(const momentum_type& q,const std::string& name)
 	    {
@@ -98,7 +100,7 @@ namespace Camgen
 		return false;
 	    }
 
-	    /// Adds a floating-point-valued output variable to the interface engine.
+	    /// Adds a floating-point output variable branch to the output tree.
 
 	    bool add_variable(const value_type& q,const std::string& name)
 	    {
@@ -110,7 +112,7 @@ namespace Camgen
 		return false;
 	    }
 
-	    /// Adds an integer-valued output variable to the interface engine.
+	    /// Adds an integer-valued output variable branch to the output tree.
 
 	    bool add_variable(const int& q,const std::string& name)
 	    {
@@ -122,7 +124,7 @@ namespace Camgen
 		return false;
 	    }
 
-	    /// Adds an boolean-valued output variable to the interface engine.
+	    /// Adds an boolean-valued output variable branch to the output tree.
 
 	    bool add_variable(const bool& q,const std::string& name)
 	    {
@@ -143,6 +145,79 @@ namespace Camgen
 	    /* event size: */
 
 	    size_type evt_size;
+    };
+
+    /// Standard output configuration class. Writes all momenta plus partonic CM energy to the output stream.
+
+    template<class model_t,std::size_t N_in,std::size_t N_out>class standard_output_configuration: public event_output_configuration<model_t,N_in,N_out>
+    {
+        typedef event_output_configuration<model_t,N_in,N_out> base_type;
+
+        public:
+
+	    /* Type definitions: */
+
+	    typedef typename base_type::event_type event_type;
+	    typedef typename base_type::momentum_type momentum_type;
+	    typedef typename base_type::value_type value_type;
+	    typedef typename base_type::size_type size_type;
+
+	    /// Clone implementation.
+
+	    event_output_configuration<model_t,N_in,N_out>* clone() const
+            {
+                return new standard_output_configuration<model_t,N_in,N_out>();
+            }
+
+            /// Implementation of the fill function. Copies Ecmhat and all momenta.
+
+            void fill(const event_type& evt)
+            {
+                ecmhat=evt.Ecm_hat();
+                for(size_type i=0;i<N_in;++i)
+                {
+                    pin[i]=evt.p_in(i);
+                }
+                for(size_type i=0;i<N_out;++i)
+                {
+                    pin[i]=evt.p_out(i);
+                }
+            }
+
+        protected:
+
+            /// Variable-adding function. Adds Ecmhat and all omenta to the output tree.
+
+            void add_variables()
+            {
+                this->add_variable(ecmhat,"Ecmhat");
+                for(size_type i=0;i<N_in;++i)
+                {
+                    std::stringstream ss;
+                    ss<<"p"<<(i+1);
+                    this->add_variable(pin[i],ss.str());
+                }
+                for(size_type i=0;i<N_out;++i)
+                {
+                    std::stringstream ss;
+                    ss<<"q"<<(i+1);
+                    this->add_variable(pout[i],ss.str());
+                }
+            }
+
+        private:
+
+            /* Local copy of the partonic invariant mass: */
+
+            value_type ecmhat;
+
+            /* Local copy of the incoming momenta: */
+
+            vector<momentum_type,N_in> pin;
+            
+            /* Local copy of the outgoing momenta: */
+            
+            vector<momentum_type,N_out> pout;
     };
 }
 

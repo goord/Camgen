@@ -164,7 +164,7 @@ int main()
 	model_type::refresh_widths();
 	std::string process("h0 > e-,nu_ebar,mu+,nu_mu");
 	std::string fname("test_output/root_test/h_WW_2l2n");
-	std::cerr<<"Checking root interface for "<<process<<"............";
+	std::cerr<<"Checking root output for "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,1,4>algo(process);
 	algo.load();
@@ -193,7 +193,7 @@ int main()
 	model_type::refresh_widths();
 	std::string process("h0 > l+,l-,l+,l-");
 	std::string fname("test_output/root_test/h_WW_4l");
-	std::cerr<<"Checking root interface for "<<process<<"............";
+	std::cerr<<"Checking root output for "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,1,4>algo(process);
 	algo.load();
@@ -222,7 +222,7 @@ int main()
 	std::string fname("test_output/root_test/uubar_2l2n");
         value_type E1=100;
         value_type E2=100;
-	std::cerr<<"Checking root interface for "<<process<<"............";
+	std::cerr<<"Checking root output for "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,2,4>algo(process);
 	algo.load();
@@ -249,11 +249,42 @@ int main()
 	Camgen::log.enable_level=log_level::error;
         set_initial_state_type(initial_states::partonic);
         set_phase_space_generator_type(phase_space_generators::recursive);
+	std::string process("u,ubar > e-,nu_ebar,mu+,nu_mu");
+	std::string fname("test_output/root_test/uubar_2l2n_all");
+        value_type E1=100;
+        value_type E2=100;
+	std::cerr<<"Checking standard root output for "<<process<<"............";
+	std::cerr.flush();
+	CM_algorithm<model_type,2,4>algo(process);
+	algo.load();
+	algo.construct_trees();
+        set_beam_energy(-1,E1);
+        set_beam_energy(-2,E2);
+        process_generator_factory<model_type,2,4,rn_engine> factory;
+        process_generator<model_type,2,4,rn_engine>* proc_gen=factory.create_generator(algo.get_tree_iterator());
+        event_output_stream<model_type,2,4>* evt_os=new event_output_stream<model_type,2,4>(new root_file<model_type,2,4>(fname,"test-tree"));
+        for(size_type i=0;i<n_evts;++i)
+        {
+            proc_gen->generate();
+            evt_os->fill(proc_gen->get_event());
+        }
+        evt_os->write_statistics();
+        evt_os->write();
+        std::cerr<<"done, file "<<fname<<".root written."<<std::endl;
+        delete evt_os;
+        delete proc_gen;
+        Camgen::log.enable_level=log_level::warning;
+    }
+
+    {
+	Camgen::log.enable_level=log_level::error;
+        set_initial_state_type(initial_states::partonic);
+        set_phase_space_generator_type(phase_space_generators::recursive);
 	std::string process("p,p > e-,nu_ebar,mu+,nu_mu");
 	std::string fname("test_output/root_test/pp_2l2n");
         value_type E1=300;
         value_type E2=300;
-	std::cerr<<"Checking root interface for "<<process<<"............";
+	std::cerr<<"Checking root output for "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,2,4>algo(process);
 	algo.load();
@@ -284,7 +315,7 @@ int main()
 	model_type::refresh_widths();
 	std::string process("h0 > l+,l-,nu,nubar");
 	std::string fname("test_output/root_test/h_WW_4l");
-	std::cerr<<"Checking process-split root interface for "<<process<<"............";
+	std::cerr<<"Checking process-split root output for "<<process<<"............";
 	std::cerr.flush();
 	CM_algorithm<model_type,1,4>algo(process);
 	algo.load();
@@ -310,7 +341,7 @@ int main()
         set_phase_space_generator_type(phase_space_generators::recursive);
 	std::string process("e+,e- > l+,l-,nu,nubar");
 	std::string fname("test_output/root_test/ee_WW_4l");
-	std::cerr<<"Checking process-split root interface for "<<process<<"............";
+	std::cerr<<"Checking process-split root output for "<<process<<"............";
         value_type E1=100;
         value_type E2=100;
 	std::cerr.flush();
