@@ -48,7 +48,7 @@ check_PROGRAMS =		bitstring_test           \
 		 		LHAPDF_test              \
 				root_test		 \
 				ascii_output_test	 \
-				LHE_if_test		 \
+				LH_evt_test		 \
 				event_test               \
 				save_load_test           \
 		 		speed_test		
@@ -232,8 +232,8 @@ root_test_LDADD =		$(top_srcdir)/lib/libCamgen.la $(top_srcdir)/lib/libCamROOT.l
 ascii_output_test_SOURCES =	ascii_output_test.cpp
 ascii_output_test_LDADD =	$(top_srcdir)/lib/libCamgen.la $(AM_LDFLAGS)
 
-LHE_if_test_SOURCES =		LHE_if_test.cpp
-LHE_if_test_LDADD =		$(top_srcdir)/lib/libCamgen.la $(AM_LDFLAGS)
+LH_evt_test_SOURCES =		LH_evt_test.cpp
+LH_evt_test_LDADD =		$(top_srcdir)/lib/libCamgen.la $(AM_LDFLAGS)
 
 event_test_SOURCES =		event_test.cpp
 event_test_LDADD =		$(top_srcdir)/lib/libCamgen.la $(AM_LDFLAGS)
@@ -287,6 +287,6 @@ TESTS =			    	speed_test               \
 				LHAPDF_test              \
 				root_test		 \
 				ascii_output_test	 \
-				LHE_if_test		 \
+				LH_evt_test		 \
 				event_test               \
 				save_load_test

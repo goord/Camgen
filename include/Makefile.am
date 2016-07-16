@@ -86,8 +86,8 @@ Camgen_HEADERS = Camgen/adj_rep.h		\
 	         Camgen/KSspinPb.h		\
 	         Camgen/KSspinWb.h		\
 	         Camgen/Legendre.h		\
+	         Camgen/LH_evt_stream.h	\
 	         Camgen/LH_if.h			\
-	         Camgen/LHE_if.h		\
 	         Camgen/license_print.h		\
 	         Camgen/logstream.h		\
 	         Camgen/long_hels.h		\

@@ -5,18 +5,17 @@
 // see COPYING for details.
 //
 
-/*! \file LHE_if.h
-    \brief Les-Houches interface output for phase space generators.
+/*! \file LH_evt_stream.h
+    \brief Les-Houches event output stream.
  */
 
-#ifndef CAMGEN_LHE_IF_H_
-#define CAMGEN_LHE_IF_H_
+#ifndef CAMGEN_LH_EVT_STREAM_H_
+#define CAMGEN_LH_EVT_STREAM_H_
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * Les-Houches event format output interface for process/event generators in *
- * Camgen.                                                                   *
- *                                                                           *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Les-Houches event format output streaming class.*                                                                   *
+ *                                                 *
+ * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #include <fstream>
 #include <Camgen/evt_stream.h>
@@ -25,7 +24,7 @@ namespace Camgen
 {
     /// Les-Houches event file output interface class.
 
-    template<class model_t,std::size_t N_in,std::size_t N_out>class LHE_interface: public event_stream<model_t,N_in,N_out>
+    template<class model_t,std::size_t N_in,std::size_t N_out>class LH_event_stream: public event_stream<model_t,N_in,N_out>
     {
 	typedef event_stream<model_t,N_in,N_out> base_type;
 
@@ -60,21 +59,21 @@ namespace Camgen
 
 	    /// Constructor.
 
-	    LHE_interface(const std::string& file_name_,int weight_switch_,unsigned proc_id_=1):file_name(file_name_),proc_id(proc_id_),weight_switch(weight_switch_),initialised(false)
+	    LH_event_stream(const std::string& file_name_,int weight_switch_,unsigned proc_id_=1):file_name(file_name_),proc_id(proc_id_),weight_switch(weight_switch_),initialised(false)
 	    {
 		open_file();
 	    }
 
 	    /// Constructor with description.
 
-	    LHE_interface(const std::string& file_name_,int weight_switch_,const std::string& descr_,unsigned proc_id_=1):file_name(file_name_),proc_id(proc_id_),weight_switch(weight_switch_),description(descr_),initialised(false)
+	    LH_event_stream(const std::string& file_name_,int weight_switch_,const std::string& descr_,unsigned proc_id_=1):file_name(file_name_),proc_id(proc_id_),weight_switch(weight_switch_),description(descr_),initialised(false)
 	    {
 		open_file();
 	    }
 
 	    /// Destructor.
 
-	    ~LHE_interface(){}
+	    ~LH_event_stream(){}
 
 	    /// Writes and closes the datafile.
 
