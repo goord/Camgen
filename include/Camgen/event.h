@@ -140,6 +140,10 @@ namespace Camgen
                 }
             }
 
+            /// Abstract cloning method.
+
+            virtual event<model_t,N_in,N_out>* clone() const=0;
+
             /// Virtual method returning the process id.
 
             virtual int process_id() const
@@ -1104,6 +1108,10 @@ namespace Camgen
                     delete sub_proc;
                 }
             }
+
+            /// Abstract cloning method.
+
+            virtual event<model_t,2,N_out>* clone() const=0;
 
             /// Virtual method returning the process id.
 

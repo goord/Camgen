@@ -17,6 +17,8 @@
  *                                                                     *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+#include <Camgen/ps_interface.h>
+
 /* External component, should be in the c-flags when compiling this code: */
 
 #include <LesHouches.h>
@@ -25,13 +27,17 @@ namespace Camgen
 {
     /// Les-Houches event file output interface class.
 
-    template<class model_t,std::size_t N_out>class Pythia_interface: public Pythia8::LHAup 
+    template<class model_t,std::size_t N_out>class Pythia_interface: public Pythia8::LHAup,
+                                                                     public parton_shower_interface<model_t,2,N_out>
     {
 	public:
 
 	    /* Type definitions: */
 
 	    typedef model_t model_type;
+            typedef parton_shower_interface<model_t,2,N_out> base_type;
+            typedef typename base_type::generator_type generator_type;
+            typedef typename base_type::event_type event_type;
 	    typedef typename event_type::value_type value_type;
 	    typedef typename event_type::size_type size_type;
 	    typedef typename event_type::momentum_type momentum_type;
@@ -40,33 +46,9 @@ namespace Camgen
 
 	    const unsigned proc_id;
 
-	    /// Les-Houches accord weight switch: 
-	    /// 1: weighted events to PS, unweighted out, no xsec provided.
-	    /// 2: weighted events to PS, unweighted out, xsecs provided.
-	    /// 3: unweighted events to PS, unweighted out.
-	    /// 4: weighted events to PS, weighted out.
-
-	    const int weight_switch;
-
-	    /// Generation switch. If set true, the matrix element generation is
-	    /// triggered by the parton shower, otherwise, it has to be performed
-	    /// by the user.
-
-	    bool generation_switch;
-
 	    /// Constructor.
 
-	    Pythia_interface(const event_type& e,int weight_switch_,unsigned proc_id_=1):proc_id(proc_id_),weight_switch(weight_switch_),generation_switch(true)
-            {
-                this->set_event(e);
-            }
-
-	    /// Constructor with description.
-
-	    Pythia_interface(const event_type& e,int weight_switch_,const std::string& descr_,unsigned proc_id_=1):proc_id(proc_id_),weight_switch(weight_switch_),generation_switch(true)
-            {
-                this->set_event(e);
-            }
+	    Pythia_interface(generator_type* gen_,int weight_switch_,bool generate_events_=true,unsigned proc_id_=1):base_type(gen_,weight_switch_,generate_events_),proc_id(proc_id_){}
 
 	    /// Destructor.
 
@@ -76,15 +58,13 @@ namespace Camgen
 
 	    bool setInit()
 	    {
-		if(gen->n_in()!=2)
-		{
-		    return false;
-		}
-		this->setStrategy(weight_switch);
-		this->setBeamA(gen->beam_id(-1),gen->beam_energy(-1),gen->pdfg(-1),gen->pdfs(-1));
-		this->setBeamB(gen->beam_id(-2),gen->beam_energy(-2),gen->pdfg(-2),gen->pdfs(-2));
-		MC_integral<value_type>sigma=gen->xsec();
-		this->addProcess(proc_id,sigma.value,sigma.error,gen->max_w());
+		this->setStrategy(this->weight_switch);
+
+                const event_type* e=this->get_current_event();
+		this->setBeamA(e->beam_id(-1),e->beam_energy(-1),e->pdfg(-1),e->pdfs(-1));
+		this->setBeamB(e->beam_id(-2),e->beam_energy(-2),e->pdfg(-2),e->pdfs(-2));
+		MC_integral<value_type>sigma=e->xsec();
+		this->addProcess(proc_id,sigma.value,sigma.error,e->max_w());
 		return true;
 	    }
 
@@ -92,46 +72,44 @@ namespace Camgen
 
 	    bool setEvent(int idProcess=0)
 	    {
-		if(generation_switch)
-		{
-		    gen->next_event(weight_switch);
-		}
-		value_type w=(weight_switch==3)?1:this->gen->w();
-		this->setProcess(proc_id,w,(double)(gen->mu_F()),(double)(model_t::alpha),(double)(model_t::alpha_s));
-		std::vector<int>c,cbar;
-		gen->fill_colours(c,cbar);
-		size_type nin=gen->n_in();
-		size_type npart=nin+gen->n_out();
-		if(c.size()!=npart)
-		{
-		    log(log_level::warning)<<"Colour vectors were incorrectly filled--automatic resizing performed."<<endlog;
-		    c.resize(npart,0);
-		    cbar.resize(npart,0);
-		}
+                const event_type* e=this->next_event();
+                if(e==NULL)
+                {
+                    return false;
+                }
 
-		for(unsigned i=0;i<nin;++i)
+		value_type w=(weight_switch==3)?1:e->w();
+		this->setProcess(proc_id,w,(double)(e->mu_F()),(double)(model_t::alpha),(double)(model_t::alpha_s));
+
+		for(unsigned i=0;i<2;++i)
 		{
-		    this->addParticle(gen->id_in(i),-1,0,0,c[i],cbar[i],(double)(gen->p_in(i,1)),(double)(gen->p_in(i,2)),(double)(gen->p_in(i,3)),(double)(gen->p_in(i,0)),(double)(gen->m_in(i)),(double)0,(double)9);
+		    this->addParticle(e->id_in(i),-1,0,0,
+                                      e->c(i),
+                                      e->cbar(i),
+                                      (double)(e->p_in(i,1)),
+                                      (double)(e->p_in(i,2)),
+                                      (double)(e->p_in(i,3)),
+                                      (double)(e->p_in(i,0)),
+                                      (double)(e->M_in(i)),
+                                      (double)0,
+                                      (double)9);
 		}
-		for(unsigned i=0;i<this->gen->n_out();++i)
+		for(unsigned i=0;i<N_out;++i)
 		{
-		    this->addParticle(gen->id_out(i),1,1,2,c[i+nin],cbar[i+nin],(double)(gen->p_out(i,1)),(double)(gen->p_out(i,2)),(double)(gen->p_out(i,3)),(double)(gen->p_out(i,0)),(double)(gen->m_out(i)),(double)0,(double)9);
+		    this->addParticle(e->id_out(i),1,1,2,
+                                      e->c(i+2),
+                                      e->cbar(i+2),
+                                      (double)(e->p_out(i,1)),
+                                      (double)(e->p_out(i,2)),
+                                      (double)(e->p_out(i,3)),
+                                      (double)(e->p_out(i,0)),
+                                      (double)(e->M_out(i)),
+                                      (double)0,
+                                      (double)9);
 		}
+                this->pop_event();
 		return true;
 	    }
-
-	    /// Required disk space per event.
-
-	    size_type event_size() const
-	    {
-		return ((gen->n_in()+gen->n_out())*(5*sizeof(value_type)+6*sizeof(int))+4*sizeof(value_type));
-	    }
-
-	private:
-
-	    /* Matrix-element event generator: */
-
-	    generator_type* gen;
     };
 }
 

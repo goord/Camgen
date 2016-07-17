@@ -154,6 +154,7 @@ Camgen_HEADERS = Camgen/adj_rep.h		\
 	         Camgen/ps_func.h		\
 	         Camgen/ps_gen.h		\
 	         Camgen/ps_gen_base.h		\
+		 Camgen/ps_interface.h		\
 	         Camgen/ps_tree.h		\
 	         Camgen/ps_tree_base.h		\
 	         Camgen/ps_vol.h		\

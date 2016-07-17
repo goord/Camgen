@@ -39,7 +39,14 @@ namespace Camgen
 
             /// Virtual destructor.
 
-            virtual ~event_queue(){}
+            virtual ~event_queue()
+            {
+                while(!empty())
+                {
+                    delete evt_queue.front();
+                    evt_queue.pop();
+                }
+            }
 
             /// Returns whether the queue contains events.
 
@@ -57,14 +64,14 @@ namespace Camgen
 
             /// Returns the front of the queue (oldest event).
 
-            const value_type& front() const
+            const event_type* front() const
             {
                 return evt_queue.front();
             }
 
             /// Returns the back of the queue (newest event).
 
-            const value_type& back() const
+            const value_type* back() const
             {
                 return evt_queue.back();
             }
@@ -77,6 +84,7 @@ namespace Camgen
                 {
                     return false;
                 }
+                delete evt_queue.front();
                 evt_queue.pop();
                 return true;
             }
@@ -87,12 +95,12 @@ namespace Camgen
 
             bool fill_event(const event_type& evt)
             {
-                evt_queue.push(evt);
+                evt_queue.push(evt.clone());
             }
 
         private:
 
-            std::queue<event_type> evt_queue;
+            std::queue<const event_type*> evt_queue;
     };
 }
 

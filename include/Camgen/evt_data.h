@@ -57,6 +57,13 @@ namespace Camgen
                 anticols.assign(0);
             }
 
+            /// Clone implementation.
+
+            event<model_t,N_in,N_out>* clone() const
+            {
+                return new event_data<model_t,N_in,N_out>(*this);
+            }
+
             /// Implementation of the weight accessor.
 
             value_type w() const
