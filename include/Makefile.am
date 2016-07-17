@@ -86,7 +86,7 @@ Camgen_HEADERS = Camgen/adj_rep.h		\
 	         Camgen/KSspinPb.h		\
 	         Camgen/KSspinWb.h		\
 	         Camgen/Legendre.h		\
-	         Camgen/LH_evt_stream.h	\
+	         Camgen/LH_evt_stream.h		\
 	         Camgen/LH_if.h			\
 	         Camgen/license_print.h		\
 	         Camgen/logstream.h		\
@@ -97,7 +97,6 @@ Camgen_HEADERS = Camgen/adj_rep.h		\
 	         Camgen/m_spinor_fac.h		\
 	         Camgen/m_vector_wfunc.h	\
 	         Camgen/Maj_basis.h		\
-	         Camgen/matrix_el.h		\
 	         Camgen/MC_config.h		\
 	         Camgen/MC_gen.h		\
 	         Camgen/MC_int.h		\
@@ -153,7 +152,6 @@ Camgen_HEADERS = Camgen/adj_rep.h		\
 	         Camgen/ps_cut.h		\
 	         Camgen/ps_func.h		\
 	         Camgen/ps_gen.h		\
-	         Camgen/ps_gen_base.h		\
 		 Camgen/ps_interface.h		\
 	         Camgen/ps_tree.h		\
 	         Camgen/ps_tree_base.h		\
