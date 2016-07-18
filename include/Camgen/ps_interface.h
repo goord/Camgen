@@ -15,6 +15,7 @@
 
 #include <Camgen/evt_queue.h>
 #include <Camgen/evt_gen_base.h>
+#include <Camgen/MC_gen.h>
 
 namespace Camgen
 {
@@ -24,6 +25,7 @@ namespace Camgen
 
             typedef event_generator_base<model_t,N_in,N_out> generator_type; 
             typedef typename generator_type::event_type event_type;
+            typedef typename event_type::value_type value_type;
 
 	    /// Les-Houches accord weight switch: 
 	    /// 1: weighted events to PS, unweighted out, no xsec provided.
@@ -50,8 +52,8 @@ namespace Camgen
             {
                 if(generate_events)
                 {
-                    gen->next_event(weight_switch);
-                    return gen->get_event_ptr();
+                    generate_event();
+                    return const_cast<const generator_type*>(gen)->get_event_ptr();
                 }
                 else
                 {
@@ -85,7 +87,7 @@ namespace Camgen
 
             const event_type* get_current_event() const
             {
-                return gen->get_event_ptr();
+                return const_cast<const generator_type*>(gen)->get_event_ptr();
             }
 
         private:
@@ -97,6 +99,22 @@ namespace Camgen
             /* Internal event queue */
 
             event_queue<model_t,N_in,N_out> evt_queue;
+
+            /// Generates new event according to the given strategy argument.
+
+            bool generate_event()
+            {
+                MC_generator<value_type>* mcgen=dynamic_cast<MC_generator<value_type>*>(gen);
+                if(mcgen==NULL)
+                {
+                    return false;
+                }
+                if(std::abs(weight_switch)!=3)
+                {
+                    return mcgen->generate();
+                }
+                return mcgen->generate_unweighted();
+            }
     };
 }
 

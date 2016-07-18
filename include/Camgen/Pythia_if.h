@@ -19,9 +19,9 @@
 
 #include <Camgen/ps_interface.h>
 
-/* External component, should be in the c-flags when compiling this code: */
+#if 1
 
-#include <LesHouches.h>
+#include <Pythia8/LesHouches.h>
 
 namespace Camgen
 {
@@ -78,7 +78,7 @@ namespace Camgen
                     return false;
                 }
 
-		value_type w=(weight_switch==3)?1:e->w();
+		value_type w=(this->weight_switch==3)?1:e->w();
 		this->setProcess(proc_id,w,(double)(e->mu_F()),(double)(model_t::alpha),(double)(model_t::alpha_s));
 
 		for(unsigned i=0;i<2;++i)
@@ -112,6 +112,55 @@ namespace Camgen
 	    }
     };
 }
+
+#else
+
+namespace Camgen
+{
+    /// Les-Houches event file output interface class.
+
+    template<class model_t,std::size_t N_out>class Pythia_interface: public parton_shower_interface<model_t,2,N_out>
+    {
+	public:
+
+	    /* Type definitions: */
+
+	    typedef model_t model_type;
+            typedef parton_shower_interface<model_t,2,N_out> base_type;
+            typedef typename base_type::generator_type generator_type;
+            typedef typename base_type::event_type event_type;
+	    typedef typename event_type::value_type value_type;
+	    typedef typename event_type::size_type size_type;
+	    typedef typename event_type::momentum_type momentum_type;
+
+	    /// Process id.
+
+	    const unsigned proc_id;
+
+	    /// Constructor.
+
+	    Pythia_interface(generator_type* gen_,int weight_switch_,bool generate_events_=true,unsigned proc_id_=1):base_type(gen_,weight_switch_,generate_events_),proc_id(proc_id_){}
+
+	    /// Destructor.
+
+	    ~Pythia_interface(){}
+
+	    /// Initialisation method.
+
+	    bool setInit()
+	    {
+                return false;
+	    }
+
+	    /// Fills the event common block.
+
+	    bool setEvent(int idProcess=0)
+	    {
+                return false;
+	    }
+    };
+}
+#endif /*HAVE_PYTHIA8_H*/
 
 #endif /*CAMGEN_PYTHIA_IF_H_*/
 

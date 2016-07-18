@@ -490,7 +490,7 @@ namespace Camgen
 
 	    /// Unweighted generation with cut object.
 
-	    void generate_unweighted(bool verbose=false)
+	    bool generate_unweighted(bool verbose)
 	    {
 		if(verbose)
 		{
@@ -502,7 +502,7 @@ namespace Camgen
 		if(zero_me)
 		{
 		    generate();
-		    return;
+		    return false;
 		}
 		value_type rho=std::numeric_limits<value_type>::infinity();
 		do
@@ -523,19 +523,15 @@ namespace Camgen
 		{
 		    std::cout<<".....done."<<std::endl;
 		}
+                return true;
 	    }
 
-	    /// Generates new event according to the given strategy argument.
+            /// Overrides the MC_generator generate_unweighted method.
 
-	    bool next_event(int strategy)
-	    {
-		if(std::abs(strategy)!=3)
-		{
-		    return generate();
-		}
-		generate_unweighted();
-		return true;
-	    }
+            bool generate_unweighted()
+            {
+                return generate_unweighted(false);
+            }
 
 	    /// Weight evaluation method, where the cuts are imposed by the argument.
 

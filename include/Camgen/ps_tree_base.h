@@ -202,6 +202,14 @@ namespace Camgen
 		return true;
 	    }
 
+            /// Overrides the MC_generator generate_unweighted method.
+
+            bool generate_unweighted()
+            {
+                this->MC_integrator<value_type>::template generate_unweighted<rng_t>();
+                return true;
+            }
+
 	    /// Overrides the update method.
 
 	    void update()

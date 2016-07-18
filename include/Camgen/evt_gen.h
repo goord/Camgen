@@ -316,7 +316,7 @@ namespace Camgen
 
             /// Generates an unweighted event with argument cut object.
 
-            void generate_unweighted(bool verbose=false)
+            bool generate_unweighted(bool verbose)
             {
                 value_type rho=throw_number(0,this->cross_section().value);
                 process_iterator p_it=procs.begin();
@@ -331,13 +331,21 @@ namespace Camgen
                 if(sub_proc==procs.end())
                 {
                     log(log_level::warning)<<"Subprocesses iterator overflow detected...no generation performed"<<endlog;
-                    return;
+                    return false;
                 }
-                sub_proc->generator->generate_unweighted(verbose);
+                bool success=sub_proc->generator->generate_unweighted(verbose);
                 if(update_counter!=0 and auto_proc_adapt!=0 and update_counter%auto_proc_adapt==0)
                 {
                     adapt_processes();
                 }
+                return success;
+            }
+
+            /// Overrides the MC_generator generate_unweighted method.
+
+            bool generate_unweighted()
+            {
+                return generate_unweighted(false);
             }
 
             void refresh_cross_section(bool with_integrand=true)
@@ -372,18 +380,6 @@ namespace Camgen
                 {
                     it->generator->reset_cross_section();
                 }
-            }
-
-            /// Generates new event according to the given strategy argument.
-
-            bool next_event(int strategy)
-            {
-                if(std::abs(strategy)!=3)
-                {
-                    return generate();
-                }
-                generate_unweighted();
-                return true;
             }
 
             /// Returns whether the current event passes the cuts.

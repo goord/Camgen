@@ -171,6 +171,46 @@ AC_SUBST([AM_CXXFLAGS_ROOT])
 AC_SUBST([AM_LDFLAGS_ROOT])
 AC_SUBST([AM_LIBS_ROOT])
 
+# Check for the Pythia headers. TODO: check for library functions using custom test progs.
+
+AC_DEFUN([CAMGEN_CHECK_PYTHIA8],[
+WITHPYTHIA8="yes"
+PYTHIA8_DIR="/usr/local"
+AC_MSG_CHECKING([for pythia8])
+AC_ARG_WITH([pythia8],
+	    AC_HELP_STRING([--with-pythia8=DIR],[location of Pythia 8 installation (/usr/local by default).]),
+	    [if test "x$with_pythia8" = "xno"; then
+	     WITHPYTHIA8="no"
+	     elif test "x$with_pythia8" != "xyes"; then
+	     PYTHIA8_DIR="$with_pythia8";
+	     fi],[WITHPYTHIA8="no"])
+if test "x$WITHPYTHIA8" = "xyes"; then
+    CPPFLAGS_CACHE="$CPPFLAGS"
+    CPPFLAGS="$CPPFLAGS -I${PYTHIA8_DIR}/include"
+    AC_CHECK_HEADER([Pythia8/Pythia.h],[WITHPYTHIA8="yes"],[WITHPYTHIA8="no"])
+    AC_CHECK_HEADER([Pythia8/LesHouches.h],[WITHPYTHIA8="yes"],[WITHPYTHIA8="no"])
+    CPPFLAGS="$CPPFLAGS_CACHE"
+fi
+AC_MSG_RESULT($WITHPYTHIA8)
+])
+
+CAMGEN_CHECK_PYTHIA8
+
+if test "x$WITHPYTHIA8" = "xyes"; then
+    AC_DEFINE([HAVE_PYTHIA8_H],[1],[Linking against a valid Pythia-8 installation])
+    AM_CXXFLAGS_PYTHIA8="$AM_CXXFLAGS -I${PYTHIA8_DIR}/include";
+    AM_LDFLAGS_PYTHIA8="$AM_LDFLAGS -L${PYTHIA8_DIR}/lib -Wl,-rpath,${PYTHIA8_DIR}/lib";
+    AM_LIBS_PYTHIA8="-lpythia8 $LIBS";
+else
+    AM_CXXFLAGS_PYTHIA8="$AM_CXXFLAGS";
+    AM_LDFLAGS_PYTHIA8="$AM_LDFLAGS";
+    AM_LIBS_PYTHIA8="$LIBS";
+fi
+
+AC_SUBST([AM_CXXFLAGS_PYTHIA8])
+AC_SUBST([AM_LDFLAGS_PYTHIA8])
+AC_SUBST([AM_LIBS_PYTHIA8])
+
 AC_SUBST([AM_CXXFLAGS])
 AC_SUBST([AM_LDFLAGS])
 AC_SUBST([LIBS])

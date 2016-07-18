@@ -49,6 +49,7 @@ check_PROGRAMS =		bitstring_test           \
 				root_test		 \
 				ascii_output_test	 \
 				LH_evt_test		 \
+				pythia_test		 \
 				event_test               \
 				save_load_test           \
 		 		speed_test		
@@ -235,6 +236,11 @@ ascii_output_test_LDADD =	$(top_srcdir)/lib/libCamgen.la $(AM_LDFLAGS)
 LH_evt_test_SOURCES =		LH_evt_test.cpp
 LH_evt_test_LDADD =		$(top_srcdir)/lib/libCamgen.la $(AM_LDFLAGS)
 
+pythia_test_SOURCES =		pythia_test.cpp
+pythia_test_CXXFLAGS =		-I$(top_srcdir)/include $(AM_CXXFLAGS_PYTHIA8)
+pythia_test_LDFLAGS =		-L$(top_srcdir)/lib $(AM_LDFLAGS_PYTHIA8)
+pythia_test_LDADD =		$(top_srcdir)/lib/libCamgen.la $(AM_LIBS_PYTHIA8)
+
 event_test_SOURCES =		event_test.cpp
 event_test_LDADD =		$(top_srcdir)/lib/libCamgen.la $(AM_LDFLAGS)
 
@@ -289,4 +295,5 @@ TESTS =			    	speed_test               \
 				ascii_output_test	 \
 				LH_evt_test		 \
 				event_test               \
-				save_load_test
+				save_load_test		 \
+				pythia_test

@@ -48,6 +48,13 @@ namespace Camgen
 	    
 	    virtual bool generate()=0;
 
+            /// Unweighted generation method. Returns failure by default.
+
+            virtual bool generate_unweighted()
+            {
+                return false;
+            }
+
 	    /// Event weight calculation method.
 
 	    virtual bool evaluate_weight()=0;

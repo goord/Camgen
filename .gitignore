@@ -87,6 +87,7 @@ test/ps_tree_shat_test
 test/ps_tree_reverse_test
 test/ps_tree_reverse_shat_test
 test/proc_gen_test
+test/pythia_test
 test/evt_gen_test
 test/root_test
 test/ascii_output_test

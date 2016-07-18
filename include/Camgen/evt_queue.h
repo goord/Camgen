@@ -34,8 +34,7 @@ namespace Camgen
             /* Public type definitions: */
 
             typedef typename base_type::event_type event_type;
-            typedef event_type value_type;
-            typedef typename std::queue<event_type>::size_type size_type;
+            typedef typename std::queue<const event_type*>::size_type size_type;
 
             /// Virtual destructor.
 
@@ -71,7 +70,7 @@ namespace Camgen
 
             /// Returns the back of the queue (newest event).
 
-            const value_type* back() const
+            const event_type* back() const
             {
                 return evt_queue.back();
             }
@@ -89,6 +88,25 @@ namespace Camgen
                 return true;
             }
 
+            /// Event size implementation.
+
+            size_type event_size() const
+            {
+                return (N_in+N_out)*sizeof(typename event_type::momentum_type);
+            }
+
+            /// Write implementation, does nothing.
+
+            virtual bool write()
+            {
+                while(!empty())
+                {
+                    std::cout<<*front()<<std::endl;
+                    pop();
+                }
+                return true;
+            }
+
         protected:
 
             /// Pushes to the back of the queue.
@@ -96,6 +114,7 @@ namespace Camgen
             bool fill_event(const event_type& evt)
             {
                 evt_queue.push(evt.clone());
+                return true;
             }
 
         private:
