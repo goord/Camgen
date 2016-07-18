@@ -866,6 +866,16 @@ namespace Camgen
                 return check_sufficient_shat();
 	    }
 
+            /// Prints the beam info.
+
+            void print_beam_info(std::ostream& os) const
+            {
+                for(size_type i=0;i<N_in;++i)
+                {
+                    os<<"beam "<<(i+1)<<": id = "<<id_in(i)<<", E = "<<E_in(i)<<", ";
+                }
+            }
+
         protected:
 
             const sub_process<model_type,N_in,N_out>* sub_proc;
@@ -2003,11 +2013,74 @@ namespace Camgen
 		return true;
 	    }
 
+            /// Prints the beam info.
+
+            void print_beam_info(std::ostream& os) const
+            {
+                os<<"beam 1: id = "<<beam_id(-1)<<", E = "<<beam_energy(-1)<<", ";
+                os<<"beam 2: id = "<<beam_id(-2)<<", E = "<<beam_energy(-2)<<", ";
+            }
+
         protected:
 
             const sub_process<model_type,2,N_out>* sub_proc;
             int procid;
     };
+
+    /// Output streaming operator overload for events.
+
+    template<class model_t,std::size_t N_in,std::size_t N_out>std::ostream& operator << (std::ostream& os,const event<model_t,N_in,N_out>& evt)
+    {
+        evt.print_beam_info(os);
+        os<<"Ecmhat = "<<evt.Ecm_hat()<<", w = "<<evt.w()<<", mu_F = "<<evt.mu_F()<<std::endl;
+        std::string s1(model_t::dimension*20+42,'-');
+        os<<s1<<std::endl;
+        for(std::size_t i=0;i<N_in;++i)
+        {
+            if(evt.get_particle_in(i)!=NULL)
+            {
+                os<<std::setw(10)<<evt.get_particle_in(i)->get_name();
+            }
+            else
+            {
+                os<<std::setw(10)<<"<none>";
+            }
+            typename event<model_t,N_in,N_out>::momentum_type p=evt.p_in(i);
+            for(std::size_t j=0;j<p.size();++j)
+            {
+                os<<std::setw(20)<<p[j];
+            }
+            os<<std::setw(20)<<evt.M_in(i);
+            os<<std::setw(6)<<evt.c_in(i);
+            os<<std::setw(6)<<evt.cbar_in(i);
+            os<<std::endl;
+        }
+        
+        std::string s2(model_t::dimension*20+42,'.');
+        os<<s2<<std::endl;
+        for(std::size_t i=0;i<N_out;++i)
+        {
+            if(evt.get_particle_out(i)!=NULL)
+            {
+                os<<std::setw(10)<<evt.get_particle_out(i)->get_name();
+            }
+            else
+            {
+                os<<std::setw(10)<<"<none>";
+            }
+            typename event<model_t,N_in,N_out>::momentum_type p=evt.p_out(i);
+            for(std::size_t j=0;j<p.size();++j)
+            {
+                os<<std::setw(20)<<p[j];
+            }
+            os<<std::setw(20)<<evt.M_out(i);
+            os<<std::setw(6)<<evt.c_out(i);
+            os<<std::setw(6)<<evt.cbar_out(i);
+            os<<std::endl;
+        }
+        os<<s1<<std::endl;
+        return os;
+    }
 }
 
 #endif /*CAMGEN_EVENT_H_*/

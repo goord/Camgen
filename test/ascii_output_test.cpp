@@ -236,7 +236,7 @@ int main()
 	std::cerr.flush();
 	CM_algorithm<model_type,2,4>algo(process);
 	algo.load();
-	algo.construct();
+	algo.construct_trees();
         set_beam_energy(-1,E1);
         set_beam_energy(-2,E2);
         event_generator_factory<model_type,2,4,rn_engine> factory;
