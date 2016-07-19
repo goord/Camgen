@@ -211,7 +211,8 @@ namespace Camgen
                 {
                     for(size_type i=0;i<N_in;++i)
                     {
-                        this->get_event_ptr()->set_E_beam(i,is->beam_energy(i));
+                        this->get_event_ptr()->set_beam_energy(-1-i,is->beam_energy(i));
+                        this->get_event_ptr()->set_beam_id(-1-i,is->beam_id(i));
                     }
                     return true;
                 }

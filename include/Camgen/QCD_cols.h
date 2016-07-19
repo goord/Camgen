@@ -650,11 +650,11 @@ namespace Camgen
 
 	    /* Les Houches event file output. This will convert the
 	     * configuration to an infinite-colour output, starting from colour
-	     * number 501: */
+	     * number 101: */
 
 	    void LH_output(vector<int,N_tot>& cols,vector<int,N_tot>& anticols) const
 	    {
-		int n=501;
+		int n=101;
 		cols.assign(0);
 		anticols.assign(0);
 		for(size_type i=0;i<colours.size();++i)

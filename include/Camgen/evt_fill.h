@@ -60,10 +60,6 @@ namespace Camgen
 
             virtual void set_p_out(size_type,const momentum_type&)=0;
 
-            /// Sets the incoming hadronic beam energy.
-
-            virtual void set_E_beam(size_type,const value_type&)=0;
-
             /// Sets the event weight.
 
             virtual void set_w(const value_type&)=0;
@@ -84,21 +80,25 @@ namespace Camgen
 
             virtual void set_Ecm_hat(const value_type&)=0;
 
+            /// Sets the incoming hadronic beam energy.
+
+            virtual void set_beam_energy(int,const value_type&)=0;
+
 	    /// Virtual method setting the i-th incoming beam id.
 
-	    virtual void set_beam_id(int i,int id)=0;
+	    virtual void set_beam_id(int,int)=0;
 
 	    /// Sets the cernlib pdf group number for the i-th incoming beam.
 
-	    virtual void set_pdfg(int i,int gid)=0;
+	    virtual void set_pdfg(int,int)=0;
 
 	    /// Sets the cernlib pdf set number for the i-th incoming beam.
 
-	    virtual void set_pdfs(int i,int sid)=0;
+	    virtual void set_pdfs(int,int)=0;
 
 	    /// Sets the factorisation scale.
 
-	    virtual void set_mu_F(const value_type& mu)=0;
+	    virtual void set_mu_F(const value_type&)=0;
 
             /// Sets the colour connection.
 

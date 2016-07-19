@@ -60,6 +60,7 @@ namespace Camgen
                 const event_type* e=this->get_current_event();
 		this->setBeamA(e->beam_id(-1),e->beam_energy(-1),e->pdfg(-1),e->pdfs(-1));
 		this->setBeamB(e->beam_id(-2),e->beam_energy(-2),e->pdfg(-2),e->pdfs(-2));
+                //TODO: Loop over subprocesses
 		MC_integral<value_type>sigma=e->xsec();
 		this->addProcess(proc_id,sigma.value,sigma.error,e->max_w());
 		return true;
@@ -74,6 +75,9 @@ namespace Camgen
                 {
                     return false;
                 }
+                std::cerr<<"My event is: "<<std::endl;
+                std::cerr<<*e<<std::endl;
+                
 
 		value_type w=(this->weight_switch==3)?1:e->w();
 		this->setProcess(proc_id,w,(double)(e->mu_F()),(double)(model_t::alpha),(double)(model_t::alpha_s));
@@ -81,8 +85,8 @@ namespace Camgen
 		for(unsigned i=0;i<2;++i)
 		{
 		    this->addParticle(e->id_in(i),-1,0,0,
-                                      e->c(i),
-                                      e->cbar(i),
+                                      e->c_in(i),
+                                      e->cbar_in(i),
                                       (double)(e->p_in(i,1)),
                                       (double)(e->p_in(i,2)),
                                       (double)(e->p_in(i,3)),
@@ -94,8 +98,8 @@ namespace Camgen
 		for(unsigned i=0;i<N_out;++i)
 		{
 		    this->addParticle(e->id_out(i),1,1,2,
-                                      e->c(i+2),
-                                      e->cbar(i+2),
+                                      e->c_out(i),
+                                      e->cbar_out(i),
                                       (double)(e->p_out(i,1)),
                                       (double)(e->p_out(i,2)),
                                       (double)(e->p_out(i,3)),

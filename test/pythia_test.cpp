@@ -26,6 +26,8 @@ int main()
 //    typedef std::size_t size_type;
     typedef double value_type;
 
+//    Camgen::random_number_stream<double,std::random>::throw_number();
+
     Camgen::log.enable_level=Camgen::log_level::error;
     Camgen::set_initial_state_type(Camgen::initial_states::proton_proton);
     Camgen::set_phase_space_generator_type(Camgen::phase_space_generators::recursive);
@@ -42,12 +44,15 @@ int main()
     Camgen::set_beam_energy(-2,E2);
     Camgen::event_generator_factory<model_type,2,3,rn_engine> factory;
     Camgen::event_generator<model_type,2,3,rn_engine>* evt_gen=factory.create_generator(algo);
+    //TODO: absorb this in factory.
+    evt_gen->refresh_Ecm();
 
     Camgen::Pythia_interface<model_type,3> pif(evt_gen,1,true,1);
-    Pythia8::Pythia parton_shower;
-    parton_shower.setLHAupPtr(static_cast<Pythia8::LHAup*>(&pif));
-    parton_shower.init();
-    parton_shower.next();
+    Pythia8::Pythia pythia;
+    pythia.readString("Beams:frameType = 5");
+    pythia.setLHAupPtr(static_cast<Pythia8::LHAup*>(&pif));
+    pythia.init();
+    pythia.next();
 
     delete evt_gen;
     Camgen::log.enable_level=Camgen::log_level::warning;

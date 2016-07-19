@@ -190,13 +190,6 @@ namespace Camgen
                ecm=e;
             }
 
-            /// Sets the incoming beam energy.
-
-            void set_E_beam(size_type i,const value_type& e)
-            {
-               ebeam[i]=e;
-            }
-
             /// Sets the event weight.
 
             void set_w(const value_type& weight_)
@@ -237,6 +230,16 @@ namespace Camgen
             void set_p_out(size_type i,const momentum_type& p)
             {
                 pout[i]=p;
+            }
+
+            /// Sets the incoming beam energy.
+
+            void set_beam_energy(int i,const value_type& e)
+            {
+                if(i<0 and i>=-(int)N_in)
+                {
+                    ebeam[-i-1]=e;
+                }
             }
 
             /// Implementation of the beam id setter.
