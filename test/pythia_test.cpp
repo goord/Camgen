@@ -6,12 +6,12 @@
 //
 
 #include <config.h>
-#include <Camgen/Pythia_if.h>
 #include <Camgen/SM.h>
 #include <Camgen/stdrand.h>
 #include <Camgen/evtgen_fac.h>
 
 #if HAVE_PYTHIA8_H
+#include <Camgen/Pythia_if.h>
 #include <Pythia8/Pythia.h>
 #endif
 
@@ -55,7 +55,7 @@ int main()
     
 #else
 
-    std::cerr<<"Skipping Pyhia8 checks: no Pythia8 install location proided."<<std::endl;
+    std::cerr<<"Skipping Pyhia-8 checks: no Pythia-8 install location provided."<<std::endl;
 
 #endif /* HAVE_PYTHIA8_H*/
 }
