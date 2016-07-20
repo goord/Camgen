@@ -105,17 +105,44 @@ namespace Camgen
                 return this->scale_container<model_t,N_in,N_out>::R_scale(this->get_event());
             }
 
+            /// Returns the number of subprocesses.
+
             virtual size_type processes() const
             {
                 return 1;
             }
+
+            /// Returns the id oft he i-th subprocess.
 
             virtual int process_id(size_type i) const
             {
                 return i==0?1:-1;
             }
 
+            /// Returns the cross section of the subprocess with the given id.
+
+            virtual MC_integral<value_type> process_xsec(int proc_id) const
+            {
+                const event_generator_base<model_t,N_in,N_out>* sub_gen=get_sub_generator(proc_id);
+                return sub_gen==NULL?MC_integral<value_type>():(sub_gen->process_xsec(1));
+            }
+
+            /// Returns the maximal weight of the subprocess with the given id.
+
+            virtual value_type process_maxw(int proc_id) const
+            {
+                const event_generator_base<model_t,N_in,N_out>* sub_gen=get_sub_generator(proc_id);
+                return sub_gen==NULL?(value_type)0:(sub_gen->process_maxw(1));
+            }
+
         protected:
+
+            /// Returns the generator with the given id.
+
+            virtual const event_generator_base<model_t,N_in,N_out>* get_sub_generator(int proc_id) const
+            {
+                return NULL;
+            }
 
             /// Implementation of the event creation factory method.
             //

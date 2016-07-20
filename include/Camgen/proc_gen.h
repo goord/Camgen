@@ -98,7 +98,7 @@ namespace Camgen
 
 	    /// Utility process id.
 
-	    const size_type id;
+	    const int id;
 
 	    /// Symmetry factor.
 
@@ -583,6 +583,50 @@ namespace Camgen
 		return true;
 	    }
 
+	    /* Event generation helper: */
+
+	    bool throw_event()
+	    {
+		++evt_counter;
+                bool q1=generate_momenta();
+                bool q2=generate_helicities();
+                bool q3=generate_colours();
+		if(!(q1 and q2 and q3))
+		{
+		    this->weight()=(value_type)0;
+		    set_integrands(0);
+                    copy_event_data();
+		    return false;
+		}
+		else
+		{
+		    this->weight()=ps_weight*hel_weight*col_weight;
+		    value_type f=pb_conversion*symmetry_factor*ps_factor*hel_factor*col_factor;
+		    if(f!=(value_type)0)
+		    {
+			evaluate_amplitude();
+			if(accept(me))
+			{
+			    set_integrands(me*f);
+			}
+			else
+			{
+			    set_integrands(0);
+			}
+		    }
+		    else
+		    {
+			set_integrands(0);
+		    }
+                    copy_event_data();
+		}
+		if(tot_weight!=(value_type)0)
+		{
+		    ++pos_evt_counter;
+		}
+		return true;
+	    }
+
 	    /// Implementation of the pass_cuts method.
 
 	    bool pass()
@@ -774,7 +818,6 @@ namespace Camgen
                 }
             }
 
-
 	    /* Public readout methods */
 	    /*------------------------*/
 
@@ -792,6 +835,20 @@ namespace Camgen
                 fillable_event<model_t,N_in,N_out>* e=new event_data<model_t,N_in,N_out>();
                 e->set_process(subproc->clone());
                 return e;
+            }
+
+            /// Subprocess implementation: returns the current cross section if the argument is 1.
+
+            MC_integral<value_type> process_xsec(int proc_id) const
+            {
+                return proc_id==1?(this->cross_section()):MC_integral<value_type>();
+            }
+
+            /// Subprocess maximum weight implementation: returns the current maximal weight if the argument is 1.
+
+            value_type process_maxw(int proc_id) const
+            {
+                return proc_id==1?(this->max_weight()):(value_type)0;
             }
 
 	    /// Returns the number of incoming particles.
@@ -817,7 +874,7 @@ namespace Camgen
 
 	    /// Returns the process id.
 
-	    size_type process_id() const
+	    int process_id() const
 	    {
 		return id;
 	    }
@@ -1240,7 +1297,7 @@ namespace Camgen
 
 	    /* Private constructor, no configuration performed: */
 
-	    process_generator(CM_tree_iterator it,size_type id_=0):id(id_),symmetry_factor(it->symmetry_factor()),amplitude(it),evt_counter(0),pos_evt_counter(0),tot_weight(0),zero_me(it->count_diagrams()==(long long unsigned)0),me(1),subproc(create_sub_proc(it)),ps_gen(NULL),ps_weight(1),ps_factor(1),hel_gen(NULL),hel_weight(1),hel_factor(1),col_gen(NULL),col_weight(1),col_factor(1),update_counter(0),auto_update(false),grid_adaptations(0),auto_grid_adapt(0),channel_adaptations(0),auto_channel_adapt(0),max_rejects(std::numeric_limits<size_type>::max()),alpha_pdf(true)
+	    process_generator(CM_tree_iterator it,int id_=1):id(id_),symmetry_factor(it->symmetry_factor()),amplitude(it),evt_counter(0),pos_evt_counter(0),tot_weight(0),zero_me(it->count_diagrams()==(long long unsigned)0),me(1),subproc(create_sub_proc(it)),ps_gen(NULL),ps_weight(1),ps_factor(1),hel_gen(NULL),hel_weight(1),hel_factor(1),col_gen(NULL),col_weight(1),col_factor(1),update_counter(0),auto_update(false),grid_adaptations(0),auto_grid_adapt(0),channel_adaptations(0),auto_channel_adapt(0),max_rejects(std::numeric_limits<size_type>::max()),alpha_pdf(true)
 	    {
 		summed_spins.reset();
 		summed_colours.reset();
@@ -1311,50 +1368,6 @@ namespace Camgen
 		}
                 this->get_event_ptr()->set_w(tot_weight);
                 this->get_event_ptr()->set_xsec(this->cross_section());
-	    }
-
-	    /* Event generation helper: */
-
-	    bool throw_event()
-	    {
-		++evt_counter;
-                bool q1=generate_momenta();
-                bool q2=generate_helicities();
-                bool q3=generate_colours();
-		if(!(q1 and q2 and q3))
-		{
-		    this->weight()=(value_type)0;
-		    set_integrands(0);
-                    copy_event_data();
-		    return false;
-		}
-		else
-		{
-		    this->weight()=ps_weight*hel_weight*col_weight;
-		    value_type f=pb_conversion*symmetry_factor*ps_factor*hel_factor*col_factor;
-		    if(f!=(value_type)0)
-		    {
-			evaluate_amplitude();
-			if(accept(me))
-			{
-			    set_integrands(me*f);
-			}
-			else
-			{
-			    set_integrands(0);
-			}
-		    }
-		    else
-		    {
-			set_integrands(0);
-		    }
-                    copy_event_data();
-		}
-		if(tot_weight!=(value_type)0)
-		{
-		    ++pos_evt_counter;
-		}
-		return true;
 	    }
 
 	    /* Initialisation helper: */

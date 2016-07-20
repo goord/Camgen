@@ -91,7 +91,7 @@ namespace Camgen
 	    {
 		if(evtgen!=NULL)
 		{
-		    evtgen->initialise(init_channel_iterations(),init_channel_batch(),init_grid_iterations(),init_grid_batch(),verbose);
+		    evtgen->initialise(init_channel_iterations(),init_channel_batch(),init_grid_iterations(),init_grid_batch(),subprocess_events(),verbose);
 		}
 	    }
 
@@ -139,7 +139,7 @@ namespace Camgen
 		procs.reserve(amplitude.n_trees());
 		if(amplitude.reset_process())
 		{
-		    int id=0;
+		    int id=1;
 		    do
 		    {
 			if(!amplitude.get_tree_iterator()->is_empty())
@@ -182,19 +182,19 @@ namespace Camgen
 	    }
     };
 
-    template<class model_t,std::size_t N_in,std::size_t N_out,class rng_t>event_generator<model_t,N_in,N_out,rng_t>& pre_initialise(event_generator<model_t,N_in,N_out,rng_t>* evtgen,bool verbose=false)
+    template<class model_t,std::size_t N_in,std::size_t N_out,class rng_t>event_generator<model_t,N_in,N_out,rng_t>* pre_initialise(event_generator<model_t,N_in,N_out,rng_t>* evtgen,bool verbose=false)
     {
 	event_generator_factory_base<model_t,N_in,N_out,rng_t>::pre_initialise(evtgen,verbose);
 	return evtgen;
     }
 
-    template<class model_t,std::size_t N_in,std::size_t N_out,class rng_t>event_generator<model_t,N_in,N_out,rng_t>& initialise(event_generator<model_t,N_in,N_out,rng_t>* evtgen,bool verbose=false)
+    template<class model_t,std::size_t N_in,std::size_t N_out,class rng_t>event_generator<model_t,N_in,N_out,rng_t>* initialise(event_generator<model_t,N_in,N_out,rng_t>* evtgen,bool verbose=false)
     {
 	event_generator_factory_base<model_t,N_in,N_out,rng_t>::initialise(evtgen,verbose);
 	return evtgen;
     }
 
-    template<class model_t,std::size_t N_in,std::size_t N_out,class rng_t>event_generator<model_t,N_in,N_out,rng_t>& initialise(event_generator<model_t,N_in,N_out,rng_t>* evtgen,generator_configuration<model_t,N_in,N_out>& conf,bool verbose=false)
+    template<class model_t,std::size_t N_in,std::size_t N_out,class rng_t>event_generator<model_t,N_in,N_out,rng_t>* initialise(event_generator<model_t,N_in,N_out,rng_t>* evtgen,generator_configuration<model_t,N_in,N_out>& conf,bool verbose=false)
     {
 	event_generator_factory_base<model_t,N_in,N_out,rng_t>::initialise(evtgen,conf,verbose);
 	return evtgen;

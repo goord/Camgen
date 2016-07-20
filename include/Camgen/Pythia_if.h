@@ -60,27 +60,29 @@ namespace Camgen
                 const event_type* e=this->get_current_event();
 		this->setBeamA(e->beam_id(-1),e->beam_energy(-1),e->pdfg(-1),e->pdfs(-1));
 		this->setBeamB(e->beam_id(-2),e->beam_energy(-2),e->pdfg(-2),e->pdfs(-2));
-                //TODO: Loop over subprocesses
-		MC_integral<value_type>sigma=e->xsec();
-		this->addProcess(proc_id,sigma.value,sigma.error,e->max_w());
-		return true;
-	    }
+                
+                for(size_type i=0;i<this->gen->processes();++i)
+                {
+                    int proc_id=this->gen->process_id(i);
+                    MC_integral<value_type>sigma=this->gen->process_xsec(proc_id);
+                    value_type maxw=this->gen->process_maxw(proc_id);
+                    this->addProcess(proc_id,((double)sigma.value)*1.0e-9,((double)sigma.error)*1.0e-9,((double)maxw)*1.0e-9);
+                }
+                return true;
+            }
 
-	    /// Fills the event common block.
+            /// Fills the event common block.
 
-	    bool setEvent(int idProcess=0)
-	    {
+            bool setEvent(int idProcess=0)
+            {
                 const event_type* e=this->next_event();
                 if(e==NULL)
                 {
                     return false;
                 }
-                std::cerr<<"My event is: "<<std::endl;
-                std::cerr<<*e<<std::endl;
-                
 
 		value_type w=(this->weight_switch==3)?1:e->w();
-		this->setProcess(proc_id,w,(double)(e->mu_F()),(double)(model_t::alpha),(double)(model_t::alpha_s));
+		this->setProcess(proc_id,((double)w)*1.0e-9,(double)(e->mu_F()),(double)(model_t::alpha),(double)(model_t::alpha_s));
 
 		for(unsigned i=0;i<2;++i)
 		{

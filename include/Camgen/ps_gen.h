@@ -359,6 +359,20 @@ namespace Camgen
 	    /* Public readout methods */
 	    /*------------------------*/
 
+            /// Subprocess cross section implementation: returns the current cross section if the argument is 1.
+
+            MC_integral<value_type> process_xsec(int proc_id) const
+            {
+                return proc_id==1?(this->cross_section()):MC_integral<value_type>();
+            }
+
+            /// Subprocess maximum weight implementation: returns the current maximal weight if the argument is 1.
+
+            value_type process_maxw(int proc_id) const
+            {
+                return proc_id==1?(this->max_weight()):(value_type)0;
+            }
+
 	    /// Returns the i-th incoming beam identifier.
 
 	    int beam_id(int i) const

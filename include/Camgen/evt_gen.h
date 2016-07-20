@@ -627,6 +627,20 @@ namespace Camgen
                 return procs[i].generator->id;
             }
 
+            /// Returns the subprocess generator with the given id.
+
+            const event_generator_base<model_t,N_in,N_out>* get_sub_generator(int id) const
+            {
+                for(size_type i=0;i<procs.size();++i)
+                {
+                    if(procs[i].generator->id==id)
+                    {
+                        return procs[i].generator;
+                    }
+                }
+                return NULL;
+            }
+
             /// Returns the total cross section.
 
             cross_section_type xsec() const
@@ -1037,7 +1051,7 @@ namespace Camgen
                         sub_proc->generator->update();
                         sub_proc->generator->refresh_cross_section();
                         this->integrand()=sub_proc->generator->integrand();
-                        this->weight()=sub_proc->generator->weight()/sub_proc->generator->alpha;
+                        this->weight()=sub_proc->generator->weight()/sub_proc->alpha;
                         if(i%batch==0)
                         {
                             std::cout<<'.';

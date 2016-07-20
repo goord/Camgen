@@ -90,11 +90,13 @@ namespace Camgen
                 return const_cast<const generator_type*>(gen)->get_event_ptr();
             }
 
-        private:
+        protected:
 
             /* Event generator instance. */
 
             generator_type* const gen;
+
+        private:
 
             /* Internal event queue */
 
